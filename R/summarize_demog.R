@@ -49,9 +49,9 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
                           'participant.race')]),]
 
   demog.theme <- ggplot2::theme(legend.position = "bottom",
-                       legend.title = element_blank(),
-                       axis.text = element_text(size = rel(1)),
-                       axis.title = element_text(size = rel(1.5))
+                       legend.title = ggplot2::element_blank(),
+                       axis.text = ggplot2::element_text(size = ggplot2::rel(1)),
+                       axis.title = ggplot2::element_text(size = ggplot2::rel(1.5))
                        )
 
   df %>% ggplot2::ggplot() +

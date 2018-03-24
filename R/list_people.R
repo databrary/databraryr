@@ -4,7 +4,7 @@
 #' @return Status code if successful.
 #' @examples
 #' list_people()
-list_people <- function(people.list = 7) {
+list_people <- function(people.list = 7, vb = FALSE) {
   # Creates a list of Databrary people as data.frame
   #
   # Args:
@@ -21,12 +21,12 @@ list_people <- function(people.list = 7) {
   # Get one institution's data
   list_people <- function(party) {
     if (is_person(party)) {
-      databrary_download_party(party)
+      download_party(party)
     }
   }
 
   if (length(people.list) == 1) {
-    as.data.frame(list_people(inst.list))
+    as.data.frame(list_people(people.list))
   } else {
     l <- sapply(people.list, list_people)
     Reduce(function(x,y) merge(x,y, all=TRUE), l[-which(sapply(l, is.null))])

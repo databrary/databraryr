@@ -55,7 +55,7 @@ list_assets <- function(slot = 9825, volume = 75,
   }
   authenticate_db(vb=vb)
 
-  slot.url <- paste0(base.url, volume, "/slot/", slot, "?assets")
+  slot.url <- paste0(databrary.url, "/", volume, "/slot/", slot, "?assets")
   if (vb) {
     cat(slot.url, "\n")
   }

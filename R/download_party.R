@@ -32,7 +32,7 @@ download_party <- function(party = 6, to.df = FALSE,
   }
 
   if (!exists("databrary_config_status")) {
-    config_db(verbose = verbose)
+    config_db(vb = vb)
   }
   authenticate_db()
 
@@ -42,8 +42,8 @@ download_party <- function(party = 6, to.df = FALSE,
   }
   r = httr::GET(paste0(databrary.url, party.url))
 
-  if (status_code(r) == 200) {
-    r.content <- httr::content( r, 'text', encoding = 'UTF-8' )
+  if (httr::status_code(r) == 200) {
+    r.content <- httr::content(r, 'text', encoding = 'UTF-8' )
     if(to.df == TRUE){
       return(read.csv(text = r.content))
     } else if(convert.JSON) {
@@ -53,7 +53,7 @@ download_party <- function(party = 6, to.df = FALSE,
     }
   } else {
     if (vb) {
-      cat(paste('Download Failed, HTTP status ', status_code(r), '\n', sep=""))
+      cat(paste('Download Failed, HTTP status ', httr::status_code(r), '\n', sep=""))
     }
     return(r)
   }

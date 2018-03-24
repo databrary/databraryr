@@ -28,3 +28,5 @@ Suggests:
     rmarkdown,
     testthat
 VignetteBuilder: knitr
+URL: http://github.com/PLAY-behaviorome/databraryapi
+BugReports: http://github.com/PLAY-behaviorome/databraryapi/issues

@@ -1,4 +1,4 @@
-is_institution <- function(party=8, verbose = FALSE) {
+is_institution <- function(party=8, vb = FALSE) {
   # Tests whether a given party is a Databrary institution or not
   #
   # Args:
@@ -7,7 +7,7 @@ is_institution <- function(party=8, verbose = FALSE) {
   #
   # Returns:
   #  TRUE or FALSE
-  
+
   # Error handling
   if (length(party) > 1) {
     stop("Party must be single value")
@@ -15,24 +15,24 @@ is_institution <- function(party=8, verbose = FALSE) {
   if ((!is.numeric(party)) || (party <= 0)) {
     stop("Party must be an integer > 0")
   }
-  
+
   party.url <- paste0("/api/party/", party)
-  r = GET(paste0(databrary.url, party.url))
-  if (status_code(r) == 200) {
-    p <- fromJSON(content( r, 'text', encoding = 'UTF-8'))
+  r = httr::GET(paste0(databrary.url, party.url))
+  if (httr::status_code(r) == 200) {
+    p <- jsonlite::fromJSON(httr::content( r, 'text', encoding = 'UTF-8'))
     if (("institution" %in% names(p)) && (!is.null(p[['institution']]))) {
       return(TRUE)
     } else {
       return(FALSE)
     }
   } else {
-    if (verbose) {
-      cat(paste('Download Failed, HTTP status ', status_code(r), '\n', sep=""))
+    if (vb) {
+      cat(paste0('Download Failed, HTTP status ', httr::status_code(r), '\n'))
     }
     return(FALSE)
   }
 }
 
-is_person <- function(party = 7){
-  return(!is_institution(party))
+is_person <- function(party = 7, vb = vb){
+  return(!is_institution(party, vb = vb))
 }
