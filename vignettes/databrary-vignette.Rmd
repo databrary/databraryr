@@ -37,8 +37,8 @@ All it takes is your user name (email address) and password. Let's configure you
 ```{r authentication}
 # Configure the environment for Databrary
 library(databraryapi)
-config_db()
-login_db(stored.credentials = FALSE)
+# config_db()
+# login_db(stored.credentials = FALSE)
 ```
 
 
