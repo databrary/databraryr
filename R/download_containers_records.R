@@ -39,7 +39,7 @@ download_containers_records <- function(volume = 2, convert.JSON = TRUE,
 
   if (httr::status_code(g) == 200){
     g.content <- httr::content(g, 'text', encoding = "UTF-8")
-    if(convert.JSON){
+    if(convert.JSON) {
       return(jsonlite::fromJSON(g.content))
     } else {
       return(g.content)
