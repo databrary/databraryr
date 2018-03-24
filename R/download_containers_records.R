@@ -33,16 +33,16 @@ download_containers_records <- function(volume = 2, convert.JSON = TRUE,
   }
   authenticate_db(vb=vb)
 
-  url.cont.rec <- paste(url.base, "/", volume, "?", "containers&records", sep="")
+  url.cont.rec <- paste(vol.api.url, "/", volume, "?", "containers&records", sep="")
 
   g = httr::GET(url.cont.rec)
 
-  if (status_code(g) == 200){
+  if (httr::status_code(g) == 200){
     g.content <- httr::content(g, 'text', encoding = "UTF-8")
     if(convert.JSON){
-      return(fromJSON(g.content))
+      return(jsonlite::fromJSON(g.content))
     } else {
       return(g.content)
     }
-  } else if (vb) cat( paste( 'Download Failed, HTTP status ', status_code(g), '\n', sep="" ) )
+  } else if (vb) cat( paste( 'Download Failed, HTTP status ', httr::status_code(g), '\n', sep="" ) )
 }

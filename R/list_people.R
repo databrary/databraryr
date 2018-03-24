@@ -21,7 +21,13 @@ list_people <- function(people.list = 7, vb = FALSE) {
   # Get one institution's data
   list_people <- function(party) {
     if (is_person(party)) {
-      download_party(party)
+      p <- download_party(party)
+      # Drop parties without names
+      if (is.null(p$sortname)) {
+        return(NULL)
+      } else {
+        return(p)
+      }
     }
   }
 
