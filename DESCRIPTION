@@ -1,0 +1,30 @@
+Package: databraryapi
+Type: Package
+Title: Interacts With The Databrary.org API
+Version: 0.1.0
+Author: Rick O. Gilmore
+Authors@R: person("Rick", "O. Gilmore", email = "rick.gilmore@databrary.org",
+  role = c("aut", "cre"))
+Maintainer: Rick O. Gilmore <rick.gilmore@databrary.org>
+Description: This package provides commands to interact with the 
+  Databrary.org API. There are some public assets on Databrary. 
+  But for most interesting use cases, a user will need to 
+  register <http://databrary.org/register> and receive authorization 
+  from an institution. Once authorized, users can download data 
+  and metadata from Databrary.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    ggplot2,
+    httr,
+    rvest,
+    magrittr,
+    jsonlite
+RoxygenNote: 6.0.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

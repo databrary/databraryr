@@ -1,0 +1,81 @@
+---
+title: "Accessing Databrary.org via the API"
+author: "Rick O. Gilmore"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+      fig_caption: yes
+vignette: >        
+  %\VignetteIndexEntry{Accessing Databrary.org via the API}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Vignette Info
+
+Databrary is a powerful tool for storing and sharing video data and documentation with other researchers.
+With the `databraryapi` package, it becomes even more powerful.
+Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
+
+I wrote the Databrary API so I could find out what's going on on the site, and eventually so I can streamline my own analysis and data sharing workflows.
+Let's get started.
+
+## Authenticating
+
+Access to Databrary requires prior [registration](https://databrary.org/register) and [authorization](https://www.databrary.org/resources/agreement.html) from an institution.
+The authorization process requires formal agreement by an institution.
+But even before formal authorization is complete, a user can access the public materials on Databrary.
+All it takes is your user name (email address) and password. Let's configure your system for access then login.
+
+```{r authentication}
+# Configure the environment for Databrary
+library(databraryapi)
+config_db()
+login_db(stored.credentials = FALSE)
+```
+
+
+<!-- ## Styles -->
+
+<!-- The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows: -->
+
+<!--     output:  -->
+<!--       rmarkdown::html_vignette: -->
+<!--         css: mystyles.css -->
+
+<!-- ## Figures -->
+
+<!-- The figure sizes have been customised so that you can easily put two images side-by-side.  -->
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+<!-- You can enable figure captions by `fig_caption: yes` in YAML: -->
+
+<!--     output: -->
+<!--       rmarkdown::html_vignette: -->
+<!--         fig_caption: yes -->
+
+<!-- Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**. -->
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))
