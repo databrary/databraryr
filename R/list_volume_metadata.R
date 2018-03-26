@@ -1,6 +1,23 @@
+#' List volume metadata.
+#'
+#' @param volume Selected volume number.
+#' @param write.header A Boolean value. If TRUE writes a comma-separated header.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @return A data framw with information about the volume owner.
+#' @examples
+#' list_volume_metadata()
 list_volume_metadata <- function(volume = 2,
                                  write.header = FALSE,
                                  vb = FALSE) {
+  # List volume metadata.
+  #
+  # Args:
+  #  volume: Volume number to query. Default is 2.
+  #  write.header: Boolean value. Default is FALSE.
+  #  vb: Verbose output. Default is FALSE.
+  #
+  # Returns:
+  #  A data framw with volume owner information.
 
   # Error-checking
   if (!(is.numeric(volume))) {

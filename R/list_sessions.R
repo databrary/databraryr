@@ -1,13 +1,11 @@
 #' Downloads session spreadsheet as a CSV.
 #'
 #' @param volume Target volume number.
-#' @param to.df A boolean value.
-#' @param return.response A boolean value.
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
 #' list_sessions()
-list_sessions <- function(volume, vb = vb) {
+list_sessions <- function(volume = 1, vb = vb) {
   v <- download_containers_records(volume = volume, vb = vb)
   if (!is.null(v)) {
     if (("containers" %in% names(v)) && (!is.null(v[['containers']]))) {

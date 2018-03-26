@@ -1,4 +1,4 @@
-#' Plot summary of volume's participant characteristics.
+#' Lists assets in a given Databrary volume and session (slot).
 #'
 #' @param slot Slot/session ID.
 #' @param volume Selected volume number.
@@ -31,7 +31,7 @@ list_assets <- function(slot = 9825, volume = 75,
   #  $assets (list)
   #    id, format, classification, duration, name, permission, size
   #
-  #  So, x <- databrary_download_asset()
+  #  So, x <- download_asset()
   #  x$assets[1] or x$assets['id'] gives array of asset ids
 
   # Error handling
@@ -49,15 +49,14 @@ list_assets <- function(slot = 9825, volume = 75,
   }
 
   query.type <- "download"
-
   if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
     config_db(vb=vb)
   }
-  authenticate_db(vb=vb)
+  #authenticate_db(vb=vb)
 
-  slot.url <- paste0(databrary.url, "/", volume, "/slot/", slot, "?assets")
+  slot.url <- paste0(vol.api.url, "/", volume, "/slot/", slot, "?assets")
   if (vb) {
-    cat(slot.url, "\n")
+    cat(paste0("Sending GET to ", slot.url, "\n"))
   }
   g <- httr::GET(slot.url)
   if (httr::status_code(g) == 200) {
@@ -68,6 +67,6 @@ list_assets <- function(slot = 9825, volume = 75,
       return(g.content)
       }
   } else if (vb) {
-    cat( paste( 'Download Failed, HTTP status ', httr::status_code(g), '\n', sep="" ) )
+    cat(paste( 'Download Failed, HTTP status ', httr::status_code(g), '\n', sep="" ))
   }
 }

@@ -18,6 +18,9 @@ list_assets(slot = 9825, volume = 75, return.response = FALSE,
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+A plot of a volume's summary demographic characteristics.
+}
 \description{
 Plot summary of volume's participant characteristics.
 }

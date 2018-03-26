@@ -29,7 +29,6 @@ login_db <- function(login.url = "/api/user/login",
   }
 
   if (stored.credentials) {
-    require(jsonlite)
     email <- jsonlite::fromJSON(credentials.file)$email
     password <- jsonlite::fromJSON(credentials.file)$pw
   } else {

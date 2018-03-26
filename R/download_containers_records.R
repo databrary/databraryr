@@ -31,7 +31,7 @@ download_containers_records <- function(volume = 2, convert.JSON = TRUE,
   if ((!exists("databrary_config_status")) || (!databrary_config_status)){
     config_db(vb=vb)
   }
-  authenticate_db(vb=vb)
+  #authenticate_db(vb=vb)
 
   url.cont.rec <- paste(vol.api.url, "/", volume, "?", "containers&records", sep="")
 
