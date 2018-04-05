@@ -5,8 +5,9 @@
 \title{Logs in to Databrary.org.}
 \usage{
 login_db(login.url = "/api/user/login", return.response = FALSE,
-  save.session = TRUE, stored.credentials = TRUE,
-  credentials.file = "~/api-keys/json/databrary-keys.json", vb = FALSE)
+  save.session = TRUE, stored.credentials = FALSE,
+  credentials.file = "~/api-keys/json/databrary-keys.json",
+  system.credentials, vb = FALSE)
 }
 \arguments{
 \item{login.url}{URL for the login API.}
@@ -16,6 +17,8 @@ login_db(login.url = "/api/user/login", return.response = FALSE,
 \item{stored.credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
 
 \item{credentials.file}{Path to stored credentials file if it exists.}
+
+\item{system.credentials}{A Boolean value. If TRUE loads login credentials from system file using `keyring`}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 

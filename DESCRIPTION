@@ -1,7 +1,7 @@
 Package: databraryapi
 Type: Package
 Title: Interacts With The Databrary.org API
-Version: 0.1.0
+Version: 0.1.1
 Author: Rick O. Gilmore
 Authors@R: person("Rick", "O. Gilmore", email = "rick.gilmore@databrary.org",
   role = c("aut", "cre"))
@@ -21,7 +21,8 @@ Imports:
     httr,
     rvest,
     magrittr,
-    jsonlite
+    jsonlite,
+    keyring
 RoxygenNote: 6.0.1
 Suggests: 
     knitr,

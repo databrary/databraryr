@@ -4,16 +4,12 @@
 \alias{list_sessions}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-list_sessions(volume, vb = vb)
+list_sessions(volume = 1, vb = vb)
 }
 \arguments{
 \item{volume}{Target volume number.}
 
 \item{vb}{A boolean value.}
-
-\item{to.df}{A boolean value.}
-
-\item{return.response}{A boolean value.}
 }
 \value{
 List of assets.

@@ -9,9 +9,6 @@ config_db(vb = FALSE)
 \arguments{
 \item{vb}{A boolean value.}
 }
-\value{
-Status code if successful.
-}
 \description{
 Configure R environment for access to Databrary.org.
 }

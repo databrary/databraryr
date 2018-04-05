@@ -1,15 +1,10 @@
 #' Configure R environment for access to Databrary.org.
 #'
 #' @param vb A boolean value.
-#' @return Status code if successful.
 #' @examples
 #' configure_db()
 config_db <- function(vb=FALSE) {
-  # Determines if local environment has been configured for Databrary. If not,
-  # sources required packages and commands and adds relevant defaults to .GlobalEnv
-  #
-  # Args:
-  #  vb: Flag specifying whether to provide vb status messages. Default is FALSE.
+  require(keyring)
 
   if(!exists("databrary_config_status")){
     if (vb) cat("Configuring for Databrary.\n")
@@ -19,5 +14,14 @@ config_db <- function(vb=FALSE) {
     assign('vol.api.url', "https://nyu.databrary.org/api/volume", envir=.GlobalEnv)
     httr::set_config(httr::add_headers(.headers = c("X-Requested-With" = "databrary R client")))
     # TODO(someone): Check to see if there is a valid credentials file
+
+    kl <- keyring::key_list(service = "databrary")
+    if (exists('kl') && is.data.frame(kl)) {
+      assign('system.credentials', TRUE, envir=.GlobalEnv)
+      if (vb) cat("Using existing system credentials file.")
+    } else {
+      assign('system.credentials', FALSE, envir=.GlobalEnv)
+      cat("No system credentials file exists. Create one with config_passwd()")
+    }
   } else if (vb) cat("Already configured.\n")
 }

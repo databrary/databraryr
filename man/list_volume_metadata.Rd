@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_metadata.R
 \name{list_volume_metadata}
 \alias{list_volume_metadata}
-\title{List information about volume owners.}
+\title{List volume metadata.}
 \usage{
 list_volume_metadata(volume = 2, write.header = FALSE, vb = FALSE)
 }
@@ -17,8 +17,8 @@ list_volume_metadata(volume = 2, write.header = FALSE, vb = FALSE)
 A data framw with information about the volume owner.
 }
 \description{
-List information about volume owners.
+List volume metadata.
 }
 \examples{
-list_assets()
+list_volume_metadata()
 }

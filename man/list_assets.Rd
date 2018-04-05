@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets.R
 \name{list_assets}
 \alias{list_assets}
-\title{Plot summary of volume's participant characteristics.}
+\title{Lists assets in a given Databrary volume and session (slot).}
 \usage{
 list_assets(slot = 9825, volume = 75, return.response = FALSE,
   convert.JSON = TRUE, vb = FALSE)
@@ -22,7 +22,7 @@ list_assets(slot = 9825, volume = 75, return.response = FALSE,
 A plot of a volume's summary demographic characteristics.
 }
 \description{
-Plot summary of volume's participant characteristics.
+Lists assets in a given Databrary volume and session (slot).
 }
 \examples{
 list_assets()
