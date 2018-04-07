@@ -4,7 +4,7 @@
 \alias{list_volume_owners}
 \title{List volume owners.}
 \usage{
-list_volume_owners(volume = 2)
+list_volume_owners(volume = 1)
 }
 \arguments{
 \item{volume}{Selected volume number. Default is 2.}

@@ -12,9 +12,10 @@ logout_db <- function(logout.url = "/api/user/logout",
   }
 
   r <- httr::POST(paste0(databrary.url, logout.url))
-  if (status_code(r) == 200){
+  if (httr::status_code(r) == 200){
     if (vb) cat('Logout Successful.\n')
     if (file.exists(".databrary.RData")) file.remove(".databrary.RData")
-  } else if (vb) cat( paste('Logout Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
+    if (exists('databrary_config_status')) rm(databrary_config_status, envir = .GlobalEnv)
+  } else if (vb) cat(paste('Logout Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
   if (return.response) return(r)
 }

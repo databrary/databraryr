@@ -5,7 +5,6 @@
 #' @param save.session A Boolean value. If TRUE saves the session cookie.
 #' @param stored.credentials A Boolean value. If TRUE loads login credentials from credentials file.
 #' @param credentials.file Path to stored credentials file if it exists.
-#' @param system.credentials A Boolean value. If TRUE loads login credentials from system file using `keyring`
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return Status code if successful.
 #' @examples
@@ -14,17 +13,18 @@ login_db <- function(login.url = "/api/user/login",
                      return.response = FALSE, save.session = TRUE,
                      stored.credentials = FALSE,
                      credentials.file = "~/api-keys/json/databrary-keys.json",
-                     system.credentials,
                      vb = FALSE ) {
 
+  # Configure for Databrary if necessary
   if (!exists("databrary_config_status")) {
     config_db(vb = vb)
   }
 
+  # Access (possibly stored) credentials
   if (stored.credentials) {
     email <- jsonlite::fromJSON(credentials.file)$email
     password <- jsonlite::fromJSON(credentials.file)$pw
-  } else if(system.credentials) {
+  } else if (system.credentials) {
     email <- readline(prompt="Email: ")
     kl <- keyring::key_list(service = "databrary")
     if (exists('kl') && is.data.frame(kl)) {
@@ -39,22 +39,22 @@ login_db <- function(login.url = "/api/user/login",
     password = rstudioapi::askForPassword("Please enter your Databrary password: ")
   }
 
+  # Assemble URL, POST(), and handle response
   r <- httr::POST(paste0(databrary.url, login.url),
                   body = list(email=email, password=password))
   rm(email, password)
 
   if (httr::status_code(r) == 200){
-    if (vb) cat( 'Login Successful.\n' )
     if (save.session){
       databrary.SESSION <- httr::cookies(r)$value
       save(databrary.SESSION, file = ".databrary.RData")
     } else {
       rm(databrary.SESSION)
     }
-    if (vb) cat(paste("Login successful.\n"))
+    if (vb) message(paste("Login successful.\n"))
     return(TRUE)
   } else {
-    cat(paste('Login Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
+    message(paste0('Login Failed, HTTP status ', httr::status_code(r), '\n'))
     return(FALSE)
   }
 }

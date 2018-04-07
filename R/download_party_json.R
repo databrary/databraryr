@@ -1,13 +1,11 @@
 #' Lists basic information about people on Databrary.
 #'
 #' @param party Party number to retrieve information about.
-#' @param convert.JSON A Boolean value if TRUE converts the JSON download
 #' @param vb A Boolean value if TRUE returns verbose output.
-#' @return Status code if successful.
+#' @return JSON file with data.
 #' @examples
 #' download_party()
-download_party <- function(party = 6,
-                           convert.JSON = TRUE,
+download_party_json <- function(party = 6,
                            vb = FALSE) {
 
   # Error handling
@@ -31,12 +29,7 @@ download_party <- function(party = 6,
   r = httr::GET(party.url)
 
   if (httr::status_code(r) == 200) {
-    r.content <- httr::content(r, 'text', encoding = 'UTF-8')
-    if(convert.JSON) {
-      return(jsonlite::fromJSON(r.content))
-    } else {
-      return(r.content)
-    }
+      return(httr::content(r, 'text', encoding = 'UTF-8'))
   } else {
     if (vb) {
       message(paste0('Download Failed, HTTP status ', httr::status_code(r), "\n"))

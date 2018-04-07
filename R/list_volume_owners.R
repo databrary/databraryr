@@ -4,7 +4,7 @@
 #' @return A data framw with information about the volume owner(s).
 #' @examples
 #' list_volume_owners()
-list_volume_owners <- function(volume = 2) {
+list_volume_owners <- function(volume = 1) {
   # Error handling
   if (!is.numeric(volume)) {
     stop("Volume must be numeric")
@@ -21,9 +21,9 @@ list_volume_owners <- function(volume = 2) {
     }
     # Drop "Staff" etc.
     p <- p %>%
-      mutate(person.id = id, volume = volume) %>%
-      filter (!(is.na(prename))) %>%
-      select(volume, person.id, sortname, prename)
+      dplyr::mutate(., person.id = id, volume = volume) %>%
+      dplyr::filter(., !(is.na(prename))) %>%
+      dplyr::select(., volume, person.id, sortname, prename)
     return(p)
   } else {
     return(NULL)
