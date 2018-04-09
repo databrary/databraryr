@@ -8,9 +8,11 @@ list_people(people.list = 7, vb = FALSE)
 }
 \arguments{
 \item{people.list}{Party number(s) for people to list.}
+
+\item{vb}{A Boolean value if TRUE returns verbose output.}
 }
 \value{
-Status code if successful.
+A data frame with the people in the specified range of party ID's.
 }
 \description{
 Lists basic information about people on Databrary.
