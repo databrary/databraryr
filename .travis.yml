@@ -1,2 +1,7 @@
 language: r
 cache: packages
+
+install:
+# For keyring
+  - apt libsecret-1-dev
+  - pkg-config libsecret-1-dev
