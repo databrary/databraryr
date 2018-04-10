@@ -3,5 +3,5 @@ cache: packages
 
 install:
 # For keyring
-  - apt-get libsecret-1-dev
+  - apt-get install libsecret-1-dev
   - pkg-config libsecret-1-dev
