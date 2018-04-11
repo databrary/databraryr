@@ -1,5 +1,6 @@
 #' Logs in to Databrary.org.
 #'
+#' @param email Databrary account ID (email).
 #' @param login.url URL for the login API.
 #' @param return.reponse A Boolean value. If TRUE returns results of GET
 #' @param save.session A Boolean value. If TRUE saves the session cookie.
@@ -9,7 +10,8 @@
 #' @return Status code if successful.
 #' @examples
 #' login_db()
-login_db <- function(login.url = "/api/user/login",
+login_db <- function(email = NULL,
+                     login.url = "/api/user/login",
                      return.response = FALSE, save.session = TRUE,
                      stored.credentials = FALSE,
                      credentials.file = "~/api-keys/json/databrary-keys.json",
@@ -25,11 +27,14 @@ login_db <- function(login.url = "/api/user/login",
     email <- jsonlite::fromJSON(credentials.file)$email
     password <- jsonlite::fromJSON(credentials.file)$pw
   } else if (system.credentials) {
-    email <- readline(prompt="Email: ")
+    if (!(exists('email')) || (is.null(email))) {
+      email <- readline(prompt="Email: ")
+    }
     kl <- keyring::key_list(service = "databrary")
     if (exists('kl') && is.data.frame(kl)) {
       if (email %in% kl$username) {
-        password <- keyring::key_get(service = "databrary", username = email)
+        password <- keyring::key_get(service = "databrary",
+                                     username = email)
       }
     } else {
       stop(paste0("No stored credentials for user: ", email, "\n"))
@@ -51,7 +56,7 @@ login_db <- function(login.url = "/api/user/login",
     } else {
       rm(databrary.SESSION)
     }
-    if (vb) message(paste("Login successful.\n"))
+    message(paste("Login successful."))
     return(TRUE)
   } else {
     message(paste0('Login Failed, HTTP status ', httr::status_code(r), '\n'))

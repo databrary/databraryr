@@ -8,14 +8,6 @@
 #' summarize_demog()
 summarize_demog <- function(volume = 4, return.df = FALSE,
                            vb = FALSE) {
-  # Downloads volume CSV and plots summary data for participant race, ethnicity, and age
-  #
-  # Args:
-  #  volume: Databrary volume (integer). Default is 4.
-  #  plot.style: Type of plotting commands to use. Default is 'ggplot'.
-  #  return.df: Flag indicating whether or not to return the spreadsheet as a data frame. Default is
-  #    FALSE.
-  #  vb: Flag specifying whether to provide vb status messages. Default is FALSE.
 
   # Error handling
   if (length(volume) > 1) {

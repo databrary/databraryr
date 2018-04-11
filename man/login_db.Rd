@@ -4,11 +4,14 @@
 \alias{login_db}
 \title{Logs in to Databrary.org.}
 \usage{
-login_db(login.url = "/api/user/login", return.response = FALSE,
-  save.session = TRUE, stored.credentials = FALSE,
+login_db(email = NULL, login.url = "/api/user/login",
+  return.response = FALSE, save.session = TRUE,
+  stored.credentials = FALSE,
   credentials.file = "~/api-keys/json/databrary-keys.json", vb = FALSE)
 }
 \arguments{
+\item{email}{Databrary account ID (email).}
+
 \item{login.url}{URL for the login API.}
 
 \item{save.session}{A Boolean value. If TRUE saves the session cookie.}

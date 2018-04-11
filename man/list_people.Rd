@@ -4,7 +4,7 @@
 \alias{list_people}
 \title{Lists basic information about people on Databrary.}
 \usage{
-list_people(people.list = 7, vb = FALSE)
+list_people(people.list = 5:8, vb = FALSE)
 }
 \arguments{
 \item{people.list}{Party number(s) for people to list.}

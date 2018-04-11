@@ -44,3 +44,24 @@ If users choose to log in with their user names and passwords on each access -- 
 The `rstudioapi` commands work only under [RStudio](http://www.rstudio.com).
 
 Whatever access model is chosen, the use of a password generator/manager program (e.g., [LastPass](http://www.lastpass.com), [1Password](http://1password.com), [Dashlane](http://www.dashlane.com)) is strongly recommended.
+
+### Command descriptions
+
+`read_csv_data_as_df()` by default reads a publicly shared CSV data file from Databrary's volume 1 <http://databrary.org/volume/1>. Try
+
+    db.stats <- read_csv_data_as_df()
+    with(db.stats, plot(Auth_Investigators, Institutions))
+    
+`download_video()` by default reads a short publicly shared testing video depicting a series of numbers counting up from 000.
+
+`download_csv()` by default reads a CSV of the "sessions" spreadsheet from Databrary's volume 1 <http://databrary.org/volume/1> and returns it as a data frame.
+
+`list_assets_by_type()` by defaults lists the videos in Databrary volume 1 <http://databrary.org/volume/1>.
+
+`list_people()` by default lists information about the two Databrary PIs, Karen Adolph and Rick Gilmore, and the Co-I, David Millman.
+
+`list_volume_owners()` by default lists the volume owners for Databrary volume 1 <http://databrary.org/volume/1>.
+
+`logout_db()` logs out of Databrary and does some simple clean up.
+
+

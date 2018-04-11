@@ -5,7 +5,7 @@
 #' @return A data frame with the people in the specified range of party ID's.
 #' @examples
 #' list_people()
-list_people <- function(people.list = 7, vb = FALSE) {
+list_people <- function(people.list = 5:8, vb = FALSE) {
   # Error handling
   if (sum((people.list < 0))) {
     stop("Person indices must be > 0")
@@ -25,8 +25,10 @@ list_people <- function(people.list = 7, vb = FALSE) {
   }
 
   if (length(people.list) == 1) {
+    if (vb) message("Only one ID in list.")
     as.data.frame(list_person(people.list))
   } else {
+    if (vb) message("Multiple person IDs in list.")
     l <- sapply(people.list, list_person)
     Reduce(function(x,y) merge(x,y, all=TRUE), l[-which(sapply(l, is.null))])
   }
