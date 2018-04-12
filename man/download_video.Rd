@@ -4,7 +4,7 @@
 \alias{download_video}
 \title{Download a specific video file.}
 \usage{
-download_video(asset = 1, slot = 9807, file.name = "vol.1.counting.mp4",
+download_video(asset = 1, slot = 9807, file.name = "test.mp4",
   return.response = FALSE, vb = FALSE)
 }
 \arguments{

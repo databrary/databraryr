@@ -14,7 +14,7 @@ list_volume_metadata(volume = 2, write.header = FALSE, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data framw with information about the volume owner.
+A data frame with information about the volume owner.
 }
 \description{
 List volume metadata.

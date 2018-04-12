@@ -25,8 +25,9 @@ list_assets <- function(slot = 9825, volume = 75,
   }
 
   if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-    config_db(vb=vb)
+    databraryapi::config_db(vb = vb)
   }
+  #authenticate_db(vb = vb)
 
   # Make URL, GET(), and handle response
   slot.url <- paste0(vol.api.url, "/", volume, "/slot/", slot, "?assets")
@@ -46,8 +47,9 @@ list_assets <- function(slot = 9825, volume = 75,
           d.sess.assets$sess.name <- d.sess$name
           d.sess.assets$sess.date <- d.sess$date
           d.sess.assets$sess.release <- d.sess$release
-          # Handle case of single value in assets field
+
         } else {
+          # Handle case of single value in assets field
           d.sess.assets <- data.frame(id = NA, format = NA, segment = NA,
                                       name = NA, permission = NA, size = NA,
                                       duration = NA,

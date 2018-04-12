@@ -5,17 +5,19 @@
 #' @return Status code if successful.
 #' @examples
 #' logout_db()
-logout_db <- function(logout.url = "/api/user/logout",
-                      return.response = FALSE, vb = TRUE){
+logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
   if (!exists("databrary_config_status")) {
-    config_db(vb = vb)
+    databraryapi::config_db(vb = vb)
   }
 
   r <- httr::POST(paste0(databrary.url, logout.url))
   if (httr::status_code(r) == 200){
-    if (vb) cat('Logout Successful.\n')
+    if (vb) message('Logout Successful.')
     if (file.exists(".databrary.RData")) file.remove(".databrary.RData")
     if (exists('databrary_config_status')) rm(databrary_config_status, envir = .GlobalEnv)
-  } else if (vb) cat(paste('Logout Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
-  if (return.response) return(r)
+    if (exists('databrary.url')) rm(databrary.url, envir = .GlobalEnv)
+    if (exists('system.credentials')) rm(system.credentials, envir = .GlobalEnv)
+    if (exists('vol.api.url')) rm(vol.api.url, envir = .GlobalEnv)
+    if (exists('logged.in')) rm(logged.in, envir = .GlobalEnv)
+  } else if (vb) message(paste('Logout Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
 }

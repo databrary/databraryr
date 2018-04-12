@@ -1,1 +1,4 @@
 exportPattern("^[[:alpha:]]+")
+importFrom("graphics", "hist", "par", "plot")
+     importFrom("stats", "complete.cases", "na.omit")
+     importFrom("utils", "download.file", "read.csv", "read.table", "unzip")

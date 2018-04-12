@@ -13,8 +13,8 @@ list_people <- function(people.list = 5:8, vb = FALSE) {
 
   # Get one institution's data
   list_person <- function(party) {
-    if (is_person(party)) {
-      p <- download_party(party)
+    if (databraryapi::is_person(party, vb = vb)) {
+      p <- databraryapi::download_party(party, vb = vb)
       # Drop parties without names
       if (is.null(p$sortname)) {
         return(NULL)

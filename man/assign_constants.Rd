@@ -4,7 +4,7 @@
 \alias{assign_constants}
 \title{Downloads Databrary contants from API.}
 \usage{
-assign_constants(vb = FALSE, convert.JSON = TRUE)
+assign_constants(vb = FALSE)
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}

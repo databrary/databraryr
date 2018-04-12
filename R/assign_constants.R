@@ -3,20 +3,15 @@
 #' @return A data frame with the constants.
 #' @examples
 #' assign_constants()
-assign_constants <- function(vb = FALSE,
-                             convert.JSON = TRUE) {
+assign_constants <- function(vb = FALSE) {
   constants.url <- "https://nyu.databrary.org/api/constants"
   if (vb) {
-    message(paste0("Sending GET to ", constants.url, "\n"))
+    message(paste0("Sending GET to ", constants.url))
   }
   g <- httr::GET(constants.url)
   if (httr::status_code(g) == 200) {
     g.content <- httr::content(g, 'text', encoding = 'UTF-8')
-    if(convert.JSON) {
-      return(jsonlite::fromJSON(g.content))
-    } else {
-      return(g.content)
-    }
+    return(jsonlite::fromJSON(g.content))
   } else if (vb) {
     message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
   }

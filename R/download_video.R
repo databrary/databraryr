@@ -8,29 +8,29 @@
 #' @examples
 #' download_video()
 download_video <- function(asset = 1, slot = 9807,
-                           file.name = "vol.1.counting.mp4",
+                           file.name = "test.mp4",
                            return.response=FALSE, vb=FALSE) {
   # Error handling
-  if (!is.character(file.name)) {
-    stop("File.name must be character string.")
-  }
-  if (length(slot) > 1) {
-    stop("Slot must have length 1.")
-  }
-  if ((!is.numeric(slot)) || slot <= 0 ) {
-    stop("Slot must be > 0.")
-  }
   if (length(asset) > 1) {
-    stop("Asset must have length 1.")
+    stop("Asset ID must have length 1.")
   }
   if ((!is.numeric(asset)) || asset <= 0 ) {
-    stop("Asset must be > 0.")
+    stop("Asset must be number > 0.")
+  }
+  if (length(slot) > 1) {
+    stop("Session ID must have length 1.")
+  }
+  if ((!is.numeric(slot)) || slot <= 0 ) {
+    stop("Session ID must be number > 0.")
+  }
+  if (!is.character(file.name)) {
+    stop("File name must be character string.")
   }
 
   if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
     config_db(vb=vb)
   }
-  #authenticate_db(vb=vb)
+  authenticate_db(vb=vb)
 
   asset.url <- paste("/slot", slot, "-", "asset", asset,
                      "download", sep="/")
@@ -54,7 +54,7 @@ download_video <- function(asset = 1, slot = 9807,
       if (vb) {
         message(paste0("Downloading video as ", file.name, "\n"))
       }
-      download.file(webpage$handle$url, file.name, mode = "wb")
+      utils::download.file(webpage$handle$url, file.name, mode = "wb")
     }
   } else {
     if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))

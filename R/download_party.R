@@ -21,7 +21,7 @@ download_party <- function(party = 6,
   if (!exists("databrary_config_status")) {
     config_db(vb = vb)
   }
-  #authenticate_db()
+  authenticate_db()
 
   # Assemble URL, GET(), and handle response
   party.url <- paste0(databrary.url, "/api/party/", party)

@@ -3,21 +3,12 @@
 #' @param volume Selected volume number.
 #' @param write.header A Boolean value. If TRUE writes a comma-separated header.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data framw with information about the volume owner.
+#' @return A data frame with information about the volume owner.
 #' @examples
 #' list_volume_metadata()
 list_volume_metadata <- function(volume = 2,
                                  write.header = FALSE,
                                  vb = FALSE) {
-  # List volume metadata.
-  #
-  # Args:
-  #  volume: Volume number to query. Default is 2.
-  #  write.header: Boolean value. Default is FALSE.
-  #  vb: Verbose output. Default is FALSE.
-  #
-  # Returns:
-  #  A data framw with volume owner information.
 
   # Error-checking
   if (!(is.numeric(volume))) {
@@ -27,7 +18,7 @@ list_volume_metadata <- function(volume = 2,
     stop("Volume must be > 0.")
   }
 
-  # Declare helpers (does this work?)
+  # Declare helpers
   surround_w_quotes <- function(s) {
     paste0('"', s, '"')
   }
@@ -40,7 +31,7 @@ list_volume_metadata <- function(volume = 2,
     }
   }
 
-  v <- download_containers_records(volume = volume)
+  v <- databraryapi::download_containers_records(volume = volume, vb = vb)
   if (!(is.null(v))){
     if (write.header) {
       cat(paste("volume.id", "volume.name", "permission",
@@ -50,7 +41,7 @@ list_volume_metadata <- function(volume = 2,
               v$permission,
               paste0(make_url_doi(v$doi), "\n"), sep = ","))
   } else {
-    cat(paste0('No data in volume ', volume, "\n."))
+    message(paste0('No data in volume ', volume, "\n."))
     return(NULL)
   }
 }

@@ -6,9 +6,13 @@
 #' list_volume_owners()
 list_volume_owners <- function(volume = 1) {
   # Error handling
-  if (!is.numeric(volume)) {
-    stop("Volume must be numeric")
+  if (length(volume) > 1) {
+    stop("Volume must have length 1.")
   }
+  if ((!is.numeric(volume)) || (volume <= 0)) {
+    stop("Volume must be an integer > 0.")
+  }
+
   v <- databraryapi::download_containers_records(volume)
   if (!is.null(v$owners)) {
     owners <- v$owners$id

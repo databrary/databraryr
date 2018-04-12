@@ -1,3 +1,12 @@
+#' Extracts the codes from a raw (*.opf) Datavyu coding file.
+#'
+#' @param in.fn File name for the Datavyu file.
+#' @param out.dir Output directory to save exported files.
+#' @param auto.write.over A Boolean value. If TRUE, any existing files in out.dir are overwritten.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @return The output directory where the extracted files were saved.
+#' @examples
+#' extract_dv()
 extract_dv <- function(in.fn, out.dir = NULL,
                        auto.write.over = TRUE,
                        vb = FALSE) {
@@ -43,5 +52,6 @@ extract_dv <- function(in.fn, out.dir = NULL,
   unzip(in.fn, exdir = out.dir)
 
   # Return out.dir for chaining
+  message("Success. File extracted.")
   return(out.dir)
 }

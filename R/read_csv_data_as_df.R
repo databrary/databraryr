@@ -19,7 +19,7 @@ read_csv_data_as_df <- function(session = 9807, asset = 116888,
   if (httr::status_code(g) == 200) {
     if (vb) message(paste0("Successful HTML GET query."))
     if (g$headers$`content-type` == "text/csv") {
-      df <- read.table(header = T,
+      df <- utils::read.table(header = T,
                        text = httr::content(g, type = "text"),
                        sep = ",", stringsAsFactors = FALSE)
       return(df)

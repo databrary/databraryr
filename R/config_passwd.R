@@ -3,37 +3,35 @@
 #' @examples
 #' config_passwd()
 config_passwd <- function() {
-  require(keyring)
-  cat("Please enter your Databrary user account (email):\n")
+  message("Please enter your Databrary user account (email):\n")
   email <- readline(prompt="Email: ")
-  kl <- key_list(service = "databrary")
+  kl <- keyring::key_list(service = "databrary")
   if (exists('kl') && is.data.frame(kl)) {
     if (email %in% kl$username) {
-      cat(paste0("Databrary password exists for user: ", email, "\n"))
+      cat(paste0("Databrary password exists for user: ", email))
       enter.new <- readline(prompt = paste0("Enter new password for user: ", email, " (y/n)?: "))
       if (enter.new %in% c("Y", "y")) {
         keyring::key_set(service = "databrary", username = email)
-        cat(paste0("New password saved for user: ", email, "\n"))
+        message(paste0("New password saved for user: ", email))
       } else {
-        cat(paste0("Password unchanged for user: ", email, "\n"))
+        message(paste0("Password unchanged for user: ", email))
       }
       assign('system.credentials', TRUE, envir=.GlobalEnv)
     } else {
-      cat(paste0("No Databrary password for user: ", email, "\n"))
-      cat(paste0("Databrary passwords exist for other users: \n"))
-      #cat(paste0(as.character(key_list(service = "databrary")[,2])))
+      message(paste0("No Databrary password for user: ", email))
+      message(paste0("Databrary passwords exist for other users: \n"))
       cat(pretty_print_emails(as.character(key_list(service = "databrary")[,2])))
       enter.new <- readline(prompt = paste0("Create new password for user: ", email, " (y/n)?: "))
       if (enter.new %in% c("Y", "y")) {
         keyring::key_set(service = "databrary", username = email)
-        cat(paste0("New password saved for user: ", email, "\n"))
+        message(paste0("New password saved for user: ", email, "\n"))
       } else {
-        cat(paste0("Password unchanged for user: ", email, "\n"))
+        message(paste0("Password unchanged for user: ", email, "\n"))
       }
     }
   } else {
-    cat("No Databrary account passwords currently stored.\n")
-    cat(paste0("Creating new password for user: ", email, "\n"))
+    message("No Databrary account passwords currently stored.")
+    message(paste0("Creating new password for user: ", email))
     keyring::key_set(service="databrary", username=email)
     assign('system.credentials', TRUE, envir=.GlobalEnv)
   }

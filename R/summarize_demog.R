@@ -18,7 +18,7 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
   }
 
   # Authenticate within download_csv
-  df <- download_csv(volume = volume, vb=vb)
+  df <- databraryapi::download_session_csv(volume = volume, vb=vb)
   if (is.null(df)) {
     stop("Download failed.")
   }

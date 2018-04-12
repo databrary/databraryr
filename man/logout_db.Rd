@@ -4,8 +4,7 @@
 \alias{logout_db}
 \title{Logs out of Databrary.org.}
 \usage{
-logout_db(logout.url = "/api/user/logout", return.response = FALSE,
-  vb = TRUE)
+logout_db(logout.url = "/api/user/logout", vb = TRUE)
 }
 \arguments{
 \item{logout.url}{URL for the login API.}

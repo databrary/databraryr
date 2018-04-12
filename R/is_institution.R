@@ -1,3 +1,10 @@
+#' Tests whether given party ID is from an institution.
+#'
+#' @param party Databrary party ID
+#' @param vb A boolean value. If TRUE provides verbose output.
+#' @return TRUE or FALSEl.
+#' @examples
+#' is_institution()
 is_institution <- function(party=8, vb = FALSE) {
   # Tests whether a given party is a Databrary institution or not
   #
@@ -17,6 +24,7 @@ is_institution <- function(party=8, vb = FALSE) {
   }
 
   party.url <- paste0("/api/party/", party)
+  if (vb) message("Sending GET to ", paste0(databrary.url, party.url))
   r = httr::GET(paste0(databrary.url, party.url))
   if (httr::status_code(r) == 200) {
     p <- jsonlite::fromJSON(httr::content( r, 'text', encoding = 'UTF-8'))
@@ -33,6 +41,14 @@ is_institution <- function(party=8, vb = FALSE) {
   }
 }
 
+
+#' Tests whether given party ID is from a person.
+#'
+#' @param party Databrary party ID
+#' @param vb A boolean value. If TRUE provides verbose output.
+#' @return TRUE or FALSEl.
+#' @examples
+#' is_person()
 is_person <- function(party = 7, vb = vb){
   return(!is_institution(party, vb = vb))
 }

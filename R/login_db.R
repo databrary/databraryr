@@ -28,6 +28,7 @@ login_db <- function(email = NULL,
     password <- jsonlite::fromJSON(credentials.file)$pw
   } else if (system.credentials) {
     if (!(exists('email')) || (is.null(email))) {
+      message("Please enter your Databrary user ID (email).")
       email <- readline(prompt="Email: ")
     }
     kl <- keyring::key_list(service = "databrary")
@@ -53,6 +54,7 @@ login_db <- function(email = NULL,
     if (save.session){
       databrary.SESSION <- httr::cookies(r)$value
       save(databrary.SESSION, file = ".databrary.RData")
+      assign("logged.in", TRUE, envir=.GlobalEnv)
     } else {
       rm(databrary.SESSION)
     }
