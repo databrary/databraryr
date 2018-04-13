@@ -18,13 +18,13 @@ download_party <- function(party = 6,
     stop("Party must be an integer > 0")
   }
 
-  if (!exists("databrary_config_status")) {
-    config_db(vb = vb)
-  }
-  authenticate_db()
+  # if (!exists("databrary_config_status")) {
+  #   config_db(vb = vb)
+  # }
+  #authenticate_db()
 
   # Assemble URL, GET(), and handle response
-  party.url <- paste0(databrary.url, "/api/party/", party)
+  party.url <- paste0("https:/nyu.databrary.org/api/party/", party)
   if (vb) {
     message(paste0("Sending GET to ", party.url, "\n"))
   }

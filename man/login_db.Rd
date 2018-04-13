@@ -6,7 +6,7 @@
 \usage{
 login_db(email = NULL, login.url = "/api/user/login",
   return.response = FALSE, save.session = TRUE,
-  stored.credentials = FALSE,
+  stored.credentials = FALSE, system.credentials = TRUE,
   credentials.file = "~/api-keys/json/databrary-keys.json", vb = FALSE)
 }
 \arguments{
@@ -25,7 +25,7 @@ login_db(email = NULL, login.url = "/api/user/login",
 \item{return.reponse}{A Boolean value. If TRUE returns results of GET}
 }
 \value{
-Status code if successful.
+Status code if login is successful
 }
 \description{
 Logs in to Databrary.org.

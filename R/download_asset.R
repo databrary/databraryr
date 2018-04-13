@@ -3,7 +3,7 @@
 #' @param asset Asset number.
 #' @param slot Slot/session number.
 #' @param file.name Name for downloaded file.
-#' @param return.respose A Boolean value.
+#' @param return.response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_asset()
@@ -28,14 +28,14 @@ download_asset <- function(asset = 11643, slot = 9825,
     stop("File name must be character string.")
   }
 
-  if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-    databraryapi::config_db(vb = vb)
-  }
-  databrararyapi::authenticate_db(vb = vb)
+  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
+  #   databraryapi::config_db(vb = vb)
+  # }
+  #authenticate_db(vb = vb)
 
   asset.url <- paste("/slot", slot, "-", "asset", asset,
                      "download", sep="/")
-  url.download <- paste0(databrary.url, asset.url)
+  url.download <- paste0("https:/nyu.databrary.org", asset.url)
 
   webpage <- rvest::html_session(url.download)
   if (webpage$response$status_code == 200) {
@@ -55,7 +55,7 @@ download_asset <- function(asset = 11643, slot = 9825,
       if (vb) {
         message(paste0("Downloading video as ", file.name, "\n"))
       }
-      download.file(webpage$handle$url, file.name, mode = "wb")
+      utils::download.file(webpage$handle$url, file.name, mode = "wb")
     }
   } else {
     if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))

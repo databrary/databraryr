@@ -13,11 +13,11 @@ list_sessions <- function(volume = 1, vb = FALSE) {
   if (volume < 1) {
     stop("Volume ID must be >= 1.")
   }
-  if ((!exists("databrary_config_status")) || (!databrary_config_status)){
-    databraryapi::config_db(vb = vb)
-  }
+  # if ((!exists("databrary_config_status")) || (!databrary_config_status)){
+  #   databraryapi::config_db(vb = vb)
+  # }
 
-  url.cont <- paste(vol.api.url, "/", volume, "?", "containers", sep="")
+  url.cont <- paste0("https://nyu.databrary.org/api/volume/", volume, "?", "containers")
   if (vb) message(paste0("Sending GET to ", url.cont))
   g = httr::GET(url.cont)
   if (httr::status_code(g) == 200) {
@@ -31,5 +31,5 @@ list_sessions <- function(volume = 1, vb = FALSE) {
         message(paste0('No sessions in volume.\n'))
       }
     }
-  } else if (vb) message( paste( 'Download Failed, HTTP status ', httr::status_code(g), '\n', sep="" ) )
+  } else if (vb) message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
 }

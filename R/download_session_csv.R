@@ -18,17 +18,15 @@ download_session_csv <- function(volume = 1, to.df = TRUE,
     stop("Volume must be an integer > 0.")
   }
 
-  if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-    databraryapi::config_db(vb=vb)
-  }
-  databraryapi::authenticate_db(vb=vb)
+  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
+  #   config_db(vb=vb)
+  # }
+  # authenticate_db(vb=vb)
 
-  # GET
-  csv.url <- paste0("/volume/", volume, "/csv")
-  request.url <- paste0(databrary.url, csv.url)
+  request.url <- paste0("https://nyu.databrary.org/volume/", volume, "/csv")
   r = httr::GET(paste0(request.url))
   if (vb) {
-    message(paste0("sending GET to ", request.url))
+    message(paste0("Sending GET to ", request.url))
   }
   if (httr::status_code(r) == 200){
     r.content <- httr::content(r, 'text', encoding = "UTF-8")
@@ -44,7 +42,7 @@ download_session_csv <- function(volume = 1, to.df = TRUE,
       return(r.content)
     }
   } else {
-    if (vb) message(paste('Download Failed, HTTP status ', httr::status_code(r), '\n', sep="" ))
+    message(paste0('Download Failed, HTTP status ', httr::status_code(r)))
     if (return.response) return(r)
   }
 }

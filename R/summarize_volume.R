@@ -18,7 +18,7 @@ summarize_volume <- function(volume = 4, plot.style = "ggplot",
     stop("Volume must be an integer > 0.")
   }
 
-  df <- databraryapi::download_session_csv(volume=volume, vb=vb)
+  df <- download_session_csv(volume=volume, vb=vb)
   if (is.null(df)) {
     stop("Download failed.")
   }

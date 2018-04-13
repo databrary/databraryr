@@ -9,7 +9,7 @@ list_containers_records_json(volume = 1, vb = FALSE)
 \arguments{
 \item{volume}{Databrary volume number.}
 
-\item{vb}{Boolean.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 
 \item{convert.JSON}{Boolean.}
 }

@@ -49,7 +49,7 @@ extract_dv <- function(in.fn, out.dir = NULL,
   }
 
   if (vb) message(paste0("Extracting file ", in.fn, " to ", out.dir, "\n"))
-  unzip(in.fn, exdir = out.dir)
+  utils::unzip(in.fn, exdir = out.dir)
 
   # Return out.dir for chaining
   message("Success. File extracted.")

@@ -4,7 +4,7 @@
 #' @examples
 #' get_supported_file_types()
 get_supported_file_types <- function(vb = FALSE) {
-  c <- databraryapi::assign_constants(vb = vb)
-  ft <- Reduce(function(x,y) merge(x,y, all=TRUE), c$format)
+  c <- assign_constants(vb = vb)
+  ft <- Reduce(function(x,y) merge(x, y, all=TRUE), c$format)
   return(ft)
 }

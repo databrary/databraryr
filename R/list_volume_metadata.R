@@ -31,7 +31,7 @@ list_volume_metadata <- function(volume = 2,
     }
   }
 
-  v <- databraryapi::download_containers_records(volume = volume, vb = vb)
+  v <- download_containers_records(volume = volume, vb = vb)
   if (!(is.null(v))){
     if (write.header) {
       cat(paste("volume.id", "volume.name", "permission",

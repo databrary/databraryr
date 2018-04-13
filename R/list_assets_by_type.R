@@ -19,8 +19,8 @@ list_assets_by_type <- function(volume = 1, type = "video",
     stop("Asset type must be character.")
   }
 
-  va <- databraryapi::list_assets_in_volume(volume = volume, vb = vb)
-  file.types <- databraryapi::get_supported_file_types(vb = vb)
+  va <- list_assets_in_volume(volume = volume, vb = vb)
+  file.types <- get_supported_file_types(vb = vb)
   these.types <- file.types$mimetype[stringr::str_detect(file.types$mimetype, type)]
   if (is.null(these.types)) {
     stop(paste0("Invalid data type '", type))
@@ -29,21 +29,18 @@ list_assets_by_type <- function(volume = 1, type = "video",
     message(paste0("Searching for files of type '", type))
   }
 
-  va %>%
-    dplyr::left_join(., file.types, by = c("format" = "id")) ->
-    files.of.given.type
+  files.of.given.type <- dplyr::left_join(va, file.types, by = c("format" = "id"))
+
 
   if ((dim(files.of.given.type)[1] == 0) || (is.null(files.of.given.type))) {
     stop(paste0("No files of type '", type, "' found.\n"))
   }
 
-  files.of.given.type %>%
-    dplyr::mutate(., asset.id = id, asset.name = name.x) %>%
-    dplyr::select(., vol.id, sess.id, sess.date, sess.release,
-           asset.id, asset.name, format, permission, size, duration,
-           mimetype, extension) %>%
-    dplyr::filter(., mimetype %in% these.types) ->
-    l
+  l <- dplyr::mutate(files.of.given.type, asset.id = id, asset.name = name.x)
+  l <- dplyr::select(l, vol.id, sess.id, sess.date, sess.release,
+                     asset.id, asset.name, format, permission, size, duration,
+                     mimetype, extension)
+  l <- dplyr::filter(l, mimetype %in% these.types)
 
   if  ((dim(l)[1] == 0) || (is.null(l))) {
     stop(paste0("No files of type '", type, "' found.\n"))

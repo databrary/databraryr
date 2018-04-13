@@ -3,7 +3,7 @@
 #' @examples
 #' get_permission_levels()
 get_permission_levels <- function(vb = FALSE) {
-  c <- databraryapi::assign_constants(vb = vb)
+  c <- assign_constants(vb = vb)
   pl <- c$permission
   return(pl)
 }

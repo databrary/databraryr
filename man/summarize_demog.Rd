@@ -11,7 +11,7 @@ summarize_demog(volume = 4, return.df = FALSE, vb = FALSE)
 
 \item{return.df}{A boolean value.}
 
-\item{vb}{A boolean value.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
 Status code if successful.

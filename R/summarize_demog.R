@@ -2,7 +2,7 @@
 #'
 #' @param volume Selected volume number.
 #' @param return.df A boolean value.
-#' @param vb A boolean value.
+#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return Status code if successful.
 #' @examples
 #' summarize_demog()
@@ -18,11 +18,13 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
   }
 
   # Authenticate within download_csv
-  df <- databraryapi::download_session_csv(volume = volume, vb=vb)
+  if (vb) message(paste0("Downloading session spreadsheet from volume ", volume))
+  df <- download_session_csv(volume = volume, vb=vb)
   if (is.null(df)) {
     stop("Download failed.")
   }
 
+  if (vb) message(paste0("Preparing session spreadsheet for plotting."))
   if("session.date" %in% names(df)) {
     df <- df[complete.cases(df$session.date),]
     df$session.date <- as.Date(df$session.date)
@@ -45,12 +47,11 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
                        axis.text = ggplot2::element_text(size = ggplot2::rel(1)),
                        axis.title = ggplot2::element_text(size = ggplot2::rel(1.5))
                        )
-
-  df %>% ggplot2::ggplot() +
+  if (vb) message(paste0("Plotting session demographic data."))
+  p <- ggplot2::ggplot(data = df) +
     ggplot2::aes(x = participant.gender, y = age.weeks, color = participant.race) +
     ggplot2::geom_boxplot() +
-    demog.theme ->
-    p
+    demog.theme
   p
 
   if (return.df) {

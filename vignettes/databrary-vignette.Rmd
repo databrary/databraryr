@@ -16,7 +16,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(tidyverse)
 ```
 
 ## Vignette Info
@@ -28,34 +27,38 @@ Rather than interact with Databrary through a web browser, users can write their
 I wrote the Databrary API so I could find out what's going on on the site, and eventually so I can streamline my own analysis and data sharing workflows.
 Let's get started.
 
-## Authenticating
+## Registering and authenticating
 
 Access to Databrary requires prior [registration](https://databrary.org/register) and [authorization](https://www.databrary.org/resources/agreement.html) from an institution.
 The authorization process requires formal agreement by an institution.
-But even before formal authorization is complete, a user can access the public materials on Databrary.
-All it takes is your user name (email address) and password. Let's configure your system for access then login.
-
-```{r authentication}
-# Configure the environment for Databrary
-library(databraryapi)
-config_db()
-```
+But you'll create an account ID (email) and secure password when you register.
+Then, when you log in with your new credentials, you'll select an existing institution (if yours is on the list), a new institution (if yours isn't), or an existing authorized investigator (if you are a student, postdoc, or collaborator) to request authorization from.
 
 By default, `databraryapi` stores your Databrary user account (email) and password in a secure, encrypted file that your computer's operating system uses for storing other passwords.
 The `keyring` package provides this functionality.
 There are alternative ways of storing user credentials, but this is the recommended one.
 
-```{r login}
-login_db(email = "rogilmore@psu.edu")
+Once you are authorized, you will gain access to a much wider range of materials on Databrary.
+When that happens, you'll load the package with `library(databraryapi)` and then
+
+```{r login, eval=FALSE}
+login_db(email = "youremail@yourinstitution.edu")
 ```
 
 If everything works out, you should see a `Login successful` message at the R console.
-Congratulations, you are ready to access Databrary's shared information along with any private, unshared information you have access to.
+Congratulations, you are ready to access Databrary's restricted shared information along with any private, unshared information you have access to.
 
 ## First steps
 
-Let's make sure that everything is working.
-Try this command to pull data about Databrary's founders:
+But even before formal authorization is complete, a user can access the public materials on Databrary.
+For this vignetted, we'll assume you fall into this category.
+First, let's load the package:
+
+```{r authentication}
+library(databraryapi)
+```
+
+Then, try this command to pull data about Databrary's founders:
 
 ```{r list-people-default}
 list_people()

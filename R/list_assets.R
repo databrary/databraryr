@@ -7,8 +7,7 @@
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_assets()
-list_assets <- function(slot = 9825, volume = 75,
-                        convert.JSON = TRUE,
+list_assets <- function(slot = 9807, volume = 1,
                         vb = FALSE) {
   # Error handling
   if (length(slot) > 1) {
@@ -24,50 +23,46 @@ list_assets <- function(slot = 9825, volume = 75,
     stop("Volume must be > 0.")
   }
 
-  if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-    databraryapi::config_db(vb = vb)
-  }
+  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
+  #   config_db(vb = vb)
+  # }
   #authenticate_db(vb = vb)
 
   # Make URL, GET(), and handle response
-  slot.url <- paste0(vol.api.url, "/", volume, "/slot/", slot, "?assets")
+  slot.url <- paste0("https://nyu.databrary.org/api/volume/", volume, "/slot/", slot, "?assets")
   if (vb) {
-    message(paste0("Sending GET to ", slot.url, "\n"))
+    message(paste0("Sending GET to ", slot.url))
   }
   g <- httr::GET(slot.url)
   if (httr::status_code(g) == 200) {
+    if (vb) message("Successful HTML call.")
     g.content <- httr::content(g, 'text', encoding = 'UTF-8')
-    if(convert.JSON) {
-      d.sess <- jsonlite::fromJSON(g.content)
-      if (!is.null(d.sess)) {
-        if (is.data.frame(d.sess$assets)) {
-          d.sess.assets <- data.frame(d.sess$assets)
-          d.sess.assets$vol.id <- volume
-          d.sess.assets$sess.id <- d.sess$id
-          d.sess.assets$sess.name <- d.sess$name
-          d.sess.assets$sess.date <- d.sess$date
-          d.sess.assets$sess.release <- d.sess$release
-
-        } else {
-          # Handle case of single value in assets field
-          d.sess.assets <- data.frame(id = NA, format = NA, segment = NA,
-                                      name = NA, permission = NA, size = NA,
-                                      duration = NA,
-                                      vol.id = volume,
-                                      sess.id = d.sess$id,
-                                      sess.name = d.sess$name,
-                                      sess.date = d.sess$date,
-                                      sess.release = d.sess$release
-                                      )
-        }
-        return(d.sess.assets)
+    d.sess <- jsonlite::fromJSON(g.content)
+    if (!is.null(d.sess)) {
+      if (vb) message("Making data frame from returned content.")
+      if (is.data.frame(d.sess$assets)) {
+        d.sess.assets <- data.frame(d.sess$assets)
+        d.sess.assets$vol.id <- volume
+        d.sess.assets$sess.id <- d.sess$id
+        d.sess.assets$sess.name <- d.sess$name
+        d.sess.assets$sess.date <- d.sess$date
+        d.sess.assets$sess.release <- d.sess$release
       } else {
-        return(NULL)
+        # Handle case of single value in assets field
+        d.sess.assets <- data.frame(id = NA, format = NA, segment = NA,
+                                    name = NA, permission = NA, size = NA,
+                                    duration = NA,
+                                    vol.id = volume,
+                                    sess.id = d.sess$id,
+                                    sess.name = d.sess$name,
+                                    sess.date = d.sess$date,
+                                    sess.release = d.sess$release)
       }
+      return(d.sess.assets)
     } else {
-      return(g.content)
+      return(NULL)
     }
   } else if (vb) {
-    message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
+    message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
   }
 }

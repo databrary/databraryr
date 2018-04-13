@@ -7,7 +7,7 @@
 get_release_levels(vb = FALSE)
 }
 \arguments{
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
 Data frame with release levels.
@@ -16,5 +16,5 @@ Data frame with release levels.
 Shows release level codes
 }
 \examples{
-get_release_levels())
+get_release_levels()
 }

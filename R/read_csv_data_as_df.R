@@ -13,7 +13,7 @@ read_csv_data_as_df <- function(session = 9807, asset = 116888,
   if (!is.numeric(asset)) {
     stop("Asset ID must be numeric.")
   }
-  asset.url <- paste0(databrary.url, "/slot/", session, "/-/asset/", asset, "/download?inline=false")
+  asset.url <- paste0("http://nyu.databrary.org/slot/", session, "/-/asset/", asset, "/download?inline=false")
   if (vb) message(paste0("Sending GET to ", asset.url))
   g <- httr::GET(url = asset.url)
   if (httr::status_code(g) == 200) {
@@ -27,7 +27,7 @@ read_csv_data_as_df <- function(session = 9807, asset = 116888,
       stop("Invalid file type at URL.")
     }
   } else {
-    if (vb) cat(paste0('Download Failed, HTTP status ', httr::status_code(g), "\n."))
+    if (vb) cat(paste0('Download Failed, HTTP status ', httr::status_code(g)))
     return(NULL)
   }
 }

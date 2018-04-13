@@ -4,7 +4,7 @@
 \alias{is_person}
 \title{Tests whether given party ID is from a person.}
 \usage{
-is_person(party = 7, vb = vb)
+is_person(party = 7, vb = FALSE)
 }
 \arguments{
 \item{party}{Databrary party ID}

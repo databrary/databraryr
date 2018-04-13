@@ -14,9 +14,9 @@ download_asset(asset = 11643, slot = 9825, file.name = "test.mp4",
 
 \item{file.name}{Name for downloaded file.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{return.response}{A Boolean value.}
 
-\item{return.respose}{A Boolean value.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
 Download a specific video file.

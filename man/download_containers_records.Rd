@@ -11,7 +11,7 @@ download_containers_records(volume = 2, convert.JSON = TRUE, vb = FALSE)
 
 \item{convert.JSON}{Boolean.}
 
-\item{vb}{Boolean.}
+\item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
 List of containers and records from the specified volume.

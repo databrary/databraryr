@@ -23,21 +23,21 @@ list_assets_json <- function(slot = 9825, volume = 75,
     stop("Volume must be > 0.")
   }
 
-  if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-    config_db(vb=vb)
-  }
+  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
+  #   config_db(vb=vb)
+  # }
 
   # Make URL, GET(), and handle response
-  slot.url <- paste0(vol.api.url, "/", volume, "/slot/", slot, "?assets")
+  slot.url <- paste0("https://nyu.databrary.org/api/volume/", volume, "/slot/", slot, "?assets")
   if (vb) {
-    message(paste0("Sending GET to ", slot.url, "\n"))
+    message(paste0("Sending GET to ", slot.url))
   }
   g <- httr::GET(slot.url)
   if (httr::status_code(g) == 200) {
     return(httr::content(g, 'text', encoding = 'UTF-8'))
   } else {
     if (vb) {
-      message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
+      message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
     }
   return(NULL)
   }

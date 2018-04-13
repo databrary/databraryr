@@ -7,20 +7,21 @@
 #' @param stored.credentials A Boolean value. If TRUE loads login credentials from credentials file.
 #' @param credentials.file Path to stored credentials file if it exists.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return Status code if successful.
+#' @return Status code if login is successful
 #' @examples
 #' login_db()
 login_db <- function(email = NULL,
                      login.url = "/api/user/login",
                      return.response = FALSE, save.session = TRUE,
                      stored.credentials = FALSE,
+                     system.credentials = TRUE,
                      credentials.file = "~/api-keys/json/databrary-keys.json",
                      vb = FALSE ) {
 
   # Configure for Databrary if necessary
-  if (!exists("databrary_config_status")) {
-    config_db(vb = vb)
-  }
+  # if (!exists("databrary_config_status")) {
+  #   config_db(vb = vb)
+  # }
 
   # Access (possibly stored) credentials
   if (stored.credentials) {
@@ -46,15 +47,15 @@ login_db <- function(email = NULL,
   }
 
   # Assemble URL, POST(), and handle response
-  r <- httr::POST(paste0(databrary.url, login.url),
+  r <- httr::POST(paste0("https://nyu.databrary.org/api/user/login"),
                   body = list(email=email, password=password))
   rm(email, password)
 
   if (httr::status_code(r) == 200){
-    if (save.session){
+    if (save.session) {
+      if (vb) message("Saving session cookie.")
       databrary.SESSION <- httr::cookies(r)$value
       save(databrary.SESSION, file = ".databrary.RData")
-      assign("logged.in", TRUE, envir=.GlobalEnv)
     } else {
       rm(databrary.SESSION)
     }
