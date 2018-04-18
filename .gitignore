@@ -6,3 +6,4 @@ inst/doc
 .databrary.RData
 databraryapi.Rproj
 *.mp4
+db-report.Rmd
