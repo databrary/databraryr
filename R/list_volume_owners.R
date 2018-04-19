@@ -11,9 +11,12 @@ list_volume_owners <- function(volume = 1,
   if (length(volume) > 1) {
     stop("Volume must have length 1.")
   }
-  # if ((!is.numeric(volume)) || (volume <= 0)) {
-  #   stop("Volume must be an integer > 0.")
-  # }
+  if ((!is.numeric(volume)) || (volume <= 0)) {
+    stop("Volume must be an integer > 0.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical.")
+  }
 
   v <- download_containers_records(volume = volume, vb = vb)
   if (!is.null(v$owners)) {

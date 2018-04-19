@@ -4,6 +4,11 @@
 #' @examples
 #' assign_constants()
 assign_constants <- function(vb = FALSE) {
+  # Error checking
+  if (!is.logical(vb)) {
+    stop("vb must be logical.")
+  }
+
   constants.url <- "https://nyu.databrary.org/api/constants"
   if (vb) {
     message(paste0("Sending GET to ", constants.url))

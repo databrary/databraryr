@@ -13,9 +13,12 @@ list_sessions <- function(volume = 1, vb = FALSE) {
   if (volume < 1) {
     stop("Volume ID must be >= 1.")
   }
-  # if ((!exists("databrary_config_status")) || (!databrary_config_status)){
-  #   databraryapi::config_db(vb = vb)
-  # }
+  if (length(volume) > 1) {
+    stop("Volume ID must be single value.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical.")
+  }
 
   url.cont <- paste0("https://nyu.databrary.org/api/volume/", volume, "?", "containers")
   if (vb) message(paste0("Sending GET to ", url.cont))
