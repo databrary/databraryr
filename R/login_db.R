@@ -18,11 +18,6 @@ login_db <- function(email = NULL,
                      credentials.file = "~/api-keys/json/databrary-keys.json",
                      vb = FALSE ) {
 
-  # Configure for Databrary if necessary
-  # if (!exists("databrary_config_status")) {
-  #   config_db(vb = vb)
-  # }
-
   # Access (possibly stored) credentials
   if (stored.credentials) {
     email <- jsonlite::fromJSON(credentials.file)$email
@@ -37,6 +32,8 @@ login_db <- function(email = NULL,
       if (email %in% kl$username) {
         password <- keyring::key_get(service = "databrary",
                                      username = email)
+      } else {
+        stop(paste0("No password for user: ", email, "\n"))
       }
     } else {
       stop(paste0("No stored credentials for user: ", email, "\n"))

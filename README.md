@@ -10,25 +10,36 @@ This repository contains code for the `databraryapi` R package.
 
 ## Use
 
+The package is under active development, as is the documentation.
+Running `devtools::install_github("PLAY-behaviorome/databraryapi")` regularly to get updates is strongly recommended.
+
 ### Databrary credentials
 
 Databrary ([databrary.org](https://databrary.org)) is a data library specialized for storing and sharing video.
 Access to restricted data requires [registration](https://databrary.org/register) and formal approval by an institution.
 The registration process involves the creation of an (email-account-based) user account and secure password.
 Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
+Many commands in the `databraryapi` package return meaningful results *without* or *prior to* formal authorization.
 
 ### Configuration
 
 Once the `databraryapi` package has been installed, it may be loaded into the local environment via `library(databraryapi)`.
 It is advisable to configure the local environment each time the user wishes to access the system:
 
-    config_db() # Adds information to the local environment needed for accessing Databrary.
     login_db()  # Queries stored log on credentials or creates and stores new credentials.
   
 The `login_db()` command uses the `keyring` package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux.
 This is the recommended approach.
+The first time you log on via the `databraryapi` package, you will need to run `config_passd()`.
+You should only need to run this once.
 
-Users on Mac OS and Linux systems may choose to store user account and password information in `~/api-keys/json/databrary-keys.json`.
+Once you are an authorized user on Databrary, you may also use
+
+    login_db("myemail@myemailhost.com")
+    
+to log on.
+
+Users on Mac OS and Linux systems may alternatively choose to store user account and password information in `~/api-keys/json/databrary-keys.json`.
 This file has the following format:
 
 ```{json}
@@ -47,10 +58,22 @@ Whatever access model is chosen, the use of a password generator/manager program
 
 ### Command descriptions
 
+`get_db_stats()` by default provides some data about the current number of authorized investigators, affiliates, institutions, datasets, files, and hours of stored video. Try
+
+    `get_db_stats("people")`
+    
+to see a table of newly authorized researchers.
+Or, try
+
+    get_db_stats('datasets')
+    
+to see a list of the latest shared datasets.
+
 `read_csv_data_as_df()` by default reads a publicly shared CSV data file from Databrary's volume 1 <http://databrary.org/volume/1>. Try
 
-    db.stats <- read_csv_data_as_df()
-    with(db.stats, plot(Auth_Investigators, Institutions))
+    with(read_csv_data_as_df(), plot(Auth_Investigators, Institutions))
+  
+to view a simple plot of the number of authorized investigators and institutions across time.
     
 `download_video()` by default reads a short publicly shared testing video depicting a series of numbers counting up from 000.
 
@@ -63,5 +86,3 @@ Whatever access model is chosen, the use of a password generator/manager program
 `list_volume_owners()` by default lists the volume owners for Databrary volume 1 <http://databrary.org/volume/1>.
 
 `logout_db()` logs out of Databrary and does some simple clean up.
-
-
