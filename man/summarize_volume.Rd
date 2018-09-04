@@ -4,8 +4,8 @@
 \alias{summarize_volume}
 \title{Plot summary of volume's participant characteristics.}
 \usage{
-summarize_volume(volume = 4, plot.style = "ggplot", return.df = FALSE,
-  vb = FALSE)
+summarize_volume(volume = 4, plot.style = "ggplot",
+  return.df = FALSE, vb = FALSE)
 }
 \arguments{
 \item{volume}{Selected volume number.}

@@ -4,7 +4,8 @@
 \alias{download_containers_records}
 \title{Downloads container and record structure from Databrary volume.}
 \usage{
-download_containers_records(volume = 2, convert.JSON = TRUE, vb = FALSE)
+download_containers_records(volume = 2, convert.JSON = TRUE,
+  vb = FALSE)
 }
 \arguments{
 \item{volume}{Databrary volume number.}

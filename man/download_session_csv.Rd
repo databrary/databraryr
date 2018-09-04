@@ -4,8 +4,8 @@
 \alias{download_session_csv}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-download_session_csv(volume = 1, to.df = TRUE, return.response = FALSE,
-  vb = FALSE)
+download_session_csv(volume = 1, to.df = TRUE,
+  return.response = FALSE, vb = FALSE)
 }
 \arguments{
 \item{volume}{Target volume number.}

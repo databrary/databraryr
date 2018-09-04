@@ -3,11 +3,12 @@
 #' @param volume Selected volume number.
 #' @param write.header A Boolean value. If TRUE writes a comma-separated header.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with information about the volume owner.
+#' @return A data frame with information about the volume.
 #' @examples
 #' list_volume_metadata()
 list_volume_metadata <- function(volume = 2,
                                  write.header = FALSE,
+                                 data.frame = TRUE,
                                  vb = FALSE) {
 
   # Error-checking
@@ -27,21 +28,37 @@ list_volume_metadata <- function(volume = 2,
     if (is.character(doi)) {
       paste0("https://doi.org/", doi)
     } else {
-      stop("DOI must be character string")
+      paste("NA")
+      #stop("DOI must be character string")
     }
   }
 
+  flatten_names <- function(owners) {
+    stringr::str_flatten(owners, collapse = "; ")
+  }
+
+  # Body of function
   v <- download_containers_records(volume = volume, vb = vb)
   if (!(is.null(v))){
     if (write.header) {
-      cat(paste("volume.id", "volume.name", "permission",
+      cat(paste("volume.id", "volume.name", "owners", "permission",
                 "doi\n", sep=","))
     }
-    cat(paste(v$id, surround_w_quotes(v$name[1]), v$owners[1],
-              v$permission,
-              paste0(make_url_doi(v$doi), "\n"), sep = ","))
+    if (data.frame) {
+      data_frame(id = v$id, name = v$name,
+                 owners = flatten_names(v$owners[,'name']),
+                 permission = v$permission,
+                 doi = make_url_doi(v$doi))
+    } else {
+      cat(paste(v$id, surround_w_quotes(v$name[1]),
+                surround_w_quotes(flatten_names(v$owners[,'name'])),
+                v$permission,
+                paste0(make_url_doi(v$doi), "\n"), sep = ","))
+    }
   } else {
-    message(paste0('No data in volume ', volume, "\n."))
+    if (vb) {
+      message(paste0('No data in volume ', volume))
+    }
     return(NULL)
   }
 }

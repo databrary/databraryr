@@ -4,7 +4,8 @@
 \alias{list_volume_metadata}
 \title{List volume metadata.}
 \usage{
-list_volume_metadata(volume = 2, write.header = FALSE, vb = FALSE)
+list_volume_metadata(volume = 2, write.header = FALSE,
+  data.frame = TRUE, vb = FALSE)
 }
 \arguments{
 \item{volume}{Selected volume number.}
@@ -14,7 +15,7 @@ list_volume_metadata(volume = 2, write.header = FALSE, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with information about the volume owner.
+A data frame with information about the volume.
 }
 \description{
 List volume metadata.

@@ -4,7 +4,8 @@
 \alias{extract_dv_code_defs}
 \title{Converts a Datavyu (.opf) file to CSV.}
 \usage{
-extract_dv_code_defs(dv.fn, out.fn = "codes.csv", auto.write.over = TRUE)
+extract_dv_code_defs(dv.fn, out.fn = "codes.csv",
+  auto.write.over = TRUE)
 }
 \arguments{
 \item{dv.fn}{Full Datavyu file name.}
