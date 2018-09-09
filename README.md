@@ -30,7 +30,7 @@ It is advisable to configure the local environment each time the user wishes to 
   
 The `login_db()` command uses the `keyring` package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux.
 This is the recommended approach.
-The first time you log on via the `databraryapi` package, you will need to run `config_passd()`.
+The first time you log on to Databrary via the `databraryapi` package, you will need to run `config_passd()`.
 You should only need to run this once.
 
 Once you are an authorized user on Databrary, you may also use
@@ -51,7 +51,7 @@ This file has the following format:
 This approach has risks as the credentials are stored as text.
 Users who choose this approach should use `login_db(stored.credentials = TRUE)`.
 
-If users choose to log in with their user names and passwords on each access -- `stored.credentials = FALSE` and there is no stored credentials file accessible by `keyring` -- `rstudioapi` package commands will query the user for both the user account and password.
+If users choose to log in with their user names and passwords on each access -- `stored.credentials = FALSE` --- and there is no stored credentials file accessible by `keyring` -- `rstudioapi` package commands will query the user for both the user account and password.
 The `rstudioapi` commands work only under [RStudio](http://www.rstudio.com).
 
 Whatever access model is chosen, the use of a password generator/manager program (e.g., [LastPass](http://www.lastpass.com), [1Password](http://1password.com), [Dashlane](http://www.dashlane.com)) is strongly recommended.

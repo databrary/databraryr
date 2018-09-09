@@ -45,7 +45,7 @@ list_volume_metadata <- function(volume = 2,
                 "doi\n", sep=","))
     }
     if (data.frame) {
-      data_frame(id = v$id, name = v$name,
+      data.frame(id = v$id, name = v$name,
                  owners = flatten_names(v$owners[,'name']),
                  permission = v$permission,
                  doi = make_url_doi(v$doi))
