@@ -26,7 +26,8 @@ get_video_stats <- function(volume = 1, vb = FALSE) {
   }
 
   m <- dplyr::left_join(vids_df, demo_df, by = "session.id")
-  data.frame(n_videos = length(unique(m$asset.id)),
-               n_sessions = length(unique(m$session.id)),
-               tot_hrs = sum(m$duration)/(1000*60*60))
+  data.frame(vol_id = volume,
+             n_videos = length(unique(m$asset.id)),
+             n_sessions = length(unique(m$session.id)),
+             tot_hrs = sum(m$duration)/(1000*60*60))
 }

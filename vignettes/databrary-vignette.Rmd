@@ -150,3 +150,24 @@ head(list_assets_by_type(volume = 1, type = "pdf"))
 ```
 
 I used the `head()` command to show you only the top of the list because I knew there are a large number of PDF files here.
+
+### Finding volumes with videos
+
+Databrary is a video data library, so you may naturally be interested in what volumes have videos.
+The `get_video_stats()` command comes in handy here.
+Let's see about the video content available in volume 1.
+
+```{r videos-in-volume-1}
+get_video_stats(volume = 1)
+```
+
+So, there's quite a lot to view there. But what about some other volumes?
+This code uses the `lapply()` command from base R to run the `get_video_stats()` command across a list of volumes.
+It also uses the `rbind.fill()` command from the `plyr` package to merge the list of data frames into a single one that is easy to read.
+**Note:** The following takes a few moments to run, so please be patient.
+
+```{r videos-in-volumes-1-to-5}
+plyr::rbind.fill(lapply(1:5, get_video_stats))
+```
+
+So, there's a lot of video to view and reuse.
