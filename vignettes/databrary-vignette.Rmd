@@ -38,6 +38,15 @@ Then, when you log in with your new credentials, you'll select an existing insti
 
 But even before formal authorization is complete, a user can access the public materials on Databrary.
 For this vignetted, we'll assume you fall into this category.
+
+<!-- First, we need to download and install the package. -->
+
+<!-- ```{r install} -->
+<!-- install.packages("devtools") -->
+<!-- library(devtools) -->
+<!-- devtools::install_github("PLAY-behaviorome/databraryapi") -->
+<!-- ``` -->
+
 First, let's load the package:
 
 ```{r authentication}
@@ -91,8 +100,6 @@ login_db(email = "youremail@yourinstitution.edu")
 
 If everything works out, you should see a `Login successful` message at the R console.
 Congratulations, you are ready to access Databrary's restricted shared information along with any private, unshared information you have access to.
-
-
 
 ## Interacting with stored data files
 
