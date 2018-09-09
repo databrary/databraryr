@@ -49,14 +49,15 @@ list_assets <- function(slot = 9807, volume = 1,
         d.sess.assets$sess.release <- d.sess$release
       } else {
         # Handle case of single value in assets field
-        d.sess.assets <- data.frame(id = NA, format = NA, segment = NA,
-                                    name = NA, permission = NA, size = NA,
-                                    duration = NA,
-                                    vol.id = volume,
-                                    sess.id = d.sess$id,
-                                    sess.name = d.sess$name,
-                                    sess.date = d.sess$date,
-                                    sess.release = d.sess$release)
+        d.sess.assets <- NULL
+        # d.sess.assets <- data.frame(id = NA, format = NA, segment = NA,
+        #                             name = NA, permission = NA, size = NA,
+        #                             duration = NA,
+        #                             vol.id = volume,
+        #                             sess.id = d.sess$id,
+        #                             sess.name = d.sess$name,
+        #                             sess.date = d.sess$date,
+        #                             sess.release = d.sess$release)
       }
       return(d.sess.assets)
     } else {
