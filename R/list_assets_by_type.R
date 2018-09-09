@@ -20,6 +20,11 @@ list_assets_by_type <- function(volume = 1, type = "video",
   }
 
   va <- list_assets_in_volume(volume = volume, vb = vb)
+  if (is.null(va)) {
+    if (vb) message("Assets not available for volume ", volume, ".\n")
+    return(NULL)
+  }
+
   file.types <- get_supported_file_types(vb = vb)
   these.types <- file.types$mimetype[stringr::str_detect(file.types$mimetype, type)]
   if (is.null(these.types)) {
@@ -29,21 +34,29 @@ list_assets_by_type <- function(volume = 1, type = "video",
     message(paste0("Searching for files of type '", type))
   }
 
-  files.of.given.type <- dplyr::left_join(va, file.types, by = c("format" = "id"))
-
+  files.of.given.type <- dplyr::left_join(va, file.types, by = c("format" = "id")) %>%
+    dplyr::filter(., mimetype %in% these.types)
 
   if ((dim(files.of.given.type)[1] == 0) || (is.null(files.of.given.type))) {
-    stop(paste0("No files of type '", type, "' found.\n"))
-  }
+    if (vb) message(paste0("No supported files of type ", type, " found.\n"))
+    return (NULL)
+  } else {
+    # not all assets have name or sess.date...
+    l <- dplyr::mutate(files.of.given.type, asset.id = id, session.id = sess.id)
 
-  l <- dplyr::mutate(files.of.given.type, asset.id = id, asset.name = name.x)
-  l <- dplyr::select(l, vol.id, sess.id, sess.date, sess.release,
-                     asset.id, asset.name, format, permission, size, duration,
-                     mimetype, extension)
-  l <- dplyr::filter(l, mimetype %in% these.types)
-
-  if  ((dim(l)[1] == 0) || (is.null(l))) {
-    stop(paste0("No files of type '", type, "' found.\n"))
+    l <- dplyr::select(l, vol.id, session.id, asset.id, format, duration,
+                       permission, mimetype, extension)
+    return(l)
   }
-  return(l)
+#
+#   l <- dplyr::mutate(files.of.given.type, asset.id = id, asset.name = name.x)
+#   l <- dplyr::select(l, vol.id, sess.id, sess.date, sess.release,
+#                      asset.id, asset.name, format, permission, size, duration,
+#                      mimetype, extension)
+#   # #l <- dplyr::filter(l, mimetype %in% these.types)
+#   #
+#   # if  ((dim(l)[1] == 0) || (is.null(l))) {
+#   #   stop(paste0("No files of type '", type, "' found.\n"))
+#   # }
+#   return(l)
 }

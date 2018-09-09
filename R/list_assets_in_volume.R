@@ -16,10 +16,12 @@ list_assets_in_volume <- function(volume = 1, vb = FALSE) {
 
   sl <- list_sessions(volume = volume, vb = vb)
   if (!is.null(sl)) {
-    a <- sapply(as.array(sl[,'id']), list_assets, volume = volume, vb = vb)
-    a <- Reduce(function(x, y) merge(x, y, all = TRUE), a)
+    a <- lapply(as.array(sl[,'id']), list_assets, volume = volume, vb = vb)
+    a <- plyr::rbind.fill(a)
+    #a <- Reduce(function(x, y) merge(x, y, all = TRUE), a)
     return(a)
   } else {
-    stop(paste0("Session list for volume ", volume, " unavailable."))
+    message(paste0("Session list for volume ", volume, " unavailable."))
+    return(NULL)
   }
 }
