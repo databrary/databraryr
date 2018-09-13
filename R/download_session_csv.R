@@ -1,20 +1,20 @@
 #' Downloads session spreadsheet as a CSV.
 #'
-#' @param volume Target volume number.
+#' @param vol.id Target volume number.
 #' @param to.df A boolean value.
 #' @param return.response A boolean value.
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
 #' download_csv()
-download_session_csv <- function(volume = 1, to.df = TRUE,
+download_session_csv <- function(vol.id = 1, to.df = TRUE,
                          return.response = FALSE, vb = FALSE) {
 
   # Error handling
-  if (length(volume) > 1) {
+  if (length(vol.id) > 1) {
     stop("Volume must have length 1.")
   }
-  if ((!is.numeric(volume)) || (volume <= 0)) {
+  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
     stop("Volume must be an integer > 0.")
   }
 
@@ -23,7 +23,7 @@ download_session_csv <- function(volume = 1, to.df = TRUE,
   # }
   # authenticate_db(vb=vb)
 
-  request.url <- paste0("https://nyu.databrary.org/volume/", volume, "/csv")
+  request.url <- paste0("https://nyu.databrary.org/volume/", vol.id, "/csv")
   r = httr::GET(paste0(request.url))
   if (vb) {
     message(paste0("Sending GET to ", request.url))

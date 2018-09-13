@@ -1,22 +1,22 @@
 #' List volume metadata.
 #'
-#' @param volume Selected volume number.
+#' @param vol.id Selected volume number.
 #' @param write.header A Boolean value. If TRUE writes a comma-separated header.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with information about the volume.
 #' @examples
 #' list_volume_metadata()
 #' @export
-list_volume_metadata <- function(volume = 2,
+list_volume_metadata <- function(vol.id = 2,
                                  write.header = FALSE,
                                  data.frame = TRUE,
                                  vb = FALSE) {
 
   # Error-checking
-  if (!(is.numeric(volume))) {
+  if (!(is.numeric(vol.id))) {
     stop("Volume must be a number.")
   }
-  if (volume <= 0) {
+  if (vol.id <= 0) {
     stop("Volume must be > 0.")
   }
 
@@ -39,7 +39,7 @@ list_volume_metadata <- function(volume = 2,
   }
 
   # Body of function
-  v <- download_containers_records(volume = volume, vb = vb)
+  v <- download_containers_records(vol.id = vol.id, vb = vb)
   if (!(is.null(v))){
     if (write.header) {
       cat(paste("volume.id", "volume.name", "owners", "permission",
@@ -58,7 +58,7 @@ list_volume_metadata <- function(volume = 2,
     }
   } else {
     if (vb) {
-      message(paste0('No data in volume ', volume))
+      message(paste0('No data in volume ', vol.id))
     }
     return(NULL)
   }

@@ -4,10 +4,10 @@
 \alias{list_containers_records_json}
 \title{Lists containers  and record structure from Databrary volume.}
 \usage{
-list_containers_records_json(volume = 1, vb = FALSE)
+list_containers_records_json(vol.id = 1, vb = FALSE)
 }
 \arguments{
-\item{volume}{Databrary volume number.}
+\item{vol.id}{Databrary volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 

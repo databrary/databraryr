@@ -1,28 +1,29 @@
 #' Lists all the assets/files in a given volume.
 #'
-#' @param volume Target volume number.
+#' @param vol.id Target volume number.
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
 #' list_assets_in_volume()
 #' @export
-list_assets_in_volume <- function(volume = 1, vb = FALSE) {
+list_assets_in_volume <- function(vol.id = 1, vb = FALSE) {
   # Error handling
-  if (!is.numeric(volume)) {
+  if (!is.numeric(vol.id)) {
     stop("Volume must be numeric.")
   }
-  if (volume < 1) {
+  if (vol.id < 1) {
     stop("Volume must be >= 1.")
   }
 
-  sl <- list_sessions(volume = volume, vb = vb)
+  sl <- list_sessions(vol.id = vol.id, vb = vb)
   if (!is.null(sl)) {
-    a <- lapply(as.array(sl[,'id']), list_assets, volume = volume, vb = vb)
+    a <- lapply(as.array(sl[,'session.id']), list_assets_in_session, vol.id = vol.id, vb = vb)
     a <- plyr::rbind.fill(a)
-    #a <- Reduce(function(x, y) merge(x, y, all = TRUE), a)
+    a <- dplyr::select(a, vol.id, session.id, asset.id, asset.name, permission, asset.type,
+                       extension, size, duration, mimetype, segment, classification, format)
     return(a)
   } else {
-    message(paste0("Session list for volume ", volume, " unavailable."))
+    message(paste0("Session list for volume ", vol.id, " unavailable."))
     return(NULL)
   }
 }

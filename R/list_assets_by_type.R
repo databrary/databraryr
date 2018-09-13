@@ -1,19 +1,19 @@
 #' Lists stored assets (files) by type.
 #'
-#' @param volume Volume ID
+#' @param vol.id Volume ID
 #' @param type Data file type, e.g. "video", "pdf", or "csv"
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return Data frame with the selected asset types.
 #' @examples
 #' list_assets_by_type()
 #' @export
-list_assets_by_type <- function(volume = 1, type = "video",
+list_assets_by_type <- function(vol.id = 1, type = "video",
                                 vb = FALSE) {
   # Error checking ----------------------------------------------------------
-  if (!is.numeric(volume)) {
+  if (!is.numeric(vol.id)) {
     stop("Volume must be numeric.")
   }
-  if (volume < 1) {
+  if (vol.id < 1) {
     stop("Volume must be >= 1.")
   }
   if (!is.character(type)) {
@@ -30,7 +30,7 @@ list_assets_by_type <- function(volume = 1, type = "video",
     stop("vb must have length = 1.")
   }
   # Retrieve, process asset list --------------------------------------------
-  va <- list_assets_in_volume(volume = volume, vb = vb)
+  va <- list_assets_in_volume(vol.id = vol.id, vb = vb)
   if (is.null(va)) {
     if (vb) message("Assets not available for volume ", volume, ".\n")
     return(NULL)

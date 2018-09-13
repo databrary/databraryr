@@ -4,10 +4,10 @@
 \alias{list_assets_in_volume}
 \title{Lists all the assets/files in a given volume.}
 \usage{
-list_assets_in_volume(volume = 1, vb = FALSE)
+list_assets_in_volume(vol.id = 1, vb = FALSE)
 }
 \arguments{
-\item{volume}{Target volume number.}
+\item{vol.id}{Target volume number.}
 
 \item{vb}{A boolean value.}
 }

@@ -11,7 +11,7 @@
 extract_dv <- function(in.fn, out.dir = NULL,
                        auto.write.over = TRUE,
                        vb = FALSE) {
-  # Error handling
+  # Error handling -----------------------------------------------------------------------
   if (!is.character(in.fn)) {
     stop("Datavyu file name must be a string.")
   }
@@ -48,11 +48,18 @@ extract_dv <- function(in.fn, out.dir = NULL,
       dir.create(out.dir)
     }
   }
+  if (!is.logical(auto.write.over)) {
+    stop("auto.write.over must be logical.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical.")
+  }
 
+  # Extract file and return --------------------------------------------------------------
   if (vb) message(paste0("Extracting file ", in.fn, " to ", out.dir, "\n"))
   utils::unzip(in.fn, exdir = out.dir)
 
-  # Return out.dir for chaining
-  message("Success. File extracted.")
+  # Return out.dir for chaining ----------------------------------------------------------
+  message(paste0("Success. File extracted to ", out.dir, "/."))
   return(out.dir)
 }

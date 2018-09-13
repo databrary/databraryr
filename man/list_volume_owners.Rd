@@ -2,12 +2,12 @@
 % Please edit documentation in R/list_volume_owners.R
 \name{list_volume_owners}
 \alias{list_volume_owners}
-\title{List volume owners.}
+\title{List vol.id owners.}
 \usage{
-list_volume_owners(volume = 1, vb = FALSE)
+list_volume_owners(vol.id = 1, vb = FALSE)
 }
 \arguments{
-\item{volume}{Selected volume number. Default is 2.}
+\item{vol.id}{Selected volume number. Default is 2.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
@@ -15,7 +15,7 @@ list_volume_owners(volume = 1, vb = FALSE)
 A data framw with information about the volume owner(s).
 }
 \description{
-List volume owners.
+List vol.id owners.
 }
 \examples{
 list_volume_owners()

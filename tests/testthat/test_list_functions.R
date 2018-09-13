@@ -96,9 +96,9 @@ test_that("list_assets_by_type rejects bad input parameters", {
 
 # list_assets_by_type
 
-test_that("list_assets_by_type returns data.frame", {
-  expect_true(class(list_assets_by_type()) == "data.frame")
-})
+# test_that("list_assets_by_type returns data.frame", {
+#   expect_true(class(list_assets_by_type()) == "data.frame")
+# })
 
 test_that("list_assets_by_type rejects bad input parameters", {
   expect_error(list_assets_by_type(volume = "a"))

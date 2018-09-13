@@ -4,11 +4,11 @@
 \alias{list_volume_metadata}
 \title{List volume metadata.}
 \usage{
-list_volume_metadata(volume = 2, write.header = FALSE,
+list_volume_metadata(vol.id = 2, write.header = FALSE,
   data.frame = TRUE, vb = FALSE)
 }
 \arguments{
-\item{volume}{Selected volume number.}
+\item{vol.id}{Selected volume number.}
 
 \item{write.header}{A Boolean value. If TRUE writes a comma-separated header.}
 

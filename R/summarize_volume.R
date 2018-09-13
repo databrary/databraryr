@@ -8,18 +8,18 @@
 #' @examples
 #' summarize_volume()
 #' @export
-summarize_volume <- function(volume = 4, plot.style = "ggplot",
+summarize_volume <- function(vol.id = 4, plot.style = "ggplot",
                              return.df = FALSE, vb = FALSE) {
 
   # Error handling
-  if (length(volume) > 1) {
+  if (length(vol.id) > 1) {
     stop("Volume must have length 1.")
   }
-  if ((!is.numeric(volume)) || (volume <= 0)) {
+  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
     stop("Volume must be an integer > 0.")
   }
 
-  df <- download_session_csv(volume=volume, vb=vb)
+  df <- download_session_csv(vol.id=vol.id, vb=vb)
   if (is.null(df)) {
     stop("Download failed.")
   }
@@ -41,7 +41,7 @@ summarize_volume <- function(volume = 4, plot.style = "ggplot",
       p <- ggplot2::qplot(data=df, y = age.weeks,
                           x=participant.gender, geom=c("boxplot"),
                           color=participant.race) +
-        ggplot2::ggtitle(paste("Participant Characteristics for Databrary Volume ", volume, sep=""))
+        ggplot2::ggtitle(paste("Participant Characteristics for Databrary Volume ", vol.id, sep=""))
       if (return.df) {
         return(list("data.frame"=df,"plot"=p))
       } else {

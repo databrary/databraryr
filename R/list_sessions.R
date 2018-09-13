@@ -1,27 +1,27 @@
 #' Downloads session spreadsheet as a CSV.
 #'
-#' @param volume Target volume ID. Defaults to 1.
+#' @param vol.id Target volume ID. Defaults to 1.
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
 #' list_sessions()
 #' @export
-list_sessions <- function(volume = 1, vb = FALSE) {
+list_sessions <- function(vol.id = 1, vb = FALSE) {
   # Error checking
-  if (!is.numeric(volume)) {
-    stop("Volume ID must be numeric.")
+  if (!is.numeric(vol.id)) {
+    stop("vol.id must be numeric.")
   }
-  if (volume < 1) {
-    stop("Volume ID must be >= 1.")
+  if (vol.id < 1) {
+    stop("vol.id must be >= 1.")
   }
-  if (length(volume) > 1) {
-    stop("Volume ID must be single value.")
+  if (length(vol.id) > 1) {
+    stop("vol.id must be single value.")
   }
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
 
-  url.cont <- paste0("https://nyu.databrary.org/api/volume/", volume, "?", "containers")
+  url.cont <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "?", "containers")
   if (vb) message(paste0("Sending GET to ", url.cont))
   g = httr::GET(url.cont)
   if (httr::status_code(g) == 200) {
@@ -30,7 +30,12 @@ list_sessions <- function(volume = 1, vb = FALSE) {
     if (!is.null(v)) {
       if (("containers" %in% names(v)) && (!is.null(v[['containers']]))) {
         # Drop first element (contains metadata)
-        return(v$containers[-1,])
+        df <- v$containers[-1,]
+        df$vol.id <- vol.id
+        #dplyr::rename(df, session.id = id)
+        df <- dplyr::select(df, vol.id, id, top, name, date, release)
+        dplyr::rename(df, session.id = id)
+        # return(df)
       } else if (vb) {
         message(paste0('No sessions in volume.\n'))
       }

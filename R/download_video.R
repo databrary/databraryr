@@ -1,27 +1,27 @@
 #' Download a specific video file.
 #'
-#' @param asset Asset number.
-#' @param slot Slot/session number.
+#' @param asset.id Asset number.
+#' @param session.id Slot/session number.
 #' @param file.name Name for downloaded file.
 #' @param return.response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_video()
 #' @export
-download_video <- function(asset = 1, slot = 9807,
+download_video <- function(asset.id = 1, session.id = 9807,
                            file.name = "test.mp4",
                            return.response=FALSE, vb=FALSE) {
   # Error handling
-  if (length(asset) > 1) {
+  if (length(asset.id) > 1) {
     stop("Asset ID must have length 1.")
   }
-  if ((!is.numeric(asset)) || asset <= 0 ) {
+  if ((!is.numeric(asset.id)) || asset.id <= 0 ) {
     stop("Asset must be number > 0.")
   }
-  if (length(slot) > 1) {
+  if (length(session.id) > 1) {
     stop("Session ID must have length 1.")
   }
-  if ((!is.numeric(slot)) || slot <= 0 ) {
+  if ((!is.numeric(session.id)) || session.id <= 0 ) {
     stop("Session ID must be number > 0.")
   }
   if (!is.character(file.name)) {
@@ -33,7 +33,7 @@ download_video <- function(asset = 1, slot = 9807,
   # }
   #authenticate_db(vb=vb)
 
-  url.download <- paste0("https://nyu.databrary.org", paste("/slot", slot, "-", "asset", asset,
+  url.download <- paste0("https://nyu.databrary.org", paste("/slot", session.id, "-", "asset", asset.id,
                                                             "download", sep="/"))
   webpage <- rvest::html_session(url.download)
   if (webpage$response$status_code == 200) {
@@ -48,7 +48,7 @@ download_video <- function(asset = 1, slot = 9807,
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file.name <- paste0(slot, "-", asset, "-", format(Sys.time(), "%F-%H%M-%S"), ".mp4")
+        file.name <- paste0(session.id, "-", asset.id, "-", format(Sys.time(), "%F-%H%M-%S"), ".mp4")
       }
       if (vb) {
         message(paste0("Downloading video as ", file.name, "\n"))

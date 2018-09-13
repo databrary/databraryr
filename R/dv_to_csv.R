@@ -11,6 +11,11 @@
 dv_to_csv <- function(dv.dir, dv.fn = "db",
                       out.fn = paste0(dv.dir, ".csv"),
                       auto.write.over = FALSE,
+                      code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+#                      code.values.regex = "\\)-([a-zA-Z\\/]+)\\|",
+                      code.type.regex = "([a-zA-Z]+)$",
+                      onset.offset.regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
+                      code.values.regex = "\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\)$",
                       vb = FALSE) {
   if (!is.character(dv.dir)) {
     stop("Datavyu directory must be a string.")
@@ -52,9 +57,9 @@ dv_to_csv <- function(dv.dir, dv.fn = "db",
   }
 
   # Write output file
-  onset.offset.regex <- "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})"
-  code.values.regex <- "\\([a-zA-Z ?,.'/0-9;!|~`]+\\)$"
-  code.regex <- "^([a-zA-Z_]+)"
+  # onset.offset.regex <- "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})"
+  # code.values.regex <- "\\([a-zA-Z ?,.'/0-9;!|~`]+\\)$"
+  #code.regex <- "^([a-zA-Z_]+)"
   outlines <- 0
 
   writeLines("code,onset,offset,code.value", con.out)
@@ -77,6 +82,7 @@ dv_to_csv <- function(dv.dir, dv.fn = "db",
       times <- stringr::str_extract(dv[l], onset.offset.regex)
       if (stringr::str_detect(dv[l], code.values.regex)) {
         code.values <- paste0('"', stringr::str_extract(dv[l], code.values.regex), '"')
+        code.values <- paste0('"', stringr::str_match(dv[l], code.values.regex)[2], '"')
       } else {
         code.values <- "-"
       }

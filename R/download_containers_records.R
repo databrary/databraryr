@@ -1,21 +1,21 @@
 #' Downloads container and record structure from Databrary volume.
 #'
-#' @param volume Databrary volume number.
+#' @param vol.id Databrary volume number.
 #' @param convert.JSON Boolean.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return List of containers and records from the specified volume.
 #' @examples
 #' downloade_containers_records()
 #' @export
-download_containers_records <- function(volume = 2, convert.JSON = TRUE,
+download_containers_records <- function(vol.id = 2, convert.JSON = TRUE,
                                         vb = FALSE) {
 
   # Error handling
   # TODO(ROG): vectorize
-  if (length(volume) > 1) {
+  if (length(vol.id) > 1) {
     stop("Volume must have length 1.")
   }
-  if ((!is.numeric(volume)) || (volume <= 0)) {
+  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
     stop("Volume must be an integer > 0.")
   }
 
@@ -24,7 +24,7 @@ download_containers_records <- function(volume = 2, convert.JSON = TRUE,
   # }
   #authenticate_db(vb = vb)
 
-  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", volume, "?", "containers&records")
+  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "?", "containers&records")
   if (vb) message(paste0("Sending GET to ", url.cont.rec))
   g = httr::GET(url.cont.rec)
   if (httr::status_code(g) == 200) {

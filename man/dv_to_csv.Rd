@@ -5,7 +5,12 @@
 \title{Converts a Datavyu (.opf) file to CSV.}
 \usage{
 dv_to_csv(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"),
-  auto.write.over = FALSE, vb = FALSE)
+  auto.write.over = FALSE,
+  code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+  code.type.regex = "([a-zA-Z]+)$",
+  onset.offset.regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
+  code.values.regex = "\\\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\\\)$",
+  vb = FALSE)
 }
 \arguments{
 \item{dv.dir}{Directory to extracted Datavyu file}

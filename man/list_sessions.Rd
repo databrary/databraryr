@@ -4,10 +4,10 @@
 \alias{list_sessions}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-list_sessions(volume = 1, vb = FALSE)
+list_sessions(vol.id = 1, vb = FALSE)
 }
 \arguments{
-\item{volume}{Target volume ID. Defaults to 1.}
+\item{vol.id}{Target volume ID. Defaults to 1.}
 
 \item{vb}{A boolean value.}
 }
