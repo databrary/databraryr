@@ -5,10 +5,20 @@
 #' @return A data frame with the people in the specified range of party ID's.
 #' @examples
 #' list_people()
+#' @export
 list_people <- function(people.list = 5:8, vb = FALSE) {
-  # Error handling
+  # Error handling -----------------------------------------------------------
+  if (!is.numeric(people.list)) {
+    stop("people.list must be numeric.")
+  }
   if (sum((people.list < 0))) {
     stop("Person indices must be > 0")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be Boolean.")
+  }
+  if (length(is.logical) > 1) {
+    stop("vb must be single value.")
   }
 
   # Get one institution's data

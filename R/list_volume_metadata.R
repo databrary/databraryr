@@ -6,6 +6,7 @@
 #' @return A data frame with information about the volume.
 #' @examples
 #' list_volume_metadata()
+#' @export
 list_volume_metadata <- function(volume = 2,
                                  write.header = FALSE,
                                  data.frame = TRUE,

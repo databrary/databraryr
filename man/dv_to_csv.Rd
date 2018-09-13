@@ -5,7 +5,7 @@
 \title{Converts a Datavyu (.opf) file to CSV.}
 \usage{
 dv_to_csv(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"),
-  auto.write.over = FALSE)
+  auto.write.over = FALSE, vb = FALSE)
 }
 \arguments{
 \item{dv.dir}{Directory to extracted Datavyu file}
@@ -15,6 +15,8 @@ dv_to_csv(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"),
 \item{out.fn}{Output file name. Default is based on dv.dir.}
 
 \item{auto.write.over}{A Boolean value. If TRUE, new output file overwrites old.}
+
+\item{vb}{A boolean value. If TRUE, provides verbose output.}
 }
 \description{
 Converts a Datavyu (.opf) file to CSV.

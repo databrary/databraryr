@@ -10,6 +10,7 @@
 #' @return Status code if login is successful
 #' @examples
 #' login_db()
+#' @export
 login_db <- function(email = NULL,
                      login.url = "/api/user/login",
                      return.response = FALSE, save.session = TRUE,
@@ -33,10 +34,12 @@ login_db <- function(email = NULL,
         password <- keyring::key_get(service = "databrary",
                                      username = email)
       } else {
-        stop(paste0("No password for user: ", email, "\n"))
+        if (vb) message(paste0("No password for user: ", email, "\n"))
+        return(FALSE)
       }
     } else {
-      stop(paste0("No stored credentials for user: ", email, "\n"))
+      if (vb) message(paste0("No stored credentials for user: ", email, "\n"))
+      return(FALSE)
     }
   } else {
     email = rstudioapi::askForPassword("Please enter your Databrary account ID (email): ")

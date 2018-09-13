@@ -5,6 +5,7 @@
 #' @return Status code if successful.
 #' @examples
 #' logout_db()
+#' @export
 logout_db <- function(vb = TRUE){
   # if (!exists("databrary_config_status")) {
   #   databraryapi::config_db(vb = vb)

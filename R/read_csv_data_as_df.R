@@ -5,6 +5,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' read_csv_data_as_df() # Loads CSV depicting Databrary growth from volume 1
+#' @export
 read_csv_data_as_df <- function(session = 9807, asset = 116888,
                                 vb = FALSE) {
   if (!is.numeric(session)) {

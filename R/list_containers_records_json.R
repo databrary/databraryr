@@ -6,6 +6,7 @@
 #' @return JSON file with containers and records from the specified volume.
 #' @examples
 #' list_containers_records_json()
+#' @export
 list_containers_records_json <- function(volume = 1,
                                         vb = FALSE) {
 
@@ -15,6 +16,12 @@ list_containers_records_json <- function(volume = 1,
   }
   if ((!is.numeric(volume)) || (volume <= 0)) {
     stop("Volume must be an integer > 0.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb type must be logical.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length = 1.")
   }
 
   # if ((!exists("databrary_config_status")) || (!databrary_config_status)){

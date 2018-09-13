@@ -7,6 +7,7 @@
 #' @return Status code if successful.
 #' @examples
 #' summarize_volume()
+#' @export
 summarize_volume <- function(volume = 4, plot.style = "ggplot",
                              return.df = FALSE, vb = FALSE) {
 

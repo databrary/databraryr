@@ -5,6 +5,7 @@
 #' @return TRUE or FALSEl.
 #' @examples
 #' is_institution()
+#' @export
 is_institution <- function(party=8, vb = FALSE) {
   # Error handling
   if (length(party) > 1) {
@@ -40,6 +41,7 @@ is_institution <- function(party=8, vb = FALSE) {
 #' @return TRUE or FALSEl.
 #' @examples
 #' is_person()
+#' @export
 is_person <- function(party = 7, vb = FALSE){
   return(!is_institution(party, vb = vb))
 }

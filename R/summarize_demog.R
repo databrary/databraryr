@@ -6,10 +6,11 @@
 #' @return Status code if successful.
 #' @examples
 #' summarize_demog()
+#' @export
 summarize_demog <- function(volume = 4, return.df = FALSE,
                            vb = FALSE) {
 
-  # Error handling
+  # Error handling ----------------------------------------------------------
   if (length(volume) > 1) {
     stop("Volume must have length 1.")
   }
@@ -17,7 +18,7 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
     stop("Volume must be an integer > 0.")
   }
 
-  # Authenticate within download_csv
+  # Retrieve session data ----------------------------------------------------
   if (vb) message(paste0("Downloading session spreadsheet from volume ", volume))
   df <- download_session_csv(volume = volume, vb=vb)
   if (is.null(df)) {
@@ -42,6 +43,7 @@ summarize_demog <- function(volume = 4, return.df = FALSE,
   df <- df[complete.cases(df[,c('age.weeks', 'participant.gender',
                           'participant.race')]),]
 
+  # Prepare summary plot -----------------------------------------------------
   demog.theme <- ggplot2::theme(legend.position = "bottom",
                        legend.title = ggplot2::element_blank(),
                        axis.text = ggplot2::element_text(size = ggplot2::rel(1)),

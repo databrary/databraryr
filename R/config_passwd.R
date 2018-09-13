@@ -2,6 +2,7 @@
 #'
 #' @examples
 #' config_passwd()
+#' @export
 config_passwd <- function() {
 
   pretty_print_emails <- function(l) {

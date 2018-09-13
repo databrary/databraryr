@@ -5,6 +5,7 @@
 #' @return List of assets.
 #' @examples
 #' list_assets_in_volume()
+#' @export
 list_assets_in_volume <- function(volume = 1, vb = FALSE) {
   # Error handling
   if (!is.numeric(volume)) {

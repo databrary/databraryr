@@ -7,6 +7,7 @@
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_assets()
+#' @export
 list_assets_json <- function(slot = 9825, volume = 75,
                              vb = FALSE) {
   # Error handling

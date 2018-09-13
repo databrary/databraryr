@@ -5,6 +5,7 @@
 #' @return A data framw with information about the volume owner(s).
 #' @examples
 #' list_volume_owners()
+#' @export
 list_volume_owners <- function(volume = 1,
                                vb = FALSE) {
   # Error handling

@@ -5,6 +5,7 @@
 #' @return JSON file with data.
 #' @examples
 #' download_party()
+#' @export
 download_party_json <- function(party = 6,
                            vb = FALSE) {
 

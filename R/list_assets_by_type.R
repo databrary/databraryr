@@ -6,9 +6,10 @@
 #' @return Data frame with the selected asset types.
 #' @examples
 #' list_assets_by_type()
+#' @export
 list_assets_by_type <- function(volume = 1, type = "video",
                                 vb = FALSE) {
-  # Error checking
+  # Error checking ----------------------------------------------------------
   if (!is.numeric(volume)) {
     stop("Volume must be numeric.")
   }
@@ -18,7 +19,17 @@ list_assets_by_type <- function(volume = 1, type = "video",
   if (!is.character(type)) {
     stop("Asset type must be character.")
   }
-
+  if (!(type %in% c("video", "audio", "image", "text", "pdf", "msword",
+                    "ms-excel", "datavyu", "spss", "lena", "elan"))) {
+    stop("Invalid type.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb type must be logical.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length = 1.")
+  }
+  # Retrieve, process asset list --------------------------------------------
   va <- list_assets_in_volume(volume = volume, vb = vb)
   if (is.null(va)) {
     if (vb) message("Assets not available for volume ", volume, ".\n")
@@ -34,8 +45,8 @@ list_assets_by_type <- function(volume = 1, type = "video",
     message(paste0("Searching for files of type '", type))
   }
 
-  files.of.given.type <- dplyr::left_join(va, file.types, by = c("format" = "id")) %>%
-    dplyr::filter(., mimetype %in% these.types)
+  m_df <- dplyr::left_join(va, file.types, by = c("format" = "id"))
+  files.of.given.type <- dplyr::filter(m_df, mimetype %in% these.types)
 
   if ((dim(files.of.given.type)[1] == 0) || (is.null(files.of.given.type))) {
     if (vb) message(paste0("No supported files of type ", type, " found.\n"))
@@ -43,7 +54,6 @@ list_assets_by_type <- function(volume = 1, type = "video",
   } else {
     # not all assets have name or sess.date...
     l <- dplyr::mutate(files.of.given.type, asset.id = id, session.id = sess.id)
-
     l <- dplyr::select(l, vol.id, session.id, asset.id, format, duration,
                        permission, mimetype, extension)
     return(l)

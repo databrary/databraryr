@@ -2,11 +2,11 @@
 #'
 #' @param slot Slot/session ID.
 #' @param volume Selected volume number.
-#' @param convert.JSON A Boolean value. If TRUE converts JSON to data frame.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_assets()
+#' @export
 list_assets <- function(slot = 9807, volume = 1,
                         vb = FALSE) {
   # Error handling
@@ -21,6 +21,12 @@ list_assets <- function(slot = 9807, volume = 1,
   }
   if ((!is.numeric(volume)) || volume <= 0 ) {
     stop("Volume must be > 0.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length 1.")
   }
 
   # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {

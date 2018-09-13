@@ -1,4 +1,4 @@
-#' Extracts the codes from a raw (*.opf) Datavyu coding file.
+#' Extracts the elements from a raw (*.opf) Datavyu coding file.
 #'
 #' @param in.fn File name for the Datavyu file.
 #' @param out.dir Output directory to save exported files.
@@ -7,6 +7,7 @@
 #' @return The output directory where the extracted files were saved.
 #' @examples
 #' extract_dv()
+#' @export
 extract_dv <- function(in.fn, out.dir = NULL,
                        auto.write.over = TRUE,
                        vb = FALSE) {

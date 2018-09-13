@@ -7,6 +7,7 @@
 #' @examples get_db_stats("stats")
 #' @examples get_db_stats("people")
 #' @examples get_db_stats("places")
+#' @export
 get_db_stats <- function(type = "stats", vb = FALSE) {
   # Error handling
   if (!is.character(type)) {

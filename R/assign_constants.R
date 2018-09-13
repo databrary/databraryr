@@ -3,6 +3,7 @@
 #' @return A data frame with the constants.
 #' @examples
 #' assign_constants()
+#' @export
 assign_constants <- function(vb = FALSE) {
   # Error checking
   if (!is.logical(vb)) {

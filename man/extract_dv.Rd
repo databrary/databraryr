@@ -2,7 +2,7 @@
 % Please edit documentation in R/extract_dv.R
 \name{extract_dv}
 \alias{extract_dv}
-\title{Extracts the codes from a raw (*.opf) Datavyu coding file.}
+\title{Extracts the elements from a raw (*.opf) Datavyu coding file.}
 \usage{
 extract_dv(in.fn, out.dir = NULL, auto.write.over = TRUE, vb = FALSE)
 }
@@ -19,7 +19,7 @@ extract_dv(in.fn, out.dir = NULL, auto.write.over = TRUE, vb = FALSE)
 The output directory where the extracted files were saved.
 }
 \description{
-Extracts the codes from a raw (*.opf) Datavyu coding file.
+Extracts the elements from a raw (*.opf) Datavyu coding file.
 }
 \examples{
 extract_dv()

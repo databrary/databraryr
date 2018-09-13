@@ -2,10 +2,13 @@
 % Please edit documentation in R/extract_dv_code_defs.R
 \name{extract_dv_code_defs}
 \alias{extract_dv_code_defs}
-\title{Converts a Datavyu (.opf) file to CSV.}
+\title{Extracts the code definitions from a Datavyu (.opf) file.}
 \usage{
 extract_dv_code_defs(dv.fn, out.fn = "codes.csv",
-  auto.write.over = TRUE)
+  auto.write.over = TRUE,
+  code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+  code.vals.regex = "\\\\)-([a-zA-Z\\\\/]+)\\\\|",
+  code.type.regex = "([a-zA-Z]+)$", vb = FALSE)
 }
 \arguments{
 \item{dv.fn}{Full Datavyu file name.}
@@ -13,10 +16,20 @@ extract_dv_code_defs(dv.fn, out.fn = "codes.csv",
 \item{out.fn}{Full output file name.}
 
 \item{auto.write.over}{A Boolean value. If TRUE, new output file overwrites old.}
+
+\item{code.regex}{A string specifying the regular expression to extract a code.}
+
+\item{code.vals.regex}{A string specifying the regular expression to extract a code value.}
+
+\item{code.type.regex}{A string specifying the regular expression for the code type.}
+
+\item{vb}{A boolean value. If TRUE, provides verbose output.}
+
+\item{code.defs.regex}{A string specifying the regular expression for a code definition.}
 }
 \description{
-Converts a Datavyu (.opf) file to CSV.
+Extracts the code definitions from a Datavyu (.opf) file.
 }
 \examples{
-dv_to_csv()
+extract_dv_code_defs()
 }

@@ -12,8 +12,6 @@ list_assets(slot = 9807, volume = 1, vb = FALSE)
 \item{volume}{Selected volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{convert.JSON}{A Boolean value. If TRUE converts JSON to data frame.}
 }
 \value{
 A data frame with the assets in the selected volume and session.

@@ -1,11 +1,22 @@
-#' Converts a Datavyu (.opf) file to CSV.
+#' Extracts the code definitions from a Datavyu (.opf) file.
 #'
 #' @param dv.fn Full Datavyu file name.
 #' @param out.fn Full output file name.
 #' @param auto.write.over A Boolean value. If TRUE, new output file overwrites old.
+#' @param code.regex A string specifying the regular expression to extract a code.
+#' @param code.vals.regex A string specifying the regular expression to extract a code value.
+#' @param code.defs.regex A string specifying the regular expression for a code definition.
+#' @param code.type.regex A string specifying the regular expression for the code type.
+#' @param vb A boolean value. If TRUE, provides verbose output.
 #' @examples
-#' dv_to_csv()
-extract_dv_code_defs <- function(dv.fn, out.fn = "codes.csv", auto.write.over = TRUE) {
+#' extract_dv_code_defs()
+#' @export
+extract_dv_code_defs <- function(dv.fn, out.fn = "codes.csv",
+                                 auto.write.over = TRUE,
+                                 code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+                                 code.vals.regex = "\\)-([a-zA-Z\\/]+)\\|",
+                                 code.type.regex = "([a-zA-Z]+)$",
+                                 vb = FALSE) {
   if (!is.character(dv.fn)) {
     stop("Datavyu file name must be a string.")
   }
@@ -24,7 +35,7 @@ extract_dv_code_defs <- function(dv.fn, out.fn = "codes.csv", auto.write.over = 
       if (replace.out %in% c('n', 'N')) {
         stop(paste0("File ", out.fn, "not altered."))
       }
-      message(paste0("File ", out.fn, " will be replaced."))
+      if (vb) message(paste0("File ", out.fn, " will be replaced."))
     }
   }
 
@@ -35,7 +46,7 @@ extract_dv_code_defs <- function(dv.fn, out.fn = "codes.csv", auto.write.over = 
   }
   dv <- readLines(con.in)
   close(con.in)
-  message(paste0(length(dv), " lines read from file ", dv.fn))
+  if (vb) message(paste0(length(dv), " lines read from file ", dv.fn))
 
   con.out <- file(out.fn, "w")
   if (!con.out) {
@@ -43,23 +54,29 @@ extract_dv_code_defs <- function(dv.fn, out.fn = "codes.csv", auto.write.over = 
   }
 
   # Write output file
-  code.regex <- "^([a-zA-Z_]+)"
-  code.defs.regex <- "[\\ a-zA-z|,-]+$"
+  # code.regex <- "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"
+  # code.vals.regex <- "\)-([a-zA-Z\/]+)\|"
+  # code.type.regex <- "([a-zA-Z]+)$"
+  # code.defs.regex <- "[\\ a-zA-z,-0-9|]+$"
   outlines <- 0
 
-  writeLines("code,code.defs", con.out)
+  writeLines("code,code_vals,code_type", con.out)
 
+  # stringr::str_match returns capture group(s) in column 2+
   for (l in 1:length(dv)) {
     if (stringr::str_detect(dv[l], code.regex)) {
-      code <- stringr::str_extract(dv[l], code.regex)
-      code.defs <- stringr::str_extract(dv[l], code.defs.regex)
+      code <- stringr::str_match(dv[l], code.regex)[2]
+      code.vals <- stringr::str_match(dv[l], code.vals.regex)[2]
+      code.type <- stringr::str_match(dv[l], code.type.regex)[2]
+      #code.defs <- stringr::str_extract(dv[l], code.defs.regex)
       #writeLines(paste(code, code.defs, sep=","), con = con.out)
-      writeLines(paste(code.defs), con = con.out)
+      writeLines(paste(code, code.vals, code.type, sep=","), con = con.out)
+      #writeLines(paste(code.defs), con = con.out)
       outlines <- outlines + 1
     }
   }
 
   # Cleanup
   close(con.out)
-  message(paste0(outlines, " lines written to file: ", out.fn))
+  if (vb) message(paste0(outlines, " lines written to file: ", out.fn))
   }

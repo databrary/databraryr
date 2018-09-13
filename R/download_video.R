@@ -7,6 +7,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_video()
+#' @export
 download_video <- function(asset = 1, slot = 9807,
                            file.name = "test.mp4",
                            return.response=FALSE, vb=FALSE) {

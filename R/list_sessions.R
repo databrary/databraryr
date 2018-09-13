@@ -5,6 +5,7 @@
 #' @return List of assets.
 #' @examples
 #' list_sessions()
+#' @export
 list_sessions <- function(volume = 1, vb = FALSE) {
   # Error checking
   if (!is.numeric(volume)) {

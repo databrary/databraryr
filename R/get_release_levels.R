@@ -4,6 +4,7 @@
 #' @return Data frame with release levels.
 #' @examples
 #' get_release_levels()
+#' @export
 get_release_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
   rl <- c$release

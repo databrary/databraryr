@@ -4,9 +4,14 @@
 #' @param dv.fn Datavyu code file. Defaults to 'db'.
 #' @param out.fn Output file name. Default is based on dv.dir.
 #' @param auto.write.over A Boolean value. If TRUE, new output file overwrites old.
+#' @param vb A boolean value. If TRUE, provides verbose output.
 #' @examples
 #' dv_to_csv()
-dv_to_csv <- function(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"), auto.write.over = FALSE) {
+#' @export
+dv_to_csv <- function(dv.dir, dv.fn = "db",
+                      out.fn = paste0(dv.dir, ".csv"),
+                      auto.write.over = FALSE,
+                      vb = FALSE) {
   if (!is.character(dv.dir)) {
     stop("Datavyu directory must be a string.")
   }

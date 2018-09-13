@@ -6,6 +6,7 @@
 #' @return Status code if successful.
 #' @examples
 #' download_party()
+#' @export
 download_party <- function(party = 6,
                            convert.JSON = TRUE,
                            vb = FALSE) {
