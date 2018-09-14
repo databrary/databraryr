@@ -32,7 +32,7 @@ list_assets_by_type <- function(vol.id = 1, type = "video",
   # Retrieve, process asset list --------------------------------------------
   va <- list_assets_in_volume(vol.id = vol.id, vb = vb)
   if (is.null(va)) {
-    if (vb) message("Assets not available for volume ", volume, ".\n")
+    if (vb) message("Assets not available for volume ", vol.id, ".\n")
     return(NULL)
   }
 
@@ -45,28 +45,15 @@ list_assets_by_type <- function(vol.id = 1, type = "video",
     message(paste0("Searching for files of type '", type))
   }
 
-  m_df <- dplyr::left_join(va, file.types, by = c("format" = "id"))
-  files.of.given.type <- dplyr::filter(m_df, mimetype %in% these.types)
+  files.of.given.type <- dplyr::filter(va, mimetype %in% these.types)
 
   if ((dim(files.of.given.type)[1] == 0) || (is.null(files.of.given.type))) {
     if (vb) message(paste0("No supported files of type ", type, " found.\n"))
     return (NULL)
   } else {
     # not all assets have name or sess.date...
-    l <- dplyr::mutate(files.of.given.type, asset.id = id, session.id = sess.id)
-    l <- dplyr::select(l, vol.id, session.id, asset.id, format, duration,
+    l <- dplyr::select(files.of.given.type, vol.id, session.id, asset.id, format, duration,
                        permission, mimetype, extension)
     return(l)
   }
-#
-#   l <- dplyr::mutate(files.of.given.type, asset.id = id, asset.name = name.x)
-#   l <- dplyr::select(l, vol.id, sess.id, sess.date, sess.release,
-#                      asset.id, asset.name, format, permission, size, duration,
-#                      mimetype, extension)
-#   # #l <- dplyr::filter(l, mimetype %in% these.types)
-#   #
-#   # if  ((dim(l)[1] == 0) || (is.null(l))) {
-#   #   stop(paste0("No files of type '", type, "' found.\n"))
-#   # }
-#   return(l)
 }
