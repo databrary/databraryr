@@ -1,22 +1,26 @@
 #' Converts a Datavyu (.opf) file to CSV.
 #'
-#' @param dv.dir Directory to extracted Datavyu file
+#' @param dv.dir Directory to extracted Datavyu file.
 #' @param dv.fn Datavyu code file. Defaults to 'db'.
 #' @param out.fn Output file name. Default is based on dv.dir.
 #' @param auto.write.over A Boolean value. If TRUE, new output file overwrites old.
+#' @param code.regex Regular expression to extract codes from Datavyu file.
+#' @param code.type.regex Regular expression to extract doce types from Datavyu file.
+#' @param onset.offset.regex Regular expression to extract onset/offset times.
+#' @param code.values.regex Regular expression to extract code values from Datavyu file.
 #' @param vb A boolean value. If TRUE, provides verbose output.
 #' @examples
 #' dv_to_csv()
 #' @export
-dv_to_csv <- function(dv.dir, dv.fn = "db",
-                      out.fn = paste0(dv.dir, ".csv"),
+dv_to_csv <- function(dv.dir = ".", dv.fn = "db",
+                      out.fn = paste0(dv.dir, "/tmp.csv"),
                       auto.write.over = FALSE,
                       code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
-#                      code.values.regex = "\\)-([a-zA-Z\\/]+)\\|",
                       code.type.regex = "([a-zA-Z]+)$",
                       onset.offset.regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
                       code.values.regex = "\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\)$",
                       vb = FALSE) {
+  # Parameter checking -------------------------------------------------------------------
   if (!is.character(dv.dir)) {
     stop("Datavyu directory must be a string.")
   }
@@ -42,24 +46,27 @@ dv_to_csv <- function(dv.dir, dv.fn = "db",
     }
   }
 
-  # Open Datavyu file
+  # Open Datavyu file and read------------------------------------------------------------
   con.in <- file(paste0(dv.dir, "/", dv.fn), "r")
   if (!con.in) {
     stop(paste0("Unable to open file: ", dv.fn))
   }
   dv <- readLines(con.in)
   close(con.in)
-  message(paste0(length(dv), " lines read from file ", dv.fn))
+  if (vb) message(paste0(length(dv), " lines read from file ", dv.fn))
 
-  con.out <- file(paste0(dv.dir, "/", out.fn), "w")
+
+  # Write output file---------------------------------------------------------------------
+  opf_fn <- list.files(dv.dir, pattern = "\\.opf$")
+  if (is.null(opf_fn)) {
+    stop(paste0("No Datavyu file found in ", opf.fn))
+  }
+  out.fn <- paste0(dv.dir, "/", tools::file_path_sans_ext(basename(opf_fn)), ".csv")
+  con.out <- file(out.fn, "w")
   if (!con.out) {
     stop(paste0("Unable to open file: ", out.fn))
   }
 
-  # Write output file
-  # onset.offset.regex <- "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})"
-  # code.values.regex <- "\\([a-zA-Z ?,.'/0-9;!|~`]+\\)$"
-  #code.regex <- "^([a-zA-Z_]+)"
   outlines <- 0
 
   writeLines("code,onset,offset,code.value", con.out)
@@ -93,7 +100,7 @@ dv_to_csv <- function(dv.dir, dv.fn = "db",
     outlines <- outlines + 1
   }
 
-  # Cleanup
+  # Cleanup ------------------------------------------------------------------------------
   close(con.out)
-  message(paste0(outlines, " lines written to file: ", out.fn))
+  if (vb) message(paste0(outlines, " lines written to file: ", out.fn))
   }

@@ -4,9 +4,13 @@
 \alias{extract_dv}
 \title{Extracts the elements from a raw (*.opf) Datavyu coding file.}
 \usage{
-extract_dv(in.fn, out.dir = NULL, auto.write.over = TRUE, vb = FALSE)
+extract_dv(in.dir = ".", in.fn = list.files(in.dir, "\\\\.opf$",
+  full.names = TRUE), out.dir = in.dir, auto.write.over = TRUE,
+  vb = FALSE)
 }
 \arguments{
+\item{in.dir}{Input directory}
+
 \item{in.fn}{File name for the Datavyu file.}
 
 \item{out.dir}{Output directory to save exported files.}

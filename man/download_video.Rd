@@ -4,13 +4,15 @@
 \alias{download_video}
 \title{Download a specific video file.}
 \usage{
-download_video(asset.id = 1, session.id = 9807,
+download_video(asset.id = 1, session.id = 9807, segment.id = "-",
   file.name = "test.mp4", return.response = FALSE, vb = FALSE)
 }
 \arguments{
 \item{asset.id}{Asset number.}
 
 \item{session.id}{Slot/session number.}
+
+\item{segment.id}{Video segment.}
 
 \item{file.name}{Name for downloaded file.}
 

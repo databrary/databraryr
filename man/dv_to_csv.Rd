@@ -4,8 +4,8 @@
 \alias{dv_to_csv}
 \title{Converts a Datavyu (.opf) file to CSV.}
 \usage{
-dv_to_csv(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"),
-  auto.write.over = FALSE,
+dv_to_csv(dv.dir = ".", dv.fn = "db", out.fn = paste0(dv.dir,
+  "/tmp.csv"), auto.write.over = FALSE,
   code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
   code.type.regex = "([a-zA-Z]+)$",
   onset.offset.regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
@@ -13,13 +13,21 @@ dv_to_csv(dv.dir, dv.fn = "db", out.fn = paste0(dv.dir, ".csv"),
   vb = FALSE)
 }
 \arguments{
-\item{dv.dir}{Directory to extracted Datavyu file}
+\item{dv.dir}{Directory to extracted Datavyu file.}
 
 \item{dv.fn}{Datavyu code file. Defaults to 'db'.}
 
 \item{out.fn}{Output file name. Default is based on dv.dir.}
 
 \item{auto.write.over}{A Boolean value. If TRUE, new output file overwrites old.}
+
+\item{code.regex}{Regular expression to extract codes from Datavyu file.}
+
+\item{code.type.regex}{Regular expression to extract doce types from Datavyu file.}
+
+\item{onset.offset.regex}{Regular expression to extract onset/offset times.}
+
+\item{code.values.regex}{Regular expression to extract code values from Datavyu file.}
 
 \item{vb}{A boolean value. If TRUE, provides verbose output.}
 }

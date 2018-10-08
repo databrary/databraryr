@@ -7,8 +7,7 @@
 #' @examples
 #' list_assets_in_session()
 #' @export
-list_assets_in_session <- function(session.id = 9807, vol.id = 1,
-                        vb = FALSE) {
+list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
   # Error handling
   if (length(session.id) > 1) {
     stop("session.id must have length 1.")
