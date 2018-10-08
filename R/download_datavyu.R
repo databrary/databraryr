@@ -11,7 +11,8 @@
 #' download_datavyu()
 #' @export
 
-download_datavyu <- function(vol.id = 1, session.id = 9807, asset.id = 1,
+download_datavyu <- function(vol.id = 1, session.id = 9807,
+                             asset.id = 117035,
                              out.dir = "tmp",
                              file.name = "test.opf",
                              return.response = FALSE,
@@ -60,43 +61,43 @@ download_datavyu <- function(vol.id = 1, session.id = 9807, asset.id = 1,
 
   # List Datavyu files in volume, then download first one-----------------------------------
   # TODO(ROG): Add support for multiple files
-  dv_df <- list_assets_by_type(vol.id = vol.id, type = "datavyu")
+  # dv_df <- list_assets_by_type(vol.id = vol.id, type = "datavyu")
+  dv_df <- list_specified_assets_in_session(vol.id = vol.id,
+                                            session.id = session.id,
+                                            media.type = 'Datavyu')
   if (is.null(dv_df)) {
     message(paste0("No files of type ", type, "in volume ", vol.id))
   } else {
     url.download <- paste0("https://nyu.databrary.org",
-                           paste("/slot", dv_df$session.id[1], "-", "asset", dv_df$asset.id[1],
+                           paste("/slot", session.id, "-", "asset", asset.id,
                                  "download", sep="/"))
-    webpage <- rvest::html_session(url.download)
-    if (webpage$response$status_code == 200) {
-      content.type <- webpage$response$headers$`content-type`
+    webpage <- httr::GET(url.download)
+    if (webpage$status_code == 200) {
+      content.type <- webpage$headers$`content-type`
       if (vb) {
         message("Successful HTML GET query.")
         message(paste0("Content-type is ", content.type))
       }
-      # TODO(ROG): Merge this with download_video for more generic/consistent functionality
       if (content.type == "application/vnd.datavyu") {
         if (file.name == "test.opf") {
           if (vb) {
             if (vb) message("File name unspecified. Generating unique name.")
           }
-          file.name <- paste0(out.dir, "/", dv_df$vol.id[1], "-",
-                              dv_df$session.id[1], "-",
-                              dv_df$asset.id[1], "-",
+          file.name <- paste0(out.dir, "/", vol.id, "-",
+                              session.id, "-",
+                              asset.id, "-",
                               format(Sys.time(), "%F-%H%M-%S"), ".opf")
         }
         if (vb) {
-          if (vb) message(paste0("Downloading Datavyu file as ", file.name, "\n"))
+          if (vb) message(paste0("Downloading Datavyu file as: \n", file.name))
         }
-        if (utils::download.file(webpage$handle$url, file.name, mode = "wb")) {
-          message('Download failed')
-        } else {
-          return(out.dir)
-        }
+        bin <- httr::content(webpage, 'raw')
+        writeBin(bin, file.name)
+        return(out.dir)
       }
     } else {
-      if (vb) message(paste('Download failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
-      if (return.response) return(webpage$response)
+      if (vb) message(paste0('Download Failed, HTTP status ', webpage$status_code))
+      return(NULL)
     }
   }
 }

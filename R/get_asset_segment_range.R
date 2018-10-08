@@ -1,14 +1,14 @@
 #' Get the time range from a given video or audio asset.
 #'
 #' @param vol.id Volume ID
-#' @param slot.id Slot/session number.
+#' @param session.id Slot/session number.
 #' @param asset.id Asset number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' get_asset_segment_range()
 #' @export
 get_asset_segment_range <- function(vol.id = 1,
-                                    slot.id = 9807, asset.id = 1,
+                                    session.id = 9807, asset.id = 1,
                                     vb = FALSE) {
   # Test parameters--------------------------------------------------------
   if (!is.numeric(vol.id)) {
@@ -17,10 +17,10 @@ get_asset_segment_range <- function(vol.id = 1,
   if (vol.id < 1) {
     stop("vol.id must be >= 1")
   }
-  if (!is.numeric(slot.id)) {
-    stop("slot.id must be numeric")
+  if (!is.numeric(session.id)) {
+    stop("session.id must be numeric")
   }
-  if (slot.id < 1) {
+  if (session.id < 1) {
     stop("slot.id must be >= 1")
   }
   if (!is.numeric(asset.id)) {
@@ -36,7 +36,7 @@ get_asset_segment_range <- function(vol.id = 1,
   # Retrieve data from Databrary-------------------------------------------
   w <- httr::GET(paste0("https://nyu.databrary.org/api/volume/", vol.id,
                         "/slot/",
-                        slot.id, "/asset/", asset.id))
+                        session.id, "/asset/", asset.id))
   if (httr::status_code(w) == 200) {
     content.type <- w$headers$`content-type`
     if (vb) {

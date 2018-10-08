@@ -22,7 +22,7 @@ extract_dv_code_defs <- function(in.dir = '.', dv.fn = 'db',
                                  code.type.regex = "([a-zA-Z]+)$",
                                  vb = FALSE) {
   # Check parameters -----------------------------------------------------------------
-    if (!is.character(dv.fn)) {
+  if (!is.character(dv.fn)) {
     stop("Datavyu file name must be a string.")
   }
   if (!file.exists(paste0(in.dir, "/", dv.fn))) {
@@ -94,4 +94,24 @@ extract_dv_code_defs <- function(in.dir = '.', dv.fn = 'db',
   # Cleanup -------------------------------------------------------------------------------
   close(con.out)
   if (vb) message(paste0(outlines, " lines written to file: ", out.fn))
-  }
+  return(out.fn)
+}
+
+#======================================================================================
+# Convenience function to return a data frame
+extract_dv_code_defs_df <- function(in.dir = '.', dv.fn = 'db',
+                                    out.dir = in.dir,
+                                    out.fn = paste0(out.dir, "/", 'codes.csv'),
+                                    auto.write.over = TRUE,
+                                    code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+                                    code.vals.regex = "\\)-([a-zA-Z\\/]+)\\|",
+                                    code.type.regex = "([a-zA-Z]+)$",
+                                    vb = FALSE) {
+
+  dv_csv <- extract_dv_code_defs(in.dir = in.dir, dv.fn = dv.fn,
+                                 out.dir = out.dir,
+                                 out.fn = out.fn,
+                                 auto.write.over = TRUE,
+                                 vb = vb)
+  read.csv(dv_csv)
+}

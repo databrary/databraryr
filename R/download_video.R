@@ -1,19 +1,24 @@
 #' Download a specific video file.
 #'
+#' @param vol.id Volume ID.
 #' @param asset.id Asset number.
 #' @param session.id Slot/session number.
 #' @param segment.id Video segment.
+#' @param out.dir Directory to save output file.
 #' @param file.name Name for downloaded file.
 #' @param return.response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_video()
 #' @export
-download_video <- function(asset.id = 1, session.id = 9807,
+download_video <- function(vol.id = 1,
+                           session.id = 9807,
+                           asset.id = 1,
                            segment.id = "-",
+                           out.dir = '.',
                            file.name = "test.mp4",
                            return.response=FALSE, vb=FALSE) {
-  # Error handling
+  # Parameter checking ----------------------------------------------------------------
   if (length(asset.id) > 1) {
     stop("Asset ID must have length 1.")
   }
@@ -75,7 +80,9 @@ download_video <- function(asset.id = 1, session.id = 9807,
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file.name <- paste0(session.id, "-", asset.id, "-", segment.id, "-",
+        file.name <- paste0(out.dir, "/", vol.id, "-",
+                            session.id, "-",
+                            asset.id, "-", segment.id, "-",
                             format(Sys.time(), "%F-%H%M-%S"), ".mp4")
       }
       if (vb) message(paste0("Downloading video as ", file.name))
@@ -92,10 +99,39 @@ download_video <- function(asset.id = 1, session.id = 9807,
     if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
     if (return.response) return(webpage$response)
   }
+
+  webpage <- httr::GET(url.download)
+  if (webpage$status_code == 200) {
+    content.type <- webpage$headers$`content-type`
+    if (vb) {
+      message("Successful HTML GET query.")
+      message(paste0("Content-type is ", content.type))
+    }
+    if (content.type == "video/mp4") {
+      if (file.name == "test.mp4") {
+        if (vb) {
+          if (vb) message("File name unspecified. Generating unique name.")
+        }
+        file.name <- paste0(out.dir, "/", vol.id, "-",
+                            session.id, "-",
+                            asset.id, "-", segment.id, "-",
+                            format(Sys.time(), "%F-%H%M-%S"), ".opf")
+      }
+      if (vb) {
+        if (vb) message(paste0("Downloading video file as: \n", file.name))
+      }
+      bin <- httr::content(webpage, 'raw')
+      writeBin(bin, file.name)
+      return(out.dir)
+    }
+  } else {
+    if (vb) message(paste0('Download Failed, HTTP status ', webpage$status_code))
+    return(NULL)
+  }
 }
 
 validate_segment_id <- function(segment.id, video_duration_ms,
-                                segment.regex = "([0-9]+),([0-9]+)", ...) {
+                                segment.regex = "([0-9]+),([0-9]+)", vb = vb) {
   if (stringr::str_detect(segment.id, pattern = segment.regex)) {
     seg_matches <- stringr::str_match(segment.id, pattern = "([0-9]+),([0-9]+)")
     start_ms_s <- seg_matches[2]

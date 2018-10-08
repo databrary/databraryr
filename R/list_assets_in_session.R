@@ -8,7 +8,8 @@
 #' list_assets_in_session()
 #' @export
 list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
-  # Error handling
+  # Parameter checking----------------------------------------------
+  if (vb) message('list_assets_in_session()...')
   if (length(session.id) > 1) {
     stop("session.id must have length 1.")
   }
@@ -28,12 +29,7 @@ list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
     stop("vb must have length 1.")
   }
 
-  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-  #   config_db(vb = vb)
-  # }
-  #authenticate_db(vb = vb)
-
-  # Make URL, GET(), and handle response
+  # Make URL, GET(), and handle response ---------------------------
   session.url <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "/slot/", session.id, "?assets")
   if (vb) {
     message(paste0("Sending GET to ", session.url))
@@ -49,8 +45,11 @@ list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
         df <- data.frame(d.sess$assets)
         df$vol.id <- vol.id
         df$session.id <- session.id
-        df <- dplyr::rename(df, asset.id = id)
-        # df <- dplyr::select(df, vol.id, session.id, format, classification, name, permission,
+        df <- dplyr::rename(df, asset.id = id,
+                            asset.type.id = format,
+                            asset.name = name)
+        # df <- dplyr::select(df, vol.id, session.id, asset.id,
+        #                     asset.type.id, classification, name, permission,
         #                     size, duration)
         df <- format_to_filetypes(df, vb = vb)
       } else {
@@ -66,18 +65,30 @@ list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
   }
 }
 
-#========================================================================================
-# Function aliases
-list_assets <- list_assets_in_session
+#==================================================================
+#' Lists assets in a given Databrary volume and session (slot).
+#'
+#' @param vol.id Selected volume number.
+#' @param session.id Slot/session ID.
+#' @media.type A string indicating what type of file.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @return A data frame with the assets in the selected volume and session.
+#' @examples
+#' list_specified_assets_in_session()
+#' @export
+list_specified_assets_in_session <- function(vol.id = 1,
+                                             session.id = 9807,
+                                             media.type = 'MPEG-4 video',
+                                             vb = FALSE) {
+
+  # List all assets
+  if (vb) message('list_specified_assets_in_session()...')
+  al <- list_assets_in_session(vol.id, session.id, vb = vb)
+  dplyr::filter(al, asset.type == media.type)
+}
 
 #========================================================================================
 #' Converts volume asset data frame to one with media types.
-#'
-#' @param vol_assets Data frame
-#' @param vb A boolean value. If TRUE provides verbose output.
-#' @return A data framw with more useful information about media types.
-#' @examples
-#' format_to_filetypes ()
 format_to_filetypes <- function(vol_assets, vb = FALSE) {
   # Parameter checking -------------------------------------------------------------------
   if (is.null(vol_assets)) {
@@ -86,10 +97,8 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
   if (!is.data.frame(vol_assets)) {
     stop("vol_assets must be a data frame.")
   }
-  if (!("format" %in% names(vol_assets))) {
-    stop("No 'format' field to match in volume assets.")
-  }
 
+  if (vb) message('format_to_filetypes()...')
   # Get file types -----------------------------------------------------------------------
   if (vb) message("Getting supported file types.")
   fts <- get_supported_file_types()
@@ -99,10 +108,15 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
 
   # Merge file types with assets in volume -----------------------------------------------
   if (vb) message("Matching file types to those in specified volume.")
-  df <- dplyr::left_join(vol_assets, fts, by = c("format" = "id"))
-  df <- dplyr::rename(df, asset.name = name.x, asset.type = name.y)
+  #df <- dplyr::left_join(vol_assets, fts, by = c("format" = "id"))
+  df <- dplyr::left_join(vol_assets, fts, by = c('asset.type.id'))
   # Since the function is more commonly used by volume level functions, we don't resort here
   # dplyr::select(df, vol.id, session.id, asset.name, size, duration, mimetype,
   #               extension, transcodable)
   df
 }
+
+#========================================================================================
+# Function aliases
+list_assets <- list_assets_in_session
+list_specified_assets <- list_specified_assets_in_session
