@@ -4,13 +4,13 @@
 \alias{get_asset_segment_range}
 \title{Get the time range from a given video or audio asset.}
 \usage{
-get_asset_segment_range(vol.id = 1, slot.id = 9807, asset.id = 1,
+get_asset_segment_range(vol.id = 1, session.id = 9807, asset.id = 1,
   vb = FALSE)
 }
 \arguments{
 \item{vol.id}{Volume ID}
 
-\item{slot.id}{Slot/session number.}
+\item{session.id}{Slot/session number.}
 
 \item{asset.id}{Asset number.}
 

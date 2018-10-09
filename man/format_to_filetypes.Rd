@@ -10,18 +10,12 @@ format_to_filetypes(vol_assets, vb = FALSE)
 format_to_filetypes(vol_assets, vb = FALSE)
 }
 \arguments{
-\item{vol_assets}{Data frame}
-
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 
 \item{volume}{Selected volume number. Default is 2.}
-
-\item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
 A data framw with information about the volume owner(s).
-
-A data framw with more useful information about media types.
 }
 \description{
 Converts volume asset data frame to one with media types.
@@ -30,5 +24,4 @@ Converts volume asset data frame to one with media types.
 }
 \examples{
 format_to_filetypes()
-format_to_filetypes ()
 }
