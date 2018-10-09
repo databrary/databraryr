@@ -1,22 +1,22 @@
 #' Lists basic information about people on Databrary.
 #'
-#' @param party Party number to retrieve information about.
+#' @param party.id Party number to retrieve information about.
 #' @param convert.JSON A Boolean value if TRUE converts the JSON download
 #' @param vb A Boolean value if TRUE returns verbose output.
 #' @return Status code if successful.
 #' @examples
 #' download_party()
 #' @export
-download_party <- function(party = 6,
+download_party <- function(party.id = 6,
                            convert.JSON = TRUE,
                            vb = FALSE) {
 
   # Error handling
-  if (length(party) > 1) {
-    stop("Party must be single value")
+  if (length(party.id) > 1) {
+    stop("party.id must be single value")
   }
-  if ((!is.numeric(party)) || (party <= 0)) {
-    stop("Party must be an integer > 0")
+  if ((!is.numeric(party.id)) || (party.id <= 0)) {
+    stop("party.id must be an integer > 0")
   }
 
   # if (!exists("databrary_config_status")) {
@@ -25,7 +25,7 @@ download_party <- function(party = 6,
   #authenticate_db()
 
   # Assemble URL, GET(), and handle response
-  party.url <- paste0("https:/nyu.databrary.org/api/party/", party)
+  party.url <- paste0("https:/nyu.databrary.org/api/party/", party.id)
   if (vb) {
     message(paste0("Sending GET to ", party.url, "\n"))
   }
