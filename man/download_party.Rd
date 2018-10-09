@@ -4,10 +4,10 @@
 \alias{download_party}
 \title{Lists basic information about people on Databrary.}
 \usage{
-download_party(party = 6, convert.JSON = TRUE, vb = FALSE)
+download_party(party.id = 6, convert.JSON = TRUE, vb = FALSE)
 }
 \arguments{
-\item{party}{Party number to retrieve information about.}
+\item{party.id}{Party number to retrieve information about.}
 
 \item{convert.JSON}{A Boolean value if TRUE converts the JSON download}
 

@@ -4,7 +4,7 @@
 \alias{download_datavyu}
 \title{Download a specific Datavyu (.opf) file.}
 \usage{
-download_datavyu(vol.id = 1, session.id = 9807, asset.id = 1,
+download_datavyu(vol.id = 1, session.id = 9807, asset.id = 117035,
   out.dir = "tmp", file.name = "test.opf", return.response = FALSE,
   vb = TRUE)
 }
