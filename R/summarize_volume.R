@@ -1,6 +1,6 @@
 #' Plot summary of volume's participant characteristics.
 #'
-#' @param volume Selected volume number.
+#' @param vol.id Selected volume number.
 #' @param plot.style Defaults to 'ggplot'
 #' @param return.df A Boolean value. If TRUE returns a data frame.
 #' @param vb A Boolean value. If TRUE provides verbose output.

@@ -14,6 +14,9 @@ get_video_stats <- function(volume = 1, vb = FALSE) {
   if (volume < 1) {
     stop("Volume must be >= 1.")
   }
+  if (!is.logical(vb)) {
+    stop("vb must be Boolean.")
+  }
 
   # get list of videos in volume -------------------------------------------
   vids_df <- list_assets_by_type(volume = volume, type = "video", vb = vb)

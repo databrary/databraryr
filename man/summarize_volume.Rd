@@ -8,13 +8,13 @@ summarize_volume(vol.id = 4, plot.style = "ggplot",
   return.df = FALSE, vb = FALSE)
 }
 \arguments{
+\item{vol.id}{Selected volume number.}
+
 \item{plot.style}{Defaults to 'ggplot'}
 
 \item{return.df}{A Boolean value. If TRUE returns a data frame.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{volume}{Selected volume number.}
 }
 \value{
 Status code if successful.

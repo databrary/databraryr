@@ -4,10 +4,10 @@
 \alias{summarize_demog}
 \title{Plot summary of volume's participant characteristics.}
 \usage{
-summarize_demog(volume = 4, return.df = FALSE, vb = FALSE)
+summarize_demog(vol.id = 4, return.df = FALSE, vb = FALSE)
 }
 \arguments{
-\item{volume}{Selected volume number.}
+\item{vol.id}{Selected volume number.}
 
 \item{return.df}{A boolean value.}
 
