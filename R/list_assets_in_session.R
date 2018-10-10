@@ -115,8 +115,3 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
   #               extension, transcodable)
   df
 }
-
-#========================================================================================
-# Function aliases
-list_assets <- list_assets_in_session
-list_specified_assets <- list_specified_assets_in_session
