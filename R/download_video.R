@@ -39,6 +39,7 @@ download_video <- function(vol.id = 1,
   }
 
   video_duration_ms = 1
+  if (vb) message('Getting file duration.')
   g <- httr::GET(paste0("https://nyu.databrary.org/api/asset/", asset.id))
   if (httr::status_code(g) == 200) {
     if (vb) {
@@ -47,6 +48,7 @@ download_video <- function(vol.id = 1,
     file_info <- jsonlite::fromJSON(httr::content(g, type = 'text', encoding = 'utf8'))
     if (file_info$format == "-800") {
       video_duration_ms = file_info$duration
+      if (vb) message(paste0('File duration: ', video_duration_ms, ' ms.'))
     }
   } else {
     if (vb) message(paste0('Download Failed, HTTP status ', httr::status_code(g)))
@@ -67,9 +69,10 @@ download_video <- function(vol.id = 1,
     segment.id <- stringr::str_replace(segment.id, pattern = ",", replacement = "-")
   }
 
-  webpage <- rvest::html_session(url.download)
-  if (webpage$response$status_code == 200) {
-    content.type <- webpage$response$headers$`content-type`
+  if (vb) message(paste0('Sending GET to ', url.download))
+  webpage <- httr::GET(url.download)
+  if (webpage$status_code == 200) {
+    content.type <- webpage$headers$`content-type`
     if (vb) {
       message("Successful HTML GET query\n")
       message(paste0("Content-type is ", content.type, ".\n"))
@@ -86,14 +89,9 @@ download_video <- function(vol.id = 1,
                             format(Sys.time(), "%F-%H%M-%S"), ".mp4")
       }
       if (vb) message(paste0("Downloading video as ", file.name))
-      rv <- utils::download.file(url = webpage$handle$url, destfile = file.name, mode = "wb")
-      if (vb) {
-        if (rv == 0) {
-          message(paste0("File ", file.name, " downloaded successfully."))
-        } else {
-          message(paste0("File download failed."))
-        }
-      }
+      bin <- httr::content(webpage, 'raw')
+      writeBin(bin, file.name)
+      return(out.dir)
     }
   } else {
     if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
@@ -122,6 +120,7 @@ download_video <- function(vol.id = 1,
       }
       bin <- httr::content(webpage, 'raw')
       writeBin(bin, file.name)
+      message(paste0('Video ', file.name, ' downloaded to ', out.dir, '.'))
       return(out.dir)
     }
   } else {
@@ -139,11 +138,11 @@ validate_segment_id <- function(segment.id, video_duration_ms,
     start_ms <- as.numeric(start_ms_s)
     end_ms <- as.numeric(end_ms_s)
 
-    if ((start_ms > video_duration_ms) || (start_ms < 0)) {
-      if (vb) message(paste0("start_ms < duration or < 0; changing to 0"))
+    if (start_ms < 0) {
+      if (vb) message(paste0("start_ms < 0; changing to 0"))
       start_ms_s <- "0"
     }
-    if ((end_ms > video_duration_ms) || (end_ms < 0)) {
+    if (end_ms < 0) {
       if (vb) message("end_ms > duration or < 0; converting to duration.")
       end_ms_s = as.character(video_duration_ms)
     }
