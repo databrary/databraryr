@@ -7,7 +7,7 @@ This repository contains code for the `databraryapi` R package.
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
 - Install the `databraryapi` package via `install_github("PLAY-behaviorome/databraryapi")`. Required dependencies will be installed at this time.
-- The latest version is 0.1.3.9005.
+- The latest version is 0.1.3.9006.
 
 ## Use
 
@@ -72,18 +72,32 @@ to see a list of the latest shared datasets.
 
 `read_csv_data_as_df()` by default reads a publicly shared CSV data file from Databrary's volume 1 <http://databrary.org/volume/1>. Try
 
-    with(read_csv_data_as_df(), plot(Auth_Investigators, Institutions))
+    `with(read_csv_data_as_df(), plot(Auth_Investigators, Institutions))`
   
 to view a simple plot of the number of authorized investigators and institutions across time.
     
 `download_video()` by default reads a short publicly shared testing video depicting a series of numbers counting up from 000.
 
-`download_csv()` by default reads a CSV of the "sessions" spreadsheet from Databrary's volume 1 <http://databrary.org/volume/1> and returns it as a data frame.
+`get_file_duration()` by default returns the duration (in ms) of the same publicly shared video in volume 1.
+
+`download_datavyu()` by default downloads the Datavyu spreadsheet linked to the test video in volume 1 into a default `tmp/` directory.
+
+`download_session_csv()` by default reads a CSV of the "sessions" spreadsheet from Databrary's volume 1 <http://databrary.org/volume/1> and returns it as a data frame.
+
+`extract_dv()` then extracts the text files embedded in the Datavyu (.opf) file.
+
+`dv_to_csv()` converts the extracted Datavyu file to a CSV that can be loaded as a data frame using other commands.
 
 `list_assets_by_type()` by defaults lists the videos in Databrary volume 1 <http://databrary.org/volume/1>.
+
+`list_assets_in_session()` by default lists *all* files in the 'Top-level Materials' folder (session/slot 9807) in volume 1 <https://nyu.databrary.org/volume/1/slot/9807/->
+
+`list_specified_assets_in_session()` by default lists the *videos* in volume 1, session/slot 9807.
 
 `list_people()` by default lists information about the two Databrary PIs, Karen Adolph and Rick Gilmore, and the Co-I, David Millman.
 
 `list_volume_owners()` by default lists the volume owners for Databrary volume 1 <http://databrary.org/volume/1>.
 
 `logout_db()` logs out of Databrary and does some simple clean up.
+
+`summarize_demog()` by default plots a boxplot summary of the demographic characteristics of participants in volume 4 <https://nyu.databrary.org/volume/4>

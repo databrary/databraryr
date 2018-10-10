@@ -6,8 +6,7 @@ inst/doc
 .databrary.RData
 databraryapi.Rproj
 *.mp4
-db-report.Rmd
-NAMESPACE.old
 working
-NAMESPACE.working
 data
+old_vignettes
+tmp
