@@ -52,8 +52,8 @@ list_assets_by_type <- function(vol.id = 1, type = "video",
     return (NULL)
   } else {
     # not all assets have name or sess.date...
-    l <- dplyr::select(files.of.given.type, vol.id, session.id, asset.id, format, duration,
-                       permission, mimetype, extension)
-    return(l)
+    # l <- dplyr::select(files.of.given.type, vol.id, session.id, asset.id, format, duration,
+    #                    permission, mimetype, extension)
+    return(files.of.given.type)
   }
 }
