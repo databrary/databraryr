@@ -45,9 +45,11 @@ list_assets_in_session <- function(vol.id = 1, session.id = 9807, vb = FALSE) {
         df <- data.frame(d.sess$assets)
         df$vol.id <- vol.id
         df$session.id <- session.id
+        # df <- dplyr::rename(df, asset.id = id,
+        #                     asset.type.id = format,
+        #                     asset.name = name)
         df <- dplyr::rename(df, asset.id = id,
-                            asset.type.id = format,
-                            asset.name = name)
+                            asset.type.id = format)
         # df <- dplyr::select(df, vol.id, session.id, asset.id,
         #                     asset.type.id, classification, name, permission,
         #                     size, duration)

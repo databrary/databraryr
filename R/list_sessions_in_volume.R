@@ -1,12 +1,12 @@
-#' Downloads list of sessions.
+#' Lists the sessions in a given volume.
 #'
 #' @param vol.id Target volume ID. Defaults to 1.
 #' @param vb A boolean value.
 #' @return List of sessions.
 #' @examples
-#' list_sessions()
+#' list_sessions_in_vol()
 #' @export
-list_sessions <- function(vol.id = 1, vb = FALSE) {
+list_sessions_in_volume <- function(vol.id = 1, vb = FALSE) {
   # Error checking
   if (!is.numeric(vol.id)) {
     stop("vol.id must be numeric.")
@@ -25,19 +25,16 @@ list_sessions <- function(vol.id = 1, vb = FALSE) {
   if (vb) message(paste0("Sending GET to ", url.cont))
   g = httr::GET(url.cont)
   if (httr::status_code(g) == 200) {
-    if (vb) message("Successful retrieval.")
+    if (vb) message("Successful response. Extracting content.")
     g.content <- httr::content(g, 'text', encoding = "UTF-8")
     v <- jsonlite::fromJSON(g.content)
     if (!is.null(v)) {
-      if (vb) message("Non-null content returned.")
+      if (vb) message("Non-null data returned.")
       if (("containers" %in% names(v)) && (!is.null(v[['containers']]))) {
-        # Drop first element (contains metadata)
-        df <- v$containers[-1,]
-        df$vol.id <- vol.id
-        dplyr::rename(df, session.id = id)
-        return(df)
+        return(v)
       } else if (vb) {
         message(paste0('No sessions in volume.\n'))
+        return (NULL)
       }
     }
   } else if (vb) message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))

@@ -15,12 +15,12 @@ list_assets_in_volume <- function(vol.id = 1, vb = FALSE) {
     stop("Volume must be >= 1.")
   }
 
-  sl <- list_sessions(vol.id = vol.id, vb = vb)
+  sl <- list_sessions_in_volume(vol.id = vol.id, vb = vb)
   if (!is.null(sl)) {
-    a <- lapply(as.array(sl[,'session.id']), list_assets_in_session, vol.id = vol.id, vb = vb)
+    if (vb) message("Session data exists.")
+    s.ids <- sl$containers$id
+    a <- lapply(s.ids, list_assets_in_session, vol.id = vol.id, vb = vb)
     a <- plyr::rbind.fill(a)
-    # a <- dplyr::select(a, vol.id, session.id, asset.id, asset.name, permission, asset.type,
-    #                    extension, size, duration, mimetype, segment, classification, format)
     return(a)
   } else {
     message(paste0("Session list for volume ", vol.id, " unavailable."))

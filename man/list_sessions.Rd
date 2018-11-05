@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_sessions.R
 \name{list_sessions}
 \alias{list_sessions}
-\title{Downloads session spreadsheet as a CSV.}
+\title{Downloads list of sessions.}
 \usage{
 list_sessions(vol.id = 1, vb = FALSE)
 }
@@ -12,10 +12,10 @@ list_sessions(vol.id = 1, vb = FALSE)
 \item{vb}{A boolean value.}
 }
 \value{
-List of assets.
+List of sessions.
 }
 \description{
-Downloads session spreadsheet as a CSV.
+Downloads list of sessions.
 }
 \examples{
 list_sessions()
