@@ -19,8 +19,8 @@ list_assets_in_volume <- function(vol.id = 1, vb = FALSE) {
   if (!is.null(sl)) {
     a <- lapply(as.array(sl[,'session.id']), list_assets_in_session, vol.id = vol.id, vb = vb)
     a <- plyr::rbind.fill(a)
-    a <- dplyr::select(a, vol.id, session.id, asset.id, asset.name, permission, asset.type,
-                       extension, size, duration, mimetype, segment, classification, format)
+    # a <- dplyr::select(a, vol.id, session.id, asset.id, asset.name, permission, asset.type,
+    #                    extension, size, duration, mimetype, segment, classification, format)
     return(a)
   } else {
     message(paste0("Session list for volume ", vol.id, " unavailable."))
