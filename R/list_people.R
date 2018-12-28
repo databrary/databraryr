@@ -1,17 +1,17 @@
 #' Lists basic information about people on Databrary.
 #'
-#' @param people.list Party number(s) for people to list.
+#' @param people_list Party number(s) for people to list.
 #' @param vb A Boolean value if TRUE returns verbose output.
 #' @return A data frame with the people in the specified range of party ID's.
 #' @examples
 #' list_people()
 #' @export
-list_people <- function(people.list = 5:8, vb = FALSE) {
+list_people <- function(people_list = 5:8, vb = FALSE) {
   # Error handling -----------------------------------------------------------
-  if (!is.numeric(people.list)) {
-    stop("people.list must be numeric.")
+  if (!is.numeric(people_list)) {
+    stop("people_list must be numeric.")
   }
-  if (sum((people.list < 0))) {
+  if (sum((people_list < 0))) {
     stop("Person indices must be > 0")
   }
   if (!is.logical(vb)) {
@@ -34,12 +34,12 @@ list_people <- function(people.list = 5:8, vb = FALSE) {
     }
   }
 
-  if (length(people.list) == 1) {
+  if (length(people_list) == 1) {
     if (vb) message("Only one ID in list.")
-    as.data.frame(list_person(people.list))
+    as.data.frame(list_person(people_list))
   } else {
     if (vb) message("Multiple person IDs in list.")
-    l <- sapply(people.list, list_person)
+    l <- sapply(people_list, list_person)
     Reduce(function(x,y) merge(x,y, all=TRUE), l[-which(sapply(l, is.null))])
   }
 }

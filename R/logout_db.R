@@ -10,6 +10,10 @@ logout_db <- function(vb = TRUE){
   # if (!exists("databrary_config_status")) {
   #   databraryapi::config_db(vb = vb)
   # }
+  # Check parameters
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
+  }
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }

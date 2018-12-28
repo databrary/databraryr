@@ -10,11 +10,20 @@
 #' @export
 get_db_stats <- function(type = "stats", vb = FALSE) {
   # Error handling
+  if (length(type) > 1) {
+    stop("type must have length == 1.")
+  }
   if (!is.character(type)) {
     stop("'type' must be character.")
   }
   if (!(type %in% c("institutions", "places", "people", "datasets", "volumes", "stats", "numbers"))){
     stop("Type '", type, "' not valid.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must have logical value.")
   }
 
   activity.api.url <- "https://nyu.databrary.org/api/activity"

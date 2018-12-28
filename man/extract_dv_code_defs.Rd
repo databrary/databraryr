@@ -4,32 +4,30 @@
 \alias{extract_dv_code_defs}
 \title{Extracts the code definitions from a Datavyu (.opf) file.}
 \usage{
-extract_dv_code_defs(in.dir = ".", dv.fn = "db", out.dir = in.dir,
-  out.fn = paste0(out.dir, "/", "codes.csv"), auto.write.over = TRUE,
-  code.regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
-  code.vals.regex = "\\\\)-([a-zA-Z\\\\/]+)\\\\|",
-  code.type.regex = "([a-zA-Z]+)$", vb = FALSE)
+extract_dv_code_defs(in_dir = ".", dv_fn = "db", out_dir = in_dir,
+  out_fn = paste0(out_dir, "/", "codes.csv"), auto_write_over = TRUE,
+  code_regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
+  code_vals_regex = "\\\\)-([a-zA-Z\\\\/]+)\\\\|",
+  code_type_regex = "([a-zA-Z]+)$", vb = FALSE)
 }
 \arguments{
-\item{in.dir}{Input directory. Defaults to '.'}
+\item{in_dir}{Input directory. Defaults to '.'}
 
-\item{dv.fn}{Full Datavyu file name. Defaults to 'db'}
+\item{dv_fn}{Full Datavyu file name. Defaults to 'db'}
 
-\item{out.dir}{Output directory. Defaults to in.dir}
+\item{out_dir}{Output directory. Defaults to in_dir}
 
-\item{out.fn}{Full output file name.}
+\item{out_fn}{Full output file name.}
 
-\item{auto.write.over}{A Boolean value. If TRUE, new output file overwrites old.}
+\item{auto_write_over}{A Boolean value. If TRUE, new output file overwrites old.}
 
-\item{code.regex}{A string specifying the regular expression to extract a code.}
+\item{code_regex}{A string specifying the regular expression to extract a code.}
 
-\item{code.vals.regex}{A string specifying the regular expression to extract a code value.}
+\item{code_vals_regex}{A string specifying the regular expression to extract a code value.}
 
-\item{code.type.regex}{A string specifying the regular expression for the code type.}
+\item{code_type_regex}{A string specifying the regular expression for the code type.}
 
 \item{vb}{A boolean value. If TRUE, provides verbose output.}
-
-\item{code.defs.regex}{A string specifying the regular expression for a code definition.}
 }
 \description{
 Extracts the code definitions from a Datavyu (.opf) file.

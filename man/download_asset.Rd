@@ -4,19 +4,19 @@
 \alias{download_asset}
 \title{Download a specific video file.}
 \usage{
-download_asset(asset.id = 11643, session.id = 9825,
-  file.name = "test.mp4", return.response = FALSE, vb = FALSE)
+download_asset(asset_id = 11643, session_id = 9825,
+  file_name = "test.mp4", return_response = FALSE, vb = FALSE)
 }
 \arguments{
-\item{session.id}{Slot/session number.}
+\item{asset_id}{Asset number.}
 
-\item{file.name}{Name for downloaded file.}
+\item{session_id}{Slot/session number.}
 
-\item{return.response}{A Boolean value.}
+\item{file_name}{Name for downloaded file.}
+
+\item{return_response}{A Boolean value.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{asset}{Asset number.}
 }
 \description{
 Download a specific video file.

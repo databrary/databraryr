@@ -1,19 +1,25 @@
 #' Get the the duration (in ms) of a file.
 #'
-#' @param asset.id Asset number.
+#' @param asset_id Asset number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' get_file_duration()
 #' @export
-get_file_duration <- function(asset.id = 1,
+get_file_duration <- function(asset_id = 1,
                               types.w.durations = c("-600", "-800"),
                               vb = FALSE) {
 # Test parameters---------------------------------------------------------
-  if (!is.numeric(asset.id)) {
-    stop("asset.id must be numeric")
+  if (length(asset_id) > 1) {
+    stop("asset_id must have length == 1.")
   }
-  if (asset.id < 1) {
-    stop("asset.id must be >= 1")
+  if (!is.numeric(asset_id)) {
+    stop("asset_id must be numeric")
+  }
+  if (asset_id < 1) {
+    stop("asset_id must be >= 1")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("vb must be logical")
@@ -21,7 +27,7 @@ get_file_duration <- function(asset.id = 1,
 
 # Retrieve file parameters------------------------------------------------
   video_duration_ms = NULL
-  g <- httr::GET(paste0("https://nyu.databrary.org/api/asset/", asset.id))
+  g <- httr::GET(paste0("https://nyu.databrary.org/api/asset/", asset_id))
   if (httr::status_code(g) == 200) {
     if (vb) {
       message("Successful HTML GET query.")

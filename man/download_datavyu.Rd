@@ -4,22 +4,22 @@
 \alias{download_datavyu}
 \title{Download a specific Datavyu (.opf) file.}
 \usage{
-download_datavyu(vol.id = 1, session.id = 9807, asset.id = 117035,
-  out.dir = "tmp", file.name = "test.opf", return.response = FALSE,
+download_datavyu(vol_id = 1, session_id = 9807, asset_id = 117035,
+  out_dir = "tmp", file_name = "test.opf", return_response = FALSE,
   vb = TRUE)
 }
 \arguments{
-\item{vol.id}{Volume ID}
+\item{vol_id}{Volume ID}
 
-\item{session.id}{Slot/session number.}
+\item{session_id}{Slot/session number.}
 
-\item{asset.id}{Asset number.}
+\item{asset_id}{Asset number.}
 
-\item{out.dir}{Directory to save output.}
+\item{out_dir}{Directory to save output.}
 
-\item{file.name}{Name for downloaded file.}
+\item{file_name}{Name for downloaded file.}
 
-\item{return.response}{A Boolean value.}
+\item{return_response}{A Boolean value.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

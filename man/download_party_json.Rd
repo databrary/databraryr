@@ -4,10 +4,10 @@
 \alias{download_party_json}
 \title{Lists basic information about people on Databrary.}
 \usage{
-download_party_json(party.id = 6, vb = FALSE)
+download_party_json(party_id = 6, vb = FALSE)
 }
 \arguments{
-\item{party.id}{Party number to retrieve information about.}
+\item{party_id}{Party number to retrieve information about.}
 
 \item{vb}{A Boolean value if TRUE returns verbose output.}
 }

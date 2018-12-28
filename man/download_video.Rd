@@ -4,24 +4,24 @@
 \alias{download_video}
 \title{Download a specific video file.}
 \usage{
-download_video(vol.id = 1, session.id = 9807, asset.id = 1,
-  segment.id = "-", out.dir = ".", file.name = "test.mp4",
-  return.response = FALSE, vb = FALSE)
+download_video(vol_id = 1, session_id = 9807, asset_id = 1,
+  segment_id = "-", out_dir = ".", file_name = "test.mp4",
+  return_response = FALSE, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Volume ID.}
+\item{vol_id}{Volume ID.}
 
-\item{session.id}{Slot/session number.}
+\item{session_id}{Slot/session number.}
 
-\item{asset.id}{Asset number.}
+\item{asset_id}{Asset number.}
 
-\item{segment.id}{Video segment.}
+\item{segment_id}{Video segment.}
 
-\item{out.dir}{Directory to save output file.}
+\item{out_dir}{Directory to save output file.}
 
-\item{file.name}{Name for downloaded file.}
+\item{file_name}{Name for downloaded file.}
 
-\item{return.response}{A Boolean value.}
+\item{return_response}{A Boolean value.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

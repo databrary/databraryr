@@ -4,16 +4,14 @@
 \alias{list_assets_json}
 \title{Lists assets in a given Databrary volume and session (slot).}
 \usage{
-list_assets_json(slot = 9825, volume = 75, vb = FALSE)
+list_assets_json(session_id = 9825, vol_id = 75, vb = FALSE)
 }
 \arguments{
-\item{slot}{Slot/session ID.}
+\item{session_id}{Slot/session ID.}
 
-\item{volume}{Selected volume number.}
+\item{vol_id}{Selected volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{convert.JSON}{A Boolean value. If TRUE converts JSON to data frame.}
 }
 \value{
 A data frame with the assets in the selected volume and session.

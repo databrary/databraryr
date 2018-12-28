@@ -4,10 +4,10 @@
 \alias{list_sessions}
 \title{Downloads list of sessions.}
 \usage{
-list_sessions(vol.id = 1, vb = FALSE)
+list_sessions(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Target volume ID. Defaults to 1.}
+\item{vol_id}{Target volume ID. Defaults to 1.}
 
 \item{vb}{A boolean value.}
 }

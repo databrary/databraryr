@@ -4,14 +4,12 @@
 \alias{list_containers_records_json}
 \title{Lists containers  and record structure from Databrary volume.}
 \usage{
-list_containers_records_json(vol.id = 1, vb = FALSE)
+list_containers_records_json(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Databrary volume number.}
+\item{vol_id}{Databrary volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{convert.JSON}{Boolean.}
 }
 \value{
 JSON file with containers and records from the specified volume.

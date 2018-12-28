@@ -1,23 +1,42 @@
 #' List volume metadata.
 #'
-#' @param vol.id Selected volume number.
-#' @param write.header A Boolean value. If TRUE writes a comma-separated header.
+#' @param vol_id Selected volume number.
+#' @param write_header A Boolean value. If TRUE writes a comma-separated header.
+#' @param data_frame A Boolean value. If TRUE writes a data frame as output.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with information about the volume.
 #' @examples
 #' list_volume_metadata()
 #' @export
-list_volume_metadata <- function(vol.id = 2,
-                                 write.header = FALSE,
-                                 data.frame = TRUE,
+list_volume_metadata <- function(vol_id = 2,
+                                 write_header = FALSE,
+                                 data_frame = TRUE,
                                  vb = FALSE) {
 
   # Error-checking
-  if (!(is.numeric(vol.id))) {
+  if (!(is.numeric(vol_id))) {
     stop("Volume must be a number.")
   }
-  if (vol.id <= 0) {
+  if (vol_id <= 0) {
     stop("Volume must be > 0.")
+  }
+  if (!is.logical(write_header)) {
+    stop("write_header must be type logical.")
+  }
+  if (length(write_header) > 1) {
+    stop("write_header must have length == 1")
+  }
+  if (!is.logical(data_frame)) {
+    stop("data_frame must be type logical.")
+  }
+  if (length(data_frame) > 1) {
+    stop("data_frame must have length == 1")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be type logical.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1")
   }
 
   # Declare helpers
@@ -39,14 +58,14 @@ list_volume_metadata <- function(vol.id = 2,
   }
 
   # Body of function
-  v <- download_containers_records(vol.id = vol.id, vb = vb)
+  v <- download_containers_records(vol_id = vol_id, vb = vb)
   if (!(is.null(v))){
-    if (write.header) {
-      cat(paste("volume.id", "volume.name", "owners", "permission",
+    if (write_header) {
+      cat(paste("vol_id", "volume.name", "owners", "permission",
                 "doi\n", sep=","))
     }
-    if (data.frame) {
-      data.frame(id = v$id, name = v$name,
+    if (data_frame) {
+      data.frame(vol_id = v$id, name = v$name,
                  owners = flatten_names(v$owners[,'name']),
                  permission = v$permission,
                  doi = make_url_doi(v$doi))
@@ -58,7 +77,7 @@ list_volume_metadata <- function(vol.id = 2,
     }
   } else {
     if (vb) {
-      message(paste0('No data in volume ', vol.id))
+      message(paste0('No data in volume ', vol_id))
     }
     return(NULL)
   }

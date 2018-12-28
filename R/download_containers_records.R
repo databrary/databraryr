@@ -1,22 +1,34 @@
 #' Downloads container and record structure from Databrary volume.
 #'
-#' @param vol.id Databrary volume number.
-#' @param convert.JSON Boolean.
+#' @param vol_id Databrary volume number.
+#' @param convert_JSON Boolean.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return List of containers and records from the specified volume.
 #' @examples
 #' downloade_containers_records()
 #' @export
-download_containers_records <- function(vol.id = 2, convert.JSON = TRUE,
+download_containers_records <- function(vol_id = 2, convert_JSON = TRUE,
                                         vb = FALSE) {
 
   # Error handling
   # TODO(ROG): vectorize
-  if (length(vol.id) > 1) {
-    stop("Volume must have length 1.")
+  if (length(vol_id) > 1) {
+    stop("vol_id must have length 1.")
   }
-  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
-    stop("Volume must be an integer > 0.")
+  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
+    stop("vol_id must be an integer > 0.")
+  }
+  if (!is.logical(convert_JSON)) {
+    stop("convert_JSON must be logical")
+  }
+  if (length(convert_JSON) > 1) {
+    stop("convert_JSON must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
 
   # if ((!exists("databrary_config_status")) || (!databrary_config_status)){
@@ -24,12 +36,12 @@ download_containers_records <- function(vol.id = 2, convert.JSON = TRUE,
   # }
   #authenticate_db(vb = vb)
 
-  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "?", "containers&records")
+  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
   if (vb) message(paste0("Sending GET to ", url.cont.rec))
   g = httr::GET(url.cont.rec)
   if (httr::status_code(g) == 200) {
     g.content <- httr::content(g, 'text', encoding = "UTF-8")
-    if(convert.JSON) {
+    if(convert_JSON) {
       return(jsonlite::fromJSON(g.content))
     } else {
       return(g.content)

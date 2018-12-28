@@ -4,10 +4,10 @@
 \alias{list_volume_owners}
 \title{List vol.id owners.}
 \usage{
-list_volume_owners(vol.id = 1, vb = FALSE)
+list_volume_owners(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Selected volume number. Default is 2.}
+\item{vol_id}{Selected volume number. Default is 2.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
