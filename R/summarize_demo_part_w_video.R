@@ -1,18 +1,18 @@
 #' Summarize demographic data for participants in sessions with videos
 #'
-#' @param vol.id Selected volume number.
+#' @param vol_id Selected volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return Data frame with the vol.id, number of videos, and total hours.
+#' @return Data frame with the vol_id, number of videos, and total hours.
 #' @examples
 #' summarize_videos_in_volume()
 #' @export
-summ_demo_part_w_vid <- function(vol.id = 4, vb = FALSE) {
+summ_demo_part_w_vid <- function(vol_id = 4, vb = FALSE) {
 
   # Error checking ----------------------------------------------------------
-  if (!is.numeric(vol.id)) {
+  if (!is.numeric(vol_id)) {
     stop("Volume must be numeric.")
   }
-  if (vol.id < 1) {
+  if (vol_id < 1) {
     stop("Volume must be >= 1.")
   }
   if (!is.logical(vb)) {
@@ -23,19 +23,20 @@ summ_demo_part_w_vid <- function(vol.id = 4, vb = FALSE) {
   }
 
   # Gather video assets in volume -------------------------------------------
-  vids_df <- list_assets_by_type(vol.id = vol.id, type = "video")
+  vids_df <- list_assets_by_type(vol_id = vol_id, type = "video")
   if (is.null(vids_df)) {
-    stop(paste0("No videos found in volume ", vol.id, ".\n"))
+    stop(paste0("No videos found in volume ", vol_id, ".\n"))
   }
 
   # Gather demographic data from spreadsheet --------------------------------
-  demo_df <- download_session_csv(vol.id = vol.id)
+  demo_df <- download_session_csv(vol_id = vol_id)
   if (is.null(demo_df)) {
-    stop(paste0("No session spreadsheet found in volume ", vol.id, "."))
+    stop(paste0("No session spreadsheet found in volume ", vol_id, "."))
   }
 
   # Merge video data with demographic data and return data frame
-  m <- dplyr::left_join(vids_df, demo_df, by = "session.id")
+  demo_df <- dplyr::rename(demo_df, session_id = session.id)
+  m <- dplyr::left_join(vids_df, demo_df, by = "session_id")
   if (is.null(m)) {
     if (vb) message("No videos that match volume sessions.")
     NULL

@@ -1,8 +1,8 @@
 #' Converts volume asset data frame to one with media types.
 #'
-#' @param volume Selected volume number. Default is 2.
+#' @param vol_assets A data frame of volume assets.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return A data framw with information about the volume owner(s).
+#' @return A data frame with information about the vol.id owner(s).
 #' @examples
 #' format_to_filetypes()
 #' @export

@@ -1,27 +1,27 @@
 #' Lists assets in a given Databrary volume and session (slot).
 #'
-#' @param slot Slot/session ID.
-#' @param volume Selected volume number.
+#' @param session_id Slot/session ID.
+#' @param vol_id Selected volume number.
 #' @param convert.JSON A Boolean value. If TRUE converts JSON to data frame.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_assets()
 #' @export
-list_assets_json <- function(slot = 9825, volume = 75,
+list_assets_json <- function(session_id = 9825, vol_id = 75,
                              vb = FALSE) {
   # Error handling
-  if (length(slot) > 1) {
-    stop("Slot must have length 1.")
+  if (length(session_id) > 1) {
+    stop("session_id must have length 1.")
   }
-  if ((!is.numeric(slot)) || slot <= 0 ) {
-    stop("Slot must be > 0.")
+  if ((!is.numeric(session_id)) || session_id <= 0 ) {
+    stop("session_id must be > 0.")
   }
-  if (length(volume) > 1) {
-    stop("Volume must have length 1.")
+  if (length(vol_id) > 1) {
+    stop("vol_id must have length 1.")
   }
-  if ((!is.numeric(volume)) || volume <= 0 ) {
-    stop("Volume must be > 0.")
+  if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
+    stop("vol_id must be > 0.")
   }
 
   # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
@@ -29,7 +29,7 @@ list_assets_json <- function(slot = 9825, volume = 75,
   # }
 
   # Make URL, GET(), and handle response
-  slot.url <- paste0("https://nyu.databrary.org/api/volume/", volume, "/slot/", slot, "?assets")
+  slot.url <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "/slot/", session_id, "?assets")
   if (vb) {
     message(paste0("Sending GET to ", slot.url))
   }

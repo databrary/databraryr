@@ -1,19 +1,19 @@
 #' Lists stored assets (files) by type.
 #'
-#' @param vol.id Volume ID
+#' @param vol_id Volume ID
 #' @param type Data file type, e.g. "video", "pdf", or "csv"
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return Data frame with the selected asset types.
 #' @examples
 #' list_assets_by_type()
 #' @export
-list_assets_by_type <- function(vol.id = 1, type = "video",
+list_assets_by_type <- function(vol_id = 1, type = "video",
                                 vb = FALSE) {
   # Error checking ----------------------------------------------------------
-  if (!is.numeric(vol.id)) {
+  if (!is.numeric(vol_id)) {
     stop("Volume must be numeric.")
   }
-  if (vol.id < 1) {
+  if (vol_id < 1) {
     stop("Volume must be >= 1.")
   }
   if (!is.character(type)) {
@@ -30,9 +30,9 @@ list_assets_by_type <- function(vol.id = 1, type = "video",
     stop("vb must have length = 1.")
   }
   # Retrieve, process asset list --------------------------------------------
-  va <- list_assets_in_volume(vol.id = vol.id, vb = vb)
+  va <- list_assets_in_volume(vol_id = vol_id, vb = vb)
   if (is.null(va)) {
-    if (vb) message("Assets not available for volume ", vol.id, ".\n")
+    if (vb) message("Assets not available for volume ", vol_id, ".\n")
     return(NULL)
   }
 
@@ -52,7 +52,7 @@ list_assets_by_type <- function(vol.id = 1, type = "video",
     return (NULL)
   } else {
     # not all assets have name or sess.date...
-    # l <- dplyr::select(files.of.given.type, vol.id, session.id, asset.id, format, duration,
+    # l <- dplyr::select(files.of.given.type, vol_id, session.id, asset.id, format, duration,
     #                    permission, mimetype, extension)
     return(files.of.given.type)
   }

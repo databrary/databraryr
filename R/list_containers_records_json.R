@@ -1,20 +1,19 @@
 #' Lists containers  and record structure from Databrary volume.
 #'
-#' @param vol.id Databrary volume number.
-#' @param convert.JSON Boolean.
+#' @param vol_id Databrary volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return JSON file with containers and records from the specified volume.
 #' @examples
 #' list_containers_records_json()
 #' @export
-list_containers_records_json <- function(vol.id = 1,
+list_containers_records_json <- function(vol_id = 1,
                                         vb = FALSE) {
 
   # Error handling
-  if (length(vol.id) > 1) {
+  if (length(vol_id) > 1) {
     stop("Volume must have length 1.")
   }
-  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
+  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
     stop("Volume must be an integer > 0.")
   }
   if (!is.logical(vb)) {
@@ -29,7 +28,7 @@ list_containers_records_json <- function(vol.id = 1,
   # }
 
   # Make URL, GET(), and handle response
-  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "?", "containers&records")
+  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
   if (vb) {
     message(paste0("Sending GET to ", url.cont.rec))
   }

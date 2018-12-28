@@ -1,27 +1,27 @@
 #' Lists the sessions in a given volume.
 #'
-#' @param vol.id Target volume ID. Defaults to 1.
+#' @param vol_id Target volume ID. Defaults to 1.
 #' @param vb A boolean value.
 #' @return List of sessions.
 #' @examples
 #' list_sessions_in_vol()
 #' @export
-list_sessions_in_volume <- function(vol.id = 1, vb = FALSE) {
+list_sessions_in_volume <- function(vol_id = 1, vb = FALSE) {
   # Error checking
-  if (!is.numeric(vol.id)) {
-    stop("vol.id must be numeric.")
+  if (!is.numeric(vol_id)) {
+    stop("vol_id must be numeric.")
   }
-  if (vol.id < 1) {
-    stop("vol.id must be >= 1.")
+  if (vol_id < 1) {
+    stop("vol_id must be >= 1.")
   }
-  if (length(vol.id) > 1) {
-    stop("vol.id must be single value.")
+  if (length(vol_id) > 1) {
+    stop("vol_id must be single value.")
   }
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
 
-  url.cont <- paste0("https://nyu.databrary.org/api/volume/", vol.id, "?", "containers")
+  url.cont <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers")
   if (vb) message(paste0("Sending GET to ", url.cont))
   g = httr::GET(url.cont)
   if (httr::status_code(g) == 200) {

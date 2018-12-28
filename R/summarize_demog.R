@@ -1,26 +1,26 @@
 #' Plot summary of volume's participant characteristics.
 #'
-#' @param vol.id Selected volume number.
-#' @param return.df A boolean value.
+#' @param vol_id Selected volume number.
+#' @param return_df A boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return Status code if successful.
 #' @examples
 #' summarize_demog()
 #' @export
-summarize_demog <- function(vol.id = 4, return.df = FALSE,
+summarize_demog <- function(vol_id = 4, return_df = FALSE,
                            vb = FALSE) {
 
   # Error handling ----------------------------------------------------------
-  if (length(vol.id) > 1) {
-    stop("vol.id must have length 1.")
+  if (length(vol_id) > 1) {
+    stop("vol_id must have length 1.")
   }
-  if ((!is.numeric(vol.id)) || (vol.id <= 0)) {
-    stop("vol.id must be an integer > 0.")
+  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
+    stop("vol_id must be an integer > 0.")
   }
 
   # Retrieve session data ----------------------------------------------------
-  if (vb) message(paste0("Downloading session spreadsheet from volume ", vol.id))
-  df <- download_session_csv(vol.id = vol.id, vb=vb)
+  if (vb) message(paste0("Downloading session spreadsheet from volume ", vol_id))
+  df <- download_session_csv(vol_id = vol_id, vb=vb)
   if (is.null(df)) {
     stop("Download failed.")
   }
@@ -56,7 +56,7 @@ summarize_demog <- function(vol.id = 4, return.df = FALSE,
     demog.theme
   p
 
-  if (return.df) {
+  if (return_df) {
     return(df)
   } else {
     return(p)

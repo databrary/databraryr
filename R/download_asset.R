@@ -1,31 +1,31 @@
 #' Download a specific video file.
 #'
-#' @param asset Asset number.
-#' @param session.id Slot/session number.
-#' @param file.name Name for downloaded file.
-#' @param return.response A Boolean value.
+#' @param asset_id Asset number.
+#' @param session_id Slot/session number.
+#' @param file_name Name for downloaded file.
+#' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_asset()
 #' @export
-download_asset <- function(asset.id = 11643, session.id = 9825,
-                           file.name = "test.mp4",
-                           return.response = FALSE, vb = FALSE) {
+download_asset <- function(asset_id = 11643, session_id = 9825,
+                           file_name = "test.mp4",
+                           return_response = FALSE, vb = FALSE) {
 
   # Error handling
-  if (length(asset.id) > 1) {
+  if (length(asset_id) > 1) {
     stop("Asset ID must have length 1.")
   }
-  if ((!is.numeric(asset.id)) || asset.id <= 0 ) {
+  if ((!is.numeric(asset_id)) || asset_id <= 0 ) {
     stop("Asset ID must be number > 0.")
   }
-  if (length(session.id) > 1) {
+  if (length(session_id) > 1) {
     stop("Session ID must have length 1.")
   }
-  if ((!is.numeric(session.id)) || session.id <= 0 ) {
+  if ((!is.numeric(session_id)) || session_id <= 0 ) {
     stop("Session ID must be number > 0.")
   }
-  if (!is.character(file.name)) {
+  if (!is.character(file_name)) {
     stop("File name must be character string.")
   }
 
@@ -34,7 +34,7 @@ download_asset <- function(asset.id = 11643, session.id = 9825,
   # }
   #authenticate_db(vb = vb)
 
-  asset.url <- paste("/slot", session.id, "-", "asset", asset.id,
+  asset.url <- paste("/slot", session_id, "-", "asset", asset_id,
                      "download", sep="/")
   url.download <- paste0("https:/nyu.databrary.org", asset.url)
 
@@ -47,19 +47,19 @@ download_asset <- function(asset.id = 11643, session.id = 9825,
     }
     # TODO(somebody): Add support for other content types
     if (content.type == "video/mp4") {
-      if (file.name == "test.mp4") {
+      if (file_name == "test.mp4") {
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file.name <- paste0(session.id, "-", asset.id, "-", format(Sys.time(), "%F-%H%M-%S"), ".mp4")
+        file_name <- paste0(session_id, "-", asset_id, "-", format(Sys.time(), "%F-%H%M-%S"), ".mp4")
       }
       if (vb) {
-        message(paste0("Downloading video as ", file.name, "\n"))
+        message(paste0("Downloading video as ", file_name, "\n"))
       }
-      utils::download.file(webpage$handle$url, file.name, mode = "wb")
+      utils::download.file(webpage$handle$url, file_name, mode = "wb")
     }
   } else {
     if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
-    if (return.response) return(webpage$response)
+    if (return_response) return(webpage$response)
   }
 }
