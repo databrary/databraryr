@@ -4,13 +4,13 @@
 \alias{list_specified_assets_in_session}
 \title{Lists assets in a given Databrary volume and session (slot).}
 \usage{
-list_specified_assets_in_session(vol.id = 1, session.id = 9807,
+list_specified_assets_in_session(vol_id = 1, session_id = 9807,
   media.type = "MPEG-4 video", vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Selected volume number.}
+\item{vol_id}{Selected volume number.}
 
-\item{session.id}{Slot/session ID.}
+\item{session_id}{Slot/session ID.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

@@ -4,10 +4,10 @@
 \alias{is_person}
 \title{Tests whether given party ID is from a person.}
 \usage{
-is_person(party = 7, vb = FALSE)
+is_person(party_id = 7, vb = FALSE)
 }
 \arguments{
-\item{party}{Databrary party ID}
+\item{party_id}{Databrary party ID}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }

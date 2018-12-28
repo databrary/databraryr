@@ -4,7 +4,6 @@
 #' config_passwd()
 #' @export
 config_passwd <- function() {
-
   pretty_print_emails <- function(l) {
     s <- paste0("\t", l[1], "\n")
     if (length(l > 1)) {

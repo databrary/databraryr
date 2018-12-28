@@ -10,7 +10,6 @@
 #' @examples
 #' download_datavyu()
 #' @export
-
 download_datavyu <- function(vol_id = 1, session_id = 9807,
                              asset_id = 117035,
                              out_dir = "tmp",

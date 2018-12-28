@@ -28,6 +28,10 @@ download_session_csv <- function(vol_id = 1, to_df = TRUE,
     if(to_df == TRUE){
       r.df <- read.csv(text = r.content)
       if (class(r.df)=="data.frame") {
+        r.df <- dplyr::rename(r.df, session_id = session.id,
+                              session_name = session.name,
+                              session_date = session.date,
+                              session_release = session.release)
         return(r.df)
       } else {
         if (vb) message("Can't coerce to data frame. Skipping.\n")

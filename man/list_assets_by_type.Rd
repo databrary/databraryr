@@ -4,10 +4,10 @@
 \alias{list_assets_by_type}
 \title{Lists stored assets (files) by type.}
 \usage{
-list_assets_by_type(vol.id = 1, type = "video", vb = FALSE)
+list_assets_by_type(vol_id = 1, type = "video", vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Volume ID}
+\item{vol_id}{Volume ID}
 
 \item{type}{Data file type, e.g. "video", "pdf", or "csv"}
 

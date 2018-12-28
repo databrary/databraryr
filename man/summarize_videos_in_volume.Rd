@@ -4,15 +4,15 @@
 \alias{summarize_videos_in_volume}
 \title{Summarize the number and hours of videos in a volume.}
 \usage{
-summarize_videos_in_volume(vol.id = 4, vb = FALSE)
+summarize_videos_in_volume(vol_id = 4, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Selected volume number.}
+\item{vol_id}{Selected volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-Data frame with the vol.id, number of videos, and total hours.
+Data frame with the vol_id, number of videos, and total hours.
 }
 \description{
 Summarize the number and hours of videos in a volume.

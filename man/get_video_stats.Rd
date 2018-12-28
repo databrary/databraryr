@@ -4,10 +4,10 @@
 \alias{get_video_stats}
 \title{Reports summary statistics about the videos available from a given volume.}
 \usage{
-get_video_stats(volume = 1, vb = FALSE)
+get_video_stats(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{volume}{Target volume number.}
+\item{vol_id}{Target volume number.}
 
 \item{vb}{A boolean value.}
 }

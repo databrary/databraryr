@@ -19,6 +19,20 @@ login_db <- function(email = NULL,
                      credentials.file = "~/api-keys/json/databrary-keys.json",
                      vb = FALSE ) {
 
+  # Check parameters
+  if (length(email) > 1) {
+    stop("email must have length == 1.")
+  }
+  if (is.numeric(email) || is.logical(email)) {
+    stop("email must be a string.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must have logical value.")
+  }
+
   # Access (possibly stored) credentials
   if (stored.credentials) {
     email <- jsonlite::fromJSON(credentials.file)$email

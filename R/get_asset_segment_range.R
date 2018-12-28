@@ -11,14 +11,23 @@ get_asset_segment_range <- function(vol_id = 1,
                                     session_id = 9807, asset_id = 1,
                                     vb = FALSE) {
   # Test parameters--------------------------------------------------------
+  if (length(vol_id) > 1) {
+    stop("vol_id must have length == 1.")
+  }
   if (!is.numeric(vol_id)) {
     stop("vol_id must be numeric")
   }
   if (vol_id < 1) {
     stop("vol_id must be >= 1")
   }
+  if (length(session_id) > 1) {
+    stop("session_id must have length == 1.")
+  }
   if (!is.numeric(session_id)) {
     stop("session_id must be numeric")
+  }
+  if (length(asset_id) > 1) {
+    stop("asset_id must have length == 1.")
   }
   if (session_id < 1) {
     stop("slot.id must be >= 1")
@@ -28,6 +37,9 @@ get_asset_segment_range <- function(vol_id = 1,
   }
   if (asset_id < 1) {
     stop("asset_id must be >= 1")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("vb must be logical")

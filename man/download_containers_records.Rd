@@ -4,13 +4,13 @@
 \alias{download_containers_records}
 \title{Downloads container and record structure from Databrary volume.}
 \usage{
-download_containers_records(vol.id = 2, convert.JSON = TRUE,
+download_containers_records(vol_id = 2, convert_JSON = TRUE,
   vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Databrary volume number.}
+\item{vol_id}{Databrary volume number.}
 
-\item{convert.JSON}{Boolean.}
+\item{convert_JSON}{Boolean.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }

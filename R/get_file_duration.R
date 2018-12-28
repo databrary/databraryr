@@ -9,11 +9,17 @@ get_file_duration <- function(asset_id = 1,
                               types.w.durations = c("-600", "-800"),
                               vb = FALSE) {
 # Test parameters---------------------------------------------------------
+  if (length(asset_id) > 1) {
+    stop("asset_id must have length == 1.")
+  }
   if (!is.numeric(asset_id)) {
     stop("asset_id must be numeric")
   }
   if (asset_id < 1) {
     stop("asset_id must be >= 1")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("vb must be logical")

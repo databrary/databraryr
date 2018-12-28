@@ -8,11 +8,17 @@
 #' @export
 get_video_stats <- function(vol_id = 1, vb = FALSE) {
   # test parameters --------------------------------------------------------
-  if (!is.numeric(vol_id)) {
-    stop("Volume must be numeric.")
+  if (length(vol_id) > 1) {
+    stop("vol_id must have length == 1.")
   }
   if (vol_id < 1) {
-    stop("Volume must be >= 1.")
+    stop("vol_id must be >= 1.")
+  }
+  if (!is.numeric(vol_id)) {
+    stop("vol_id must be numeric.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("vb must be Boolean.")
@@ -31,12 +37,13 @@ get_video_stats <- function(vol_id = 1, vb = FALSE) {
     if (vb) message(paste0("No session spreadsheet found in volume ", vol_id, ".\n"))
     return(NULL)
   }
+  #demo_df <- dplyr::rename(demo_df, session_id = session.id)
 
   # create and return data frame -------------------------------------------
   if (vb) message(paste0("Creating data frame for data from volume ", vol_id))
-  m <- dplyr::left_join(vids_df, demo_df, by = "session.id")
+  m <- dplyr::left_join(vids_df, demo_df, by = "session_id")
   data.frame(vol_id = vol_id,
-             n_videos = length(unique(m$asset.id)),
-             n_sessions = length(unique(m$session.id)),
+             n_videos = length(unique(m$asset_id)),
+             n_sessions = length(unique(m$session_id)),
              tot_hrs = sum(m$duration)/(1000*60*60))
 }

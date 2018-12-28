@@ -4,10 +4,10 @@
 \alias{list_sessions_in_volume}
 \title{Lists the sessions in a given volume.}
 \usage{
-list_sessions_in_volume(vol.id = 1, vb = FALSE)
+list_sessions_in_volume(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Target volume ID. Defaults to 1.}
+\item{vol_id}{Target volume ID. Defaults to 1.}
 
 \item{vb}{A boolean value.}
 }

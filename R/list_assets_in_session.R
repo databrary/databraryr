@@ -9,25 +9,25 @@
 #' @export
 list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
   # Parameter checking----------------------------------------------
-  if (vb) message('list_assets_in_session()...')
-  if (length(session_id) > 1) {
-    stop("session_id must have length 1.")
-  }
-  if ((!is.numeric(session_id)) || session_id <= 0 ) {
-    stop("session_id must be > 0.")
-  }
   if (length(vol_id) > 1) {
-    stop("vol_id must have length 1.")
+    stop("vol_id must have length == 1.")
   }
   if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
     stop("vol_id must be > 0.")
   }
+  if (length(session_id) > 1) {
+    stop("session_id must have length == 1.")
+  }
+  if ((!is.numeric(session_id)) || session_id <= 0 ) {
+    stop("session_id must be > 0.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
+  }
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
-  if (length(vb) > 1) {
-    stop("vb must have length 1.")
-  }
+  if (vb) message('list_assets_in_session()...')
 
   # Make URL, GET(), and handle response ---------------------------
   session.url <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "/slot/", session_id, "?assets")

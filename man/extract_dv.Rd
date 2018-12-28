@@ -4,18 +4,18 @@
 \alias{extract_dv}
 \title{Extracts the elements from a raw (*.opf) Datavyu coding file.}
 \usage{
-extract_dv(in.dir = ".", in.fn = list.files(in.dir, "\\\\.opf$",
-  full.names = TRUE), out.dir = in.dir, auto.write.over = TRUE,
+extract_dv(in_dir = ".", in_fn = list.files(in_dir, "\\\\.opf$",
+  full.names = TRUE), out_dir = in_dir, auto_write_over = TRUE,
   vb = FALSE)
 }
 \arguments{
-\item{in.dir}{Input directory}
+\item{in_dir}{Input directory}
 
-\item{in.fn}{File name for the Datavyu file.}
+\item{in_fn}{File name for the Datavyu file.}
 
-\item{out.dir}{Output directory to save exported files.}
+\item{out_dir}{Output directory to save exported files.}
 
-\item{auto.write.over}{A Boolean value. If TRUE, any existing files in out.dir are overwritten.}
+\item{auto_write_over}{A Boolean value. If TRUE, any existing files in out_dir are overwritten.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

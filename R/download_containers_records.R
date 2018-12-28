@@ -13,10 +13,22 @@ download_containers_records <- function(vol_id = 2, convert_JSON = TRUE,
   # Error handling
   # TODO(ROG): vectorize
   if (length(vol_id) > 1) {
-    stop("Volume must have length 1.")
+    stop("vol_id must have length 1.")
   }
   if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("Volume must be an integer > 0.")
+    stop("vol_id must be an integer > 0.")
+  }
+  if (!is.logical(convert_JSON)) {
+    stop("convert_JSON must be logical")
+  }
+  if (length(convert_JSON) > 1) {
+    stop("convert_JSON must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be logical")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
   }
 
   # if ((!exists("databrary_config_status")) || (!databrary_config_status)){

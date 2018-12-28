@@ -8,12 +8,31 @@
 #' @export
 read_csv_data_as_df <- function(session_id = 9807, asset_id = 116888,
                                 vb = FALSE) {
+  if (length(session_id) > 1) {
+    stop("session_id must have length == 1.")
+  }
   if (!is.numeric(session_id)) {
     stop("session_id must be numeric.")
+  }
+  if (session_id < 1) {
+    stop("session_id must be > 1")
+  }
+  if (length(asset_id) > 1) {
+    stop("asset_id must have length == 1.")
   }
   if (!is.numeric(asset_id)) {
     stop("asset_id must be numeric.")
   }
+  if (asset_id < 1) {
+    stop("asset_id must be > 1")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be numeric.")
+  }
+
   asset.url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
   if (vb) message(paste0("Sending GET to ", asset.url))
   g <- httr::GET(url = asset.url)

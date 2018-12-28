@@ -4,10 +4,10 @@
 \alias{is_institution}
 \title{Tests whether given party ID is from an institution.}
 \usage{
-is_institution(party = 8, vb = FALSE)
+is_institution(party_id = 8, vb = FALSE)
 }
 \arguments{
-\item{party}{Databrary party ID}
+\item{party_id}{Databrary party ID}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }

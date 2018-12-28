@@ -4,15 +4,15 @@
 \alias{download_session_csv}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-download_session_csv(vol.id = 1, to.df = TRUE,
-  return.response = FALSE, vb = FALSE)
+download_session_csv(vol_id = 1, to_df = TRUE,
+  return_response = FALSE, vb = FALSE)
 }
 \arguments{
-\item{vol.id}{Target volume number.}
+\item{vol_id}{Target volume number.}
 
-\item{to.df}{A boolean value.}
+\item{to_df}{A boolean value.}
 
-\item{return.response}{A boolean value.}
+\item{return_response}{A boolean value.}
 
 \item{vb}{A boolean value.}
 }

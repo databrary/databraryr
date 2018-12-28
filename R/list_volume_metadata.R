@@ -20,6 +20,24 @@ list_volume_metadata <- function(vol_id = 2,
   if (vol_id <= 0) {
     stop("Volume must be > 0.")
   }
+  if (!is.logical(write_header)) {
+    stop("write_header must be type logical.")
+  }
+  if (length(write_header) > 1) {
+    stop("write_header must have length == 1")
+  }
+  if (!is.logical(data_frame)) {
+    stop("data_frame must be type logical.")
+  }
+  if (length(data_frame) > 1) {
+    stop("data_frame must have length == 1")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be type logical.")
+  }
+  if (length(vb) > 1) {
+    stop("vb must have length == 1")
+  }
 
   # Declare helpers
   surround_w_quotes <- function(s) {

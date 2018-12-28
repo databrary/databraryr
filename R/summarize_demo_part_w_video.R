@@ -4,10 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return Data frame with the vol_id, number of videos, and total hours.
 #' @examples
-#' summarize_videos_in_volume()
+#' summarize_demo_part_w_vid()
 #' @export
-summ_demo_part_w_vid <- function(vol_id = 4, vb = FALSE) {
-
+summarize_demo_part_w_video <- function(vol_id = 4, vb = FALSE) {
   # Error checking ----------------------------------------------------------
   if (!is.numeric(vol_id)) {
     stop("Volume must be numeric.")
@@ -35,7 +34,6 @@ summ_demo_part_w_vid <- function(vol_id = 4, vb = FALSE) {
   }
 
   # Merge video data with demographic data and return data frame
-  demo_df <- dplyr::rename(demo_df, session_id = session.id)
   m <- dplyr::left_join(vids_df, demo_df, by = "session_id")
   if (is.null(m)) {
     if (vb) message("No videos that match volume sessions.")
