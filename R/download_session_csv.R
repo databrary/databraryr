@@ -7,6 +7,7 @@
 #' @return List of assets.
 #' @examples
 #' download_csv()
+#' @export
 download_session_csv <- function(vol_id = 1, to_df = TRUE,
                          return_response = FALSE, vb = FALSE) {
 
