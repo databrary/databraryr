@@ -6,6 +6,7 @@
 #' @return Status code if successful.
 #' @examples
 #' download_party()
+#' @export
 download_party <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
@@ -18,24 +19,19 @@ download_party <- function(party_id = 6,
     stop("party_id must be an integer > 0")
   }
 
-  # if (!exists("databrary_config_status")) {
-  #   config_db(vb = vb)
-  # }
-  #authenticate_db()
-
   # Assemble URL, GET(), and handle response
-  party.url <- paste0("https:/nyu.databrary.org/api/party/", party_id)
+  party_url <- paste0("https://nyu.databrary.org/api/party/", party_id)
   if (vb) {
-    message(paste0("Sending GET to ", party.url, "\n"))
+    message(paste0("Sending GET to ", party_url, "\n"))
   }
-  r = httr::GET(party.url)
+  r <- httr::GET(party_url)
 
   if (httr::status_code(r) == 200) {
-    r.content <- httr::content(r, 'text', encoding = 'UTF-8')
+    r_content <- httr::content(r, 'text', encoding = 'UTF-8')
     if(convert_JSON) {
-      return(jsonlite::fromJSON(r.content))
+      return(jsonlite::fromJSON(r_content))
     } else {
-      return(r.content)
+      return(r_content)
     }
   } else {
     if (vb) {

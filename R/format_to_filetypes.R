@@ -28,7 +28,11 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
   # Merge file types with assets in volume -----------------------------------------------
   if (vb) message("Matching file types to those in specified volume.")
   df <- dplyr::left_join(vol_assets, fts, by = c("format" = "id"))
-  df <- dplyr::rename(df, asset.name = name.x, asset.type = name.y)
+  df <- dplyr::rename(df, asset_name = name.x,
+                      asset_type = name.y,
+                      vol_id = vol.id,
+                      session_id = session.id,
+                      a)
   dplyr::select(df, vol.id, session.id, asset.name, classification, size, duration, mimetype,
                 extension, transcodable)
 }

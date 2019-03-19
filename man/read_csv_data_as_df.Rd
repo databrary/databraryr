@@ -4,7 +4,7 @@
 \alias{read_csv_data_as_df}
 \title{Download a stored CSV data file as a data.frame.}
 \usage{
-read_csv_data_as_df(session_id = 9807, asset_id = 116888, vb = FALSE)
+read_csv_data_as_df(session_id = 9807, asset_id = 153108, vb = FALSE)
 }
 \arguments{
 \item{session_id}{Session ID within some volume.}
