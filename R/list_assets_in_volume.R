@@ -18,8 +18,8 @@ list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
   sl <- list_sessions_in_volume(vol_id = vol_id, vb = vb)
   if (!is.null(sl)) {
     if (vb) message("Session data exists.")
-    s.ids <- sl$containers$id
-    a <- lapply(s.ids, list_assets_in_session, vol_id = vol_id, vb = vb)
+    s_ids <- sl$containers$id
+    a <- lapply(s_ids, list_assets_in_session, vol_id = vol_id, vb = vb)
     a <- plyr::rbind.fill(a)
     return(a)
   } else {

@@ -36,15 +36,15 @@ download_containers_records <- function(vol_id = 2, convert_JSON = TRUE,
   # }
   #authenticate_db(vb = vb)
 
-  url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
-  if (vb) message(paste0("Sending GET to ", url.cont.rec))
-  g = httr::GET(url.cont.rec)
+  url_cont_rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
+  if (vb) message(paste0("Sending GET to ", url_cont_rec))
+  g = httr::GET(url_cont_rec)
   if (httr::status_code(g) == 200) {
-    g.content <- httr::content(g, 'text', encoding = "UTF-8")
+    g_content <- httr::content(g, 'text', encoding = "UTF-8")
     if(convert_JSON) {
-      return(jsonlite::fromJSON(g.content))
+      return(jsonlite::fromJSON(g_content))
     } else {
-      return(g.content)
+      return(g_content)
     }
   } else if (vb) message( paste( 'Download Failed, HTTP status ', httr::status_code(g), '\n', sep="" ) )
 }

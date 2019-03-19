@@ -19,27 +19,27 @@ download_session_csv <- function(vol_id = 1, to_df = TRUE,
     stop("Volume must be an integer > 0.")
   }
 
-  request.url <- paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
-  r = httr::GET(paste0(request.url))
+  request_url <- paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
+  r = httr::GET(paste0(request_url))
   if (vb) {
-    message(paste0("Sending GET to ", request.url))
+    message(paste0("Sending GET to ", request_url))
   }
   if (httr::status_code(r) == 200){
-    r.content <- httr::content(r, 'text', encoding = "UTF-8")
+    r_content <- httr::content(r, 'text', encoding = "UTF-8")
     if(to_df == TRUE){
-      r.df <- read.csv(text = r.content)
-      if (class(r.df)=="data.frame") {
-        r.df <- dplyr::rename(r.df, session_id = session.id,
+      r_df <- read.csv(text = r_content)
+      if (class(r_df)=="data.frame") {
+        r_df <- dplyr::rename(r_df, session_id = session.id,
                               session_name = session.name,
                               session_date = session.date,
                               session_release = session.release)
-        return(r.df)
+        return(r_df)
       } else {
         if (vb) message("Can't coerce to data frame. Skipping.\n")
         return(NULL)
       }
     } else {
-      return(r.content)
+      return(r_content)
     }
   } else {
     message(paste0('Download Failed, HTTP status ', httr::status_code(r)))

@@ -37,12 +37,12 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
   g <- httr::GET(session.url)
   if (httr::status_code(g) == 200) {
     if (vb) message("Successful HTML call.")
-    g.content <- httr::content(g, 'text', encoding = 'UTF-8')
-    d.sess <- jsonlite::fromJSON(g.content)
-    if (!is.null(d.sess)) {
+    g_content <- httr::content(g, 'text', encoding = 'UTF-8')
+    d_sess <- jsonlite::fromJSON(g_content)
+    if (!is.null(d_sess)) {
       if (vb) message("Making data frame from returned content.")
-      if (is.data.frame(d.sess$assets)) {
-        df <- data.frame(d.sess$assets)
+      if (is.data.frame(d_sess$assets)) {
+        df <- data.frame(d_sess$assets)
         df$vol_id <- vol_id
         df$session_id <- session_id
         # df <- dplyr::rename(df, asset.id = id,
@@ -72,7 +72,7 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 #'
 #' @param vol_id Selected volume number.
 #' @param session_id Slot/session ID.
-#' @media.type A string indicating what type of file.
+#' @media_type A string indicating what type of file.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
@@ -80,13 +80,13 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 #' @export
 list_specified_assets_in_session <- function(vol_id = 1,
                                              session_id = 9807,
-                                             media.type = 'MPEG-4 video',
+                                             media_type = 'MPEG-4 video',
                                              vb = FALSE) {
 
   # List all assets
   if (vb) message('list_specified_assets_in_session()...')
   al <- list_assets_in_session(vol_id, session_id, vb = vb)
-  dplyr::filter(al, asset.type == media.type)
+  dplyr::filter(al, asset_type == media_type)
 }
 
 #========================================================================================

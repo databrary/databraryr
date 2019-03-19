@@ -56,12 +56,12 @@ extract_dv_code_defs <- function(in_dir = '.', dv_fn = 'db',
   }
 
   # Open Datavyu file ------------------------------------------------------------------
-  con.in <- file(paste0(in_dir, "/", dv_fn), "r")
-  if (!con.in) {
+  con_in <- file(paste0(in_dir, "/", dv_fn), "r")
+  if (!con_in) {
     stop(paste0("Unable to open file: ", paste0(in_dir, "/", dv_fn)))
   }
-  dv <- readLines(con.in)
-  close(con.in)
+  dv <- readLines(con_in)
+  close(con_in)
   if (vb) message(paste0(length(dv), " lines read from file ", paste0(in_dir, "/", dv_fn)))
 
   # Write output line by line ------------------------------------------------------------
@@ -72,26 +72,26 @@ extract_dv_code_defs <- function(in_dir = '.', dv_fn = 'db',
   } else {
     out_fn <- paste0(out_dir, "/", tools::file_path_sans_ext(basename(dv_fl[1])), "-code-defs.csv")
   }
-  con.out <- file(out_fn, "w")
-  if (!con.out) {
+  con_out <- file(out_fn, "w")
+  if (!con_out) {
     stop(paste0("Unable to open file: ", out_fn))
   }
 
   outlines <- 0
-  writeLines("code,code_vals,code_type", con.out)
+  writeLines("code,code_vals,code_type", con_out)
   for (l in 1:length(dv)) {
     if (stringr::str_detect(dv[l], code_regex)) {
       # stringr::str_match returns capture group(s) in column 2+
       code <- stringr::str_match(dv[l], code_regex)[2]
-      code.vals <- stringr::str_match(dv[l], code_vals_regex)[2]
-      code.type <- stringr::str_match(dv[l], code_type_regex)[2]
-      writeLines(paste(code, code.vals, code.type, sep=","), con = con.out)
+      code_vals <- stringr::str_match(dv[l], code_vals_regex)[2]
+      code_type <- stringr::str_match(dv[l], code_type_regex)[2]
+      writeLines(paste(code, code_vals, code_type, sep=","), con = con_out)
       outlines <- outlines + 1
     }
   }
 
   # Cleanup -------------------------------------------------------------------------------
-  close(con.out)
+  close(con_out)
   if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
   return(out_fn)
 }

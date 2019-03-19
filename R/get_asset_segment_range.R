@@ -50,10 +50,10 @@ get_asset_segment_range <- function(vol_id = 1,
                         "/slot/",
                         session_id, "/asset/", asset_id))
   if (httr::status_code(w) == 200) {
-    content.type <- w$headers$`content-type`
+    content_type <- w$headers$`content-type`
     if (vb) {
       message("Successful HTML GET query.")
-      message(paste0("Content-type is ", content.type))
+      message(paste0("Content-type is ", content_type))
     }
     r <- jsonlite::fromJSON(httr::content(w, type = 'text', encoding = 'utf8'))
     return(r$segment)

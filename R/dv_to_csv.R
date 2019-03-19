@@ -47,14 +47,13 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   }
 
   # Open Datavyu file and read------------------------------------------------------------
-  con.in <- file(paste0(dv_dir, "/", dv_fn), "r")
-  if (!con.in) {
+  con_in <- file(paste0(dv_dir, "/", dv_fn), "r")
+  if (!con_in) {
     stop(paste0("Unable to open file: ", dv_fn))
   }
-  dv <- readLines(con.in)
-  close(con.in)
+  dv <- readLines(con_in)
+  close(con_in)
   if (vb) message(paste0(length(dv), " lines read from file ", dv_fn))
-
 
   # Write output file---------------------------------------------------------------------
   opf_fn <- list.files(dv_dir, pattern = "\\.opf$")
@@ -62,16 +61,16 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
     stop(paste0("No Datavyu file found in ", opf.fn))
   }
   out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_fn)), ".csv")
-  con.out <- file(out_fn, "w")
-  if (!con.out) {
+  con_out <- file(out_fn, "w")
+  if (!con_out) {
     stop(paste0("Unable to open file: ", out_fn))
   }
 
   outlines <- 0
 
-  writeLines("code,onset,offset,code.value", con.out)
+  writeLines("code,onset,offset,code.value", con_out)
   code <- "-"
-  code.values <- "-,-"
+  code_values <- "-,-"
   times <- "-,-"
   for (l in 1:length(dv)) {
     # If not a valid first column skip row
@@ -88,19 +87,19 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
     if (stringr::str_detect(dv[l], onset_offset_regex)) {
       times <- stringr::str_extract(dv[l], onset_offset_regex)
       if (stringr::str_detect(dv[l], code_values_regex)) {
-        code.values <- paste0('"', stringr::str_extract(dv[l], code_values_regex), '"')
-        code.values <- paste0('"', stringr::str_match(dv[l], code_values_regex)[2], '"')
+        code_values <- paste0('"', stringr::str_extract(dv[l], code_values_regex), '"')
+        code_values <- paste0('"', stringr::str_match(dv[l], code_values_regex)[2], '"')
       } else {
-        code.values <- "-"
+        code_values <- "-"
       }
     } else {
       times <- "-,-"
     }
-    writeLines(paste(code, times, code.values, sep=","), con = con.out)
+    writeLines(paste(code, times, code_values, sep=","), con = con_out)
     outlines <- outlines + 1
   }
 
   # Cleanup ------------------------------------------------------------------------------
-  close(con.out)
+  close(con_out)
   if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
   }

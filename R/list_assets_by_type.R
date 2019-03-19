@@ -36,24 +36,24 @@ list_assets_by_type <- function(vol_id = 1, type = "video",
     return(NULL)
   }
 
-  file.types <- get_supported_file_types(vb = vb)
-  these.types <- file.types$mimetype[stringr::str_detect(file.types$mimetype, type)]
-  if (is.null(these.types)) {
+  file_types <- get_supported_file_types(vb = vb)
+  these_types <- file_types$mimetype[stringr::str_detect(file_types$mimetype, type)]
+  if (is.null(these_types)) {
     stop(paste0("Invalid data type '", type))
   }
   if (vb) {
     message(paste0("Searching for files of type '", type))
   }
 
-  files.of.given.type <- dplyr::filter(va, mimetype %in% these.types)
+  files_of_given_type <- dplyr::filter(va, mimetype %in% these_types)
 
-  if ((dim(files.of.given.type)[1] == 0) || (is.null(files.of.given.type))) {
+  if ((dim(files_of_given_type)[1] == 0) || (is.null(files_of_given_type))) {
     if (vb) message(paste0("No supported files of type ", type, " found.\n"))
     return (NULL)
   } else {
     # not all assets have name or sess.date...
     # l <- dplyr::select(files.of.given.type, vol_id, session.id, asset.id, format, duration,
     #                    permission, mimetype, extension)
-    return(files.of.given.type)
+    return(files_of_given_type)
   }
 }

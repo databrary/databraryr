@@ -6,8 +6,9 @@
 #' @examples
 #' read_csv_data_as_df() # Loads CSV depicting Databrary growth from volume 1
 #' @export
-read_csv_data_as_df <- function(session_id = 9807, asset_id = 116888,
+read_csv_data_as_df <- function(session_id = 9807, asset_id = 153108,
                                 vb = FALSE) {
+  # This is a spreadsheet in volume 1, slot 9807
   if (length(session_id) > 1) {
     stop("session_id must have length == 1.")
   }
@@ -33,9 +34,9 @@ read_csv_data_as_df <- function(session_id = 9807, asset_id = 116888,
     stop("vb must be numeric.")
   }
 
-  asset.url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
-  if (vb) message(paste0("Sending GET to ", asset.url))
-  g <- httr::GET(url = asset.url)
+  asset_url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
+  if (vb) message(paste0("Sending GET to ", asset_url))
+  g <- httr::GET(url = asset_url)
   if (httr::status_code(g) == 200) {
     if (vb) message(paste0("Successful HTML GET query."))
     if (g$headers$`content-type` == "text/csv") {

@@ -29,24 +29,19 @@ download_asset <- function(asset_id = 11643, session_id = 9825,
     stop("File name must be character string.")
   }
 
-  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-  #   databraryapi::config_db(vb = vb)
-  # }
-  #authenticate_db(vb = vb)
-
-  asset.url <- paste("/slot", session_id, "-", "asset", asset_id,
+  asset_url <- paste("/slot", session_id, "-", "asset", asset_id,
                      "download", sep="/")
-  url.download <- paste0("https:/nyu.databrary.org", asset.url)
+  url_download <- paste0("https:/nyu.databrary.org", asset_url)
 
-  webpage <- rvest::html_session(url.download)
+  webpage <- rvest::html_session(url_download)
   if (webpage$response$status_code == 200) {
-    content.type <- webpage$response$headers$`content-type`
+    content_type <- webpage$response$headers$`content-type`
     if (vb) {
       message("Successful HTML GET query\n")
-      message(paste0("Content-type is ", content.type))
+      message(paste0("Content-type is ", content_type))
     }
     # TODO(somebody): Add support for other content types
-    if (content.type == "video/mp4") {
+    if (content_type == "video/mp4") {
       if (file_name == "test.mp4") {
         if (vb) {
           message("File name unspecified. Generating unique name.\n")

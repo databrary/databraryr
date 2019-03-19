@@ -22,11 +22,11 @@ download_party_json <- function(party_id = 6,
   #authenticate_db()
 
   # Assemble URL, GET(), and handle response
-  party.url <- paste0("https://nyu.databrary.org/api/party/", party_id)
+  party_url <- paste0("https://nyu.databrary.org/api/party/", party_id)
   if (vb) {
-    message(paste0("Sending GET to ", party.url, "\n"))
+    message(paste0("Sending GET to ", party_url, "\n"))
   }
-  r = httr::GET(party.url)
+  r = httr::GET(party_url)
 
   if (httr::status_code(r) == 200) {
       return(httr::content(r, 'text', encoding = 'UTF-8'))

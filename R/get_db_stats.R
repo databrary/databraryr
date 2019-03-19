@@ -53,9 +53,9 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
                investigators = c$stats$authorized[5],
                affiliates = c$stats$authorized[4],
                institutions = c$stats$authorized[6],
-               datasets.total = c$stats$volumes,
-               datasets.shared = c$stats$shared,
-               n.files = c$stats$assets,
+               datasets_total = c$stats$volumes,
+               datasets_shared = c$stats$shared,
+               n_files = c$stats$assets,
                hours = c$stats$duration/(1000*60*60))
         # TB = c$stats$bytes/(1e12) seems incorrect
       }
