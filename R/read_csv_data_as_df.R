@@ -9,6 +9,7 @@
 read_csv_data_as_df <- function(session_id = 9807, asset_id = 153108,
                                 vb = FALSE) {
   # This is a spreadsheet in volume 1, slot 9807
+  # Parameter checking----------------------------------------------------------
   if (length(session_id) > 1) {
     stop("session_id must have length == 1.")
   }
@@ -34,21 +35,36 @@ read_csv_data_as_df <- function(session_id = 9807, asset_id = 153108,
     stop("vb must be numeric.")
   }
 
-  asset_url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
-  if (vb) message(paste0("Sending GET to ", asset_url))
-  g <- httr::GET(url = asset_url)
-  if (httr::status_code(g) == 200) {
-    if (vb) message(paste0("Successful HTML GET query."))
-    if (g$headers$`content-type` == "text/csv") {
-      df <- utils::read.table(header = T,
-                       text = httr::content(g, type = "text"),
-                       sep = ",", stringsAsFactors = FALSE)
-      return(df)
-    } else {
-      stop("Invalid file type at URL.")
-    }
+  # Handle request---------------------------------------------------------------
+  r <- GET_db_contents(base_URL = 'https://nyu.databrary.org/slot/',
+                       URL_components = paste0(session_id, '/0/asset/', asset_id,
+                                               '/download?inline=false'),
+                       vb = vb,
+                       convert_JSON = FALSE)
+
+  df <- read.csv(text = r)
+  if (class(df)=="data.frame") {
+    return(df)
   } else {
-    if (vb) cat(paste0('Download Failed, HTTP status ', httr::status_code(g), "\n"))
+    if (vb) message("Can't coerce to data frame. Skipping.\n")
     return(NULL)
   }
+
+  # asset_url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
+  # if (vb) message(paste0("Sending GET to ", asset_url))
+  # g <- httr::GET(url = asset_url)
+  # if (httr::status_code(g) == 200) {
+  #   if (vb) message(paste0("Successful HTML GET query."))
+  #   if (g$headers$`content-type` == "text/csv") {
+  #     df <- utils::read.table(header = T,
+  #                      text = httr::content(g, type = "text"),
+  #                      sep = ",", stringsAsFactors = FALSE)
+  #     return(df)
+  #   } else {
+  #     stop("Invalid file type at URL.")
+  #   }
+  # } else {
+  #   if (vb) cat(paste0('Download Failed, HTTP status ', httr::status_code(g), "\n"))
+  #   return(NULL)
+  # }
 }

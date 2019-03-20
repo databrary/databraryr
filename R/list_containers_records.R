@@ -6,7 +6,7 @@
 #' @examples
 #' list_containers_records_json()
 #' @export
-list_containers_records_json <- function(vol_id = 1,
+list_containers_records <- function(vol_id = 1,
                                         vb = FALSE) {
 
   # Error handling
@@ -29,9 +29,8 @@ list_containers_records_json <- function(vol_id = 1,
 
   r <- GET_db_contents(URL_components = paste0('volume/', vol_id,
                                                '?containers&records'),
-                       vb = vb,
-                       convert_JSON = FALSE)
-
+                       vb = vb)
+  return(r)
   # Make URL, GET(), and handle response
   # url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
   # if (vb) {

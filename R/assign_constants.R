@@ -10,15 +10,18 @@ assign_constants <- function(vb = FALSE) {
     stop("vb must be logical.")
   }
 
-  constants_url <- "https://nyu.databrary.org/api/constants"
-  if (vb) {
-    message(paste0("Sending GET to ", constants_url))
-  }
-  g <- httr::GET(constants_url)
-  if (httr::status_code(g) == 200) {
-    g_content <- httr::content(g, 'text', encoding = 'UTF-8')
-    return(jsonlite::fromJSON(g_content))
-  } else if (vb) {
-    message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
-  }
+  r <- GET_db_contents(URL_components = 'constants', vb=vb)
+  return(r)
+
+  # constants_url <- "https://nyu.databrary.org/api/constants"
+  # if (vb) {
+  #   message(paste0("Sending GET to ", constants_url))
+  # }
+  # g <- httr::GET(constants_url)
+  # if (httr::status_code(g) == 200) {
+  #   g_content <- httr::content(g, 'text', encoding = 'UTF-8')
+  #   return(jsonlite::fromJSON(g_content))
+  # } else if (vb) {
+  #   message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
+  # }
 }

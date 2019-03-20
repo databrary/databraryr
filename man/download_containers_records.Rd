@@ -2,15 +2,13 @@
 % Please edit documentation in R/download_containers_records.R
 \name{download_containers_records}
 \alias{download_containers_records}
-\title{Downloads container and record structure from Databrary volume.}
+\title{Downloads container and record structure from Databrary volume.
+This function is deprecated, as it duplicates list_containers_records().}
 \usage{
-download_containers_records(vol_id = 2, convert_JSON = TRUE,
-  vb = FALSE)
+download_containers_records(vol_id = 1, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Databrary volume number.}
-
-\item{convert_JSON}{Boolean.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
@@ -19,7 +17,8 @@ List of containers and records from the specified volume.
 }
 \description{
 Downloads container and record structure from Databrary volume.
+This function is deprecated, as it duplicates list_containers_records().
 }
 \examples{
-downloade_containers_records()
+download_containers_records()
 }

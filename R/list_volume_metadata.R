@@ -13,7 +13,7 @@ list_volume_metadata <- function(vol_id = 2,
                                  data_frame = TRUE,
                                  vb = FALSE) {
 
-  # Error-checking
+  # Error-checking----------------------------------------------------------
   if (!(is.numeric(vol_id))) {
     stop("Volume must be a number.")
   }
@@ -39,7 +39,7 @@ list_volume_metadata <- function(vol_id = 2,
     stop("vb must have length == 1")
   }
 
-  # Declare helpers
+  # Declare helpers----------------------------------------------------------
   surround_w_quotes <- function(s) {
     paste0('"', s, '"')
   }
@@ -57,7 +57,7 @@ list_volume_metadata <- function(vol_id = 2,
     stringr::str_flatten(owners, collapse = "; ")
   }
 
-  # Body of function
+  # Body of function--------------------------------------------------------------
   v <- download_containers_records(vol_id = vol_id, vb = vb)
   if (!(is.null(v))){
     if (write_header) {
