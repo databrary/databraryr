@@ -56,11 +56,14 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   if (vb) message(paste0(length(dv), " lines read from file ", dv_fn))
 
   # Write output file---------------------------------------------------------------------
-  opf_fn <- list.files(dv_dir, pattern = "\\.opf$")
-  if (is.null(opf_fn)) {
-    stop(paste0("No Datavyu file found in ", opf.fn))
+  opf_files <- list.files(dv_dir, pattern = "\\.opf$")
+  if (identical(opf_files, character(0))){
+    message(paste0("No Datavyu file found in ", opf.fn))
+    message("Creating unique filename.")
+    out_fn <- paste0(dv_dir, "/", format(Sys.time(), "%F-%H%M-%S"), ".opf")
+  } else {
+    out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_files)), ".csv")
   }
-  out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_fn)), ".csv")
   con_out <- file(out_fn, "w")
   if (!con_out) {
     stop(paste0("Unable to open file: ", out_fn))
@@ -101,5 +104,5 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
 
   # Cleanup ------------------------------------------------------------------------------
   close(con_out)
-  if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
+  message(paste0(outlines, " lines written to file: ", out_fn))
   }
