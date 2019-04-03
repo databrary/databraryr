@@ -63,7 +63,7 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   if (identical(opf_files, character(0))) {
     message(paste0("No Datavyu file found in ", dv_dir))
     message("Creating unique filename.")
-    out_fn <- paste0(dv_dir, "/", format(Sys.time(), "%F-%H%M-%S"), ".opf")
+    out_fn <- paste0(dv_dir, "/", format(Sys.time(), "%F-%H%M-%S"), ".csv")
   } else {
     out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_files)), ".csv")
   }
