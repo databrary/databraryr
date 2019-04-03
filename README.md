@@ -7,7 +7,7 @@ This repository contains code for the `databraryapi` R package.
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
 - Install the `databraryapi` package via `install_github("PLAY-behaviorome/databraryapi")`. Required dependencies will be installed at this time.
-- The latest version is 0.1.5.
+- The latest version is 0.1.6.
 
 ## Use
 
@@ -61,7 +61,7 @@ Whatever access model is chosen, the use of a password generator/manager program
 
 `get_db_stats()` by default provides some data about the current number of authorized investigators, affiliates, institutions, datasets, files, and hours of stored video. Try
 
-    `get_db_stats("people")`
+    get_db_stats("people")
     
 to see a table of newly authorized researchers.
 Or, try
@@ -72,11 +72,12 @@ to see a list of the latest shared datasets.
 
 `read_csv_data_as_df()` by default reads a publicly shared CSV data file from Databrary's volume 1 <http://databrary.org/volume/1>. Try
 
-    `with(read_csv_data_as_df(), plot(Auth_Investigators, Institutions))`
+    with(read_csv_data_as_df(), plot(Auth_Investigators, Institutions))
   
 to view a simple plot of the number of authorized investigators and institutions across time.
     
-`download_video()` by default reads a short publicly shared testing video depicting a series of numbers counting up from 000.
+`download_video()` by default reads a short publicly shared testing video depicting a series of numbers counting up from 000. 
+Unless you specify another file name, the .mp4 format movie will download to the current directory as `test.mp4`. 
 
 `get_file_duration()` by default returns the duration (in ms) of the same publicly shared video in volume 1.
 
@@ -100,4 +101,4 @@ to view a simple plot of the number of authorized investigators and institutions
 
 `logout_db()` logs out of Databrary and does some simple clean up.
 
-`summarize_demog()` by default plots a boxplot summary of the demographic characteristics of participants in volume 4 <https://nyu.databrary.org/volume/4>
+`get_supported_file_types()` returns a data frame with the file types Databrary currently supports.

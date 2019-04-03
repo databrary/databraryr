@@ -151,7 +151,7 @@ test_that("list_sessions rejects bad input parameters", {
 
 # list_sessions_in_volume --------------------------------------------------------------
 test_that("list_sessions_in_volume returns data.frame", {
-  expect_true(class(list_sessions_in_volume()) == "list")
+  expect_true(class(list_sessions_in_volume()) == "data.frame")
 })
 
 test_that("list_sessions_in_volume rejects bad input parameters", {

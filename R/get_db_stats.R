@@ -26,43 +26,72 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
     stop("vb must have logical value.")
   }
 
-  activity.api.url <- "https://nyu.databrary.org/api/activity"
-
-  r = httr::GET(activity.api.url)
-  if (vb) {
-    message(paste0("Sending GET to ", activity.api.url))
-  }
-  if (httr::status_code(r) == 200){
-    c <- jsonlite::fromJSON(httr::content(r, 'text', encoding = "UTF-8"))
-    if (is.null(c)) {
-      message("No content returned.")
-      d <- NULL
-    } else {
-      if (type == "people") {
-        d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), is.na(institution))
-        # d <- dplyr::filter(c$activity$party, !is.na(id))
-      }
-      if (type %in% c("institutions", "places")) {
-        d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), !is.na(institution))
-      }
-      if (type %in% c("datasets", "volumes")) {
-        d <- dplyr::filter(tibble::as_data_frame(c$activity$volume), !is.na(id))
-      }
-      if (type %in% c("stats", "numbers")) {
-        d <- data.frame(date = Sys.time(),
-               investigators = c$stats$authorized[5],
-               affiliates = c$stats$authorized[4],
-               institutions = c$stats$authorized[6],
-               datasets_total = c$stats$volumes,
-               datasets_shared = c$stats$shared,
-               n_files = c$stats$assets,
-               hours = c$stats$duration/(1000*60*60))
-        # TB = c$stats$bytes/(1e12) seems incorrect
-      }
-    }
-    return(d)
+  # activity.api.url <- "https://nyu.databrary.org/api/activity"
+  #
+  r <- GET_db_contents(URL_components = 'activity')
+  if (is.null(r)) {
+    message("No content returned.")
+    r <- NULL
   } else {
-    message(paste0('Download Failed, HTTP status ', httr::status_code(r)))
-    return(NULL)
+    if (type == "people") {
+      d <- dplyr::filter(tibble::as_data_frame(r$activity$party), !is.na(id), is.na(institution))
+      # d <- dplyr::filter(c$activity$party, !is.na(id))
+    }
+    if (type %in% c("institutions", "places")) {
+      d <- dplyr::filter(tibble::as_data_frame(r$activity$party), !is.na(id), !is.na(institution))
+    }
+    if (type %in% c("datasets", "volumes")) {
+      d <- dplyr::filter(tibble::as_data_frame(r$activity$volume), !is.na(id))
+    }
+    if (type %in% c("stats", "numbers")) {
+      d <- data.frame(date = Sys.time(),
+                      investigators = r$stats$authorized[5],
+                      affiliates = r$stats$authorized[4],
+                      institutions = r$stats$authorized[6],
+                      datasets_total = r$stats$volumes,
+                      datasets_shared = r$stats$shared,
+                      n_files = r$stats$assets,
+                      hours = r$stats$duration/(1000*60*60))
+      # TB = c$stats$bytes/(1e12) seems incorrect
+    }
   }
+  return(d)
+
+  # r = httr::GET(activity.api.url)
+  # if (vb) {
+  #   message(paste0("Sending GET to ", activity.api.url))
+  # }
+  # if (httr::status_code(r) == 200){
+  #   c <- jsonlite::fromJSON(httr::content(r, 'text', encoding = "UTF-8"))
+  #   if (is.null(c)) {
+  #     message("No content returned.")
+  #     d <- NULL
+  #   } else {
+  #     if (type == "people") {
+  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), is.na(institution))
+  #       # d <- dplyr::filter(c$activity$party, !is.na(id))
+  #     }
+  #     if (type %in% c("institutions", "places")) {
+  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), !is.na(institution))
+  #     }
+  #     if (type %in% c("datasets", "volumes")) {
+  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$volume), !is.na(id))
+  #     }
+  #     if (type %in% c("stats", "numbers")) {
+  #       d <- data.frame(date = Sys.time(),
+  #              investigators = c$stats$authorized[5],
+  #              affiliates = c$stats$authorized[4],
+  #              institutions = c$stats$authorized[6],
+  #              datasets_total = c$stats$volumes,
+  #              datasets_shared = c$stats$shared,
+  #              n_files = c$stats$assets,
+  #              hours = c$stats$duration/(1000*60*60))
+  #       # TB = c$stats$bytes/(1e12) seems incorrect
+  #     }
+  #   }
+  #   return(d)
+  # } else {
+  #   message(paste0('Download Failed, HTTP status ', httr::status_code(r)))
+  #   return(NULL)
+  # }
 }

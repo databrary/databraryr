@@ -8,7 +8,7 @@
 #' @export
 list_volume_owners <- function(vol_id = 1,
                                vb = FALSE) {
-  # Error handling
+  # Error checking---------------------------------------------------------
   if (length(vol_id) > 1) {
     stop("Volume must have length 1.")
   }
@@ -19,6 +19,7 @@ list_volume_owners <- function(vol_id = 1,
     stop("vb must be logical.")
   }
 
+  # Main body-------------------------------------------------------------
   v <- download_containers_records(vol_id = vol_id, vb = vb)
   if (!is.null(v$owners)) {
     owners <- v$owners$id

@@ -15,22 +15,31 @@ is_institution <- function(party_id=8, vb = FALSE) {
     stop("party_id must be an integer > 0")
   }
 
-  party.url <- paste0("https://nyu.databrary.org/api/party/", party_id)
-  if (vb) message(paste0("Sending GET to ", party.url))
-  r = httr::GET(party.url)
-  if (httr::status_code(r) == 200) {
-    p <- jsonlite::fromJSON(httr::content( r, 'text', encoding = 'UTF-8'))
-    if (("institution" %in% names(p)) && (!is.null(p[['institution']]))) {
-      return(TRUE)
-    } else {
-      return(FALSE)
-    }
+  # Process request-----------------------------------------------------
+  r <- GET_db_contents(URL_components = paste0('party/', party_id),
+                       vb = vb)
+  if (("institution" %in% names(r)) && (!is.null(r[['institution']]))) {
+    return(TRUE)
   } else {
-    if (vb) {
-      cat(paste0('Download Failed, HTTP status ', httr::status_code(r), '\n'))
-    }
     return(FALSE)
   }
+
+  # party.url <- paste0("https://nyu.databrary.org/api/party/", party_id)
+  # if (vb) message(paste0("Sending GET to ", party.url))
+  # r = httr::GET(party.url)
+  # if (httr::status_code(r) == 200) {
+  #   p <- jsonlite::fromJSON(httr::content( r, 'text', encoding = 'UTF-8'))
+  #   if (("institution" %in% names(p)) && (!is.null(p[['institution']]))) {
+  #     return(TRUE)
+  #   } else {
+  #     return(FALSE)
+  #   }
+  # } else {
+  #   if (vb) {
+  #     cat(paste0('Download Failed, HTTP status ', httr::status_code(r), '\n'))
+  #   }
+  #   return(FALSE)
+  # }
 }
 
 #' Tests whether given party ID is from a person.

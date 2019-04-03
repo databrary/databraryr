@@ -5,7 +5,7 @@
 \title{Get the time range from a given video or audio asset.}
 \usage{
 get_asset_segment_range(vol_id = 1, session_id = 9807, asset_id = 1,
-  vb = FALSE)
+  convert_JSON = TRUE, segment_only = TRUE, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Volume ID}
@@ -13,6 +13,11 @@ get_asset_segment_range(vol_id = 1, session_id = 9807, asset_id = 1,
 \item{session_id}{Slot/session number.}
 
 \item{asset_id}{Asset number.}
+
+\item{convert_JSON}{A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.}
+
+\item{segment_only}{A Boolean value. If TRUE, returns only the segment values. Otherwise returns
+a data frame with two fields, segment and permission. Default is TRUE.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

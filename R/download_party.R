@@ -19,24 +19,27 @@ download_party <- function(party_id = 6,
     stop("party_id must be an integer > 0")
   }
 
-  # Assemble URL, GET(), and handle response
-  party_url <- paste0("https://nyu.databrary.org/api/party/", party_id)
-  if (vb) {
-    message(paste0("Sending GET to ", party_url, "\n"))
-  }
-  r <- httr::GET(party_url)
+  r <- GET_db_contents(URL_components = paste('party', party_id, sep='/'), vb=vb, convert_JSON = convert_JSON)
 
-  if (httr::status_code(r) == 200) {
-    r_content <- httr::content(r, 'text', encoding = 'UTF-8')
-    if(convert_JSON) {
-      return(jsonlite::fromJSON(r_content))
-    } else {
-      return(r_content)
-    }
-  } else {
-    if (vb) {
-      message(paste0('Download Failed, HTTP status ', httr::status_code(r), "\n"))
-    }
-    return(r)
-  }
+  # Assemble URL, GET(), and handle response
+  # party_url <- paste0("https://nyu.databrary.org/api/party/", party_id)
+  # if (vb) {
+  #   message(paste0("Sending GET to ", party_url, "\n"))
+  # }
+  # r <- httr::GET(party_url)
+  #
+  # if (httr::status_code(r) == 200) {
+  #   r_content <- httr::content(r, 'text', encoding = 'UTF-8')
+  #   if(convert_JSON) {
+  #     return(jsonlite::fromJSON(r_content))
+  #   } else {
+  #     return(r_content)
+  #   }
+  # } else {
+  #   if (vb) {
+  #     message(paste0('Download Failed, HTTP status ', httr::status_code(r), "\n"))
+  #   }
+  #   return(r)
+  # }
+  return(r)
 }

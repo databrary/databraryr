@@ -6,8 +6,10 @@
 #' @param auto_write_over A Boolean value. If TRUE, new output file overwrites old.
 #' @param code_regex Regular expression to extract codes from Datavyu file.
 #' @param code_type_regex Regular expression to extract doce types from Datavyu file.
-#' @param onset_offset_regex Regular expression to extract onset/offset times.
+#' @param time_regex Regular expression to extract onset/offset times.
 #' @param code_values_regex Regular expression to extract code values from Datavyu file.
+#' @param convert_times A Boolean value. If TRUE (default), converts the onset and offset
+# fields to lubridate-compatible dates and times.
 #' @param vb A boolean value. If TRUE, provides verbose output.
 #' @examples
 #' dv_to_csv()
@@ -17,8 +19,9 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
                       auto_write_over = FALSE,
                       code_regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
                       code_type_regex = "([a-zA-Z]+)$",
-                      onset_offset_regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
+                      time_regex = "([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
                       code_values_regex = "\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\)$",
+                      convert_times = TRUE,
                       vb = FALSE) {
   # Parameter checking -------------------------------------------------------------------
   if (!is.character(dv_dir)) {
@@ -56,11 +59,14 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   if (vb) message(paste0(length(dv), " lines read from file ", dv_fn))
 
   # Write output file---------------------------------------------------------------------
-  opf_fn <- list.files(dv_dir, pattern = "\\.opf$")
-  if (is.null(opf_fn)) {
-    stop(paste0("No Datavyu file found in ", opf.fn))
+  opf_files <- list.files(dv_dir, pattern = "\\.opf$")
+  if (identical(opf_files, character(0))){
+    message(paste0("No Datavyu file found in ", opf.fn))
+    message("Creating unique filename.")
+    out_fn <- paste0(dv_dir, "/", format(Sys.time(), "%F-%H%M-%S"), ".opf")
+  } else {
+    out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_files)), ".csv")
   }
-  out_fn <- paste0(dv_dir, "/", tools::file_path_sans_ext(basename(opf_fn)), ".csv")
   con_out <- file(out_fn, "w")
   if (!con_out) {
     stop(paste0("Unable to open file: ", out_fn))
@@ -75,7 +81,7 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   for (l in 1:length(dv)) {
     # If not a valid first column skip row
     if (!(stringr::str_detect(dv[l], code_regex)) &&
-        !(stringr::str_detect(dv[l], onset_offset_regex))) {
+        !(stringr::str_detect(dv[l], time_regex))) {
       next
     }
     # If a valid code definition row
@@ -84,8 +90,15 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
       next
     }
     # If a valid code row, process
-    if (stringr::str_detect(dv[l], onset_offset_regex)) {
-      times <- stringr::str_extract(dv[l], onset_offset_regex)
+    if (stringr::str_detect(dv[l], time_regex)) {
+      times <- stringr::str_extract(s, '([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})')
+      #if (vb) message(paste0('This line: ', dv[l]))
+      #if (vb) message(paste0("Extracted times: ", times))
+      if (convert_times) {
+        # Change colon between ss:mmm to period
+        times <- stringr::str_replace_all(times, pattern = ':([0-9]{3})',
+                                     replacement = '\\.\\1')
+       }
       if (stringr::str_detect(dv[l], code_values_regex)) {
         code_values <- paste0('"', stringr::str_extract(dv[l], code_values_regex), '"')
         code_values <- paste0('"', stringr::str_match(dv[l], code_values_regex)[2], '"')
@@ -101,5 +114,5 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
 
   # Cleanup ------------------------------------------------------------------------------
   close(con_out)
-  if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
+  message(paste0(outlines, " lines written to file: ", out_fn))
   }
