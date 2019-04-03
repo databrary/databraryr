@@ -97,8 +97,8 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
       if (convert_times) {
         # Change colon between ss:mmm to period
         times <- stringr::str_replace_all(times, pattern = ':([0-9]{3})',
-                                     replacement = '\\.\\1')
-       }
+                                          replacement = '\\.\\1')
+      }
       if (stringr::str_detect(dv[l], code_values_regex)) {
         code_values <- paste0('"', stringr::str_extract(dv[l], code_values_regex), '"')
         code_values <- paste0('"', stringr::str_match(dv[l], code_values_regex)[2], '"')
@@ -116,4 +116,4 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
   close(con_out)
   if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
   return(out_fn)
-  }
+}
