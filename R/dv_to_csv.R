@@ -114,5 +114,6 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
 
   # Cleanup ------------------------------------------------------------------------------
   close(con_out)
-  message(paste0(outlines, " lines written to file: ", out_fn))
+  if (vb) message(paste0(outlines, " lines written to file: ", out_fn))
+  return(out_fn)
   }
