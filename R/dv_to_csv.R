@@ -92,8 +92,8 @@ dv_to_csv <- function(dv_dir = ".", dv_fn = "db",
     # If a valid code row, process
     if (stringr::str_detect(dv[l], time_regex)) {
       times <- stringr::str_extract(s, '([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})')
-      if (vb) message(paste0('This line: ', dv[l]))
-      if (vb) message(paste0("Extracted times: ", times))
+      #if (vb) message(paste0('This line: ', dv[l]))
+      #if (vb) message(paste0("Extracted times: ", times))
       if (convert_times) {
         # Change colon between ss:mmm to period
         times <- stringr::str_replace_all(times, pattern = ':([0-9]{3})',
