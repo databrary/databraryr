@@ -8,9 +8,9 @@ dv_to_csv(dv_dir = ".", dv_fn = "db", out_fn = paste0(dv_dir,
   "/tmp.csv"), auto_write_over = FALSE,
   code_regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
   code_type_regex = "([a-zA-Z]+)$",
-  onset_offset_regex = "^([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3},[0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
+  time_regex = "([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})",
   code_values_regex = "\\\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\\\)$",
-  vb = FALSE)
+  convert_times = TRUE, vb = FALSE)
 }
 \arguments{
 \item{dv_dir}{Directory to extracted Datavyu file.}
@@ -25,9 +25,11 @@ dv_to_csv(dv_dir = ".", dv_fn = "db", out_fn = paste0(dv_dir,
 
 \item{code_type_regex}{Regular expression to extract doce types from Datavyu file.}
 
-\item{onset_offset_regex}{Regular expression to extract onset/offset times.}
+\item{time_regex}{Regular expression to extract onset/offset times.}
 
 \item{code_values_regex}{Regular expression to extract code values from Datavyu file.}
+
+\item{convert_times}{A Boolean value. If TRUE (default), converts the onset and offset}
 
 \item{vb}{A boolean value. If TRUE, provides verbose output.}
 }

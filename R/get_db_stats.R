@@ -34,14 +34,16 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
     r <- NULL
   } else {
     if (type == "people") {
-      d <- dplyr::filter(tibble::as_data_frame(r$activity$party), !is.na(id), is.na(institution))
-      # d <- dplyr::filter(c$activity$party, !is.na(id))
+      d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(affiliation))
+      #d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), is.na(institution))
+      #d <- dplyr::filter(c$activity$party, !is.na(id))
     }
     if (type %in% c("institutions", "places")) {
-      d <- dplyr::filter(tibble::as_data_frame(r$activity$party), !is.na(id), !is.na(institution))
+      d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(affiliation))
+      # d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(institution))
     }
     if (type %in% c("datasets", "volumes")) {
-      d <- dplyr::filter(tibble::as_data_frame(r$activity$volume), !is.na(id))
+      d <- dplyr::filter(tibble::as_tibble(r$activity$volume), !is.na(id))
     }
     if (type %in% c("stats", "numbers")) {
       d <- data.frame(date = Sys.time(),
@@ -51,8 +53,8 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
                       datasets_total = r$stats$volumes,
                       datasets_shared = r$stats$shared,
                       n_files = r$stats$assets,
-                      hours = r$stats$duration/(1000*60*60))
-      # TB = c$stats$bytes/(1e12) seems incorrect
+                      hours = r$stats$duration/(1000*60*60),
+                      TB = r$stats$bytes/(1e12)) # seems incorrect
     }
   }
   return(d)
