@@ -34,16 +34,28 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
     r <- NULL
   } else {
     if (type == "people") {
-      d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(affiliation))
-      #d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), is.na(institution))
-      #d <- dplyr::filter(c$activity$party, !is.na(id))
+      d <- tibble::as_tibble(r$activity$party)
+      if (!is.null(d)) {
+        d <- dplyr::filter(d, !is.na(id), !is.na(affiliation), !is.na(sortname), !is.na(prename))
+      } else {
+        d <- NULL
+      }
     }
     if (type %in% c("institutions", "places")) {
-      d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(affiliation))
-      # d <- dplyr::filter(tibble::as_tibble(r$activity$party), !is.na(id), !is.na(institution))
+      d <- tibble::as_tibble(r$activity$party)
+      if ("institution" %in% names(d)) {
+        d <- dplyr::filter(d, !is.na(id), !is.na(institution))
+      } else {
+        d <- NULL # No new institutions
+      }
     }
     if (type %in% c("datasets", "volumes")) {
-      d <- dplyr::filter(tibble::as_tibble(r$activity$volume), !is.na(id))
+      d <- tibble::as_tibble(r$activity$volume)
+      if (!is.null(d)) {
+        d <- dplyr::filter(d, !is.na(id))
+      } else {
+        d <- NULL
+      }
     }
     if (type %in% c("stats", "numbers")) {
       d <- data.frame(date = Sys.time(),
@@ -58,42 +70,4 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
     }
   }
   return(d)
-
-  # r = httr::GET(activity.api.url)
-  # if (vb) {
-  #   message(paste0("Sending GET to ", activity.api.url))
-  # }
-  # if (httr::status_code(r) == 200){
-  #   c <- jsonlite::fromJSON(httr::content(r, 'text', encoding = "UTF-8"))
-  #   if (is.null(c)) {
-  #     message("No content returned.")
-  #     d <- NULL
-  #   } else {
-  #     if (type == "people") {
-  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), is.na(institution))
-  #       # d <- dplyr::filter(c$activity$party, !is.na(id))
-  #     }
-  #     if (type %in% c("institutions", "places")) {
-  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$party), !is.na(id), !is.na(institution))
-  #     }
-  #     if (type %in% c("datasets", "volumes")) {
-  #       d <- dplyr::filter(tibble::as_data_frame(c$activity$volume), !is.na(id))
-  #     }
-  #     if (type %in% c("stats", "numbers")) {
-  #       d <- data.frame(date = Sys.time(),
-  #              investigators = c$stats$authorized[5],
-  #              affiliates = c$stats$authorized[4],
-  #              institutions = c$stats$authorized[6],
-  #              datasets_total = c$stats$volumes,
-  #              datasets_shared = c$stats$shared,
-  #              n_files = c$stats$assets,
-  #              hours = c$stats$duration/(1000*60*60))
-  #       # TB = c$stats$bytes/(1e12) seems incorrect
-  #     }
-  #   }
-  #   return(d)
-  # } else {
-  #   message(paste0('Download Failed, HTTP status ', httr::status_code(r)))
-  #   return(NULL)
-  # }
 }
