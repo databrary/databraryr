@@ -50,7 +50,7 @@ get_asset_segment_range <- function(vol_id = 1,
     stop("vb must be logical")
   }
 
-  r <- GET_db_contents(URL_components = paste0('volume/', vol_id,"/slot/",
+  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,"/slot/",
                                                session_id, "/asset/",
                                                asset_id),
                        vb = vb,

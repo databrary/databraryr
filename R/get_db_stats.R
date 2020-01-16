@@ -26,9 +26,7 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
     stop("vb must have logical value.")
   }
 
-  # activity.api.url <- "https://nyu.databrary.org/api/activity"
-  #
-  r <- GET_db_contents(URL_components = 'activity')
+  r <- GET_db_contents(URL_components = '/api/activity')
   if (is.null(r)) {
     message("No content returned.")
     r <- NULL

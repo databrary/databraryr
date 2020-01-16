@@ -21,7 +21,7 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
     stop("vb must be logical.")
   }
 
-  r <- GET_db_contents(URL_components = paste0('volume/', vol_id, '?containers'))
+  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id, '?containers'))
   if (!is.null(r)) {
     if (vb) message("Non-null content returned.")
     if (("containers" %in% names(r)) && (!is.null(r[['containers']]))) {
@@ -38,26 +38,4 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
   } else {
     message('Null content returned.')
   }
-
-  # url_cont <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers")
-  # if (vb) message(paste0("Sending GET to ", url_cont))
-  # g = httr::GET(url_cont)
-  # if (httr::status_code(g) == 200) {
-  #   if (vb) message("Successful retrieval.")
-  #   g.content <- httr::content(g, 'text', encoding = "UTF-8")
-  #   v <- jsonlite::fromJSON(g.content)
-  #   if (!is.null(v)) {
-  #     if (vb) message("Non-null content returned.")
-  #     if (("containers" %in% names(v)) && (!is.null(v[['containers']]))) {
-  #       # Drop first element (contains metadata)
-  #       if (vb) message("Dropping metadata session and renaming vars.")
-  #       df <- v$containers[-1,]
-  #       df$vol_id <- vol_id
-  #       df <- dplyr::rename(df, session_id = id)
-  #       return(df)
-  #     } else if (vb) {
-  #       message(paste0('No sessions in volume.\n'))
-  #     }
-  #   }
-  # } else if (vb) message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
 }

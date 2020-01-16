@@ -6,7 +6,7 @@
 #' @examples
 #' search_for_keywords()
 #' @export
-search_for_keywords <- function(search_string="locomotion", vb = FALSE) {
+search_for_keywords <- function(search_string="locomotion", vb = TRUE) {
   # Parameter checking----------------------------------------------
   if (!is.character(search_string)) {
     stop("search_string must be string.")
@@ -22,7 +22,11 @@ search_for_keywords <- function(search_string="locomotion", vb = FALSE) {
   # Normalize keyword_string...
 
   # Make URL, GET(), and handle response ---------------------------
-  r <- GET_db_contents(URL_components = paste0('search?q=', search_string),
+  if (vb) message(paste0("Searching for ", search_string))
+
+  r <- GET_db_contents(URL_components = paste0('/api/search?q=',
+                                               search_string),
+                       convert_JSON = TRUE,
                        vb = vb)
   r
 }

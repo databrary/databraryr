@@ -13,15 +13,17 @@ download_session_csv <- function(vol_id = 1, to_df = TRUE,
 
   # Error handling
   if (length(vol_id) > 1) {
-    stop("Volume must have length 1.")
+    stop("vol_id must have length 1.")
   }
   if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("Volume must be an integer > 0.")
+    stop("vol_id must be an integer > 0.")
   }
 
-  r <- GET_db_contents(base_URL = "https://nyu.databrary.org/volume/",
-                       URL_components = paste0(vol_id, '/csv'),
-                       vb = vb, convert_JSON = FALSE)
+  # r <- GET_db_contents(base_URL = "https://nyu.databrary.org/volume/",
+  #                      URL_components = paste0(vol_id, '/csv'),
+  #                      vb = vb, convert_JSON = FALSE)
+  r <- httr::content(httr::GET(paste0("https://nyu.databrary.org/volume/",
+                                      vol_id, "/csv")), 'text', encoding='UTF-8')
   if (to_df == TRUE) {
     r_df <- read.csv(text = r)
     if (class(r_df)=="data.frame") {
@@ -37,31 +39,4 @@ download_session_csv <- function(vol_id = 1, to_df = TRUE,
   } else {
     return(r)
   }
-
-  # request_url <- paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
-  # r = httr::GET(paste0(request_url))
-  # if (vb) {
-  #   message(paste0("Sending GET to ", request_url))
-  # }
-  # if (httr::status_code(r) == 200){
-  #   r_content <- httr::content(r, 'text', encoding = "UTF-8")
-  #   if(to_df == TRUE){
-  #     r_df <- read.csv(text = r_content)
-  #     if (class(r_df)=="data.frame") {
-  #       r_df <- dplyr::rename(r_df, session_id = session.id,
-  #                             session_name = session.name,
-  #                             session_date = session.date,
-  #                             session_release = session.release)
-  #       return(r_df)
-  #     } else {
-  #       if (vb) message("Can't coerce to data frame. Skipping.\n")
-  #       return(NULL)
-  #     }
-  #   } else {
-  #     return(r_content)
-  #   }
-  # } else {
-  #   message(paste0('Download Failed, HTTP status ', httr::status_code(r)))
-  #   if (return_response) return(r)
-  # }
 }

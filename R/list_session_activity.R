@@ -26,7 +26,7 @@ list_session_activity <- function(session_id = 6256, vb = FALSE) {
 
   # Make URL, GET(), and handle response ---------------------------
 
-  r <- GET_db_contents(URL_components = paste0('slot/', session_id,
+  r <- GET_db_contents(URL_components = paste0('/api/slot/', session_id,
                                                '/activity'),
                        vb = vb)
   r

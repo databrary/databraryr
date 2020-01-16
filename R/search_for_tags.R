@@ -22,7 +22,7 @@ search_for_tags <- function(search_string="ICIS", vb = FALSE) {
   # Normalize keyword_string...
 
   # Make URL, GET(), and handle response ---------------------------
-  r <- GET_db_contents(URL_components = paste0('tags/', search_string),
+  r <- GET_db_contents(URL_components = paste0('/api/tags/', search_string),
                        vb = vb)
   r
 }
