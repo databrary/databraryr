@@ -193,7 +193,7 @@ We can find it again easily using some commands from the `dplyr` package.
 
 ```{r view-materials-session}
 m <- list_sessions() %>%
-  filter(., name == 'Top-level materials')
+  dplyr::filter(., name == 'Top-level materials')
 m
 ```
 
@@ -226,21 +226,21 @@ color_orange <- "#EC7751"
 color_teal <- "#4CAE99"
 
 df <- databrary_growth %>%
-  gather(., key = 'type', value = 'count', -Date)
+  tidyr::gather(., key = 'type', value = 'count', -Date)
   
 df %>%
   ggplot(., aes(x = Date, y = count, color = type, group = type)) +
   geom_point() + 
   geom_line(size = 3) +
   ylab("Authorizations") +
-  scale_y_continuous(breaks = seq(0, 900, 100), expand = c(0,0)) +
+  scale_y_continuous(breaks = seq(0, 1100, 100), expand = c(0,0)) +
   theme_bw() +
   theme(axis.title.x = element_blank(),
         axis.line = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         legend.position = "bottom") +
-  coord_cartesian(ylim = c(0, 900))
+  coord_cartesian(ylim = c(0, 1100))
 ```
 
 Note that this workflow allows you to import a data file directly into your R session.

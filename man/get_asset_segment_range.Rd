@@ -4,8 +4,14 @@
 \alias{get_asset_segment_range}
 \title{Get the time range from a given video or audio asset.}
 \usage{
-get_asset_segment_range(vol_id = 1, session_id = 9807, asset_id = 1,
-  convert_JSON = TRUE, segment_only = TRUE, vb = FALSE)
+get_asset_segment_range(
+  vol_id = 1,
+  session_id = 9807,
+  asset_id = 1,
+  convert_JSON = TRUE,
+  segment_only = TRUE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{vol_id}{Volume ID}

@@ -4,10 +4,16 @@
 \alias{login_db}
 \title{Logs in to Databrary.org.}
 \usage{
-login_db(email = NULL, login.url = "/api/user/login",
-  return.response = FALSE, save.session = TRUE,
-  stored.credentials = FALSE, system.credentials = TRUE,
-  credentials.file = "~/api-keys/json/databrary-keys.json", vb = FALSE)
+login_db(
+  email = NULL,
+  login.url = "/api/user/login",
+  return.response = FALSE,
+  save.session = TRUE,
+  stored.credentials = FALSE,
+  system.credentials = TRUE,
+  credentials.file = "~/api-keys/json/databrary-keys.json",
+  vb = FALSE
+)
 }
 \arguments{
 \item{email}{Databrary account ID (email).}

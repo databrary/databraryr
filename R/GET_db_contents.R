@@ -6,7 +6,10 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' GET_db_contents()
-GET_db_contents <- function(base_URL='https://nyu.databrary.org/api/', URL_components, convert_JSON = TRUE, vb = FALSE) {
+#' @export
+GET_db_contents <- function(base_URL='https://nyu.databrary.org/api/',
+                            URL_components,
+                            convert_JSON = TRUE, vb = FALSE) {
   URL <- paste0(base_URL, URL_components)
   if (is.null(URL)) {
     stop('URL contains null value.')
@@ -28,6 +31,6 @@ GET_db_contents <- function(base_URL='https://nyu.databrary.org/api/', URL_compo
       return(g_content)
     }
   } else if (vb) {
-    message(paste0( 'Download Failed, HTTP status ', httr::status_code(g), '\n'))
+    message(paste0('Download failed; HTTP status ', httr::status_code(g), '\n'))
   }
 }

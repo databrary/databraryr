@@ -4,9 +4,15 @@
 \alias{download_datavyu}
 \title{Download a specific Datavyu (.opf) file.}
 \usage{
-download_datavyu(vol_id = 1, session_id = 9807, asset_id = 117035,
-  out_dir = "tmp", file_name = "test.opf", return_response = FALSE,
-  vb = TRUE)
+download_datavyu(
+  vol_id = 1,
+  session_id = 9807,
+  asset_id = 117035,
+  out_dir = "tmp",
+  file_name = "test.opf",
+  return_response = FALSE,
+  vb = TRUE
+)
 }
 \arguments{
 \item{vol_id}{Volume ID}

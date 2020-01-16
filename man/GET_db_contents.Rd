@@ -4,8 +4,12 @@
 \alias{GET_db_contents}
 \title{Queries the Databrary API with an HTML GET command}
 \usage{
-GET_db_contents(base_URL = "https://nyu.databrary.org/api/",
-  URL_components, convert_JSON = TRUE, vb = FALSE)
+GET_db_contents(
+  base_URL = "https://nyu.databrary.org/api/",
+  URL_components,
+  convert_JSON = TRUE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{base_URL}{Base URL for API call. Default is https://nyu.databrary.org/api/.}
