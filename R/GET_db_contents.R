@@ -7,9 +7,10 @@
 #' @examples
 #' GET_db_contents()
 #' @export
-GET_db_contents <- function(base_URL='https://nyu.databrary.org/api/',
+GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
                             URL_components,
-                            convert_JSON = TRUE, vb = FALSE) {
+                            convert_JSON = TRUE,
+                            vb = FALSE) {
   URL <- paste0(base_URL, URL_components)
   if (is.null(URL)) {
     stop('URL contains null value.')
@@ -21,14 +22,42 @@ GET_db_contents <- function(base_URL='https://nyu.databrary.org/api/',
   if (httr::status_code(g) == 200) {
     if (vb) {
       message('Successful HTML GET query.')
-      message(paste0('Content type is ', g$headers$`content-type`), '.')
     }
-    g_content <- httr::content(g, 'text', encoding = 'UTF-8')
-    if (convert_JSON) {
-      if (vb) message('Converting JSON to data frame.')
-      return(jsonlite::fromJSON(g_content))
+
+    # Some routes do not report content-type  though content is well-structured
+    if ("content-type" %in% names(g$headers)) {
+      if (vb) message(paste0('Content type is ', g$headers$`content-type`), '.')
+      if (g$headers$`content-type` == "image/png") {
+        if (vb)
+          message('Returning image content.')
+        magick::image_read(g$content)
+      } else if (stringr::str_detect(g$headers$`content-type`, "application/json")) {
+        g_content <- httr::content(g, 'text', encoding = 'UTF-8')
+        if (convert_JSON) {
+          if (vb)
+            message('Converting JSON.')
+          jsonlite::fromJSON(g_content)
+        } else {
+          if (vb)
+            message('Returning unconverted content.')
+          g_content
+        }
+      } else if (stringr::str_detect(g$headers$`content-type`, "text/csv")) {
+        if (vb) message(paste0("CSV/text file."))
+        httr::content(g, 'text', encoding = 'UTF-8')
+      }
     } else {
-      return(g_content)
+      if (vb) message(paste0('Content type is unknown. Assuming JSON text.'))
+      g_content <- httr::content(g, 'text', encoding = 'UTF-8')
+      if (convert_JSON) {
+        if (vb)
+          message('Converting JSON.')
+        jsonlite::fromJSON(g_content)
+      } else {
+        if (vb)
+          message('Returning unconverted content.')
+        g_content
+      }
     }
   } else if (vb) {
     message(paste0('Download failed; HTTP status ', httr::status_code(g), '\n'))

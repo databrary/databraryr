@@ -7,7 +7,7 @@ This repository contains code for the `databraryapi` R package.
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
 - Install the `databraryapi` package via `install_github("PLAY-behaviorome/databraryapi")`. Required dependencies will be installed at this time.
-- The latest version is 0.1.6.
+- The latest version is 0.1.7.
 
 ## Use
 

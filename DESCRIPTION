@@ -1,11 +1,11 @@
 Package: databraryapi
 Type: Package
 Title: Interacts With the Databrary.org API
-Version: 0.1.6.9001
+Version: 0.1.7
 Author: Rick O. Gilmore [aut, cre]
-Authors@R: person("Rick", "O. Gilmore", email = "rick.gilmore@databrary.org",
+Authors@R: person("Rick", "O. Gilmore", email = "rog1@psu.edu",
   role = c("aut", "cre"))
-Maintainer: Rick O. Gilmore <rick.gilmore@databrary.org>
+Maintainer: Rick O. Gilmore <rog1@psu.edu>
 Description: This package provides commands to interact with the 
   Databrary.org API. There are some public assets on Databrary. 
   But for most interesting use cases, a user will need to 
@@ -24,7 +24,8 @@ Imports:
     jsonlite,
     keyring,
     stringr,
-    rmarkdown
+    rmarkdown,
+    magick
 RoxygenNote: 7.0.2
 Suggests: 
     knitr,

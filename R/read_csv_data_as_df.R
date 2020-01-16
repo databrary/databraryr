@@ -49,22 +49,4 @@ read_csv_data_as_df <- function(session_id = 9807, asset_id = 153108,
     if (vb) message("Can't coerce to data frame. Skipping.\n")
     return(NULL)
   }
-
-  # asset_url <- paste0("https://nyu.databrary.org/slot/", session_id, "/0/asset/", asset_id, "/download?inline=false")
-  # if (vb) message(paste0("Sending GET to ", asset_url))
-  # g <- httr::GET(url = asset_url)
-  # if (httr::status_code(g) == 200) {
-  #   if (vb) message(paste0("Successful HTML GET query."))
-  #   if (g$headers$`content-type` == "text/csv") {
-  #     df <- utils::read.table(header = T,
-  #                      text = httr::content(g, type = "text"),
-  #                      sep = ",", stringsAsFactors = FALSE)
-  #     return(df)
-  #   } else {
-  #     stop("Invalid file type at URL.")
-  #   }
-  # } else {
-  #   if (vb) cat(paste0('Download Failed, HTTP status ', httr::status_code(g), "\n"))
-  #   return(NULL)
-  # }
 }

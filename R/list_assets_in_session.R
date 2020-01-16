@@ -31,7 +31,7 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 
   # Make URL, GET(), and handle response ---------------------------
 
-  r <- GET_db_contents(URL_components = paste0('volume/', vol_id,
+  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
                                                '/slot/', session_id,
                                                '?assets'),
                        vb = vb)
@@ -59,42 +59,6 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
     if (vb) message('Download failed')
   }
 
-  #   session.url <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "/slot/", session_id, "?assets")
-  #   if (vb) {
-  #     message(paste0("Sending GET to ", session.url))
-  #   }
-  #   g <- httr::GET(session.url)
-  #   if (httr::status_code(g) == 200) {
-  #     if (vb) message("Successful HTML call.")
-  #     g_content <- httr::content(g, 'text', encoding = 'UTF-8')
-  #     d_sess <- jsonlite::fromJSON(g_content)
-  #     if (!is.null(d_sess)) {
-  #       if (vb) message("Making data frame from returned content.")
-  #       if (is.data.frame(d_sess$assets)) {
-  #         df <- data.frame(d_sess$assets)
-  #         df$vol_id <- vol_id
-  #         df$session_id <- session_id
-  #         # df <- dplyr::rename(df, asset.id = id,
-  #         #                     asset.type.id = format,
-  #         #                     asset.name = name)
-  #         df <- dplyr::rename(df, asset_id = id,
-  #                             asset_type_id = format)
-  #         # df <- dplyr::select(df, vol_id, session_id, asset.id,
-  #         #                     asset.type.id, classification, name, permission,
-  #         #                     size, duration)
-  #         df <- format_to_filetypes(df, vb = vb)
-  #       } else {
-  #         # Handle case of single value in assets field
-  #         df <- NULL
-  #       }
-  #       return(df)
-  #     } else {
-  #       return(NULL)
-  #     }
-  #   } else if (vb) {
-  #     message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
-  #   }
-  # }
 }
 
 #==================================================================

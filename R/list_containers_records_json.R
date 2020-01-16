@@ -27,23 +27,9 @@ list_containers_records_json <- function(vol_id = 1,
   #   config_db(vb=vb)
   # }
 
-  r <- GET_db_contents(URL_components = paste0('volume/', vol_id,
+  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
                                                '?containers&records'),
                        vb = vb,
                        convert_JSON = FALSE)
-
-  # Make URL, GET(), and handle response
-  # url.cont.rec <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "?", "containers&records")
-  # if (vb) {
-  #   message(paste0("Sending GET to ", url.cont.rec))
-  # }
-  # g = httr::GET(url.cont.rec)
-  # if (httr::status_code(g) == 200) {
-  #   return(httr::content(g, 'text', encoding = "UTF-8"))
-  #   } else {
-  #     if (vb) {
-  #       message(paste0( 'Download Failed, HTTP status ', httr::status_code(g)))
-  #     }
-  #   return(NULL)
-  # }
+  r
 }
