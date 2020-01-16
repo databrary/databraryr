@@ -4,8 +4,12 @@
 \alias{list_volume_metadata}
 \title{List volume metadata.}
 \usage{
-list_volume_metadata(vol_id = 2, write_header = FALSE,
-  data_frame = TRUE, vb = FALSE)
+list_volume_metadata(
+  vol_id = 2,
+  write_header = FALSE,
+  data_frame = TRUE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}

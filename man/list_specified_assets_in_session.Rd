@@ -4,8 +4,12 @@
 \alias{list_specified_assets_in_session}
 \title{Lists assets in a given Databrary volume and session (slot).}
 \usage{
-list_specified_assets_in_session(vol_id = 1, session_id = 9807,
-  media_type = "MPEG-4 video", vb = FALSE)
+list_specified_assets_in_session(
+  vol_id = 1,
+  session_id = 9807,
+  media_type = "MPEG-4 video",
+  vb = FALSE
+)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}

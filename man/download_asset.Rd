@@ -4,8 +4,13 @@
 \alias{download_asset}
 \title{Download a specific video file.}
 \usage{
-download_asset(asset_id = 11643, session_id = 9825,
-  file_name = "test.mp4", return_response = FALSE, vb = FALSE)
+download_asset(
+  asset_id = 11643,
+  session_id = 9825,
+  file_name = "test.mp4",
+  return_response = FALSE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{asset_id}{Asset number.}

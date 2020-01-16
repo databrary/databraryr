@@ -4,9 +4,16 @@
 \alias{download_video}
 \title{Download a specific video file.}
 \usage{
-download_video(vol_id = 1, session_id = 9807, asset_id = 1,
-  segment_id = "-", out_dir = ".", file_name = "test.mp4",
-  return_response = FALSE, vb = FALSE)
+download_video(
+  vol_id = 1,
+  session_id = 9807,
+  asset_id = 1,
+  segment_id = "-",
+  out_dir = ".",
+  file_name = "test.mp4",
+  return_response = FALSE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{vol_id}{Volume ID.}

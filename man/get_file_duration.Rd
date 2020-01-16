@@ -4,8 +4,11 @@
 \alias{get_file_duration}
 \title{Get the the duration (in ms) of a file.}
 \usage{
-get_file_duration(asset_id = 1, types_w_durations = c("-600", "-800"),
-  vb = FALSE)
+get_file_duration(
+  asset_id = 1,
+  types_w_durations = c("-600", "-800"),
+  vb = FALSE
+)
 }
 \arguments{
 \item{asset_id}{Asset number.}

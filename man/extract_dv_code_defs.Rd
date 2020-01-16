@@ -4,11 +4,17 @@
 \alias{extract_dv_code_defs}
 \title{Extracts the code definitions from a Datavyu (.opf) file.}
 \usage{
-extract_dv_code_defs(in_dir = ".", dv_fn = "db", out_dir = in_dir,
-  out_fn = paste0(out_dir, "/", "codes.csv"), auto_write_over = TRUE,
+extract_dv_code_defs(
+  in_dir = ".",
+  dv_fn = "db",
+  out_dir = in_dir,
+  out_fn = paste0(out_dir, "/", "codes.csv"),
+  auto_write_over = TRUE,
   code_regex = "^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)",
   code_vals_regex = "\\\\)-([a-zA-Z\\\\/]+)\\\\|",
-  code_type_regex = "([a-zA-Z]+)$", vb = FALSE)
+  code_type_regex = "([a-zA-Z]+)$",
+  vb = FALSE
+)
 }
 \arguments{
 \item{in_dir}{Input directory. Defaults to '.'}
