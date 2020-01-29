@@ -4,7 +4,7 @@
 \alias{search_for_keywords}
 \title{Search for keywords in Databrary volumes.}
 \usage{
-search_for_keywords(search_string = "locomotion", vb = FALSE)
+search_for_keywords(search_string = "locomotion", vb = TRUE)
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
