@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_containers_records.R
 \name{list_containers_records}
 \alias{list_containers_records}
-\title{Lists containers  and record structure from Databrary volume.}
+\title{Lists containers and record structure from Databrary volume.}
 \usage{
 list_containers_records(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_containers_records(vol_id = 1, vb = FALSE)
 JSON file with containers and records from the specified volume.
 }
 \description{
-Lists containers  and record structure from Databrary volume.
+Lists containers and record structure from Databrary volume.
 }
 \examples{
 list_containers_records_json()
