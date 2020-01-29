@@ -247,3 +247,81 @@ test_that("list_volume_activity rejects bad input parameters", {
   expect_error(list_volume_activity(vb = "a"))
   expect_error(list_volume_activity(vb = list(a=1, b=2)))
 })
+
+# list_volume_links ---------------------------------------------------------
+test_that("list_volume_links returns data.frame or is NULL", {
+  expect_true((is.null(list_volume_links()) ||
+                 (class(list_volume_links()) == "data.frame")))
+})
+
+test_that("list_volume_links rejects bad input parameters", {
+  expect_error(list_volume_links(vol_id = "a"))
+  expect_error(list_volume_links(vol_id = c(1,2)))
+  expect_error(list_volume_links(vol_id = TRUE))
+  expect_error(list_volume_links(vol_id = list(a=1, b=2)))
+  expect_error(list_volume_links(vol_id = -1))
+
+  expect_error(list_volume_links(vb = -1))
+  expect_error(list_volume_links(vb = 3))
+  expect_error(list_volume_links(vb = "a"))
+  expect_error(list_volume_links(vb = list(a=1, b=2)))
+})
+
+# list_volume_funding ---------------------------------------------------------
+test_that("list_volume_funding returns data.frame or is NULL", {
+  expect_true((is.null(list_volume_funding()) ||
+                 (class(list_volume_funding()) == "data.frame")))
+})
+
+test_that("list_volume_funding rejects bad input parameters", {
+  expect_error(list_volume_funding(vol_id = "a"))
+  expect_error(list_volume_funding(vol_id = c(1,2)))
+  expect_error(list_volume_funding(vol_id = TRUE))
+  expect_error(list_volume_funding(vol_id = list(a=1, b=2)))
+  expect_error(list_volume_funding(vol_id = -1))
+
+  expect_error(list_volume_funding(vb = -1))
+  expect_error(list_volume_funding(vb = 3))
+  expect_error(list_volume_funding(vb = "a"))
+  expect_error(list_volume_funding(vb = list(a=1, b=2)))
+})
+
+# list_volume_tags ---------------------------------------------------------
+test_that("list_volume_tags returns data.frame or is NULL", {
+  expect_true((is.null(list_volume_tags()) ||
+                 (class(list_volume_tags()) == "data.frame")))
+})
+
+test_that("list_volume_tags rejects bad input parameters", {
+  expect_error(list_volume_tags(vol_id = "a"))
+  expect_error(list_volume_tags(vol_id = c(1,2)))
+  expect_error(list_volume_tags(vol_id = TRUE))
+  expect_error(list_volume_tags(vol_id = list(a=1, b=2)))
+  expect_error(list_volume_tags(vol_id = -1))
+
+  expect_error(list_volume_tags(vb = -1))
+  expect_error(list_volume_tags(vb = 3))
+  expect_error(list_volume_tags(vb = "a"))
+  expect_error(list_volume_tags(vb = list(a=1, b=2)))
+})
+
+# list_volume_excerpts ---------------------------------------------------------
+test_that("list_volume_excerpts returns data.frame or is NULL", {
+  expect_true((is.null(list_volume_excerpts()) ||
+                 (class(list_volume_excerpts()) == "data.frame")))
+})
+
+test_that("list_volume_excerpts rejects bad input parameters", {
+  expect_error(list_volume_excerpts(vol_id = "a"))
+  expect_error(list_volume_excerpts(vol_id = c(1,2)))
+  expect_error(list_volume_excerpts(vol_id = TRUE))
+  expect_error(list_volume_excerpts(vol_id = list(a=1, b=2)))
+  expect_error(list_volume_excerpts(vol_id = -1))
+
+  expect_error(list_volume_excerpts(vb = -1))
+  expect_error(list_volume_excerpts(vb = 3))
+  expect_error(list_volume_excerpts(vb = "a"))
+  expect_error(list_volume_excerpts(vb = list(a=1, b=2)))
+})
+
+

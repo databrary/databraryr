@@ -34,12 +34,10 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
       } else if (stringr::str_detect(g$headers$`content-type`, "application/json")) {
         g_content <- httr::content(g, 'text', encoding = 'UTF-8')
         if (convert_JSON) {
-          if (vb)
-            message('Converting JSON.')
+          if (vb) message('Converting JSON.')
           jsonlite::fromJSON(g_content)
         } else {
-          if (vb)
-            message('Returning unconverted content.')
+          if (vb) message('Returning unconverted content.')
           g_content
         }
       } else if (stringr::str_detect(g$headers$`content-type`, "text/csv")) {
@@ -50,12 +48,10 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
       if (vb) message(paste0('Content type is unknown. Assuming JSON text.'))
       g_content <- httr::content(g, 'text', encoding = 'UTF-8')
       if (convert_JSON) {
-        if (vb)
-          message('Converting JSON.')
+        if (vb) message('Converting JSON.')
         jsonlite::fromJSON(g_content)
       } else {
-        if (vb)
-          message('Returning unconverted content.')
+        if (vb) message('Returning unconverted content.')
         g_content
       }
     }
