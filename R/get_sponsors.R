@@ -3,6 +3,8 @@
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
+#' @examples
+#' get_sponsors() # Default is Rick Gilmore (party 6)
 #' @export
 get_sponsors <- function(party_id = 6, vb = FALSE) {
   if (length(party_id) > 1) {
