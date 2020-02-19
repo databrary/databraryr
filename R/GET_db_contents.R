@@ -1,6 +1,6 @@
 #' Queries the Databrary API with an HTML GET command
 #'
-#' @param base_URL Base URL for API call. Default is https://nyu.databrary.org/api/.
+#' @param base_URL Base URL for API call. Default is https://nyu.databrary.org.
 #' @param URL_components Other components of API URL usually assembled using a paste0() command.
 #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
@@ -42,6 +42,9 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
         }
       } else if (stringr::str_detect(g$headers$`content-type`, "text/csv")) {
         if (vb) message(paste0("CSV/text file."))
+        httr::content(g, 'text', encoding = 'UTF-8')
+      } else if (stringr::str_detect(g$headers$`content-type`, "text/html")) {
+        if (vb) message(paste0("text/html file."))
         httr::content(g, 'text', encoding = 'UTF-8')
       }
     } else {
