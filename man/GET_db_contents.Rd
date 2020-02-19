@@ -12,7 +12,7 @@ GET_db_contents(
 )
 }
 \arguments{
-\item{base_URL}{Base URL for API call. Default is https://nyu.databrary.org/api/.}
+\item{base_URL}{Base URL for API call. Default is https://nyu.databrary.org.}
 
 \item{URL_components}{Other components of API URL usually assembled using a paste0() command.}
 

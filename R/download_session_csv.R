@@ -19,24 +19,31 @@ download_session_csv <- function(vol_id = 1, to_df = TRUE,
     stop("vol_id must be an integer > 0.")
   }
 
-  # r <- GET_db_contents(base_URL = "https://nyu.databrary.org/volume/",
-  #                      URL_components = paste0(vol_id, '/csv'),
-  #                      vb = vb, convert_JSON = FALSE)
+  if (vb) message(paste0("Downloading spreadsheet from volume ", vol_id))
   r <- httr::content(httr::GET(paste0("https://nyu.databrary.org/volume/",
                                       vol_id, "/csv")), 'text', encoding='UTF-8')
-  if (to_df == TRUE) {
-    r_df <- read.csv(text = r)
-    if (class(r_df)=="data.frame") {
-      r_df <- dplyr::rename(r_df, session_id = session.id,
-                            session_name = session.name,
-                            session_date = session.date,
-                            session_release = session.release)
-      return(r_df)
-    } else {
-      if (vb) message("Can't coerce to data frame. Skipping.\n")
-      return(NULL)
-    }
+
+  if (is.null(r) | !stringr::str_detect(r, "session-id")) {
+      if (vb) message(paste0("No CSV data returned from volume ", vol_id))
+      NULL
+  } else if (to_df == TRUE) {
+      if (vb) message(paste0("Converting response to data frame."))
+      r_df <- read.csv(text = r, stringsAsFactors = FALSE)
+      if (class(r_df)=="data.frame") {
+        if (vb) message(paste0("Imported data frame. Cleaning up."))
+        r_df <- dplyr::mutate(r_df, vol_id = vol_id)
+        r_df <- dplyr::rename(r_df,
+                              session_id = session.id,
+                              session_name = session.name,
+                              session_date = session.date,
+                              session_release = session.release)
+        r_df
+      } else {
+        if (vb) message("Can't coerce to data frame. Skipping.\n")
+        NULL
+      }
   } else {
-    return(r)
+    if (vb) message(paste0("Returning raw data from volume ", vol_id))
+    r
   }
 }

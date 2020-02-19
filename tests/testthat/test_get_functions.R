@@ -189,3 +189,41 @@ test_that("get_sponsors rejects bad input parameters", {
   expect_error(get_sponsors(vb = c(2,3)))
   expect_error(get_sponsors(vb = list(a=1, b=2)))
 })
+
+# get_party ---------------------------------------------------------
+test_that("get_party returns a list or is NULL.", {
+  expect_true((is.null(get_party()) ||
+                 (class(get_party()) == "list")))
+})
+
+test_that("get_party rejects bad input parameters", {
+  expect_error(get_party(party_id = "a"))
+  expect_error(get_party(party_id = -1))
+  expect_error(get_party(party_id = TRUE))
+  expect_error(get_party(party_id = c(1,3)))
+  expect_error(get_party(party_id = list(a=1, b=2)))
+
+  expect_error(get_party(vb = "a"))
+  expect_error(get_party(vb = -1))
+  expect_error(get_party(vb = c(2,3)))
+  expect_error(get_party(vb = list(a=1, b=2)))
+})
+
+# get_volume ---------------------------------------------------------
+test_that("get_volume returns a list or is NULL.", {
+  expect_true((is.null(get_volume()) ||
+                 (class(get_volume()) == "list")))
+})
+
+test_that("get_volume rejects bad input parameters", {
+  expect_error(get_volume(vol_id = "a"))
+  expect_error(get_volume(vol_id = -1))
+  expect_error(get_volume(vol_id = TRUE))
+  expect_error(get_volume(vol_id = c(1,3)))
+  expect_error(get_volume(vol_id = list(a=1, b=2)))
+
+  expect_error(get_volume(vb = "a"))
+  expect_error(get_volume(vb = -1))
+  expect_error(get_volume(vb = c(2,3)))
+  expect_error(get_volume(vb = list(a=1, b=2)))
+})
