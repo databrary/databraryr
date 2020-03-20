@@ -17,3 +17,6 @@ A tibble (data.frame) with the requested data.
 \description{
 Lists image or video excerpts associated with a Databrary volume.
 }
+\examples{
+list_volume_excerpts()
+}

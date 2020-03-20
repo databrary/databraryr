@@ -17,3 +17,6 @@ A tibble (data.frame) with the requested data.
 \description{
 Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).
 }
+\examples{
+get_affiliates()
+}

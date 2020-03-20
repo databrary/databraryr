@@ -1,4 +1,4 @@
-context("list_* functions return types")
+context("list_* functions")
 library(databraryapi)
 
 # list_assets_by_type ---------------------------------------------------

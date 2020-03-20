@@ -17,3 +17,6 @@ A tibble (data.frame) with the requested data.
 \description{
 Lists keywords and tags associated with a Databrary volume.
 }
+\examples{
+list_volume_tags()
+}

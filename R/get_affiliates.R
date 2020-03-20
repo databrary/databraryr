@@ -3,8 +3,8 @@
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
-#' @example
-#' get_affiliates() # Default is for Rick Gilmore (party 6)
+#' @examples
+#' get_affiliates()
 #' @export
 get_affiliates <- function(party_id = 6, vb = FALSE) {
   if (length(party_id) > 1) {
