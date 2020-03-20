@@ -7,7 +7,7 @@ This repository contains code for the `databraryapi` R package.
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
 - Install the `databraryapi` package via `install_github("PLAY-behaviorome/databraryapi")`. Required dependencies will be installed at this time.
-- The latest version is 0.2.0.
+- The latest version is 0.2.1.
 
 ## Use
 
@@ -102,3 +102,5 @@ Unless you specify another file name, the .mp4 format movie will download to the
 `logout_db()` logs out of Databrary and does some simple clean up.
 
 `get_supported_file_types()` returns a data frame with the file types Databrary currently supports.
+
+`download_volume_zip()` downloads a zip archive of the materials in volume 31.

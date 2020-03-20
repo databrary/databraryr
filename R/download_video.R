@@ -94,7 +94,7 @@ download_video <- function(session_id = 9807,
 
   if (vb) message(paste0('Sending GET to ', url_download))
   message(paste0("Downloading video asset ", asset_id, " from session ", session_id))
-  webpage <- httr::GET(url_download)
+  webpage <- httr::GET(url_download, httr::progress())
   if (webpage$status_code == 200) {
     content.type <- webpage$headers$`content-type`
     if (vb) {

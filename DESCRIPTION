@@ -1,7 +1,7 @@
 Package: databraryapi
 Type: Package
 Title: Interacts With the Databrary.org API
-Version: 0.2.0
+Version: 0.2.1
 Author: Rick O. Gilmore [aut, cre]
 Authors@R: person("Rick", "O. Gilmore", email = "rog1@psu.edu",
   role = c("aut", "cre"))

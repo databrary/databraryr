@@ -54,7 +54,7 @@ download_session_zip <- function(vol_id = 31,
   
   if (vb) message(paste0('Sending GET to ', url_download))
   message(paste0("Attempting to download zip archive from volume ", vol_id, ", session ", session_id, "."))
-  webpage <- httr::GET(url_download)
+  webpage <- httr::GET(url_download, httr::progress())
   if (webpage$status_code == 200) {
     content.type <- webpage$headers$`content-type`
     if (vb) {
@@ -127,7 +127,7 @@ download_volume_zip <- function(vol_id = 31,
   
   if (vb) message(paste0('Sending GET to ', url_download))
   message(paste0("Attempting to download zip archive from volume ", vol_id, "."))
-  webpage <- httr::GET(url_download)
+  webpage <- httr::GET(url_download, httr::progress())
   if (webpage$status_code == 200) {
     content.type <- webpage$headers$`content-type`
     if (vb) {
