@@ -29,6 +29,7 @@ list_assets_by_type <- function(vol_id = 1, type = "video",
   if (length(vb) > 1) {
     stop("vb must have length = 1.")
   }
+  
   # Retrieve, process asset list --------------------------------------------
   va <- list_assets_in_volume(vol_id = vol_id, vb = vb)
   if (is.null(va)) {

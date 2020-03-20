@@ -1,20 +1,14 @@
+#========================================================================================
 #' Lists assets in a given Databrary volume and session (slot).
 #'
-#' @param vol_id Selected volume number.
 #' @param session_id Slot/session ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_assets_in_session()
 #' @export
-list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
+list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
   # Parameter checking----------------------------------------------
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length == 1.")
-  }
-  if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
-    stop("vol_id must be > 0.")
-  }
   if (length(session_id) > 1) {
     stop("session_id must have length == 1.")
   }
@@ -31,27 +25,17 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 
   # Make URL, GET(), and handle response ---------------------------
 
-  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
-                                               '/slot/', session_id,
-                                               '?assets'),
-                       vb = vb)
+  r <- GET_db_contents(URL_components = paste0('/api/slot/', session_id,
+                                               '/-?assets'), vb = vb)
   if (!is.null(r)) {
     # if (vb) message("Making data frame from returned content.")
     if (is.data.frame(r$assets)) {
       df <- data.frame(r$assets)
-      df$vol_id <- vol_id
-      df$session_id <- session_id
-      # df <- dplyr::rename(df, asset.id = id,
-      #                     asset.type.id = format,
-      #                     asset.name = name)
+      df <- dplyr::mutate(df, session_id = session_id)
       df <- dplyr::rename(df, asset_id = id,
                           asset_type_id = format)
-      # df <- dplyr::select(df, vol_id, session_id, asset.id,
-      #                     asset.type.id, classification, name, permission,
-      #                     size, duration)
       df <- format_to_filetypes(df, vb = vb)
     } else {
-      # Handle case of single value in assets field
       df <- NULL
     }
     return(df)
@@ -64,7 +48,6 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 #==================================================================
 #' Lists assets in a given Databrary volume and session (slot).
 #'
-#' @param vol_id Selected volume number.
 #' @param session_id Slot/session ID.
 #' @media_type A string indicating what type of file.
 #' @param vb A Boolean value. If TRUE provides verbose output.
@@ -72,14 +55,13 @@ list_assets_in_session <- function(vol_id = 1, session_id = 9807, vb = FALSE) {
 #' @examples
 #' list_specified_assets_in_session()
 #' @export
-list_specified_assets_in_session <- function(vol_id = 1,
-                                             session_id = 9807,
+list_specified_assets_in_session <- function(session_id = 9807,
                                              media_type = 'MPEG-4 video',
                                              vb = FALSE) {
 
   # List all assets
   if (vb) message('list_specified_assets_in_session()...')
-  al <- list_assets_in_session(vol_id, session_id, vb = vb)
+  al <- list_assets_in_session(session_id, vb = vb)
   dplyr::filter(al, asset_type == media_type)
 }
 
@@ -104,10 +86,6 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
 
   # Merge file types with assets in volume -----------------------------------------------
   if (vb) message("Matching file types to those in specified volume.")
-  #df <- dplyr::left_join(vol_assets, fts, by = c("format" = "id"))
   df <- dplyr::left_join(vol_assets, fts, by = c('asset_type_id'))
-  # Since the function is more commonly used by volume level functions, we don't resort here
-  # dplyr::select(df, vol_id, session_id, asset.name, size, duration, mimetype,
-  #               extension, transcodable)
   df
 }

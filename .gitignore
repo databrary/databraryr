@@ -12,3 +12,5 @@ working
 data
 old_vignettes
 tmp
+zip
+.DS_Store

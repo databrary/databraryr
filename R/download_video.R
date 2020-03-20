@@ -1,41 +1,64 @@
+#========================================================================================
 #' Download a specific video file.
 #'
-#' @param vol_id Volume ID.
 #' @param session_id Slot/session number.
 #' @param asset_id Asset number.
 #' @param segment_id Video segment.
 #' @param out_dir Directory to save output file.
-#' @param file_name Name for downloaded file.
+#' @param file_name Name for downloaded file, default is 'test.mp4'.
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_video()
 #' @export
-download_video <- function(vol_id = 1,
-                           session_id = 9807,
+download_video <- function(session_id = 9807,
                            asset_id = 1,
                            segment_id = "-",
                            out_dir = '.',
                            file_name = "test.mp4",
                            return_response=FALSE, vb=FALSE) {
   # Parameter checking ----------------------------------------------------------------
-  if (length(asset_id) > 1) {
-    stop("Asset ID must have length 1.")
-  }
-  if ((!is.numeric(asset_id)) || asset_id <= 0 ) {
-    stop("Asset must be number > 0.")
-  }
   if (length(session_id) > 1) {
     stop("Session ID must have length 1.")
   }
   if ((!is.numeric(session_id)) || session_id <= 0 ) {
     stop("Session ID must be a number > 0.")
   }
+  if (length(asset_id) > 1) {
+    stop("Asset ID must have length 1.")
+  }
+  if ((!is.numeric(asset_id)) || asset_id <= 0 ) {
+    stop("Asset must be number > 0.")
+  }
+  if (length(segment_id) > 1) {
+    stop("Segment ID must have length 1.")
+  }
   if (!(is.character(segment_id))) {
     stop("Segment ID must be a character string, '-' for the entire video or '<start_ms>,<end_ms>' for a segment")
   }
+  if (length(out_dir) > 1) {
+    stop("`out_dir` must have length 1.")
+  }
+  if (!(is.character(out_dir))) {
+    stop("`out_dir` must be a character string.")
+  }
+  if (length(file_name) > 1) {
+    stop("File name must have length 1.")
+  }
   if (!is.character(file_name)) {
     stop("File name must be character string.")
+  }
+  if (!is.logical(return_response)) {
+    stop("`return_response` must be logical value.")
+  }
+  if (length(return_response) > 1) {
+    stop("`return_response` must have length == 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("`vb` must be logical value.")
+  }
+  if (length(vb) > 1) {
+    stop("`vb` must have length == 1.")
   }
 
   video_duration_ms = 1
@@ -57,7 +80,7 @@ download_video <- function(vol_id = 1,
 
   segment_id <- validate_segment_id(segment_id, video_duration_ms, vb = vb)
 
-  url.download <- paste0("https://nyu.databrary.org", paste("/slot", session_id,
+  url_download <- paste0("https://nyu.databrary.org", paste("/slot", session_id,
                                                             segment_id, "asset",
                                                             asset_id, "download",
                                                             sep="/"))
@@ -69,36 +92,9 @@ download_video <- function(vol_id = 1,
     segment_id <- stringr::str_replace(segment_id, pattern = ",", replacement = "-")
   }
 
-  if (vb) message(paste0('Sending GET to ', url.download))
-  webpage <- httr::GET(url.download)
-  if (webpage$status_code == 200) {
-    content.type <- webpage$headers$`content-type`
-    if (vb) {
-      message("Successful HTML GET query\n")
-      message(paste0("Content-type is ", content.type, ".\n"))
-    }
-    # TODO(somebody): Add support for other content types
-    if (content.type == "video/mp4") {
-      if (file_name == "test.mp4") {
-        if (vb) {
-          message("File name unspecified. Generating unique name.\n")
-        }
-        file_name <- paste0(out_dir, "/", vol_id, "-",
-                            session_id, "-",
-                            asset_id, "-", segment_id, "-",
-                            format(Sys.time(), "%F-%H%M-%S"), ".mp4")
-      }
-      if (vb) message(paste0("Downloading video as ", file_name))
-      bin <- httr::content(webpage, 'raw')
-      writeBin(bin, file_name)
-      return(out_dir)
-    }
-  } else {
-    if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
-    if (return_response) return(webpage$response)
-  }
-
-  webpage <- httr::GET(url.download)
+  if (vb) message(paste0('Sending GET to ', url_download))
+  message(paste0("Downloading video asset ", asset_id, " from session ", session_id))
+  webpage <- httr::GET(url_download)
   if (webpage$status_code == 200) {
     content.type <- webpage$headers$`content-type`
     if (vb) {
@@ -110,28 +106,97 @@ download_video <- function(vol_id = 1,
         if (vb) {
           if (vb) message("File name unspecified. Generating unique name.")
         }
-        file_name <- paste0(out_dir, "/", vol_id, "-",
-                            session_id, "-",
+        file_name <- paste0(out_dir, "/", session_id, "-",
                             asset_id, "-", segment_id, "-",
-                            format(Sys.time(), "%F-%H%M-%S"), ".opf")
+                            format(Sys.time(), "%F-%H%M-%S"), ".mp4")
       }
       if (vb) {
         if (vb) message(paste0("Downloading video file as: \n", file_name))
       }
       bin <- httr::content(webpage, 'raw')
       writeBin(bin, file_name)
-      message(paste0('Video ', file_name, ' downloaded to ', out_dir, '.'))
-      return(out_dir)
+      message(paste0('Downloaded ', file_name))
+      if (return_response) return(out_dir)
     }
   } else {
     if (vb) message(paste0('Download Failed, HTTP status ', webpage$status_code))
-    return(NULL)
+    if (return_response) return(NULL)
   }
 }
 
+#========================================================================================
+#' Download all videos in a session and save to a local directory.
+#' 
+#' @param session_id Session number.
+#' @param out_dir Directory to save output file.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @examples
+#' download_vids_in_session()
+#' @export
+download_vids_in_session <- function(session_id = 9803, 
+                                     out_dir = ".",
+                                     vb = FALSE) {
+  # Parameter checking ----------------------------------------------------------------
+  if (!is.numeric(session_id)) stop("`session_id` must be numeric.")
+  if (!is.character(out_dir)) stop("`out_dir` must be character string.")
+  if (!dir.exists(out_dir)) stop("Output directory '", out_dir, "' does not exist.")
+  if (!is.logical(vb)) stop("`vb` must be logical value.")
+
+  # List assets, filter videos, download ----------------------------------------------
+  these_assets <- list_assets_in_session(session_id)
+  if (!is.null(these_assets)) {
+    these_vids <- dplyr::filter(these_assets, mimetype == "video/mp4")
+    if (!is.null(these_vids)) {
+      message(paste0("There are ", dim(these_vids)[1], " videos in session ", session_id, "."))
+      mapply(download_video, session_id, these_vids$asset_id, out_dir)
+    } else {
+      if (vb) message(paste0("No videos in session ", session_id, "."))
+      NULL 
+    }
+  } else {
+    if (vb) message(paste0("No assets in session ", session_id, "."))
+    NULL
+  }
+}
+
+#========================================================================================
+#' Download all videos in a volume and save to a local directory.
+#' 
+#' @param session_id Volume number.
+#' @param out_dir Directory to save output file.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @examples
+#' download_vids_in_volume()
+#' @export
+download_vids_in_volume <- function(vol_id = 31, out_dir = ".", vb = FALSE) {
+  # Parameter checking ----------------------------------------------------------------
+  if (!is.numeric(vol_id)) stop("`vol_id` must be numeric.")
+  if (!is.character(out_dir)) stop("`out_dir` must be character string.")
+  if (!dir.exists(out_dir)) stop("Output directory '", out_dir, "' does not exist.")
+  if (!is.logical(vb)) stop("`vb` must be logical value.")
+  
+  # List sessions in volume, download videos in each
+  these_sessions <- databraryapi::list_sessions(vol_id)
+  if (!is.null(these_sessions)) {
+    sess_ids <- unique(these_sessions$session_id)
+    if (length(sess_ids > 0)) {
+      mapply(download_vids_in_session, sess_ids, out_dir)
+    } else {
+      if (vb) message("No unique sessions")
+    }
+  } else {
+    if (vb) message(paste0("No sessions in volume ", vol_id, "."))
+    NULL
+  }
+}
+
+#========================================================================================
+#' Download all videos in a session and save to a local directory.
 validate_segment_id <- function(segment_id, video_duration_ms,
-                                segment.regex = "([0-9]+),([0-9]+)", vb = vb) {
-  if (stringr::str_detect(segment_id, pattern = segment.regex)) {
+                                segment_regex = "([0-9]+),([0-9]+)", 
+                                vb = FALSE) {
+  
+  if (stringr::str_detect(segment_id, pattern = segment_regex)) {
     seg_matches <- stringr::str_match(segment_id, pattern = "([0-9]+),([0-9]+)")
     start_ms_s <- seg_matches[2]
     end_ms_s <- seg_matches[3]
