@@ -118,7 +118,7 @@ test_that("list_containers_records_json rejects bad input parameters", {
 
 # list_people ----------------------------------------------------------------
 test_that("list_people returns data.frame", {
-  expect_true(class(list_people()) == "data.frame")
+  expect_true("data.frame" %in% class(list_people()))
 })
 
 test_that("list_people rejects bad input parameters", {

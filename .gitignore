@@ -12,6 +12,5 @@ working
 data
 old_vignettes
 tmp
-.zip
 .DS_Store
-31-2020-03-20-1233-21.zip
+*.zip
