@@ -39,7 +39,8 @@ list_people <- function(people_list = 5:8, vb = FALSE) {
     as.data.frame(list_person(people_list))
   } else {
     if (vb) message("Multiple person IDs in list.")
-    l <- sapply(people_list, list_person)
-    Reduce(function(x,y) merge(x,y, all=TRUE), l[-which(sapply(l, is.null))])
+    # l <- sapply(people_list, list_person)
+    # Reduce(function(x,y) merge(x,y, all=TRUE), l[-which(sapply(l, is.null))])
+    purrr::map_df(people_list, list_person)
   }
 }

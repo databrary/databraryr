@@ -3,8 +3,8 @@
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
-#' @example
-#' list_volume_tags() # Default is volume 1
+#' @examples
+#' list_volume_tags()
 #' @export
 list_volume_tags <- function(vol_id = 1, vb = FALSE) {
   if (length(vol_id) > 1) {

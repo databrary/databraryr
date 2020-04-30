@@ -17,3 +17,6 @@ A tibble (data.frame) with the requested data.
 \description{
 Retrieves URL links associated with a Databrary volume.
 }
+\examples{
+list_volume_links() # Default is volume 1
+}

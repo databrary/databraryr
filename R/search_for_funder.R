@@ -6,7 +6,8 @@
 #' @examples
 #' search_for_funder()
 #' @export
-search_for_funder <- function(search_string="national+science+foundation", vb = FALSE) {
+search_for_funder <- function(search_string="national+science+foundation", 
+                              vb = FALSE) {
   # Parameter checking----------------------------------------------
   if (!is.character(search_string)) {
     stop("search_string must be string.")

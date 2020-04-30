@@ -5,7 +5,6 @@
 \title{Download a specific video file.}
 \usage{
 download_video(
-  vol_id = 1,
   session_id = 9807,
   asset_id = 1,
   segment_id = "-",
@@ -16,8 +15,6 @@ download_video(
 )
 }
 \arguments{
-\item{vol_id}{Volume ID.}
-
 \item{session_id}{Slot/session number.}
 
 \item{asset_id}{Asset number.}
@@ -26,7 +23,7 @@ download_video(
 
 \item{out_dir}{Directory to save output file.}
 
-\item{file_name}{Name for downloaded file.}
+\item{file_name}{Name for downloaded file, default is 'test.mp4'.}
 
 \item{return_response}{A Boolean value.}
 

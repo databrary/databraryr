@@ -1,7 +1,7 @@
 Package: databraryapi
 Type: Package
 Title: Interacts With the Databrary.org API
-Version: 0.2.1
+Version: 0.2.2
 Author: Rick O. Gilmore [aut, cre]
 Authors@R: person("Rick", "O. Gilmore", email = "rog1@psu.edu",
   role = c("aut", "cre"))
@@ -26,7 +26,7 @@ Imports:
     stringr,
     rmarkdown,
     magick
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Suggests: 
     knitr,
     testthat

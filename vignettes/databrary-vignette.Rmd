@@ -129,8 +129,7 @@ So, let's see what's inside session `r list_sessions()[22,'session_id']`.
 
 ```{r list-session-assets}
 this_session <- list_sessions()[22,'session_id']
-this_vol <- list_sessions()[22,'vol_id']
-list_assets_in_session(session_id = this_session, vol_id = this_vol)
+list_assets_in_session(session_id = this_session)
 ```
 
 Notice that I took row 22 and the value of the `session_id` column to specify the `session_id` value for the `list_assets_in_session()` function.
@@ -138,7 +137,7 @@ I did the same for the `vol_id`.
 I took these values from the output of `list_sessions()`.
 The `asset_id` column in this table is the *asset* or file level ID.
 
-Clearly, there are several files here, `r dim(list_assets_in_session(session_id = this_session, vol_id = this_vol))[1]` in fact.
+Clearly, there are several files here, `r dim(list_assets_in_session(session_id = this_session))[1]` in fact.
 And all are videos.
 How do I know that?
 Well, the `format` column has all '-800' values in it.
@@ -202,7 +201,7 @@ This command takes two main arguments, the 'volume_id' and the 'session_id'.
 We'll take the values of these parameters from the 'm' variable we just created.
 
 ```{r view-assets-in-materials-session}
-list_assets_in_session(vol_id = m$vol_id, session_id = m$session_id)
+list_assets_in_session(session_id = m$session_id)
 ```
 
 If you scroll over, you'll see that there are two files with the `extension` variable of 'csv' and a `mimetype` of 'text/csv'.
