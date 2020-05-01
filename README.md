@@ -2,6 +2,10 @@
 
 This repository contains code for the `databraryapi` R package.
 
+## Documentation
+
+Full package documentation built using `pkgdown` can be found [here](https://PLAY-behaviorome.github.io/databraryapi).
+
 ## Installation
 
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
