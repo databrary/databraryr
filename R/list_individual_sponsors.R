@@ -3,8 +3,10 @@
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
+#' @examples
+#' list_individual_sponsors() # Default is Yiming Qian (party 4210)
 #' @export
-get_individual_sponsors <- function(party_id = 4210, vb = FALSE) {
+list_individual_sponsors <- function(party_id = 4210, vb = FALSE) {
   if (length(party_id) > 1) {
     stop("'party_id' must have length == 1.")
   }
@@ -24,7 +26,7 @@ get_individual_sponsors <- function(party_id = 4210, vb = FALSE) {
 
   return_val <- NULL
 
-  sponsors <- get_sponsors(party_id = party_id, vb = vb)
+  sponsors <- list_sponsors(party_id = party_id, vb = vb)
   if (!is.null(sponsors)) {
     if (vb)
       message("Sponsor data exists.")

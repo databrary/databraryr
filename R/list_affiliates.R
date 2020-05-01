@@ -1,12 +1,12 @@
-#' Lists sponsors for a given Databrary party (institution or person).
+#' Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).
 #'
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
-#' get_sponsors() # Default is Rick Gilmore (party 6)
+#' list_affiliates()
 #' @export
-get_sponsors <- function(party_id = 6, vb = FALSE) {
+list_affiliates <- function(party_id = 6, vb = FALSE) {
   if (length(party_id) > 1) {
     stop("'party_id' must have length == 1.")
   }
@@ -24,8 +24,6 @@ get_sponsors <- function(party_id = 6, vb = FALSE) {
     stop("'vb' must be a Boolean.")
   }
 
-  if (vb)
-    message(paste0("Getting sponsors for party ", party_id, "."))
   g <-
     databraryapi::GET_db_contents(
       URL_components = paste0("/api/party/", party_id,
@@ -36,7 +34,7 @@ get_sponsors <- function(party_id = 6, vb = FALSE) {
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
-    p <- g$parents$party
+    p <- g$children$party
     if (!is.null(p)) {
       p
     } else {

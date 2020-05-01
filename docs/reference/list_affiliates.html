@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lists image or video excerpts associated with a Databrary volume. — list_volume_excerpts • databraryapi</title>
+<title>Lists affiliates (sponsored researchers) for a given Databrary party (institution or person). — list_affiliates • databraryapi</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Lists image or video excerpts associated with a Databrary volume. — list_volume_excerpts" />
-<meta property="og:description" content="Lists image or video excerpts associated with a Databrary volume." />
+<meta property="og:title" content="Lists affiliates (sponsored researchers) for a given Databrary party (institution or person). — list_affiliates" />
+<meta property="og:description" content="Lists affiliates (sponsored researchers) for a given Databrary party (institution or person)." />
 
 
 
@@ -120,22 +120,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lists image or video excerpts associated with a Databrary volume.</h1>
-    <small class="dont-index">Source: <a href='http://github.com/PLAY-behaviorome/databraryapi/blob/master/R/list_volume_excerpts.R'><code>R/list_volume_excerpts.R</code></a></small>
-    <div class="hidden name"><code>list_volume_excerpts.Rd</code></div>
+    <h1>Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).</h1>
+    <small class="dont-index">Source: <a href='http://github.com/PLAY-behaviorome/databraryapi/blob/master/R/list_affiliates.R'><code>R/list_affiliates.R</code></a></small>
+    <div class="hidden name"><code>list_affiliates.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Lists image or video excerpts associated with a Databrary volume.</p>
+    <p>Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_volume_excerpts</span>(<span class='kw'>vol_id</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>list_affiliates</span>(<span class='kw'>party_id</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>vol_id</th>
+      <th>party_id</th>
       <td><p>Target volume number.</p></td>
     </tr>
     <tr>
@@ -149,15 +149,30 @@
     <p>A tibble (data.frame) with the requested data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_volume_excerpts</span>()</div><div class='output co'>#&gt;              segment permission excerpt asset.id asset.format asset.duration
-#&gt; 1 16852000, 16916503          1      NA    84000         -800       14589934
-#&gt; 2                  0          1      NA     9200            5             NA
-#&gt;        asset.segment                        asset.name asset.permission
-#&gt; 1 15824072, 30414006 DatabraryAdvisoryBoardMeeting2017                1
-#&gt; 2               NULL                              logo                1
-#&gt;   asset.size asset.container asset.classification
-#&gt; 1 4611531493           17886                   NA
-#&gt; 2     104419            9807                    3</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>list_affiliates</span>()</div><div class='output co'>#&gt;      id  sortname      prename
+#&gt; 1   437   Seisler    Andrea R.
+#&gt; 2  4210      Qian       Yiming
+#&gt; 3  5839     Chang       Rachel
+#&gt; 4  4306    Mendez     Michelle
+#&gt; 5  5838    Bhatia         Amar
+#&gt; 6   254 Jayaraman      Swapnaa
+#&gt; 7  3885    Albohn    Daniel N.
+#&gt; 8  5819    Herman Emily Nicole
+#&gt; 9  5861     Kelly         Luka
+#&gt; 10 6418     Davis      Chelsea
+#&gt; 11 4650     Spies      Jeffrey
+#&gt;                                                            affiliation
+#&gt; 1                                                Penn State University
+#&gt; 2                                                                  PSU
+#&gt; 3                                                Penn State University
+#&gt; 4                                        Pennsylvania State University
+#&gt; 5                                        Pennsylvania State University
+#&gt; 6  PLAY project, Indiana University, Databrary.org, Western University
+#&gt; 7                                    The Pennsylvania State University
+#&gt; 8                                        Pennsylvania State University
+#&gt; 9                                                           Penn State
+#&gt; 10                                   The Pennsylvania State University
+#&gt; 11                                              University of Virginia</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

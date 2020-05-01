@@ -21,5 +21,5 @@ get_file_duration(
 Get the the duration (in ms) of a file.
 }
 \examples{
-get_file_duration()
+get_file_duration() # default is the test video from databrary.org/volume/1
 }

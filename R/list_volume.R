@@ -1,13 +1,13 @@
-#' Lists data for a given Databrary party (institution or person).
+#' Lists data for a given Databrary volume.
 #'
 #' @param vol_id Target volume number.
 #' @param search_str The specific data to retrieve for the volume
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list (or data frame) with the requested data.
 #' @examples
-#' get_volume() # Default is volume 1
+#' list_volume() # Default is volume 1
 #' @export
-get_volume <- function(vol_id = 1, search_str = "",
+list_volume <- function(vol_id = 1, search_str = "",
                       vb = FALSE) {
   if (length(vol_id) > 1) {
     stop("'party_id' must have length == 1.")

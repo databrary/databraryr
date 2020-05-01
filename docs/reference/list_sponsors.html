@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lists image or video excerpts associated with a Databrary volume. — list_volume_excerpts • databraryapi</title>
+<title>Lists sponsors for a given Databrary party (institution or person). — list_sponsors • databraryapi</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Lists image or video excerpts associated with a Databrary volume. — list_volume_excerpts" />
-<meta property="og:description" content="Lists image or video excerpts associated with a Databrary volume." />
+<meta property="og:title" content="Lists sponsors for a given Databrary party (institution or person). — list_sponsors" />
+<meta property="og:description" content="Lists sponsors for a given Databrary party (institution or person)." />
 
 
 
@@ -120,22 +120,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lists image or video excerpts associated with a Databrary volume.</h1>
-    <small class="dont-index">Source: <a href='http://github.com/PLAY-behaviorome/databraryapi/blob/master/R/list_volume_excerpts.R'><code>R/list_volume_excerpts.R</code></a></small>
-    <div class="hidden name"><code>list_volume_excerpts.Rd</code></div>
+    <h1>Lists sponsors for a given Databrary party (institution or person).</h1>
+    <small class="dont-index">Source: <a href='http://github.com/PLAY-behaviorome/databraryapi/blob/master/R/list_sponsors.R'><code>R/list_sponsors.R</code></a></small>
+    <div class="hidden name"><code>list_sponsors.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Lists image or video excerpts associated with a Databrary volume.</p>
+    <p>Lists sponsors for a given Databrary party (institution or person).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_volume_excerpts</span>(<span class='kw'>vol_id</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>list_sponsors</span>(<span class='kw'>party_id</span> <span class='kw'>=</span> <span class='fl'>6</span>, <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>vol_id</th>
+      <th>party_id</th>
       <td><p>Target volume number.</p></td>
     </tr>
     <tr>
@@ -149,15 +149,16 @@
     <p>A tibble (data.frame) with the requested data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_volume_excerpts</span>()</div><div class='output co'>#&gt;              segment permission excerpt asset.id asset.format asset.duration
-#&gt; 1 16852000, 16916503          1      NA    84000         -800       14589934
-#&gt; 2                  0          1      NA     9200            5             NA
-#&gt;        asset.segment                        asset.name asset.permission
-#&gt; 1 15824072, 30414006 DatabraryAdvisoryBoardMeeting2017                1
-#&gt; 2               NULL                              logo                1
-#&gt;   asset.size asset.container asset.classification
-#&gt; 1 4611531493           17886                   NA
-#&gt; 2     104419            9807                    3</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>list_sponsors</span>() <span class='co'># Default is Rick Gilmore (party 6)</span></div><div class='output co'>#&gt;    id                                       sortname prename
+#&gt; 1   5                                         Adolph   Karen
+#&gt; 2  12 Pennsylvania State University, University Park     The
+#&gt; 3 255                                         Dusing  Stacey
+#&gt; 4 308                                          Staff    &lt;NA&gt;
+#&gt;                        affiliation                              url institution
+#&gt; 1              New York University http://www.psych.nyu.edu/adolph/          NA
+#&gt; 2                             &lt;NA&gt;               http://www.psu.edu        TRUE
+#&gt; 3 Virginia Commonwealth University                             &lt;NA&gt;          NA
+#&gt; 4                        Databrary                             &lt;NA&gt;        TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

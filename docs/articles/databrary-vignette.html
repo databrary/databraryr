@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <h1 data-toc-skip>Accessing Databrary.org via the API</h1>
                         <h4 class="author">Rick O. Gilmore</h4>
             
-            <h4 class="date">2020-04-30</h4>
+            <h4 class="date">2020-05-01</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/PLAY-behaviorome/databraryapi/blob/master/vignettes/databrary-vignette.Rmd"><code>vignettes/databrary-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>databrary-vignette.Rmd</code></div>
@@ -154,25 +154,25 @@
 <p>You can also try seeing what’s new on Databrary. The <code><a href="../reference/get_db_stats.html">get_db_stats()</a></code> command gives you information about the newly authorized people, institutions, and newly uploaded datasets. Try this:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"stats"</span>)
 <span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span>
-<span class="co">#&gt; 1 2020-04-30 13:45:59          1129        548          565           1085</span>
+<span class="co">#&gt; 1 2020-05-01 10:56:58          1131        548          566           1085</span>
 <span class="co">#&gt;   datasets_shared n_files    hours       TB</span>
-<span class="co">#&gt; 1             533  120463 53622.11 25.21994</span>
+<span class="co">#&gt; 1             533  120518 53623.75 25.22022</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"people"</span>)
 <span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;      id sortname  prename    affiliation                       url   institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;                             &lt;chr&gt; &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  6714 Abrahams… Dor        University of California Berkeley &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 2   254 Jayaraman Swapnaa    PLAY project, Indiana University… &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 3  6742 Gaither   Sarah Eli… Duke University                   &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 4  6730 Wass      Sam        University of East London         &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 5  6625 Mombaur   Katja      University of Waterloo            &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 6  6710 Wronski   Caroline   University of Applied Sciences P… &lt;NA&gt;  NA</span>
+<span class="co">#&gt;      id sortname   prename    affiliation                      url   institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt; &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  6734 Palaniswa… Suja       Amrita Vishwa Vidyapeetham       &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 2  6688 Vigeant    Michelle … The Pennsylvania State Universi… &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 3  6714 Abrahamson Dor        University of California Berkel… &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 4   254 Jayaraman  Swapnaa    PLAY project, Indiana Universit… &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 5  6742 Gaither    Sarah Eli… Duke University                  &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 6  6730 Wass       Sam        University of East London        &lt;NA&gt;  NA</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"institutions"</span>)
 <span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;      id sortname               prename affiliation url               institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;             &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  6750 Western University     &lt;NA&gt;    &lt;NA&gt;        https://www.uwo.… TRUE       </span>
-<span class="co">#&gt; 2  6740 University of Applied… &lt;NA&gt;    &lt;NA&gt;        https://www.pots… TRUE</span>
+<span class="co">#&gt;      id sortname              prename affiliation url                institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;              &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  6760 Amrita Vishwa Vidyap… &lt;NA&gt;    &lt;NA&gt;        https://www.amrit… TRUE       </span>
+<span class="co">#&gt; 2  6750 Western University    &lt;NA&gt;    &lt;NA&gt;        https://www.uwo.c… TRUE</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"datasets"</span>)
 <span class="co">#&gt; # A tibble: 4 x 8</span>
 <span class="co">#&gt;      id name       body        doi   creation  owners permission publicsharefull</span>

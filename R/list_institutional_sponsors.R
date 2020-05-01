@@ -4,9 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
-#' get_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
+#' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
 #' @export
-get_institutional_sponsors <-
+list_institutional_sponsors <-
   function(party_id = 6, vb = FALSE) {
     if (length(party_id) > 1) {
       stop("'party_id' must have length == 1.")
@@ -17,15 +17,15 @@ get_institutional_sponsors <-
     if (party_id < 0) {
       stop("'party_id' must be > 0.")
     }
-
+    
     if (length(vb) > 1) {
       stop("'vb' must have length == 1.")
     }
     if (!is.logical(vb)) {
       stop("'vb' must be a Boolean.")
     }
-
-    sponsors <- get_sponsors(party_id = party_id, vb = vb)
+    
+    sponsors <- list_sponsors(party_id = party_id, vb = vb)
     if (!is.null(sponsors)) {
       if (vb)
         message("Sponsor data exists.")
