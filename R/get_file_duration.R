@@ -4,7 +4,7 @@
 #' @param types_w_durations Asset types that have valid durations.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
-#' get_file_duration()
+#' get_file_duration() # default is the test video from databrary.org/volume/1
 #' @export
 get_file_duration <- function(asset_id = 1,
                               types_w_durations = c("-600", "-800"),

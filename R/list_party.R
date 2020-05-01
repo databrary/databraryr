@@ -5,9 +5,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list (or data frame) with the requested data.
 #' @examples
-#' get_party() # Default is New York University (party 8)
+#' list_party() # Default is New York University (party 8)
 #' @export
-get_party <- function(party_id = 8,
+list_party <- function(party_id = 8,
                       component = "all",
                       vb = FALSE) {
   if (length(party_id) > 1) {

@@ -270,7 +270,7 @@ test_that("list_volume_links rejects bad input parameters", {
 # list_volume_funding ---------------------------------------------------------
 test_that("list_volume_funding returns data.frame or is NULL", {
   expect_true((is.null(list_volume_funding()) ||
-                 (class(list_volume_funding()) == "data.frame")))
+                 ("data.frame" %in% class(list_volume_funding()))))
 })
 
 test_that("list_volume_funding rejects bad input parameters", {
@@ -324,4 +324,116 @@ test_that("list_volume_excerpts rejects bad input parameters", {
   expect_error(list_volume_excerpts(vb = list(a=1, b=2)))
 })
 
+# list_affiliates ---------------------------------------------------------
+test_that("list_affiliates returns a data.frame or is NULL.", {
+  expect_true((is.null(list_affiliates()) ||
+                 (class(list_affiliates()) == "data.frame")))
+})
 
+test_that("list_affiliates rejects bad input parameters", {
+  expect_error(list_affiliates(party_id = "a"))
+  expect_error(list_affiliates(party_id = -1))
+  expect_error(list_affiliates(party_id = TRUE))
+  expect_error(list_affiliates(party_id = c(1,3)))
+  expect_error(list_affiliates(party_id = list(a=1, b=2)))
+  
+  expect_error(list_affiliates(vb = "a"))
+  expect_error(list_affiliates(vb = -1))
+  expect_error(list_affiliates(vb = c(2,3)))
+  expect_error(list_affiliates(vb = list(a=1, b=2)))
+})
+
+# list_sponsors ---------------------------------------------------------
+test_that("list_sponsors returns a data.frame or is NULL.", {
+  expect_true((is.null(list_sponsors()) ||
+                 (class(list_sponsors()) == "data.frame")))
+})
+
+test_that("list_sponsors rejects bad input parameters", {
+  expect_error(list_sponsors(party_id = "a"))
+  expect_error(list_sponsors(party_id = -1))
+  expect_error(list_sponsors(party_id = TRUE))
+  expect_error(list_sponsors(party_id = c(1,3)))
+  expect_error(list_sponsors(party_id = list(a=1, b=2)))
+  
+  expect_error(list_sponsors(vb = "a"))
+  expect_error(list_sponsors(vb = -1))
+  expect_error(list_sponsors(vb = c(2,3)))
+  expect_error(list_sponsors(vb = list(a=1, b=2)))
+})
+
+# list_volume ---------------------------------------------------------
+test_that("list_volume returns a list or is NULL.", {
+  expect_true((is.null(list_volume()) ||
+                 (class(list_volume()) == "list")))
+})
+
+test_that("list_volume rejects bad input parameters", {
+  expect_error(list_volume(vol_id = "a"))
+  expect_error(list_volume(vol_id = -1))
+  expect_error(list_volume(vol_id = TRUE))
+  expect_error(list_volume(vol_id = c(1,3)))
+  expect_error(list_volume(vol_id = list(a=1, b=2)))
+  
+  expect_error(list_volume(vb = "a"))
+  expect_error(list_volume(vb = -1))
+  expect_error(list_volume(vb = c(2,3)))
+  expect_error(list_volume(vb = list(a=1, b=2)))
+})
+
+# list_party ---------------------------------------------------------
+test_that("list_party returns a list or is NULL.", {
+  expect_true((is.null(list_party()) ||
+                 (class(list_party()) == "list")))
+})
+
+test_that("list_party rejects bad input parameters", {
+  expect_error(list_party(party_id = "a"))
+  expect_error(list_party(party_id = -1))
+  expect_error(list_party(party_id = TRUE))
+  expect_error(list_party(party_id = c(1,3)))
+  expect_error(list_party(party_id = list(a=1, b=2)))
+  
+  expect_error(list_party(vb = "a"))
+  expect_error(list_party(vb = -1))
+  expect_error(list_party(vb = c(2,3)))
+  expect_error(list_party(vb = list(a=1, b=2)))
+})
+
+# list_institutional_sponsors ---------------------------------------------------------
+test_that("list_institutional_sponsors returns a data.frame or is NULL.", {
+  expect_true((is.null(list_institutional_sponsors()) ||
+                 (class(list_institutional_sponsors()) == "data.frame")))
+})
+
+test_that("list_institutional_sponsors rejects bad input parameters", {
+  expect_error(list_institutional_sponsors(party_id = "a"))
+  expect_error(list_institutional_sponsors(party_id = -1))
+  expect_error(list_institutional_sponsors(party_id = TRUE))
+  expect_error(list_institutional_sponsors(party_id = c(1,3)))
+  expect_error(list_institutional_sponsors(party_id = list(a=1, b=2)))
+  
+  expect_error(list_institutional_sponsors(vb = "a"))
+  expect_error(list_institutional_sponsors(vb = -1))
+  expect_error(list_institutional_sponsors(vb = c(2,3)))
+  expect_error(list_institutional_sponsors(vb = list(a=1, b=2)))
+})
+
+# list_individual_sponsors ---------------------------------------------------------
+test_that("list_individual_sponsors returns a data.frame or is NULL.", {
+  expect_true((is.null(list_individual_sponsors()) ||
+                 (class(list_individual_sponsors()) == "data.frame")))
+})
+
+test_that("list_individual_sponsors rejects bad input parameters", {
+  expect_error(list_individual_sponsors(party_id = "a"))
+  expect_error(list_individual_sponsors(party_id = -1))
+  expect_error(list_individual_sponsors(party_id = TRUE))
+  expect_error(list_individual_sponsors(party_id = c(1,3)))
+  expect_error(list_individual_sponsors(party_id = list(a=1, b=2)))
+  
+  expect_error(list_individual_sponsors(vb = "a"))
+  expect_error(list_individual_sponsors(vb = -1))
+  expect_error(list_individual_sponsors(vb = c(2,3)))
+  expect_error(list_individual_sponsors(vb = list(a=1, b=2)))
+})
