@@ -54,7 +54,6 @@ list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
 #' list_specified_assets_in_session()
-#' @export
 list_specified_assets_in_session <- function(session_id = 9807,
                                              media_type = 'MPEG-4 video',
                                              vb = FALSE) {
