@@ -149,7 +149,58 @@
     <p>List of sessions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_sessions</span>()</div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(url, handle = handle): SSL certificate problem: certificate has expired</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>list_sessions</span>()</div><div class='output co'>#&gt;    session_id  top                                                      name
+#&gt; 2        6256   NA                                    Advisory Board Meeting
+#&gt; 3        6257   NA                                    Advisory Board Meeting
+#&gt; 4        6540   NA                                    Advisory Board Meeting
+#&gt; 5        7821   NA                               SRCD Preconference Workshop
+#&gt; 6        8460   NA                                    Advisory Board Meeting
+#&gt; 7        9224   NA                    Regional Workshop at NYU (Slides only)
+#&gt; 8        9578   NA                                CDS Preconference Workshop
+#&gt; 9        9807 TRUE                                       Top-level materials
+#&gt; 10      10068   NA                         Regional Workshop in Philadelphia
+#&gt; 11      10991   NA                           Regional Workshop at Penn State
+#&gt; 12      11362   NA Regional Workshop at University of Maryland, College Park
+#&gt; 13      11660   NA                             ICIS16 Preconference Workshop
+#&gt; 14      11886   NA                                    Advisory Board Meeting
+#&gt; 15      14297   NA              Regional Workshop at University of Minnesota
+#&gt; 16      14550   NA                              Regional Workshop at Harvard
+#&gt; 17      14551   NA                               Regional Workshop in Boston
+#&gt; 18      15663   NA                                    Bethesda PLAY Workshop
+#&gt; 19      16104   NA                   Regional Workshop at University of Iowa
+#&gt; 20      16891   NA                                    Pre-Conference at SRCD
+#&gt; 21      16894   NA Pre-Conference at SRCD "The Science of Play and Learning"
+#&gt; 22      17187   NA                                     AERA 2017 San Antonio
+#&gt; 23      17417   NA      Regional Workshop at Emory University in Atlanta, GA
+#&gt; 24      17886   NA                               Advisory Board Meeting 2017
+#&gt; 25      21077   NA                                         CDS 2017 Portland
+#&gt; 26      25952   NA                               Advisory Board Meeting 2018
+#&gt;          date release vol_id
+#&gt; 2  2013-10-28       3      1
+#&gt; 3  2014-04-07       3      1
+#&gt; 4  2014-10-17       3      1
+#&gt; 5  2015-03-18       3      1
+#&gt; 6  2015-05-11       3      1
+#&gt; 7  2015-09-18       3      1
+#&gt; 8  2015-10-08       3      1
+#&gt; 9        &lt;NA&gt;      NA      1
+#&gt; 10 2015-11-20       3      1
+#&gt; 11 2016-03-25       3      1
+#&gt; 12 2016-04-15       3      1
+#&gt; 13 2016-05-25       3      1
+#&gt; 14 2016-06-13       3      1
+#&gt; 15 2016-10-14       3      1
+#&gt; 16 2016-10-21       3      1
+#&gt; 17 2016-10-21       3      1
+#&gt; 18 2016-12-16       3      1
+#&gt; 19 2017-02-03       3      1
+#&gt; 20 2017-04-05       3      1
+#&gt; 21 2017-04-05       3      1
+#&gt; 22 2017-04-30       3      1
+#&gt; 23 2017-05-15       3      1
+#&gt; 24 2017-06-09       3      1
+#&gt; 25 2017-10-13       3      1
+#&gt; 26 2018-03-26       3      1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

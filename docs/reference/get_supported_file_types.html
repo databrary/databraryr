@@ -145,7 +145,105 @@
     <p>A data frame with the file types.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_supported_file_types</span>()</div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(url, handle = handle): SSL certificate problem: certificate has expired</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>get_supported_file_types</span>()</div><div class='output co'>#&gt;    asset_type_id
+#&gt; 1           -800
+#&gt; 2           -700
+#&gt; 3           -600
+#&gt; 4              1
+#&gt; 5              2
+#&gt; 6              4
+#&gt; 7              5
+#&gt; 8              6
+#&gt; 9              7
+#&gt; 10             8
+#&gt; 11             9
+#&gt; 12            10
+#&gt; 13            11
+#&gt; 14            12
+#&gt; 15            13
+#&gt; 16            14
+#&gt; 17            15
+#&gt; 18            16
+#&gt; 19            18
+#&gt; 20            19
+#&gt; 21            20
+#&gt; 22            21
+#&gt; 23            22
+#&gt; 24            23
+#&gt; 25            24
+#&gt; 26            25
+#&gt; 27            26
+#&gt; 28            27
+#&gt; 29            28
+#&gt; 30            29
+#&gt; 31            30
+#&gt; 32            31
+#&gt;                                                                     mimetype
+#&gt; 1                                                                  video/mp4
+#&gt; 2                                                                 image/jpeg
+#&gt; 3                                                                 audio/mpeg
+#&gt; 4                                                                 text/plain
+#&gt; 5                                                                   text/csv
+#&gt; 6                                                                   text/rtf
+#&gt; 7                                                                  image/png
+#&gt; 8                                                            application/pdf
+#&gt; 9                                                         application/msword
+#&gt; 10                                   application/vnd.oasis.opendocument.text
+#&gt; 11   application/vnd.openxmlformats-officedocument.wordprocessingml.document
+#&gt; 12                                                  application/vnd.ms-excel
+#&gt; 13                            application/vnd.oasis.opendocument.spreadsheet
+#&gt; 14         application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+#&gt; 15                                             application/vnd.ms-powerpoint
+#&gt; 16                           application/vnd.oasis.opendocument.presentation
+#&gt; 17 application/vnd.openxmlformats-officedocument.presentationml.presentation
+#&gt; 18                                                   application/vnd.datavyu
+#&gt; 19                                                                video/webm
+#&gt; 20                                                                video/mpeg
+#&gt; 21                                                           video/quicktime
+#&gt; 22                                                                video/mp2t
+#&gt; 23                                                                 video/avi
+#&gt; 24                                                    application/x-spss-sav
+#&gt; 25                                                                 audio/wav
+#&gt; 26                                                            video/x-ms-wmv
+#&gt; 27                                                               text/x-chat
+#&gt; 28                                                                 audio/aac
+#&gt; 29                                                            audio/x-ms-wma
+#&gt; 30                            application/vnd.lena.interpreted-time-segments
+#&gt; 31                                                                video/x-dv
+#&gt; 32                                                                 text/elan
+#&gt;    extension                                          asset_type transcodable
+#&gt; 1        mp4                                        MPEG-4 video         -800
+#&gt; 2        jpg                                          JPEG image           NA
+#&gt; 3        mp3                    MPEG-1 or MPEG-2 audio layer III         -600
+#&gt; 4        txt                                          Plain text           NA
+#&gt; 5        csv                              Comma-separated values           NA
+#&gt; 6        rtf                                    Rich text format           NA
+#&gt; 7        png                           Portable network graphics           NA
+#&gt; 8        pdf                                   Portable document           NA
+#&gt; 9        doc                             Microsoft Word document           NA
+#&gt; 10       odf                                   OpenDocument text           NA
+#&gt; 11      docx           Microsoft Word (Office Open XML) document           NA
+#&gt; 12       xls                         Microsoft Excel spreadsheet           NA
+#&gt; 13       ods                            OpenDocument spreadsheet           NA
+#&gt; 14      xlsx          Microsoft Excel (Office Open XML) workbook           NA
+#&gt; 15       ppt                   Microsoft PowerPoint presentation           NA
+#&gt; 16       odp                           OpenDocument presentation           NA
+#&gt; 17      pptx Microsoft PowerPoint (Office Open XML) presentation           NA
+#&gt; 18       opf                                             Datavyu           NA
+#&gt; 19      webm                                          WebM video         -800
+#&gt; 20       mpg           MPEG program stream (MPEG-1/MPEG-2 video)         -800
+#&gt; 21       mov                                     QuickTime video         -800
+#&gt; 22       mts                               MPEG transport stream         -800
+#&gt; 23       avi                              Audio Video Interleave         -800
+#&gt; 24       sav                                    SPSS System File           NA
+#&gt; 25       wav                                      Waveform audio         -600
+#&gt; 26       wmv                                 Windows Media video         -800
+#&gt; 27       cha         Codes for the Human Analysis of Transcripts           NA
+#&gt; 28       aac                               Advanced Audio Coding         -600
+#&gt; 29       wma                                 Windows Media audio         -600
+#&gt; 30       its                      LENA Interpreted Time Segments           NA
+#&gt; 31        dv                      Digital Interface Format video         -800
+#&gt; 32       eaf                         ELAN - Linguistic Annotator           NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
