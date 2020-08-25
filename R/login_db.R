@@ -1,43 +1,74 @@
 #' Logs in to Databrary.org.
 #'
 #' @param email Databrary account ID (email).
-#' @param login.url URL for the login API.
-#' @param return.reponse A Boolean value. If TRUE returns results of GET
-#' @param save.session A Boolean value. If TRUE saves the session cookie.
-#' @param stored.credentials A Boolean value. If TRUE loads login credentials from credentials file.
-#' @param credentials.file Path to stored credentials file if it exists.
+#' @param login_url URL for the login API.
+#' @param return_reponse A Boolean value. If TRUE returns results of GET
+#' @param save_session A Boolean value. If TRUE saves the session cookie.
+#' @param stored_credentials A Boolean value. If TRUE loads login credentials from credentials file.
+#' @param system_credentials A Boolean value. If TRUE loads login credentials using the system level file accessed by the `keyring` package.
+#' @param credentials_file Path to stored credentials file if it exists.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return Status code if login is successful
 #' @examples
 #' login_db()
 #' @export
 login_db <- function(email = NULL,
-                     login.url = "/api/user/login",
-                     return.response = FALSE, save.session = TRUE,
-                     stored.credentials = FALSE,
-                     system.credentials = TRUE,
-                     credentials.file = "~/api-keys/json/databrary-keys.json",
-                     vb = FALSE ) {
+                     login_url = "/api/user/login",
+                     return_response = FALSE, save_session = TRUE,
+                     stored_credentials = FALSE,
+                     system_credentials = TRUE,
+                     credentials_file = "~/api-keys/json/databrary-keys.json",
+                     vb = FALSE) {
 
   # Check parameters
   if (length(email) > 1) {
-    stop("email must have length == 1.")
+    stop("`email` must have length == 1.")
   }
   if (is.numeric(email) || is.logical(email)) {
-    stop("email must be a string.")
+    stop("`email` must be a string.")
+  }
+  if (!is.character(login_url)) {
+    stop("`login_url` must be a string.")
+  }
+  if (length(return_response) > 1) {
+    stop("`return_response` must have length == 1.")
+  }
+  if (!is.logical(return_response)) {
+    stop("`return_response` must have logical value.")
+  }  
+  if (length(save_session) > 1) {
+    stop("`save_session` must have length == 1.")
+  }
+  if (!is.logical(save_session)) {
+    stop("`save_session` must have logical value.")
+  }
+  if (length(stored_credentials) > 1) {
+    stop("`stored_credentials` must have length == 1.")
+  }
+  if (!is.logical(stored_credentials)) {
+    stop("`stored_credentials` must have logical value.")
+  } 
+  if (length(system_credentials) > 1) {
+    stop("`system_credentials` must have length == 1.")
+  }
+  if (!is.logical(system_credentials)) {
+    stop("`system_credentials` must have logical value.")
+  } 
+  if (!is.character(credentials_file)) {
+    stop("`credentials_file` must be a string.")
   }
   if (length(vb) > 1) {
-    stop("vb must have length == 1.")
+    stop("`vb` must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("vb must have logical value.")
+    stop("`vb` must have logical value.")
   }
 
   # Access (possibly stored) credentials
-  if (stored.credentials) {
-    email <- jsonlite::fromJSON(credentials.file)$email
-    password <- jsonlite::fromJSON(credentials.file)$pw
-  } else if (system.credentials) {
+  if (stored_credentials) {
+    email <- jsonlite::fromJSON(credentials_file)$email
+    password <- jsonlite::fromJSON(credentials_file)$pw
+  } else if (system_credentials) {
     if (!(exists('email')) || (is.null(email))) {
       message("Please enter your Databrary user ID (email).")
       email <- readline(prompt="Email: ")
@@ -63,10 +94,11 @@ login_db <- function(email = NULL,
   # Assemble URL, POST(), and handle response
   r <- httr::POST(paste0("https://nyu.databrary.org/api/user/login"),
                   body = list(email=email, password=password))
+  # Delete credentials from R environment
   rm(email, password)
 
   if (httr::status_code(r) == 200){
-    if (save.session) {
+    if (save_session) {
       if (vb) message("Saving session cookie.")
       databrary.SESSION <- httr::cookies(r)$value
       save(databrary.SESSION, file = ".databrary.RData")

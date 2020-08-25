@@ -16,7 +16,7 @@ Full package documentation built using `pkgdown` can be found [here](https://PLA
 ## Use
 
 The package is under active development, as is the documentation.
-Running `devtools::install_github("PLAY-behaviorome/databraryapi")` regularly to get updates is strongly recommended.
+Running `devtools::install_github("PLAY-behaviorome/databraryapi", force=TRUE)` regularly to get updates is strongly recommended.
 
 ### Databrary credentials
 
