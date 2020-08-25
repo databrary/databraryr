@@ -61,8 +61,7 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
   # List Datavyu files in volume, then download first one-----------------------------------
   # TODO(ROG): Add support for multiple files
   # dv_df <- list_assets_by_type(vol_id = vol_id, type = "datavyu")
-  dv_df <- list_specified_assets_in_session(vol_id = vol_id,
-                                            session_id = session_id,
+  dv_df <- list_specified_assets_in_session(session_id = session_id,
                                             media_type = 'Datavyu')
   if (is.null(dv_df)) {
     message(paste0("No files of type ", type, "in volume ", vol_id))

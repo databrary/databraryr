@@ -150,21 +150,23 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>get_db_stats</span>()</div><div class='output co'>#&gt;                  date investigators affiliates institutions datasets_total
-#&gt; 1 2020-07-06 15:17:43          1159        535          575           1107
-#&gt;   datasets_shared n_files    hours       TB
-#&gt; 1             552  122200 55589.93 25.67859</div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt;                  date investigators affiliates institutions datasets_total
-#&gt; 1 2020-07-06 15:17:43          1159        535          575           1107
-#&gt;   datasets_shared n_files    hours       TB
-#&gt; 1             552  122200 55589.93 25.67859</div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"people"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 6</span><span>
-#&gt;      id sortname    prename affiliation               url   institution
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>1</span><span>526 Ossmy       Ori     New-York University       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'>2</span><span>  </span><span style='text-decoration: underline;'>4</span><span>291 Nez         Reda    NYU                       </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'>3</span><span>  </span><span style='text-decoration: underline;'>6</span><span>891 Bardid      Farid   University of Strathclyde </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         
-#&gt; </span><span style='color: #555555;'>4</span><span>  </span><span style='text-decoration: underline;'>5</span><span>995 Russakovsky Olga    Princeton University      </span><span style='color: #BB0000;'>NA</span><span>    </span><span style='color: #BB0000;'>NA</span><span>         </div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"places"</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 1 x 6</span><span>
-#&gt;      id sortname             prename affiliation url                 institution
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>      
-#&gt; </span><span style='color: #555555;'>1</span><span>  </span><span style='text-decoration: underline;'>6</span><span>969 University of Strat… </span><span style='color: #BB0000;'>NA</span><span>      </span><span style='color: #BB0000;'>NA</span><span>          https://www.strath… TRUE       </div></span></pre>
+#&gt; 1 2020-08-25 09:43:03          1183        544          586           1133
+#&gt;   datasets_shared n_files   hours       TB
+#&gt; 1             569  124683 57444.1 25.96968</div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"stats"</span>)</div><div class='output co'>#&gt;                  date investigators affiliates institutions datasets_total
+#&gt; 1 2020-08-25 09:43:03          1183        544          586           1133
+#&gt;   datasets_shared n_files   hours       TB
+#&gt; 1             569  124683 57444.1 25.96968</div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"people"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
+#&gt;      id sortname  prename affiliation            url   institution
+#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt; &lt;lgl&gt;      
+#&gt; 1  6966 Faubert   Jocelyn University of Montreal &lt;NA&gt;  NA         
+#&gt; 2  7039 Tenenbaum Joshua  MIT                    &lt;NA&gt;  NA         
+#&gt; 3  1345 Friedman  Ori     University of Waterloo &lt;NA&gt;  NA         
+#&gt; 4  6857 Gross     Dana    St. Olaf College       &lt;NA&gt;  NA         
+#&gt; 5  6531 Oates     John    The Open University UK &lt;NA&gt;  NA         </div><div class='input'><span class='fu'>get_db_stats</span>(<span class='st'>"places"</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 6
+#&gt;      id sortname           prename affiliation url                   institution
+#&gt;   &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;                 &lt;lgl&gt;      
+#&gt; 1  7158 University of Mon… &lt;NA&gt;    &lt;NA&gt;        https://www.umontrea… TRUE       
+#&gt; 2  7144 St. Olaf College   &lt;NA&gt;    &lt;NA&gt;        https://wp.stolaf.ed… TRUE       </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
