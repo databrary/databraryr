@@ -19,9 +19,16 @@ search_for_funder <- function(search_string="national+science+foundation",
     stop("vb must be logical.")
   }
   if (vb) message('search_for_keywords()...')
-
+  
+  # Test if logged in
+  if (!file.exists('.databrary.RData')){
+    if (vb) {
+      message("Must log-in to Databrary.")
+      databraryapi::login_db()
+    }
+  }
   # Normalize keyword_string...
-
+  
   # Make URL, GET(), and handle response ---------------------------
   r <- GET_db_contents(URL_components = paste0('/api/funder?query=', search_string),
                        vb = vb)

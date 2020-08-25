@@ -149,16 +149,21 @@
     <p>A tibble (data.frame) with the requested data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_sponsors</span>() <span class='co'># Default is Rick Gilmore (party 6)</span></div><div class='output co'>#&gt;    id                                       sortname prename
-#&gt; 1   5                                         Adolph   Karen
-#&gt; 2  12 Pennsylvania State University, University Park     The
-#&gt; 3 255                                         Dusing  Stacey
-#&gt; 4 308                                          Staff    &lt;NA&gt;
-#&gt;                        affiliation                              url institution
-#&gt; 1              New York University http://www.psych.nyu.edu/adolph/          NA
-#&gt; 2                             &lt;NA&gt;               http://www.psu.edu        TRUE
-#&gt; 3 Virginia Commonwealth University                             &lt;NA&gt;          NA
-#&gt; 4                        Databrary                             &lt;NA&gt;        TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>list_sponsors</span>() <span class='co'># Default is Rick Gilmore (party 6)</span></div><div class='output co'>#&gt;    id                                       sortname
+#&gt; 1 308                                          Staff
+#&gt; 2  12 Pennsylvania State University, University Park
+#&gt; 3   5                                         Adolph
+#&gt; 4 255                                         Dusing
+#&gt;                        affiliation institution prename
+#&gt; 1                        Databrary        TRUE    &lt;NA&gt;
+#&gt; 2                             &lt;NA&gt;        TRUE     The
+#&gt; 3              New York University          NA   Karen
+#&gt; 4 Virginia Commonwealth University          NA  Stacey
+#&gt;                                url
+#&gt; 1                             &lt;NA&gt;
+#&gt; 2               http://www.psu.edu
+#&gt; 3 http://www.psych.nyu.edu/adolph/
+#&gt; 4                             &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

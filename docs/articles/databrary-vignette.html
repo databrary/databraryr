@@ -76,13 +76,13 @@
 
       
 
-      </header><script src="databrary-vignette_files/header-attrs-2.1/header-attrs.js"></script><div class="row">
+      </header><script src="databrary-vignette_files/header-attrs-2.3/header-attrs.js"></script><script src="databrary-vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Accessing Databrary.org via the API</h1>
                         <h4 class="author">Rick O. Gilmore</h4>
             
-            <h4 class="date">2020-05-01</h4>
+            <h4 class="date">2020-08-25</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/PLAY-behaviorome/databraryapi/blob/master/vignettes/databrary-vignette.Rmd"><code>vignettes/databrary-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>databrary-vignette.Rmd</code></div>
@@ -154,33 +154,33 @@
 <p>You can also try seeing what’s new on Databrary. The <code><a href="../reference/get_db_stats.html">get_db_stats()</a></code> command gives you information about the newly authorized people, institutions, and newly uploaded datasets. Try this:</p>
 <div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"stats"</span>)
 <span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span>
-<span class="co">#&gt; 1 2020-05-01 10:56:58          1131        548          566           1085</span>
-<span class="co">#&gt;   datasets_shared n_files    hours       TB</span>
-<span class="co">#&gt; 1             533  120518 53623.75 25.22022</span>
+<span class="co">#&gt; 1 2020-08-25 09:43:36          1183        544          586           1133</span>
+<span class="co">#&gt;   datasets_shared n_files   hours       TB</span>
+<span class="co">#&gt; 1             569  124683 57444.1 25.96968</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"people"</span>)
-<span class="co">#&gt; # A tibble: 6 x 6</span>
-<span class="co">#&gt;      id sortname   prename    affiliation                      url   institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt; &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  6734 Palaniswa… Suja       Amrita Vishwa Vidyapeetham       &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 2  6688 Vigeant    Michelle … The Pennsylvania State Universi… &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 3  6714 Abrahamson Dor        University of California Berkel… &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 4   254 Jayaraman  Swapnaa    PLAY project, Indiana Universit… &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 5  6742 Gaither    Sarah Eli… Duke University                  &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 6  6730 Wass       Sam        University of East London        &lt;NA&gt;  NA</span>
+<span class="co">#&gt; # A tibble: 5 x 6</span>
+<span class="co">#&gt;      id sortname  prename affiliation            url   institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt; &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  6966 Faubert   Jocelyn University of Montreal &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 2  7039 Tenenbaum Joshua  MIT                    &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 3  1345 Friedman  Ori     University of Waterloo &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 4  6857 Gross     Dana    St. Olaf College       &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 5  6531 Oates     John    The Open University UK &lt;NA&gt;  NA</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"institutions"</span>)
 <span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;      id sortname              prename affiliation url                institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;              &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  6760 Amrita Vishwa Vidyap… &lt;NA&gt;    &lt;NA&gt;        https://www.amrit… TRUE       </span>
-<span class="co">#&gt; 2  6750 Western University    &lt;NA&gt;    &lt;NA&gt;        https://www.uwo.c… TRUE</span>
+<span class="co">#&gt;      id sortname           prename affiliation url                   institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;                 &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  7158 University of Mon… &lt;NA&gt;    &lt;NA&gt;        https://www.umontrea… TRUE       </span>
+<span class="co">#&gt; 2  7144 St. Olaf College   &lt;NA&gt;    &lt;NA&gt;        https://wp.stolaf.ed… TRUE</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"datasets"</span>)
-<span class="co">#&gt; # A tibble: 4 x 8</span>
-<span class="co">#&gt;      id name       body        doi   creation  owners permission publicsharefull</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;     &lt;list&gt;      &lt;int&gt; &lt;lgl&gt;          </span>
-<span class="co">#&gt; 1  1128 Parents F… The data i… 10.1… 2020-04-… &lt;df[,…          1 FALSE          </span>
-<span class="co">#&gt; 2  1127 SLL_Onlin… Online Tes… 10.1… 2020-04-… &lt;df[,…          1 TRUE           </span>
-<span class="co">#&gt; 3  1126 SOVVIHP (… Sarah Pana… 10.1… 2020-04-… &lt;df[,…          1 FALSE          </span>
-<span class="co">#&gt; 4  1125 VWM        Final infa… 10.1… 2020-04-… &lt;df[,…          1 FALSE</span></pre></body></html></div>
+<span class="co">#&gt; # A tibble: 5 x 8</span>
+<span class="co">#&gt;      id name       body       creation   owners permission publicsharefull doi  </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;list&gt;      &lt;int&gt; &lt;lgl&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1  1176 Perceptio… "4-7 year… 2020-08-2… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
+<span class="co">#&gt; 2  1175 Shaping t… "XXXXX"    2020-08-2… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
+<span class="co">#&gt; 3  1173 Predictor… "This stu… 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span>
+<span class="co">#&gt; 4  1172 Eyelink t… "eyelink … 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span>
+<span class="co">#&gt; 5  1171 Automated… "The vide… 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span></pre></body></html></div>
 <p>Depending on when you run this command, there may or may not be new items.</p>
 </div>
 <div id="once-you-are-authorized" class="section level2">
