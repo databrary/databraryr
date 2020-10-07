@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
       <h1 data-toc-skip>Accessing Databrary.org via the API</h1>
                         <h4 class="author">Rick O. Gilmore</h4>
             
-            <h4 class="date">2020-08-25</h4>
+            <h4 class="date">2020-10-07</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/PLAY-behaviorome/databraryapi/blob/master/vignettes/databrary-vignette.Rmd"><code>vignettes/databrary-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>databrary-vignette.Rmd</code></div>
@@ -107,30 +107,37 @@
 <a href="#first-steps-while-you-await-authorization" class="anchor"></a>First steps (while you await authorization)</h2>
 <p>But even before formal authorization is complete, a user can access the public materials on Databrary. For this vignette, we’ll assume you fall into this category.</p>
 <p>First, we need to download and install the <code>devtools</code> package and then the <code>databraryapi</code> package from GitHub.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">devtools</span>)) {
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)) {
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 }
 <span class="co">#&gt; Loading required package: devtools</span>
 <span class="co">#&gt; Loading required package: usethis</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">devtools</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://devtools.r-lib.org">devtools</a></span>)
 
-<span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">databraryapi</span>)) {
-  <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"PLAY-behaviorome/databraryapi"</span>)
+<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="kw"><a href="http://github.com/PLAY-behaviorome/databraryapi">databraryapi</a></span>)) {
+  <span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"PLAY-behaviorome/databraryapi"</span>) 
 }
 <span class="co">#&gt; Loading required package: databraryapi</span>
-<span class="co">#&gt; Welcome to the databraryapi package</span></pre></body></html></div>
+<span class="co">#&gt; Welcome to the databraryapi package</span>
+</pre></div>
 <p>Next, let’s load the package:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">databraryapi</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://github.com/PLAY-behaviorome/databraryapi">databraryapi</a></span>)
+</pre></div>
 <p>Then, try this command to pull data about Databrary’s founders:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="../reference/list_people.html">list_people</a></span>()
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/list_people.html">list_people</a></span>()
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;      id sortname prename affiliation             url                orcid       </span>
 <span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;                   &lt;chr&gt;              &lt;chr&gt;       </span>
 <span class="co">#&gt; 1     5 Adolph   Karen   New York University     http://www.psych.… &lt;NA&gt;        </span>
 <span class="co">#&gt; 2     6 Gilmore  Rick O. The Pennsylvania State… http://gilmore-la… 0000-0002-7…</span>
-<span class="co">#&gt; 3     7 Millman  David   New York University     &lt;NA&gt;               &lt;NA&gt;</span></pre></body></html></div>
+<span class="co">#&gt; 3     7 Millman  David   New York University     &lt;NA&gt;               &lt;NA&gt;</span>
+</pre></div>
 <p>Databrary assigns a unique number for each person and institution on the system called a ‘party id’. When we run <code><a href="../reference/list_people.html">list_people(1:50)</a></code> we are asking the system to provide us information about all of the <em>people</em> whose party id’s are between 1 and 50. Let’s try it:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="../reference/list_people.html">list_people</a></span>(<span class="kw">people_list</span> <span class="kw">=</span> <span class="fl">1</span>:<span class="fl">50</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="fu"><a href="../reference/list_people.html">list_people</a></span>(people_list = <span class="fl">1</span><span class="op">:</span><span class="fl">50</span>)
 <span class="co">#&gt; # A tibble: 16 x 6</span>
 <span class="co">#&gt;       id sortname    prename    orcid      affiliation           url            </span>
 <span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;                 &lt;chr&gt;          </span>
@@ -149,38 +156,41 @@
 <span class="co">#&gt; 13    19 Foo         Vicky      &lt;NA&gt;       &lt;NA&gt;                  &lt;NA&gt;           </span>
 <span class="co">#&gt; 14    20 Gordon      Peter      &lt;NA&gt;       Teachers College, Co… &lt;NA&gt;           </span>
 <span class="co">#&gt; 15    24 Chan        Gladys     &lt;NA&gt;       NYU                   &lt;NA&gt;           </span>
-<span class="co">#&gt; 16    32 Karasik     Lana       &lt;NA&gt;       CUNY                  &lt;NA&gt;</span></pre></body></html></div>
+<span class="co">#&gt; 16    32 Karasik     Lana       &lt;NA&gt;       CUNY                  &lt;NA&gt;</span>
+</pre></div>
 <p>It’s a bit slow, but you should see information about people beginning with Dylan Simon and ending with Lana Karasik.</p>
 <p>You can also try seeing what’s new on Databrary. The <code><a href="../reference/get_db_stats.html">get_db_stats()</a></code> command gives you information about the newly authorized people, institutions, and newly uploaded datasets. Try this:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"stats"</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"stats"</span>)
 <span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span>
-<span class="co">#&gt; 1 2020-08-25 09:43:36          1183        544          586           1133</span>
-<span class="co">#&gt;   datasets_shared n_files   hours       TB</span>
-<span class="co">#&gt; 1             569  124683 57444.1 25.96968</span>
+<span class="co">#&gt; 1 2020-10-07 08:27:01          1204        601          598           1145</span>
+<span class="co">#&gt;   datasets_shared n_files    hours       TB</span>
+<span class="co">#&gt; 1             581  129106 61298.86 26.86257</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"people"</span>)
-<span class="co">#&gt; # A tibble: 5 x 6</span>
-<span class="co">#&gt;      id sortname  prename affiliation            url   institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt; &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  6966 Faubert   Jocelyn University of Montreal &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 2  7039 Tenenbaum Joshua  MIT                    &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 3  1345 Friedman  Ori     University of Waterloo &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 4  6857 Gross     Dana    St. Olaf College       &lt;NA&gt;  NA         </span>
-<span class="co">#&gt; 5  6531 Oates     John    The Open University UK &lt;NA&gt;  NA</span>
+<span class="co">#&gt; # A tibble: 4 x 6</span>
+<span class="co">#&gt;      id sortname   prename      affiliation                  url   institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;                        &lt;chr&gt; &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  7217 Sen        Hilal        MEF UNIVERSITY               &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 2  7220 Willits    Jon          University of Illinois       &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 3  7200 Kandemirci Birsu        Kingston University London   &lt;NA&gt;  NA         </span>
+<span class="co">#&gt; 4  7280 Hayes      Amy Roberson University of Texas at Tyler &lt;NA&gt;  NA</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"institutions"</span>)
-<span class="co">#&gt; # A tibble: 2 x 6</span>
-<span class="co">#&gt;      id sortname           prename affiliation url                   institution</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;                 &lt;lgl&gt;      </span>
-<span class="co">#&gt; 1  7158 University of Mon… &lt;NA&gt;    &lt;NA&gt;        https://www.umontrea… TRUE       </span>
-<span class="co">#&gt; 2  7144 St. Olaf College   &lt;NA&gt;    &lt;NA&gt;        https://wp.stolaf.ed… TRUE</span>
+<span class="co">#&gt; # A tibble: 3 x 6</span>
+<span class="co">#&gt;      id sortname              prename affiliation url                institution</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                 &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;              &lt;lgl&gt;      </span>
+<span class="co">#&gt; 1  7428 MEF University        &lt;NA&gt;    &lt;NA&gt;        https://www.mef.e… TRUE       </span>
+<span class="co">#&gt; 2  7421 Kingston University … &lt;NA&gt;    &lt;NA&gt;        http://www.kingst… TRUE       </span>
+<span class="co">#&gt; 3  7390 University of Texas … &lt;NA&gt;    &lt;NA&gt;        https://www.uttyl… TRUE</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span>(<span class="st">"datasets"</span>)
 <span class="co">#&gt; # A tibble: 5 x 8</span>
-<span class="co">#&gt;      id name       body       creation   owners permission publicsharefull doi  </span>
-<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;list&gt;      &lt;int&gt; &lt;lgl&gt;           &lt;chr&gt;</span>
-<span class="co">#&gt; 1  1176 Perceptio… "4-7 year… 2020-08-2… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
-<span class="co">#&gt; 2  1175 Shaping t… "XXXXX"    2020-08-2… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
-<span class="co">#&gt; 3  1173 Predictor… "This stu… 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span>
-<span class="co">#&gt; 4  1172 Eyelink t… "eyelink … 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span>
-<span class="co">#&gt; 5  1171 Automated… "The vide… 2020-08-2… &lt;df[,…          1 FALSE           10.1…</span></pre></body></html></div>
+<span class="co">#&gt;      id name      body        creation   owners permission publicsharefull doi  </span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;      &lt;list&gt;      &lt;int&gt; &lt;lgl&gt;           &lt;chr&gt;</span>
+<span class="co">#&gt; 1  1189 Study 26… "videos of… 2020-10-0… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
+<span class="co">#&gt; 2  1188 Dance, E… "Audio fil… 2020-10-0… &lt;df[,…          1 FALSE           &lt;NA&gt; </span>
+<span class="co">#&gt; 3  1182 Debunkin… "This hand… 2020-09-2… &lt;df[,…          1 FALSE           10.1…</span>
+<span class="co">#&gt; 4   327 iTRAC Mo…  &lt;NA&gt;       2017-03-0… &lt;df[,…          1 FALSE           10.1…</span>
+<span class="co">#&gt; 5  1187 Data fro… "looking t… 2020-09-2… &lt;df[,…          1 TRUE            10.1…</span>
+</pre></div>
 <p>Depending on when you run this command, there may or may not be new items.</p>
 </div>
 <div id="once-you-are-authorized" class="section level2">
@@ -188,8 +198,10 @@
 <a href="#once-you-are-authorized" class="anchor"></a>Once you are authorized</h2>
 <p>Congratulations! Your institution has approved your access to Databrary’s identifiable data. Now, it’s time to set-up <code>databraryapi</code> so you can access these materials.</p>
 <p>By default, <code>databraryapi</code> stores your Databrary user account (email) and password in a secure, encrypted file that your computer’s operating system uses for storing other passwords. The <code>keyring</code> package provides this functionality. There are alternative ways of storing user credentials, but this is the recommended one.</p>
-<p>Once you are authorized, you will gain access to a much wider range of materials on Databrary. When that happens, you’ll load the package with <code><a href="https://rdrr.io/pkg/databraryapi/man">library(databraryapi)</a></code> and then</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/login_db.html">login_db</a></span>(<span class="kw">email</span> <span class="kw">=</span> <span class="st">"youremail@yourinstitution.edu"</span>)</pre></body></html></div>
+<p>Once you are authorized, you will gain access to a much wider range of materials on Databrary. When that happens, you’ll load the package with <code><a href="http://github.com/PLAY-behaviorome/databraryapi">library(databraryapi)</a></code> and then</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="../reference/login_db.html">login_db</a></span>(email = <span class="st">"youremail@yourinstitution.edu"</span>)
+</pre></div>
 <p>If everything works out, you should see a <code>Login successful</code> message at the R console. Congratulations, you are ready to access Databrary’s restricted shared information along with any private, unshared information you have access to.</p>
 </div>
 <div id="interacting-with-stored-data-files" class="section level2">
@@ -197,7 +209,8 @@
 <a href="#interacting-with-stored-data-files" class="anchor"></a>Interacting with stored data files</h2>
 <p>The purpose of a data repository is to enable researchers to store and share data. Databrary aims to go a step further by allowing researchers to interact with – to visualize and analyze – the data they or others have stored on the system. The <code>databraryapi</code> package includes several commands to make this easy to do.</p>
 <p>Let’s begin by listing all of the sessions (dates and times when data was collected) in volume 1. Most of the <code>databraryapi</code> commands have default values so you can explore how the functions work. In this case, the <code><a href="../reference/list_sessions.html">list_sessions()</a></code> command has a default value of <code>vol_id = 1</code>.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>()
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>()
 <span class="co">#&gt;    session_id  top                                                      name</span>
 <span class="co">#&gt; 2        6256   NA                                    Advisory Board Meeting</span>
 <span class="co">#&gt; 3        6257   NA                                    Advisory Board Meeting</span>
@@ -249,11 +262,13 @@
 <span class="co">#&gt; 23 2017-05-15       3      1</span>
 <span class="co">#&gt; 24 2017-06-09       3      1</span>
 <span class="co">#&gt; 25 2017-10-13       3      1</span>
-<span class="co">#&gt; 26 2018-03-26       3      1</span></pre></body></html></div>
+<span class="co">#&gt; 26 2018-03-26       3      1</span>
+</pre></div>
 <p>So, this volume contains a lot of sessions, 25 in fact.</p>
 <p>Let’s peak inside one of them, the <code>list_sessions()[22, 'name']</code> also referenced by session ID 17417. These session IDs are unique identifiers we’ll need for accessing the files contained inside. So, let’s see what’s inside session 17417.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">this_session</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>()[<span class="fl">22</span>,<span class="st">'session_id'</span>]
-<span class="fu"><a href="../reference/list_assets_in_session.html">list_assets_in_session</a></span>(<span class="kw">session_id</span> <span class="kw">=</span> <span class="no">this_session</span>)
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="kw">this_session</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>()[<span class="fl">22</span>,<span class="st">'session_id'</span>]
+<span class="fu"><a href="../reference/list_assets_in_session.html">list_assets_in_session</a></span>(session_id = <span class="kw">this_session</span>)
 <span class="co">#&gt;   asset_id asset_type_id duration          segment   name permission      size</span>
 <span class="co">#&gt; 1    77809          -800  2853384       0, 2853384  00012          1 977096783</span>
 <span class="co">#&gt; 2    77815          -800  2855220 2854383, 5709603  00013          1 943655212</span>
@@ -267,10 +282,12 @@
 <span class="co">#&gt; 3      17417 video/mp4       mp4 MPEG-4 video         -800</span>
 <span class="co">#&gt; 4      17417 video/mp4       mp4 MPEG-4 video         -800</span>
 <span class="co">#&gt; 5      17417 video/mp4       mp4 MPEG-4 video         -800</span>
-<span class="co">#&gt; 6      17417 video/mp4       mp4 MPEG-4 video         -800</span></pre></body></html></div>
+<span class="co">#&gt; 6      17417 video/mp4       mp4 MPEG-4 video         -800</span>
+</pre></div>
 <p>Notice that I took row 22 and the value of the <code>session_id</code> column to specify the <code>session_id</code> value for the <code><a href="../reference/list_assets_in_session.html">list_assets_in_session()</a></code> function. I did the same for the <code>vol_id</code>. I took these values from the output of <code><a href="../reference/list_sessions.html">list_sessions()</a></code>. The <code>asset_id</code> column in this table is the <em>asset</em> or file level ID.</p>
 <p>Clearly, there are several files here, 6 in fact. And all are videos. How do I know that? Well, the <code>format</code> column has all ‘-800’ values in it. That doesn’t help; you say. Oh, right, here’s how to link Databrary’s file or ‘asset’ types to their format identifiers:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/get_supported_file_types.html">get_supported_file_types</a></span>()
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/get_supported_file_types.html">get_supported_file_types</a></span>()
 <span class="co">#&gt;    asset_type_id</span>
 <span class="co">#&gt; 1           -800</span>
 <span class="co">#&gt; 2           -700</span>
@@ -369,10 +386,12 @@
 <span class="co">#&gt; 29       wma                                 Windows Media audio         -600</span>
 <span class="co">#&gt; 30       its                      LENA Interpreted Time Segments           NA</span>
 <span class="co">#&gt; 31        dv                      Digital Interface Format video         -800</span>
-<span class="co">#&gt; 32       eaf                         ELAN - Linguistic Annotator           NA</span></pre></body></html></div>
+<span class="co">#&gt; 32       eaf                         ELAN - Linguistic Annotator           NA</span>
+</pre></div>
 <p>See now that ‘-800’ has <code>mimetype</code> of <code>video/mp4</code>? This list shows us all of the currently supported file types. Knowing them, we can make more meaningful searches for materials we want.</p>
 <p>Let’s find all of the ‘pdf’ documents in volume 1:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/list_assets_by_type.html">list_assets_by_type</a></span>(<span class="kw">vol_id</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">type</span> <span class="kw">=</span> <span class="st">"pdf"</span>))
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/list_assets_by_type.html">list_assets_by_type</a></span>(vol_id = <span class="fl">1</span>, type = <span class="st">"pdf"</span>))
 <span class="co">#&gt;   asset_id asset_type_id                                   name permission</span>
 <span class="co">#&gt; 1    22412             6                                 Slides          1</span>
 <span class="co">#&gt; 2     9839             6                           04-07-Slides          1</span>
@@ -393,24 +412,28 @@
 <span class="co">#&gt; 3 Portable document           NA              3</span>
 <span class="co">#&gt; 4 Portable document           NA             NA</span>
 <span class="co">#&gt; 5 Portable document           NA             NA</span>
-<span class="co">#&gt; 6 Portable document           NA             NA</span></pre></body></html></div>
+<span class="co">#&gt; 6 Portable document           NA             NA</span>
+</pre></div>
 <p>I used the <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> command to show you only the top of the list because I knew there are a large number of PDF files here.</p>
 <div id="finding-volumes-with-videos" class="section level3">
 <h3 class="hasAnchor">
 <a href="#finding-volumes-with-videos" class="anchor"></a>Finding volumes with videos</h3>
 <p>Databrary is a video data library, so you may naturally be interested in what volumes have videos. The <code><a href="../reference/get_video_stats.html">get_video_stats()</a></code> command comes in handy here. Let’s see about the video content available in volume 1.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/get_video_stats.html">get_video_stats</a></span>(<span class="kw">vol_id</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="../reference/get_video_stats.html">get_video_stats</a></span>(vol_id = <span class="fl">1</span>)
 <span class="co">#&gt;   vol_id n_videos n_sessions  tot_hrs</span>
-<span class="co">#&gt; 1      1       75         21 70.14679</span></pre></body></html></div>
+<span class="co">#&gt; 1      1       75         21 70.14679</span>
+</pre></div>
 <p>So, there’s quite a lot to view there. But what about some other volumes? This code uses the <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code> command from base R to run the <code><a href="../reference/get_video_stats.html">get_video_stats()</a></code> command across a list of volumes, specifically volumes 1 to 5. It also uses the <code>rbind.fill()</code> command from the <code>plyr</code> package to merge the list of data frames into a single one that is easy to read. <strong>Note:</strong> The following takes a few moments to run, so please be patient while it does.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="kw pkg">plyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/rbind.fill.html">rbind.fill</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span>:<span class="fl">5</span>, <span class="no">get_video_stats</span>))
-<span class="co">#&gt; Null content returned.</span>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="kw">plyr</span>::<span class="fu"><a href="https://rdrr.io/pkg/plyr/man/rbind.fill.html">rbind.fill</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="kw">get_video_stats</span>))
 <span class="co">#&gt; Session list for volume 3 unavailable.</span>
 <span class="co">#&gt;   vol_id n_videos n_sessions    tot_hrs</span>
 <span class="co">#&gt; 1      1       75         21  70.146791</span>
 <span class="co">#&gt; 2      2       14          3   1.327995</span>
 <span class="co">#&gt; 3      4       73         56  10.748913</span>
-<span class="co">#&gt; 4      5      138        132 108.296428</span></pre></body></html></div>
+<span class="co">#&gt; 4      5      138        132 108.296428</span>
+</pre></div>
 <p>So, there’s a lot of video to view and reuse.</p>
 </div>
 <div id="interacting-with-stored-data-files-1" class="section level3">
@@ -418,13 +441,16 @@
 <a href="#interacting-with-stored-data-files-1" class="anchor"></a>Interacting with stored data files</h3>
 <p>It’s possible to download CSV format data files stored on Databrary and manipulate or visualize the data directly in R. Here’s how.</p>
 <p>Notice that the list of sessions had one session named ‘Top-level materials’. We can find it again easily using some commands from the <code>dplyr</code> package.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">m</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>() <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">.</span>, <span class="no">name</span> <span class="kw">==</span> <span class="st">'Top-level materials'</span>)
-<span class="no">m</span>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="kw">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/list_sessions.html">list_sessions</a></span>() <span class="op">%&gt;%</span>
+  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">.</span>, <span class="kw">name</span> <span class="op">==</span> <span class="st">'Top-level materials'</span>)
+<span class="kw">m</span>
 <span class="co">#&gt;   session_id  top                name date release vol_id</span>
-<span class="co">#&gt; 1       9807 TRUE Top-level materials &lt;NA&gt;      NA      1</span></pre></body></html></div>
+<span class="co">#&gt; 1       9807 TRUE Top-level materials &lt;NA&gt;      NA      1</span>
+</pre></div>
 <p>We can list the ‘assets’ or files in this session using the <code><a href="../reference/list_assets_in_session.html">list_assets_in_session()</a></code> command. This command takes two main arguments, the ‘volume_id’ and the ‘session_id’. We’ll take the values of these parameters from the ‘m’ variable we just created.</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="../reference/list_assets_in_session.html">list_assets_in_session</a></span>(<span class="kw">session_id</span> <span class="kw">=</span> <span class="no">m</span>$<span class="no">session_id</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="fu"><a href="../reference/list_assets_in_session.html">list_assets_in_session</a></span>(session_id = <span class="kw">m</span><span class="op">$</span><span class="kw">session_id</span>)
 <span class="co">#&gt;   asset_id asset_type_id                                 name permission</span>
 <span class="co">#&gt; 1   153109             2            volumes-citations-monthly          0</span>
 <span class="co">#&gt; 2   153108             2 databrary-institutions-investigators          1</span>
@@ -448,35 +474,42 @@
 <span class="co">#&gt; 4         Portable document           NA</span>
 <span class="co">#&gt; 5 Portable network graphics           NA</span>
 <span class="co">#&gt; 6              MPEG-4 video         -800</span>
-<span class="co">#&gt; 7         Portable document           NA</span></pre></body></html></div>
+<span class="co">#&gt; 7         Portable document           NA</span>
+</pre></div>
 <p>If you scroll over, you’ll see that there are two files with the <code>extension</code> variable of ‘csv’ and a <code>mimetype</code> of ‘text/csv’. These are data files we can now access and plot using the corresponding <code>asset_id</code> values. We’ll use the <code><a href="../reference/read_csv_data_as_df.html">read_csv_data_as_df()</a></code> command.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">databrary_growth</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/read_csv_data_as_df.html">read_csv_data_as_df</a></span>(<span class="kw">session_id</span> <span class="kw">=</span> <span class="no">m</span>$<span class="no">session_id</span>, <span class="kw">asset_id</span> <span class="kw">=</span> <span class="fl">153108</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="kw">databrary_growth</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_csv_data_as_df.html">read_csv_data_as_df</a></span>(session_id = <span class="kw">m</span><span class="op">$</span><span class="kw">session_id</span>, asset_id = <span class="fl">153108</span>)
+</pre></div>
 <p>We can examine the structure of the returned data frame using R’s <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> command.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">databrary_growth</span>)
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="kw">databrary_growth</span>)
 <span class="co">#&gt; 'data.frame':    55 obs. of  3 variables:</span>
-<span class="co">#&gt;  $ Date              : chr  " 2014-04-01 00:00:00-04" " 2014-05-01 00:00:00-04" " 2014-07-01 00:00:00-04" " 2014-08-01 00:00:00-04" ...</span>
+<span class="co">#&gt;  $ Date              : Factor w/ 55 levels " 2014-04-01 00:00:00-04",..: 1 2 3 4 5 6 7 8 9 10 ...</span>
 <span class="co">#&gt;  $ Institutions      : int  13 13 40 41 42 46 49 51 53 56 ...</span>
-<span class="co">#&gt;  $ Auth_Investigators: int  7 9 38 48 62 85 90 96 102 115 ...</span></pre></body></html></div>
+<span class="co">#&gt;  $ Auth_Investigators: int  7 9 38 48 62 85 90 96 102 115 ...</span>
+</pre></div>
 <p>Let’s plot these data.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">color_orange</span> <span class="kw">&lt;-</span> <span class="st">"#EC7751"</span>
-<span class="no">color_teal</span> <span class="kw">&lt;-</span> <span class="st">"#4CAE99"</span>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="kw">color_orange</span> <span class="op">&lt;-</span> <span class="st">"#EC7751"</span>
+<span class="kw">color_teal</span> <span class="op">&lt;-</span> <span class="st">"#4CAE99"</span>
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="no">databrary_growth</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">tidyr</span><span class="kw ns">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="no">.</span>, <span class="kw">key</span> <span class="kw">=</span> <span class="st">'type'</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="st">'count'</span>, -<span class="no">Date</span>)
-
-<span class="no">df</span> <span class="kw">%&gt;%</span>
-  <span class="fu">ggplot</span>(<span class="no">.</span>, <span class="fu">aes</span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">Date</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">count</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">type</span>, <span class="kw">group</span> <span class="kw">=</span> <span class="no">type</span>)) +
-  <span class="fu">geom_point</span>() +
-  <span class="fu">geom_line</span>(<span class="kw">size</span> <span class="kw">=</span> <span class="fl">3</span>) +
-  <span class="fu">ylab</span>(<span class="st">"Authorizations"</span>) +
-  <span class="fu">scale_y_continuous</span>(<span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">1100</span>, <span class="fl">100</span>), <span class="kw">expand</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>)) +
-  <span class="fu">theme_bw</span>() +
-  <span class="fu">theme</span>(<span class="kw">axis.title.x</span> <span class="kw">=</span> <span class="fu">element_blank</span>(),
-        <span class="kw">axis.line</span> <span class="kw">=</span> <span class="fu">element_blank</span>(),
-        <span class="kw">axis.text.x</span> <span class="kw">=</span> <span class="fu">element_blank</span>(),
-        <span class="kw">axis.ticks.x</span> <span class="kw">=</span> <span class="fu">element_blank</span>(),
-        <span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"bottom"</span>) +
-  <span class="fu">coord_cartesian</span>(<span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1100</span>))</pre></body></html></div>
+<span class="kw">df</span> <span class="op">&lt;-</span> <span class="kw">databrary_growth</span> <span class="op">%&gt;%</span>
+  <span class="kw">tidyr</span>::<span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="kw">.</span>, key = <span class="st">'type'</span>, value = <span class="st">'count'</span>, <span class="op">-</span><span class="kw">Date</span>)
+  
+<span class="kw">df</span> <span class="op">%&gt;%</span>
+  <span class="fu">ggplot</span>(<span class="kw">.</span>, <span class="fu">aes</span>(x = <span class="kw">Date</span>, y = <span class="kw">count</span>, color = <span class="kw">type</span>, group = <span class="kw">type</span>)) <span class="op">+</span>
+  <span class="fu">geom_point</span>() <span class="op">+</span> 
+  <span class="fu">geom_line</span>(size = <span class="fl">3</span>) <span class="op">+</span>
+  <span class="fu">ylab</span>(<span class="st">"Authorizations"</span>) <span class="op">+</span>
+  <span class="fu">scale_y_continuous</span>(breaks = <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">0</span>, <span class="fl">1100</span>, <span class="fl">100</span>), expand = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>)) <span class="op">+</span>
+  <span class="fu">theme_bw</span>() <span class="op">+</span>
+  <span class="fu">theme</span>(axis.title.x = <span class="fu">element_blank</span>(),
+        axis.line = <span class="fu">element_blank</span>(),
+        axis.text.x = <span class="fu">element_blank</span>(),
+        axis.ticks.x = <span class="fu">element_blank</span>(),
+        legend.position = <span class="st">"bottom"</span>) <span class="op">+</span>
+  <span class="fu">coord_cartesian</span>(ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">1100</span>))
+</pre></div>
 <p><img src="databrary-vignette_files/figure-html/plot-user-growth-1.png" width="700"></p>
 <p>Note that this workflow allows you to import a data file directly into your R session. You don’t have to download and save the file locally. If you are working with sensitive or identifiable data, this means an extra level of protection. Your workflows can be readily reproducible by anyone who has access to the Databrary volume, session, and file.</p>
 </div>
@@ -498,7 +531,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

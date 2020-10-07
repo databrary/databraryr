@@ -3,7 +3,9 @@ library(databraryapi)
 
 # search_for_funder() ---------------------------------------------------
 test_that("search_for_funder returns data.frame", {
-  expect_true(class(search_for_funder()) == "data.frame")
+  if (login_db()) {
+    expect_true(class(search_for_funder()) == "data.frame")    
+  }
 })
 
 test_that("search_for_funder rejects bad input parameters", {

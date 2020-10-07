@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -130,9 +130,9 @@
     </div>
 
     <pre class="usage"><span class='fu'>list_specified_assets_in_session</span>(
-  <span class='kw'>session_id</span> <span class='kw'>=</span> <span class='fl'>9807</span>,
-  <span class='kw'>media_type</span> <span class='kw'>=</span> <span class='st'>"MPEG-4 video"</span>,
-  <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  session_id = <span class='fl'>9807</span>,
+  media_type = <span class='st'>"MPEG-4 video"</span>,
+  vb = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -157,7 +157,8 @@
     <p>A data frame with the assets in the selected volume and session.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_specified_assets_in_session</span>()</div><div class='output co'>#&gt;   asset_id asset_type_id                  name permission classification   size
+    <pre class="examples"><div class='input'><span class='fu'>list_specified_assets_in_session</span>()
+</div><div class='output co'>#&gt;   asset_id asset_type_id                  name permission classification   size
 #&gt; 1        1          -800 counting (demo video)          1              3 394499
 #&gt;   duration session_id  mimetype extension   asset_type transcodable
 #&gt; 1    40000       9807 video/mp4       mp4 MPEG-4 video         -800</div></pre>
@@ -176,7 +177,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

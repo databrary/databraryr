@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -97,10 +97,10 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <ul>
 <li>Install the <code>devtools</code> package from CRAN: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")</a></code> if you have not already done so.</li>
-<li>Load <code>devtools</code> into your local environment: <code><a href="https://devtools.r-lib.org//reference">library(devtools)</a></code>
+<li>Load <code>devtools</code> into your local environment: <code><a href="https://devtools.r-lib.org">library(devtools)</a></code>
 </li>
 <li>Install the <code>databraryapi</code> package via <code>install_github("PLAY-behaviorome/databraryapi")</code>. Required dependencies will be installed at this time.</li>
-<li>The latest version is 0.2.3.</li>
+<li>The latest version is 0.2.4.</li>
 </ul>
 </div>
 <div id="use" class="section level2">
@@ -115,7 +115,7 @@
 <div id="configuration" class="section level3">
 <h3 class="hasAnchor">
 <a href="#configuration" class="anchor"></a>Configuration</h3>
-<p>Once the <code>databraryapi</code> package has been installed, it may be loaded into the local environment via <code><a href="https://rdrr.io/pkg/databraryapi/man">library(databraryapi)</a></code>. It is advisable to configure the local environment each time the user wishes to access the system:</p>
+<p>Once the <code>databraryapi</code> package has been installed, it may be loaded into the local environment via <code><a href="http://github.com/PLAY-behaviorome/databraryapi">library(databraryapi)</a></code>. It is advisable to configure the local environment each time the user wishes to access the system:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
 <p>The <code><a href="reference/login_db.html">login_db()</a></code> command uses the <code>keyring</code> package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux. This is the recommended approach. The first time you log on to Databrary via the <code>databraryapi</code> package, you will need to run <code>config_passd()</code>. You should only need to run this once.</p>
 <p>Once you are an authorized user on Databrary, you may also use</p>
@@ -194,7 +194,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

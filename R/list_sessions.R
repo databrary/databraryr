@@ -20,22 +20,25 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
-
+  
   r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id, '?containers'))
   if (!is.null(r)) {
-    if (vb) message("Non-null content returned.")
-    if (("containers" %in% names(r)) && (!is.null(r[['containers']]))) {
+    if (vb) message(" Non-null content returned.")
+    if (("containers" %in% names(r)) && (!is.null(r[['containers']])) &&
+        (dim(r[['containers']])[1] > 1)) {
       # Drop first element (contains metadata)
-      if (vb) message("Dropping metadata session and renaming vars.")
+      if (vb) message(" Dropping metadata session and renaming vars.")
       df <- r$containers[-1,]
       df$vol_id <- vol_id
       df <- dplyr::rename(df, session_id = id)
-      return(df)
-    } else if (vb) {
-      message(paste0('No sessions in volume.\n'))
+      df
+    } else {
+      if (vb) message(paste0('No sessions in volume.\n'))
+      NULL
     }
-    return(r)
+    #return(r)
   } else {
-    message('Null content returned.')
+    if (vb) message(' Null content returned.')
+    NULL
   }
 }

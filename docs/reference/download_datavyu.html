@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -130,13 +130,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>download_datavyu</span>(
-  <span class='kw'>vol_id</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>session_id</span> <span class='kw'>=</span> <span class='fl'>9807</span>,
-  <span class='kw'>asset_id</span> <span class='kw'>=</span> <span class='fl'>117035</span>,
-  <span class='kw'>out_dir</span> <span class='kw'>=</span> <span class='st'>"tmp"</span>,
-  <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='st'>"test.opf"</span>,
-  <span class='kw'>return_response</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  vol_id = <span class='fl'>1</span>,
+  session_id = <span class='fl'>9807</span>,
+  asset_id = <span class='fl'>117035</span>,
+  out_dir = <span class='st'>"tmp"</span>,
+  file_name = <span class='st'>"test.opf"</span>,
+  return_response = <span class='fl'>FALSE</span>,
+  vb = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -174,8 +174,9 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>download_datavyu</span>()</div><div class='output co'>#&gt; Output directory tmp exists. Extract here (y/n): </div><div class='output co'>#&gt; <span class='message'>Successful HTML GET query.</span></div><div class='output co'>#&gt; <span class='message'>Content-type is application/vnd.datavyu</span></div><div class='output co'>#&gt; <span class='message'>File name unspecified. Generating unique name.</span></div><div class='output co'>#&gt; <span class='message'>Downloading Datavyu file as: </span>
-#&gt; <span class='message'>tmp/1-9807-117035-2020-08-25-0942-59.opf</span></div><div class='output co'>#&gt; [1] "tmp"</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>download_datavyu</span>()
+</div><div class='output co'>#&gt; Output directory tmp exists. Extract here (y/n): </div><div class='output co'>#&gt; <span class='message'>Successful HTML GET query.</span></div><div class='output co'>#&gt; <span class='message'>Content-type is application/vnd.datavyu</span></div><div class='output co'>#&gt; <span class='message'>File name unspecified. Generating unique name.</span></div><div class='output co'>#&gt; <span class='message'>Downloading Datavyu file as: </span>
+#&gt; <span class='message'>tmp/1-9807-117035-2020-10-07-0826-12.opf</span></div><div class='output co'>#&gt; [1] "tmp"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -191,7 +192,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
