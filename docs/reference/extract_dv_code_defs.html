@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -130,15 +130,15 @@
     </div>
 
     <pre class="usage"><span class='fu'>extract_dv_code_defs</span>(
-  <span class='kw'>in_dir</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>dv_fn</span> <span class='kw'>=</span> <span class='st'>"db"</span>,
-  <span class='kw'>out_dir</span> <span class='kw'>=</span> <span class='no'>in_dir</span>,
-  <span class='kw'>out_fn</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='no'>out_dir</span>, <span class='st'>"/"</span>, <span class='st'>"codes.csv"</span>),
-  <span class='kw'>auto_write_over</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>code_regex</span> <span class='kw'>=</span> <span class='st'>"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,
-  <span class='kw'>code_vals_regex</span> <span class='kw'>=</span> <span class='st'>"\\)-([a-zA-Z\\/]+)\\|"</span>,
-  <span class='kw'>code_type_regex</span> <span class='kw'>=</span> <span class='st'>"([a-zA-Z]+)$"</span>,
-  <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  in_dir = <span class='st'>"."</span>,
+  dv_fn = <span class='st'>"db"</span>,
+  out_dir = <span class='kw'>in_dir</span>,
+  out_fn = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='kw'>out_dir</span>, <span class='st'>"/"</span>, <span class='st'>"codes.csv"</span>),
+  auto_write_over = <span class='fl'>TRUE</span>,
+  code_regex = <span class='st'>"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,
+  code_vals_regex = <span class='st'>"\\)-([a-zA-Z\\/]+)\\|"</span>,
+  code_type_regex = <span class='st'>"([a-zA-Z]+)$"</span>,
+  vb = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -184,7 +184,8 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>extract_dv_code_defs</span>()</div><div class='output co'>#&gt; <span class='error'>Error in extract_dv_code_defs(): File db cannot be found.</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>extract_dv_code_defs</span>()
+</div><div class='output co'>#&gt; <span class='error'>Error in extract_dv_code_defs(): File db cannot be found.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -200,7 +201,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

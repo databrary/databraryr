@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
       </span>
     </div>
 
@@ -129,7 +129,7 @@
     <p>List vol.id owners.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_volume_owners</span>(<span class='kw'>vol_id</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>vb</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>list_volume_owners</span>(vol_id = <span class='fl'>1</span>, vb = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,7 +149,8 @@
     <p>A data framw with information about the volume owner(s).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>list_volume_owners</span>()</div><div class='output co'>#&gt;   vol_id person_id sortname   prename
+    <pre class="examples"><div class='input'><span class='fu'>list_volume_owners</span>()
+</div><div class='output co'>#&gt;   vol_id person_id sortname   prename
 #&gt; 1      1         5   Adolph     Karen
 #&gt; 2      1         6  Gilmore   Rick O.
 #&gt; 3      1      3341    Admin Databrary</div></pre>
@@ -168,7 +169,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
