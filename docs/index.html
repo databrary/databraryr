@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -44,7 +44,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -67,7 +67,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="http://github.com/PLAY-behaviorome/databraryapi/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -100,7 +100,7 @@
 <li>Load <code>devtools</code> into your local environment: <code><a href="https://devtools.r-lib.org">library(devtools)</a></code>
 </li>
 <li>Install the <code>databraryapi</code> package via <code>install_github("PLAY-behaviorome/databraryapi")</code>. Required dependencies will be installed at this time.</li>
-<li>The latest version is 0.2.4.</li>
+<li>The latest version is 0.2.6.</li>
 </ul>
 </div>
 <div id="use" class="section level2">
@@ -116,10 +116,10 @@
 <h3 class="hasAnchor">
 <a href="#configuration" class="anchor"></a>Configuration</h3>
 <p>Once the <code>databraryapi</code> package has been installed, it may be loaded into the local environment via <code><a href="http://github.com/PLAY-behaviorome/databraryapi">library(databraryapi)</a></code>. It is advisable to configure the local environment each time the user wishes to access the system:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
 <p>The <code><a href="reference/login_db.html">login_db()</a></code> command uses the <code>keyring</code> package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux. This is the recommended approach. The first time you log on to Databrary via the <code>databraryapi</code> package, you will need to run <code>config_passd()</code>. You should only need to run this once.</p>
 <p>Once you are an authorized user on Databrary, you may also use</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">login_db</span>(<span class="st">"myemail@myemailhost.com"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>(<span class="st">"myemail@myemailhost.com"</span>)</span></code></pre></div>
 <p>to log on.</p>
 <p>Users on Mac OS and Linux systems may alternatively choose to store user account and password information in <code>~/api-keys/json/databrary-keys.json</code>. This file has the following format:</p>
 <pre class="{json}"><code>{
@@ -134,12 +134,12 @@
 <h3 class="hasAnchor">
 <a href="#command-descriptions" class="anchor"></a>Command descriptions</h3>
 <p><code><a href="reference/get_db_stats.html">get_db_stats()</a></code> by default provides some data about the current number of authorized investigators, affiliates, institutions, datasets, files, and hours of stored video. Try</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">get_db_stats</span>(<span class="st">"people"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">"people"</span>)</span></code></pre></div>
 <p>to see a table of newly authorized researchers. Or, try</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">get_db_stats</span>(<span class="st">'datasets'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">'datasets'</span>)</span></code></pre></div>
 <p>to see a list of the latest shared datasets.</p>
 <p><code><a href="reference/read_csv_data_as_df.html">read_csv_data_as_df()</a></code> by default reads a publicly shared CSV data file from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="uri">http://databrary.org/volume/1</a>. Try</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">with</span>(<span class="kw">read_csv_data_as_df</span>(), <span class="kw">plot</span>(Auth_Investigators, Institutions))</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">read_csv_data_as_df</span>(), <span class="fu">plot</span>(Auth_Investigators, Institutions))</span></code></pre></div>
 <p>to view a simple plot of the number of authorized investigators and institutions across time.</p>
 <p><code><a href="reference/download_video.html">download_video()</a></code> by default reads a short publicly shared testing video depicting a series of numbers counting up from 000. Unless you specify another file name, the .mp4 format movie will download to the current directory as <code>test.mp4</code>.</p>
 <p><code><a href="reference/get_file_duration.html">get_file_duration()</a></code> by default returns the duration (in ms) of the same publicly shared video in volume 1.</p>
