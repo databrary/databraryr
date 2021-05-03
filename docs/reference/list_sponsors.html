@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -103,7 +103,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="http://github.com/PLAY-behaviorome/databraryapi/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -150,21 +150,14 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>list_sponsors</span>() <span class='co'># Default is Rick Gilmore (party 6)</span>
-</div><div class='output co'>#&gt;    id                                       sortname
-#&gt; 1 308                                          Staff
-#&gt; 2  12 Pennsylvania State University, University Park
-#&gt; 3   5                                         Adolph
-#&gt; 4 255                                         Dusing
-#&gt;                        affiliation institution prename
-#&gt; 1                        Databrary        TRUE    &lt;NA&gt;
-#&gt; 2                             &lt;NA&gt;        TRUE     The
-#&gt; 3              New York University          NA   Karen
-#&gt; 4 Virginia Commonwealth University          NA  Stacey
-#&gt;                                url
-#&gt; 1                             &lt;NA&gt;
-#&gt; 2               http://www.psu.edu
-#&gt; 3 http://www.psych.nyu.edu/adolph/
-#&gt; 4                             &lt;NA&gt;</div></pre>
+</div><div class='output co'>#&gt;    id                                       sortname         affiliation
+#&gt; 1 308                                          Staff           Databrary
+#&gt; 2  12 Pennsylvania State University, University Park                &lt;NA&gt;
+#&gt; 3   5                                         Adolph New York University
+#&gt;   institution prename                              url
+#&gt; 1        TRUE    &lt;NA&gt;                             &lt;NA&gt;
+#&gt; 2        TRUE     The               http://www.psu.edu
+#&gt; 3          NA   Karen http://www.psych.nyu.edu/adolph/</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

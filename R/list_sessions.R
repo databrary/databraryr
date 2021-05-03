@@ -29,9 +29,14 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
       # Drop first element (contains metadata)
       if (vb) message(" Dropping metadata session and renaming vars.")
       df <- r$containers[-1,]
-      df$vol_id <- vol_id
-      df <- dplyr::rename(df, session_id = id)
-      df
+      if (dim(df)[1] >= 1) {
+        df$vol_id <- vol_id
+        df <- dplyr::rename(df, session_id = id)
+        df        
+      } else {
+        # After removing sessions folder, no other data remains
+        NULL
+      }
     } else {
       if (vb) message(paste0('No sessions in volume.\n'))
       NULL

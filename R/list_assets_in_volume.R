@@ -17,13 +17,17 @@ list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
 
   sl <- list_sessions_in_volume(vol_id = vol_id, vb = vb)
   if (!is.null(sl)) {
-    if (vb) message("Session data exists.")
+    if (vb) message(" Session data exists.")
     s_ids <- sl$session_id
-    a <- lapply(s_ids, list_assets_in_session, vb = vb)
-    a <- plyr::rbind.fill(a)
-    return(a)
+    if (length(s_ids) >= 1) {
+      a <- lapply(s_ids, list_assets_in_session, vb = vb)
+      a <- plyr::rbind.fill(a)
+      return(a)      
+    } else {
+     NULL 
+    }
   } else {
-    message(paste0("Session list for volume ", vol_id, " unavailable."))
+    if (vb) message(paste0(" Session list for volume ", vol_id, " unavailable."))
     return(NULL)
   }
 }
