@@ -24,6 +24,40 @@ test_that("download_containers_records rejects bad input parameters", {
   expect_error(download_containers_records(vb = list(a=1, b=2)))
 })
 
+# download_session_csv ---------------------------------------------------
+test_that("download_session_csv returns data.frame", {
+  expect_true(is.data.frame(download_session_csv()))
+})
+
+test_that("download_session_csv(vol_id = 3) returns NULL", {
+  expect_true(is.null(download_session_csv(3)))
+})
+
+test_that("download_session_csv rejects bad input parameters", {
+  expect_error(download_session_csv(vol_id = -1))
+  expect_error(download_session_csv(vol_id = 0))
+  expect_error(download_session_csv(vol_id = "a"))
+  expect_error(download_session_csv(vol_id = list(a=1, b=2)))
+  expect_error(download_session_csv(vol_id = TRUE))
+  
+  expect_error(download_session_csv(to_df = -1))
+  expect_error(download_session_csv(to_df = 3))
+  expect_error(download_session_csv(to_df = "a"))
+  expect_error(download_session_csv(to_df = list(a=1, b=2)))
+  
+  expect_error(download_session_csv(return_response = -1))
+  expect_error(download_session_csv(return_response = 3))
+  expect_error(download_session_csv(return_response = "a"))
+  expect_error(download_session_csv(return_response = list(a=1, b=2)))
+  
+  expect_error(download_session_csv(vb = -1))
+  expect_error(download_session_csv(vb = 3))
+  expect_error(download_session_csv(vb = "a"))
+  expect_error(download_session_csv(vb = list(a=1, b=2)))
+})
+
+
+
 # download_datavyu ---------------------------------------------------
 # test_that("download_datavyu rejects bad input parameters", {
 #   expect_error(download_datavyu(vol_id = -1))

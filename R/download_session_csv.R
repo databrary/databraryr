@@ -14,12 +14,34 @@ download_session_csv <- function(vol_id = 1,
                                  vb = FALSE) {
   # Error handling
   if (length(vol_id) > 1) {
-    stop("vol_id must have length 1.")
+    stop("`vol_id` must have length 1.")
   }
   if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("vol_id must be an integer > 0.")
+    stop("`vol_id` must be an integer > 0.")
   }
   
+  if (!is.logical(to_df)) {
+    stop("`to_df` must be a logical value.")
+  }
+  if (length(to_df) > 1) {
+    stop("`to_df` must have length 1.")
+  }
+  
+  if (!is.logical(return_response)) {
+    stop("`return_response` must be a logical value.")
+  }
+  if (length(return_response) > 1) {
+    stop("`return_response` must have length 1.")
+  }
+  
+  if (!is.logical(vb)) {
+    stop("`vb` must be a logical value.")
+  }
+  if (length(vb) > 1) {
+    stop("`vb` must have length 1.")
+  }
+  
+  # Main routines
   if (vb)
     message(paste0("Downloading spreadsheet from volume ", vol_id))
   csv_url <-
