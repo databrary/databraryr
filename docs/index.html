@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,18 +38,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -66,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="http://github.com/PLAY-behaviorome/databraryapi/">
+  <a href="http://github.com/PLAY-behaviorome/databraryapi/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -83,78 +79,139 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="databraryapi" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#databraryapi" class="anchor"></a>databraryapi</h1></div>
-<p>This repository contains code for the <code>databraryapi</code> R package.</p>
-<div id="documentation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>Full package documentation built using <code>pkgdown</code> can be found <a href="https://PLAY-behaviorome.github.io/databraryapi">here</a>.</p>
+<div class="section level1">
+<div class="page-header"><h1 id="databraryapi">databraryapi<a class="anchor" aria-label="anchor" href="#databraryapi"></a>
+</h1></div>
+<p>This repository contains code for the <code>databraryapi</code> R
+package.</p>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>Full package documentation built using <code>pkgdown</code> can be
+found <a href="https://PLAY-behaviorome.github.io/databraryapi" class="external-link">here</a>.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <ul>
-<li>Install the <code>devtools</code> package from CRAN: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("devtools")</a></code> if you have not already done so.</li>
-<li>Load <code>devtools</code> into your local environment: <code><a href="https://devtools.r-lib.org">library(devtools)</a></code>
+<li>Install the <code>devtools</code> package from CRAN:
+<code>install.packages("devtools")</code> if you have not already done
+so.</li>
+<li>Load <code>devtools</code> into your local environment:
+<code><a href="https://devtools.r-lib.org/" class="external-link">library(devtools)</a></code>
 </li>
-<li>Install the <code>databraryapi</code> package via <code>install_github("PLAY-behaviorome/databraryapi")</code>. Required dependencies will be installed at this time.</li>
-<li>The latest version is 0.2.6.</li>
+<li>Install the <code>databraryapi</code> package via
+<code>install_github("PLAY-behaviorome/databraryapi")</code>. Required
+dependencies will be installed at this time.</li>
+<li>The latest version is 0.2.7.</li>
 </ul>
 </div>
-<div id="use" class="section level2">
-<h2 class="hasAnchor">
-<a href="#use" class="anchor"></a>Use</h2>
-<p>The package is under active development, as is the documentation. Running <code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("PLAY-behaviorome/databraryapi", force=TRUE)</a></code> regularly to get updates is strongly recommended.</p>
-<div id="databrary-credentials" class="section level3">
-<h3 class="hasAnchor">
-<a href="#databrary-credentials" class="anchor"></a>Databrary credentials</h3>
-<p>Databrary (<a href="https://databrary.org">databrary.org</a>) is a data library specialized for storing and sharing video. Access to restricted data requires <a href="https://databrary.org/register">registration</a> and formal approval by an institution. The registration process involves the creation of an (email-account-based) user account and secure password. Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data. Many commands in the <code>databraryapi</code> package return meaningful results <em>without</em> or <em>prior to</em> formal authorization.</p>
+<div class="section level2">
+<h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+</h2>
+<p>The package is under active development, as is the documentation.
+Running <code>devtools::install_github("PLAY-behaviorome/databraryapi",
+force=TRUE)</code> regularly to get updates is strongly recommended.</p>
+<div class="section level3">
+<h3 id="databrary-credentials">Databrary credentials<a class="anchor" aria-label="anchor" href="#databrary-credentials"></a>
+</h3>
+<p>Databrary (<a href="https://databrary.org" class="external-link">databrary.org</a>) is a
+data library specialized for storing and sharing video. Access to
+restricted data requires <a href="https://databrary.org/register" class="external-link">registration</a> and formal
+approval by an institution. The registration process involves the
+creation of an (email-account-based) user account and secure password.
+Once institutional authorization has been granted, a user may gain
+access to shared video, audio, and other data. Many commands in the
+<code>databraryapi</code> package return meaningful results
+<em>without</em> or <em>prior to</em> formal authorization.</p>
 </div>
-<div id="configuration" class="section level3">
-<h3 class="hasAnchor">
-<a href="#configuration" class="anchor"></a>Configuration</h3>
-<p>Once the <code>databraryapi</code> package has been installed, it may be loaded into the local environment via <code><a href="http://github.com/PLAY-behaviorome/databraryapi">library(databraryapi)</a></code>. It is advisable to configure the local environment each time the user wishes to access the system:</p>
+<div class="section level3">
+<h3 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
+</h3>
+<p>Once the <code>databraryapi</code> package has been installed, it may
+be loaded into the local environment via
+<code><a href="http://github.com/PLAY-behaviorome/databraryapi" class="external-link">library(databraryapi)</a></code>. It is advisable to configure the
+local environment each time the user wishes to access the system:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
-<p>The <code><a href="reference/login_db.html">login_db()</a></code> command uses the <code>keyring</code> package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux. This is the recommended approach. The first time you log on to Databrary via the <code>databraryapi</code> package, you will need to run <code>config_passd()</code>. You should only need to run this once.</p>
+<p>The <code><a href="reference/login_db.html">login_db()</a></code> command uses the <code>keyring</code>
+package to create secure user name and password files using native
+system utilities for this purpose on Mac OS, Windows, and Linux. This is
+the recommended approach. The first time you log on to Databrary via the
+<code>databraryapi</code> package, you will need to run
+<code>config_passd()</code>. You should only need to run this once.</p>
 <p>Once you are an authorized user on Databrary, you may also use</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>(<span class="st">"myemail@myemailhost.com"</span>)</span></code></pre></div>
 <p>to log on.</p>
-<p>Users on Mac OS and Linux systems may alternatively choose to store user account and password information in <code>~/api-keys/json/databrary-keys.json</code>. This file has the following format:</p>
+<p>Users on Mac OS and Linux systems may alternatively choose to store
+user account and password information in
+<code>~/api-keys/json/databrary-keys.json</code>. This file has the
+following format:</p>
 <pre class="{json}"><code>{
   "email":["myaccount@mymail.com"],
   "pw":["s0mEth!nGl0nGandS3CURE"]
 }</code></pre>
-<p>This approach has risks as the credentials are stored as text. Users who choose this approach should use <code><a href="reference/login_db.html">login_db(stored.credentials = TRUE)</a></code>.</p>
-<p>If users choose to log in with their user names and passwords on each access – <code>stored.credentials = FALSE</code> — and there is no stored credentials file accessible by <code>keyring</code> – <code>rstudioapi</code> package commands will query the user for both the user account and password. The <code>rstudioapi</code> commands work only under <a href="http://www.rstudio.com">RStudio</a>.</p>
-<p>Whatever access model is chosen, the use of a password generator/manager program (e.g., <a href="http://www.lastpass.com">LastPass</a>, <a href="http://1password.com">1Password</a>, <a href="http://www.dashlane.com">Dashlane</a>) is strongly recommended.</p>
+<p>This approach has risks as the credentials are stored as text. Users
+who choose this approach should use <code>login_db(stored.credentials =
+TRUE)</code>.</p>
+<p>If users choose to log in with their user names and passwords on each
+access – <code>stored.credentials = FALSE</code> — and there is no
+stored credentials file accessible by <code>keyring</code> –
+<code>rstudioapi</code> package commands will query the user for both
+the user account and password. The <code>rstudioapi</code> commands work
+only under <a href="http://www.rstudio.com" class="external-link">RStudio</a>.</p>
+<p>Whatever access model is chosen, the use of a password
+generator/manager program (e.g., <a href="http://www.lastpass.com" class="external-link">LastPass</a>, <a href="http://1password.com" class="external-link">1Password</a>, <a href="http://www.dashlane.com" class="external-link">Dashlane</a>) is strongly
+recommended.</p>
 </div>
-<div id="command-descriptions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#command-descriptions" class="anchor"></a>Command descriptions</h3>
-<p><code><a href="reference/get_db_stats.html">get_db_stats()</a></code> by default provides some data about the current number of authorized investigators, affiliates, institutions, datasets, files, and hours of stored video. Try</p>
+<div class="section level3">
+<h3 id="command-descriptions">Command descriptions<a class="anchor" aria-label="anchor" href="#command-descriptions"></a>
+</h3>
+<p><code><a href="reference/get_db_stats.html">get_db_stats()</a></code> by default provides some data about the
+current number of authorized investigators, affiliates, institutions,
+datasets, files, and hours of stored video. Try</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">"people"</span>)</span></code></pre></div>
 <p>to see a table of newly authorized researchers. Or, try</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">'datasets'</span>)</span></code></pre></div>
 <p>to see a list of the latest shared datasets.</p>
-<p><code><a href="reference/read_csv_data_as_df.html">read_csv_data_as_df()</a></code> by default reads a publicly shared CSV data file from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="uri">http://databrary.org/volume/1</a>. Try</p>
+<p><code><a href="reference/read_csv_data_as_df.html">read_csv_data_as_df()</a></code> by default reads a publicly shared
+CSV data file from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="external-link uri">http://databrary.org/volume/1</a>. Try</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">read_csv_data_as_df</span>(), <span class="fu">plot</span>(Auth_Investigators, Institutions))</span></code></pre></div>
-<p>to view a simple plot of the number of authorized investigators and institutions across time.</p>
-<p><code><a href="reference/download_video.html">download_video()</a></code> by default reads a short publicly shared testing video depicting a series of numbers counting up from 000. Unless you specify another file name, the .mp4 format movie will download to the current directory as <code>test.mp4</code>.</p>
-<p><code><a href="reference/get_file_duration.html">get_file_duration()</a></code> by default returns the duration (in ms) of the same publicly shared video in volume 1.</p>
-<p><code><a href="reference/download_datavyu.html">download_datavyu()</a></code> by default downloads the Datavyu spreadsheet linked to the test video in volume 1 into a default <code>tmp/</code> directory.</p>
-<p><code><a href="reference/download_session_csv.html">download_session_csv()</a></code> by default reads a CSV of the “sessions” spreadsheet from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="uri">http://databrary.org/volume/1</a> and returns it as a data frame.</p>
-<p><code><a href="reference/extract_dv.html">extract_dv()</a></code> then extracts the text files embedded in the Datavyu (.opf) file.</p>
-<p><code><a href="reference/dv_to_csv.html">dv_to_csv()</a></code> converts the extracted Datavyu file to a CSV that can be loaded as a data frame using other commands.</p>
-<p><code><a href="reference/list_assets_by_type.html">list_assets_by_type()</a></code> by defaults lists the videos in Databrary volume 1 <a href="http://databrary.org/volume/1" class="uri">http://databrary.org/volume/1</a>.</p>
-<p><code><a href="reference/list_assets_in_session.html">list_assets_in_session()</a></code> by default lists <em>all</em> files in the ‘Top-level Materials’ folder (session/slot 9807) in volume 1 <a href="https://nyu.databrary.org/volume/1/slot/9807/-" class="uri">https://nyu.databrary.org/volume/1/slot/9807/-</a></p>
-<p><code><a href="reference/list_specified_assets_in_session.html">list_specified_assets_in_session()</a></code> by default lists the <em>videos</em> in volume 1, session/slot 9807.</p>
-<p><code><a href="reference/list_people.html">list_people()</a></code> by default lists information about the two Databrary PIs, Karen Adolph and Rick Gilmore, and the Co-I, David Millman.</p>
-<p><code><a href="reference/list_volume_owners.html">list_volume_owners()</a></code> by default lists the volume owners for Databrary volume 1 <a href="http://databrary.org/volume/1" class="uri">http://databrary.org/volume/1</a>.</p>
-<p><code><a href="reference/logout_db.html">logout_db()</a></code> logs out of Databrary and does some simple clean up.</p>
-<p><code><a href="reference/get_supported_file_types.html">get_supported_file_types()</a></code> returns a data frame with the file types Databrary currently supports.</p>
-<p><code><a href="reference/download_volume_zip.html">download_volume_zip()</a></code> downloads a zip archive of the materials in volume 31.</p>
+<p>to view a simple plot of the number of authorized investigators and
+institutions across time.</p>
+<p><code><a href="reference/download_video.html">download_video()</a></code> by default reads a short publicly
+shared testing video depicting a series of numbers counting up from 000.
+Unless you specify another file name, the .mp4 format movie will
+download to the current directory as <code>test.mp4</code>.</p>
+<p><code><a href="reference/get_file_duration.html">get_file_duration()</a></code> by default returns the duration (in
+ms) of the same publicly shared video in volume 1.</p>
+<p><code><a href="reference/download_datavyu.html">download_datavyu()</a></code> by default downloads the Datavyu
+spreadsheet linked to the test video in volume 1 into a default
+<code>tmp/</code> directory.</p>
+<p><code><a href="reference/download_session_csv.html">download_session_csv()</a></code> by default reads a CSV of the
+“sessions” spreadsheet from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="external-link uri">http://databrary.org/volume/1</a> and returns it as a data
+frame.</p>
+<p><code><a href="reference/extract_dv.html">extract_dv()</a></code> then extracts the text files embedded in
+the Datavyu (.opf) file.</p>
+<p><code><a href="reference/dv_to_csv.html">dv_to_csv()</a></code> converts the extracted Datavyu file to a CSV
+that can be loaded as a data frame using other commands.</p>
+<p><code><a href="reference/list_assets_by_type.html">list_assets_by_type()</a></code> by defaults lists the videos in
+Databrary volume 1 <a href="http://databrary.org/volume/1" class="external-link uri">http://databrary.org/volume/1</a>.</p>
+<p><code><a href="reference/list_assets_in_session.html">list_assets_in_session()</a></code> by default lists <em>all</em>
+files in the ‘Top-level Materials’ folder (session/slot 9807) in volume
+1 <a href="https://nyu.databrary.org/volume/1/slot/9807/-" class="external-link uri">https://nyu.databrary.org/volume/1/slot/9807/-</a></p>
+<p><code><a href="reference/list_specified_assets_in_session.html">list_specified_assets_in_session()</a></code> by default lists the
+<em>videos</em> in volume 1, session/slot 9807.</p>
+<p><code><a href="reference/list_people.html">list_people()</a></code> by default lists information about the two
+Databrary PIs, Karen Adolph and Rick Gilmore, and the Co-I, David
+Millman.</p>
+<p><code><a href="reference/list_volume_owners.html">list_volume_owners()</a></code> by default lists the volume owners
+for Databrary volume 1 <a href="http://databrary.org/volume/1" class="external-link uri">http://databrary.org/volume/1</a>.</p>
+<p><code><a href="reference/logout_db.html">logout_db()</a></code> logs out of Databrary and does some simple
+clean up.</p>
+<p><code><a href="reference/get_supported_file_types.html">get_supported_file_types()</a></code> returns a data frame with the
+file types Databrary currently supports.</p>
+<p><code><a href="reference/download_volume_zip.html">download_volume_zip()</a></code> downloads a zip archive of the
+materials in volume 31.</p>
 </div>
 </div>
 </div>
@@ -162,39 +219,52 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="http://github.com/PLAY-behaviorome/databraryapi/">http://​github.com/​PLAY-behaviorome/​databraryapi/​</a>
-</li>
-<li>Report a bug at <br><a href="http://github.com/PLAY-behaviorome/databraryapi/issues">http://​github.com/​PLAY-behaviorome/​databraryapi/​issues</a>
-</li>
+<li><a href="http://github.com/PLAY-behaviorome/databraryapi/" class="external-link">Browse source code</a></li>
+<li><a href="http://github.com/PLAY-behaviorome/databraryapi/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing databraryapi</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Rick O. Gilmore <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Rick O. Gilmore.</p>
+  <p></p>
+<p>Developed by Rick O. Gilmore.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>
@@ -202,6 +272,8 @@
 
   
 
+
+  
 
   </body>
 </html>
