@@ -28,7 +28,7 @@ test_that("get_asset_segment_range rejects bad input parameters", {
 # get_db_stats ---------------------------------------------------------
 
 test_that("get_db_stats returns a data.frame", {
-  expect_true(class(get_db_stats())=="data.frame")
+  expect_true(is.data.frame(get_db_stats()))
 })
 
 test_that("get_db_stats rejects bad input parameters", {
@@ -88,7 +88,7 @@ test_that("get_release_levels rejects bad input parameters", {
 # get_supported_file_types ---------------------------------------------------------
 
 test_that("get_supported_file_types returns data.frame", {
-  expect_true(class(get_supported_file_types()) == "data.frame")
+  expect_true(is.data.frame(get_supported_file_types()))
 })
 
 test_that("get_supported_file_types rejects bad input parameters", {
@@ -100,7 +100,7 @@ test_that("get_supported_file_types rejects bad input parameters", {
 # get_video_stats ---------------------------------------------------------
 
 test_that("get_video_stats returns a data.frame", {
-  expect_true(class(get_video_stats()) == "data.frame")
+  expect_true(is.data.frame(get_video_stats()))
   #expect_true(dim(get_video_stats()) == c(1,4))
 })
 
@@ -113,8 +113,4 @@ test_that("get_video_stats rejects bad input parameters", {
   expect_error(get_video_stats(vb = -1))
   expect_error(get_video_stats(vb = c(2,3)))
 })
-
-
-
-
 

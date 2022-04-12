@@ -47,74 +47,83 @@ download_session_csv <- function(vol_id = 1,
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
   
-  r <- curl::curl_fetch_memory(csv_url)
-  if (r$status_code == 200) {
-    tmp <- tempfile()
-    curl::curl_download(csv_url, tmp)
-  } else {
-    if (vb)
-      message("Error downloading CSV from volume `", vol_id, '`')
-    return(NULL)
-  }
-  
-  if (is.null(tmp)) {
-    message("Error downloading CSV from URL`", url, '`')
-    return(NULL)
-  } else {
-    if (vb)
-      message("Converting to CSV")
-    if (to_df) {
-      r_df <- readr::read_csv(tmp, show_col_types = FALSE)
-      if (is.data.frame(r_df)) {
-        if (vb)
-          message(paste0("Imported data frame. Cleaning up."))
-        r_df <- dplyr::mutate(r_df, vol_id = vol_id)
-        r_df <- dplyr::rename(
-          r_df,
-          session_id = `session-id`,
-          session_name = `session-name`,
-          session_date = `session-date`,
-          session_release = `session-release`
-        )
-        r_df
-      } else {
-        if (vb)
-          message("Can't coerce to data frame. Skipping.\n")
-        NULL
-      }
-    }
-  }
+  # r <- curl::curl_fetch_memory(csv_url)
+  # if (r$status_code == 200) {
+  #   tmp <- tempfile()
+  #   curl::curl_download(csv_url, tmp)
+  # } else {
+  #   if (vb)
+  #     message("Error downloading CSV from volume `", vol_id, '`')
+  #   return(NULL)
+  # }
+  #
+  # if (is.null(tmp)) {
+  #   message("Error downloading CSV from URL`", url, '`')
+  #   return(NULL)
+  # } else {
+  #   if (vb)
+  #     message("Converting to CSV")
+  #   if (to_df) {
+  #     r_df <- readr::read_csv(tmp, show_col_types = FALSE)
+  #     if (is.data.frame(r_df)) {
+  #       if (vb)
+  #         message(paste0("Imported data frame. Cleaning up."))
+  #       r_df <- dplyr::mutate(r_df, vol_id = vol_id)
+  #       r_df <- dplyr::rename(
+  #         r_df,
+  #         session_id = `session-id`,
+  #         session_name = `session-name`,
+  #         session_date = `session-date`,
+  #         session_release = `session-release`
+  #       )
+  #       r_df
+  #     } else {
+  #       if (vb)
+  #         message("Can't coerce to data frame. Skipping.\n")
+  #       NULL
+  #     }
+  #   }
+  # }
   
   
   #-----------------------------------------------------------------------------
   # Old code that kept throwing errors with a small set of volumes, e.g, 34, 1144
   # Kept here for legacy purposes.
   
-  # r <- httr::content(httr::GET(paste0("https://nyu.databrary.org/volume/",
-  #                                     vol_id, "/csv")), 'text', encoding='UTF-8')
-  # r <- httr::content(httr::GET(paste0("https://nyu.databrary.org/volume/",
-  #                                     vol_id, "/csv")))
-  # if (is.null(r) | !stringr::str_detect(r, "session-id")) {
-  #   if (vb) message(paste0("No CSV data returned from volume ", vol_id))
-  #   NULL
-  # } else if (to_df == TRUE) {
-  #   if (vb) message(paste0("Converting response to data frame."))
-  #   r_df <- read.csv(text = r, stringsAsFactors = FALSE)
-  #   if (class(r_df)=="data.frame") {
-  #     if (vb) message(paste0("Imported data frame. Cleaning up."))
-  #     r_df <- dplyr::mutate(r_df, vol_id = vol_id)
-  #     r_df <- dplyr::rename(r_df,
-  #                           session_id = session.id,
-  #                           session_name = session.name,
-  #                           session_date = session.date,
-  #                           session_release = session.release)
-  #     r_df
-  #   } else {
-  #     if (vb) message("Can't coerce to data frame. Skipping.\n")
-  #     NULL
-  #   }
-  # } else {
-  #   if (vb) message(paste0("Returning raw data from volume ", vol_id))
-  #   r
-  # }
+  r <- httr::GET(csv_url)
+  if (httr::status_code(r) != 200) {
+    message("GET returns error code ", httr::status_code(r))
+    NULL
+  } else {
+    if (return_response) {
+      r
+    } else {
+      c <-
+        httr::content(
+          r,
+          show_col_types = FALSE,
+          type = 'text/csv',
+          encoding = 'utf-8'
+        )
+      if (is.null(c)) {
+        if (vb)
+          message(paste0("No CSV data returned from volume ", vol_id))
+        NULL
+      } else {
+        if (vb)
+          message(paste0("Converting response to data frame."))
+        if (is.data.frame(c)) {
+          if (vb)
+            message(paste0("Imported data frame. Cleaning up."))
+          r_df <- dplyr::mutate(c, vol_id = vol_id)
+          names(r_df) <- stringr::str_replace(names(r_df), pattern = '\\-', replacement = '_')
+          r_df
+        } else {
+          if (vb)
+            message("Can't coerce to data frame. Skipping.\n")
+          NULL
+        }
+      }
+    }
+  }
 }
