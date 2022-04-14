@@ -79,30 +79,30 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">get_db_stats</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  date investigators affiliates institutions datasets_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2022-04-12 10:49:15          1499        627          698           1403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2022-04-14 17:50:10          1500        638          698           1403</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   datasets_shared n_files    hours       TB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             800  197267 97105.95 37.37016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             800  197357 97114.07 37.37689</span>
 <span class="r-in"><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  date investigators affiliates institutions datasets_total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2022-04-12 10:49:15          1499        627          698           1403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 2022-04-14 17:50:11          1500        638          698           1403</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   datasets_shared n_files    hours       TB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             800  197267 97105.95 37.37016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             800  197357 97114.07 37.37689</span>
 <span class="r-in"><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      id sortname prename  affiliation                  url   institution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>526 Nelson   Nicole   University of Adelaide       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>277 Brisini  Kellie   Louisiana State University   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>600 Rowson   Steve    Virginia Tech                <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">9</span>274 Giddins  Grey     Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">9</span>491 Kim      Pilyoung University of Denver         <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>752 Brito    Natalie  New York University          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>495 Park     Daeun    Sungkyunkwan University      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>526 Nelson   Nicole L University of Adelaide       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">9</span>277 Brisini  Kellie   Louisiana State University   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">9</span>600 Rowson   Steve    Virginia Tech                <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">9</span>274 Giddins  Grey     Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
 <span class="r-in"><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"places"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id sortname                     prename affiliation url         institution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>735 University of Adelaide       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://ww… TRUE       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>730 Louisiana State University   <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          http://www… TRUE       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>715 Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://ww… TRUE       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      id sortname                   prename affiliation url           institution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>735 University of Adelaide     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://www.… TRUE       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>730 Louisiana State University <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          http://www.l… TRUE       </span>
 </code></pre></div>
     </div>
   </div>
