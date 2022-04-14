@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -79,7 +79,7 @@
                         <h4 data-toc-skip class="author">Rick O.
 Gilmore</h4>
             
-            <h4 data-toc-skip class="date">2022-04-11</h4>
+            <h4 data-toc-skip class="date">2022-04-14</h4>
       
       <small class="dont-index">Source: <a href="http://github.com/PLAY-behaviorome/databraryapi/blob/HEAD/vignettes/databrary-vignette.Rmd" class="external-link"><code>vignettes/databrary-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>databrary-vignette.Rmd</code></div>
@@ -140,11 +140,11 @@ package and then the <code>databraryapi</code> package from GitHub.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span>
-<span class="co">#&gt;      id sortname prename affiliation                       url          orcid   </span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     5 Adolph   Karen   New York University               http://www.… <span style="color: #BB0000;">NA</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     6 Gilmore  Rick O. The Pennsylvania State University http://gilm… 0000-00…</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     7 Millman  David   New York University               <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span></span></code></pre></div>
+<span class="co">#&gt;      id sortname prename affiliation                       url             orcid</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     5 Adolph   Karen   New York University               http://www.psy… <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>     6 Gilmore  Rick O. The Pennsylvania State University http://gilmore… 0000…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>     7 Millman  David   New York University               <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span></span></code></pre></div>
 <p>Databrary assigns a unique number for each person and institution on
 the system called a ‘party id’. When we run
 <code>list_people(1:50)</code> we are asking the system to provide us
@@ -153,24 +153,24 @@ between 1 and 50. Let’s try it:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span>people_list <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 16 × 6</span></span>
-<span class="co">#&gt;       id sortname        prename       orcid               affiliation   url    </span>
-<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 Simon           Dylan         0000-0002-2793-1679 Databrary     <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     3 Steiger         Lisa          <span style="color: #BB0000;">NA</span>                  Databrary     <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     4 Byrne           Andrea        <span style="color: #BB0000;">NA</span>                  Databrary     <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     5 Adolph          Karen         <span style="color: #BB0000;">NA</span>                  New York Uni… http:/…</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     6 Gilmore         Rick O.       0000-0002-7676-3982 The Pennsylv… http:/…</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     7 Millman         David         <span style="color: #BB0000;">NA</span>                  New York Uni… <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>    11 Tamis-LeMonda   Catherine     <span style="color: #BB0000;">NA</span>                  New York Uni… <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>    13 Roy             Lina Wictoren <span style="color: #BB0000;">NA</span>                  NYU           <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>    14 Franchak        John          <span style="color: #BB0000;">NA</span>                  University o… http:/…</span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    16 Professor       Suzanne Q.    <span style="color: #BB0000;">NA</span>                  Databrary     <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">11</span>    17 Jimenez-Robbins Carmen        <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">12</span>    18 Coe             Jon           <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    19 Foo             Vicky         <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>            <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">14</span>    20 Gordon          Peter         <span style="color: #BB0000;">NA</span>                  Teachers Col… <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">15</span>    24 Chan            Gladys        <span style="color: #BB0000;">NA</span>                  NYU           <span style="color: #BB0000;">NA</span>     </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">16</span>    32 Karasik         Lana          <span style="color: #BB0000;">NA</span>                  CUNY          <span style="color: #BB0000;">NA</span></span></code></pre></div>
+<span class="co">#&gt;       id sortname        prename       orcid               affiliation     url  </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>     1 Simon           Dylan         0000-0002-2793-1679 Databrary       <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     3 Steiger         Lisa          <span style="color: #BB0000;">NA</span>                  Databrary       <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     4 Byrne           Andrea        <span style="color: #BB0000;">NA</span>                  Databrary       <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     5 Adolph          Karen         <span style="color: #BB0000;">NA</span>                  New York Unive… http…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     6 Gilmore         Rick O.       0000-0002-7676-3982 The Pennsylvan… http…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     7 Millman         David         <span style="color: #BB0000;">NA</span>                  New York Unive… <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>    11 Tamis-LeMonda   Catherine     <span style="color: #BB0000;">NA</span>                  New York Unive… <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>    13 Roy             Lina Wictoren <span style="color: #BB0000;">NA</span>                  NYU             <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>    14 Franchak        John          <span style="color: #BB0000;">NA</span>                  University of … http…</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span>    16 Professor       Suzanne Q.    <span style="color: #BB0000;">NA</span>                  Databrary       <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span>    17 Jimenez-Robbins Carmen        <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span>    18 Coe             Jon           <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">13</span>    19 Foo             Vicky         <span style="color: #BB0000;">NA</span>                  <span style="color: #BB0000;">NA</span>              <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">14</span>    20 Gordon          Peter         <span style="color: #BB0000;">NA</span>                  Teachers Colle… <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">15</span>    24 Chan            Gladys        <span style="color: #BB0000;">NA</span>                  NYU             <span style="color: #BB0000;">NA</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">16</span>    32 Karasik         Lana          <span style="color: #BB0000;">NA</span>                  CUNY            <span style="color: #BB0000;">NA</span></span></code></pre></div>
 <p>It’s a bit slow, but you should see information about people
 beginning with Dylan Simon and ending with Lana Karasik.</p>
 <p>You can also try seeing what’s new on Databrary. The
@@ -180,33 +180,33 @@ this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span>
 <span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span>
-<span class="co">#&gt; 1 2022-04-11 16:01:21          1499        627          698           1403</span>
+<span class="co">#&gt; 1 2022-04-14 17:51:16          1500        638          698           1403</span>
 <span class="co">#&gt;   datasets_shared n_files    hours       TB</span>
-<span class="co">#&gt; 1             800  197257 97100.17 37.36343</span>
+<span class="co">#&gt; 1             800  197357 97114.07 37.37689</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 6</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span>
 <span class="co">#&gt;      id sortname prename  affiliation                  url   institution</span>
 <span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>526 Nelson   Nicole   University of Adelaide       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>277 Brisini  Kellie   Louisiana State University   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>600 Rowson   Steve    Virginia Tech                <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">9</span>274 Giddins  Grey     Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">9</span>491 Kim      Pilyoung University of Denver         <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>752 Brito    Natalie  New York University          <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>495 Park     Daeun    Sungkyunkwan University      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>526 Nelson   Nicole L University of Adelaide       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">9</span>277 Brisini  Kellie   Louisiana State University   <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">9</span>600 Rowson   Steve    Virginia Tech                <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>         </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">9</span>274 Giddins  Grey     Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span></span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"institutions"</span><span class="op">)</span>
-<span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 6</span></span>
-<span class="co">#&gt;      id sortname                     prename affiliation url         institution</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>735 University of Adelaide       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://ww… TRUE       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>730 Louisiana State University   <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          http://www… TRUE       </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">9</span>715 Royal United Hospitals, Bath <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://ww… TRUE</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span>
+<span class="co">#&gt;      id sortname                   prename affiliation url           institution</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>      </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">9</span>735 University of Adelaide     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          https://www.… TRUE       </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">9</span>730 Louisiana State University <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>          http://www.l… TRUE</span>
 <span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 7</span></span>
-<span class="co">#&gt;      id name          body          creation   owners permission publicsharefull</span>
-<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>448 Fitting &amp; Th… <span style="color: #949494;">"</span>Adults comp… 2022-04-0… <span style="color: #949494;">&lt;df [</span>…          1 FALSE          </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>447 Dataset of B… <span style="color: #949494;">"</span>This datase… 2022-04-0… <span style="color: #949494;">&lt;df [</span>…          1 TRUE           </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>249 An RGBD Data… <span style="color: #949494;">"</span>This datase… 2020-11-2… <span style="color: #949494;">&lt;df [</span>…          1 FALSE          </span>
-<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>446 Children Dif… <span style="color: #949494;">"</span>The study u… 2022-03-3… <span style="color: #949494;">&lt;df [</span>…          1 FALSE</span></code></pre></div>
+<span class="co">#&gt;      id name                    body  creation owners permission publicsharefull</span>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>448 Fitting &amp; Throwing      <span style="color: #949494;">"</span>Adu… 2022-04… &lt;df&gt;            1 FALSE          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>447 Dataset of BERT Embedd… <span style="color: #949494;">"</span>Thi… 2022-04… &lt;df&gt;            1 TRUE           </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>249 An RGBD Dataset of Ame… <span style="color: #949494;">"</span>Thi… 2020-11… &lt;df&gt;            1 FALSE          </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>446 Children Differentiall… <span style="color: #949494;">"</span>The… 2022-03… &lt;df&gt;            1 FALSE</span></code></pre></div>
 <p>Depending on when you run this command, there may or may not be new
 items.</p>
 </div>
@@ -484,10 +484,8 @@ does.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/rbind.fill.html" class="external-link">rbind.fill</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">get_video_stats</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for details</span>
-
-<span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for details</span>
-
-<span class="co">#&gt; Warning: One or more parsing issues, see `problems()` for details</span>
+<span class="co">#&gt; One or more parsing issues, see `problems()` for details</span>
+<span class="co">#&gt; One or more parsing issues, see `problems()` for details</span>
 <span class="co">#&gt;   vol_id n_videos n_sessions    tot_hrs</span>
 <span class="co">#&gt; 1      1       75         21  70.146791</span>
 <span class="co">#&gt; 2      2       14          3   1.327995</span>
