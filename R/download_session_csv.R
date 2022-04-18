@@ -116,7 +116,7 @@ download_session_csv <- function(vol_id = 1,
           if (vb)
             message(paste0("Imported data frame. Cleaning up."))
           r_df <- dplyr::mutate(c, vol_id = vol_id)
-          names(r_df) <- stringr::str_replace(names(r_df), pattern = '\\-', replacement = '_')
+          names(r_df) <- stringr::str_replace(names(r_df), pattern = '[\\-|\\.]', replacement = '_')
           r_df
         } else {
           if (vb)
