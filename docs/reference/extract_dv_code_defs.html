@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,44 +60,61 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">extract_dv_code_defs</span><span class="op">(</span>
-  in_dir <span class="op">=</span> <span class="st">"."</span>,
-  dv_fn <span class="op">=</span> <span class="st">"db"</span>,
-  out_dir <span class="op">=</span> <span class="va">in_dir</span>,
-  out_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">out_dir</span>, <span class="st">"/"</span>, <span class="st">"codes.csv"</span><span class="op">)</span>,
-  auto_write_over <span class="op">=</span> <span class="cn">TRUE</span>,
-  code_regex <span class="op">=</span> <span class="st">"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,
-  code_vals_regex <span class="op">=</span> <span class="st">"\\)-([a-zA-Z\\/]+)\\|"</span>,
-  code_type_regex <span class="op">=</span> <span class="st">"([a-zA-Z]+)$"</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_dv_code_defs</span><span class="op">(</span></span>
+<span>  in_dir <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  dv_fn <span class="op">=</span> <span class="st">"db"</span>,</span>
+<span>  out_dir <span class="op">=</span> <span class="va">in_dir</span>,</span>
+<span>  out_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">out_dir</span>, <span class="st">"/"</span>, <span class="st">"codes.csv"</span><span class="op">)</span>,</span>
+<span>  auto_write_over <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  code_regex <span class="op">=</span> <span class="st">"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,</span>
+<span>  code_vals_regex <span class="op">=</span> <span class="st">"\\)-([a-zA-Z\\/]+)\\|"</span>,</span>
+<span>  code_type_regex <span class="op">=</span> <span class="st">"([a-zA-Z]+)$"</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>in_dir</dt>
 <dd><p>Input directory. Defaults to '.'</p></dd>
+
+
 <dt>dv_fn</dt>
 <dd><p>Full Datavyu file name. Defaults to 'db'</p></dd>
+
+
 <dt>out_dir</dt>
 <dd><p>Output directory. Defaults to in_dir</p></dd>
+
+
 <dt>out_fn</dt>
 <dd><p>Full output file name.</p></dd>
+
+
 <dt>auto_write_over</dt>
 <dd><p>A Boolean value. If TRUE, new output file overwrites old.</p></dd>
+
+
 <dt>code_regex</dt>
 <dd><p>A string specifying the regular expression to extract a code.</p></dd>
+
+
 <dt>code_vals_regex</dt>
 <dd><p>A string specifying the regular expression to extract a code value.</p></dd>
+
+
 <dt>code_type_regex</dt>
 <dd><p>A string specifying the regular expression for the code type.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A boolean value. If TRUE, provides verbose output.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">extract_dv_code_defs</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">extract_dv_code_defs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in extract_dv_code_defs():</span> File db cannot be found.</span>
 </code></pre></div>
     </div>
@@ -113,8 +130,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,24 +60,29 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">summarize_videos_in_volume</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">4</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">summarize_videos_in_volume</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">4</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>vol_id</dt>
 <dd><p>Selected volume number.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Data frame with the vol_id, number of videos, and total hours.</p>
+    
+
+<p>Data frame with the vol_id, number of videos, and total hours.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">summarize_videos_in_volume</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">summarize_videos_in_volume</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   vol_id n_vids total_vid_hrs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      4     73      10.74891</span>
 </code></pre></div>
@@ -94,8 +99,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

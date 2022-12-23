@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,29 +60,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">GET_db_contents</span><span class="op">(</span>
-  base_URL <span class="op">=</span> <span class="st">"https://nyu.databrary.org"</span>,
-  <span class="va">URL_components</span>,
-  convert_JSON <span class="op">=</span> <span class="cn">TRUE</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">GET_db_contents</span><span class="op">(</span></span>
+<span>  base_URL <span class="op">=</span> <span class="st">"https://nyu.databrary.org"</span>,</span>
+<span>  <span class="va">URL_components</span>,</span>
+<span>  convert_JSON <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>base_URL</dt>
 <dd><p>Base URL for API call. Default is https://nyu.databrary.org.</p></dd>
+
+
 <dt>URL_components</dt>
 <dd><p>Other components of API URL usually assembled using a paste0() command.</p></dd>
+
+
 <dt>convert_JSON</dt>
 <dd><p>A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">GET_db_contents</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">GET_db_contents</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in paste0(base_URL, URL_components):</span> argument "URL_components" is missing, with no default</span>
 </code></pre></div>
     </div>
@@ -98,8 +105,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

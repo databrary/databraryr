@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,43 +60,58 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">login_db</span><span class="op">(</span>
-  email <span class="op">=</span> <span class="cn">NULL</span>,
-  login.url <span class="op">=</span> <span class="st">"/api/user/login"</span>,
-  return.response <span class="op">=</span> <span class="cn">FALSE</span>,
-  save.session <span class="op">=</span> <span class="cn">TRUE</span>,
-  stored.credentials <span class="op">=</span> <span class="cn">FALSE</span>,
-  system.credentials <span class="op">=</span> <span class="cn">TRUE</span>,
-  credentials.file <span class="op">=</span> <span class="st">"~/api-keys/json/databrary-keys.json"</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">login_db</span><span class="op">(</span></span>
+<span>  email <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  login.url <span class="op">=</span> <span class="st">"/api/user/login"</span>,</span>
+<span>  return.response <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  save.session <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  stored.credentials <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  system.credentials <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  credentials.file <span class="op">=</span> <span class="st">"~/api-keys/json/databrary-keys.json"</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>email</dt>
 <dd><p>Databrary account ID (email).</p></dd>
+
+
 <dt>login.url</dt>
 <dd><p>URL for the login API.</p></dd>
+
+
 <dt>save.session</dt>
 <dd><p>A Boolean value. If TRUE saves the session cookie.</p></dd>
+
+
 <dt>stored.credentials</dt>
 <dd><p>A Boolean value. If TRUE loads login credentials from credentials file.</p></dd>
+
+
 <dt>credentials.file</dt>
 <dd><p>Path to stored credentials file if it exists.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A boolean value. If TRUE provides verbose output.</p></dd>
+
+
 <dt>return.reponse</dt>
 <dd><p>A Boolean value. If TRUE returns results of GET</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Status code if login is successful</p>
+    
+
+<p>Status code if login is successful</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">login_db</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">login_db</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Please enter your Databrary user ID (email).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Email: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
@@ -114,8 +129,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

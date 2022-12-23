@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,36 +60,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">extract_dv</span><span class="op">(</span>
-  in_dir <span class="op">=</span> <span class="st">"."</span>,
-  in_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">in_dir</span>, <span class="st">"\\.opf$"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  out_dir <span class="op">=</span> <span class="va">in_dir</span>,
-  auto_write_over <span class="op">=</span> <span class="cn">TRUE</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extract_dv</span><span class="op">(</span></span>
+<span>  in_dir <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  in_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">in_dir</span>, <span class="st">"\\.opf$"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  out_dir <span class="op">=</span> <span class="va">in_dir</span>,</span>
+<span>  auto_write_over <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>in_dir</dt>
 <dd><p>Input directory</p></dd>
+
+
 <dt>in_fn</dt>
 <dd><p>File name for the Datavyu file.</p></dd>
+
+
 <dt>out_dir</dt>
 <dd><p>Output directory to save exported files.</p></dd>
+
+
 <dt>auto_write_over</dt>
 <dd><p>A Boolean value. If TRUE, any existing files in out_dir are overwritten.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The output directory where the extracted files were saved.</p>
+    
+
+<p>The output directory where the extracted files were saved.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">extract_dv</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">extract_dv</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (!file.exists(in_fn)) {    stop(paste0("File ", in_fn, " not found.", "\n"))}:</span> argument is of length zero</span>
 </code></pre></div>
     </div>
@@ -105,8 +116,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
