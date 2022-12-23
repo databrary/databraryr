@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,26 +60,33 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">list_party</span><span class="op">(</span>party_id <span class="op">=</span> <span class="fl">8</span>, component <span class="op">=</span> <span class="st">"all"</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_party</span><span class="op">(</span>party_id <span class="op">=</span> <span class="fl">8</span>, component <span class="op">=</span> <span class="st">"all"</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>party_id</dt>
 <dd><p>Target volume number.</p></dd>
+
+
 <dt>component</dt>
 <dd><p>The specific data to retrieve for the party, c("all", "children", "parents")</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list (or data frame) with the requested data.</p>
+    
+
+<p>A list (or data frame) with the requested data.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">list_party</span><span class="op">(</span><span class="op">)</span> <span class="co"># Default is New York University (party 8)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_party</span><span class="op">(</span><span class="op">)</span> <span class="co"># Default is New York University (party 8)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -132,6 +139,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32     6869        Trainor        Audrey           New York University</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 33     9203       Ripolles         Pablo           New York University</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 34     9752          Brito       Natalie           New York University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35     9816         Grigos         Maria           New York University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36     7136            Ren        Mengye           New York University</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                party.url</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       http://www.psych.nyu.edu/adolph/</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                                   &lt;NA&gt;</span>
@@ -167,6 +176,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32                                  &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 33                                  &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 34                                  &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                  &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                 https://mengyeren.com</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $access</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> list()</span>
@@ -185,8 +196,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

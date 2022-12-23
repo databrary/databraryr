@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,44 +60,57 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">download_datavyu</span><span class="op">(</span>
-  vol_id <span class="op">=</span> <span class="fl">1</span>,
-  session_id <span class="op">=</span> <span class="fl">9807</span>,
-  asset_id <span class="op">=</span> <span class="fl">117035</span>,
-  out_dir <span class="op">=</span> <span class="st">"tmp"</span>,
-  file_name <span class="op">=</span> <span class="st">"test.opf"</span>,
-  return_response <span class="op">=</span> <span class="cn">FALSE</span>,
-  vb <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_datavyu</span><span class="op">(</span></span>
+<span>  vol_id <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  session_id <span class="op">=</span> <span class="fl">9807</span>,</span>
+<span>  asset_id <span class="op">=</span> <span class="fl">117035</span>,</span>
+<span>  out_dir <span class="op">=</span> <span class="st">"tmp"</span>,</span>
+<span>  file_name <span class="op">=</span> <span class="st">"test.opf"</span>,</span>
+<span>  return_response <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>vol_id</dt>
 <dd><p>Volume ID</p></dd>
+
+
 <dt>session_id</dt>
 <dd><p>Slot/session number.</p></dd>
+
+
 <dt>asset_id</dt>
 <dd><p>Asset number.</p></dd>
+
+
 <dt>out_dir</dt>
 <dd><p>Directory to save output.</p></dd>
+
+
 <dt>file_name</dt>
 <dd><p>Name for downloaded file.</p></dd>
+
+
 <dt>return_response</dt>
 <dd><p>A Boolean value.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">download_datavyu</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">download_datavyu</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Output directory tmp exists. Extract here (y/n): </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Successful HTML GET query.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Content-type is application/vnd.datavyu</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> File name unspecified. Generating unique name.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Datavyu file as: </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> tmp/1-9807-117035-2022-04-14-1749-45.opf</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> tmp/1-9807-117035-2022-12-23-1047-57.opf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "tmp"</span>
 </code></pre></div>
     </div>
@@ -113,8 +126,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

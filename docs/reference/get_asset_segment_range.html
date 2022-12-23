@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,36 +60,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">get_asset_segment_range</span><span class="op">(</span>
-  vol_id <span class="op">=</span> <span class="fl">1</span>,
-  session_id <span class="op">=</span> <span class="fl">9807</span>,
-  asset_id <span class="op">=</span> <span class="fl">1</span>,
-  convert_JSON <span class="op">=</span> <span class="cn">TRUE</span>,
-  segment_only <span class="op">=</span> <span class="cn">TRUE</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_asset_segment_range</span><span class="op">(</span></span>
+<span>  vol_id <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  session_id <span class="op">=</span> <span class="fl">9807</span>,</span>
+<span>  asset_id <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  convert_JSON <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  segment_only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>vol_id</dt>
 <dd><p>Volume ID</p></dd>
+
+
 <dt>session_id</dt>
 <dd><p>Slot/session number.</p></dd>
+
+
 <dt>asset_id</dt>
 <dd><p>Asset number.</p></dd>
+
+
 <dt>convert_JSON</dt>
 <dd><p>A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.</p></dd>
+
+
 <dt>segment_only</dt>
 <dd><p>A Boolean value. If TRUE, returns only the segment values. Otherwise returns
 a data frame with two fields, segment and permission. Default is TRUE.</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">get_asset_segment_range</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_asset_segment_range</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]     0 40000</span>
 </code></pre></div>
     </div>
@@ -105,8 +116,7 @@ a data frame with two fields, segment and permission. Default is TRUE.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

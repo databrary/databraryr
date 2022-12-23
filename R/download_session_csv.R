@@ -43,7 +43,7 @@ download_session_csv <- function(vol_id = 1,
   
   # Main routines
   if (vb)
-    message(paste0("Downloading spreadsheet from volume ", vol_id))
+    message(paste0("Downloading spreadsheet from volume ", vol_id, '.'))
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
   
@@ -88,11 +88,15 @@ download_session_csv <- function(vol_id = 1,
   
   #-----------------------------------------------------------------------------
   # Old code that kept throwing errors with a small set of volumes, e.g, 34, 1144
-  # Kept here for legacy purposes.
   
-  r <- httr::GET(csv_url)
-  if (httr::status_code(r) != 200) {
-    message("GET returns error code ", httr::status_code(r))
+  r <- try(httr::GET(csv_url), silent = TRUE)
+  
+  if ((class(r) == 'try-error')) {
+    if (vb) message ("`try-error` probably due to apostrophe bug in API.")
+    return(NULL)
+  }
+  if ((httr::status_code(r) != 200) | (class(r) == 'try-error')) {
+    if (vb) message("GET returns error")
     NULL
   } else {
     if (return_response) {

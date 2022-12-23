@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
       </span>
     </div>
 
@@ -60,47 +60,66 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dv_to_csv</span><span class="op">(</span>
-  dv_dir <span class="op">=</span> <span class="st">"."</span>,
-  dv_fn <span class="op">=</span> <span class="st">"db"</span>,
-  out_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">dv_dir</span>, <span class="st">"/tmp.csv"</span><span class="op">)</span>,
-  auto_write_over <span class="op">=</span> <span class="cn">FALSE</span>,
-  code_regex <span class="op">=</span> <span class="st">"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,
-  code_type_regex <span class="op">=</span> <span class="st">"([a-zA-Z]+)$"</span>,
-  time_regex <span class="op">=</span> <span class="st">"([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})"</span>,
-  code_values_regex <span class="op">=</span> <span class="st">"\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\)$"</span>,
-  convert_times <span class="op">=</span> <span class="cn">TRUE</span>,
-  vb <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dv_to_csv</span><span class="op">(</span></span>
+<span>  dv_dir <span class="op">=</span> <span class="st">"."</span>,</span>
+<span>  dv_fn <span class="op">=</span> <span class="st">"db"</span>,</span>
+<span>  out_fn <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">dv_dir</span>, <span class="st">"/tmp.csv"</span><span class="op">)</span>,</span>
+<span>  auto_write_over <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  code_regex <span class="op">=</span> <span class="st">"^([a-zA-Z_]+[0-9]*[a-zA-Z_]*[0-9]*)"</span>,</span>
+<span>  code_type_regex <span class="op">=</span> <span class="st">"([a-zA-Z]+)$"</span>,</span>
+<span>  time_regex <span class="op">=</span> <span class="st">"([0-9]{2}:[0-9]{2}:[0-9]{2}:[0-9]{3})"</span>,</span>
+<span>  code_values_regex <span class="op">=</span> <span class="st">"\\(([a-zA-Z ?,.'/0-9;!|~`]+)\\)$"</span>,</span>
+<span>  convert_times <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dv_dir</dt>
 <dd><p>Directory to extracted Datavyu file.</p></dd>
+
+
 <dt>dv_fn</dt>
 <dd><p>Datavyu code file. Defaults to 'db'.</p></dd>
+
+
 <dt>out_fn</dt>
 <dd><p>Output file name. Default is based on dv_dir.</p></dd>
+
+
 <dt>auto_write_over</dt>
 <dd><p>A Boolean value. If TRUE, new output file overwrites old.</p></dd>
+
+
 <dt>code_regex</dt>
 <dd><p>Regular expression to extract codes from Datavyu file.</p></dd>
+
+
 <dt>code_type_regex</dt>
 <dd><p>Regular expression to extract doce types from Datavyu file.</p></dd>
+
+
 <dt>time_regex</dt>
 <dd><p>Regular expression to extract onset/offset times.</p></dd>
+
+
 <dt>code_values_regex</dt>
 <dd><p>Regular expression to extract code values from Datavyu file.</p></dd>
+
+
 <dt>convert_times</dt>
 <dd><p>A Boolean value. If TRUE (default), converts the onset and offset</p></dd>
+
+
 <dt>vb</dt>
 <dd><p>A boolean value. If TRUE, provides verbose output.</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">dv_to_csv</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dv_to_csv</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file './db': No such file or directory</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(paste0(dv_dir, "/", dv_fn), "r"):</span> cannot open the connection</span>
 </code></pre></div>
@@ -117,8 +136,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
