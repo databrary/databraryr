@@ -1,5 +1,5 @@
 context("search_* functions")
-library(databraryapi)
+library(databrary.r)
 
 # search_for_funder() ---------------------------------------------------
 test_that("search_for_funder returns data.frame", {

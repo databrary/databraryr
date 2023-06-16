@@ -1,10 +1,11 @@
-Package: databraryapi
+Package: databrary.r
 Type: Package
 Title: Interacts With the Databrary.org API
-Version: 0.2.9
+Version: 0.3.0
 Author: Rick O. Gilmore [aut, cre]
-Authors@R: person("Rick", "O. Gilmore", email = "rog1@psu.edu",
-  role = c("aut", "cre"))
+Authors@R: c(person("Rick", "O. Gilmore", email = "rog1@psu.edu",
+  role = c("aut", "cre")), person("Jeffrey", "Spies", email = "jeff@221b.io",
+  role = c("aut", "cre")))
 Maintainer: Rick O. Gilmore <rog1@psu.edu>
 Description: This package provides commands to interact with the 
   Databrary.org API. There are some public assets on Databrary. 
@@ -26,10 +27,10 @@ Imports:
     stringr,
     rmarkdown,
     magick
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     testthat
 VignetteBuilder: knitr
-URL: http://github.com/PLAY-behaviorome/databraryapi
-BugReports: http://github.com/PLAY-behaviorome/databraryapi/issues
+URL: http://github.com/databrary/databrary-r
+BugReports: http://github.com/databrary/databrary-r/issues

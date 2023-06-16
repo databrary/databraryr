@@ -8,7 +8,7 @@
 #' GET_db_contents()
 #' @export
 GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
-                            URL_components,
+                            URL_components = '/api/volume/1',
                             convert_JSON = TRUE,
                             vb = FALSE) {
   URL <- paste0(base_URL, URL_components)

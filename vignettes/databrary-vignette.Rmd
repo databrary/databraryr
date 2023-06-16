@@ -17,12 +17,13 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(tidyverse)
+library(devtools)
 ```
 
 ## Vignette Info
 
 Databrary is a powerful tool for storing and sharing video data and documentation with other researchers.
-With the `databraryapi` package, it becomes even more powerful.
+With the `databrary-r` package, it becomes even more powerful.
 Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
 
 I wrote the Databrary API so I could find out what's going on on the site, and eventually so I can streamline my own analysis and data sharing workflows.
@@ -49,14 +50,14 @@ if (!require(devtools)) {
 library(devtools)
 
 if (!require(databraryapi)) {
-  devtools::install_github("PLAY-behaviorome/databraryapi") 
+  devtools::install_github("databrary/databrary-r") 
 }
 ```
 
 Next, let's load the package:
 
 ```{r load-databraryapi}
-library(databraryapi)
+library(databrary-r)
 ```
 
 Then, try this command to pull data about Databrary's founders:

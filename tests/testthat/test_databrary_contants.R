@@ -1,5 +1,5 @@
 context("Databrary constants")
-library(databraryapi)
+library(databrary.r)
 
 # assign_constants
 

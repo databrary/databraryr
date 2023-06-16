@@ -1,4 +1,4 @@
 library(testthat)
-library(databraryapi)
+library(databrary.r)
 
-test_check("databraryapi")
+test_check("databrary.r")

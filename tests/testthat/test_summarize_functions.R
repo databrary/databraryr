@@ -1,5 +1,5 @@
 context("summarize_* functions")
-library(databraryapi)
+library(databrary.r)
 
 # summarize_demo_part_w_video ---------------------------------------------------
 test_that("summarize_demo_part_w_video returns data.frame", {

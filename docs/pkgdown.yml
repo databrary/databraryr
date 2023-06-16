@@ -1,7 +1,7 @@
-pandoc: 2.19.2
-pkgdown: 2.0.6
+pandoc: 3.1.1
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   databrary-vignette: databrary-vignette.html
-last_built: 2022-12-23T15:47Z
+last_built: 2023-06-16T19:52Z
 

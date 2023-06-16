@@ -1,6 +1,6 @@
 #' Search for tags on volumes or sessions.
 #'
-#' @param tag_string. String to search.
+#' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return An array of tags that match the tag_string.
 #' @examples

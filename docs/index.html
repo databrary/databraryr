@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interacts With the Databrary.org API • databraryapi</title>
+<title>Interacts With the Databrary.org API • databrary.r</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -37,8 +37,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">databraryapi</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.9</span>
+        <a class="navbar-link" href="index.html">databrary.r</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -62,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="http://github.com/PLAY-behaviorome/databraryapi/" class="external-link">
+  <a href="http://github.com/databrary/databrary-r/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -112,17 +112,13 @@
 <h3 id="configuration">Configuration<a class="anchor" aria-label="anchor" href="#configuration"></a>
 </h3>
 <p>Once the <code>databraryapi</code> package has been installed, it may be loaded into the local environment via <code><a href="http://github.com/PLAY-behaviorome/databraryapi" class="external-link">library(databraryapi)</a></code>. It is advisable to configure the local environment each time the user wishes to access the system:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">login_db</span>()  <span class="co"># Queries stored log on credentials or creates and stores new credentials.</span></span></code></pre></div>
 <p>The <code><a href="reference/login_db.html">login_db()</a></code> command uses the <code>keyring</code> package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux. This is the recommended approach. The first time you log on to Databrary via the <code>databraryapi</code> package, you will need to run <code>config_passd()</code>. You should only need to run this once.</p>
 <p>Once you are an authorized user on Databrary, you may also use</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">login_db</span>(<span class="st">"myemail@myemailhost.com"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">login_db</span>(<span class="st">"myemail@myemailhost.com"</span>)</span></code></pre></div>
 <p>to log on.</p>
 <p>Users on Mac OS and Linux systems may alternatively choose to store user account and password information in <code>~/api-keys/json/databrary-keys.json</code>. This file has the following format:</p>
-<pre class="{json}"><code>{
-  "email":["myaccount@mymail.com"],
-  "pw":["s0mEth!nGl0nGandS3CURE"]
-}</code></pre>
-<p>This approach has risks as the credentials are stored as text. Users who choose this approach should use <code>login_db(stored.credentials = TRUE)</code>.</p>
+<p><code>{json} {   "email":["myaccount@mymail.com"],   "pw":["s0mEth!nGl0nGandS3CURE"] }</code> This approach has risks as the credentials are stored as text. Users who choose this approach should use <code>login_db(stored.credentials = TRUE)</code>.</p>
 <p>If users choose to log in with their user names and passwords on each access – <code>stored.credentials = FALSE</code> — and there is no stored credentials file accessible by <code>keyring</code> – <code>rstudioapi</code> package commands will query the user for both the user account and password. The <code>rstudioapi</code> commands work only under <a href="http://www.rstudio.com" class="external-link">RStudio</a>.</p>
 <p>Whatever access model is chosen, the use of a password generator/manager program (e.g., <a href="http://www.lastpass.com" class="external-link">LastPass</a>, <a href="http://1password.com" class="external-link">1Password</a>, <a href="http://www.dashlane.com" class="external-link">Dashlane</a>) is strongly recommended.</p>
 </div>
@@ -130,12 +126,12 @@
 <h3 id="command-descriptions">Command descriptions<a class="anchor" aria-label="anchor" href="#command-descriptions"></a>
 </h3>
 <p><code><a href="reference/get_db_stats.html">get_db_stats()</a></code> by default provides some data about the current number of authorized investigators, affiliates, institutions, datasets, files, and hours of stored video. Try</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">"people"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">"people"</span>)</span></code></pre></div>
 <p>to see a table of newly authorized researchers. Or, try</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">'datasets'</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">get_db_stats</span>(<span class="st">'datasets'</span>)</span></code></pre></div>
 <p>to see a list of the latest shared datasets.</p>
 <p><code><a href="reference/read_csv_data_as_df.html">read_csv_data_as_df()</a></code> by default reads a publicly shared CSV data file from Databrary’s volume 1 <a href="http://databrary.org/volume/1" class="external-link uri">http://databrary.org/volume/1</a>. Try</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">read_csv_data_as_df</span>(), <span class="fu">plot</span>(Auth_Investigators, Institutions))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">with</span>(<span class="fu">read_csv_data_as_df</span>(), <span class="fu">plot</span>(Auth_Investigators, Institutions))</span></code></pre></div>
 <p>to view a simple plot of the number of authorized investigators and institutions across time.</p>
 <p><code><a href="reference/download_video.html">download_video()</a></code> by default reads a short publicly shared testing video depicting a series of numbers counting up from 000. Unless you specify another file name, the .mp4 format movie will download to the current directory as <code>test.mp4</code>.</p>
 <p><code><a href="reference/get_file_duration.html">get_file_duration()</a></code> by default returns the duration (in ms) of the same publicly shared video in volume 1.</p>
@@ -160,8 +156,8 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="http://github.com/PLAY-behaviorome/databraryapi/" class="external-link">Browse source code</a></li>
-<li><a href="http://github.com/PLAY-behaviorome/databraryapi/issues" class="external-link">Report a bug</a></li>
+<li><a href="http://github.com/databrary/databrary-r/" class="external-link">Browse source code</a></li>
+<li><a href="http://github.com/databrary/databrary-r/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -178,7 +174,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing databraryapi</a></li>
+<li><a href="authors.html#citation">Citing databrary.r</a></li>
 </ul>
 </div>
 
@@ -186,6 +182,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Rick O. Gilmore <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Jeffrey Spies <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
@@ -197,12 +194,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Rick O. Gilmore.</p>
+<p>Developed by Rick O. Gilmore, Jeffrey Spies.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

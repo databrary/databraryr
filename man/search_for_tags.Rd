@@ -7,9 +7,9 @@
 search_for_tags(search_string = "ICIS", vb = FALSE)
 }
 \arguments{
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{search_string}{String to search.}
 
-\item{tag_string.}{String to search.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
 An array of tags that match the tag_string.

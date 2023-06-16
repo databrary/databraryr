@@ -1,5 +1,5 @@
 context("Miscellaneous functions")
-library(databraryapi)
+library(databrary.r)
 
 # format_to_filetypes ---------------------------------------------------
 # Can't test return value without input parameter

@@ -6,29 +6,31 @@
 \usage{
 login_db(
   email = NULL,
-  login.url = "/api/user/login",
-  return.response = FALSE,
-  save.session = TRUE,
-  stored.credentials = FALSE,
-  system.credentials = TRUE,
-  credentials.file = "~/api-keys/json/databrary-keys.json",
+  login_url = "/api/user/login",
+  return_response = FALSE,
+  save_session = TRUE,
+  stored_credentials = FALSE,
+  system_credentials = TRUE,
+  credentials_file = "~/api-keys/json/databrary-keys.json",
   vb = FALSE
 )
 }
 \arguments{
 \item{email}{Databrary account ID (email).}
 
-\item{login.url}{URL for the login API.}
+\item{login_url}{URL for the login API.}
 
-\item{save.session}{A Boolean value. If TRUE saves the session cookie.}
+\item{save_session}{A Boolean value. If TRUE saves the session cookie.}
 
-\item{stored.credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
+\item{stored_credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
 
-\item{credentials.file}{Path to stored credentials file if it exists.}
+\item{system_credentials}{A Boolean value. If TRUE loads login credentials using the system level file accessed by the `keyring` package.}
+
+\item{credentials_file}{Path to stored credentials file if it exists.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 
-\item{return.reponse}{A Boolean value. If TRUE returns results of GET}
+\item{return_reponse}{A Boolean value. If TRUE returns results of GET}
 }
 \value{
 Status code if login is successful

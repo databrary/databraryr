@@ -6,7 +6,7 @@
 \usage{
 GET_db_contents(
   base_URL = "https://nyu.databrary.org",
-  URL_components,
+  URL_components = "/api/volume/1",
   convert_JSON = TRUE,
   vb = FALSE
 )

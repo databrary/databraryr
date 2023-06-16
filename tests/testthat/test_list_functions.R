@@ -1,5 +1,5 @@
 context("list_* functions")
-library(databraryapi)
+library(databrary.r)
 
 # list_assets_by_type ---------------------------------------------------
 test_that("list_assets_by_type returns data.frame", {
