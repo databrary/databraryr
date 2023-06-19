@@ -1,4 +1,5 @@
-#' Downloads Databrary contants from API.
+#' Download Databrary contants from API.
+#' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the constants.
 #' @examples

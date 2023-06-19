@@ -1,4 +1,5 @@
-#' Downloads container and record structure from Databrary volume.
+#' Downloads container and record structure from a Databrary volume.
+#' 
 #' This function is deprecated, as it duplicates list_containers_records().
 #'
 #' @param vol_id Databrary volume number.

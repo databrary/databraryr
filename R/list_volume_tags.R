@@ -29,8 +29,11 @@ list_volume_tags <- function(vol_id = 1, vb = FALSE) {
                                                           "?tags=all"),
                                   vb = vb)
   if (!is.null(g)) {
-    if (vb)
-      message("'tags' is NULL.")
+    if (vb) message("n=", length(g$tags$id), " tags found in volume ", vol_id, ".")
     g$tags
+  } else {
+    if (vb)
+      message("No tags available for volume '", vol_id, "'.")
+    NULL
   }
 }

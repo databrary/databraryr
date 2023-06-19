@@ -1,4 +1,5 @@
-#' Checks the SSL certificates for nyu.databary.org.
+#' Check SSL certificates for nyu.databary.org.
+#' 
 #' @param url Target URL. Defaults to 'nyu.databrary.org'.
 #' @examples
 #' check_ssl_certs()

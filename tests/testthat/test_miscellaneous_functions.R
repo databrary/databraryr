@@ -10,13 +10,13 @@ test_that("format_to_filetypes rejects bad input parameters", {
   expect_error(format_to_filetypes(vol_assets = -1))
   expect_error(format_to_filetypes(vol_assets = 0))
   expect_error(format_to_filetypes(vol_assets = "a"))
-  expect_error(format_to_filetypes(vol_assets = list(a=1, b=2)))
+  expect_error(format_to_filetypes(vol_assets = list(a = 1, b = 2)))
   expect_error(format_to_filetypes(vol_assets = TRUE))
-
+  
   expect_error(format_to_filetypes(vb = -1))
   expect_error(format_to_filetypes(vb = 3))
   expect_error(format_to_filetypes(vb = "a"))
-  expect_error(format_to_filetypes(vb = list(a=1, b=2)))
+  expect_error(format_to_filetypes(vb = list(a = 1, b = 2)))
 })
 
 # HHMMSSmmm_to_ms ---------------------------------------------------
@@ -39,7 +39,7 @@ test_that("is_institution returns logical", {
 test_that("is_institution rejects bad input parameters", {
   expect_error(is_institution(party_id = -1))
   expect_error(is_institution(party_id = "a"))
-  expect_error(is_institution(party_id = list(a=1, b=2)))
+  expect_error(is_institution(party_id = list(a = 1, b = 2)))
   expect_error(is_institution(party_id = TRUE))
 })
 
@@ -51,16 +51,29 @@ test_that("read_csv_data_as_df returns data.frame", {
 test_that("read_csv_data_as_df rejects bad input parameters", {
   expect_error(read_csv_data_as_df(session_id = -1))
   expect_error(read_csv_data_as_df(session_id = "a"))
-  expect_error(read_csv_data_as_df(session_id = list(a=1, b=2)))
+  expect_error(read_csv_data_as_df(session_id = list(a = 1, b = 2)))
   expect_error(read_csv_data_as_df(session_id = TRUE))
-
+  
   expect_error(read_csv_data_as_df(asset_id = -1))
   expect_error(read_csv_data_as_df(asset_id = "a"))
-  expect_error(read_csv_data_as_df(asset_id = list(a=1, b=2)))
+  expect_error(read_csv_data_as_df(asset_id = list(a = 1, b = 2)))
   expect_error(read_csv_data_as_df(asset_id = TRUE))
-
+  
   expect_error(read_csv_data_as_df(vb = -1))
   expect_error(read_csv_data_as_df(vb = 3))
   expect_error(read_csv_data_as_df(vb = "a"))
-  expect_error(read_csv_data_as_df(vb = list(a=1, b=2)))
+  expect_error(read_csv_data_as_df(vb = list(a = 1, b = 2)))
+})
+
+# check_ssl_certs ---------------------------------------------------
+test_that("check_ssl_certs rejects bad input paramaters", {
+  expect_error(read_csv_data_as_df(host = -1))
+  expect_error(read_csv_data_as_df(host = list(a = 1, b = 2)))
+  expect_error(read_csv_data_as_df(host = TRUE))
+})
+
+test_that("check_ssl_certs returns data.frame or NULL", {
+  expect_true((is.null(read_csv_data_as_df()) ||
+                 (class(read_csv_data_as_df()) == "data.frame"
+                 )))
 })

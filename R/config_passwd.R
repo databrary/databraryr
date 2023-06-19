@@ -1,5 +1,6 @@
-#' Stores Databrary account credentials in secure system-level file.
+#' Store Databrary account credentials in secure system-level file.
 #'
+#' @returns NULL
 #' @examples
 #' config_passwd()
 #' @export
@@ -27,7 +28,6 @@ config_passwd <- function() {
       } else {
         message(paste0("Password unchanged for user: ", email))
       }
-      # assign('system.credentials', TRUE, envir=.GlobalEnv)
     } else {
       message(paste0("No Databrary password for user: ", email))
       message(paste0("Databrary passwords exist for other users: \n"))
@@ -44,6 +44,5 @@ config_passwd <- function() {
     message("No Databrary account passwords currently stored.")
     message(paste0("Creating new password for user: ", email))
     keyring::key_set(service="databrary", username=email)
-    # assign('system.credentials', TRUE, envir=.GlobalEnv)
   }
 }

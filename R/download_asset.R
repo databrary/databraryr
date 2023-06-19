@@ -1,7 +1,7 @@
 #' Download a specific video, audio, or other file.
 #'
-#' @param asset_id Asset number.
-#' @param session_id Slot/session number.
+#' @param asset_id Asset id for target file.
+#' @param session_id Slot/session number where target file is stored.
 #' @param file_name Name for downloaded file.
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.

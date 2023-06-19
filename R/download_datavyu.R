@@ -15,7 +15,7 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
                              out_dir = "tmp",
                              file_name = "test.opf",
                              return_response = FALSE,
-                             vb = TRUE) {
+                             vb = FALSE) {
   # Check parameters -----------------------------------------------------------------------
   if (!is.numeric(vol_id)) {
     stop("vol_id must be numeric.")
@@ -35,7 +35,7 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
       stop(paste0("Output directory name must be a string."))
     }
     if (dir.exists(out_dir)) {
-      yn <- readline(prompt = paste0("Output directory ", out_dir, " exists. Extract here (y/n): "))
+      yn <- readline(prompt = paste0("Output directory '", out_dir, "/' exists. Extract here (y/n): "))
       if (yn %in% c("N", "n")) {
         stop(paste0("Directory ", out_dir, " unaltered."))
       }
@@ -48,12 +48,12 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
     if (vb) message(paste0("No output directory supplied. Creating from input file name."))
     out_dir <- tools::file_path_sans_ext(basename(file_name))
     if (dir.exists(out_dir)) {
-      yn <- readline(prompt = paste0("Output directory ", out_dir, "/ exists. Extract here (y/n): "))
+      yn <- readline(prompt = paste0("Output directory '", out_dir, "/' exists. Extract here (y/n): "))
       if (yn %in% c("N", "n")) {
-        stop(paste0("Directory ", out_dir, " unaltered."))
+        stop(paste0("Directory '", out_dir, "' unaltered."))
       }
     } else {
-      if (vb) message(paste0("Creating directory ", out_dir, "\n"))
+      if (vb) message(paste0("Creating directory '", out_dir, "'.\n"))
       dir.create(out_dir)
     }
   }
@@ -81,8 +81,8 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
           if (vb) {
             if (vb) message("File name unspecified. Generating unique name.")
           }
-          file_name <- paste0(out_dir, "/", vol_id, "-",
-                              session_id, "-",
+          file_name <- paste0(out_dir, "/vol_", vol_id, "-sess_",
+                              session_id, "-asset_",
                               asset_id, "-",
                               format(Sys.time(), "%F-%H%M-%S"), ".opf")
         }
@@ -91,7 +91,7 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
         }
         bin <- httr::content(webpage, 'raw')
         writeBin(bin, file_name)
-        return(out_dir)
+        return(file_name)
       }
     } else {
       if (vb) message(paste0('Download Failed, HTTP status ', webpage$status_code))
