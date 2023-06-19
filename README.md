@@ -1,22 +1,22 @@
-# databraryapi
+# databraryr
 
-This repository contains code for the `databraryapi` R package.
+This repository contains code for the `databraryr` R package.
 
 ## Documentation
 
-Full package documentation built using `pkgdown` can be found [here](https://PLAY-behaviorome.github.io/databraryapi).
+Full package documentation built using `pkgdown` can be found [here](https://PLAY-behaviorome.github.io/databraryr).
 
 ## Installation
 
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
-- Install the `databraryapi` package via `install_github("PLAY-behaviorome/databraryapi")`. Required dependencies will be installed at this time.
+- Install the `databraryr` package via `install_github("PLAY-behaviorome/databraryr")`. Required dependencies will be installed at this time.
 - The latest version is 0.2.9.
 
 ## Use
 
 The package is under active development, as is the documentation.
-Running `devtools::install_github("PLAY-behaviorome/databraryapi", force=TRUE)` regularly to get updates is strongly recommended.
+Running `devtools::install_github("databrary/databraryr", force=TRUE)` regularly to get updates is strongly recommended.
 
 ### Databrary credentials
 
@@ -24,18 +24,18 @@ Databrary ([databrary.org](https://databrary.org)) is a data library specialized
 Access to restricted data requires [registration](https://databrary.org/register) and formal approval by an institution.
 The registration process involves the creation of an (email-account-based) user account and secure password.
 Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
-Many commands in the `databraryapi` package return meaningful results *without* or *prior to* formal authorization.
+Many commands in the `databraryr` package return meaningful results *without* or *prior to* formal authorization.
 
 ### Configuration
 
-Once the `databraryapi` package has been installed, it may be loaded into the local environment via `library(databraryapi)`.
+Once the `databraryr` package has been installed, it may be loaded into the local environment via `library(databraryr)`.
 It is advisable to configure the local environment each time the user wishes to access the system:
 
     login_db()  # Queries stored log on credentials or creates and stores new credentials.
   
 The `login_db()` command uses the `keyring` package to create secure user name and password files using native system utilities for this purpose on Mac OS, Windows, and Linux.
 This is the recommended approach.
-The first time you log on to Databrary via the `databraryapi` package, you will need to run `config_passd()`.
+The first time you log on to Databrary via the `databraryr` package, you will need to run `config_passd()`.
 You should only need to run this once.
 
 Once you are an authorized user on Databrary, you may also use

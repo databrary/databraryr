@@ -6,7 +6,7 @@ doc
 .Ruserdata
 inst/doc
 .databrary.RData
-databraryapi.Rproj
+databraryr.Rproj
 *.mp4
 working
 data

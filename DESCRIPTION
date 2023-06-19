@@ -1,4 +1,4 @@
-Package: databrary.r
+Package: databraryr
 Type: Package
 Title: Interacts With the Databrary.org API
 Version: 0.3.0
