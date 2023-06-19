@@ -1,3 +1,3 @@
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage("Welcome to the databrary.r package")
+  packageStartupMessage("Welcome to the databraryr package.")
 }

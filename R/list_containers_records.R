@@ -1,4 +1,4 @@
-#' Lists containers and record structure from Databrary volume.
+#' List Containers and Records In Databrary Volume.
 #'
 #' @param vol_id Databrary volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.

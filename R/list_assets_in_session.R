@@ -1,4 +1,3 @@
-#========================================================================================
 #' Lists assets in a given Databrary volume and session (slot).
 #'
 #' @param session_id Slot/session ID.

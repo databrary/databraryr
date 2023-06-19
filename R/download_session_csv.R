@@ -47,48 +47,6 @@ download_session_csv <- function(vol_id = 1,
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
   
-  # r <- curl::curl_fetch_memory(csv_url)
-  # if (r$status_code == 200) {
-  #   tmp <- tempfile()
-  #   curl::curl_download(csv_url, tmp)
-  # } else {
-  #   if (vb)
-  #     message("Error downloading CSV from volume `", vol_id, '`')
-  #   return(NULL)
-  # }
-  #
-  # if (is.null(tmp)) {
-  #   message("Error downloading CSV from URL`", url, '`')
-  #   return(NULL)
-  # } else {
-  #   if (vb)
-  #     message("Converting to CSV")
-  #   if (to_df) {
-  #     r_df <- readr::read_csv(tmp, show_col_types = FALSE)
-  #     if (is.data.frame(r_df)) {
-  #       if (vb)
-  #         message(paste0("Imported data frame. Cleaning up."))
-  #       r_df <- dplyr::mutate(r_df, vol_id = vol_id)
-  #       r_df <- dplyr::rename(
-  #         r_df,
-  #         session_id = `session-id`,
-  #         session_name = `session-name`,
-  #         session_date = `session-date`,
-  #         session_release = `session-release`
-  #       )
-  #       r_df
-  #     } else {
-  #       if (vb)
-  #         message("Can't coerce to data frame. Skipping.\n")
-  #       NULL
-  #     }
-  #   }
-  # }
-  
-  
-  #-----------------------------------------------------------------------------
-  # Old code that kept throwing errors with a small set of volumes, e.g, 34, 1144
-  
   r <- try(httr::GET(csv_url), silent = TRUE)
   
   if ((class(r) == 'try-error')) {

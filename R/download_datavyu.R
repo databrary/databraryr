@@ -74,7 +74,7 @@ download_datavyu <- function(vol_id = 1, session_id = 9807,
       content.type <- webpage$headers$`content-type`
       if (vb) {
         message("Successful HTML GET query.")
-        message(paste0("Content-type is ", content.type))
+        message(paste0("Content-type is '", content.type, "'."))
       }
       if (content.type == "application/vnd.datavyu") {
         if (file_name == "test.opf") {

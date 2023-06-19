@@ -1,4 +1,4 @@
-#' Download a specific video file.
+#' Download a specific video, audio, or other file.
 #'
 #' @param asset_id Asset number.
 #' @param session_id Slot/session number.

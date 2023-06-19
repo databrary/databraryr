@@ -1,5 +1,4 @@
-context("login and logout")
-library(databrary.r)
+library(databraryr)
 
 # login_db -------------------------------------------------------------------
 test_that("login_db rejects bad input parameters", {

@@ -1,5 +1,4 @@
-context("download_* functions")
-library(databrary.r)
+library(databraryr)
 
 # download_containers_records ---------------------------------------------------
 test_that("download_containers_records returns list", {

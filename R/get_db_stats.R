@@ -1,12 +1,12 @@
-#' Downloads session spreadsheet as a CSV.
+#' Get summary information about Databrary's data, institutions, or people.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples get_db_stats()
 #' @examples get_db_stats("stats")
-#' @examples get_db_stats("people")
-#' @examples get_db_stats("places")
+#' @examples get_db_stats("people") # Information about the newest authorized investigators.
+#' @examples get_db_stats("places") # Information about the newest institutions.
 #' @export
 get_db_stats <- function(type = "stats", vb = FALSE) {
   # Error handling

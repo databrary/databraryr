@@ -11,6 +11,7 @@ download_video(
   out_dir = ".",
   file_name = "test.mp4",
   return_response = FALSE,
+  report_metadata = TRUE,
   vb = FALSE
 )
 }
@@ -28,6 +29,9 @@ download_video(
 \item{return_response}{A Boolean value.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{return_metadata}{Return video duration and format data via package `av`.
+Default is TRUE.}
 }
 \description{
 Download a specific video file.

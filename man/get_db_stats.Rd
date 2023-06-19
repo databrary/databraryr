@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_db_stats.R
 \name{get_db_stats}
 \alias{get_db_stats}
-\title{Downloads session spreadsheet as a CSV.}
+\title{Get summary information about Databrary's data, institutions, or people.}
 \usage{
 get_db_stats(type = "stats", vb = FALSE)
 }
@@ -15,11 +15,11 @@ get_db_stats(type = "stats", vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Downloads session spreadsheet as a CSV.
+Get summary information about Databrary's data, institutions, or people.
 }
 \examples{
 get_db_stats()
 get_db_stats("stats")
-get_db_stats("people")
-get_db_stats("places")
+get_db_stats("people") # Information about the newest authorized investigators.
+get_db_stats("places") # Information about the newest institutions.
 }

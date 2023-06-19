@@ -1,5 +1,4 @@
-context("Datavyu functions")
-library(databrary.r)
+library(databraryr)
 
 # dv_to_csv ---------------------------------------------------
 # test_that("dv_to_csv rejects bad input parameters", {

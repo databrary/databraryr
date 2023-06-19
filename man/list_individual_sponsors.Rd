@@ -2,9 +2,9 @@
 % Please edit documentation in R/list_individual_sponsors.R
 \name{list_individual_sponsors}
 \alias{list_individual_sponsors}
-\title{Lists a party's individual sponsors (people).}
+\title{List A Party's Individual Sponsors (people).}
 \usage{
-list_individual_sponsors(party_id = 4210, vb = FALSE)
+list_individual_sponsors(party_id = 406, vb = FALSE)
 }
 \arguments{
 \item{party_id}{Target volume number.}
@@ -15,8 +15,8 @@ list_individual_sponsors(party_id = 4210, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists a party's individual sponsors (people).
+List A Party's Individual Sponsors (people).
 }
 \examples{
-list_individual_sponsors() # Default is Yiming Qian (party 4210)
+list_individual_sponsors() # Default is Kasey Soska (party 406)
 }

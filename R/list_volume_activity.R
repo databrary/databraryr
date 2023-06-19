@@ -27,5 +27,8 @@ list_volume_activity <- function(vol_id = 1, vb = FALSE) {
   r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
                                                '/activity'),
                        vb = vb)
+  if (is.null(r)) {
+    message("Activity history restricted to volume owners.")
+  }
   r
 }

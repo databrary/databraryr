@@ -4,10 +4,12 @@
 \alias{list_affiliates}
 \title{Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).}
 \usage{
-list_affiliates(party_id = 6, vb = FALSE)
+list_affiliates(party_id = 6, report_target_party = FALSE, vb = FALSE)
 }
 \arguments{
 \item{party_id}{Target volume number.}
+
+\item{report_target_party}{Report data about the target party. Default is FALSE.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

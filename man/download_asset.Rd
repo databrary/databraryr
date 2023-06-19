@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_asset.R
 \name{download_asset}
 \alias{download_asset}
-\title{Download a specific video file.}
+\title{Download a specific video, audio, or other file.}
 \usage{
 download_asset(
   asset_id = 11643,
@@ -24,7 +24,7 @@ download_asset(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
-Download a specific video file.
+Download a specific video, audio, or other file.
 }
 \examples{
 download_asset()

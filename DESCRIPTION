@@ -26,11 +26,17 @@ Imports:
     keyring,
     stringr,
     rmarkdown,
-    magick
+    magick,
+    utils,
+    tools,
+    tibble
 RoxygenNote: 7.2.3
 Suggests: 
+    av,
     knitr,
-    testthat
+    openssl,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: http://github.com/databrary/databrary-r
 BugReports: http://github.com/databrary/databrary-r/issues
+Config/testthat/edition: 3

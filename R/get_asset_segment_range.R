@@ -55,38 +55,13 @@ get_asset_segment_range <- function(vol_id = 1,
                                                asset_id),
                        vb = vb,
                        convert_JSON = convert_JSON)
+  if (vb) {
+    message("Returning segment start & end times (in ms) from volume ", vol_id, 
+            ", session ", session_id, ", asset ", asset_id)
+  }
   if (segment_only) {
     return(r$segment)
   } else {
     return(r)
   }
-  # if (vb) {
-  #   message(paste0("Content-type is ", r$headers$`content-type`))
-  # }
-  # if (convert_JSON) {
-  #   j <- jsonlite::fromJSON(httr::content(r, type = 'text', encoding = 'utf8'))
-  #   return(j$segment)
-  # }
-
-  # Retrieve data from Databrary-------------------------------------------
-
-  # url <- paste0("https://nyu.databrary.org/api/volume/", vol_id,
-  #               "/slot/",
-  #               session_id, "/asset/", asset_id)
-  # if (vb) message(paste0('Sending GET to ', url))
-  # w <- httr::GET(paste0("https://nyu.databrary.org/api/volume/", vol_id,
-  #                       "/slot/",
-  #                       session_id, "/asset/", asset_id))
-  # if (httr::status_code(w) == 200) {
-  #   content_type <- w$headers$`content-type`
-  #   if (vb) {
-  #     message("Successful HTML GET query.")
-  #     message(paste0("Content-type is ", content_type))
-  #   }
-  #   r <- jsonlite::fromJSON(httr::content(w, type = 'text', encoding = 'utf8'))
-  #   return(r$segment)
-  # } else {
-  #   if (vb) message(paste0('Download Failed, HTTP status ', w$status_code))
-  #   return(NULL)
-  # }
 }

@@ -1,4 +1,4 @@
-#' Get the the duration (in ms) of a file.
+#' Get the duration (in ms) of a file.
 #'
 #' @param asset_id Asset number.
 #' @param types_w_durations Asset types that have valid durations.

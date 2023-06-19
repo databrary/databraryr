@@ -1,5 +1,4 @@
-context("get_* functions")
-library(databrary.r)
+library(databraryr)
 
 # get_asset_segment_range ------------------------------------
 test_that("get_asset_segment_range returns an integer array", {

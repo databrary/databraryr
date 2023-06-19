@@ -19,7 +19,7 @@ download_session_zip(
 
 \item{out_dir}{Directory to save output file.}
 
-\item{file_name}{Name for downloaded file, default is 'test.mp4'.}
+\item{file_name}{Name for downloaded file, default is 'test.zip'.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

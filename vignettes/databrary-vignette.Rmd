@@ -23,7 +23,7 @@ library(devtools)
 ## Vignette Info
 
 Databrary is a powerful tool for storing and sharing video data and documentation with other researchers.
-With the `databrary-r` package, it becomes even more powerful.
+With the `databraryr` package, it becomes even more powerful.
 Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
 
 I wrote the Databrary API so I could find out what's going on on the site, and eventually so I can streamline my own analysis and data sharing workflows.
@@ -41,36 +41,29 @@ Then, when you log in with your new credentials, you'll select an existing insti
 But even before formal authorization is complete, a user can access the public materials on Databrary.
 For this vignette, we'll assume you fall into this category.
 
-First, we need to download and install the `devtools` package and then the `databraryapi` package from GitHub.
+First, we need to download and install the `devtools` package and then the `databraryr` package from GitHub.
 
 ```{r install}
 if (!require(devtools)) {
   install.packages("devtools")
 }
-library(devtools)
 
-if (!require(databraryapi)) {
-  devtools::install_github("databrary/databrary-r") 
+if (!require(databraryr)) {
+  devtools::install_github("databrary/databraryr") 
 }
-```
-
-Next, let's load the package:
-
-```{r load-databraryapi}
-library(databrary-r)
 ```
 
 Then, try this command to pull data about Databrary's founders:
 
 ```{r list-people-default}
-list_people()
+databraryr::list_people()
 ```
 
 Databrary assigns a unique number for each person and institution on the system called a 'party id'. 
 When we run `list_people(1:50)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 50. Let's try it:
 
 ```{r list-people-1-50}
-list_people(people_list = 1:50)
+databraryr::list_people(people_list = 1:50)
 ```
 
 It's a bit slow, but you should see information about people beginning with Dylan Simon and ending with Lana Karasik.
@@ -80,10 +73,10 @@ The `get_db_stats()` command gives you information about the newly authorized pe
 Try this:
 
 ```{r get-db-stats}
-get_db_stats("stats")
-get_db_stats("people")
-get_db_stats("institutions")
-get_db_stats("datasets")
+databraryr::get_db_stats("stats")
+databraryr::get_db_stats("people")
+databraryr::get_db_stats("institutions")
+databraryr::get_db_stats("datasets")
 ```
 
 Depending on when you run this command, there may or may not be new items.
@@ -92,17 +85,17 @@ Depending on when you run this command, there may or may not be new items.
 
 Congratulations!
 Your institution has approved your access to Databrary's identifiable data.
-Now, it's time to set-up `databraryapi` so you can access these materials.
+Now, it's time to set-up `databraryr` so you can access these materials.
 
-By default, `databraryapi` stores your Databrary user account (email) and password in a secure, encrypted file that your computer's operating system uses for storing other passwords.
+By default, `databraryr` stores your Databrary user account (email) and password in a secure, encrypted file that your computer's operating system uses for storing other passwords.
 The `keyring` package provides this functionality.
 There are alternative ways of storing user credentials, but this is the recommended one.
 
 Once you are authorized, you will gain access to a much wider range of materials on Databrary.
-When that happens, you'll load the package with `library(databraryapi)` and then
+When that happens, you'll load the package with `library(databraryr)` and then
 
 ```{r login, eval=FALSE}
-login_db(email = "youremail@yourinstitution.edu")
+databraryr::login_db(email = "youremail@yourinstitution.edu")
 ```
 
 If everything works out, you should see a `Login successful` message at the R console.
@@ -112,14 +105,14 @@ Congratulations, you are ready to access Databrary's restricted shared informati
 
 The purpose of a data repository is to enable researchers to store and share data.
 Databrary aims to go a step further by allowing researchers to interact with -- to visualize and analyze -- the data they or others have stored on the system.
-The `databraryapi` package includes several commands to make this easy to do.
+The `databraryr` package includes several commands to make this easy to do.
 
 Let's begin by listing all of the sessions (dates and times when data was collected) in volume 1.
-Most of the `databraryapi` commands have default values so you can explore how the functions work.
+Most of the `databraryr` commands have default values so you can explore how the functions work.
 In this case, the `list_sessions()` command has a default value of `vol_id = 1`.
 
 ```{r list-vol-1-sessions}
-list_sessions()
+databraryr::list_sessions()
 ```
 
 So, this volume contains a lot of sessions, `r dim(list_sessions())[1]` in fact.
@@ -129,8 +122,8 @@ These session IDs are unique identifiers we'll need for accessing the files cont
 So, let's see what's inside session `r list_sessions()[22,'session_id']`.
 
 ```{r list-session-assets}
-this_session <- list_sessions()[22,'session_id']
-list_assets_in_session(session_id = this_session)
+this_session <- databraryr::list_sessions()[22,'session_id']
+databraryr::list_assets_in_session(session_id = this_session)
 ```
 
 Notice that I took row 22 and the value of the `session_id` column to specify the `session_id` value for the `list_assets_in_session()` function.
@@ -146,7 +139,7 @@ That doesn't help; you say.
 Oh, right, here's how to link Databrary's file or 'asset' types to their format identifiers:
 
 ```{r get-databrary-file-types}
-get_supported_file_types()
+databraryr::get_supported_file_types()
 ```
 
 See now that '-800' has `mimetype` of `video/mp4`?
@@ -168,7 +161,7 @@ The `get_video_stats()` command comes in handy here.
 Let's see about the video content available in volume 1.
 
 ```{r videos-in-volume-1}
-get_video_stats(vol_id = 1)
+databraryr::get_video_stats(vol_id = 1)
 ```
 
 So, there's quite a lot to view there. 
@@ -202,7 +195,7 @@ This command takes two main arguments, the 'volume_id' and the 'session_id'.
 We'll take the values of these parameters from the 'm' variable we just created.
 
 ```{r view-assets-in-materials-session}
-list_assets_in_session(session_id = m$session_id)
+databraryr::list_assets_in_session(session_id = m$session_id)
 ```
 
 If you scroll over, you'll see that there are two files with the `extension` variable of 'csv' and a `mimetype` of 'text/csv'.
@@ -210,7 +203,7 @@ These are data files we can now access and plot using the corresponding `asset_i
 We'll use the `read_csv_data_as_df()` command.
 
 ```{r download-plot-institutions-investigators}
-databrary_growth <- read_csv_data_as_df(session_id = m$session_id, asset_id = 153108)
+databrary_growth <- databraryr::read_csv_data_as_df(session_id = m$session_id, asset_id = 153108)
 ```
 
 We can examine the structure of the returned data frame using R's `str()` command.
@@ -229,13 +222,13 @@ df <- databrary_growth %>%
   tidyr::gather(., key = 'type', value = 'count', -Date)
   
 df %>%
-  ggplot(., aes(x = Date, y = count, color = type, group = type)) +
-  geom_point() + 
-  geom_line(size = 3) +
-  ylab("Authorizations") +
-  scale_y_continuous(breaks = seq(0, 1100, 100), expand = c(0,0)) +
-  theme_bw() +
-  theme(axis.title.x = element_blank(),
+  ggplot2::ggplot(., ggplot2::aes(x = Date, y = count, color = type, group = type)) +
+  ggplot2::geom_point() + 
+  ggplot2::geom_line(size = 3) +
+ ggplot2:: ylab("Authorizations") +
+  ggplot2::scale_y_continuous(breaks = seq(0, 1100, 100), expand = c(0,0)) +
+  ggplot2::theme_bw() +
+  ggplot2::theme(axis.title.x = element_blank(),
         axis.line = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),

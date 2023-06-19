@@ -1,10 +1,9 @@
-#========================================================================================
 #' Download a zip archive with all data from a specified volume and session
 #'
 #' @param vol_id Volume number.
 #' @param session_id Slot/session number.
 #' @param out_dir Directory to save output file.
-#' @param file_name Name for downloaded file, default is 'test.mp4'.
+#' @param file_name Name for downloaded file, default is 'test.zip'.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_session_zip()
@@ -120,7 +119,7 @@ download_volume_zip <- function(vol_id = 31,
     stop("`vb` must have length == 1.")
   }
   
-  
+  # TODO (someone): Convert below to use GET_db_contents()
   url_download <- paste0("https://nyu.databrary.org", paste("/volume", vol_id,
                                                             "zip/false",
                                                             sep="/"))
@@ -139,7 +138,7 @@ download_volume_zip <- function(vol_id = 31,
         if (vb) {
           if (vb) message("File name unspecified. Generating unique name.")
         }
-        file_name <- paste0(out_dir, "/", vol_id, "-",
+        file_name <- paste0(out_dir, "/vol_", vol_id, "-",
                             format(Sys.time(), "%F-%H%M-%S"), ".zip") 
       }
       if (vb) {
@@ -154,12 +153,12 @@ download_volume_zip <- function(vol_id = 31,
   }
 }
 
-#========================================================================================
+#-------------------------------------------------------------------------------
 make_zip_fn <- function(out_dir, vol_id, session_id) {
   if (!is.character(out_dir)) stop("`out_dir` must be a string")
   if (!is.numeric(vol_id)) stop("`vol_id` must be an integer.")
   if (!is.numeric(session_id)) stop("`session_id` must be an integer")
-  paste0(out_dir, "/", vol_id, "-",
+  paste0(out_dir, "/vol_", vol_id, "-sess_",
          session_id, "-",
          format(Sys.time(), "%F-%H%M-%S"), ".zip")
 }

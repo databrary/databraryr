@@ -1,12 +1,12 @@
-#' Lists a party's individual sponsors (people).
+#' List A Party's Individual Sponsors (people).
 #'
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
-#' list_individual_sponsors() # Default is Yiming Qian (party 4210)
+#' list_individual_sponsors() # Default is Kasey Soska (party 406)
 #' @export
-list_individual_sponsors <- function(party_id = 4210, vb = FALSE) {
+list_individual_sponsors <- function(party_id = 406, vb = FALSE) {
   if (length(party_id) > 1) {
     stop("'party_id' must have length == 1.")
   }

@@ -1,5 +1,4 @@
-context("Databrary constants")
-library(databrary.r)
+library(databraryr)
 
 # assign_constants
 
