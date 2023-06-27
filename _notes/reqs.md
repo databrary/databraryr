@@ -10,17 +10,20 @@
 ## Downloads
 
 - Download specific files
-- Videos
-- CSV spreadsheets
-    - read_csv_data_as_df()
-    - download_session_csv() # how differ from read_csv_data_as_df()?
-- Session (folders) as .zip
-- Volume as .zip
+    - Videos
+    - CSV spreadsheets
+        - read_csv_data_as_df()
+        - download_session_csv() # how differ from read_csv_data_as_df()?
+    - Session (folders) as .zip
+    - Volume as .zip
 
 ## Get/list info 
 
 - from/about Databrary
     - get_db_stats()
+        - newest institutions
+        - newest authorized investigators
+        - newest created volumes
 - from/about a party (person or institution)
     - is_institution()
     - list_sponsors()
@@ -69,9 +72,13 @@
 
 ## Other clean-up
 
+## Test coverage
+
+- Check test coverage
+
 ### Remove deprecated functions
 
-- download_containers_records()
+- download_containers_records(); duplicates list_containers_records()
 - download_party_json(); duplicated functionality in download_party()
 - Compare download_video() to download_asset()
 
@@ -82,7 +89,7 @@
 - HHMMSSmmm_to_ms()
 - is_institution()
 
-### Consider creating separate datavyr package
+### Consider creating separate datavyur package
 
 - Example is dv_to_csv(), extract_dv_code_defs(), extract_dv()
 
@@ -92,5 +99,6 @@
 
 ### Improve function documentation
 
-- Add better examples
+- Add better examples to functions
+- Add better vignettes
 

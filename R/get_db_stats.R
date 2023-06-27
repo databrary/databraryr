@@ -16,7 +16,7 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
   if (!is.character(type)) {
     stop("'type' must be character.")
   }
-  if (!(type %in% c("institutions", "places", "people", "datasets", "volumes", "stats", "numbers"))){
+  if (!(type %in% c("institutions", "places", "people", "datasets", "data", "volumes", "stats", "numbers"))){
     stop("Type '", type, "' not valid.")
   }
   if (length(vb) > 1) {
@@ -47,7 +47,7 @@ get_db_stats <- function(type = "stats", vb = FALSE) {
         d <- NULL # No new institutions
       }
     }
-    if (type %in% c("datasets", "volumes")) {
+    if (type %in% c("datasets", "volumes", "data")) {
       d <- tibble::as_tibble(r$activity$volume)
       if (!is.null(d)) {
         d <- dplyr::filter(d, !is.na(id))
