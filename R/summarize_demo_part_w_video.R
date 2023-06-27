@@ -22,6 +22,7 @@ summarize_demo_part_w_video <- function(vol_id = 4, vb = FALSE) {
   }
 
   # Gather video assets in volume -------------------------------------------
+  if (vb) message("")
   vids_df <- list_assets_by_type(vol_id = vol_id, type = "video")
   if (is.null(vids_df)) {
     stop(paste0("No videos found in volume ", vol_id, ".\n"))
@@ -29,6 +30,7 @@ summarize_demo_part_w_video <- function(vol_id = 4, vb = FALSE) {
 
   # Gather demographic data from spreadsheet --------------------------------
   demo_df <- download_session_csv(vol_id = vol_id)
+  
   if (is.null(demo_df)) {
     stop(paste0("No session spreadsheet found in volume ", vol_id, "."))
   }

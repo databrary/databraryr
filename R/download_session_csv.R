@@ -66,6 +66,7 @@ download_session_csv <- function(vol_id = 1,
           show_col_types = FALSE,
           type = 'text/csv',
           encoding = 'utf-8'
+          # col_types = readr::cols(.default = 'c')
         )
       if (is.null(c)) {
         if (vb)
