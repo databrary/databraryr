@@ -1,0 +1,73 @@
+---
+title: "databrary"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{databrary}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(databraryr)
+```
+
+## Vignette Info
+
+Databrary is a powerful tool for storing and sharing video data and documentation with other researchers.
+With the `databraryr` package, it becomes even more powerful.
+Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
+
+I wrote the Databrary API so I could better understand how the site works under the hood, so that I could streamline my own analysis and data sharing workflows.
+Let's get started.
+
+## Registering
+
+Access to most of the material on Databrary requires prior [registration](https://databrary.org/register) and [authorization](https://www.databrary.org/resources/agreement.html) from an institution.
+The authorization process requires formal agreement by an institution.
+But you'll create an account ID (email) and secure password when you register.
+Then, when you log in with your new credentials, you'll select an existing institution (if yours is on the list), a new institution (if yours isn't), or an existing authorized investigator (if you are a student, postdoc, or collaborator) to request authorization from.
+
+## First steps (while you await authorization)
+
+But even before formal authorization is complete, a user can access the public materials on Databrary.
+For this vignette, we'll assume you fall into this category.
+
+First, we need to download and install the `devtools` package and then the `databraryr` package from GitHub.
+
+```{r install}
+if (!require(devtools)) {
+  install.packages("devtools")
+}
+
+if (!require(databraryr)) {
+  devtools::install_github("databrary/databraryr") 
+}
+```
+
+It's a good idea to check that your installation worked by loading it into your local workspace.
+
+```{r}
+library(databraryr)
+```
+
+Then, try this command to pull data about Databrary's founders:
+
+```{r list-people-default}
+databraryr::list_people()
+```
+
+Note that this command returns a data frame (tibble) with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
+
+Databrary assigns a unique number for each person and institution on the system called a 'party id'. 
+When we run `list_people(1:50)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 50. Let's try it:
+
+```{r list-people-1-50}
+databraryr::list_people(people_list = 1:50) # databraryr::list_people(1:50) would also work
+```
