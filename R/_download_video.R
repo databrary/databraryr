@@ -12,7 +12,6 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' download_video()
-#' @export
 download_video <- function(session_id = 9807,
                            asset_id = 1,
                            segment_id = "-",

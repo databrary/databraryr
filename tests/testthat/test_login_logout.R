@@ -16,3 +16,7 @@ test_that("logout_db rejects bad input parameters", {
   expect_error(logout_db(vb = 3))
   expect_error(logout_db(vb = "a"))
 })
+
+test_that("logout_db returns TRUE", {
+  expect_true(logout_db())
+})

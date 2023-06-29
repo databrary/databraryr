@@ -5,9 +5,9 @@
 #' @param data_frame A Boolean value. If TRUE writes a data frame as output.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with information about the volume.
-#' @examples
-#' list_volume_metadata()
+#' @example list_volume_metadata() # Lists basic info about volume 2.
 #' @export
+#' list_volume_metadata()
 list_volume_metadata <- function(vol_id = 2,
                                  write_header = FALSE,
                                  data_frame = TRUE,
@@ -58,7 +58,8 @@ list_volume_metadata <- function(vol_id = 2,
   }
 
   # Body of function--------------------------------------------------------------
-  v <- download_containers_records(vol_id = vol_id, vb = vb)
+  # v <- download_containers_records(vol_id = vol_id, vb = vb)
+  v <- list_containers_records(vol_id = vol_id, vb = vb)
   if (!(is.null(v))){
     if (write_header) {
       cat(paste("vol_id", "volume.name", "owners", "permission",

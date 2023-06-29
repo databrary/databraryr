@@ -7,7 +7,6 @@
 #' @return List of containers and records from the specified volume.
 #' @examples
 #' download_containers_records()
-#' @export
 download_containers_records <- function(vol_id = 1,
                                         vb = FALSE) {
 

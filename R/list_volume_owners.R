@@ -10,17 +10,18 @@ list_volume_owners <- function(vol_id = 1,
                                vb = FALSE) {
   # Error checking---------------------------------------------------------
   if (length(vol_id) > 1) {
-    stop("Volume must have length 1.")
+    stop("'vol_id' must have length 1.")
   }
   if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("Volume must be an integer > 0.")
+    stop("'vol_id' must be an integer > 0.")
   }
   if (!is.logical(vb)) {
-    stop("vb must be logical.")
+    stop("'vb' must be logical.")
   }
 
   # Main body-------------------------------------------------------------
-  v <- download_containers_records(vol_id = vol_id, vb = vb)
+  # v <- download_containers_records(vol_id = vol_id, vb = vb)
+  v <- list_containers_records(vol_id = vol_id, vb = vb)
   if (!is.null(v$owners)) {
     owners <- v$owners$id
     if (length(owners) > 1) {

@@ -11,7 +11,7 @@ download_datavyu(
   out_dir = "tmp",
   file_name = "test.opf",
   return_response = FALSE,
-  vb = TRUE
+  vb = FALSE
 )
 }
 \arguments{

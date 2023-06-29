@@ -67,7 +67,6 @@
 
 ## Uploads (not implemented yet)
 
-
 ---
 
 ## Other clean-up
@@ -78,8 +77,8 @@
 
 ### Remove deprecated functions
 
-- download_containers_records(); duplicates list_containers_records()
-- download_party_json(); duplicated functionality in download_party()
+- ~~`download_containers_records()`; duplicates `list_containers_records()`~~
+- ~~`download_party_json()`; duplicates functionality in `download_party()`
 - Compare download_video() to download_asset()
 
 ### Consider creating utils.R

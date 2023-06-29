@@ -26,6 +26,3 @@ A data frame with information about the volume.
 \description{
 List volume metadata.
 }
-\examples{
-list_volume_metadata()
-}

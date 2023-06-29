@@ -8,14 +8,15 @@ download_asset(
   asset_id = 11643,
   session_id = 9825,
   file_name = "test.mp4",
+  target_dir = ".",
   return_response = FALSE,
   vb = FALSE
 )
 }
 \arguments{
-\item{asset_id}{Asset number.}
+\item{asset_id}{Asset id for target file.}
 
-\item{session_id}{Slot/session number.}
+\item{session_id}{Slot/session number where target file is stored.}
 
 \item{file_name}{Name for downloaded file.}
 

@@ -2,12 +2,12 @@
 % Please edit documentation in R/config_passwd.R
 \name{config_passwd}
 \alias{config_passwd}
-\title{Stores Databrary account credentials in secure system-level file.}
+\title{Store Databrary account credentials in secure system-level file.}
 \usage{
 config_passwd()
 }
 \description{
-Stores Databrary account credentials in secure system-level file.
+Store Databrary account credentials in secure system-level file.
 }
 \examples{
 config_passwd()

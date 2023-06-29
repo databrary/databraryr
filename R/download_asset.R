@@ -8,32 +8,40 @@
 #' @examples
 #' download_asset()
 #' @export
-download_asset <- function(asset_id = 11643, session_id = 9825,
+download_asset <- function(asset_id = 11643,
+                           session_id = 9825,
                            file_name = "test.mp4",
-                           return_response = FALSE, vb = FALSE) {
-
+                           target_dir = ".",
+                           return_response = FALSE,
+                           vb = FALSE) {
   # Error handling
   if (length(asset_id) > 1) {
     stop("Asset ID must have length 1.")
   }
-  if ((!is.numeric(asset_id)) || asset_id <= 0 ) {
+  if ((!is.numeric(asset_id)) || asset_id <= 0) {
     stop("Asset ID must be number > 0.")
   }
   if (length(session_id) > 1) {
     stop("Session ID must have length 1.")
   }
-  if ((!is.numeric(session_id)) || session_id <= 0 ) {
+  if ((!is.numeric(session_id)) || session_id <= 0) {
     stop("Session ID must be number > 0.")
   }
   if (!is.character(file_name)) {
     stop("File name must be character string.")
   }
-
+  if (!is.character(target_dir)) {
+    stop("'target_dir' must be character string.")
+  }
+  stopifnot(dir.exists(target_dir))
+  stopifnot(is.logical(return_response))
+  stopifnot(is.logical(vb))
+  
   asset_url <- paste("/slot", session_id, "-", "asset", asset_id,
-                     "download", sep="/")
+                     "download", sep = "/")
   url_download <- paste0("https:/nyu.databrary.org", asset_url)
-
-  webpage <- rvest::html_session(url_download)
+  
+  webpage <- rvest::session(url_download)
   if (webpage$response$status_code == 200) {
     content_type <- webpage$response$headers$`content-type`
     if (vb) {
@@ -46,15 +54,62 @@ download_asset <- function(asset_id = 11643, session_id = 9825,
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file_name <- paste0(session_id, "-", asset_id, "-", format(Sys.time(), "%F-%H%M-%S"), ".mp4")
+        file_name <- file.path(target_dir,
+                               paste0(
+                                 session_id,
+                                 "-",
+                                 asset_id,
+                                 "-",
+                                 format(Sys.time(), "%F-%H%M-%S"),
+                                 ".mp4"
+                               ))
       }
       if (vb) {
-        message(paste0("Downloading video as ", file_name, "\n"))
+        message(paste0(
+          "Downloading video as ",
+          file.path(target_dir, file_name),
+          "\n"
+        ))
       }
-      utils::download.file(webpage$handle$url, file_name, mode = "wb")
+      utils::download.file(webpage$handle$url,
+                           file.path(target_dir, file_name),
+                           mode = "wb")
+    }
+    if (content_type == "application/vnd.datavyu") {
+      if (vb)
+        message("Target file is Datavyu (.opf) spreadsheet.")
+      if (file_name == "test.mp4") {
+        # This 'test.mp4' is the default value for file_name
+        if (vb) {
+          message("File name unspecified. Generating unique name.\n")
+        }
+        file_name <-
+          file.path(target_dir,
+                    paste0(
+                      session_id,
+                      "-",
+                      asset_id,
+                      "-",
+                      format(Sys.time(), "%F-%H%M-%S"),
+                      ".opf"
+                    ))
+      }
+      if (vb) {
+        message(paste0("Downloading file as '", file_name, "'\n"))
+      }
+      utils::download.file(webpage$handle$url, file_name, mode = "w")
     }
   } else {
-    if (vb) message(paste('Download Failed, HTTP status ', webpage$response$status_code, '\n', sep="" ))
-    if (return_response) return(webpage$response)
+    if (vb)
+      message(
+        paste(
+          'Download Failed, HTTP status ',
+          webpage$response$status_code,
+          '\n',
+          sep = ""
+        )
+      )
+    if (return_response)
+      return(webpage$response)
   }
 }

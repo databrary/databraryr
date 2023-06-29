@@ -1,27 +1,27 @@
 library(databraryr)
 
 # download_containers_records ---------------------------------------------------
-test_that("download_containers_records returns list", {
-  expect_true(class(download_containers_records()) == "list")
-})
-
-test_that("download_containers_records rejects bad input parameters", {
-  expect_error(download_containers_records(vol_id = -1))
-  expect_error(download_containers_records(vol_id = 0))
-  expect_error(download_containers_records(vol_id = "a"))
-  expect_error(download_containers_records(vol_id = list(a=1, b=2)))
-  expect_error(download_containers_records(vol_id = TRUE))
-
-  expect_error(download_containers_records(convert_JSON = -1))
-  expect_error(download_containers_records(convert_JSON = 3))
-  expect_error(download_containers_records(convert_JSON = "a"))
-  expect_error(download_containers_records(convert_JSON = list(a=1, b=2)))
-
-  expect_error(download_containers_records(vb = -1))
-  expect_error(download_containers_records(vb = 3))
-  expect_error(download_containers_records(vb = "a"))
-  expect_error(download_containers_records(vb = list(a=1, b=2)))
-})
+# test_that("download_containers_records returns list", {
+#   expect_true(class(download_containers_records()) == "list")
+# })
+# 
+# test_that("download_containers_records rejects bad input parameters", {
+#   expect_error(download_containers_records(vol_id = -1))
+#   expect_error(download_containers_records(vol_id = 0))
+#   expect_error(download_containers_records(vol_id = "a"))
+#   expect_error(download_containers_records(vol_id = list(a=1, b=2)))
+#   expect_error(download_containers_records(vol_id = TRUE))
+# 
+#   expect_error(download_containers_records(convert_JSON = -1))
+#   expect_error(download_containers_records(convert_JSON = 3))
+#   expect_error(download_containers_records(convert_JSON = "a"))
+#   expect_error(download_containers_records(convert_JSON = list(a=1, b=2)))
+# 
+#   expect_error(download_containers_records(vb = -1))
+#   expect_error(download_containers_records(vb = 3))
+#   expect_error(download_containers_records(vb = "a"))
+#   expect_error(download_containers_records(vb = list(a=1, b=2)))
+# })
 
 # download_session_csv ---------------------------------------------------
 test_that("download_session_csv returns data.frame", {

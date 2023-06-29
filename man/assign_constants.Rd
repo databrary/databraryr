@@ -2,7 +2,7 @@
 % Please edit documentation in R/assign_constants.R
 \name{assign_constants}
 \alias{assign_constants}
-\title{Downloads Databrary contants from API.}
+\title{Download Databrary contants from API.}
 \usage{
 assign_constants(vb = FALSE)
 }
@@ -13,7 +13,7 @@ assign_constants(vb = FALSE)
 A data frame with the constants.
 }
 \description{
-Downloads Databrary contants from API.
+Download Databrary contants from API.
 }
 \examples{
 assign_constants()
