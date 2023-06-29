@@ -14,3 +14,4 @@ old_vignettes
 tmp
 .DS_Store
 *.zip
+*.csv
