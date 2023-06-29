@@ -18,5 +18,5 @@ Data frame with summary statistics about the videos in the volume.
 Reports summary statistics about the videos available from a given volume.
 }
 \examples{
-get_video_stats()
+get_video_stats() # Retrieves summary statistics about videos in volume 1.
 }

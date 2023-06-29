@@ -4,21 +4,16 @@
 \alias{download_session_csv}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-download_session_csv(
-  vol_id = 1,
-  to_df = TRUE,
-  return_response = FALSE,
-  vb = FALSE
-)
+download_session_csv(vol_id = 1, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
+\item{vb}{A boolean value.}
+
 \item{to_df}{A boolean value.}
 
 \item{return_response}{A boolean value.}
-
-\item{vb}{A boolean value.}
 }
 \value{
 List of assets.
@@ -27,5 +22,5 @@ List of assets.
 Downloads session spreadsheet as a CSV.
 }
 \examples{
-download_csv()
+download_session_csv() # Downloads "session" CSV for volume 1
 }

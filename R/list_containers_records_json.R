@@ -4,7 +4,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return JSON file with containers and records from the specified volume.
 #' @examples
-#' list_containers_records_json()
+#' list_containers_records_json() # Volume 1
 #' @export
 list_containers_records_json <- function(vol_id = 1,
                                         vb = FALSE) {

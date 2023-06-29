@@ -18,5 +18,5 @@ List of assets.
 Lists all the assets/files in a given volume.
 }
 \examples{
-list_assets_in_volume()
+list_assets_in_volume() # Assets in volume 1
 }

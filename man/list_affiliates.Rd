@@ -20,5 +20,5 @@ A tibble (data.frame) with the requested data.
 Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).
 }
 \examples{
-list_affiliates()
+list_affiliates() # Lists Rick Gilmore's affiliates
 }

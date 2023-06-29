@@ -20,5 +20,5 @@ Data frame with the selected asset types.
 Lists stored assets (files) by type.
 }
 \examples{
-list_assets_by_type()
+list_assets_by_type() # Lists assets in volume 1.
 }

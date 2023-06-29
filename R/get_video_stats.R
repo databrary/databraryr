@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @return Data frame with summary statistics about the videos in the volume.
 #' @examples
-#' get_video_stats()
+#' get_video_stats() # Retrieves summary statistics about videos in volume 1.
 #' @export
 get_video_stats <- function(vol_id = 1, vb = FALSE) {
   # test parameters --------------------------------------------------------

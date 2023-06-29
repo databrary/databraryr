@@ -4,9 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return Data frame with the vol_id, number of videos, and total hours.
 #' @examples
-#' summarize_videos_in_volume()
+#' summarize_videos_in_volume() # Summary of volume 2
 #' @export
-summarize_videos_in_volume <- function(vol_id = 4, vb = FALSE) {
+summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
 
   # Error handling
   if (length(vol_id) > 1) {
@@ -19,7 +19,7 @@ summarize_videos_in_volume <- function(vol_id = 4, vb = FALSE) {
     stop("vb must be logical.")
   }
 
-  if (vb) message(paste0('Retrieving list of video assets for volume ', vol_id))
+  message(paste0("Retrieving data about video assets in volume ", vol_id, "."))
   vids <- list_assets_by_type(vol_id, type='video')
 
   if (is.null(vids)) {

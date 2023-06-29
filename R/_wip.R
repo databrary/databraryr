@@ -1,11 +1,7 @@
-#' Summarize demographic data for participants in sessions with videos
-#'
-#' @param vol_id Selected volume number.
-#' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return Data frame with the vol_id, number of videos, and total hours.
-#' @examples
-#' summarize_demo_part_w_vid()
-#' @export
+#-------------------------------------------------------------------------------
+# Functions that are still works-in-progress
+
+#-------------------------------------------------------------------------------
 summarize_demo_part_w_video <- function(vol_id = 4, vb = FALSE) {
   # Error checking ----------------------------------------------------------
   if (!is.numeric(vol_id)) {
@@ -20,21 +16,21 @@ summarize_demo_part_w_video <- function(vol_id = 4, vb = FALSE) {
   if (length(vb) > 1) {
     stop("vb must have length = 1.")
   }
-
+  
   # Gather video assets in volume -------------------------------------------
   if (vb) message("")
   vids_df <- list_assets_by_type(vol_id = vol_id, type = "video")
   if (is.null(vids_df)) {
     stop(paste0("No videos found in volume ", vol_id, ".\n"))
   }
-
+  
   # Gather demographic data from spreadsheet --------------------------------
   demo_df <- download_session_csv(vol_id = vol_id)
   
   if (is.null(demo_df)) {
     stop(paste0("No session spreadsheet found in volume ", vol_id, "."))
   }
-
+  
   # Merge video data with demographic data and return data frame
   m <- dplyr::left_join(vids_df, demo_df, by = "session_id")
   if (is.null(m)) {

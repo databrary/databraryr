@@ -4,7 +4,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
 #' @examples
-#' list_assets_in_session()
+#' list_assets_in_session() # Assets in volume 1, session 9807
 #' @export
 list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
   # Parameter checking----------------------------------------------

@@ -4,7 +4,7 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return TRUE or FALSEl.
 #' @examples
-#' is_institution()
+#' is_institution() # Is party 8 (NYU) an institution.
 #' @export
 is_institution <- function(party_id=8, vb = FALSE) {
   # Error handling

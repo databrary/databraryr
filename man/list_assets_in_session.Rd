@@ -18,5 +18,5 @@ A data frame with the assets in the selected volume and session.
 Lists assets in a given Databrary volume and session (slot).
 }
 \examples{
-list_assets_in_session()
+list_assets_in_session() # Assets in volume 1, session 9807
 }

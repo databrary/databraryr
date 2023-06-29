@@ -5,7 +5,7 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return Data frame with the selected asset types.
 #' @examples
-#' list_assets_by_type()
+#' list_assets_by_type() # Lists assets in volume 1.
 #' @export
 list_assets_by_type <- function(vol_id = 1, type = "video",
                                 vb = FALSE) {

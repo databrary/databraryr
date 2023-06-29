@@ -29,10 +29,6 @@ list_assets_json <- function(session_id = 9825, vol_id = 75,
     stop("vb must have length == 1.")
   }
 
-  # if ((!exists("databrary_config_status")) || (!databrary_config_status)) {
-  #   config_db(vb=vb)
-  # }
-
   # Make URL, GET(), and handle response
   slot.url <- paste0("https://nyu.databrary.org/api/volume/", vol_id, "/slot/", session_id, "?assets")
   if (vb) {

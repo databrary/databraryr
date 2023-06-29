@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
-#' list_assets_in_volume()
+#' list_assets_in_volume() # Assets in volume 1
 #' @export
 list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
   # Error handling
@@ -15,7 +15,7 @@ list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
     stop("Volume must be >= 1.")
   }
 
-  sl <- list_sessions_in_volume(vol_id = vol_id, vb = vb)
+  sl <- list_sessions(vol_id = vol_id, vb = vb)
   if (!is.null(sl)) {
     if (vb) message(" Session data exists.")
     s_ids <- sl$session_id

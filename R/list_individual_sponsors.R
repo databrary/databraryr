@@ -6,7 +6,9 @@
 #' @examples
 #' list_individual_sponsors() # Default is Kasey Soska (party 406)
 #' @export
-list_individual_sponsors <- function(party_id = 406, vb = FALSE) {
+list_individual_sponsors <- function(party_id = 406, 
+                                     report_target_party = TRUE,
+                                     vb = FALSE) {
   if (length(party_id) > 1) {
     stop("'party_id' must have length == 1.")
   }
@@ -26,7 +28,21 @@ list_individual_sponsors <- function(party_id = 406, vb = FALSE) {
 
   return_val <- NULL
 
+  if (vb)
+    message(paste0("Retrieving sponsors for party ", party_id, "."))
+  
   sponsors <- list_sponsors(party_id = party_id, vb = vb)
+  
+  if (report_target_party) {
+    g <-
+      databraryapi::GET_db_contents(
+        URL_components = paste0("/api/party/", party_id,
+                                "?parents&children&access"),
+        vb = vb
+      )
+    message("Sponsors for party ", party_id, ", ", paste0(g$prename, " ", g$sortname), ", ", g$affiliation, ":")
+  }
+  
   if (!is.null(sponsors)) {
     if (vb)
       message("Sponsor data exists.")

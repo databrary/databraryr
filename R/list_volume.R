@@ -26,10 +26,13 @@ list_volume <- function(vol_id = 1, search_str = "",
   }
 
   if (vb)
-    message(paste0("Getting sponsors for volume ", vol_id, "."))
+    message(paste0("Getting data for volume ", vol_id, "."))
+  vol_search_str <- make_vol_search_string(search_str, vb=vb)
+  if (vb) message(vol_search_str)
+  
   g <-
     databraryapi::GET_db_contents(
-      URL_components = paste0("/api/volume/", vol_id, make_vol_search_string(search_str, vb=vb)),
+      URL_components = paste0("/api/volume/", vol_id, vol_search_str),
       vb = vb
     )
 

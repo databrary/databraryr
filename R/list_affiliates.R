@@ -5,7 +5,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
-#' list_affiliates()
+#' list_affiliates() # Lists Rick Gilmore's affiliates
 #' @export
 list_affiliates <- function(party_id = 6, report_target_party = FALSE,
                             vb = FALSE) {
@@ -37,7 +37,7 @@ list_affiliates <- function(party_id = 6, report_target_party = FALSE,
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
     if (report_target_party) {
-      message("Affiliates for ", paste0(g$prename, " ", g$sortname), ", ", g$affiliation, ":")
+      message("Affiliates for party ", party_id, ", ", paste0(g$prename, " ", g$sortname), ", ", g$affiliation, ":")
     }
     p <- g$children$party
     if (!is.null(p)) {

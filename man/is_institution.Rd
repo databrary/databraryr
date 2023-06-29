@@ -18,5 +18,5 @@ TRUE or FALSEl.
 Tests whether given party ID is from an institution.
 }
 \examples{
-is_institution()
+is_institution() # Is party 8 (NYU) an institution.
 }
