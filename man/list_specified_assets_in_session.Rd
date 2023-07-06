@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets_in_session.R
 \name{list_specified_assets_in_session}
 \alias{list_specified_assets_in_session}
-\title{Lists assets in a given Databrary volume and session (slot).}
+\title{Lists assets in a given Databrary session (slot).}
 \usage{
 list_specified_assets_in_session(
   session_id = 9807,
@@ -21,8 +21,5 @@ list_specified_assets_in_session(
 A data frame with the assets in the selected volume and session.
 }
 \description{
-Lists assets in a given Databrary volume and session (slot).
-}
-\examples{
-list_specified_assets_in_session()
+Lists assets in a given Databrary session (slot).
 }

@@ -34,7 +34,7 @@ get_video_stats <- function(this_vol_id = 1, vb = FALSE) {
   }
 
   # get session metadata from volume ---------------------------------------
-  sess_df <- download_session_csv(vol_id = this_vol_id, vb = vb)
+  sess_df <- get_session_as_df(vol_id = this_vol_id, vb = vb)
   if (is.null(sess_df)) {
     if (vb) message(paste0("No session spreadsheet found in volume ", this_vol_id, ".\n"))
     return(NULL)

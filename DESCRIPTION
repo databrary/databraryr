@@ -26,7 +26,11 @@ Imports:
     magick,
     utils,
     tibble,
-    methods
+    methods,
+    plyr,
+    purrr,
+    rstudioapi,
+    tidyr
 RoxygenNote: 7.2.3
 Suggests: 
     av,

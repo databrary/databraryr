@@ -4,15 +4,24 @@
 \alias{download_session_csv}
 \title{Downloads session spreadsheet as a CSV.}
 \usage{
-download_session_csv(vol_id = 1, vb = FALSE)
+download_session_csv(
+  vol_id = 1,
+  file_name = "test.csv",
+  target_dir = tempdir(),
+  vb = FALSE
+)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
+\item{file_name}{Name for the output file. Default is 'test.csv'.}
+
+\item{target_dir}{Directory to save downloaded file. Default is '.'.}
+
 \item{vb}{A boolean value.}
 }
 \value{
-List of assets.
+Name of downloaded file.
 }
 \description{
 Downloads session spreadsheet as a CSV.

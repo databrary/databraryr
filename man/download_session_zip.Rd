@@ -7,7 +7,7 @@
 download_session_zip(
   vol_id = 31,
   session_id = 9803,
-  out_dir = ".",
+  out_dir = tempdir(),
   file_name = "test.zip",
   vb = FALSE
 )

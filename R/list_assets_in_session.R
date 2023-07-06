@@ -61,7 +61,6 @@ list_specified_assets_in_session <- function(session_id = 9807,
 }
 
 #========================================================================================
-#' Converts volume asset data frame to one with media types.
 format_to_filetypes <- function(vol_assets, vb = FALSE) {
   # Parameter checking -------------------------------------------------------------------
   if (is.null(vol_assets)) {

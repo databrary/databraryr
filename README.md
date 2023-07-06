@@ -1,6 +1,6 @@
 # databraryR
 
-![databraryR logo](img/databraryR-hex.png)
+![databraryR logo](docs/databraryR-hex.png)
 
 This repository contains code for the `databraryR` R package.
 
