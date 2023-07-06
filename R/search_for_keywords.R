@@ -13,7 +13,6 @@ search_for_keywords <-
       stop("search_string must be string.")
     }
     if (length(vb) > 1) {
-      se
       stop("vb must have length == 1.")
     }
     if (!is.logical(vb)) {
@@ -21,8 +20,6 @@ search_for_keywords <-
     }
     if (vb)
       message('search_for_keywords()...')
-    
-    # Normalize keyword_string...
     
     # Make URL, GET(), and handle response ---------------------------
     if (vb)

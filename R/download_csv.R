@@ -45,12 +45,12 @@ download_csv <- function(vol_id = 1,
   
   r <- try(rvest::session(csv_url), silent = TRUE)
   
-  if ((class(r) == 'try-error')) {
+  if (is(r, 'try-error')) {
     if (vb)
       message ("`try-error` probably due to apostrophe bug in Databrary API.")
     return(NULL)
   }
-  if ((r$response$status_code != 200) | (class(r) == 'try-error'))
+  if ((r$response$status_code != 200) | (is(r, 'try-error')))
   {
     if (vb)
       message("GET returns error")

@@ -18,5 +18,5 @@ List of sessions.
 Downloads list of sessions.
 }
 \examples{
-list_sessions()
+list_sessions() # Lists sessions in volume 1.
 }

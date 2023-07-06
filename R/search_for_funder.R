@@ -1,6 +1,6 @@
 #' Search for funders.
 #'
-#' @param keyword_string String to search.
+#' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list with the activity history on a slot.
 #' @examples
@@ -12,7 +12,7 @@ search_for_funder <- function(search_string="national+science+foundation",
   if (!is.character(search_string)) {
     stop("search_string must be string.")
   }
-  if (length(vb) > 1) {se
+  if (length(vb) > 1) {
     stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {

@@ -6,13 +6,13 @@ This repository contains code for the `databraryR` R package.
 
 ## Documentation
 
-Full package documentation built using `pkgdown` can be found [here](https://PLAY-behaviorome.github.io/databraryr).
+Full package documentation built using `pkgdown` can be found [here](https://databrary.github.io/databraryr).
 
 ## Installation
 
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`
-- Install the `databraryr` package via `install_github("PLAY-behaviorome/databraryr")`. Required dependencies will be installed at this time.
+- Install the `databraryr` package via `install_github("databrary/databraryr")`. Required dependencies will be installed at this time.
 - The latest version is 0.3.0.
 
 ## Use

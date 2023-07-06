@@ -7,9 +7,9 @@
 search_for_funder(search_string = "national+science+foundation", vb = FALSE)
 }
 \arguments{
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{search_string}{String to search.}
 
-\item{keyword_string}{String to search.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
 A list with the activity history on a slot.

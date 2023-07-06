@@ -25,7 +25,8 @@ Imports:
     stringr,
     magick,
     utils,
-    tibble
+    tibble,
+    methods
 RoxygenNote: 7.2.3
 Suggests: 
     av,
@@ -34,6 +35,6 @@ Suggests:
     testthat (>= 3.0.0),
     ggplot2
 VignetteBuilder: knitr
-URL: http://github.com/databrary/databrary-r
-BugReports: http://github.com/databrary/databrary-r/issues
+URL: http://github.com/databrary/databraryr
+BugReports: http://github.com/databrary/databraryr/issues
 Config/testthat/edition: 3

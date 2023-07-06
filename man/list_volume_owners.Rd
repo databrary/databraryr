@@ -7,9 +7,9 @@
 list_volume_owners(this_vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{this_vol_id}{Selected volume number. Default is 2.}
 
-\item{vol_id}{Selected volume number. Default is 2.}
+\item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
 A data framw with information about the volume owner(s).

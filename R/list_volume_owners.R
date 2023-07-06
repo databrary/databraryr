@@ -1,6 +1,6 @@
 #' List vol.id owners.
 #'
-#' @param vol_id Selected volume number. Default is 2.
+#' @param this_vol_id Selected volume number. Default is 2.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @return A data framw with information about the volume owner(s).
 #' @examples

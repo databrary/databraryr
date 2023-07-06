@@ -42,8 +42,8 @@ read_csv_data_as_df <- function(session_id = 9807, asset_id = 153108,
                        vb = vb,
                        convert_JSON = FALSE)
 
-  df <- read.csv(text = r)
-  if (class(df)=="data.frame") {
+  df <- utils::read.csv(text = r)
+  if (is(df, "data.frame")) {
     return(df)
   } else {
     if (vb) message("Can't coerce to data frame. Skipping.\n")

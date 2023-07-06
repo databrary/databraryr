@@ -18,5 +18,5 @@ List of sessions.
 Lists the sessions in a given volume. This is an alias for list_sessions().
 }
 \examples{
-list_sessions_in_vol()
+list_sessions_in_volume() # Lists sessions in volume 1.
 }

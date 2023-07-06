@@ -30,12 +30,12 @@ download_session_csv <- function(vol_id = 1,
   
   r <- try(httr::GET(csv_url), silent = TRUE)
   
-  if ((class(r) == 'try-error')) {
+  if (is(r, 'try-error')) {
     if (vb)
       message ("`try-error` probably due to apostrophe bug in API.")
     return(NULL)
   }
-  if ((httr::status_code(r) != 200) | (class(r) == 'try-error')) {
+  if ((httr::status_code(r) != 200) | (is(r, 'try-error'))) {
     if (vb)
       message("GET returns error")
     NULL

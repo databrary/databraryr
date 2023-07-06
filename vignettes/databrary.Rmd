@@ -41,19 +41,12 @@ For this vignette, we'll assume you fall into this category.
 
 First, we need to download and install the `devtools` package and then the `databraryr` package from GitHub.
 
-```{r install}
-if (!require(devtools)) {
-  install.packages("devtools")
-}
-
-if (!require(databraryr)) {
-  devtools::install_github("databrary/databraryr") 
-}
-```
+To install `devtools`, run `install.packages('devtools')`.
+To install `databraryr`, run `devtools::install_github("databrary/databraryr")`
 
 It's a good idea to check that your installation worked by loading it into your local workspace.
 
-```{r}
+```{r eval=FALSE}
 library(databraryr)
 ```
 

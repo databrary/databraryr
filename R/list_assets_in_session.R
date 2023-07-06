@@ -44,14 +44,12 @@ list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
 }
 
 #==================================================================
-#' Lists assets in a given Databrary volume and session (slot).
+#' Lists assets in a given Databrary session (slot).
 #'
 #' @param session_id Slot/session ID.
 #' @param media_type A string indicating what type of file.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the assets in the selected volume and session.
-#' @examples
-#' list_specified_assets_in_session()
 list_specified_assets_in_session <- function(session_id = 9807,
                                              media_type = 'MPEG-4 video',
                                              vb = FALSE) {

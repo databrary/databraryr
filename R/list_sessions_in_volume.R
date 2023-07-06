@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @return List of sessions.
 #' @examples
-#' list_sessions_in_vol()
+#' list_sessions_in_volume() # Lists sessions in volume 1.
 #' @export
 list_sessions_in_volume <- function(vol_id = 1, vb = FALSE) {
   message("list_sessions_in_volume() is deprecated. Use list_sessions() instead.")

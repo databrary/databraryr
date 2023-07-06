@@ -35,6 +35,6 @@ format_to_filetypes <- function(vol_assets, vb = FALSE) {
                       vol_id = vol.id,
                       session_id = session.id,
                       a)
-  dplyr::select(df, vol.id, session_id, asset_name, classification, size, duration, mimetype,
+  dplyr::select(df, vol_id, session_id, asset_name, classification, size, duration, mimetype,
                 extension, transcodable)
 }
