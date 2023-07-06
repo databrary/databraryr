@@ -1,6 +1,6 @@
 #' Search for keywords in Databrary volumes.
 #'
-#' @param keyword_string String to search.
+#' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list with the activity history on a slot.
 #' @examples

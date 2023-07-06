@@ -25,7 +25,7 @@ list_volume_funding <- function(vol_id = 1, vb = FALSE) {
   }
 
   g <-
-    databraryapi::GET_db_contents(
+    databraryr::GET_db_contents(
       URL_components = paste0("/api/volume/", vol_id,
                               "?funding=all"),
       vb = vb

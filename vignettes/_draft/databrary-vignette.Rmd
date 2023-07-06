@@ -92,7 +92,8 @@ The `keyring` package provides this functionality.
 There are alternative ways of storing user credentials, but this is the recommended one.
 
 Once you are authorized, you will gain access to a much wider range of materials on Databrary.
-When that happens, you'll load the package with `library(databraryr)` and then
+When that happens, you'll load the package with `library(databraryr)` and then run `login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")`, substituting your actual Databrary account for `<YOUR_EMAIL@PROVIDER.COM>`, of course.
+I prefer to give the package name when I do this, so the following is how I do the same thing.
 
 ```{r login, eval=FALSE}
 databraryr::login_db(email = "youremail@yourinstitution.edu")

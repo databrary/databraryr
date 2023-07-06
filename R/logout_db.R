@@ -6,11 +6,12 @@
 #' @examples
 #' logout_db()
 #' @export
-logout_db <- function(vb = TRUE){
-  # if (!exists("databrary_config_status")) {
-  #   databraryapi::config_db(vb = vb)
-  # }
+logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
+  
   # Check parameters
+  if (!is.character(logout.url)) {
+    stop("logout.url must be a character string.")    
+  }
   if (length(vb) > 1) {
     stop("vb must have length == 1.")
   }
@@ -18,7 +19,6 @@ logout_db <- function(vb = TRUE){
     stop("vb must be logical.")
   }
 
-  logout.url = "/api/user/logout"
   r <- httr::POST("http://nyu.databrary.org/api/user/logout")
   if (httr::status_code(r) == 200) {
     if (vb) message('Logout Successful.')

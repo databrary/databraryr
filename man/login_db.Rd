@@ -20,6 +20,8 @@ login_db(
 
 \item{login_url}{URL for the login API.}
 
+\item{return_response}{A Boolean value. If TRUE returns results of GET}
+
 \item{save_session}{A Boolean value. If TRUE saves the session cookie.}
 
 \item{stored_credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
@@ -29,8 +31,6 @@ login_db(
 \item{credentials_file}{Path to stored credentials file if it exists.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
-
-\item{return_reponse}{A Boolean value. If TRUE returns results of GET}
 }
 \value{
 Status code if login is successful

@@ -1,7 +1,6 @@
 #' List activity in a given Databrary session for which the user has
 #' ownership privileges.
 #'
-#' @param vol_id Selected volume number.
 #' @param session_id Selected session/slot number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list with the activity history on a slot.

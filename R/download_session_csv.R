@@ -1,8 +1,6 @@
 #' Downloads session spreadsheet as a CSV.
 #'
 #' @param vol_id Target volume number.
-#' @param to_df A boolean value.
-#' @param return_response A boolean value.
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples

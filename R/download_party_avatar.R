@@ -1,7 +1,10 @@
 #' Returns the avatar (image) for a given person.
 #'
-#' @param party_id Party number to retrieve information about.
-#' @param vb A Boolean value if TRUE returns verbose output.
+#' @param party_id Party number to retrieve information about. Default is 6
+#' (Rick Gilmore).
+#' @param show_person_info Show the person's name and affiliation in the output.
+#' Default is TRUE.
+#' @param vb A Boolean value if TRUE returns verbose output. Default is TRUE.
 #' @return Image file.
 #' @examples
 #' download_party_avatar()

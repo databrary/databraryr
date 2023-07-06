@@ -66,8 +66,67 @@ databraryr::list_people()
 Note that this command returns a data frame (tibble) with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
 
 Databrary assigns a unique number for each person and institution on the system called a 'party id'. 
-When we run `list_people(1:50)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 50. Let's try it:
+When we run `list_people(1:25)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 25. Let's try it:
 
-```{r list-people-1-50}
-databraryr::list_people(people_list = 1:50) # databraryr::list_people(1:50) would also work
+```{r list-people-1-25}
+databraryr::list_people(people_list = 1:25)
 ```
+
+It's a bit slow, but you should see information about people beginning with Dylan Simon, the developer who designed and built most of the Databrary system, and ending with Gladys Chan, a graphic designer who created the Databrary and Datavyu logos and other graphic identity elements.
+
+You can also try seeing what's new on Databrary.
+The `get_db_stats()` command gives you information about the newly authorized people, institutions, and newly uploaded datasets.
+Try this:
+
+```{r get-db-stats}
+databraryr::get_db_stats("stats")
+databraryr::get_db_stats("people")
+databraryr::get_db_stats("institutions")
+databraryr::get_db_stats("datasets")
+```
+
+Depending on when you run this command, there may or may not be new items.
+
+## Once you are authorized
+
+Congratulations!
+Your institution has approved your access to Databrary's identifiable data.
+Now, it's time to set-up `databraryr` so you can access these materials.
+
+By default, `databraryr` stores your Databrary user account (email) and password in a secure, encrypted file that your computer's operating system uses for storing other passwords.
+The `keyring` package provides this functionality.
+There are alternative ways of storing user credentials, but this is the recommended one.
+
+Once you are authorized, you will gain access to a much wider range of materials on Databrary.
+When that happens, you'll load the package with `library(databraryr)` and then run `login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")`, substituting your actual Databrary account for `<YOUR_EMAIL@PROVIDER.COM>`, of course.
+I prefer to give the package name when I do this, so the following is how I do the same thing.
+
+```{r login, eval=FALSE}
+databraryr::login_db(email = "youremail@yourinstitution.edu")
+```
+
+If everything works out, you should see a `Login successful` message at the R console.
+Congratulations, you are ready to access Databrary's restricted shared information along with any private, unshared information you have access to.
+
+**NOTE**: You can save yourself some time if you store your Databrary login (email) as an
+environment variable:
+
+1. Install the `usethis` package via `install.packages('usethis')`.
+2. Run `usethis::edit_r_environ()`. This will open your `.Renviron` file in a new window.
+3. Edit the `.Renviron` file by adding a line with `DATABRARY_LOGIN="youremail@yourinstitution.edu"`, substituting your actual Databrary login email.
+4. Save the file, and restart R.
+
+Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databrary login.
+
+And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
+
+```{r}
+databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
+```
+
+The package also has a log out command.
+
+```{r}
+databraryr::logout_db()
+```
+

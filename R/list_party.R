@@ -30,7 +30,7 @@ list_party <- function(party_id = 8,
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
   g <-
-    databraryapi::GET_db_contents(
+    databraryr::GET_db_contents(
       URL_components = paste0("/api/party/", party_id,
                               "?parents&children&access"),
       vb = vb

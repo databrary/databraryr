@@ -7,7 +7,7 @@
 check_ssl_certs(host = "nyu.databrary.org")
 }
 \arguments{
-\item{url}{Target URL. Defaults to 'nyu.databrary.org'.}
+\item{host}{Target URL. Defaults to 'nyu.databrary.org'.}
 }
 \description{
 Check SSL certificates for nyu.databary.org.

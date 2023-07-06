@@ -18,24 +18,21 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr,
-    ggplot2,
     httr,
     rvest,
-    magrittr,
     jsonlite,
     keyring,
     stringr,
-    rmarkdown,
     magick,
     utils,
-    tools,
     tibble
 RoxygenNote: 7.2.3
 Suggests: 
     av,
     knitr,
     openssl,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    ggplot2
 VignetteBuilder: knitr
 URL: http://github.com/databrary/databrary-r
 BugReports: http://github.com/databrary/databrary-r/issues

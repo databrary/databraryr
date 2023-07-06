@@ -4,12 +4,12 @@
 \alias{list_volume_owners}
 \title{List vol.id owners.}
 \usage{
-list_volume_owners(vol_id = 1, vb = FALSE)
+list_volume_owners(this_vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol_id}{Selected volume number. Default is 2.}
-
 \item{vb}{A boolean value. If TRUE provides verbose output.}
+
+\item{vol_id}{Selected volume number. Default is 2.}
 }
 \value{
 A data framw with information about the volume owner(s).

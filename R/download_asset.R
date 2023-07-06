@@ -3,6 +3,7 @@
 #' @param asset_id Asset id for target file.
 #' @param session_id Slot/session number where target file is stored.
 #' @param file_name Name for downloaded file.
+#' @param target_dir Directory to save the downloaded file. Default is ".".
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples

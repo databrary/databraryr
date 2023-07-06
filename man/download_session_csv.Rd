@@ -10,10 +10,6 @@ download_session_csv(vol_id = 1, vb = FALSE)
 \item{vol_id}{Target volume number.}
 
 \item{vb}{A boolean value.}
-
-\item{to_df}{A boolean value.}
-
-\item{return_response}{A boolean value.}
 }
 \value{
 List of assets.

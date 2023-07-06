@@ -1,6 +1,7 @@
 #' List A Party's Individual Sponsors (people).
 #'
-#' @param party_id Target volume number.
+#' @param party_id Party number. Default is 406 (Kasey Soska)
+#' @param report_target_party Print the party ID and name of the target person.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
@@ -35,7 +36,7 @@ list_individual_sponsors <- function(party_id = 406,
   
   if (report_target_party) {
     g <-
-      databraryapi::GET_db_contents(
+      databraryr::GET_db_contents(
         URL_components = paste0("/api/party/", party_id,
                                 "?parents&children&access"),
         vb = vb
@@ -49,7 +50,7 @@ list_individual_sponsors <- function(party_id = 406,
     if ("institution" %in% names(sponsors)) {
       if (vb)
         message("Possible institutional sponsors. Filtering out.")
-      indiv_sponsors <- dplyr::filter(sponsors, is.na(institution))
+      indiv_sponsors <- dplyr::filter(sponsors, is.na(sponsors$institution))
       if ((is.null(indiv_sponsors)) ||
           (nrow(indiv_sponsors) == 0)) {
         if (vb)

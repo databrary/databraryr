@@ -7,9 +7,13 @@
 download_party_avatar(party_id = 6, show_person_info = TRUE, vb = FALSE)
 }
 \arguments{
-\item{party_id}{Party number to retrieve information about.}
+\item{party_id}{Party number to retrieve information about. Default is 6
+(Rick Gilmore).}
 
-\item{vb}{A Boolean value if TRUE returns verbose output.}
+\item{show_person_info}{Show the person's name and affiliation in the output.
+Default is TRUE.}
+
+\item{vb}{A Boolean value if TRUE returns verbose output. Default is TRUE.}
 }
 \value{
 Image file.

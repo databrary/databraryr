@@ -10,13 +10,13 @@
 list_volume <- function(vol_id = 1, search_str = "",
                       vb = FALSE) {
   if (length(vol_id) > 1) {
-    stop("'party_id' must have length == 1.")
+    stop("'vol_id' must have length == 1.")
   }
   if (!is.numeric(vol_id)) {
-    stop("'party_id' must be an integer.")
+    stop("'vol_id' must be an integer.")
   }
   if (vol_id < 0) {
-    stop("'party_id' must be > 0.")
+    stop("'vol_id' must be > 0.")
   }
   if (length(vb) > 1) {
     stop("'vb' must have length == 1.")
@@ -31,7 +31,7 @@ list_volume <- function(vol_id = 1, search_str = "",
   if (vb) message(vol_search_str)
   
   g <-
-    databraryapi::GET_db_contents(
+    databraryr::GET_db_contents(
       URL_components = paste0("/api/volume/", vol_id, vol_search_str),
       vb = vb
     )
@@ -42,7 +42,7 @@ list_volume <- function(vol_id = 1, search_str = "",
       g
     } else {
     if (vb)
-      message(paste0("No data for volume ", party_id, "."))
+      message(paste0("No data for volume ", vol_id, "."))
     NULL
   }
 }

@@ -11,7 +11,9 @@ list_individual_sponsors(
 )
 }
 \arguments{
-\item{party_id}{Target volume number.}
+\item{party_id}{Party number. Default is 406 (Kasey Soska)}
+
+\item{report_target_party}{Print the party ID and name of the target person.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }

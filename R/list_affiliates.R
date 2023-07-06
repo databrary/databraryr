@@ -27,7 +27,7 @@ list_affiliates <- function(party_id = 6, report_target_party = FALSE,
   }
 
   g <-
-    databraryapi::GET_db_contents(
+    databraryr::GET_db_contents(
       URL_components = paste0("/api/party/", party_id,
                               "?parents&children&access"),
       vb = vb

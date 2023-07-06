@@ -20,6 +20,8 @@ download_asset(
 
 \item{file_name}{Name for downloaded file.}
 
+\item{target_dir}{Directory to save the downloaded file. Default is ".".}
+
 \item{return_response}{A Boolean value.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}

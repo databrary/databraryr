@@ -2,12 +2,12 @@
 % Please edit documentation in R/get_video_stats.R
 \name{get_video_stats}
 \alias{get_video_stats}
-\title{Reports summary statistics about the videos available from a given volume.}
+\title{Report Stats About Videos in a Volume}
 \usage{
-get_video_stats(vol_id = 1, vb = FALSE)
+get_video_stats(this_vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{this_vol_id}{Target volume number.}
 
 \item{vb}{A boolean value.}
 }
@@ -15,7 +15,7 @@ get_video_stats(vol_id = 1, vb = FALSE)
 Data frame with summary statistics about the videos in the volume.
 }
 \description{
-Reports summary statistics about the videos available from a given volume.
+Report Stats About Videos in a Volume
 }
 \examples{
 get_video_stats() # Retrieves summary statistics about videos in volume 1.

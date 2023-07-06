@@ -24,7 +24,7 @@ search_for_funder <- function(search_string="national+science+foundation",
   if (!file.exists('.databrary.RData')){
     if (vb) {
       message("Must log-in to Databrary.")
-      databraryapi::login_db()
+      databraryr::login_db()
     }
   }
   # Normalize keyword_string...

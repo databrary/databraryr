@@ -11,8 +11,6 @@ list_session_activity(session_id = 6256, vb = FALSE)
 \item{session_id}{Selected session/slot number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
-
-\item{vol_id}{Selected volume number.}
 }
 \value{
 A list with the activity history on a slot.

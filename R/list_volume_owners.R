@@ -6,13 +6,13 @@
 #' @examples
 #' list_volume_owners()
 #' @export
-list_volume_owners <- function(vol_id = 1,
+list_volume_owners <- function(this_vol_id = 1,
                                vb = FALSE) {
   # Error checking---------------------------------------------------------
-  if (length(vol_id) > 1) {
+  if (length(this_vol_id) > 1) {
     stop("'vol_id' must have length 1.")
   }
-  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
+  if ((!is.numeric(this_vol_id)) || (this_vol_id <= 0)) {
     stop("'vol_id' must be an integer > 0.")
   }
   if (!is.logical(vb)) {
@@ -20,8 +20,8 @@ list_volume_owners <- function(vol_id = 1,
   }
 
   # Main body-------------------------------------------------------------
-  # v <- download_containers_records(vol_id = vol_id, vb = vb)
-  v <- list_containers_records(vol_id = vol_id, vb = vb)
+  v <- list_containers_records(vol_id = this_vol_id, vb = vb)
+  
   if (!is.null(v$owners)) {
     owners <- v$owners$id
     if (length(owners) > 1) {
@@ -32,8 +32,10 @@ list_volume_owners <- function(vol_id = 1,
       p <- as.data.frame(download_party(owners, vb = vb))
     }
     # Drop "Staff" etc.
-    p <- dplyr::mutate(p, person_id = id, vol_id = vol_id)
-    p <- dplyr::filter(p, !(is.na(prename)))
+    p <- dplyr::mutate(p, vol_id = this_vol_id)
+    p <- dplyr::rename(p, person_id = id)
+    p <- dplyr::filter(p, !(is.na(prename)),
+                       !(stringr::str_detect(prename, "Databrary")))
     p <- dplyr::select(p, vol_id, person_id, sortname, prename)
     return(p)
   } else {

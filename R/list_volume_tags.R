@@ -25,7 +25,7 @@ list_volume_tags <- function(vol_id = 1, vb = FALSE) {
   }
 
   g <-
-    databraryapi::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
+    databraryr::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
                                                           "?tags=all"),
                                   vb = vb)
   if (!is.null(g)) {

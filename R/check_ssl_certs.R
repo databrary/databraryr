@@ -1,6 +1,6 @@
 #' Check SSL certificates for nyu.databary.org.
 #' 
-#' @param url Target URL. Defaults to 'nyu.databrary.org'.
+#' @param host Target URL. Defaults to 'nyu.databrary.org'.
 #' @examples
 #' check_ssl_certs()
 #' @export

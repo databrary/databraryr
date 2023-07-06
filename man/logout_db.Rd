@@ -4,12 +4,12 @@
 \alias{logout_db}
 \title{Logs out of Databrary.org.}
 \usage{
-logout_db(vb = TRUE)
+logout_db(logout.url = "/api/user/logout", vb = TRUE)
 }
 \arguments{
-\item{vb}{A boolean value. If TRUE provides verbose output.}
-
 \item{logout.url}{URL for the login API.}
+
+\item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
 Status code if successful.
