@@ -10,7 +10,7 @@ get_supported_file_types(vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with the file types.
+A data frame with the file types permitted on Databrary.
 }
 \description{
 Extracts Databrary supported file types.

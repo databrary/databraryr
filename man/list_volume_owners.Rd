@@ -2,20 +2,20 @@
 % Please edit documentation in R/list_volume_owners.R
 \name{list_volume_owners}
 \alias{list_volume_owners}
-\title{List vol.id owners.}
+\title{List Owners of a Databrary Volume.}
 \usage{
 list_volume_owners(this_vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{this_vol_id}{Selected volume number. Default is 2.}
+\item{this_vol_id}{Selected volume number. Default is volume 1.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data framw with information about the volume owner(s).
+A data frame with information about the volume owner(s).
 }
 \description{
-List vol.id owners.
+List Owners of a Databrary Volume.
 }
 \examples{
 list_volume_owners()
