@@ -6,12 +6,15 @@
 \alias{databraryr-package}
 \title{databraryr: Interacts With the Databrary.org API}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 This package provides commands to interact with the Databrary.org API. There are some public assets on Databrary. But for most interesting use cases, a user will need to register \url{http://databrary.org/register} and receive authorization from an institution. Once authorized, users can download data and metadata from Databrary.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{http://github.com/databrary/databraryr}
+  \item \url{https://databrary.github.io/databraryr/}
   \item Report bugs at \url{http://github.com/databrary/databraryr/issues}
 }
 
