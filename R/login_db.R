@@ -18,7 +18,9 @@ login_db <- function(email = NULL,
                      save_session = TRUE,
                      stored_credentials = FALSE,
                      system_credentials = TRUE,
-                     credentials_file = "~/api-keys/json/databrary-keys.json",
+                     credentials_file = file.path(path.expand("~"), 
+                                                  "api-keys", "json", 
+                                                  "databrary-keys.json"),
                      vb = FALSE) {
   # Check parameters
   if (length(email) > 1) {
@@ -29,6 +31,9 @@ login_db <- function(email = NULL,
   }
   if (!is.character(login_url)) {
     stop("`login_url` must be a string.")
+  }
+  if (length(login_url) > 1) {
+    stop("`login_url` must have length == 1.")
   }
   if (length(return_response) > 1) {
     stop("`return_response` must have length == 1.")

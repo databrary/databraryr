@@ -65,14 +65,7 @@ test_that("read_csv_data_as_df rejects bad input parameters", {
   expect_error(read_csv_data_as_df(vb = list(a = 1, b = 2)))
 })
 
-# check_ssl_certs ---------------------------------------------------
-test_that("check_ssl_certs rejects bad input paramaters", {
-  expect_error(read_csv_data_as_df(host = -1))
-  expect_error(read_csv_data_as_df(host = list(a = 1, b = 2)))
-  expect_error(read_csv_data_as_df(host = TRUE))
-})
-
-test_that("check_ssl_certs returns data.frame or NULL", {
+test_that("read_csv_data_as_df returns data.frame or NULL", {
   expect_true((is.null(read_csv_data_as_df()) ||
                  (class(read_csv_data_as_df()) == "data.frame"
                  )))

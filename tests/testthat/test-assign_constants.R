@@ -1,7 +1,3 @@
-library(databraryr)
-
-# assign_constants
-
 test_that("assign_constants returns list", {
   expect_true(class(assign_constants()) == "list")
 })
