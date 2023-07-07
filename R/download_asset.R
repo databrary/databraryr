@@ -67,15 +67,12 @@ download_asset <- function(asset_id = 11643,
                                ))
       }
       if (vb) {
-        message(paste0(
-          "Downloading video as ",
-          file.path(target_dir, file_name),
-          "\n"
-        ))
+        message(paste0("Downloading video as ", file_name), "\n")
       }
       utils::download.file(webpage$handle$url,
-                           file.path(target_dir, file_name),
+                           file_name,
                            mode = "wb")
+      return(file_name)
     }
     if (content_type == "application/vnd.datavyu") {
       if (vb)
@@ -100,6 +97,7 @@ download_asset <- function(asset_id = 11643,
         message(paste0("Downloading file as '", file_name, "'\n"))
       }
       utils::download.file(webpage$handle$url, file_name, mode = "w")
+      return(file_name)
     }
   } else {
     if (vb)
@@ -113,5 +111,6 @@ download_asset <- function(asset_id = 11643,
       )
     if (return_response)
       return(webpage$response)
+    return(NULL)
   }
 }
