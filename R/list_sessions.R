@@ -31,7 +31,7 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
       df <- r$containers[-1,]
       if (dim(df)[1] >= 1) {
         df$vol_id <- vol_id
-        df <- dplyr::rename(df, session_id = id)
+        df <- dplyr::rename(df, session_id = "id")
         df        
       } else {
         # After removing sessions folder, no other data remains

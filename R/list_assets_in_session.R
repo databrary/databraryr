@@ -30,8 +30,8 @@ list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
     # if (vb) message("Making data frame from returned content.")
     if (is.data.frame(r$assets)) {
       df <- data.frame(r$assets)
-      df <- dplyr::rename(df, asset_id = id,
-                          asset_type_id = format)
+      df <- dplyr::rename(df, asset_id = "id",
+                          asset_type_id = "format")
       df <- format_to_filetypes(df, vb = vb)
     } else {
       df <- NULL

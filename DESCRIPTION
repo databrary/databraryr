@@ -30,6 +30,7 @@ Imports:
     methods,
     plyr,
     purrr,
+    readr,
     rstudioapi,
     tidyr
 RoxygenNote: 7.2.3
