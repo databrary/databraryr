@@ -1,231 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://databrary.github.io/databraryr/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://databrary.github.io/databraryr/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/articles/databrary-vignette.html</loc>
+    <loc>https://databrary.github.io/databraryr/articles/_draft/databrary-vignette.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://databrary.github.io/databraryr/articles/databrary.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://databrary.github.io/databraryr/articles/index.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://databrary.github.io/databraryr/authors.html</loc>
   </url>
   <url>
-    <loc>/reference/GET_db_contents.html</loc>
+    <loc>https://databrary.github.io/databraryr/index.html</loc>
   </url>
   <url>
-    <loc>/reference/HHMMSSmmm_to_ms.html</loc>
+    <loc>https://databrary.github.io/databraryr/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/assign_constants.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/GET_db_contents.html</loc>
   </url>
   <url>
-    <loc>/reference/check_ssl_certs.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/HHMMSSmmm_to_ms.html</loc>
   </url>
   <url>
-    <loc>/reference/config_passwd.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/assign_constants.html</loc>
   </url>
   <url>
-    <loc>/reference/download_asset.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/check_ssl_certs.html</loc>
   </url>
   <url>
-    <loc>/reference/download_containers_records.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/config_passwd.html</loc>
   </url>
   <url>
-    <loc>/reference/download_datavyu.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/databraryr-package.html</loc>
   </url>
   <url>
-    <loc>/reference/download_party.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_asset.html</loc>
   </url>
   <url>
-    <loc>/reference/download_party_avatar.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_party.html</loc>
   </url>
   <url>
-    <loc>/reference/download_party_json.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_party_avatar.html</loc>
   </url>
   <url>
-    <loc>/reference/download_session_csv.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_session_csv.html</loc>
   </url>
   <url>
-    <loc>/reference/download_session_zip.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_session_zip.html</loc>
   </url>
   <url>
-    <loc>/reference/download_video.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/download_volume_zip.html</loc>
   </url>
   <url>
-    <loc>/reference/download_vids_in_session.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_asset_segment_range.html</loc>
   </url>
   <url>
-    <loc>/reference/download_vids_in_volume.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_db_stats.html</loc>
   </url>
   <url>
-    <loc>/reference/download_volume_zip.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_file_duration.html</loc>
   </url>
   <url>
-    <loc>/reference/dv_to_csv.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_permission_levels.html</loc>
   </url>
   <url>
-    <loc>/reference/extract_dv.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_release_levels.html</loc>
   </url>
   <url>
-    <loc>/reference/extract_dv_code_defs.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_session_as_df.html</loc>
   </url>
   <url>
-    <loc>/reference/format_to_filetypes.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_supported_file_types.html</loc>
   </url>
   <url>
-    <loc>/reference/get_affiliates.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/get_video_stats.html</loc>
   </url>
   <url>
-    <loc>/reference/get_asset_segment_range.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/get_db_stats.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/is_institution.html</loc>
   </url>
   <url>
-    <loc>/reference/get_file_duration.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/is_person.html</loc>
   </url>
   <url>
-    <loc>/reference/get_individual_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_affiliates.html</loc>
   </url>
   <url>
-    <loc>/reference/get_institutional_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_assets_by_type.html</loc>
   </url>
   <url>
-    <loc>/reference/get_party.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_assets_in_session.html</loc>
   </url>
   <url>
-    <loc>/reference/get_permission_levels.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_assets_in_volume.html</loc>
   </url>
   <url>
-    <loc>/reference/get_release_levels.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_containers_records.html</loc>
   </url>
   <url>
-    <loc>/reference/get_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_containers_records_json.html</loc>
   </url>
   <url>
-    <loc>/reference/get_supported_file_types.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_individual_sponsors.html</loc>
   </url>
   <url>
-    <loc>/reference/get_video_stats.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_institutional_sponsors.html</loc>
   </url>
   <url>
-    <loc>/reference/get_volume.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_party.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_people.html</loc>
   </url>
   <url>
-    <loc>/reference/is_institution.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_session_activity.html</loc>
   </url>
   <url>
-    <loc>/reference/is_person.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_sessions.html</loc>
   </url>
   <url>
-    <loc>/reference/list_affiliates.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_sessions_in_volume.html</loc>
   </url>
   <url>
-    <loc>/reference/list_assets_by_type.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_specified_assets_in_session.html</loc>
   </url>
   <url>
-    <loc>/reference/list_assets_in_session.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_sponsors.html</loc>
   </url>
   <url>
-    <loc>/reference/list_assets_in_volume.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume.html</loc>
   </url>
   <url>
-    <loc>/reference/list_assets_json.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_activity.html</loc>
   </url>
   <url>
-    <loc>/reference/list_containers_records.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_excerpts.html</loc>
   </url>
   <url>
-    <loc>/reference/list_containers_records_json.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_funding.html</loc>
   </url>
   <url>
-    <loc>/reference/list_individual_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_links.html</loc>
   </url>
   <url>
-    <loc>/reference/list_institutional_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_metadata.html</loc>
   </url>
   <url>
-    <loc>/reference/list_party.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_owners.html</loc>
   </url>
   <url>
-    <loc>/reference/list_people.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_tags.html</loc>
   </url>
   <url>
-    <loc>/reference/list_session_activity.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/login_db.html</loc>
   </url>
   <url>
-    <loc>/reference/list_sessions.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/logout_db.html</loc>
   </url>
   <url>
-    <loc>/reference/list_sessions_in_volume.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/read_csv_data_as_df.html</loc>
   </url>
   <url>
-    <loc>/reference/list_specified_assets_in_session.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/search_for_funder.html</loc>
   </url>
   <url>
-    <loc>/reference/list_sponsors.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/search_for_keywords.html</loc>
   </url>
   <url>
-    <loc>/reference/list_volume.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_activity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_excerpts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_funding.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_links.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_metadata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_owners.html</loc>
-  </url>
-  <url>
-    <loc>/reference/list_volume_tags.html</loc>
-  </url>
-  <url>
-    <loc>/reference/login_db.html</loc>
-  </url>
-  <url>
-    <loc>/reference/logout_db.html</loc>
-  </url>
-  <url>
-    <loc>/reference/read_csv_data_as_df.html</loc>
-  </url>
-  <url>
-    <loc>/reference/search_for_funder.html</loc>
-  </url>
-  <url>
-    <loc>/reference/search_for_keywords.html</loc>
-  </url>
-  <url>
-    <loc>/reference/search_for_tags.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_demo_part_w_video.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summarize_videos_in_volume.html</loc>
-  </url>
-  <url>
-    <loc>/reference/validate_segment_id.html</loc>
+    <loc>https://databrary.github.io/databraryr/reference/search_for_tags.html</loc>
   </url>
 </urlset>

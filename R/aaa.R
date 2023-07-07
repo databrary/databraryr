@@ -4,7 +4,7 @@
     # devtools.path = "~/R-dev",
     # devtools.install.args = "",
     devtools.name = "Rick Gilmore",
-    devtools.desc.author = "Rick Gilmore <rick.gilmore@databrary.org> [aut, cre]",
+    devtools.desc.author = "Rick Gilmore <rog1@psu.edu> [aut, cre]",
     devtools.desc.license = "MIT",
     devtools.desc.suggests = NULL,
     devtools.desc = list()

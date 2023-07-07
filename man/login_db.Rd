@@ -11,7 +11,8 @@ login_db(
   save_session = TRUE,
   stored_credentials = FALSE,
   system_credentials = TRUE,
-  credentials_file = "~/api-keys/json/databrary-keys.json",
+  credentials_file = file.path(path.expand("~"), "api-keys", "json",
+    "databrary-keys.json"),
   vb = FALSE
 )
 }

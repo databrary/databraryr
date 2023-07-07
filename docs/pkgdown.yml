@@ -4,5 +4,8 @@ pkgdown_sha: ~
 articles:
   databrary-vignette: _draft/databrary-vignette.html
   databrary: databrary.html
-last_built: 2023-07-07T12:50Z
+last_built: 2023-07-07T14:43Z
+urls:
+  reference: https://databrary.github.io/databraryr/reference
+  article: https://databrary.github.io/databraryr/articles
 
