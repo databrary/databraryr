@@ -8,7 +8,7 @@ download_asset(
   asset_id = 11643,
   session_id = 9825,
   file_name = "test.mp4",
-  target_dir = ".",
+  target_dir = tempdir(),
   return_response = FALSE,
   vb = FALSE
 )
@@ -20,7 +20,8 @@ download_asset(
 
 \item{file_name}{Name for downloaded file.}
 
-\item{target_dir}{Directory to save the downloaded file. Default is ".".}
+\item{target_dir}{Directory to save the downloaded file. 
+Default is a temporary directory given by a call to `tempdir()`.}
 
 \item{return_response}{A Boolean value.}
 

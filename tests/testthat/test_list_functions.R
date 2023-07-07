@@ -417,3 +417,4 @@ test_that("list_individual_sponsors rejects bad input parameters", {
   expect_error(list_individual_sponsors(vb = c(2,3)))
   expect_error(list_individual_sponsors(vb = list(a=1, b=2)))
 })
+

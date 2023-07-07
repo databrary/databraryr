@@ -4,9 +4,9 @@
 #' @param vb A boolean value.
 #' @return List of assets.
 #' @examples
-#' get_session_csv() # Downloads "session" CSV for volume 1
+#' get_session_as_df() # Downloads "session" CSV for volume 1
 #' @export
-get_session_csv <- function(vol_id = 1,
+get_session_as_df <- function(vol_id = 1,
                                vb = FALSE) {
   # Error handling
   if (length(vol_id) > 1) {

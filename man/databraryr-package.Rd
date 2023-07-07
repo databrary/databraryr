@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Rick O. Gilmore \email{rog1@psu.edu}
 
+Authors:
+\itemize{
+  \item Jeffrey Spies \email{jeff@221b.io}
+}
+
 }
 \keyword{internal}

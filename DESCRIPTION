@@ -5,7 +5,7 @@ Version: 0.3.0
 Author: Rick O. Gilmore [aut, cre]
 Authors@R: c(person("Rick", "O. Gilmore", email = "rog1@psu.edu",
   role = c("aut", "cre")), person("Jeffrey", "Spies", email = "jeff@221b.io",
-  role = c("aut", "cre")))
+  role = c("aut")))
 Maintainer: Rick O. Gilmore <rog1@psu.edu>
 Description: This package provides commands to interact with the 
   Databrary.org API. There are some public assets on Databrary. 

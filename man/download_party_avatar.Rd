@@ -14,6 +14,8 @@ download_party_avatar(party_id = 6, show_person_info = TRUE, vb = FALSE)
 Default is TRUE.}
 
 \item{vb}{A Boolean value if TRUE returns verbose output. Default is TRUE.}
+
+\item{show_save}{Show the avatar or save it to file. Default is 'show'.}
 }
 \value{
 Image file.
@@ -22,5 +24,5 @@ Image file.
 Returns the avatar (image) for a given person.
 }
 \examples{
-download_party_avatar()
+download_party_avatar() # Show Rick Gilmore's avatar.
 }

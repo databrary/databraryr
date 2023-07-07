@@ -3,7 +3,8 @@
 #' @param asset_id Asset id for target file.
 #' @param session_id Slot/session number where target file is stored.
 #' @param file_name Name for downloaded file.
-#' @param target_dir Directory to save the downloaded file. Default is ".".
+#' @param target_dir Directory to save the downloaded file. 
+#' Default is a temporary directory given by a call to `tempdir()`.
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
@@ -12,7 +13,7 @@
 download_asset <- function(asset_id = 11643,
                            session_id = 9825,
                            file_name = "test.mp4",
-                           target_dir = ".",
+                           target_dir = tempdir(),
                            return_response = FALSE,
                            vb = FALSE) {
   # Error handling

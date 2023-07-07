@@ -7,7 +7,7 @@
 #' @param vb A Boolean value if TRUE returns verbose output. Default is TRUE.
 #' @return Image file.
 #' @examples
-#' download_party_avatar()
+#' download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
 #' @export
 download_party_avatar <- function(party_id = 6,
                                   show_person_info = TRUE,
@@ -19,7 +19,13 @@ download_party_avatar <- function(party_id = 6,
   if ((!is.numeric(party_id)) || (party_id <= 0)) {
     stop("party_id must be an integer > 0")
   }
-  
+  if (is.numeric(show_person_info))  {
+    stop("show_person_info must be a logical value")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be a logical value")
+  }
+
   a <- GET_db_contents(
     base_URL = "https://nyu.databrary.org",
     URL_components = paste0('/party/', party_id, '/avatar'),
@@ -37,6 +43,5 @@ download_party_avatar <- function(party_id = 6,
      message("Unable to extract info for party '", party_id, "'.") 
     }
   }
-  
   a
 }

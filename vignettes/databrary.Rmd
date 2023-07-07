@@ -122,4 +122,3 @@ The package also has a log out command.
 ```{r}
 databraryr::logout_db()
 ```
-
