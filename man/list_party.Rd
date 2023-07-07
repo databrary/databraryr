@@ -2,22 +2,22 @@
 % Please edit documentation in R/list_party.R
 \name{list_party}
 \alias{list_party}
-\title{Lists data for a given Databrary party (institution or person).}
+\title{Lists All Data For a Given Databrary party (person or institution).}
 \usage{
 list_party(party_id = 8, component = "all", vb = FALSE)
 }
 \arguments{
-\item{party_id}{Target volume number.}
+\item{party_id}{Target volume number. Default is volume 8 (NYU).}
 
-\item{component}{The specific data to retrieve for the party, c("all", "children", "parents")}
+\item{component}{Which data to return 'children', 'parents', or 'all'. Default is all.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{vb}{A Boolean value. If TRUE provides verbose output. Default is FALSE.}
 }
 \value{
-A list (or data frame) with the requested data.
+A list with the requested data.
 }
 \description{
-Lists data for a given Databrary party (institution or person).
+Lists All Data For a Given Databrary party (person or institution).
 }
 \examples{
 list_party() # Default is New York University (party 8)

@@ -1,13 +1,14 @@
-#' Lists basic information about people on Databrary.
+#' Retrieves Party (Person/Institution) Data as Data Frame.
 #'
 #' @param party_id Party number to retrieve information about.
-#' @param convert_JSON A Boolean value if TRUE converts the JSON download
+#' @param convert_JSON A Boolean value if TRUE converts the JSON download.
 #' @param vb A Boolean value if TRUE returns verbose output.
-#' @return Status code if successful.
+#' @return Data frame..
 #' @examples
-#' download_party()
+#' get_party_as_df() # Info about Rick Gilmore.
+#' get_party_as_df(party_id = 8) # Info about NYU.
 #' @export
-download_party <- function(party_id = 6,
+get_party_as_df <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
 
@@ -24,6 +25,7 @@ download_party <- function(party_id = 6,
   if (!is.null(r)) {
     as.data.frame(r)
   } else {
+    if (vb) message("No party data returned for party ", party_id)
     r
   }
 }

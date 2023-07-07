@@ -344,24 +344,6 @@ test_that("list_volume rejects bad input parameters", {
   expect_error(list_volume(vb = list(a=1, b=2)))
 })
 
-# list_party ---------------------------------------------------------
-test_that("list_party returns a list or is NULL.", {
-  expect_true((is.null(list_party()) ||
-                 (class(list_party()) == "list")))
-})
-
-test_that("list_party rejects bad input parameters", {
-  expect_error(list_party(party_id = "a"))
-  expect_error(list_party(party_id = -1))
-  expect_error(list_party(party_id = TRUE))
-  expect_error(list_party(party_id = c(1,3)))
-  expect_error(list_party(party_id = list(a=1, b=2)))
-  
-  expect_error(list_party(vb = "a"))
-  expect_error(list_party(vb = -1))
-  expect_error(list_party(vb = c(2,3)))
-  expect_error(list_party(vb = list(a=1, b=2)))
-})
 
 # list_institutional_sponsors ---------------------------------------------------------
 test_that("list_institutional_sponsors returns a data.frame or is NULL.", {

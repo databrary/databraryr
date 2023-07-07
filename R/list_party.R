@@ -1,15 +1,15 @@
-#' Lists data for a given Databrary party (institution or person).
+#' Lists All Data For a Given Databrary party (person or institution).
 #'
-#' @param party_id Target volume number.
-#' @param component The specific data to retrieve for the party, c("all", "children", "parents")
-#' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list (or data frame) with the requested data.
+#' @param party_id Target volume number. Default is volume 8 (NYU).
+#' @param component Which data to return 'children', 'parents', or 'all'. Default is all.
+#' @param vb A Boolean value. If TRUE provides verbose output. Default is FALSE.
+#' @return A list with the requested data.
 #' @examples
 #' list_party() # Default is New York University (party 8)
 #' @export
 list_party <- function(party_id = 8,
-                      component = "all",
-                      vb = FALSE) {
+                       component = 'all',
+                       vb = FALSE) {
   if (length(party_id) > 1) {
     stop("'party_id' must have length == 1.")
   }
@@ -19,14 +19,22 @@ list_party <- function(party_id = 8,
   if (party_id < 0) {
     stop("'party_id' must be > 0.")
   }
-
+  if (length(component) > 1) {
+    stop("'component' must have length == 1.")
+  }
+  if (!is.character(component)) {
+    stop("'component' must be an integer.")
+  }
+  if (!(component %in% c('children', 'parents', 'all'))) {
+    stop("'component' must be 'children', 'parents', or 'all'.")
+  }
   if (length(vb) > 1) {
     stop("'vb' must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("'vb' must be a Boolean.")
   }
-
+  
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
   g <-
@@ -35,7 +43,7 @@ list_party <- function(party_id = 8,
                               "?parents&children&access"),
       vb = vb
     )
-
+  
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
