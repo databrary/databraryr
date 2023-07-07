@@ -1,6 +1,6 @@
 #' Extracts Databrary supported file types.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with the file types.
+#' @return A data frame with the file types permitted on Databrary.
 #' @examples
 #' get_supported_file_types()
 #' @export

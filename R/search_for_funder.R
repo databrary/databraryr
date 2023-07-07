@@ -27,7 +27,6 @@ search_for_funder <- function(search_string="national+science+foundation",
       databraryr::login_db()
     }
   }
-  # Normalize keyword_string...
   
   # Make URL, GET(), and handle response ---------------------------
   r <- GET_db_contents(URL_components = paste0('/api/funder?query=', search_string),

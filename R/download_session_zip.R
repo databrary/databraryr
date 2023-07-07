@@ -71,7 +71,8 @@ download_session_zip <- function(vol_id = 31,
       }
       bin <- httr::content(webpage, 'raw')
       writeBin(bin, file_name)
-      message(paste0('Downloaded ', file_name))
+      #message(paste0('Downloaded ', file_name))
+      file_name
     }
   } else {
     if (vb) message(paste0('Download Failed, HTTP status ', webpage$status_code))

@@ -16,20 +16,20 @@ list_volume_tags <- function(vol_id = 1, vb = FALSE) {
   if (vol_id < 0) {
     stop("'vol_id' must be > 0.")
   }
-
+  
   if (length(vb) > 1) {
     stop("'vb' must have length == 1.")
   }
   if (!is.logical(vb)) {
     stop("'vb' must be a Boolean.")
   }
-
+  
   g <-
     databraryr::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
-                                                          "?tags=all"),
-                                  vb = vb)
+                                                        "?tags=all"), vb = vb)
   if (!is.null(g)) {
-    if (vb) message("n=", length(g$tags$id), " tags found in volume ", vol_id, ".")
+    if (vb)
+      message("n=", length(g$tags$id), " tags found in volume ", vol_id, ".")
     g$tags
   } else {
     if (vb)

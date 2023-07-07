@@ -37,7 +37,6 @@ download_session_csv <- function(vol_id = 1,
   
   full_fn <- file.path(target_dir, file_name)
   
-  # Main routines
   if (vb)
     message(paste0("Downloading spreadsheet from volume ", vol_id, '.'))
   csv_url <-
@@ -57,6 +56,6 @@ download_session_csv <- function(vol_id = 1,
     NULL
   } else {
     utils::download.file(r$handle$url, full_fn, mode = "w")
-    message(full_fn)
+    full_fn
   }
 }

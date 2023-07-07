@@ -46,7 +46,8 @@ get_session_as_df <- function(vol_id = 1,
         as = "parsed",
         type = "text/csv",
         encoding = "utf-8",
-        show_col_types = FALSE
+        show_col_types = FALSE#,
+        # col_types = readr::cols(.default = readr::col_character())
       )
     if (is.null(c)) {
       if (vb)
