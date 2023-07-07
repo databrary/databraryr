@@ -17,11 +17,17 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Rick O. Gilmore \email{rog1@psu.edu}
+\strong{Maintainer}: Rick O. Gilmore \email{rog1@psu.edu} [copyright holder]
 
 Authors:
 \itemize{
   \item Jeffrey Spies \email{jeff@221b.io}
+}
+
+Other contributors:
+\itemize{
+  \item National Science Foundation [funder]
+  \item National Institutes of Health R01HD094830 [funder]
 }
 
 }
