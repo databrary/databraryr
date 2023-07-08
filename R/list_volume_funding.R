@@ -39,7 +39,7 @@ list_volume_funding <- function(vol_id = 1, vb = FALSE) {
     if (vb) {
       message("'funding' is NULL.")
     }
-    data.frame(vol_id = vol_id, funder_id = NA, funder_name = NA, award = NA)
+    data.frame(`vol_id` = vol_id, `funder_id` = NA, `funder_name` = NA, `award` = NA)
   }
 }
 
@@ -59,7 +59,7 @@ normalize_funder_dataframe <- function(x) {
   if (is.data.frame(x)) {
     f <- x$funder
     f$award <- replace_empty_award_vals(x)
-    f <- tidyr::unnest(f, award)
-    dplyr::rename(f, funder_id = id, funder_name = name)
+    f <- tidyr::unnest(f, "award")
+    dplyr::rename(f, funder_id = "id", funder_name = "name")
   }
 }

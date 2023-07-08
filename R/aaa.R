@@ -14,3 +14,5 @@
 
   invisible()
 }
+
+utils::globalVariables(".data")

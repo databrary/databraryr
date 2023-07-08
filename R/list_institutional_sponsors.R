@@ -32,7 +32,7 @@ list_institutional_sponsors <-
       if ("institution" %in% names(sponsors)) {
         if (vb)
           message("Possible institutional sponsors for party.")
-        inst_sponsors <- dplyr::filter(sponsors, institution == TRUE)
+        inst_sponsors <- dplyr::filter(sponsors, .data$institution == TRUE)
         if (is.null(inst_sponsors)) {
           if (vb)
             message(paste0("No institutional sponsors for party ", party_id))

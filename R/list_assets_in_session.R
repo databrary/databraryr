@@ -57,7 +57,7 @@ list_specified_assets_in_session <- function(session_id = 9807,
   # List all assets
   if (vb) message('list_specified_assets_in_session()...')
   al <- list_assets_in_session(session_id, vb = vb)
-  dplyr::filter(al, asset_type == media_type)
+  dplyr::filter(al, .data$asset_type == media_type)
 }
 
 #========================================================================================

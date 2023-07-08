@@ -36,7 +36,7 @@ list_volume_owners <- function(this_vol_id = 1,
       p |>
         dplyr::mutate(vol_id = this_vol_id) |>
         dplyr::rename(person_id = "id") |>
-        dplyr::filter(!(is.na(prename)), !(stringr::str_detect(prename, "Databrary"))) |>
+        dplyr::filter(!(is.na(.data$prename)), !(stringr::str_detect(.data$prename, "Databrary"))) |>
         dplyr::select("vol_id", "person_id", "sortname", "prename")
     } else {
       if (vb) message("NULL value returned from `download_party()`.")
