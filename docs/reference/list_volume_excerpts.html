@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/_draft/databrary-vignette.html">Accessing Databrary.org via the API</a>
     <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
   </div>
 </li>
@@ -81,15 +80,15 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_volume_excerpts</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              segment permission excerpt asset.id asset.format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 16852000, 16916503          5      NA    84000         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  0          5      NA     9200            5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   asset.duration      asset.segment                        asset.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       14589934 15824072, 30414006 DatabraryAdvisoryBoardMeeting2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             NA               NULL                              logo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   asset.permission asset.size asset.container asset.classification</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                5 4611531493           17886                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                5     104419            9807                    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              segment permission excerpt asset.id asset.format asset.duration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 16852000, 16916503          1      NA    84000         -800       14589934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  0          1      NA     9200            5             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        asset.segment                        asset.name asset.permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 15824072, 30414006 DatabraryAdvisoryBoardMeeting2017                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2               NULL                              logo                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   asset.size asset.container asset.classification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4611531493           17886                   NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     104419            9807                    3</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

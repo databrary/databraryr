@@ -7,9 +7,6 @@
     <loc>https://databrary.github.io/databraryr/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/articles/_draft/databrary-vignette.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/articles/databrary.html</loc>
   </url>
   <url>
@@ -68,6 +65,9 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/get_file_duration.html</loc>
+  </url>
+  <url>
+    <loc>https://databrary.github.io/databraryr/reference/get_party_as_df.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/get_permission_levels.html</loc>

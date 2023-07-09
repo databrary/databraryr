@@ -14,7 +14,7 @@ ownership privileges."><meta property="og:image" content="https://databrary.gith
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,6 @@ ownership privileges."><meta property="og:image" content="https://databrary.gith
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/_draft/databrary-vignette.html">Accessing Databrary.org via the API</a>
     <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
   </div>
 </li>
@@ -87,118 +86,7 @@ ownership privileges.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_session_activity</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    action              ip user       date                        when    id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     add 128.122.236.158    1 2013-10-28 2014-04-15T01:17:02.301985Z  6256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     add 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:17:06.754431Z  9826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     add 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:17:44.947757Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4     add 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:18:23.294257Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     add 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:18:58.254206Z  9832</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  change 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:25:58.481563Z    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     add 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:25:58.520207Z    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  change 128.122.236.158    1       &lt;NA&gt; 2014-04-15T01:27:14.660576Z    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     add  172.22.236.137    3       &lt;NA&gt; 2015-02-11T21:21:55.753231Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 remove  172.22.236.137    3       &lt;NA&gt; 2015-02-11T21:23:40.332373Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    add  172.22.236.137    3       &lt;NA&gt; 2015-02-11T21:26:26.717328Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 remove  172.22.236.137    3       &lt;NA&gt; 2015-02-11T21:29:36.508693Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    add  172.22.236.137    3       &lt;NA&gt; 2015-02-11T21:40:12.603296Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 remove  172.22.236.137    3       &lt;NA&gt; 2015-02-18T22:28:41.263953Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15    add     100.2.20.44    3       &lt;NA&gt; 2015-03-04T23:16:58.898737Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 remove  172.22.236.137    3       &lt;NA&gt; 2015-04-01T16:33:59.256751Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 change  172.22.236.137    3       &lt;NA&gt; 2015-07-15T21:52:08.835224Z  9826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 change  172.22.236.137    3       &lt;NA&gt;  2015-07-15T21:52:53.77945Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 change  172.22.236.137    3       &lt;NA&gt; 2015-07-15T21:58:50.290747Z  9832</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 change  172.22.236.137    3       &lt;NA&gt; 2015-07-15T21:59:13.210695Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21    add  172.22.236.137    3       &lt;NA&gt; 2015-07-15T22:26:31.928748Z 22412</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 change  172.22.236.137    3       &lt;NA&gt; 2015-07-15T22:32:03.799839Z  9828</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 change 128.122.236.185   19       &lt;NA&gt; 2015-07-15T22:48:39.867839Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 change 128.122.236.185   19       &lt;NA&gt; 2015-07-15T22:51:35.057128Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 change 128.122.236.185   19       &lt;NA&gt; 2015-07-15T23:03:47.314683Z  9826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 change 128.122.236.148  293       &lt;NA&gt; 2015-08-13T21:26:39.634971Z  9826</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 change 128.122.236.148  293       &lt;NA&gt; 2015-08-13T21:26:48.590024Z  9830</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         type                              name           segment release</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  container                              &lt;NA&gt;              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      asset                            Part 1         0, 335883      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      asset                            Part 2   335883, 4761366      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      asset                            Part 3  4761366, 9039201      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      asset                            Part 4 9039201, 12146348      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  container            Advisory Board Meeting              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    release                              &lt;NA&gt;              NULL       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    release                              &lt;NA&gt;              NULL       3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    excerpt                              &lt;NA&gt;  2037802, 3019487      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   excerpt                              &lt;NA&gt;  2037802, 3019487      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   excerpt                              &lt;NA&gt;  2037802, 3019487      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   excerpt                              &lt;NA&gt;  2037802, 3019487      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   excerpt                              &lt;NA&gt;  5554168, 6616319      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   excerpt                              &lt;NA&gt;  5554168, 6616319      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   excerpt                              &lt;NA&gt;  6161659, 7146544      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   excerpt                              &lt;NA&gt;  6161659, 7146544      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17     asset                      Introduction              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18     asset       Overview and Databrary demo              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19     asset                           Datavyu              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20     asset               Databrary 1.0 plans              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21     asset                            Slides              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22     asset                    Databrary demo              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23     asset          Databrary 1.0 plansdfdfd              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24     asset Databrary 1.0 plansdfdfdsdfsdfsdf              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25     asset                Introductionfdfhgh              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26     asset                      Introduction              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27     asset                Databrary 1.0 plan              NULL      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    old.release old.excerpt                                       old.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8            1          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          NA           2                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          NA           2                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16          NA          NA                                           &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17          NA          NA                                         Part 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18          NA          NA                                         Part 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19          NA          NA                                         Part 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20          NA          NA                                         Part 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21          NA          NA Databrary advisory board slides_2013-10-28.pdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22          NA          NA                    Overview and Databrary demo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23          NA          NA                            Databrary 1.0 plans</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24          NA          NA                       Databrary 1.0 plansdfdfd</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25          NA          NA                                   Introduction</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26          NA          NA                             Introductionfdfhgh</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27          NA          NA              Databrary 1.0 plansdfdfdsdfsdfsdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    excerpt</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8       NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

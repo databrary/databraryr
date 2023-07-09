@@ -17,3 +17,5 @@ tmp
 *.opf
 *.mp4
 docs
+/doc/
+/Meta/

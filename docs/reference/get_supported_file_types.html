@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/_draft/databrary-vignette.html">Accessing Databrary.org via the API</a>
     <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
   </div>
 </li>
@@ -71,7 +70,7 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A data frame with the file types.</p>
+<p>A data frame with the file types permitted on Databrary.</p>
     </div>
 
     <div class="section level2">
@@ -143,72 +142,39 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 30                            application/vnd.lena.interpreted-time-segments</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31                                                                video/x-dv</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32                                                                 text/elan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    extension                                          asset_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        mp4                                        MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        jpg                                          JPEG image</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        mp3                    MPEG-1 or MPEG-2 audio layer III</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        txt                                          Plain text</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        csv                              Comma-separated values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        rtf                                    Rich text format</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        png                           Portable network graphics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        pdf                                   Portable document</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        doc                             Microsoft Word document</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       odf                                   OpenDocument text</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      docx           Microsoft Word (Office Open XML) document</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12       xls                         Microsoft Excel spreadsheet</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13       ods                            OpenDocument spreadsheet</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      xlsx          Microsoft Excel (Office Open XML) workbook</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       ppt                   Microsoft PowerPoint presentation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16       odp                           OpenDocument presentation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      pptx Microsoft PowerPoint (Office Open XML) presentation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18       opf                                             Datavyu</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      webm                                          WebM video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20       mpg           MPEG program stream (MPEG-1/MPEG-2 video)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21       mov                                     QuickTime video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22       mts                               MPEG transport stream</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23       avi                              Audio Video Interleave</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24       sav                                    SPSS System File</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25       wav                                      Waveform audio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26       wmv                                 Windows Media video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27       cha         Codes for the Human Analysis of Transcripts</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28       aac                               Advanced Audio Coding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29       wma                                 Windows Media audio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30       its                      LENA Interpreted Time Segments</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31        dv                      Digital Interface Format video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32       eaf                         ELAN - Linguistic Annotator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    transcodable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          -600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25         -600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28         -600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29         -600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    extension                                          asset_type transcodable</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        mp4                                        MPEG-4 video         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        jpg                                          JPEG image           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        mp3                    MPEG-1 or MPEG-2 audio layer III         -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        txt                                          Plain text           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        csv                              Comma-separated values           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        rtf                                    Rich text format           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        png                           Portable network graphics           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        pdf                                   Portable document           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9        doc                             Microsoft Word document           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10       odf                                   OpenDocument text           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      docx           Microsoft Word (Office Open XML) document           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12       xls                         Microsoft Excel spreadsheet           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13       ods                            OpenDocument spreadsheet           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14      xlsx          Microsoft Excel (Office Open XML) workbook           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15       ppt                   Microsoft PowerPoint presentation           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16       odp                           OpenDocument presentation           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      pptx Microsoft PowerPoint (Office Open XML) presentation           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18       opf                                             Datavyu           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      webm                                          WebM video         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20       mpg           MPEG program stream (MPEG-1/MPEG-2 video)         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21       mov                                     QuickTime video         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22       mts                               MPEG transport stream         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23       avi                              Audio Video Interleave         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24       sav                                    SPSS System File           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25       wav                                      Waveform audio         -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26       wmv                                 Windows Media video         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27       cha         Codes for the Human Analysis of Transcripts           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28       aac                               Advanced Audio Coding         -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29       wma                                 Windows Media audio         -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30       its                      LENA Interpreted Time Segments           NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31        dv                      Digital Interface Format video         -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32       eaf                         ELAN - Linguistic Annotator           NA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

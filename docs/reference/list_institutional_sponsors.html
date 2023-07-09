@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/_draft/databrary-vignette.html">Accessing Databrary.org via the API</a>
     <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
   </div>
 </li>
@@ -81,12 +80,12 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_institutional_sponsors</span><span class="op">(</span><span class="op">)</span> <span class="co"># Defaults to Rick Gilmore (party 6)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id                                       sortname affiliation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 308                                          Staff   Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  12 Pennsylvania State University, University Park        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   institution prename                url email</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        TRUE    &lt;NA&gt;               &lt;NA&gt;  &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        TRUE     The http://www.psu.edu  &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    id                                       sortname affiliation institution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 308                                          Staff   Databrary        TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  12 Pennsylvania State University, University Park        &lt;NA&gt;        TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   prename                url</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    &lt;NA&gt;               &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     The http://www.psu.edu</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

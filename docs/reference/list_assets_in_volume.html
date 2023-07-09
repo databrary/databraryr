@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,6 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/_draft/databrary-vignette.html">Accessing Databrary.org via the API</a>
     <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
   </div>
 </li>
@@ -81,427 +80,522 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_assets_in_volume</span><span class="op">(</span><span class="op">)</span> <span class="co"># Assets in volume 1</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    asset_id asset_type_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     22412             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      9826          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      9828          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      9830          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      9832          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      9839             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      9834          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      9836          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      9838          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    12039             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11    17737          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12    22408             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13    17719          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14    22407             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15    17723          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16    17721          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17    22410             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18    17725          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19    22411             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20    17727          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21    19919          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22    22406             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23    25497             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24    25495             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25    25496             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26    27227             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27    26446             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28    28026          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29    26449             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30    26448          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31    26452             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32    28028          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33   153109             2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34   153108             2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35   117035            16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36      314             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37     9200             5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38        1          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39      315             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40    28047             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41    28051          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42    28048             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43    28053          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44    28055          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45    28049             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46    28062          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47    42470             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48    36978             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49    37128             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50    37138          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51    36945             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52    37130          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53    36946             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54    37136          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55    43940             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56    38626             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57    38643          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58    38627             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59    38591          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60    38628             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61    38593          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62    38629             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63    38595          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64    43077             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65    44774          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66    44544             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67    42740             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68    42755             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69    45413             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70    46104             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71    46300          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72    60627             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73    60542          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74    60628             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75    60544          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76    60629             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77    60546          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78    60630             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79    60550          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80    61222          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81    61224          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82    65936             6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83    66015          -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                             name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                         Slides</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                   Introduction</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                 Databrary demo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                             Databrary 1.0 plan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                        Datavyu</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                   04-07-Slides</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                     Overview and Policy Update</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                              Private Beta demo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                           Positioning Databrary for the future</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                                                        slides</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                                 Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                                Welcome slides</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                                Best practices in video coding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                        SLIDES: Best practices in video coding</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                              Datavyu tutorial</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                                              Lunch discussion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                      SLIDES: Lunch discussion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                       Open video data sharing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                               SLIDES: Open video data sharing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                                Databrary demo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                         video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                                                        slides</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                  Slides: Video reuse, management, and sharing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24       Slides: Policies and best practices for sharing and managing video data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 Slides: Best practices in behavioral video coding and introduction to Datavyu</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                                                        Agenda</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29           SLIDES: Policies &amp; best practices for sharing &amp; managing video data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                   Policies &amp; best practices for sharing &amp; managing video data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                SLIDES: Introduction to Datavyu: Video coding &amp; best practices</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                        Introduction to Datavyu: Video coding &amp; best practices</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                     volumes-citations-monthly</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                          databrary-institutions-investigators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                  counting (demo Datavyu file)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                        NIH Proposal Narrative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                                          logo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                                                         counting (demo video)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                                                        NSF Proposal Narrative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42           SLIDES: Policies &amp; best practices for sharing &amp; managing video data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43          Policies &amp; best practices for sharing &amp; managing video data (Part 1)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44          Policies &amp; best practices for sharing &amp; managing video data (Part 2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                SLIDES: Introduction to Datavyu: Video coding &amp; best practices</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                        Introduction to Datavyu: Video coding &amp; best practices</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                                             Workshop attendees survey results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                             SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51                               SLIDES: Policies for Sharing Identifiable Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                                       Policies for Sharing Identifiable Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53                                 SLIDES: Managing Data to Accelerate Discovery</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                                         Managing Data to Accelerate Discovery</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                                                                Survey results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58                               SLIDES: Policies for Sharing Identifiable Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59                                       Policies for Sharing Identifiable Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60                                          SLIDES: Managing Data with Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                                                  Managing Data with Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                             SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                                     Datavyu &amp; Best Practices for Coding Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                                                           ICIS Survey Results</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                                                      Databrary Pre-conference</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67                                       SLIDES: Policies for Sharing Video Data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                                          SLIDES: Managing Data with Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                             SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                               SLIDES: Databrary Board Meeting - June 13, 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                                VIDEO: Databrary Board Meeting - June 13, 2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                                             SLIDES: Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                                                  SLIDES: Policies for Sharing</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                                               Policies for sharing video data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                                          SLIDES: Managing data with Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                                                  Managing data with Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                             SLIDES: Datavyu &amp; best practices for coding video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                                     Datavyu &amp; best Practices for coding video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80                                                     Introduction to Databrary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                                                     Policies for sharing data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82                                               PLAY workshop slides 2016-12-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                                            PLAY workshop videocast 2016-12-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    permission       size duration            segment</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           5    4573426       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           5   88610655   335883          0, 335883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           5  917124852  4425483    335883, 4761366</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           5  899912341  4277835   4761366, 9039201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           5  764340542  3107147  9039201, 12146348</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           5    3013342       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           5 1301079971  4964011         0, 4964011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           5 1419151887  5043051  4964011, 10007062</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           5  882417129  3821387 10007062, 13828449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          5   10192940       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          5 5316455384 10976384        0, 10976384</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          5     304566       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          5 1384301751  3514603         0, 3514603</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          5    2924252       NA             528181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          5  574598972  1594688   3514560, 5109248</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16          5 1602298195  3977558   5111054, 9088612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17          5    6899381       NA            5112000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18          5  710384623  1920512  9086719, 11007231</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19          5    4158160       NA            9087000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20          5 1079191541  2827904 11007188, 13835092</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21          5 5561649547 14939008        0, 14939008</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22          5   24014506       NA               5000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23          5   19543511       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24          5    6947725       NA               1000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25          5   11216184       NA               2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26          5      55248       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27          5    8502489       NA                100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28          5  969574682  3708160   1061959, 4770119</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29          5   18074689       NA            4741737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30          5 2059896165  5477483  4742737, 10220220</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31          5   16562761       NA           10220209</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32          5  717531830  2725723 10220220, 12945943</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33          5        417       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34          5       1826       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35          5       1030       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36          5    3826718       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37          5     104419       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38          5     394499    40000               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39          5    4120930       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40          5    9500786       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41          5  886710056  2794880         0, 2794880</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42          5   18069955       NA            2792054</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43          5  763350644  2387051   2795785, 5182836</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44          5 1044753106  2983616   5183754, 8167370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45          5   17821836       NA            8150330</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46          5 1550955220  4835115  8168370, 13003485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47          5     402918       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48          5   16143550       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49          5   22240020       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50          5 1190956598  3402326         0, 3402326</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51          5    2225737       NA            1800000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52          5  824306229  2450882   1827192, 4278074</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53          5   13901204       NA            2400000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54          5 1412799175  3904128   2451165, 6355293</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55          5     191095       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56          5   17971722       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57          5  706313005  2760992         0, 2760992</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58          5    4265477       NA            2811000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59          5  622855933  2293056   2814628, 5107684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60          5   10040436       NA            5095000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61          5 1035603796  3676480   5108605, 8785085</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62          5   11171502       NA            8784000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63          5  857979902  2537494  8785992, 11323486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64          5    1772791       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65          5 5207302273  9728726         0, 9728726</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66          5   10732100       NA               2000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67          5    4238406       NA            2185146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68          5    7741745       NA            4401856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69          5   15475455       NA            6480140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70          5   19602134       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71          5 4651981876 13129280        0, 13129280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72          5   10732100       NA                  0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73          5  607629550  2058198         0, 2058198</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74          5    4238406       NA            2056000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75          5  795931994  2468587   2059089, 4527676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76          5    7741745       NA            4524000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77          5  627556299  2002624   4528588, 6531212</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78          5   15475455       NA            6527000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79          5 1033985826  3372779   6532121, 9904900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80          5  671824312  1939563         0, 1939563</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81          5  687136253  1908544   1940470, 3849014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82          5  278432416       NA               NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83          5 1332848036 24567644        0, 24567644</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   mimetype extension                asset_type transcodable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                text/csv       csv    Comma-separated values           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                text/csv       csv    Comma-separated values           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35 application/vnd.datavyu       opf                   Datavyu           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37               image/png       png Portable network graphics           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82         application/pdf       pdf         Portable document           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83               video/mp4       mp4              MPEG-4 video         -800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    classification</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6               3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [ reached 'max' / getOption("max.print") -- omitted 45 rows ]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     asset_id asset_type_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      22412             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       9826          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       9828          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       9830          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5       9832          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       9839             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7       9834          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8       9836          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       9838          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     12039             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11     17737          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     22408             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13     17719          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     22407             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15     17723          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16     17721          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17     22410             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18     17725          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19     22411             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20     17727          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21     19919          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22     22406             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23     25497             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24     25495             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25     25496             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26     27227             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27     26446             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28     28026          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29     26449             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30     26448          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31     26452             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32     28028          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33    153109             2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34    153108             2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35    117035            16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36       314             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37      9200             5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38         1          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39       315             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40     28047             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41     28051          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42     28048             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43     28053          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44     28055          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45     28049             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46     28062          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47     42470             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48     36978             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49     37128             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50     37138          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51     36945             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52     37130          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53     36946             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54     37136          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55     43940             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56     38626             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57     38643          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58     38627             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59     38591          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60     38628             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61     38593          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62     38629             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63     38595          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64     43077             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65     44774          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66     44544             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67     42740             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68     42755             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69     45413             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70     46104             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71     46300          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72     60627             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73     60542          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74     60628             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75     60544          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76     60629             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77     60546          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78     60630             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79     60550          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80     61222          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81     61224          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82     65936             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83     66015          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84     68596          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85     68598          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86     68600          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87     68584          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88     73302          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89     73306          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90     73304          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91     73308          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92     73310          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93     73316          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94     76809             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95     76808             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96     76807             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97     77809          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98     77815          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99     77811          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100    77813          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101    77817          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102    77819          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103    80993             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104    80894          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105    81039          -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106    80896          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107    80898          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108    80950          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109    79738          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110    80952          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111    80954          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112    80958          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113    80956          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114    80960          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115    80962          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116    80964          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117    84000          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118    95780             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119   115695             6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120   115751          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121   115737          -600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122   115747          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123   115743          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124   115745          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125   115741          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126   115753          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127   115739          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128   115749          -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                              name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                          Slides</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                    Introduction</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                  Databrary demo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                              Databrary 1.0 plan</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                         Datavyu</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                    04-07-Slides</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                      Overview and Policy Update</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                               Private Beta demo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                            Positioning Databrary for the future</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                                                         slides</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                                  Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                                 Welcome slides</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                                 Best practices in video coding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                         SLIDES: Best practices in video coding</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                               Datavyu tutorial</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                                               Lunch discussion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                       SLIDES: Lunch discussion</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                        Open video data sharing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                                SLIDES: Open video data sharing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                                 Databrary demo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                          video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                                                         slides</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                   Slides: Video reuse, management, and sharing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24        Slides: Policies and best practices for sharing and managing video data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  Slides: Best practices in behavioral video coding and introduction to Datavyu</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                                                         Agenda</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29            SLIDES: Policies &amp; best practices for sharing &amp; managing video data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                    Policies &amp; best practices for sharing &amp; managing video data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                 SLIDES: Introduction to Datavyu: Video coding &amp; best practices</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                         Introduction to Datavyu: Video coding &amp; best practices</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                      volumes-citations-monthly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                           databrary-institutions-investigators</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                   counting (demo Datavyu file)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                         NIH Proposal Narrative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                                           logo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38                                                          counting (demo video)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39                                                         NSF Proposal Narrative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42            SLIDES: Policies &amp; best practices for sharing &amp; managing video data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43           Policies &amp; best practices for sharing &amp; managing video data (Part 1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44           Policies &amp; best practices for sharing &amp; managing video data (Part 2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45                 SLIDES: Introduction to Datavyu: Video coding &amp; best practices</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46                         Introduction to Datavyu: Video coding &amp; best practices</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47                                              Workshop attendees survey results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48                              SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51                                SLIDES: Policies for Sharing Identifiable Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52                                        Policies for Sharing Identifiable Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53                                  SLIDES: Managing Data to Accelerate Discovery</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54                                          Managing Data to Accelerate Discovery</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55                                                                 Survey results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58                                SLIDES: Policies for Sharing Identifiable Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59                                        Policies for Sharing Identifiable Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60                                           SLIDES: Managing Data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61                                                   Managing Data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62                              SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63                                      Datavyu &amp; Best Practices for Coding Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64                                                            ICIS Survey Results</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65                                                       Databrary Pre-conference</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67                                        SLIDES: Policies for Sharing Video Data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68                                           SLIDES: Managing Data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69                              SLIDES: Datavyu &amp; Best Practices for Coding Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70                                SLIDES: Databrary Board Meeting - June 13, 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71                                 VIDEO: Databrary Board Meeting - June 13, 2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72                                              SLIDES: Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74                                                   SLIDES: Policies for Sharing</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75                                                Policies for sharing video data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76                                           SLIDES: Managing data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77                                                   Managing data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78                              SLIDES: Datavyu &amp; best practices for coding video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79                                      Datavyu &amp; best Practices for coding video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80                                                      Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81                                                      Policies for sharing data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82                                                PLAY workshop slides 2016-12-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83                                             PLAY workshop videocast 2016-12-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84                                                                            1/4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85                                                                            2/4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86                                                                            3/4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87                                                                            4/4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88                                                                          00002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89                                                                          00003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90                                                                          00004</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91                                                                          00005</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92                                                                          00006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93                                     SRCD_2017_The_Science_of_Play_and_Learning</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94                                                      3-Datavyu-2017-04-30-aera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95                                                 2-policiesMgmt-2017-04-30-aera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96                                                        1-intro-2017-04-30-aera</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97                                                                          00012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98                                                                          00013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99                                                                          00014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100                                                                        000151</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101                                                                        000152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102                                                                         00016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103                                Advisory Board Meeting Presentation_2017-06-09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104                                                                         00019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105         Heiman_Steinhardt Databrary_060917_GCASL CQ_PMO_Zoom4_Nus_bk# 1036791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106                                                                         00020</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107                                                                         00021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108                                                                         00022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109                                  Advisory Board Meeting-2017-06-09 Part-2.mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110                                                                         00023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111                                                                         00024</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112                                                                         00026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113                                                                         00025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114                                                                         00027</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115                                                                         00028</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116                                                                         00029</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117                                             DatabraryAdvisoryBoardMeeting2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118                                    CDS_Databrary_Datavyu_2017-10-13_Final.key</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119                            Databrary_Advisory_Board_Meeting_slides-2018-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120                                             Advisory Board Meeting_2018_Part1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121                                           Databrary Advisory Board_2018-03-26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122                                             Advisory Board Meeting_2018_Part2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123                                             Advisory Board Meeting_2018_Part3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124                                             Advisory Board Meeting_2018_Part4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125                                             Advisory Board Meeting_2018_Part5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126                                             Advisory Board Meeting_2018_Part6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127                                             Advisory Board Meeting_2018_Part7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128                                             Advisory Board Meeting_2018_Part8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     permission       size duration            segment                mimetype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            1    4573426       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            1   88610655   335883          0, 335883               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            1  917124852  4425483    335883, 4761366               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4            1  899912341  4277835   4761366, 9039201               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5            1  764340542  3107147  9039201, 12146348               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6            1    3013342       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7            1 1301079971  4964011         0, 4964011               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8            1 1419151887  5043051  4964011, 10007062               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9            1  882417129  3821387 10007062, 13828449               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10           1   10192940       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11           1 5316455384 10976384        0, 10976384               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12           1     304566       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13           1 1384301751  3514603         0, 3514603               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14           1    2924252       NA             528181         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15           1  574598972  1594688   3514560, 5109248               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16           1 1602298195  3977558   5111054, 9088612               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17           1    6899381       NA            5112000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18           1  710384623  1920512  9086719, 11007231               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19           1    4158160       NA            9087000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20           1 1079191541  2827904 11007188, 13835092               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21           1 5561649547 14939008        0, 14939008               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22           1   24014506       NA               5000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23           1   19543511       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24           1    6947725       NA               1000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25           1   11216184       NA               2000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26           1      55248       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27           1    8502489       NA                100         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28           1  969574682  3708160   1061959, 4770119               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29           1   18074689       NA            4741737         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30           1 2059896165  5477483  4742737, 10220220               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31           1   16562761       NA           10220209         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32           1  717531830  2725723 10220220, 12945943               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33           0         NA       NA               NULL                text/csv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34           1       1826       NA               NULL                text/csv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35           1       1030       NA               NULL application/vnd.datavyu</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36           1    3826718       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37           1     104419       NA               NULL               image/png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38           1     394499    40000               NULL               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39           1    4120930       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40           1    9500786       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41           1  886710056  2794880         0, 2794880               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42           1   18069955       NA            2792054         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43           1  763350644  2387051   2795785, 5182836               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44           1 1044753106  2983616   5183754, 8167370               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45           1   17821836       NA            8150330         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46           1 1550955220  4835115  8168370, 13003485               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47           1     402918       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48           1   16143550       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49           1   22240020       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50           1 1190956598  3402326         0, 3402326               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51           1    2225737       NA            1800000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52           1  824306229  2450882   1827192, 4278074               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53           1   13901204       NA            2400000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54           1 1412799175  3904128   2451165, 6355293               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55           1     191095       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56           1   17971722       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57           1  706313005  2760992         0, 2760992               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58           1    4265477       NA            2811000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59           1  622855933  2293056   2814628, 5107684               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60           1   10040436       NA            5095000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61           1 1035603796  3676480   5108605, 8785085               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62           1   11171502       NA            8784000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63           1  857979902  2537494  8785992, 11323486               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64           1    1772791       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65           1 5207302273  9728726         0, 9728726               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66           1   10732100       NA               2000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67           1    4238406       NA            2185146         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68           1    7741745       NA            4401856         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69           1   15475455       NA            6480140         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70           1   19602134       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71           1 4651981876 13129280        0, 13129280               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72           1   10732100       NA                  0         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73           1  607629550  2058198         0, 2058198               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74           1    4238406       NA            2056000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75           1  795931994  2468587   2059089, 4527676               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76           1    7741745       NA            4524000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77           1  627556299  2002624   4528588, 6531212               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78           1   15475455       NA            6527000         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79           1 1033985826  3372779   6532121, 9904900               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80           1  671824312  1939563         0, 1939563               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81           1  687136253  1908544   1940470, 3849014               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82           1  278432416       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83           1 1332848036 24567644        0, 24567644               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84           1 1251324058  2499595         0, 2499595               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85           1 1322485833  2857388   2500552, 5357940               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86           1 1310253381  2857722   5357939, 8215661               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87           1  984178185  2096523  8215657, 10312180               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88           1 1141378800  2853384         0, 2853384               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89           1 1109757036  2859724   2854383, 5714107               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90           1  308336133   798699   5714099, 6512798               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91           1 1077537629  2856387   6513755, 9370142               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92           1  555319245  1435851  9371141, 10806992               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93           1 1185980540  2855887         0, 2855887               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94           1   11296910       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95           1    8188127       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96           1    9899927       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97           1  977096783  2853384         0, 2853384               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98           1  943655212  2855220   2854383, 5709603               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99           1   39116816   121547   5709594, 5831141               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100          1  243847194   704538   5831098, 6535636               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101          1  695084769  2037970   6535606, 8573576               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102          1  252821639   743179   8573092, 9316271               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103          1   81457940       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104          1 1185269159  1366382         0, 1366382               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105          1  292650423 15823072        0, 15823072              audio/mpeg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106          1 1244239760  1368451   1366381, 2734832               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107          1 1191221405  1366949   2734837, 4101786               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108          1 1237461468  1346475   4101786, 5448261               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109          1   86403462  4950334   4832834, 9783168               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110          1 1113502210  1366382   5448218, 6814600               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111          1 1040993535  1367450   6814599, 8182049               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112          1  946159516  1101739   8182054, 9283793               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113          1 1111936525  1367934  9283750, 10651684               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114          1 1074824135  1374390 10651691, 12026081               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115          1 1093669899  1375775 12026080, 13401855               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116          1 1029314077  1251691 13401859, 14653550               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117          1 4611531493 14589934 15824072, 30414006               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118          1   24630245       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119          1   53661203       NA               NULL         application/pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120          1 1886564537  2179711         0, 2179711               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121          1  226542146 14398328        0, 14398328              audio/mpeg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122          1 1976644381  2181547   2179694, 4361241               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123          1  581869073   602027   4361207, 4963234               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124          1 2321264233  2180712   4802729, 6983441               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125          1 2084960359  2180546   6983424, 9163970               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126          1  184972983   159595   9163945, 9323540               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127          1 1985795461  2180212  9323497, 11503709               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128          1  554267042   504427 11503691, 12008118               video/mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     extension                       asset_type transcodable classification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1         pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6         pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9         mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30        mp4                     MPEG-4 video         -800              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33        csv           Comma-separated values           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34        csv           Comma-separated values           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35        opf                          Datavyu           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37        png        Portable network graphics           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38        mp4                     MPEG-4 video         -800              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82        pdf                Portable document           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84        mp4                     MPEG-4 video         -800              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96        pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99        mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103       pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105       mp3 MPEG-1 or MPEG-2 audio layer III         -600             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109       mp4                     MPEG-4 video         -800              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118       pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119       pdf                Portable document           NA             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121       mp3 MPEG-1 or MPEG-2 audio layer III         -600             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127       mp4                     MPEG-4 video         -800             NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128       mp4                     MPEG-4 video         -800             NA</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
