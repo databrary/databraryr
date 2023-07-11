@@ -5,8 +5,8 @@
 \title{Download a specific video, audio, or other file.}
 \usage{
 download_asset(
-  asset_id = 11643,
-  session_id = 9825,
+  asset_id = 1,
+  session_id = 9807,
   file_name = "test.mp4",
   target_dir = tempdir(),
   return_response = FALSE,
@@ -31,5 +31,7 @@ Default is a temporary directory given by a call to `tempdir()`.}
 Download a specific video, audio, or other file.
 }
 \examples{
-download_asset()
+download_asset() # Download's 'numbers' file from volume 1.
+download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4") 
+# Downloads a display with a random dot kinematogram (RDK).
 }

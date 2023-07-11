@@ -30,17 +30,19 @@ Imports:
     methods,
     plyr,
     purrr,
-    readr,
     rstudioapi,
-    tidyr
+    tidyr,
+    lifecycle
 RoxygenNote: 7.2.3
 Suggests: 
     av,
     knitr,
     openssl,
     testthat (>= 3.0.0),
-    ggplot2
+    ggplot2,
+    readr
 VignetteBuilder: knitr
 URL: http://github.com/databrary/databraryr, https://databrary.github.io/databraryr/
 BugReports: http://github.com/databrary/databraryr/issues
 Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)

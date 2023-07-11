@@ -122,3 +122,71 @@ The package also has a log out command.
 ```{r}
 databraryr::logout_db()
 ```
+
+## Accessing data
+
+Databrary is a data library, one specialized for storing and sharing video.
+Let's see how to use *databraryr* to access data.
+
+We'll start simply.
+Let's download a test video from [volume 1 on Databrary](https://databrary.org/volume/1).
+
+The `download_asset()` function handles this for us.
+Running it with the default parameters downloads a simple test video with numbers
+than increment.
+The file is called 'test.mp4' because the file uses the MP4 video container.
+The file is stored in a temporary directory created by the file system using the function `tempdir()`.
+The `download_asset()` function returns a character string with the full file name.
+
+```{r}
+download_asset()
+```
+
+Depending on your operating system, the following commands may open the file so that you can play it.
+
+```{r, eval=FALSE}
+nums_vid <- download_asset()
+system(paste0("open ", nums_vid))
+```
+
+Or, you can navigate to the temporary directory to open and play the video.
+
+Now, let's see what other files are shared in volume 1.
+This takes a moment to run because there are *many* files in this volume.
+
+```{r}
+vol1_df <- list_assets_in_volume()
+```
+
+The command returns a data frame we can manipulate using standard R commands.
+Here are the variables in the data frame.
+
+```{r}
+names(vol1_df)
+```
+
+The `asset_type` variable tells us the type of the data file.
+
+```{r}
+unique(vol1_df$asset_type)
+```
+
+We can summarize the number of files using the `stats::xtabs()` function:
+
+```{r}
+stats::xtabs(~ asset_type, data = vol1_df)
+```
+So, there are lots of videos and PDFs to examine.
+Here is a table of the ten longest videos.
+
+```{r}
+vol1_df |>
+  dplyr::filter(asset_type == "MPEG-4 video") |>
+  dplyr::select(name, duration) |>
+  dplyr::mutate(hrs = duration/(60*60*1000)) |>
+  dplyr::select(name, hrs) |>
+  dplyr::arrange(desc(hrs)) |>
+  head() |>
+  knitr::kable(format = 'html')
+```
+

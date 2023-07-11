@@ -8,10 +8,12 @@
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
-#' download_asset()
+#' download_asset() # Download's 'numbers' file from volume 1.
+#' download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4") 
+#' # Downloads a display with a random dot kinematogram (RDK).
 #' @export
-download_asset <- function(asset_id = 11643,
-                           session_id = 9825,
+download_asset <- function(asset_id = 1,
+                           session_id = 9807,
                            file_name = "test.mp4",
                            target_dir = tempdir(),
                            return_response = FALSE,
@@ -56,16 +58,16 @@ download_asset <- function(asset_id = 11643,
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file_name <- file.path(target_dir,
-                               paste0(
-                                 session_id,
-                                 "-",
-                                 asset_id,
-                                 "-",
-                                 format(Sys.time(), "%F-%H%M-%S"),
-                                 ".mp4"
-                               ))
+        file_name <- paste0(
+          session_id,
+          "-",
+          asset_id,
+          "-",
+          format(Sys.time(), "%F-%H%M-%S"),
+          ".mp4"
+        )
       }
+      file_name <- file.path(target_dir, file_name)
       if (vb) {
         message(paste0("Downloading video as ", file_name), "\n")
       }
@@ -77,22 +79,20 @@ download_asset <- function(asset_id = 11643,
     if (content_type == "application/vnd.datavyu") {
       if (vb)
         message("Target file is Datavyu (.opf) spreadsheet.")
-      if (file_name == "test.mp4") {
-        # This 'test.mp4' is the default value for file_name
+      if (file_name == "test.opf") {
         if (vb) {
           message("File name unspecified. Generating unique name.\n")
         }
-        file_name <-
-          file.path(target_dir,
-                    paste0(
-                      session_id,
-                      "-",
-                      asset_id,
-                      "-",
-                      format(Sys.time(), "%F-%H%M-%S"),
-                      ".opf"
-                    ))
+        file_name <- paste0(
+          session_id,
+          "-",
+          asset_id,
+          "-",
+          format(Sys.time(), "%F-%H%M-%S"),
+          ".opf"
+        )
       }
+      file_name <- file.path(target_dir, file_name)
       if (vb) {
         message(paste0("Downloading file as '", file_name, "'\n"))
       }

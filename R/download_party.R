@@ -1,4 +1,8 @@
 #' Lists basic information about people on Databrary.
+#' 
+#' #' @description
+#' `r lifecycle::badge("superseded")`
+#' `download_party()` has been superseded in favor of `get_party_as_df()`.
 #'
 #' @param party_id Party number to retrieve information about.
 #' @param convert_JSON A Boolean value if TRUE converts the JSON download
