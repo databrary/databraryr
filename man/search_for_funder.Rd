@@ -12,7 +12,7 @@ search_for_funder(search_string = "national+science+foundation", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A list with the activity history on a slot.
+A data frame with information about the funder.
 }
 \description{
 Search for funders.

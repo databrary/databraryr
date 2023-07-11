@@ -12,7 +12,7 @@ search_for_keywords(search_string = "locomotion", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A list with the activity history on a slot.
+A list with the volumes that contain the keyword.
 }
 \description{
 Search for keywords in Databrary volumes.

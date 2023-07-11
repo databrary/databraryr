@@ -2,7 +2,7 @@
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list with the activity history on a slot.
+#' @return A list with the volumes that contain the keyword.
 #' @examples
 #' search_for_keywords()
 #' @export
