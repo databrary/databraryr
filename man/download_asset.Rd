@@ -20,8 +20,8 @@ download_asset(
 
 \item{file_name}{Name for downloaded file.}
 
-\item{target_dir}{Directory to save the downloaded file. 
-Default is a temporary directory given by a call to `tempdir()`.}
+\item{target_dir}{Directory to save the downloaded file.
+Default is a temporary directory given by a call to \code{tempdir()}.}
 
 \item{return_response}{A Boolean value.}
 

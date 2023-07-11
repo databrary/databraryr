@@ -27,7 +27,7 @@ login_db(
 
 \item{stored_credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
 
-\item{system_credentials}{A Boolean value. If TRUE loads login credentials using the system level file accessed by the `keyring` package.}
+\item{system_credentials}{A Boolean value. If TRUE loads login credentials using the system level file accessed by the \code{keyring} package.}
 
 \item{credentials_file}{Path to stored credentials file if it exists.}
 

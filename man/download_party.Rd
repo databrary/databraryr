@@ -17,7 +17,9 @@ download_party(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 Status code if successful.
 }
 \description{
-Lists basic information about people on Databrary.
+#' @description
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+\code{download_party()} has been superseded in favor of \code{get_party_as_df()}.
 }
 \examples{
 download_party()
