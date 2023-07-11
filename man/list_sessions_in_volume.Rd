@@ -2,20 +2,21 @@
 % Please edit documentation in R/list_sessions_in_volume.R
 \name{list_sessions_in_volume}
 \alias{list_sessions_in_volume}
-\title{Lists the sessions in a given volume. This is an alias for list_sessions().}
+\title{List Sessions in a Volume.}
 \usage{
 list_sessions_in_volume(vol_id = 1, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Target volume ID. Defaults to 1.}
 
-\item{vb}{A boolean value.}
+\item{vb}{Provide verbose output. Default is FALSE.}
 }
 \value{
 List of sessions.
 }
 \description{
-Lists the sessions in a given volume. This is an alias for list_sessions().
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+\code{list_sessions_in_volume()} has been superseded in list_sessions().
 }
 \examples{
 list_sessions_in_volume() # Lists sessions in volume 1.

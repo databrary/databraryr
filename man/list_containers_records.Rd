@@ -12,11 +12,11 @@ list_containers_records(vol_id = 1, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-JSON file with containers and records from the specified volume.
+A data frame with containers and records from the specified volume.
 }
 \description{
 List Containers and Records In Databrary Volume.
 }
 \examples{
-list_containers_records_json()
+list_containers_records() # Containers and records from volume 1.
 }
