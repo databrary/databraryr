@@ -1,4 +1,4 @@
-#' Logs in to Databrary.org.
+#' Logs In to Databrary.org.
 #'
 #' @param email Databrary account ID (email).
 #' @param login_url URL for the login API.
@@ -8,7 +8,7 @@
 #' @param system_credentials A Boolean value. If TRUE loads login credentials using the system level file accessed by the `keyring` package.
 #' @param credentials_file Path to stored credentials file if it exists.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return Status code if login is successful
+#' @returns Logical value indicating whether login is successful or not.
 #' @examples
 #' login_db()
 #' @export

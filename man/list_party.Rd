@@ -14,7 +14,7 @@ list_party(party_id = 8, component = "all", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output. Default is FALSE.}
 }
 \value{
-A list with the requested data.
+A data frame with information about a party (person or institution).
 }
 \description{
 Lists All Data For a Given Databrary party (person or institution).

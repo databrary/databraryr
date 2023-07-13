@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_volume_zip.R
 \name{download_volume_zip}
 \alias{download_volume_zip}
-\title{Download a zip archive with all data in a volume.}
+\title{Download Zip Archive of All Data in a Volume.}
 \usage{
 download_volume_zip(
   vol_id = 31,
@@ -20,8 +20,11 @@ download_volume_zip(
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+Full filename of the downloaded file.
+}
 \description{
-Download a zip archive with all data in a volume.
+Download Zip Archive of All Data in a Volume.
 }
 \examples{
 download_volume_zip()

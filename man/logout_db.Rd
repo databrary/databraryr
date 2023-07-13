@@ -2,7 +2,7 @@
 % Please edit documentation in R/logout_db.R
 \name{logout_db}
 \alias{logout_db}
-\title{Logs out of Databrary.org.}
+\title{Log Out of Databrary.org.}
 \usage{
 logout_db(logout.url = "/api/user/logout", vb = TRUE)
 }
@@ -15,7 +15,7 @@ logout_db(logout.url = "/api/user/logout", vb = TRUE)
 Status code if successful.
 }
 \description{
-Logs out of Databrary.org.
+Log Out of Databrary.org.
 }
 \examples{
 logout_db()

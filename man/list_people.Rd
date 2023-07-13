@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_people.R
 \name{list_people}
 \alias{list_people}
-\title{Lists basic information about people on Databrary.}
+\title{Lists Basic Info About People Registered on Databrary.}
 \usage{
 list_people(people_list = 5:7, vb = FALSE)
 }
@@ -12,10 +12,11 @@ list_people(people_list = 5:7, vb = FALSE)
 \item{vb}{A Boolean value if TRUE returns verbose output.}
 }
 \value{
-A data frame with the people in the specified range of party ID's.
+A data frame with information about the people in the specified
+range of party ID's.
 }
 \description{
-Lists basic information about people on Databrary.
+Lists Basic Info About People Registered on Databrary.
 }
 \examples{
 list_people() # Lists people with party IDs 5:7, Databrary's founders

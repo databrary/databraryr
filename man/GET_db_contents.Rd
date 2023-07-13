@@ -20,6 +20,9 @@ GET_db_contents(
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+Output from GET command.
+}
 \description{
 Queries the Databrary API with an HTML GET command
 }

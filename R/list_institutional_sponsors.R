@@ -1,12 +1,12 @@
 #' List Institutional Sponsors For A Party.
-#' 
+#'
 #' A party (person or institution) may have a sponsor that is another person
 #' or an institution. This function lists the *institution(s)* that sponsor
 #' a party.
 #'
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @returns A data frame with information about a party's *institutional* sponsor(s).
 #' @examples
 #' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
 #' @export
@@ -36,7 +36,8 @@ list_institutional_sponsors <-
       if ("institution" %in% names(sponsors)) {
         if (vb)
           message("Possible institutional sponsors for party.")
-        inst_sponsors <- dplyr::filter(sponsors, .data$institution == TRUE)
+        inst_sponsors <-
+          dplyr::filter(sponsors, .data$institution == TRUE)
         if (is.null(inst_sponsors)) {
           if (vb)
             message(paste0("No institutional sponsors for party ", party_id))

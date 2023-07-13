@@ -2,7 +2,7 @@
 #'
 #' @param this_vol_id Selected volume number. Default is volume 1.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return A data frame with information about the volume owner(s).
+#' @returns A data frame with information about a volume's owner(s).
 #' @examples
 #' list_volume_owners()
 #' @export

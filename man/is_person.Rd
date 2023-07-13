@@ -12,7 +12,7 @@ is_person(party_id = 7, vb = FALSE)
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-TRUE or FALSEl.
+TRUE or FALSE.
 }
 \description{
 Is This Party A Person?

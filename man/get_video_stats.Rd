@@ -12,7 +12,7 @@ get_video_stats(this_vol_id = 1, vb = FALSE)
 \item{vb}{A boolean value.}
 }
 \value{
-Data frame with summary statistics about the videos in the volume.
+A data frame with summary statistics about the videos in the volume.
 }
 \description{
 Report Stats About Videos in a Volume.

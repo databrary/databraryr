@@ -7,7 +7,7 @@
 #' @param party_id Party number. Default is 406 (Kasey Soska)
 #' @param report_target_party Print the party ID and name of the target person.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @returns A tibble (data.frame) with information about a party.
 #' @examples
 #' list_individual_sponsors() # Default is Kasey Soska (party 406)
 #' @export

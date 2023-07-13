@@ -2,7 +2,7 @@
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return An array of tags that match the tag_string.
+#' @returns An array of tags that match the tag_string.
 #' @examples
 #' search_for_tags()
 #' @export

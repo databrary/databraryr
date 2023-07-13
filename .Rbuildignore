@@ -10,3 +10,4 @@
 ^tmp$
 ^_wip
 ^\.github$
+^cran-comments\.md$

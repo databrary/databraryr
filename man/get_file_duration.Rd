@@ -17,6 +17,9 @@ get_file_duration(
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+Duration of a file in ms.
+}
 \description{
 Get Duration (In ms) Of A File.
 }

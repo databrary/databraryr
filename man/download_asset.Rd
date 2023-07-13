@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_asset.R
 \name{download_asset}
 \alias{download_asset}
-\title{Download a specific video, audio, or other file.}
+\title{Download Asset From Databrary.}
 \usage{
 download_asset(
   asset_id = 1,
@@ -27,8 +27,11 @@ Default is a temporary directory given by a call to \code{tempdir()}.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+Full file name to the asset.
+}
 \description{
-Download a specific video, audio, or other file.
+Download Asset From Databrary.
 }
 \examples{
 download_asset() # Download's 'numbers' file from volume 1.

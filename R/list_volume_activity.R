@@ -5,7 +5,7 @@
 #'
 #' @param vol_id Selected volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list with the activity history on a volume.
+#' @returns A list with the activity history on a volume.
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
   # Parameter checking----------------------------------------------

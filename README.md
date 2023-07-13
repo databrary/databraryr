@@ -6,7 +6,13 @@ This repository contains code for the `databraryR` R package.
 
 Full package documentation built using `pkgdown` can be found [here](https://databrary.github.io/databraryr).
 
-## Installation
+## Installation (development release)
+
+### Official CRAN release
+
+- Install the package from CRAN via `install.packages("databraryr")`.
+
+### Development release
 
 - Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
 - Load `devtools` into your local environment: `library(devtools)`

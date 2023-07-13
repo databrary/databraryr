@@ -1,8 +1,8 @@
-#' Logs out of Databrary.org.
+#' Log Out of Databrary.org.
 #'
 #' @param logout.url URL for the login API.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return Status code if successful.
+#' @returns Status code if successful.
 #' @examples
 #' logout_db()
 #' @export

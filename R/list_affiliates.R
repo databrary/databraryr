@@ -3,7 +3,8 @@
 #' @param party_id Target volume number.
 #' @param report_target_party Report data about the target party. Default is FALSE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @returns A data frame with information about a party's affiliates (sponsored
+#' investigators).
 #' @examples
 #' list_affiliates() # Lists Rick Gilmore's affiliates
 #' @export

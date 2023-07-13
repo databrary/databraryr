@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_sessions.R
 \name{list_sessions}
 \alias{list_sessions}
-\title{Downloads list of sessions.}
+\title{Download Information About A Volume's Sessions.}
 \usage{
 list_sessions(vol_id = 1, vb = FALSE)
 }
@@ -12,10 +12,10 @@ list_sessions(vol_id = 1, vb = FALSE)
 \item{vb}{A boolean value.}
 }
 \value{
-List of sessions.
+Information about sessions in a volume.
 }
 \description{
-Downloads list of sessions.
+Download Information About A Volume's Sessions.
 }
 \examples{
 list_sessions() # Lists sessions in volume 1.

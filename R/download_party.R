@@ -1,4 +1,4 @@
-#' Lists basic information about people on Databrary.
+#' Download Information About a Party on Databrary.
 #' 
 #' #' @description
 #' `r lifecycle::badge("superseded")`
@@ -7,7 +7,7 @@
 #' @param party_id Party number to retrieve information about.
 #' @param convert_JSON A Boolean value if TRUE converts the JSON download
 #' @param vb A Boolean value if TRUE returns verbose output.
-#' @return Status code if successful.
+#' @returns A data frame with information about the party.
 #' @examples
 #' download_party()
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_metadata.R
 \name{list_volume_metadata}
 \alias{list_volume_metadata}
-\title{List volume metadata.}
+\title{List Volume Metadata.}
 \usage{
 list_volume_metadata(
   vol_id = 2,
@@ -21,10 +21,10 @@ list_volume_metadata(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with information about the volume.
+A data frame with metadata about a volume.
 }
 \description{
-List volume metadata.
+List Volume Metadata.
 }
 \examples{
 list_volume_metadata() # List info about volume 2.

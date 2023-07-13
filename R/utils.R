@@ -8,6 +8,7 @@
 #' @param asset_id Asset number.
 #' @param types_w_durations Asset types that have valid durations.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns Duration of a file in ms.
 #' @examples
 #' get_file_duration() # default is the test video from databrary.org/volume/1
 #' @export
@@ -53,6 +54,7 @@ get_file_duration <- function(asset_id = 1,
 #' @param segment_only A Boolean value. If TRUE, returns only the segment values. Otherwise returns
 #' a data frame with two fields, segment and permission. Default is TRUE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns The time range (in ms) for an asset, if one is indicated.
 #' @examples
 #' get_asset_segment_range()
 #' @export
@@ -131,6 +133,7 @@ get_asset_segment_range <- function(vol_id = 1,
 #' Extract Databrary Permission Levels.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns An array with the permission levels that can be assigned to data.
 #' @examples
 #' get_permission_levels()
 #' @export
@@ -144,6 +147,7 @@ get_permission_levels <- function(vb = FALSE) {
 #' Convert Timestamp String To ms.
 #'
 #' @param HHMMSSmmm a string in the format "HH:MM:SS:mmm"
+#' @returns A numeric value from the input string.
 #' @examples
 #' HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 #' @export
@@ -166,7 +170,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' Show Databrary Release Levels
 #'
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return Data frame with release levels.
+#' @returns A data frame with Databrary's release levels.
 #' @examples
 #' get_release_levels()
 #' @export
@@ -180,7 +184,7 @@ get_release_levels <- function(vb = FALSE) {
 #' Extracts File Types Supported by Databrary.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with the file types permitted on Databrary.
+#' @returns A data frame with the file types permitted on Databrary.
 #' @examples
 #' get_supported_file_types()
 #' @export
@@ -196,7 +200,7 @@ get_supported_file_types <- function(vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return TRUE or FALSEl.
+#' @returns TRUE or FALSEl.
 #' @examples
 #' is_institution() # Is party 8 (NYU) an institution.
 #' @export
@@ -224,7 +228,7 @@ is_institution <- function(party_id=8, vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return TRUE or FALSEl.
+#' @returns TRUE or FALSE.
 #' @examples
 #' is_person()
 #' @export

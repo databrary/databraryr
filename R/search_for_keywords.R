@@ -1,8 +1,8 @@
-#' Search for keywords in Databrary volumes.
+#' Search For Keywords in Databrary Volumes.
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list with the volumes that contain the keyword.
+#' @returns A list with the volumes that contain the keyword.
 #' @examples
 #' search_for_keywords()
 #' @export

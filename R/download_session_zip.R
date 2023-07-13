@@ -1,10 +1,11 @@
-#' Download a zip archive with all data from a specified volume and session
+#' Download Zip Archive From Databrary Session.
 #'
 #' @param vol_id Volume number.
 #' @param session_id Slot/session number.
 #' @param out_dir Directory to save output file.
 #' @param file_name Name for downloaded file, default is 'test.zip'.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns Full filename of the downloaded file.
 #' @examples
 #' download_session_zip()
 #' @export

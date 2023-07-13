@@ -14,7 +14,8 @@ list_affiliates(party_id = 6, report_target_party = FALSE, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A data frame with information about a party's affiliates (sponsored
+investigators).
 }
 \description{
 List Affiliates for A Databrary Volume.

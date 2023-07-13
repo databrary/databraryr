@@ -12,7 +12,7 @@ list_volume_excerpts(vol_id = 1, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A tibble (data.frame) with information about any available excerpts.
 }
 \description{
 List Image or Video Excerpts On A Databrary Volume.

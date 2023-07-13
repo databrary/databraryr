@@ -14,7 +14,7 @@ list_volume(vol_id = 1, search_str = "", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A list (or data frame) with the requested data.
+A data frame with information about a volume.
 }
 \description{
 List Info for a Databrary Volume.

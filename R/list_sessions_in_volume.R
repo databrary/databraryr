@@ -6,7 +6,7 @@
 #' 
 #' @param vol_id Target volume ID. Defaults to 1.
 #' @param vb Provide verbose output. Default is FALSE.
-#' @return List of sessions.
+#' @returns Information abou the sessions in a volume.
 #' @examples
 #' list_sessions_in_volume() # Lists sessions in volume 1.
 #' @export

@@ -1,4 +1,4 @@
-#' Lists keywords and tags associated with a Databrary volume.
+#' Lists Keywords And Tags For A Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.

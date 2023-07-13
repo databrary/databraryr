@@ -1,8 +1,8 @@
-#' Downloads list of sessions.
+#' Download Information About A Volume's Sessions.
 #'
 #' @param vol_id Target volume ID. Defaults to 1.
 #' @param vb A boolean value.
-#' @return List of sessions.
+#' @returns Information about sessions in a volume.
 #' @examples
 #' list_sessions() # Lists sessions in volume 1.
 #' @export

@@ -12,7 +12,7 @@ get_session_as_df(vol_id = 1, vb = FALSE)
 \item{vb}{A boolean value.}
 }
 \value{
-List of assets.
+A data frame with session information from a volume.
 }
 \description{
 Get Session Info From A Volume As A Data Frame.

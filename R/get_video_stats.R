@@ -2,7 +2,7 @@
 #'
 #' @param this_vol_id Target volume number.
 #' @param vb A boolean value.
-#' @return Data frame with summary statistics about the videos in the volume.
+#' @returns A data frame with summary statistics about the videos in the volume.
 #' @examples
 #' get_video_stats() # Retrieves summary statistics about videos in volume 1.
 #' @export

@@ -12,7 +12,7 @@ list_session_activity(session_id = 6256, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A list with the activity history on a session/slot.
+A data frame with the activity history on a session/slot.
 }
 \description{
 If a user has access to a volume and session, this function returns the

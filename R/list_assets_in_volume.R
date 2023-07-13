@@ -1,8 +1,8 @@
-#' Lists all the assets/files in a given volume.
+#' Assets in Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.
-#' @return List of assets.
+#' @returns A data frame with information about all assets in a volume.
 #' @examples
 #' list_assets_in_volume() # Assets in volume 1
 #' @export

@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets_in_volume.R
 \name{list_assets_in_volume}
 \alias{list_assets_in_volume}
-\title{Lists all the assets/files in a given volume.}
+\title{Assets in Databrary Volume.}
 \usage{
 list_assets_in_volume(vol_id = 1, vb = FALSE)
 }
@@ -12,10 +12,10 @@ list_assets_in_volume(vol_id = 1, vb = FALSE)
 \item{vb}{A boolean value.}
 }
 \value{
-List of assets.
+A data frame with information about all assets in a volume.
 }
 \description{
-Lists all the assets/files in a given volume.
+Assets in Databrary Volume.
 }
 \examples{
 list_assets_in_volume() # Assets in volume 1

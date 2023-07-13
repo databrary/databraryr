@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-This package provides commands to interact with the Databrary.org API. There are some public assets on Databrary. But for most interesting use cases, a user will need to register \url{http://databrary.org/register} and receive authorization from an institution. Once authorized, users can download data and metadata from Databrary.
+This package provides commands to interact with the Databrary.org API. There are some public assets on Databrary. But for most interesting use cases, a user will need to register \url{http://databrary.org/register} and receive authorization from an institution. Once authorized, users can download data and metadata from Databrary and reuse it subject to the terms of the Databrary Access Agreement and the site Terms and Conditions of Use.
 }
 \seealso{
 Useful links:

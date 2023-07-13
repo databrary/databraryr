@@ -27,6 +27,9 @@ a data frame with two fields, segment and permission. Default is TRUE.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+The time range (in ms) for an asset, if one is indicated.
+}
 \description{
 Get Time Range For An Asset.
 }

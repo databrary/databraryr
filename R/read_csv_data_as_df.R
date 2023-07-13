@@ -6,6 +6,7 @@
 #' @param session_id Session ID within some volume.
 #' @param asset_id Asset ID within the session.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns A data frame with the CSV data.
 #' @examples
 #' read_csv_data_as_df() # Loads CSV depicting Databrary growth from volume 1
 #' @export

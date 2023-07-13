@@ -3,7 +3,7 @@
 #' @param vol_id Target volume number.
 #' @param search_str The specific data to retrieve for the volume
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list (or data frame) with the requested data.
+#' @returns A data frame with information about a volume.
 #' @examples
 #' list_volume() # Default is volume 1
 #' @export

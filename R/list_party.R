@@ -3,7 +3,7 @@
 #' @param party_id Target volume number. Default is volume 8 (NYU).
 #' @param component Which data to return 'children', 'parents', or 'all'. Default is all.
 #' @param vb A Boolean value. If TRUE provides verbose output. Default is FALSE.
-#' @return A list with the requested data.
+#' @returns A data frame with information about a party (person or institution).
 #' @examples
 #' list_party() # Default is New York University (party 8)
 #' @export

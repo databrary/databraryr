@@ -4,7 +4,7 @@
 #' @param file_name Name for the output file. Default is 'test.csv'.
 #' @param target_dir Directory to save downloaded file. Default is '.'.
 #' @param vb A boolean value.
-#' @return Name of downloaded file.
+#' @returns Name of downloaded file.
 #' @examples
 #' download_session_csv() # Downloads "session" CSV for volume 1
 #' @export

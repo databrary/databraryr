@@ -2,7 +2,7 @@
 % Please edit documentation in R/search_for_keywords.R
 \name{search_for_keywords}
 \alias{search_for_keywords}
-\title{Search for keywords in Databrary volumes.}
+\title{Search For Keywords in Databrary Volumes.}
 \usage{
 search_for_keywords(search_string = "locomotion", vb = FALSE)
 }
@@ -15,7 +15,7 @@ search_for_keywords(search_string = "locomotion", vb = FALSE)
 A list with the volumes that contain the keyword.
 }
 \description{
-Search for keywords in Databrary volumes.
+Search For Keywords in Databrary Volumes.
 }
 \examples{
 search_for_keywords()

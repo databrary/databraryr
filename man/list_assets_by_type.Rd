@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets_by_type.R
 \name{list_assets_by_type}
 \alias{list_assets_by_type}
-\title{Lists stored assets (files) by type.}
+\title{List Stored Assets (Files) By Type.}
 \usage{
 list_assets_by_type(vol_id = 1, type = "video", vb = FALSE)
 }
@@ -14,10 +14,11 @@ list_assets_by_type(vol_id = 1, type = "video", vb = FALSE)
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-Data frame with the selected asset types.
+A data frame with information about assets in a volume, sorted by
+type.
 }
 \description{
-Lists stored assets (files) by type.
+List Stored Assets (Files) By Type.
 }
 \examples{
 list_assets_by_type() # Lists assets in volume 1.

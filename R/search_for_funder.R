@@ -1,8 +1,8 @@
-#' Search for funders.
+#' Report Information About A Funder.
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with information about the funder.
+#' @returns A data frame with information about the funder.
 #' @examples
 #' search_for_funder()
 #' @export

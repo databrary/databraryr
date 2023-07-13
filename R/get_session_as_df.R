@@ -2,7 +2,7 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.
-#' @return List of assets.
+#' @returns A data frame with session information from a volume.
 #' @examples
 #' get_session_as_df() # Return Session Info from Volume 1.
 #' @export

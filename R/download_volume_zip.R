@@ -1,10 +1,11 @@
 #========================================================================================
-#' Download a zip archive with all data in a volume.
+#' Download Zip Archive of All Data in a Volume.
 #'
 #' @param vol_id Volume number.
 #' @param out_dir Directory to save output file.
 #' @param file_name Name for downloaded file, default is 'test.mp4'.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns Full filename of the downloaded file.
 #' @examples
 #' download_volume_zip()
 #' @export

@@ -5,7 +5,7 @@
 #'
 #' @param session_id Selected session/slot number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A list with the activity history on a session/slot.
+#' @returns A data frame with the activity history on a session/slot.
 #' @export
 list_session_activity <- function(session_id = 6256, vb = FALSE) {
   # Parameter checking----------------------------------------------

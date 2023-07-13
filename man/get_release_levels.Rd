@@ -10,7 +10,7 @@ get_release_levels(vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-Data frame with release levels.
+A data frame with Databrary's release levels.
 }
 \description{
 Show Databrary Release Levels

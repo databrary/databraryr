@@ -1,10 +1,10 @@
-#' Lists assets in a given Databrary volume and session (slot).
+#' Assets In Databrary Session.
 #'
 #' @param session_id Slot/session ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with the assets in the selected volume and session.
+#' @returns A data frame with information about a selected session.
 #' @examples
-#' list_assets_in_session() # Assets in volume 1, session 9807
+#' list_assets_in_session() # Assets in session 9807 (from Volume 1)
 #' @export
 list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
   # Parameter checking----------------------------------------------

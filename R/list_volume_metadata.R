@@ -1,10 +1,10 @@
-#' List volume metadata.
+#' List Volume Metadata.
 #'
 #' @param vol_id Selected volume number.
 #' @param write_header A Boolean value. If TRUE writes a comma-separated header.
 #' @param data_frame A Boolean value. If TRUE writes a data frame as output.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with information about the volume.
+#' @returns A data frame with metadata about a volume.
 #' @examples
 #' list_volume_metadata() # List info about volume 2.
 #' @export

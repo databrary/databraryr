@@ -1,9 +1,10 @@
-#' Lists stored assets (files) by type.
+#' List Stored Assets (Files) By Type.
 #'
 #' @param vol_id Volume ID
 #' @param type Data file type, e.g. "video", "pdf", or "csv"
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @return Data frame with the selected asset types.
+#' @returns A data frame with information about assets in a volume, sorted by
+#' type.
 #' @examples
 #' list_assets_by_type() # Lists assets in volume 1.
 #' @export

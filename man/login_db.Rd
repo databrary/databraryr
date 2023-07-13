@@ -2,7 +2,7 @@
 % Please edit documentation in R/login_db.R
 \name{login_db}
 \alias{login_db}
-\title{Logs in to Databrary.org.}
+\title{Logs In to Databrary.org.}
 \usage{
 login_db(
   email = NULL,
@@ -34,10 +34,10 @@ login_db(
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-Status code if login is successful
+Logical value indicating whether login is successful or not.
 }
 \description{
-Logs in to Databrary.org.
+Logs In to Databrary.org.
 }
 \examples{
 login_db()

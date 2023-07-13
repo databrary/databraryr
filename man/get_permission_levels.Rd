@@ -9,6 +9,9 @@ get_permission_levels(vb = FALSE)
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+An array with the permission levels that can be assigned to data.
+}
 \description{
 Extract Databrary Permission Levels.
 }

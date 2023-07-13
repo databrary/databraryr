@@ -3,7 +3,7 @@
 #' @param party_id Party number to retrieve information about.
 #' @param convert_JSON A Boolean value if TRUE converts the JSON download.
 #' @param vb A Boolean value if TRUE returns verbose output.
-#' @return Data frame..
+#' @returns A data frame with information about the selected party.
 #' @examples
 #' get_party_as_df() # Info about Rick Gilmore.
 #' get_party_as_df(party_id = 8) # Info about NYU.

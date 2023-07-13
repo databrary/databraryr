@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_tags.R
 \name{list_volume_tags}
 \alias{list_volume_tags}
-\title{Lists keywords and tags associated with a Databrary volume.}
+\title{Lists Keywords And Tags For A Volume.}
 \usage{
 list_volume_tags(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_volume_tags(vol_id = 1, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists keywords and tags associated with a Databrary volume.
+Lists Keywords And Tags For A Volume.
 }
 \examples{
 list_volume_tags()

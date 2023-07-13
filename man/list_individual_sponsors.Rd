@@ -18,7 +18,7 @@ list_individual_sponsors(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A tibble (data.frame) with information about a party.
 }
 \description{
 A party (person or institution) may have a sponsor that is another person

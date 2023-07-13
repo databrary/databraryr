@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_session_zip.R
 \name{download_session_zip}
 \alias{download_session_zip}
-\title{Download a zip archive with all data from a specified volume and session}
+\title{Download Zip Archive From Databrary Session.}
 \usage{
 download_session_zip(
   vol_id = 31,
@@ -23,8 +23,11 @@ download_session_zip(
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+Full filename of the downloaded file.
+}
 \description{
-Download a zip archive with all data from a specified volume and session
+Download Zip Archive From Databrary Session.
 }
 \examples{
 download_session_zip()

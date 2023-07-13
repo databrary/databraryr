@@ -14,7 +14,7 @@ get_party_as_df(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 \item{vb}{A Boolean value if TRUE returns verbose output.}
 }
 \value{
-Data frame..
+A data frame with information about the selected party.
 }
 \description{
 Retrieve Party (Person/Institution) Info as Data Frame.

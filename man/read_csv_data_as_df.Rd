@@ -13,6 +13,9 @@ read_csv_data_as_df(session_id = 9807, asset_id = 153108, vb = FALSE)
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
+\value{
+A data frame with the CSV data.
+}
 \description{
 If a given Databrary session has a CSV file, this function will
 try to download it as a data frame.

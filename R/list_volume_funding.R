@@ -2,7 +2,7 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @returns A tibble (data.frame) with funder information for the volume.
 #' @examples
 #' list_volume_funding()
 #' @export

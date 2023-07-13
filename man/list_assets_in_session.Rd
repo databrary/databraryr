@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets_in_session.R
 \name{list_assets_in_session}
 \alias{list_assets_in_session}
-\title{Lists assets in a given Databrary volume and session (slot).}
+\title{Assets In Databrary Session.}
 \usage{
 list_assets_in_session(session_id = 9807, vb = FALSE)
 }
@@ -12,11 +12,11 @@ list_assets_in_session(session_id = 9807, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with the assets in the selected volume and session.
+A data frame with information about a selected session.
 }
 \description{
-Lists assets in a given Databrary volume and session (slot).
+Assets In Databrary Session.
 }
 \examples{
-list_assets_in_session() # Assets in volume 1, session 9807
+list_assets_in_session() # Assets in session 9807 (from Volume 1)
 }

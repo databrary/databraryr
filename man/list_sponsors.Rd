@@ -12,7 +12,7 @@ list_sponsors(party_id = 6, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A tibble (data.frame) with information about a party's sponsors.
 }
 \description{
 List Sponsors For A Party

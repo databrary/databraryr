@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_party.R
 \name{download_party}
 \alias{download_party}
-\title{Lists basic information about people on Databrary.}
+\title{Download Information About a Party on Databrary.}
 \usage{
 download_party(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 }
@@ -14,7 +14,7 @@ download_party(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 \item{vb}{A Boolean value if TRUE returns verbose output.}
 }
 \value{
-Status code if successful.
+A data frame with information about the party.
 }
 \description{
 #' @description

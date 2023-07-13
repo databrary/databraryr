@@ -2,7 +2,7 @@
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @returns A tibble (data.frame) with the requested data.
 #' @examples get_db_stats()
 #' @examples get_db_stats("stats")
 #' @examples get_db_stats("people") # Information about the newest authorized investigators.

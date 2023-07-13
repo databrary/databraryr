@@ -12,7 +12,7 @@ list_institutional_sponsors(party_id = 6, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A data frame with information about a party's \emph{institutional} sponsor(s).
 }
 \description{
 A party (person or institution) may have a sponsor that is another person

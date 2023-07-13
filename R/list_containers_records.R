@@ -2,7 +2,7 @@
 #'
 #' @param vol_id Databrary volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with containers and records from the specified volume.
+#' @returns A data frame with containers and records from the specified volume.
 #' @examples
 #' list_containers_records() # Containers and records from volume 1.
 #' @export

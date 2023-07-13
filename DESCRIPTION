@@ -13,7 +13,8 @@ Description: This package provides commands to interact with the
   But for most interesting use cases, a user will need to 
   register <http://databrary.org/register> and receive authorization 
   from an institution. Once authorized, users can download data 
-  and metadata from Databrary.
+  and metadata from Databrary and reuse it subject to the terms 
+  of the Databrary Access Agreement and the site Terms and Conditions of Use.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

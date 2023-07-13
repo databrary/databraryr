@@ -12,7 +12,7 @@ list_volume_owners(this_vol_id = 1, vb = FALSE)
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with information about the volume owner(s).
+A data frame with information about a volume's owner(s).
 }
 \description{
 List Owners of a Databrary Volume.

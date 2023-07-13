@@ -2,7 +2,7 @@
 % Please edit documentation in R/search_for_funder.R
 \name{search_for_funder}
 \alias{search_for_funder}
-\title{Search for funders.}
+\title{Report Information About A Funder.}
 \usage{
 search_for_funder(search_string = "national+science+foundation", vb = FALSE)
 }
@@ -15,7 +15,7 @@ search_for_funder(search_string = "national+science+foundation", vb = FALSE)
 A data frame with information about the funder.
 }
 \description{
-Search for funders.
+Report Information About A Funder.
 }
 \examples{
 search_for_funder()
