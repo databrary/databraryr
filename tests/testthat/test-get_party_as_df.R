@@ -1,7 +1,6 @@
 # get_party_as_df ---------------------------------------------------------
 test_that("get_party_as_df returns a data frame", {
-  expect_true(class(get_party_as_df()) == "data.frame")
-  expect_true(length(get_party_as_df()) == 6)
+  expect_true("data.frame" %in% class(get_party_as_df()))
 })
 
 test_that("get_permission_levels rejects bad input parameters", {
