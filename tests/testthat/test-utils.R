@@ -74,3 +74,38 @@ test_that("get_supported_file_types rejects bad input parameters", {
   expect_error(get_supported_file_types(vb = "a"))
 })
 
+# HHMMSSmmm_to_ms ---------------------------------------------------
+test_that("HHMMSSmmm_to_ms returns number", {
+  expect_true(class(HHMMSSmmm_to_ms()) == "numeric")
+})
+
+test_that("HHMMSSmmm_to_ms rejects bad input parameters", {
+  expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = -1))
+  #expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = "a"))
+  #expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = list(a=1, b=2)))
+  expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = TRUE))
+})
+
+# is_institution ---------------------------------------------------
+test_that("is_institution returns logical", {
+  expect_true(class(is_institution()) == "logical")
+})
+
+test_that("is_institution rejects bad input parameters", {
+  expect_error(is_institution(party_id = -1))
+  expect_error(is_institution(party_id = "a"))
+  expect_error(is_institution(party_id = list(a = 1, b = 2)))
+  expect_error(is_institution(party_id = TRUE))
+})
+
+# is_person ---------------------------------------------------
+test_that("is_person returns logical", {
+  expect_true(class(is_person()) == "logical")
+})
+
+test_that("is_person rejects bad input parameters", {
+  expect_error(is_person(party_id = -1))
+  expect_error(is_person(party_id = "a"))
+  expect_error(is_person(party_id = list(a = 1, b = 2)))
+  expect_error(is_person(party_id = TRUE))
+})

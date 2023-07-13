@@ -8,3 +8,6 @@ test_that("logout_db rejects bad input parameters", {
 test_that("logout_db returns logical", {
   expect_true(is.logical(logout_db()))
 })
+
+# Actually log out
+logout_db()

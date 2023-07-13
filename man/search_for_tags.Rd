@@ -2,7 +2,7 @@
 % Please edit documentation in R/search_for_tags.R
 \name{search_for_tags}
 \alias{search_for_tags}
-\title{Search for tags on volumes or sessions.}
+\title{Search For Tags on Volumes or Sessions.}
 \usage{
 search_for_tags(search_string = "ICIS", vb = FALSE)
 }
@@ -15,7 +15,7 @@ search_for_tags(search_string = "ICIS", vb = FALSE)
 An array of tags that match the tag_string.
 }
 \description{
-Search for tags on volumes or sessions.
+Search For Tags on Volumes or Sessions.
 }
 \examples{
 search_for_tags()

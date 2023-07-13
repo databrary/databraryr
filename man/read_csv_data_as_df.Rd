@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_csv_data_as_df.R
 \name{read_csv_data_as_df}
 \alias{read_csv_data_as_df}
-\title{Download a stored CSV data file as a data.frame.}
+\title{Download Stored CSV As Data Frame.}
 \usage{
 read_csv_data_as_df(session_id = 9807, asset_id = 153108, vb = FALSE)
 }
@@ -14,7 +14,8 @@ read_csv_data_as_df(session_id = 9807, asset_id = 153108, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
-Download a stored CSV data file as a data.frame.
+If a given Databrary session has a CSV file, this function will
+try to download it as a data frame.
 }
 \examples{
 read_csv_data_as_df() # Loads CSV depicting Databrary growth from volume 1

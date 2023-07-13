@@ -1,4 +1,7 @@
-#' Download a stored CSV data file as a data.frame.
+#' Download Stored CSV As Data Frame.
+#' 
+#' If a given Databrary session has a CSV file, this function will
+#' try to download it as a data frame.
 #'
 #' @param session_id Session ID within some volume.
 #' @param asset_id Asset ID within the session.

@@ -1,4 +1,4 @@
-#' Search for tags on volumes or sessions.
+#' Search For Tags on Volumes or Sessions.
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
