@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_party_as_df.R
 \name{get_party_as_df}
 \alias{get_party_as_df}
-\title{Retrieves Party (Person/Institution) Data as Data Frame.}
+\title{Retrieve Party (Person/Institution) Info as Data Frame.}
 \usage{
 get_party_as_df(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 }
@@ -17,7 +17,7 @@ get_party_as_df(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 Data frame..
 }
 \description{
-Retrieves Party (Person/Institution) Data as Data Frame.
+Retrieve Party (Person/Institution) Info as Data Frame.
 }
 \examples{
 get_party_as_df() # Info about Rick Gilmore.

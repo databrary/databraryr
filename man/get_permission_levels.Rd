@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_permission_levels}
 \alias{get_permission_levels}
-\title{Extracts Databrary permission level codes and labels.}
+\title{Extract Databrary Permission Levels.}
 \usage{
 get_permission_levels(vb = FALSE)
 }
@@ -10,7 +10,7 @@ get_permission_levels(vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
-Extracts Databrary permission level codes and labels.
+Extract Databrary Permission Levels.
 }
 \examples{
 get_permission_levels()

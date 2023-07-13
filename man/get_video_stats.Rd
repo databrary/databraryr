@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_video_stats.R
 \name{get_video_stats}
 \alias{get_video_stats}
-\title{Report Stats About Videos in a Volume}
+\title{Report Stats About Videos in a Volume.}
 \usage{
 get_video_stats(this_vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ get_video_stats(this_vol_id = 1, vb = FALSE)
 Data frame with summary statistics about the videos in the volume.
 }
 \description{
-Report Stats About Videos in a Volume
+Report Stats About Videos in a Volume.
 }
 \examples{
 get_video_stats() # Retrieves summary statistics about videos in volume 1.

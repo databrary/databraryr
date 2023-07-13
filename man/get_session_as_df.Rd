@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_session_as_df.R
 \name{get_session_as_df}
 \alias{get_session_as_df}
-\title{Get Session Info From A Volume and Return Data Frame}
+\title{Get Session Info From A Volume As A Data Frame.}
 \usage{
 get_session_as_df(vol_id = 1, vb = FALSE)
 }
@@ -15,8 +15,8 @@ get_session_as_df(vol_id = 1, vb = FALSE)
 List of assets.
 }
 \description{
-Get Session Info From A Volume and Return Data Frame
+Get Session Info From A Volume As A Data Frame.
 }
 \examples{
-get_session_as_df() # Downloads "session" CSV for volume 1
+get_session_as_df() # Return Session Info from Volume 1.
 }

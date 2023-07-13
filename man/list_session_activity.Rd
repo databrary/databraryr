@@ -2,8 +2,7 @@
 % Please edit documentation in R/list_session_activity.R
 \name{list_session_activity}
 \alias{list_session_activity}
-\title{List activity in a given Databrary session for which the user has
-ownership privileges.}
+\title{List Activity History in Databrary Session.}
 \usage{
 list_session_activity(session_id = 6256, vb = FALSE)
 }
@@ -13,12 +12,9 @@ list_session_activity(session_id = 6256, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A list with the activity history on a slot.
+A list with the activity history on a session/slot.
 }
 \description{
-List activity in a given Databrary session for which the user has
-ownership privileges.
-}
-\examples{
-list_session_activity()
+If a user has access to a volume and session, this function returns the
+history of modifications to that session.
 }

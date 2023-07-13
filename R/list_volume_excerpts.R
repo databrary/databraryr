@@ -1,4 +1,4 @@
-#' Lists image or video excerpts associated with a Databrary volume.
+#' List Image or Video Excerpts On A Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.

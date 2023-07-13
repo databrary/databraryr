@@ -1,6 +1,6 @@
-#' Lists sponsors for a given Databrary party (institution or person).
+#' List Sponsors For A Party
 #'
-#' @param party_id Target volume number.
+#' @param party_id Target party ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples

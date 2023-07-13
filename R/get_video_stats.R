@@ -1,4 +1,4 @@
-#' Report Stats About Videos in a Volume
+#' Report Stats About Videos in a Volume.
 #'
 #' @param this_vol_id Target volume number.
 #' @param vb A boolean value.

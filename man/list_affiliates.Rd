@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_affiliates.R
 \name{list_affiliates}
 \alias{list_affiliates}
-\title{Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).}
+\title{List Affiliates for A Databrary Volume.}
 \usage{
 list_affiliates(party_id = 6, report_target_party = FALSE, vb = FALSE)
 }
@@ -17,7 +17,7 @@ list_affiliates(party_id = 6, report_target_party = FALSE, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).
+List Affiliates for A Databrary Volume.
 }
 \examples{
 list_affiliates() # Lists Rick Gilmore's affiliates

@@ -1,10 +1,11 @@
-#' List activity in a given Databrary volume.
+#' List Activity In A Databrary Volume
+#' 
+#' If a user has access to a volume, this command lists the modification
+#' history of the volume.
 #'
 #' @param vol_id Selected volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A list with the activity history on a volume.
-#' @examples
-#' list_volume_activity()
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
   # Parameter checking----------------------------------------------

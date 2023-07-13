@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume.R
 \name{list_volume}
 \alias{list_volume}
-\title{Lists data for a given Databrary volume.}
+\title{List Info for a Databrary Volume.}
 \usage{
 list_volume(vol_id = 1, search_str = "", vb = FALSE)
 }
@@ -17,7 +17,7 @@ list_volume(vol_id = 1, search_str = "", vb = FALSE)
 A list (or data frame) with the requested data.
 }
 \description{
-Lists data for a given Databrary volume.
+List Info for a Databrary Volume.
 }
 \examples{
 list_volume() # Default is volume 1

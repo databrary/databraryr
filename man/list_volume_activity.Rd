@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_activity.R
 \name{list_volume_activity}
 \alias{list_volume_activity}
-\title{List activity in a given Databrary volume.}
+\title{List Activity In A Databrary Volume}
 \usage{
 list_volume_activity(vol_id = 1, vb = FALSE)
 }
@@ -15,8 +15,6 @@ list_volume_activity(vol_id = 1, vb = FALSE)
 A list with the activity history on a volume.
 }
 \description{
-List activity in a given Databrary volume.
-}
-\examples{
-list_volume_activity()
+If a user has access to a volume, this command lists the modification
+history of the volume.
 }

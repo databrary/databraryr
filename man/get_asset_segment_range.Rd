@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_asset_segment_range}
 \alias{get_asset_segment_range}
-\title{Get the time range from a given video or audio asset.}
+\title{Get Time Range For An Asset.}
 \usage{
 get_asset_segment_range(
   vol_id = 1,
@@ -28,7 +28,7 @@ a data frame with two fields, segment and permission. Default is TRUE.}
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
-Get the time range from a given video or audio asset.
+Get Time Range For An Asset.
 }
 \examples{
 get_asset_segment_range()

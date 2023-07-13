@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_individual_sponsors.R
 \name{list_individual_sponsors}
 \alias{list_individual_sponsors}
-\title{List A Party's Individual Sponsors (people).}
+\title{List A Party's Individual Sponsors.}
 \usage{
 list_individual_sponsors(
   party_id = 406,
@@ -21,7 +21,9 @@ list_individual_sponsors(
 A tibble (data.frame) with the requested data.
 }
 \description{
-List A Party's Individual Sponsors (people).
+A party (person or institution) may have a sponsor that is another person
+or an institution. This function lists the \emph{person(s)} who sponsor
+a party.
 }
 \examples{
 list_individual_sponsors() # Default is Kasey Soska (party 406)

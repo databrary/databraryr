@@ -1,4 +1,4 @@
-#' Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).
+#' List Affiliates for A Databrary Volume.
 #'
 #' @param party_id Target volume number.
 #' @param report_target_party Report data about the target party. Default is FALSE.

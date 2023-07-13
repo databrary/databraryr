@@ -1,5 +1,9 @@
-#' List A Party's Individual Sponsors (people).
+#' List A Party's Individual Sponsors.
 #'
+#' A party (person or institution) may have a sponsor that is another person
+#' or an institution. This function lists the *person(s)* who sponsor
+#' a party.
+#' 
 #' @param party_id Party number. Default is 406 (Kasey Soska)
 #' @param report_target_party Print the party ID and name of the target person.
 #' @param vb A Boolean value. If TRUE provides verbose output.

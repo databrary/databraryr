@@ -1,4 +1,4 @@
-#' Get summary information about Databrary's data, institutions, or people.
+#' Get Stats About Databrary.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
 #' @param vb A Boolean value. If TRUE provides verbose output.

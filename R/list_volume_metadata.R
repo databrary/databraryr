@@ -6,7 +6,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with information about the volume.
 #' @examples
-#' list_volume_metadata() # Lists basic info about volume 2.
+#' list_volume_metadata() # List info about volume 2.
 #' @export
 list_volume_metadata <- function(vol_id = 2,
                                  write_header = FALSE,

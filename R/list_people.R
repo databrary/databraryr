@@ -4,9 +4,9 @@
 #' @param vb A Boolean value if TRUE returns verbose output.
 #' @return A data frame with the people in the specified range of party ID's.
 #' @examples
-#' list_people()
+#' list_people() # Lists people with party IDs 5:7, Databrary's founders
 #' @export
-list_people <- function(people_list = 5:8, vb = FALSE) {
+list_people <- function(people_list = 5:7, vb = FALSE) {
   # Error handling -----------------------------------------------------------
   if (!is.numeric(people_list)) {
     stop("people_list must be numeric.")

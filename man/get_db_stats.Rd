@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_db_stats.R
 \name{get_db_stats}
 \alias{get_db_stats}
-\title{Get summary information about Databrary's data, institutions, or people.}
+\title{Get Stats About Databrary.}
 \usage{
 get_db_stats(type = "stats", vb = FALSE)
 }
@@ -15,7 +15,7 @@ get_db_stats(type = "stats", vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Get summary information about Databrary's data, institutions, or people.
+Get Stats About Databrary.
 }
 \examples{
 get_db_stats()

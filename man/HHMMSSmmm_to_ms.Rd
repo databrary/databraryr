@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{HHMMSSmmm_to_ms}
 \alias{HHMMSSmmm_to_ms}
-\title{Get the time range from a given video or audio asset.}
+\title{Convert Timestamp String To ms.}
 \usage{
 HHMMSSmmm_to_ms(HHMMSSmmm = "01:01:01:333")
 }
@@ -10,8 +10,8 @@ HHMMSSmmm_to_ms(HHMMSSmmm = "01:01:01:333")
 \item{HHMMSSmmm}{a string in the format "HH:MM:SS:mmm"}
 }
 \description{
-Get the time range from a given video or audio asset.
+Convert Timestamp String To ms.
 }
 \examples{
-HHMMSSmmm_to_ms()
+HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 }

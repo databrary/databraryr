@@ -1,10 +1,10 @@
-#' Retrieves URL links associated with a Databrary volume.
+#' Retrieves URL Links Associated With a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A tibble (data.frame) with the requested data.
 #' @examples
-#' list_volume_links() # Default is volume 1
+#' list_volume_links() # Links from volume 1
 #' @export
 list_volume_links <- function(vol_id = 1, vb = FALSE) {
   if (length(vol_id) > 1) {

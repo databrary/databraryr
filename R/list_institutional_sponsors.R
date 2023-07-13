@@ -1,4 +1,8 @@
-#' Lists a party's institutional sponsors.
+#' List Institutional Sponsors For A Party.
+#' 
+#' A party (person or institution) may have a sponsor that is another person
+#' or an institution. This function lists the *institution(s)* that sponsor
+#' a party.
 #'
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.

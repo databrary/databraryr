@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_excerpts.R
 \name{list_volume_excerpts}
 \alias{list_volume_excerpts}
-\title{Lists image or video excerpts associated with a Databrary volume.}
+\title{List Image or Video Excerpts On A Databrary Volume.}
 \usage{
 list_volume_excerpts(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_volume_excerpts(vol_id = 1, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists image or video excerpts associated with a Databrary volume.
+List Image or Video Excerpts On A Databrary Volume.
 }
 \examples{
 list_volume_excerpts()

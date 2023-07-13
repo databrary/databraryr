@@ -3,7 +3,7 @@
 # Utility functions.
 
 #-------------------------------------------------------------------------------
-#' Get the duration (in ms) of a file.
+#' Get Duration (In ms) Of A File.
 #'
 #' @param asset_id Asset number.
 #' @param types_w_durations Asset types that have valid durations.
@@ -44,7 +44,7 @@ get_file_duration <- function(asset_id = 1,
 }
 
 #-------------------------------------------------------------------------------
-#' Get the time range from a given video or audio asset.
+#' Get Time Range For An Asset.
 #'
 #' @param vol_id Volume ID
 #' @param session_id Slot/session number.
@@ -128,7 +128,8 @@ get_asset_segment_range <- function(vol_id = 1,
 }
 
 #-------------------------------------------------------------------------------
-#' Extracts Databrary permission level codes and labels.
+#' Extract Databrary Permission Levels.
+#' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @examples
 #' get_permission_levels()
@@ -140,11 +141,11 @@ get_permission_levels <- function(vb = FALSE) {
 }
 
 #-------------------------------------------------------------------------------
-#' Get the time range from a given video or audio asset.
+#' Convert Timestamp String To ms.
 #'
 #' @param HHMMSSmmm a string in the format "HH:MM:SS:mmm"
 #' @examples
-#' HHMMSSmmm_to_ms()
+#' HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 #' @export
 HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
   # Check parameters
@@ -159,4 +160,33 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
   } else {
     NULL
   }
+}
+
+#-------------------------------------------------------------------------------
+#' Show Databrary Release Levels
+#'
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @return Data frame with release levels.
+#' @examples
+#' get_release_levels()
+#' @export
+get_release_levels <- function(vb = FALSE) {
+  c <- assign_constants(vb = vb)
+  rl <- c$release
+  return(rl)
+}
+
+#-------------------------------------------------------------------------------
+#' Extracts File Types Supported by Databrary.
+#' 
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @return A data frame with the file types permitted on Databrary.
+#' @examples
+#' get_supported_file_types()
+#' @export
+get_supported_file_types <- function(vb = FALSE) {
+  c <- assign_constants(vb = vb)
+  ft <- Reduce(function(x,y) merge(x, y, all=TRUE), c$format)
+  ft <- dplyr::rename(ft, asset_type = "name", asset_type_id = "id")
+  ft
 }

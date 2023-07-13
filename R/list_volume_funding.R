@@ -1,4 +1,4 @@
-#' Lists funders associated with a Databrary volume.
+#' Lists Funders Associated With a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.

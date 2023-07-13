@@ -27,5 +27,5 @@ A data frame with information about the volume.
 List volume metadata.
 }
 \examples{
-list_volume_metadata() # Lists basic info about volume 2.
+list_volume_metadata() # List info about volume 2.
 }

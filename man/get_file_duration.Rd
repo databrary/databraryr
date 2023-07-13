@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_file_duration}
 \alias{get_file_duration}
-\title{Get the duration (in ms) of a file.}
+\title{Get Duration (In ms) Of A File.}
 \usage{
 get_file_duration(
   asset_id = 1,
@@ -18,7 +18,7 @@ get_file_duration(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \description{
-Get the duration (in ms) of a file.
+Get Duration (In ms) Of A File.
 }
 \examples{
 get_file_duration() # default is the test video from databrary.org/volume/1

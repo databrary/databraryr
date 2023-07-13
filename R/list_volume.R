@@ -1,4 +1,4 @@
-#' Lists data for a given Databrary volume.
+#' List Info for a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param search_str The specific data to retrieve for the volume

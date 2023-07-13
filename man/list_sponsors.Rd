@@ -2,12 +2,12 @@
 % Please edit documentation in R/list_sponsors.R
 \name{list_sponsors}
 \alias{list_sponsors}
-\title{Lists sponsors for a given Databrary party (institution or person).}
+\title{List Sponsors For A Party}
 \usage{
 list_sponsors(party_id = 6, vb = FALSE)
 }
 \arguments{
-\item{party_id}{Target volume number.}
+\item{party_id}{Target party ID.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
@@ -15,7 +15,7 @@ list_sponsors(party_id = 6, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists sponsors for a given Databrary party (institution or person).
+List Sponsors For A Party
 }
 \examples{
 list_sponsors() # Default is Rick Gilmore (party 6)

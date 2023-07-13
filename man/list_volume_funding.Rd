@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_funding.R
 \name{list_volume_funding}
 \alias{list_volume_funding}
-\title{Lists funders associated with a Databrary volume.}
+\title{Lists Funders Associated With a Databrary Volume.}
 \usage{
 list_volume_funding(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_volume_funding(vol_id = 1, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists funders associated with a Databrary volume.
+Lists Funders Associated With a Databrary Volume.
 }
 \examples{
 list_volume_funding()

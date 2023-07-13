@@ -4,7 +4,7 @@
 \alias{list_people}
 \title{Lists basic information about people on Databrary.}
 \usage{
-list_people(people_list = 5:8, vb = FALSE)
+list_people(people_list = 5:7, vb = FALSE)
 }
 \arguments{
 \item{people_list}{Party number(s) for people to list.}
@@ -18,5 +18,5 @@ A data frame with the people in the specified range of party ID's.
 Lists basic information about people on Databrary.
 }
 \examples{
-list_people()
+list_people() # Lists people with party IDs 5:7, Databrary's founders
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_institutional_sponsors.R
 \name{list_institutional_sponsors}
 \alias{list_institutional_sponsors}
-\title{Lists a party's institutional sponsors.}
+\title{List Institutional Sponsors For A Party.}
 \usage{
 list_institutional_sponsors(party_id = 6, vb = FALSE)
 }
@@ -15,7 +15,9 @@ list_institutional_sponsors(party_id = 6, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Lists a party's institutional sponsors.
+A party (person or institution) may have a sponsor that is another person
+or an institution. This function lists the \emph{institution(s)} that sponsor
+a party.
 }
 \examples{
 list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
