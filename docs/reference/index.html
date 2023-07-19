@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
           
           <code><a href="HHMMSSmmm_to_ms.html">HHMMSSmmm_to_ms()</a></code> 
         </dt>
-        <dd>Get the time range from a given video or audio asset.</dd>
+        <dd>Convert Timestamp String To ms.</dd>
       </dl><dl><dt>
           
           <code><a href="assign_constants.html">assign_constants()</a></code> 
@@ -89,12 +89,12 @@
           
           <code><a href="download_asset.html">download_asset()</a></code> 
         </dt>
-        <dd>Download a specific video, audio, or other file.</dd>
+        <dd>Download Asset From Databrary.</dd>
       </dl><dl><dt>
           
           <code><a href="download_party.html">download_party()</a></code> 
         </dt>
-        <dd>Lists basic information about people on Databrary.</dd>
+        <dd>Download Information About a Party on Databrary.</dd>
       </dl><dl><dt>
           
           <code><a href="download_party_avatar.html">download_party_avatar()</a></code> 
@@ -109,87 +109,87 @@
           
           <code><a href="download_session_zip.html">download_session_zip()</a></code> 
         </dt>
-        <dd>Download a zip archive with all data from a specified volume and session</dd>
+        <dd>Download Zip Archive From Databrary Session.</dd>
       </dl><dl><dt>
           
           <code><a href="download_volume_zip.html">download_volume_zip()</a></code> 
         </dt>
-        <dd>Download a zip archive with all data in a volume.</dd>
+        <dd>Download Zip Archive of All Data in a Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="get_asset_segment_range.html">get_asset_segment_range()</a></code> 
         </dt>
-        <dd>Get the time range from a given video or audio asset.</dd>
+        <dd>Get Time Range For An Asset.</dd>
       </dl><dl><dt>
           
           <code><a href="get_db_stats.html">get_db_stats()</a></code> 
         </dt>
-        <dd>Get summary information about Databrary's data, institutions, or people.</dd>
+        <dd>Get Stats About Databrary.</dd>
       </dl><dl><dt>
           
           <code><a href="get_file_duration.html">get_file_duration()</a></code> 
         </dt>
-        <dd>Get the duration (in ms) of a file.</dd>
+        <dd>Get Duration (In ms) Of A File.</dd>
       </dl><dl><dt>
           
           <code><a href="get_party_as_df.html">get_party_as_df()</a></code> 
         </dt>
-        <dd>Retrieves Party (Person/Institution) Data as Data Frame.</dd>
+        <dd>Retrieve Party (Person/Institution) Info as Data Frame.</dd>
       </dl><dl><dt>
           
           <code><a href="get_permission_levels.html">get_permission_levels()</a></code> 
         </dt>
-        <dd>Extracts Databrary permission level codes and labels.</dd>
+        <dd>Extract Databrary Permission Levels.</dd>
       </dl><dl><dt>
           
           <code><a href="get_release_levels.html">get_release_levels()</a></code> 
         </dt>
-        <dd>Shows release level codes</dd>
+        <dd>Show Databrary Release Levels</dd>
       </dl><dl><dt>
           
           <code><a href="get_session_as_df.html">get_session_as_df()</a></code> 
         </dt>
-        <dd>Get Session Info From A Volume and Return Data Frame</dd>
+        <dd>Get Session Info From A Volume As A Data Frame.</dd>
       </dl><dl><dt>
           
           <code><a href="get_supported_file_types.html">get_supported_file_types()</a></code> 
         </dt>
-        <dd>Extracts Databrary supported file types.</dd>
+        <dd>Extracts File Types Supported by Databrary.</dd>
       </dl><dl><dt>
           
           <code><a href="get_video_stats.html">get_video_stats()</a></code> 
         </dt>
-        <dd>Report Stats About Videos in a Volume</dd>
+        <dd>Report Stats About Videos in a Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="is_institution.html">is_institution()</a></code> 
         </dt>
-        <dd>Tests whether given party ID is from an institution.</dd>
+        <dd>Is This Party An Institution?</dd>
       </dl><dl><dt>
           
           <code><a href="is_person.html">is_person()</a></code> 
         </dt>
-        <dd>Tests whether given party ID is from a person.</dd>
+        <dd>Is This Party A Person?</dd>
       </dl><dl><dt>
           
           <code><a href="list_affiliates.html">list_affiliates()</a></code> 
         </dt>
-        <dd>Lists affiliates (sponsored researchers) for a given Databrary party (institution or person).</dd>
+        <dd>List Affiliates for A Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_assets_by_type.html">list_assets_by_type()</a></code> 
         </dt>
-        <dd>Lists stored assets (files) by type.</dd>
+        <dd>List Stored Assets (Files) By Type.</dd>
       </dl><dl><dt>
           
           <code><a href="list_assets_in_session.html">list_assets_in_session()</a></code> 
         </dt>
-        <dd>Lists assets in a given Databrary volume and session (slot).</dd>
+        <dd>Assets In Databrary Session.</dd>
       </dl><dl><dt>
           
           <code><a href="list_assets_in_volume.html">list_assets_in_volume()</a></code> 
         </dt>
-        <dd>Lists all the assets/files in a given volume.</dd>
+        <dd>Assets in Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_containers_records.html">list_containers_records()</a></code> 
@@ -197,19 +197,14 @@
         <dd>List Containers and Records In Databrary Volume.</dd>
       </dl><dl><dt>
           
-          <code><a href="list_containers_records_json.html">list_containers_records_json()</a></code> 
-        </dt>
-        <dd>Lists containers  and record structure from Databrary volume.</dd>
-      </dl><dl><dt>
-          
           <code><a href="list_individual_sponsors.html">list_individual_sponsors()</a></code> 
         </dt>
-        <dd>List A Party's Individual Sponsors (people).</dd>
+        <dd>List A Party's Individual Sponsors.</dd>
       </dl><dl><dt>
           
           <code><a href="list_institutional_sponsors.html">list_institutional_sponsors()</a></code> 
         </dt>
-        <dd>Lists a party's institutional sponsors.</dd>
+        <dd>List Institutional Sponsors For A Party.</dd>
       </dl><dl><dt>
           
           <code><a href="list_party.html">list_party()</a></code> 
@@ -219,23 +214,22 @@
           
           <code><a href="list_people.html">list_people()</a></code> 
         </dt>
-        <dd>Lists basic information about people on Databrary.</dd>
+        <dd>Lists Basic Info About People Registered on Databrary.</dd>
       </dl><dl><dt>
           
           <code><a href="list_session_activity.html">list_session_activity()</a></code> 
         </dt>
-        <dd>List activity in a given Databrary session for which the user has
-ownership privileges.</dd>
+        <dd>List Activity History in Databrary Session.</dd>
       </dl><dl><dt>
           
           <code><a href="list_sessions.html">list_sessions()</a></code> 
         </dt>
-        <dd>Downloads list of sessions.</dd>
+        <dd>Download Information About A Volume's Sessions.</dd>
       </dl><dl><dt>
           
           <code><a href="list_sessions_in_volume.html">list_sessions_in_volume()</a></code> 
         </dt>
-        <dd>Lists the sessions in a given volume. This is an alias for list_sessions().</dd>
+        <dd>List Sessions in a Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_specified_assets_in_session.html">list_specified_assets_in_session()</a></code> 
@@ -245,37 +239,37 @@ ownership privileges.</dd>
           
           <code><a href="list_sponsors.html">list_sponsors()</a></code> 
         </dt>
-        <dd>Lists sponsors for a given Databrary party (institution or person).</dd>
+        <dd>List Sponsors For A Party</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume.html">list_volume()</a></code> 
         </dt>
-        <dd>Lists data for a given Databrary volume.</dd>
+        <dd>List Info for a Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_activity.html">list_volume_activity()</a></code> 
         </dt>
-        <dd>List activity in a given Databrary volume.</dd>
+        <dd>List Activity In A Databrary Volume</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_excerpts.html">list_volume_excerpts()</a></code> 
         </dt>
-        <dd>Lists image or video excerpts associated with a Databrary volume.</dd>
+        <dd>List Image or Video Excerpts On A Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_funding.html">list_volume_funding()</a></code> 
         </dt>
-        <dd>Lists funders associated with a Databrary volume.</dd>
+        <dd>Lists Funders Associated With a Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_links.html">list_volume_links()</a></code> 
         </dt>
-        <dd>Retrieves URL links associated with a Databrary volume.</dd>
+        <dd>Retrieves URL Links Associated With a Databrary Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_metadata.html">list_volume_metadata()</a></code> 
         </dt>
-        <dd>List volume metadata.</dd>
+        <dd>List Volume Metadata.</dd>
       </dl><dl><dt>
           
           <code><a href="list_volume_owners.html">list_volume_owners()</a></code> 
@@ -285,37 +279,37 @@ ownership privileges.</dd>
           
           <code><a href="list_volume_tags.html">list_volume_tags()</a></code> 
         </dt>
-        <dd>Lists keywords and tags associated with a Databrary volume.</dd>
+        <dd>Lists Keywords And Tags For A Volume.</dd>
       </dl><dl><dt>
           
           <code><a href="login_db.html">login_db()</a></code> 
         </dt>
-        <dd>Logs in to Databrary.org.</dd>
+        <dd>Logs In to Databrary.org.</dd>
       </dl><dl><dt>
           
           <code><a href="logout_db.html">logout_db()</a></code> 
         </dt>
-        <dd>Logs out of Databrary.org.</dd>
+        <dd>Log Out of Databrary.org.</dd>
       </dl><dl><dt>
           
           <code><a href="read_csv_data_as_df.html">read_csv_data_as_df()</a></code> 
         </dt>
-        <dd>Download a stored CSV data file as a data.frame.</dd>
+        <dd>Download Stored CSV As Data Frame.</dd>
       </dl><dl><dt>
           
           <code><a href="search_for_funder.html">search_for_funder()</a></code> 
         </dt>
-        <dd>Search for funders.</dd>
+        <dd>Report Information About A Funder.</dd>
       </dl><dl><dt>
           
           <code><a href="search_for_keywords.html">search_for_keywords()</a></code> 
         </dt>
-        <dd>Search for keywords in Databrary volumes.</dd>
+        <dd>Search For Keywords in Databrary Volumes.</dd>
       </dl><dl><dt>
           
           <code><a href="search_for_tags.html">search_for_tags()</a></code> 
         </dt>
-        <dd>Search for tags on volumes or sessions.</dd>
+        <dd>Search For Tags on Volumes or Sessions.</dd>
       </dl></div>
   </main></div>
 
