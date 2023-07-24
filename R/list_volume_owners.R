@@ -10,13 +10,13 @@ list_volume_owners <- function(this_vol_id = 1,
                                vb = FALSE) {
   # Error checking---------------------------------------------------------
   if (length(this_vol_id) > 1) {
-    stop("'vol_id' must have length 1.")
+    stop("vol_id must have length 1.")
   }
   if ((!is.numeric(this_vol_id)) || (this_vol_id <= 0)) {
-    stop("'vol_id' must be an integer > 0.")
+    stop("vol_id must be an integer > 0.")
   }
   if (!is.logical(vb)) {
-    stop("'vb' must be logical.")
+    stop("vb must be logical.")
   }
   
   # Main body-------------------------------------------------------------

@@ -11,20 +11,20 @@
 list_affiliates <- function(party_id = 6, report_target_party = FALSE,
                             vb = FALSE) {
   if (length(party_id) > 1) {
-    stop("'party_id' must have length == 1.")
+    stop("party_id must have length == 1.")
   }
   if (!is.numeric(party_id)) {
-    stop("'party_id' must be an integer.")
+    stop("party_id must be an integer.")
   }
   if (party_id < 0) {
-    stop("'party_id' must be > 0.")
+    stop("party_id must be > 0.")
   }
 
   if (length(vb) > 1) {
-    stop("'vb' must have length == 1.")
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("'vb' must be a Boolean.")
+    stop("vb must be a logical value.")
   }
 
   g <-

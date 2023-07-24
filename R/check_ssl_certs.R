@@ -5,7 +5,7 @@
 #' check_ssl_certs()
 #' @export
 check_ssl_certs <- function(host = "nyu.databrary.org") {
-  stopifnot(is.character(host))
+  if (!is.character(host)) stop("host must be a character string.")
   
   message(paste0('Checking SSL certificates for host: ', host))
   x <- openssl::download_ssl_cert(host)

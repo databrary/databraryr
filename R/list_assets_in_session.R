@@ -20,6 +20,10 @@ list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
+  if (length(vb) > 1) {
+    stop("vb must have length = 1.")
+  }
+  
   if (vb) message('list_assets_in_session()...')
 
   # Make URL, GET(), and handle response ---------------------------

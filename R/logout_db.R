@@ -16,7 +16,7 @@ logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
     stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("vb must be logical.")
+    stop("vb must be a logical value.")
   }
 
   r <- httr::POST("http://nyu.databrary.org/api/user/logout")

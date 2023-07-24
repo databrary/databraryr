@@ -21,6 +21,7 @@ list_volume_activity <- function(vol_id = 1, vb = FALSE) {
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
+  
   if (vb) message('list_volume_activity()...')
 
   # Make URL, GET(), and handle response ---------------------------

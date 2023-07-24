@@ -13,7 +13,7 @@ list_people <- function(people_list = 5:7, vb = FALSE) {
     stop("people_list must be numeric.")
   }
   if (sum((people_list < 0))) {
-    stop("Person indices must be > 0")
+    stop("people_list values must be > 0")
   }
   if (!is.logical(vb)) {
     stop("vb must be Boolean.")

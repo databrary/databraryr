@@ -22,7 +22,13 @@ download_party <- function(party_id = 6,
   if ((!is.numeric(party_id)) || (party_id <= 0)) {
     stop("party_id must be an integer > 0")
   }
-
+  if (!is.logical(convert_JSON)) {
+    stop("convert_JSON must be a logical value.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be a logical value.")
+  } 
+  
   r <- GET_db_contents(URL_components = paste('/api/party', party_id, sep='/'), vb=vb,
                        convert_JSON = convert_JSON)
   if (!is.null(r)) {

@@ -9,10 +9,13 @@
 list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
   # Error handling
   if (!is.numeric(vol_id)) {
-    stop("Volume must be numeric.")
+    stop("vol_id must be numeric.")
   }
   if (vol_id < 1) {
-    stop("Volume must be >= 1.")
+    stop("vol_id must be >= 1.")
+  }
+  if (!is.logical(vb)) {
+    stop("vb must be a logical value.")
   }
 
   sl <- list_sessions(vol_id = vol_id, vb = vb)

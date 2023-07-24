@@ -15,13 +15,13 @@ list_volume_metadata <- function(vol_id = 2,
 
   # Error-checking----------------------------------------------------------
   if (!(is.numeric(vol_id))) {
-    stop("Volume must be a number.")
+    stop("vol_id must be a number.")
   }
   if (vol_id <= 0) {
-    stop("Volume must be > 0.")
+    stop("vol_id must be > 0.")
   }
   if (!is.logical(write_header)) {
-    stop("write_header must be type logical.")
+    stop("write_header must be a logical value.")
   }
   if (length(write_header) > 1) {
     stop("write_header must have length == 1")
@@ -33,7 +33,7 @@ list_volume_metadata <- function(vol_id = 2,
     stop("data_frame must have length == 1")
   }
   if (!is.logical(vb)) {
-    stop("vb must be type logical.")
+    stop("vb must be a logical value.")
   }
   if (length(vb) > 1) {
     stop("vb must have length == 1")

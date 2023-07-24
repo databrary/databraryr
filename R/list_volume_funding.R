@@ -8,20 +8,20 @@
 #' @export
 list_volume_funding <- function(vol_id = 1, vb = FALSE) {
   if (length(vol_id) > 1) {
-    stop("'vol_id' must have length == 1.")
+    stop("vol_id must have length == 1.")
   }
   if (!is.numeric(vol_id)) {
-    stop("'vol_id' must be an integer.")
+    stop("vol_id must be an integer.")
   }
   if (vol_id < 0) {
-    stop("'vol_id' must be > 0.")
+    stop("vol_id must be > 0.")
   }
 
   if (length(vb) > 1) {
-    stop("'vb' must have length == 1.")
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("'vb' must be a Boolean.")
+    stop("vb must be a Boolean.")
   }
 
   g <-

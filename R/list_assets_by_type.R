@@ -13,13 +13,13 @@ list_assets_by_type <- function(vol_id = 1,
                                 vb = FALSE) {
   # Error checking ----------------------------------------------------------
   if (!is.numeric(vol_id)) {
-    stop("Volume must be numeric.")
+    stop("vol_id must be numeric.")
   }
   if (vol_id < 1) {
-    stop("Volume must be >= 1.")
+    stop("vol_id must be >= 1.")
   }
   if (!is.character(type)) {
-    stop("Asset type must be character.")
+    stop("type must be character.")
   }
   if (!(
     type %in% c(
@@ -39,7 +39,7 @@ list_assets_by_type <- function(vol_id = 1,
     stop("Invalid type.")
   }
   if (!is.logical(vb)) {
-    stop("vb type must be logical.")
+    stop("vb must be logical.")
   }
   if (length(vb) > 1) {
     stop("vb must have length = 1.")

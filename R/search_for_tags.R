@@ -22,10 +22,5 @@ search_for_tags <- function(search_string="ICIS", vb = FALSE) {
   r <- GET_db_contents(URL_components = paste0('/api/tags/', search_string),
                        vb = vb)
   
-  # https://nyu.databrary.org/search?offset=0&volume&f.tag_name="infant%20rat"
-  # r <- GET_db_contents(URL_components = paste0('/search?offset=0&volume&f.tag_name="', search_string, '"'),
-  #                      vb = vb)
-  # r <- httr::GET('https://nyu.databrary.org/search?offset=0&volume&f.tag_name="infant+rat"&limit=8')
-  
   r
 }

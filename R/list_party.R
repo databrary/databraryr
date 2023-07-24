@@ -11,28 +11,28 @@ list_party <- function(party_id = 8,
                        component = 'all',
                        vb = FALSE) {
   if (length(party_id) > 1) {
-    stop("'party_id' must have length == 1.")
+    stop("party_id must have length == 1.")
   }
   if (!is.numeric(party_id)) {
-    stop("'party_id' must be an integer.")
+    stop("party_id must be an integer.")
   }
   if (party_id < 0) {
-    stop("'party_id' must be > 0.")
+    stop("party_id must be > 0.")
   }
   if (length(component) > 1) {
-    stop("'component' must have length == 1.")
+    stop("component must have length == 1.")
   }
   if (!is.character(component)) {
-    stop("'component' must be an integer.")
+    stop("component must be a character string.")
   }
   if (!(component %in% c('children', 'parents', 'all'))) {
-    stop("'component' must be 'children', 'parents', or 'all'.")
+    stop("component must be one of 'children', 'parents', or 'all'.")
   }
   if (length(vb) > 1) {
-    stop("'vb' must have length == 1.")
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("'vb' must be a Boolean.")
+    stop("vb must be a Boolean.")
   }
   
   if (vb)

@@ -24,49 +24,49 @@ login_db <- function(email = NULL,
                      vb = FALSE) {
   # Check parameters
   if (length(email) > 1) {
-    stop("`email` must have length == 1.")
+    stop("email must have length == 1.")
   }
   if (is.numeric(email) || is.logical(email)) {
-    stop("`email` must be a string.")
+    stop("email must be a string.")
   }
   if (!is.character(login_url)) {
-    stop("`login_url` must be a string.")
+    stop("login_url must be a string.")
   }
   if (length(login_url) > 1) {
     stop("`login_url` must have length == 1.")
   }
   if (length(return_response) > 1) {
-    stop("`return_response` must have length == 1.")
+    stop("return_response must have length == 1.")
   }
   if (!is.logical(return_response)) {
-    stop("`return_response` must have logical value.")
+    stop("return_response must have logical value.")
   }
   if (length(save_session) > 1) {
-    stop("`save_session` must have length == 1.")
+    stop("save_session must have length == 1.")
   }
   if (!is.logical(save_session)) {
     stop("`save_session` must have logical value.")
   }
   if (length(stored_credentials) > 1) {
-    stop("`stored_credentials` must have length == 1.")
+    stop("stored_credentials must have length == 1.")
   }
   if (!is.logical(stored_credentials)) {
-    stop("`stored_credentials` must have logical value.")
+    stop("stored_credentials must have logical value.")
   }
   if (length(system_credentials) > 1) {
-    stop("`system_credentials` must have length == 1.")
+    stop("system_credentials must have length == 1.")
   }
   if (!is.logical(system_credentials)) {
-    stop("`system_credentials` must have logical value.")
+    stop("system_credentials must have logical value.")
   }
   if (!is.character(credentials_file)) {
-    stop("`credentials_file` must be a string.")
+    stop("credentials_file must be a string.")
   }
   if (length(vb) > 1) {
-    stop("`vb` must have length == 1.")
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("`vb` must have logical value.")
+    stop("vb must have logical value.")
   }
   
   # Access (possibly stored) credentials

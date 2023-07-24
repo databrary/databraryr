@@ -16,34 +16,34 @@ download_session_zip <- function(vol_id = 31,
                                  vb=FALSE) {
   # Parameter checking ----------------------------------------------------------------
   if (length(vol_id) > 1) {
-    stop("`vol_id` must have length 1.")
+    stop("vol_id must have length 1.")
   }
   if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
-    stop("`vol_id` must be a number > 0.")
+    stop("vol_id must be a number > 0.")
   }
   if (length(session_id) > 1) {
-    stop("Session ID must have length 1.")
+    stop("session_id must have length 1.")
   }
   if ((!is.numeric(session_id)) || session_id <= 0 ) {
-    stop("Session ID must be a number > 0.")
+    stop("session_id must be a number > 0.")
   }
   if (length(out_dir) > 1) {
-    stop("`out_dir` must have length 1.")
+    stop("out_dir must have length 1.")
   }
   if (!(is.character(out_dir))) {
-    stop("`out_dir` must be a character string.")
+    stop("out_dir must be a character string.")
   }
   if (length(file_name) > 1) {
-    stop("File name must have length 1.")
+    stop("file_name must have length 1.")
   }
   if (!is.character(file_name)) {
-    stop("File name must be character string.")
+    stop("file_name must be character string.")
   }
   if (!is.logical(vb)) {
-    stop("`vb` must be logical value.")
+    stop("vb must be logical value.")
   }
   if (length(vb) > 1) {
-    stop("`vb` must have length == 1.")
+    stop("vb must have length == 1.")
   }
   
   url_download <- paste0("https://nyu.databrary.org", paste("/volume", vol_id,

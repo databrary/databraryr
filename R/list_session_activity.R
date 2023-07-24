@@ -21,6 +21,7 @@ list_session_activity <- function(session_id = 6256, vb = FALSE) {
   if (!is.logical(vb)) {
     stop("vb must be logical.")
   }
+  
   if (vb) message('list_session_activity()...')
 
   # Make URL, GET(), and handle response ---------------------------

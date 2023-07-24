@@ -19,7 +19,7 @@ download_party_avatar <- function(party_id = 6,
   if ((!is.numeric(party_id)) || (party_id <= 0)) {
     stop("party_id must be an integer > 0")
   }
-  if (is.numeric(show_person_info))  {
+  if (!is.logical(show_person_info))  {
     stop("show_person_info must be a logical value")
   }
   if (!is.logical(vb)) {

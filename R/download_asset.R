@@ -21,22 +21,22 @@ download_asset <- function(asset_id = 1,
                            vb = FALSE) {
   # Error handling
   if (length(asset_id) > 1) {
-    stop("Asset ID must have length 1.")
+    stop("asset_id must have length 1.")
   }
   if ((!is.numeric(asset_id)) || asset_id <= 0) {
-    stop("Asset ID must be number > 0.")
+    stop("asset_id must be number > 0.")
   }
   if (length(session_id) > 1) {
-    stop("Session ID must have length 1.")
+    stop("session_id ID must have length 1.")
   }
   if ((!is.numeric(session_id)) || session_id <= 0) {
-    stop("Session ID must be number > 0.")
+    stop("session_id must be number > 0.")
   }
   if (!is.character(file_name)) {
-    stop("File name must be character string.")
+    stop("file_name must be character string.")
   }
   if (!is.character(target_dir)) {
-    stop("'target_dir' must be character string.")
+    stop("target_dir must be character string.")
   }
   stopifnot(dir.exists(target_dir))
   stopifnot(is.logical(return_response))

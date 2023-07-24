@@ -15,20 +15,25 @@ list_individual_sponsors <- function(party_id = 406,
                                      report_target_party = TRUE,
                                      vb = FALSE) {
   if (length(party_id) > 1) {
-    stop("'party_id' must have length == 1.")
+    stop("party_id must have length == 1.")
   }
   if (!is.numeric(party_id)) {
-    stop("'party_id' must be an integer.")
+    stop("party_id must be an integer.")
   }
   if (party_id < 0) {
-    stop("'party_id' must be > 0.")
+    stop("party_id must be > 0.")
   }
-
+  if (length(report_target_party) > 1) {
+    stop("report_target_party must have length == 1.")
+  }
+  if (!is.logical(report_target_party)) {
+    stop("report_target_party must be a logical value.")
+  }
   if (length(vb) > 1) {
-    stop("'vb' must have length == 1.")
+    stop("vb must have length == 1.")
   }
   if (!is.logical(vb)) {
-    stop("'vb' must be a Boolean.")
+    stop("vb must be a Boolean.")
   }
 
   return_val <- NULL
