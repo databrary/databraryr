@@ -1,7 +1,7 @@
 # list_volume_links ---------------------------------------------------------
 test_that("list_volume_links returns data.frame or is NULL", {
-  expect_true((is.null(list_volume_links()) ||
-                 (class(list_volume_links()) == "data.frame")))
+  expect_true((is.null(list_volume_links())) ||
+                 ("data.frame" %in% class(list_volume_links())))
 })
 
 test_that("list_volume_links rejects bad input parameters", {

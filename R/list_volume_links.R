@@ -28,6 +28,8 @@ list_volume_links <- function(vol_id = 1, vb = FALSE) {
                                                           "?links=all"),
                                   vb = vb)
   if (!is.null(g)) {
-    g$links
+    tibble::tibble(vol_id = vol_id, link_name = g$links$head, url = g$links$url)
+  } else {
+    NULL
   }
 }

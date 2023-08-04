@@ -5,7 +5,7 @@
 \title{List Volume Metadata.}
 \usage{
 list_volume_metadata(
-  vol_id = 2,
+  vol_id = 1,
   write_header = FALSE,
   data_frame = TRUE,
   vb = FALSE
@@ -27,5 +27,5 @@ A data frame with metadata about a volume.
 List Volume Metadata.
 }
 \examples{
-list_volume_metadata() # List info about volume 2.
+list_volume_metadata() # List info about volume 1.
 }
