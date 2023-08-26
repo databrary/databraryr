@@ -4,24 +4,24 @@
 \alias{login_db}
 \title{Logs In to Databrary.org.}
 \usage{
-login_db(email = NULL, store = FALSE, vb = FALSE)
+login_db(
+  email = NULL,
+  password = NULL,
+  store = FALSE,
+  overwrite = FALSE,
+  vb = FALSE
+)
 }
 \arguments{
-\item{email}{Databrary account ID (email).}
+\item{email}{Databrary account email address.}
+
+\item{password}{Databrary password (not recommended as it will displayed as you type)}
+
+\item{store}{A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.}
+
+\item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
-
-\item{login_url}{URL for the login API.}
-
-\item{return_response}{A Boolean value. If TRUE returns results of GET}
-
-\item{save_session}{A Boolean value. If TRUE saves the session cookie.}
-
-\item{stored_credentials}{A Boolean value. If TRUE loads login credentials from credentials file.}
-
-\item{system_credentials}{A Boolean value. If TRUE loads login credentials using the system level file accessed by the \code{keyring} package.}
-
-\item{credentials_file}{Path to stored credentials file if it exists.}
 }
 \value{
 Logical value indicating whether login is successful or not.

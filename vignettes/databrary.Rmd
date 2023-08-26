@@ -113,13 +113,13 @@ Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databra
 
 And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
 
-```{r}
+```{r eval=FALSE}
 databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
 ```
 
 The package also has a log out command.
 
-```{r}
+```{r eval=FALSE}
 databraryr::logout_db()
 ```
 

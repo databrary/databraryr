@@ -3,7 +3,6 @@
 ## Authentication/security
 
 - Enable password-protected access to Databrary via API.
-  - config_passwd()
   - login_db()
   - logout_db()
 
