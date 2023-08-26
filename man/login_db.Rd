@@ -4,20 +4,12 @@
 \alias{login_db}
 \title{Logs In to Databrary.org.}
 \usage{
-login_db(
-  email = NULL,
-  login_url = "/api/user/login",
-  return_response = FALSE,
-  save_session = TRUE,
-  stored_credentials = FALSE,
-  system_credentials = TRUE,
-  credentials_file = file.path(path.expand("~"), "api-keys", "json",
-    "databrary-keys.json"),
-  vb = FALSE
-)
+login_db(email = NULL, store = FALSE, vb = FALSE)
 }
 \arguments{
 \item{email}{Databrary account ID (email).}
+
+\item{vb}{A boolean value. If TRUE provides verbose output.}
 
 \item{login_url}{URL for the login API.}
 
@@ -30,8 +22,6 @@ login_db(
 \item{system_credentials}{A Boolean value. If TRUE loads login credentials using the system level file accessed by the \code{keyring} package.}
 
 \item{credentials_file}{Path to stored credentials file if it exists.}
-
-\item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
 Logical value indicating whether login is successful or not.

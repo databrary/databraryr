@@ -17,7 +17,10 @@ config_passwd <- function() {
 
   message("Please enter your Databrary user account (email):\n")
   email <- readline(prompt="Email: ")
+  
   kl <- keyring::key_list(service = "databrary")
+  
+  
   if (exists('kl') && is.data.frame(kl)) {
     if (email %in% kl$username) {
       cat(paste0("Databrary password exists for user: ", email))
