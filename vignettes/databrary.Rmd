@@ -119,7 +119,7 @@ databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
 
 The package also has a log out command.
 
-```{r}
+```{r eval=FALSE}
 databraryr::logout_db()
 ```
 

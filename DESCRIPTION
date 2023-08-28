@@ -31,9 +31,10 @@ Imports:
     methods,
     plyr,
     purrr,
-    rstudioapi,
     tidyr,
-    lifecycle
+    lifecycle,
+    assertthat,
+    getPass
 RoxygenNote: 7.2.3
 Suggests: 
     av,
