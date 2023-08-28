@@ -29,7 +29,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item National Science Foundation [funder]
+  \item National Science Foundation OAC-2032713 [funder]
   \item National Institutes of Health R01HD094830 [funder]
 }
 
