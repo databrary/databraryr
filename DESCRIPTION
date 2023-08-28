@@ -31,7 +31,6 @@ Imports:
     methods,
     plyr,
     purrr,
-    rstudioapi,
     tidyr,
     lifecycle,
     assertthat,

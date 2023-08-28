@@ -1,4 +1,4 @@
-#' Logs In to Databrary.org.
+#' Log In To Databrary.org.
 #'
 #' @param email Databrary account email address.
 #' @param password Databrary password (not recommended as it will displayed as you type)
@@ -7,7 +7,9 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns Logical value indicating whether login is successful or not.
 #' @examples
+#' \dontrun{
 #' login_db()
+#' }
 #' @export
 login_db <- function(email = NULL,
                      password = NULL,
@@ -50,7 +52,7 @@ login_db <- function(email = NULL,
     if (exists('kl') && is.data.frame(kl)) {
       # If it is under the email entered, keep it to try later and not collect it here
       password <- try(keyring::key_get(service=SERVICE, username=email), silent=TRUE)
-      if (class(password) != "try-error") {
+      if ("try-error" %in% class(password)) {
         do_collect_password <- FALSE
       }
     }

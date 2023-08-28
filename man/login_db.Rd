@@ -2,7 +2,7 @@
 % Please edit documentation in R/login_db.R
 \name{login_db}
 \alias{login_db}
-\title{Logs In to Databrary.org.}
+\title{Log In To Databrary.org.}
 \usage{
 login_db(
   email = NULL,
@@ -27,8 +27,10 @@ login_db(
 Logical value indicating whether login is successful or not.
 }
 \description{
-Logs In to Databrary.org.
+Log In To Databrary.org.
 }
 \examples{
+\dontrun{
 login_db()
+}
 }
