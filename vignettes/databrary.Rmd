@@ -113,7 +113,7 @@ Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databra
 
 And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
 
-```{r}
+```{r login-w-env-var, eval=FALSE}
 databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
 ```
 
