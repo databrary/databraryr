@@ -1,3 +1,5 @@
+# databraryr 0.4.2
+
 # databraryr 0.5.0
 
 ## Major changes
