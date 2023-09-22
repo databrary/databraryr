@@ -41,9 +41,9 @@ download_session_csv <- function(vol_id = 1,
     message(paste0("Downloading spreadsheet from volume ", vol_id, '.'))
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
-  
+
   r <- try(rvest::session(csv_url), silent = TRUE)
-  
+
   if (methods::is(r, 'try-error')) {
     if (vb)
       message ("`try-error` probably due to apostrophe bug in Databrary API.")

@@ -19,29 +19,28 @@ download_asset <- function(asset_id = 1,
                            target_dir = tempdir(),
                            return_response = FALSE,
                            vb = FALSE) {
-  # Error handling
-  if (length(asset_id) > 1) {
-    stop("asset_id must have length 1.")
-  }
-  if ((!is.numeric(asset_id)) || asset_id <= 0) {
-    stop("asset_id must be number > 0.")
-  }
-  if (length(session_id) > 1) {
-    stop("session_id ID must have length 1.")
-  }
-  if ((!is.numeric(session_id)) || session_id <= 0) {
-    stop("session_id must be number > 0.")
-  }
-  if (!is.character(file_name)) {
-    stop("file_name must be character string.")
-  }
-  if (!is.character(target_dir)) {
-    stop("target_dir must be character string.")
-  }
-  stopifnot(dir.exists(target_dir))
-  stopifnot(is.logical(return_response))
-  stopifnot(is.logical(vb))
+  # Check parameters
+  assertthat::assert_that(length(asset_id) == 1)
+  assertthat::assert_that(is.numeric(asset_id))
+  assertthat::assert_that(asset_id >= 1)
   
+  assertthat::assert_that(length(session_id) == 1)
+  assertthat::assert_that(is.numeric(session_id))
+  assertthat::assert_that(session_id >= 1)
+  
+  assertthat::assert_that(length(file_name) == 1)
+  assertthat::assert_that(is.character(file_name))
+
+  assertthat::assert_that(length(target_dir) == 1)
+  assertthat::assert_that(is.character(target_dir))
+  assertthat::assert_that(dir.exists(target_dir))
+  
+  assertthat::assert_that(length(return_response) == 1)
+  assertthat::assert_that(is.logical(return_response))
+
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+
   asset_url <- paste("/slot", session_id, "-", "asset", asset_id,
                      "download", sep = "/")
   url_download <- paste0("https:/nyu.databrary.org", asset_url)

@@ -5,8 +5,9 @@
 #' check_ssl_certs()
 #' @export
 check_ssl_certs <- function(host = "nyu.databrary.org") {
-  if (!is.character(host)) stop("host must be a character string.")
-  
+  # Check parameter
+  assertthat::assert_that(is.character(host))
+
   message(paste0('Checking SSL certificates for host: ', host))
   x <- openssl::download_ssl_cert(host)
   validity_dates <- lapply(x, `[[`, "validity")

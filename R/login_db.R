@@ -5,7 +5,7 @@
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @returns Logical value indicating whether login is successful or not.
+#' @returns Logical value indicating whether log in is successful or not.
 #' @examples
 #' \dontrun{
 #' login_db()
@@ -13,8 +13,8 @@
 #' @export
 login_db <- function(email = NULL,
                      password = NULL,
-                     store=FALSE,
-                     overwrite=FALSE,
+                     store = FALSE,
+                     overwrite = FALSE,
                      vb = FALSE) {
   # Check parameters
   assertthat::assert_that(is.logical(store))
@@ -24,7 +24,7 @@ login_db <- function(email = NULL,
   
   # If the user wants to store or use their stored credentials, check for keyring support
   if (store) {
-    assertthat::assert_that(keyring::has_keyring_support(), msg="No keyring support; please use store=FALSE")
+    assertthat::assert_that(keyring::has_keyring_support(), msg = "No keyring support; please use store=FALSE")
   }
   
   # Check or get email
@@ -51,7 +51,9 @@ login_db <- function(email = NULL,
     # Make sure our service is in the keyring
     if (exists('kl') && is.data.frame(kl)) {
       # If it is under the email entered, keep it to try later and not collect it here
-      password <- try(keyring::key_get(service=SERVICE, username=email), silent=TRUE)
+      password <-
+        try(keyring::key_get(service = SERVICE, username = email),
+            silent = TRUE)
       if ("try-error" %in% class(password)) {
         do_collect_password <- FALSE
       }
@@ -60,7 +62,8 @@ login_db <- function(email = NULL,
   
   # If we need to, securely collect the password
   if (do_collect_password) {
-    password <- getPass::getPass("Please enter your Databrary password ")
+    password <-
+      getPass::getPass("Please enter your Databrary password ")
   }
   
   is_login_successful <- FALSE
@@ -79,18 +82,30 @@ login_db <- function(email = NULL,
   # Store them in the keyring
   if (is_login_successful) {
     if (store && (do_collect_password || overwrite)) {
-      keyring::key_set_with_value(service=SERVICE, username=email, password=password)
-      if (vb) message(paste0("Login successful; password stored in keyring/keychain"))
+      keyring::key_set_with_value(service = SERVICE,
+                                  username = email,
+                                  password = password)
+      if (vb)
+        message(paste0("Login successful; password stored in keyring/keychain"))
     } else {
-      if (vb) message(paste("Login successful."))
+      if (vb)
+        message(paste("Login successful."))
     }
     return(TRUE)
   }
   
   if (store) {
-    if (vb) message(paste0('Login failed, so nothing was stored in the keyring/keychain; HTTP status ', httr::status_code(r), '\n'))
+    if (vb)
+      message(
+        paste0(
+          'Login failed, so nothing was stored in the keyring/keychain; HTTP status ',
+          httr::status_code(r),
+          '\n'
+        )
+      )
   } else {
-    if (vb) message(paste0('Login failed; HTTP status ', httr::status_code(r), '\n'))
+    if (vb)
+      message(paste0('Login failed; HTTP status ', httr::status_code(r), '\n'))
   }
   
   return(FALSE)
