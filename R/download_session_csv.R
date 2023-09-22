@@ -12,28 +12,20 @@ download_session_csv <- function(vol_id = 1,
                          file_name = "test.csv",
                          target_dir = tempdir(),
                          vb = FALSE) {
-  # Error handling
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length 1.")
-  }
-  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("vol_id must be an integer > 0.")
-  }
-  if (!is.character(file_name)) {
-    stop("file_name must be character string.")
-  }
-  if ((!is.character(target_dir))) {
-    stop("target_dir must be character string.")
-  }
-  if (!dir.exists(target_dir)) {
-    stop("target_dir '", target_dir, "' not found.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length 1.")
-  }
+  
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(file_name) == 1)
+  assertthat::assert_that(is.character(file_name))
+  
+  assertthat::assert_that(length(target_dir) == 1)
+  assertthat::assert_that(is.character(target_dir))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   
   full_fn <- file.path(target_dir, file_name)
   

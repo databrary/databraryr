@@ -12,6 +12,20 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
                             URL_components = '/api/volume/1',
                             convert_JSON = TRUE,
                             vb = FALSE) {
+  
+  # Check parameters
+  assertthat::assert_that(length(base_URL) == 1)
+  assertthat::assert_that(is.character(base_URL))
+  
+  assertthat::assert_that(length(URL_components) == 1)
+  assertthat::assert_that(is.character(URL_components))
+  
+  assertthat::assert_that(length(convert_JSON) == 1)
+  assertthat::assert_that(is.logical(convert_JSON))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
   URL <- paste0(base_URL, URL_components)
   if (is.null(URL)) {
     stop('URL contains null value.')

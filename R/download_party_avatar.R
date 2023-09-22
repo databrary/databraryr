@@ -12,20 +12,17 @@
 download_party_avatar <- function(party_id = 6,
                                   show_person_info = TRUE,
                                   vb = FALSE) {
-  # Error handling
-  if (length(party_id) > 1) {
-    stop("party_id must be single value")
-  }
-  if ((!is.numeric(party_id)) || (party_id <= 0)) {
-    stop("party_id must be an integer > 0")
-  }
-  if (!is.logical(show_person_info))  {
-    stop("show_person_info must be a logical value")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value")
-  }
-
+  # Check parameters
+  assertthat::assert_that(length(party_id) == 1)
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id >= 1)
+  
+  assertthat:assert_that(length(show_person_info) == 1)
+  assertthat:assert_that(is.logical(show_person_info))
+  
+  assertthat:assert_that(length(vb) == 1)
+  assertthat:assert_that(is.logical(vb))
+  
   a <- GET_db_contents(
     base_URL = "https://nyu.databrary.org",
     URL_components = paste0('/party/', party_id, '/avatar'),

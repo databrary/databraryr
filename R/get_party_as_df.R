@@ -12,20 +12,16 @@ get_party_as_df <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
 
-  # Error handling
-  if (length(party_id) > 1) {
-    stop("party_id must be single value")
-  }
-  if ((!is.numeric(party_id)) || (party_id <= 0)) {
-    stop("party_id must be an integer > 0")
-  }
-  if ((!is.logical(convert_JSON))) {
-    stop("convert_JSON must be a logical value")
-  }
-  if ((!is.logical(vb))) {
-    stop("vb must be a logical value")
-  }
+  assertthat::assert_that(length(party_id) == 1)
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id >= 1)
 
+  assertthat::assert_that(length(convert_JSON) == 1)
+  assertthat::assert_that(is.logical(convert_JSON))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
   r <- GET_db_contents(URL_components = paste('/api/party', party_id, sep='/'), vb=vb,
                        convert_JSON = convert_JSON)
   if (!is.null(r)) {

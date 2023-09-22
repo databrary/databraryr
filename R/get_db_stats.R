@@ -9,33 +9,51 @@
 #' @examples get_db_stats("places") # Information about the newest institutions.
 #' @export
 get_db_stats <- function(type = "stats", vb = FALSE) {
-  # Error handling
-  if (length(type) > 1) {
-    stop("type must have length == 1.")
-  }
-  if (!is.character(type)) {
-    stop("'type' must be character.")
-  }
-  if (!(
-    type %in% c(
-      "institutions",
-      "places",
-      "people",
-      "datasets",
-      "data",
-      "volumes",
-      "stats",
-      "numbers"
-    )
-  )) {
-    stop("Type '", type, "' not valid.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must have logical value.")
-  }
+  
+  # Check parameters
+  assertthat::assert_that(length(type) == 1)
+  assertthat::assert_that(is.character(type))
+  assertthat::assert_that(type %in% c(
+    "institutions",
+    "places",
+    "people",
+    "datasets",
+    "data",
+    "volumes",
+    "stats",
+    "numbers"
+  ))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
+  # # Error handling
+  # if (length(type) > 1) {
+  #   stop("type must have length == 1.")
+  # }
+  # if (!is.character(type)) {
+  #   stop("'type' must be character.")
+  # }
+  # if (!(
+  #   type %in% c(
+  #     "institutions",
+  #     "places",
+  #     "people",
+  #     "datasets",
+  #     "data",
+  #     "volumes",
+  #     "stats",
+  #     "numbers"
+  #   )
+  # )) {
+  #   stop("Type '", type, "' not valid.")
+  # }
+  # if (length(vb) > 1) {
+  #   stop("vb must have length == 1.")
+  # }
+  # if (!is.logical(vb)) {
+  #   stop("vb must have logical value.")
+  # }
   
   r <- GET_db_contents(URL_components = '/api/activity')
   if (is.null(r)) {

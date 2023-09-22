@@ -13,38 +13,25 @@ download_session_zip <- function(vol_id = 31,
                                  session_id = 9803,
                                  out_dir = tempdir(),
                                  file_name = "test.zip",
-                                 vb=FALSE) {
-  # Parameter checking ----------------------------------------------------------------
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length 1.")
-  }
-  if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
-    stop("vol_id must be a number > 0.")
-  }
-  if (length(session_id) > 1) {
-    stop("session_id must have length 1.")
-  }
-  if ((!is.numeric(session_id)) || session_id <= 0 ) {
-    stop("session_id must be a number > 0.")
-  }
-  if (length(out_dir) > 1) {
-    stop("out_dir must have length 1.")
-  }
-  if (!(is.character(out_dir))) {
-    stop("out_dir must be a character string.")
-  }
-  if (length(file_name) > 1) {
-    stop("file_name must have length 1.")
-  }
-  if (!is.character(file_name)) {
-    stop("file_name must be character string.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical value.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
+                                 vb = FALSE) {
+
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(session_id) == 1)
+  assertthat::assert_that(is.numeric(session_id))
+  assertthat::assert_that(session_id >= 1)
+
+  assertthat::assert_that(length(out_dir) == 1)
+  assertthat::assert_that(is.character(out_dir))
+  
+  assertthat::assert_that(length(file_name) == 1)
+  assertthat::assert_that(is.character(file_name))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   
   url_download <- paste0("https://nyu.databrary.org", paste("/volume", vol_id,
                                                             "slot", session_id,
