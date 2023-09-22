@@ -1,4 +1,4 @@
-#' Lists All Data For a Given Databrary party (person or institution).
+#' List Data For A Party (person or institution).
 #'
 #' @param party_id Target volume number. Default is volume 8 (NYU).
 #' @param component Which data to return 'children', 'parents', or 'all'. Default is all.
@@ -10,6 +10,18 @@
 list_party <- function(party_id = 8,
                        component = 'all',
                        vb = FALSE) {
+  # Check parameters
+  assertthat::assert_that(length(party_id) == 1)
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id >= 1)
+  
+  assertthat::assert_that(length(component) == 1)
+  assertthat::assert_that(is.character(component))
+  assertthat::assert_that(component >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
   if (length(party_id) > 1) {
     stop("party_id must have length == 1.")
   }

@@ -7,23 +7,14 @@
 #' list_assets_in_session() # Assets in session 9807 (from Volume 1)
 #' @export
 list_assets_in_session <- function(session_id = 9807, vb = FALSE) {
-  # Parameter checking----------------------------------------------
-  if (length(session_id) > 1) {
-    stop("session_id must have length == 1.")
-  }
-  if ((!is.numeric(session_id)) || session_id <= 0 ) {
-    stop("session_id must be > 0.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length = 1.")
-  }
   
+  # Check parameters
+  assertthat::assert_that(length(session_id) == 1)
+  assertthat::assert_that(is.numeric(session_id))
+  assertthat::assert_that(session_id >= 1)
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+
   if (vb) message('list_assets_in_session()...')
 
   # Make URL, GET(), and handle response ---------------------------

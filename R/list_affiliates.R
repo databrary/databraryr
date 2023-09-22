@@ -10,22 +10,16 @@
 #' @export
 list_affiliates <- function(party_id = 6, report_target_party = FALSE,
                             vb = FALSE) {
-  if (length(party_id) > 1) {
-    stop("party_id must have length == 1.")
-  }
-  if (!is.numeric(party_id)) {
-    stop("party_id must be an integer.")
-  }
-  if (party_id < 0) {
-    stop("party_id must be > 0.")
-  }
-
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value.")
-  }
+  # Check parameters
+  assertthat::assert_that(length(party_id) == 1)
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id >= 1)
+  
+  assertthat::assert_that(length(report_target_party) == 1)
+  assertthat::assert_that(is.logical(report_target_party))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
 
   g <-
     databraryr::GET_db_contents(

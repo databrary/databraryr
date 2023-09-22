@@ -7,20 +7,15 @@
 #' list_sessions() # Lists sessions in volume 1.
 #' @export
 list_sessions <- function(vol_id = 1, vb = FALSE) {
-  # Error checking
-  if (!is.numeric(vol_id)) {
-    stop("vol_id must be numeric.")
-  }
-  if (vol_id < 1) {
-    stop("vol_id must be >= 1.")
-  }
-  if (length(vol_id) > 1) {
-    stop("vol_id must be single value.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
   
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+
   r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id, '?containers'))
   if (!is.null(r)) {
     if (vb) message(" Non-null content returned.")

@@ -7,23 +7,15 @@
 #' get_video_stats() # Retrieves summary statistics about videos in volume 1.
 #' @export
 get_video_stats <- function(this_vol_id = 1, vb = FALSE) {
-  # test parameters --------------------------------------------------------
-  if (length(this_vol_id) > 1) {
-    stop("vol_id must have length == 1.")
-  }
-  if (this_vol_id < 1) {
-    stop("vol_id must be >= 1.")
-  }
-  if (!is.numeric(this_vol_id)) {
-    stop("vol_id must be numeric.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be Boolean.")
-  }
 
+  # Check parameters
+  assertthat::assert_that(length(this_vol_id) == 1)
+  assertthat::assert_that(is.numeric(this_vol_id))
+  assertthat::assert_that(this_vol_id >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))  # Error handling
+  
   # get list of videos in volume -------------------------------------------
   vids_df <- list_assets_by_type(vol_id = this_vol_id, type = "video", vb = vb)
   if (is.null(vids_df)) {

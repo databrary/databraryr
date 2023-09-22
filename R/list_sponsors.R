@@ -7,21 +7,14 @@
 #' list_sponsors() # Default is Rick Gilmore (party 6)
 #' @export
 list_sponsors <- function(party_id = 6, vb = FALSE) {
-  if (length(party_id) > 1) {
-    stop("party_id must have length == 1.")
-  }
-  if (!is.numeric(party_id)) {
-    stop("party_id must be an integer.")
-  }
-  if (party_id < 0) {
-    stop("party_id must be > 0.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a Boolean.")
-  }
+  
+  # Check parameters
+  assertthat::assert_that(length(party_id) == 1)
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id > 0)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
 
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))

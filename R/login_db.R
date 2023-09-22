@@ -43,10 +43,12 @@ login_db <- function(email = NULL,
   }
   
   SERVICE <- "org.databrary.databraryr"
+  SERVICE <- "databrary" # Temporary to test existing keyring store with this service name.
   
   # If the user wants to store or use their stored credentials and
   # doesn't provide a password
   if (store && is.null(password) && !overwrite) {
+    if (vb) message("Retrieving password for ", SERVICE, " from keyring.")
     kl <- keyring::key_list(service = SERVICE)
     # Make sure our service is in the keyring
     if (exists('kl') && is.data.frame(kl)) {
@@ -55,8 +57,14 @@ login_db <- function(email = NULL,
         try(keyring::key_get(service = SERVICE, username = email),
             silent = TRUE)
       if ("try-error" %in% class(password)) {
+        do_collect_password <- TRUE
+        if (vb) message("No password found in keyring for service='", SERVICE, ".")
+      } else {
         do_collect_password <- FALSE
+        if (vb) message("Password retrieved from keyring.")
       }
+    } else {
+      if (vb) message("Error retrieving keyring for service='", SERVICE, "'.")
     }
   }
   

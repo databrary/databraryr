@@ -1,26 +1,22 @@
 #' List Owners of a Databrary Volume.
 #'
-#' @param this_vol_id Selected volume number. Default is volume 1.
+#' @param vol_id Selected volume number. Default is volume 1.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a volume's owner(s).
 #' @examples
 #' list_volume_owners()
 #' @export
-list_volume_owners <- function(this_vol_id = 1,
+list_volume_owners <- function(vol_id = 1,
                                vb = FALSE) {
-  # Error checking---------------------------------------------------------
-  if (length(this_vol_id) > 1) {
-    stop("vol_id must have length 1.")
-  }
-  if ((!is.numeric(this_vol_id)) || (this_vol_id <= 0)) {
-    stop("vol_id must be an integer > 0.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
   
-  # Main body-------------------------------------------------------------
-  v <- list_containers_records(vol_id = this_vol_id, vb = vb)
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+
+  v <- list_containers_records(vol_id = vol_id, vb = vb)
   
   if (!is.null(v$owners)) {
     owners <- v$owners$id
@@ -34,7 +30,7 @@ list_volume_owners <- function(this_vol_id = 1,
     }
     if (!is.null(p)) {
       p |>
-        dplyr::mutate(vol_id = this_vol_id) |>
+        dplyr::mutate(vol_id = vol_id) |>
         dplyr::rename(person_id = "id") |>
         dplyr::filter(!(is.na(.data$prename)), !(stringr::str_detect(.data$prename, "Databrary"))) |>
         dplyr::select("vol_id", "person_id", "sortname", "prename")

@@ -7,21 +7,14 @@
 #' list_volume_excerpts()
 #' @export
 list_volume_excerpts <- function(vol_id = 1, vb = FALSE) {
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length == 1.")
-  }
-  if (!is.numeric(vol_id)) {
-    stop("vol_id must be an integer.")
-  }
-  if (vol_id < 0) {
-    stop("vol_id must be > 0.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a Boolean.")
-  }
+  
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
 
   g <-
     databraryr::GET_db_contents(

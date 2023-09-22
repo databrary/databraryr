@@ -11,6 +11,11 @@ test_that("list_institutional_sponsors rejects bad input parameters", {
   expect_error(list_institutional_sponsors(party_id = c(1,3)))
   expect_error(list_institutional_sponsors(party_id = list(a=1, b=2)))
   
+  expect_error(list_institutional_sponsors(report_target_party = "a"))
+  expect_error(list_institutional_sponsors(report_target_party = -1))
+  expect_error(list_institutional_sponsors(report_target_party = c(2,3)))
+  expect_error(list_institutional_sponsors(report_target_party = list(a=1, b=2)))
+  
   expect_error(list_institutional_sponsors(vb = "a"))
   expect_error(list_institutional_sponsors(vb = -1))
   expect_error(list_institutional_sponsors(vb = c(2,3)))

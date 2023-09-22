@@ -34,6 +34,7 @@ download_session_csv <- function(vol_id = 1,
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
 
+
   r <- try(rvest::session(csv_url), silent = TRUE)
 
   if (methods::is(r, 'try-error')) {

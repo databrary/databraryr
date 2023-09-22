@@ -9,17 +9,15 @@
 logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
   
   # Check parameters
-  if (!is.character(logout.url)) {
-    stop("logout.url must be a character string.")    
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value.")
-  }
+  assertthat::assert_that(length(logout.url) == 1)
+  assertthat::assert_that(is.character(logout.url))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
+  url <- paste0("http://nyu.databrary.org", logout.url)
+  r <- httr::POST(url)
 
-  r <- httr::POST("http://nyu.databrary.org/api/user/logout")
   if (httr::status_code(r) == 200) {
     if (vb) message('Logout Successful.')
     if (file.exists(".databrary.RData")) file.remove(".databrary.RData")

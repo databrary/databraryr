@@ -12,6 +12,7 @@ get_party_as_df <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
 
+  # Check parameters
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id >= 1)

@@ -1,4 +1,4 @@
-#' Lists Basic Info About People Registered on Databrary.
+#' List Info About People.
 #'
 #' @param people_list Party number(s) for people to list.
 #' @param vb A Boolean value if TRUE returns verbose output.
@@ -8,21 +8,15 @@
 #' list_people() # Lists people with party IDs 5:7, Databrary's founders
 #' @export
 list_people <- function(people_list = 5:7, vb = FALSE) {
-  # Error handling -----------------------------------------------------------
-  if (!is.numeric(people_list)) {
-    stop("people_list must be numeric.")
-  }
-  if (sum((people_list < 0))) {
-    stop("people_list values must be > 0")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be Boolean.")
-  }
-  if (length(is.logical) > 1) {
-    stop("vb must be single value.")
-  }
+
+  # Check parameters
+  assertthat::assert_that(length(people_list) != 0)
+  assertthat::assert_that(is.numeric(people_list))
+
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   
-  # Get one institution's data
+  # Get one party's data
   list_person <- function(party) {
     if (is_person(party, vb = vb)) {
       p <- download_party(party, vb = vb)

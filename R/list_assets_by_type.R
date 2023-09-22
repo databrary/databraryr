@@ -11,16 +11,18 @@
 list_assets_by_type <- function(vol_id = 1,
                                 type = "video",
                                 vb = FALSE) {
-  # Error checking ----------------------------------------------------------
-  if (!is.numeric(vol_id)) {
-    stop("vol_id must be numeric.")
-  }
-  if (vol_id < 1) {
-    stop("vol_id must be >= 1.")
-  }
-  if (!is.character(type)) {
-    stop("type must be character.")
-  }
+
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(type) == 1)
+  assertthat::assert_that(is.character(type))
+
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
   if (!(
     type %in% c(
       "video",
@@ -38,13 +40,7 @@ list_assets_by_type <- function(vol_id = 1,
   )) {
     stop("Invalid type.")
   }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length = 1.")
-  }
-  
+
   # Retrieve, process asset list --------------------------------------------
   va <- list_assets_in_volume(vol_id = vol_id, vb = vb)
   if (is.null(va)) {

@@ -7,6 +7,15 @@
 #' list_assets_in_volume() # Assets in volume 1
 #' @export
 list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
+  
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
   # Error handling
   if (!is.numeric(vol_id)) {
     stop("vol_id must be numeric.")

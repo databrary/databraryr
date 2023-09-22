@@ -8,20 +8,14 @@
 #' @returns A list with the activity history on a volume.
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
-  # Parameter checking----------------------------------------------
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length == 1.")
-  }
-  if ((!is.numeric(vol_id)) || vol_id <= 0 ) {
-    stop("vol_id must be > 0.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
+
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
   
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   if (vb) message('list_volume_activity()...')
 
   # Make URL, GET(), and handle response ---------------------------

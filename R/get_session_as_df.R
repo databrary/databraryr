@@ -8,19 +8,13 @@
 #' @export
 get_session_as_df <- function(vol_id = 1,
                                vb = FALSE) {
-  # Error handling
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length 1.")
-  }
-  if ((!is.numeric(vol_id)) || (vol_id <= 0)) {
-    stop("vol_id must be an integer > 0.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length 1.")
-  }
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))  # Error handling
   
   # Main routines
   if (vb)

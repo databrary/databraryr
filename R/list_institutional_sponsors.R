@@ -11,7 +11,21 @@
 #' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
 #' @export
 list_institutional_sponsors <-
-  function(party_id = 6, vb = FALSE) {
+  function(party_id = 6,
+           report_target_party = TRUE,
+           vb = FALSE) {
+
+    # Check parameters
+    assertthat::assert_that(length(party_id) == 1)
+    assertthat::assert_that(is.numeric(party_id))
+    assertthat::assert_that(party_id >= 1)
+    
+    assertthat::assert_that(length(report_target_party) == 1)
+    assertthat::assert_that(is.logical(report_target_party))
+    
+    assertthat::assert_that(length(vb) == 1)
+    assertthat::assert_that(is.logical(vb))
+    
     if (length(party_id) > 1) {
       stop("party_id must have length == 1.")
     }
@@ -26,6 +40,21 @@ list_institutional_sponsors <-
     }
     if (!is.logical(vb)) {
       stop("vb must be a logical value.")
+    }
+    
+    if (report_target_party) {
+      g <-
+        databraryr::GET_db_contents(
+          URL_components = paste0("/api/party/", party_id,
+                                  "?parents&children&access"),
+          vb = vb
+        )
+      message(
+        "Institutional sponsors for party ",
+        party_id,
+        ", ",
+        paste0(g$prename, " ", g$sortname), ":"
+      )
     }
     
     sponsors <- list_sponsors(party_id = party_id, vb = vb)
