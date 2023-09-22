@@ -15,12 +15,15 @@ login_db <- function(email = NULL,
                      password = NULL,
                      store = FALSE,
                      overwrite = FALSE,
-                     vb = FALSE) {
+                     vb = FALSE,
+                     SERVICE = "databrary") {
+  
   # Check parameters
   assertthat::assert_that(is.logical(store))
   assertthat::assert_that(is.logical(overwrite))
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  assertthat::assert_that(is.character(SERVICE))
   
   # If the user wants to store or use their stored credentials, check for keyring support
   if (store) {
@@ -42,13 +45,13 @@ login_db <- function(email = NULL,
     do_collect_password <- FALSE
   }
   
-  SERVICE <- "org.databrary.databraryr"
-  SERVICE <- "databrary" # Temporary to test existing keyring store with this service name.
+  # SERVICE <- "org.databrary.databraryr"
+  # SERVICE <- "databrary" # Temporary to test existing keyring store with this service name.
   
   # If the user wants to store or use their stored credentials and
   # doesn't provide a password
   if (store && is.null(password) && !overwrite) {
-    if (vb) message("Retrieving password for ", SERVICE, " from keyring.")
+    if (vb) message("Retrieving password for service='", SERVICE, "' from keyring.")
     kl <- keyring::key_list(service = SERVICE)
     # Make sure our service is in the keyring
     if (exists('kl') && is.data.frame(kl)) {
@@ -64,7 +67,7 @@ login_db <- function(email = NULL,
         if (vb) message("Password retrieved from keyring.")
       }
     } else {
-      if (vb) message("Error retrieving keyring for service='", SERVICE, "'.")
+      if (vb) message("Error retrieving keyring data for service='", SERVICE, "'.")
     }
   }
   
@@ -106,7 +109,7 @@ login_db <- function(email = NULL,
     if (vb)
       message(
         paste0(
-          'Login failed, so nothing was stored in the keyring/keychain; HTTP status ',
+          'Login failed; nothing stored in keyring; HTTP status ',
           httr::status_code(r),
           '\n'
         )
