@@ -21,9 +21,13 @@ login_db <- function(email = NULL,
   
   # Check parameters
   assertthat::assert_that(is.logical(store))
+  
   assertthat::assert_that(is.logical(overwrite))
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  
+  assertthat::assert_that(length(SERVICE) == 1)
   assertthat::assert_that(is.character(SERVICE))
   
   # If the user wants to store or use their stored credentials, check for keyring support

@@ -8,16 +8,14 @@
 #' @export
 search_for_keywords <-
   function(search_string = "locomotion", vb = FALSE) {
-    # Parameter checking----------------------------------------------
-    if (!is.character(search_string)) {
-      stop("search_string must be string.")
-    }
-    if (length(vb) > 1) {
-      stop("vb must have length == 1.")
-    }
-    if (!is.logical(vb)) {
-      stop("vb must be logical.")
-    }
+
+    # Check parameters
+    assertthat::assert_that(length(search_string) == 1)
+    assertthat::assert_that(is.character(search_string))
+    
+    assertthat::assert_that(length(vb) == 1)
+    assertthat::assert_that(is.logical(vb))
+    
     if (vb)
       message('search_for_keywords()...')
     

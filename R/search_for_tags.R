@@ -7,16 +7,13 @@
 #' search_for_tags()
 #' @export
 search_for_tags <- function(search_string="ICIS", vb = FALSE) {
-  # Parameter checking----------------------------------------------
-  if (!is.character(search_string)) {
-    stop("search_string must be string.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical.")
-  }
+
+  # Check parameters
+  assertthat::assert_that(length(search_string) == 1)
+  assertthat::assert_that(is.character(search_string))
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   
   # Make URL, GET(), and handle response ---------------------------
   r <- GET_db_contents(URL_components = paste0('/api/tags/', search_string),
