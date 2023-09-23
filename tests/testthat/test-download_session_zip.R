@@ -24,6 +24,6 @@ test_that("download_session_zip rejects bad input parameters", {
   expect_error(download_session_zip(vb = list(a=1, b=2)))
 })
 
-test_that("download_session_csv returns string", {
+test_that("download_session_zip returns string", {
   expect_true(is.character(download_session_zip()))
 })

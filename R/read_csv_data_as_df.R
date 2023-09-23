@@ -14,7 +14,8 @@ read_csv_data_as_df <-
   function(session_id = 9807,
            asset_id = 153108,
            vb = FALSE) {
-    # This is a spreadsheet in volume 1, slot 9807
+    
+    # This is a spreadsheet from volume 1, session/slot 9807
     
     # Check parameters
     assertthat::assert_that(length(session_id) == 1)
@@ -28,7 +29,6 @@ read_csv_data_as_df <-
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
     
-    # Handle request---------------------------------------------------------------
     r <- GET_db_contents(
       base_URL = 'https://nyu.databrary.org/slot/',
       URL_components = paste0(session_id, '/0/asset/', asset_id,
@@ -37,12 +37,13 @@ read_csv_data_as_df <-
       convert_JSON = FALSE
     )
     
-    df <- utils::read.csv(text = r)
-    if (is(df, "data.frame")) {
-      return(df)
+    if (!is.null(r)) {
+      if (vb) message("Valid CSV downloaded.")
+        as.data.frame(r)
     } else {
       if (vb)
-        message("Can't coerce to data frame. Skipping.\n")
-      return(NULL)
+        message("No CSV data returned for session_id ", 
+                session_id, " and asset_id ", asset_id)
+      r
     }
   }

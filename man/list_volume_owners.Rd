@@ -4,10 +4,10 @@
 \alias{list_volume_owners}
 \title{List Owners of a Databrary Volume.}
 \usage{
-list_volume_owners(this_vol_id = 1, vb = FALSE)
+list_volume_owners(vol_id = 1, vb = FALSE)
 }
 \arguments{
-\item{this_vol_id}{Selected volume number. Default is volume 1.}
+\item{vol_id}{Selected volume number. Default is volume 1.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }

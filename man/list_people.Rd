@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_people.R
 \name{list_people}
 \alias{list_people}
-\title{Lists Basic Info About People Registered on Databrary.}
+\title{List Info About People.}
 \usage{
 list_people(people_list = 5:7, vb = FALSE)
 }
@@ -16,7 +16,7 @@ A data frame with information about the people in the specified
 range of party ID's.
 }
 \description{
-Lists Basic Info About People Registered on Databrary.
+List Info About People.
 }
 \examples{
 list_people() # Lists people with party IDs 5:7, Databrary's founders

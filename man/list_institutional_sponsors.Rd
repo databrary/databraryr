@@ -4,7 +4,11 @@
 \alias{list_institutional_sponsors}
 \title{List Institutional Sponsors For A Party.}
 \usage{
-list_institutional_sponsors(party_id = 6, vb = FALSE)
+list_institutional_sponsors(
+  party_id = 6,
+  report_target_party = TRUE,
+  vb = FALSE
+)
 }
 \arguments{
 \item{party_id}{Target volume number.}

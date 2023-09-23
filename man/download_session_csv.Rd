@@ -2,12 +2,13 @@
 % Please edit documentation in R/download_session_csv.R
 \name{download_session_csv}
 \alias{download_session_csv}
-\title{Downloads session spreadsheet as a CSV.}
+\title{Download Session Spreadsheet}
 \usage{
 download_session_csv(
   vol_id = 1,
   file_name = "test.csv",
   target_dir = tempdir(),
+  as_df = FALSE,
   vb = FALSE
 )
 }
@@ -16,16 +17,19 @@ download_session_csv(
 
 \item{file_name}{Name for the output file. Default is 'test.csv'.}
 
-\item{target_dir}{Directory to save downloaded file. Default is '.'.}
+\item{target_dir}{Directory to save downloaded file. Default is tempdir().}
 
-\item{vb}{A boolean value.}
+\item{as_df}{A Boolean value. Default is FALSE.}
+
+\item{vb}{A Boolean value. Default is FALSE.}
 }
 \value{
-Name of downloaded file.
+Name of downloaded file or a data frame if \code{as_df} is TRUE.
 }
 \description{
-Downloads session spreadsheet as a CSV.
+Download Session Spreadsheet
 }
 \examples{
 download_session_csv() # Downloads "session" CSV for volume 1
+str(download_session_csv(as_df = TRUE))
 }

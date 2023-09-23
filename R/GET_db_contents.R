@@ -38,7 +38,6 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
     if (vb) {
       message('Successful HTML GET query.')
     }
-
     # Some routes do not report content-type  though content is well-structured
     if ("content-type" %in% names(g$headers)) {
       if (vb) message(paste0('Content type is ', g$headers$`content-type`), '.')
@@ -57,7 +56,7 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
         }
       } else if (stringr::str_detect(g$headers$`content-type`, "text/csv")) {
         if (vb) message(paste0("CSV/text file."))
-        httr::content(g, 'text', encoding = 'UTF-8')
+        httr::content(g, as='parsed', col_types = list(.default="c"))
       } else if (stringr::str_detect(g$headers$`content-type`, "text/html")) {
         if (vb) message(paste0("text/html file."))
         httr::content(g, 'text', encoding = 'UTF-8')

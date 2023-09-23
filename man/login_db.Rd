@@ -9,7 +9,8 @@ login_db(
   password = NULL,
   store = FALSE,
   overwrite = FALSE,
-  vb = FALSE
+  vb = FALSE,
+  SERVICE = "org.databrary.databraryr"
 )
 }
 \arguments{
@@ -22,9 +23,11 @@ login_db(
 \item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
+
+\item{SERVICE}{A character label for stored credentials in the keyring. Default is "databrary"}
 }
 \value{
-Logical value indicating whether login is successful or not.
+Logical value indicating whether log in is successful or not.
 }
 \description{
 Log In To Databrary.org.

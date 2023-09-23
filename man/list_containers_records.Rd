@@ -12,7 +12,7 @@ list_containers_records(vol_id = 1, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with containers and records from the specified volume.
+A list with containers and records from the specified volume.
 }
 \description{
 List Containers and Records In Databrary Volume.

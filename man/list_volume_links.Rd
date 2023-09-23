@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_volume_links.R
 \name{list_volume_links}
 \alias{list_volume_links}
-\title{Retrieves URL Links Associated With a Databrary Volume.}
+\title{Retrieves URL Links From A Databrary Volume.}
 \usage{
 list_volume_links(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_volume_links(vol_id = 1, vb = FALSE)
 A tibble (data.frame) with the requested data.
 }
 \description{
-Retrieves URL Links Associated With a Databrary Volume.
+Retrieves URL Links From A Databrary Volume.
 }
 \examples{
 list_volume_links() # Links from volume 1

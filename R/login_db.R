@@ -5,6 +5,7 @@
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @returns Logical value indicating whether log in is successful or not.
 #' @examples
 #' \dontrun{
@@ -16,7 +17,7 @@ login_db <- function(email = NULL,
                      store = FALSE,
                      overwrite = FALSE,
                      vb = FALSE,
-                     SERVICE = "databrary") {
+                     SERVICE = "org.databrary.databraryr") {
   
   # Check parameters
   assertthat::assert_that(is.logical(store))

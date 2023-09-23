@@ -13,11 +13,11 @@ test_that("download_session_csv rejects bad input parameters", {
   expect_error(download_session_csv(target_dir = 3))
   expect_error(download_session_csv(target_dir = list(a=1, b=2)))
   expect_error(download_session_csv(target_dir = TRUE))
-  
-  expect_error(download_session_csv(return_response = -1))
-  expect_error(download_session_csv(return_response = 3))
-  expect_error(download_session_csv(return_response = "a"))
-  expect_error(download_session_csv(return_response = list(a=1, b=2)))
+
+  expect_error(download_session_csv(as_df = -1))
+  expect_error(download_session_csv(as_df = 3))
+  expect_error(download_session_csv(as_df = "a"))
+  expect_error(download_session_csv(as_df = list(a=1, b=2)))
   
   expect_error(download_session_csv(vb = -1))
   expect_error(download_session_csv(vb = 3))
@@ -26,5 +26,10 @@ test_that("download_session_csv rejects bad input parameters", {
 })
 
 test_that("download_session_csv returns string", {
-  expect_true(is.character(download_session_csv()))
+  expect_true(is.character(download_session_csv(as_df = FALSE)))
 })
+
+test_that("download_session_csv returns data frame", {
+  expect_true(is.data.frame(download_session_csv(as_df = TRUE)))
+})
+

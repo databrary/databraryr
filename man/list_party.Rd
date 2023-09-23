@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_party.R
 \name{list_party}
 \alias{list_party}
-\title{Lists All Data For a Given Databrary party (person or institution).}
+\title{List Data For A Party (person or institution).}
 \usage{
 list_party(party_id = 8, component = "all", vb = FALSE)
 }
@@ -17,7 +17,7 @@ list_party(party_id = 8, component = "all", vb = FALSE)
 A data frame with information about a party (person or institution).
 }
 \description{
-Lists All Data For a Given Databrary party (person or institution).
+List Data For A Party (person or institution).
 }
 \examples{
 list_party() # Default is New York University (party 8)

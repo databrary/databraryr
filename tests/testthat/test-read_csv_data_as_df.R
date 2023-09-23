@@ -1,6 +1,10 @@
 # read_csv_data_as_df ---------------------------------------------------
 test_that("read_csv_data_as_df returns data.frame", {
-  expect_true("data.frame" %in% class(read_csv_data_as_df()))
+  expect_true(is.data.frame(read_csv_data_as_df()))
+})
+
+test_that("read_csv_data_as_df returns NULL", {
+  expect_true(is.null(read_csv_data_as_df(session = 1)))
 })
 
 test_that("read_csv_data_as_df rejects bad input parameters", {
