@@ -17,11 +17,11 @@ download_party_avatar <- function(party_id = 6,
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id >= 1)
   
-  assertthat:assert_that(length(show_person_info) == 1)
-  assertthat:assert_that(is.logical(show_person_info))
+  assertthat::assert_that(length(show_person_info) == 1)
+  assertthat::assert_that(is.logical(show_person_info))
   
-  assertthat:assert_that(length(vb) == 1)
-  assertthat:assert_that(is.logical(vb))
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
   
   a <- GET_db_contents(
     base_URL = "https://nyu.databrary.org",

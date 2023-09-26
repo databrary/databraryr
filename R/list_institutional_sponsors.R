@@ -6,6 +6,7 @@
 #'
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param report_target_party A Boolean value. Print info about the target party.
 #' @returns A data frame with information about a party's *institutional* sponsor(s).
 #' @examples
 #' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)

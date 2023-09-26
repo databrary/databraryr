@@ -13,6 +13,8 @@ list_institutional_sponsors(
 \arguments{
 \item{party_id}{Target volume number.}
 
+\item{report_target_party}{A Boolean value. Print info about the target party.}
+
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{

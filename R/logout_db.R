@@ -1,6 +1,5 @@
 #' Log Out of Databrary.org.
 #'
-#' @param logout.url URL for the login API.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns Status code if successful.
 #' @examples
