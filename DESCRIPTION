@@ -44,7 +44,7 @@ Suggests:
     ggplot2,
     readr
 VignetteBuilder: knitr
-URL: http://github.com/databrary/databraryr, https://databrary.github.io/databraryr/
-BugReports: http://github.com/databrary/databraryr/issues
+URL: http://github.com/databrary/databraryr, https://databrary.github.io/databraryr/, https://github.com/databrary/databraryr
+BugReports: https://github.com/databrary/databraryr/issues
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
