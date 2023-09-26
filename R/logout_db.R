@@ -11,7 +11,7 @@ logout_db <- function(vb = TRUE){
   # Check parameters
   assertthat::assert_that(is.logical(vb))
   
-  url <- "http://nyu.databrary.org/api/user/logout"
+  url <- "https://nyu.databrary.org/api/user/logout"
   r <- httr::POST(url)
 
   if (httr::status_code(r) == 200) {
