@@ -11,7 +11,7 @@ Maintainer: Rick O. Gilmore <rog1@psu.edu>
 Description: This package provides commands to interact with the 
   Databrary.org API. There are some public assets on Databrary. 
   But for most interesting use cases, a user will need to 
-  register <http://databrary.org/register> and receive authorization 
+  register <https://databrary.org/register> and receive authorization 
   from an institution. Once authorized, users can download data 
   and metadata from Databrary and reuse it subject to the terms 
   of the Databrary Access Agreement and the site Terms and Conditions of Use.
@@ -44,7 +44,7 @@ Suggests:
     ggplot2,
     readr
 VignetteBuilder: knitr
-URL: http://github.com/databrary/databraryr, https://databrary.github.io/databraryr/, https://github.com/databrary/databraryr
+URL: https://github.com/databrary/databraryr
 BugReports: https://github.com/databrary/databraryr/issues
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
