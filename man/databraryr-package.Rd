@@ -15,7 +15,8 @@ Useful links:
 \itemize{
   \item \url{http://github.com/databrary/databraryr}
   \item \url{https://databrary.github.io/databraryr/}
-  \item Report bugs at \url{http://github.com/databrary/databraryr/issues}
+  \item \url{https://github.com/databrary/databraryr}
+  \item Report bugs at \url{https://github.com/databrary/databraryr/issues}
 }
 
 }
@@ -24,7 +25,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Jeffrey Spies \email{jeff@221b.io}
+  \item Jeffrey Spies \email{cran@jeffspies.com}
 }
 
 Other contributors:

@@ -20,7 +20,6 @@ logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
 
   if (httr::status_code(r) == 200) {
     if (vb) message('Logout Successful.')
-    if (file.exists(".databrary.RData")) file.remove(".databrary.RData")
     httr::set_config(httr::config(cookie = NULL))
     return(TRUE)
   } else {
