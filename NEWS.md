@@ -1,4 +1,4 @@
-# databraryr (development version)
+# databraryr 0.4.4
 
 # databraryr 0.4.3
 
