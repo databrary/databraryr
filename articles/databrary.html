@@ -152,6 +152,7 @@ information about all of the <em>people</em> whose party id’s are
 between 1 and 25. Let’s try it:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span>people_list <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span>  96% |  ETA:  0s</span></span>
 <span><span class="co">#&gt;    id        sortname       prename               orcid</span></span>
 <span><span class="co">#&gt; 1   1           Simon         Dylan 0000-0002-2793-1679</span></span>
 <span><span class="co">#&gt; 2   3         Steiger          Lisa                &lt;NA&gt;</span></span>
@@ -196,7 +197,7 @@ this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span></span>
-<span><span class="co">#&gt; 1 2023-09-26 15:39:46          1716        657          763           1603</span></span>
+<span><span class="co">#&gt; 1 2023-09-26 15:53:39          1716        657          763           1603</span></span>
 <span><span class="co">#&gt;   datasets_shared n_files    hours       TB</span></span>
 <span><span class="co">#&gt; 1             945  235124 112516.5 50.78685</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
@@ -290,7 +291,7 @@ directory created by the file system using the function
 returns a character string with the full file name.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/download_asset.html">download_asset</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/RtmpI7NFso/9807-1-2023-09-26-1539-47.mp4"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp9PrJ4h/9807-1-2023-09-26-1553-41.mp4"</span></span></code></pre></div>
 <p>Depending on your operating system, the following commands may open
 the file so that you can play it.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
