@@ -6,16 +6,12 @@
 #' @examples
 #' logout_db()
 #' @export
-logout_db <- function(logout.url = "/api/user/logout", vb = TRUE){
+logout_db <- function(vb = TRUE){
   
   # Check parameters
-  assertthat::assert_that(length(logout.url) == 1)
-  assertthat::assert_that(is.character(logout.url))
-  
-  assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  url <- paste0("http://nyu.databrary.org", logout.url)
+  url <- "http://nyu.databrary.org/api/user/logout"
   r <- httr::POST(url)
 
   if (httr::status_code(r) == 200) {
