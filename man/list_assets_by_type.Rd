@@ -4,7 +4,7 @@
 \alias{list_assets_by_type}
 \title{List Stored Assets (Files) By Type.}
 \usage{
-list_assets_by_type(vol_id = 1, type = "video", vb = FALSE)
+list_assets_by_type(vol_id = 2, type = "video", vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Volume ID}
@@ -21,5 +21,5 @@ type.
 List Stored Assets (Files) By Type.
 }
 \examples{
-list_assets_by_type() # Lists assets in volume 1.
+list_assets_by_type() # Lists assets in volume 2.
 }

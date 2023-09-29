@@ -4,7 +4,7 @@
 \alias{get_video_stats}
 \title{Report Stats About Videos in a Volume.}
 \usage{
-get_video_stats(this_vol_id = 1, vb = FALSE)
+get_video_stats(this_vol_id = 2, vb = FALSE)
 }
 \arguments{
 \item{this_vol_id}{Target volume number.}
@@ -18,5 +18,5 @@ A data frame with summary statistics about the videos in the volume.
 Report Stats About Videos in a Volume.
 }
 \examples{
-get_video_stats() # Retrieves summary statistics about videos in volume 1.
+get_video_stats() # Retrieves summary statistics about videos in volume 2.
 }

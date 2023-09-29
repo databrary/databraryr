@@ -4,7 +4,7 @@
 \alias{list_assets_in_volume}
 \title{Assets in Databrary Volume.}
 \usage{
-list_assets_in_volume(vol_id = 1, vb = FALSE)
+list_assets_in_volume(vol_id = 2, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
@@ -18,5 +18,5 @@ A data frame with information about all assets in a volume.
 Assets in Databrary Volume.
 }
 \examples{
-list_assets_in_volume() # Assets in volume 1
+list_assets_in_volume() # Assets in volume 2
 }

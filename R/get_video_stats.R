@@ -4,9 +4,9 @@
 #' @param vb A boolean value.
 #' @returns A data frame with summary statistics about the videos in the volume.
 #' @examples
-#' get_video_stats() # Retrieves summary statistics about videos in volume 1.
+#' get_video_stats() # Retrieves summary statistics about videos in volume 2.
 #' @export
-get_video_stats <- function(this_vol_id = 1, vb = FALSE) {
+get_video_stats <- function(this_vol_id = 2, vb = FALSE) {
 
   # Check parameters
   assertthat::assert_that(length(this_vol_id) == 1)

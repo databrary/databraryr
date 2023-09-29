@@ -1,5 +1,8 @@
 #' Download Asset From Databrary.
 #'
+#'#' @description
+#' `r lifecycle::badge("superseded")`
+#' `download_asset()` has been superseded in favor of `download_video()`.
 #' @param asset_id Asset id for target file.
 #' @param session_id Slot/session number where target file is stored.
 #' @param file_name Name for downloaded file.

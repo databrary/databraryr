@@ -4,9 +4,9 @@
 #' @param vb A boolean value.
 #' @returns A data frame with information about all assets in a volume.
 #' @examples
-#' list_assets_in_volume() # Assets in volume 1
+#' list_assets_in_volume() # Assets in volume 2
 #' @export
-list_assets_in_volume <- function(vol_id = 1, vb = FALSE) {
+list_assets_in_volume <- function(vol_id = 2, vb = FALSE) {
   
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)

@@ -6,9 +6,9 @@
 #' @returns A data frame with information about assets in a volume, sorted by
 #' type.
 #' @examples
-#' list_assets_by_type() # Lists assets in volume 1.
+#' list_assets_by_type() # Lists assets in volume 2.
 #' @export
-list_assets_by_type <- function(vol_id = 1,
+list_assets_by_type <- function(vol_id = 2,
                                 type = "video",
                                 vb = FALSE) {
 
