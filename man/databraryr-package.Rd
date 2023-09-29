@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Databrary.org is a restricted access repository for research data. This package provides commands to interact with the data stored on Databrary. There are some public assets on Databrary. But for most interesting use cases, a user will need to register \url{https://databrary.org/user/register} and receive authorization from an institution. Once authorized, users can download data and metadata from Databrary and reuse it subject to the terms of the Databrary Access Agreement and the site Terms and Conditions of Use.
+Databrary.org is a restricted access repository for research data. This package provides commands to interact with the data stored on Databrary. There are some public assets on Databrary. But for most interesting use cases, a user will need to register \url{https://nyu.databrary.org/user/register} and receive authorization from an institution. Once authorized, users can download data and metadata from Databrary and reuse it subject to the terms of the Databrary Access Agreement and the site Terms and Conditions of Use.
 }
 \seealso{
 Useful links:
