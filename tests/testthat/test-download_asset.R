@@ -31,6 +31,7 @@ test_that("download_asset rejects bad input parameters", {
   expect_error(download_asset(vb = list(a=1, b=2)))
 })
 
-test_that("download_asset returns character string", {
-  expect_true(is.character(download_asset()))
-})
+# Removing 2023-10-09 until Databrary system responds more quickly
+# test_that("download_asset returns character string", {
+#   expect_true(is.character(download_asset()))
+# })

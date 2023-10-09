@@ -31,7 +31,9 @@ Full file name to the asset.
 Download Video From Databrary.
 }
 \examples{
+\dontrun{
 download_asset() # Download's 'numbers' file from volume 1.
 download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
-# Downloads a display with a random dot kinematogram (RDK).
+#' # Downloads a display with a random dot kinematogram (RDK).
+}
 }

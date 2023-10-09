@@ -159,7 +159,7 @@ than increment.
 The file is stored in a temporary directory created by the file system using the function `tempdir()`.
 The `download_asset()` function returns a character string with the full file name.
 
-```{r}
+```{r, eval=FALSE}
 download_video()
 ```
 
