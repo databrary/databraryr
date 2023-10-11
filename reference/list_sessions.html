@@ -79,60 +79,7 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">list_sessions</span><span class="op">(</span><span class="op">)</span> <span class="co"># Lists sessions in volume 1.</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    session_id  top                                                      name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        6256   NA                                    Advisory Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        6257   NA                                    Advisory Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        6540   NA                                    Advisory Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        7821   NA                               SRCD Preconference Workshop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        8460   NA                                    Advisory Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        9224   NA                    Regional Workshop at NYU (Slides only)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        9578   NA                                CDS Preconference Workshop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        9807 TRUE                                       Top-level materials</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      10068   NA                         Regional Workshop in Philadelphia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      10991   NA                           Regional Workshop at Penn State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      11362   NA Regional Workshop at University of Maryland, College Park</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13      11660   NA                             ICIS16 Preconference Workshop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      11886   NA                                    Advisory Board Meeting</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      14297   NA              Regional Workshop at University of Minnesota</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16      14550   NA                              Regional Workshop at Harvard</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      14551   NA                               Regional Workshop in Boston</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18      15663   NA                                    Bethesda PLAY Workshop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      16104   NA                   Regional Workshop at University of Iowa</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20      16891   NA                                    Pre-Conference at SRCD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21      16894   NA Pre-Conference at SRCD "The Science of Play and Learning"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22      17187   NA                                     AERA 2017 San Antonio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      17417   NA      Regional Workshop at Emory University in Atlanta, GA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24      17886   NA                               Advisory Board Meeting 2017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25      21077   NA                                         CDS 2017 Portland</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26      25952   NA                               Advisory Board Meeting 2018</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          date release vol_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2013-10-28       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2014-04-07       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  2014-10-17       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2015-03-18       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2015-05-11       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  2015-09-18       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  2015-10-08       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        &lt;NA&gt;      NA      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2015-11-20       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 2016-03-25       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 2016-04-15       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 2016-05-25       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 2016-06-13       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 2016-10-14       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 2016-10-21       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 2016-10-21       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 2016-12-16       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 2017-02-03       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 2017-04-05       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 2017-04-05       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 2017-04-30       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 2017-05-15       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 2017-06-09       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 2017-10-13       3      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 2018-03-26       3      1</span>
-</code></pre></div>
+    
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
