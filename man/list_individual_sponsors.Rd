@@ -18,7 +18,7 @@ list_individual_sponsors(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with information about a party.
+A data frame with information about a party.
 }
 \description{
 A party (person or institution) may have a sponsor that is another person
@@ -26,5 +26,7 @@ or an institution. This function lists the \emph{person(s)} who sponsor
 a party.
 }
 \examples{
+\dontrun{
 list_individual_sponsors() # Default is Kasey Soska (party 406)
+#' }
 }

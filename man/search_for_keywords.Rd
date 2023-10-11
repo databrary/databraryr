@@ -18,5 +18,8 @@ A list with the volumes that contain the keyword.
 Search For Keywords in Databrary Volumes.
 }
 \examples{
-search_for_keywords()
+\dontrun{
+search_for_keywords() # searches for volumes with "locomotion" as a keyword.
+search_for_keywords("adult") # searches for volumes with "adult" as a keyword.
+#' }
 }

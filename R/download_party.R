@@ -9,7 +9,9 @@
 #' @param vb A Boolean value if TRUE returns verbose output.
 #' @returns A data frame with information about the party.
 #' @examples
+#' \dontrun{
 #' download_party()
+#' #' }
 #' @export
 download_party <- function(party_id = 6,
                            convert_JSON = TRUE,

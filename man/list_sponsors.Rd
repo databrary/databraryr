@@ -18,5 +18,7 @@ A tibble (data.frame) with information about a party's sponsors.
 List Sponsors For A Party
 }
 \examples{
+\dontrun{
 list_sponsors() # Default is Rick Gilmore (party 6)
+}
 }

@@ -6,7 +6,9 @@
 #' @returns A data frame with information about a party's affiliates (sponsored
 #' investigators).
 #' @examples
+#' \dontrun{
 #' list_affiliates() # Lists Rick Gilmore's affiliates
+#' #' }
 #' @export
 list_affiliates <- function(party_id = 6, report_target_party = FALSE,
                             vb = FALSE) {

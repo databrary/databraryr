@@ -34,6 +34,7 @@ Log In To Databrary.org.
 }
 \examples{
 \dontrun{
-login_db()
+login_db() # Queries user for email and password interactively.
+login_db(email = <you@provider.com>, store = TRUE) # Retrieve stored credentials.
 }
 }

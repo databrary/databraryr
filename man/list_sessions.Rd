@@ -18,5 +18,7 @@ Information about sessions in a volume.
 Download Information About A Volume's Sessions.
 }
 \examples{
+\dontrun{
 list_sessions() # Lists sessions in volume 1.
+#' }
 }

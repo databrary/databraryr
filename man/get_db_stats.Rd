@@ -12,14 +12,17 @@ get_db_stats(type = "stats", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A data frame with the requested data.
 }
 \description{
-Get Stats About Databrary.
+\code{get_db_stats} returns basic summary information about
+the institutions, people, and data hosted on 'Databrary.org'.
 }
 \examples{
+\dontrun{
 get_db_stats()
 get_db_stats("stats")
 get_db_stats("people") # Information about the newest authorized investigators.
 get_db_stats("places") # Information about the newest institutions.
+#' }
 }

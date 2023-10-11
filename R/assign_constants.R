@@ -3,7 +3,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the constants.
 #' @examples
+#' \dontrun{
 #' assign_constants()
+#' }
 #' @export
 assign_constants <- function(vb = FALSE) {
   # Check parameter

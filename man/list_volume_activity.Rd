@@ -18,3 +18,8 @@ A list with the activity history on a volume.
 If a user has access to a volume, this command lists the modification
 history of the volume.
 }
+\examples{
+\dontrun{
+list_volume_activity() # Lists activity on Volume 1.
+}
+}

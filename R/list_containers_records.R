@@ -4,7 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A list with containers and records from the specified volume.
 #' @examples
+#' \dontrun{
 #' list_containers_records() # Containers and records from volume 1.
+#' #' }
 #' @export
 list_containers_records <- function(vol_id = 1,
                                     vb = FALSE) {

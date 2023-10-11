@@ -4,7 +4,7 @@
 \alias{download_party_avatar}
 \title{Returns the avatar (image) for a given person.}
 \usage{
-download_party_avatar(party_id = 6, show_person_info = TRUE, vb = FALSE)
+download_party_avatar(party_id = 6, show_person_info = FALSE, vb = FALSE)
 }
 \arguments{
 \item{party_id}{Party number to retrieve information about. Default is 6
@@ -22,5 +22,7 @@ An image file.
 Returns the avatar (image) for a given person.
 }
 \examples{
+\dontrun{
 download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
+#' }
 }

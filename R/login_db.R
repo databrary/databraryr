@@ -9,7 +9,8 @@
 #' @returns Logical value indicating whether log in is successful or not.
 #' @examples
 #' \dontrun{
-#' login_db()
+#' login_db() # Queries user for email and password interactively.
+#' login_db(email = <you@provider.com>, store = TRUE) # Retrieve stored credentials.
 #' }
 #' @export
 login_db <- function(email = NULL,

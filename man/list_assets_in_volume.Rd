@@ -18,5 +18,7 @@ A data frame with information about all assets in a volume.
 Assets in Databrary Volume.
 }
 \examples{
+\dontrun{
 list_assets_in_volume() # Assets in volume 2
+#' }
 }

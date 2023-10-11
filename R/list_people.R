@@ -5,7 +5,9 @@
 #' @returns A data frame with information about the people in the specified
 #'   range of party ID's.
 #' @examples
+#' \dontrun{
 #' list_people() # Lists people with party IDs 5:7, Databrary's founders
+#' #' }
 #' @export
 list_people <- function(people_list = 5:7, vb = FALSE) {
 

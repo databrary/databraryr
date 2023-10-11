@@ -1,4 +1,8 @@
 #' Download Session Spreadsheet
+#' 
+#' @description Databrary generates a CSV-formated spreadsheet that summarizes 
+#' information about individual sessions. This command downloads that CSV file
+#' as a temporary file or with a name specified by the user.
 #'
 #' @param vol_id Target volume number.
 #' @param file_name Name for the output file. Default is 'test.csv'.
@@ -7,8 +11,10 @@
 #' @param vb A Boolean value. Default is FALSE.
 #' @returns Name of downloaded file or a data frame if `as_df` is TRUE.
 #' @examples
+#' \dontrun{
 #' download_session_csv() # Downloads "session" CSV for volume 1
 #' str(download_session_csv(as_df = TRUE))
+#' #' }
 #' @export
 download_session_csv <- function(vol_id = 1,
                                  file_name = "test.csv",

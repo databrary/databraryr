@@ -4,7 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns An array of tags that match the tag_string.
 #' @examples
-#' search_for_tags()
+#' \dontrun{
+#' search_for_tags() # Searches for volumes that have the tag "ICIS"
+#' #' }
 #' @export
 search_for_tags <- function(search_string="ICIS", vb = FALSE) {
 

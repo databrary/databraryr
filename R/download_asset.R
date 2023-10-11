@@ -1,6 +1,6 @@
 #' Download Asset From Databrary.
 #'
-#'#' @description
+#' @description
 #' `r lifecycle::badge("superseded")`
 #' `download_asset()` has been superseded in favor of `download_video()`.
 #' @param asset_id Asset id for target file.
@@ -10,7 +10,7 @@
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns Full file name to the asset.
+#' @returns File name of the asset.
 #' @examples
 #' \dontrun{
 #' download_asset() # Download's 'numbers' file from volume 1.

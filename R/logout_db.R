@@ -3,7 +3,9 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns Status code if successful.
 #' @examples
+#' \dontrun{
 #' logout_db()
+#' }
 #' @export
 logout_db <- function(vb = TRUE){
   

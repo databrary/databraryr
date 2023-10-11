@@ -1,14 +1,19 @@
-#' Check SSL certificates for nyu.databary.org.
+#' Check SSL Certificates For nyu.databary.org.
+#' 
+#' `check_ssl_certs` checks the SSL certificates for nyu.databrary.org
+#' and returns a data frame with the relevant information.
 #' 
 #' @param host Target URL. Defaults to 'nyu.databrary.org'.
+#' @returns A data frame with information about the SSL certificates.
 #' @examples
+#' \dontrun{
 #' check_ssl_certs()
+#' }
 #' @export
 check_ssl_certs <- function(host = "nyu.databrary.org") {
   # Check parameter
   assertthat::assert_that(is.character(host))
 
-  message(paste0('Checking SSL certificates for host: ', host))
   x <- openssl::download_ssl_cert(host)
   validity_dates <- lapply(x, `[[`, "validity")
   issuer <- lapply(x, `[[`, "issuer")

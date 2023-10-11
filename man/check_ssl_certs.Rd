@@ -2,16 +2,22 @@
 % Please edit documentation in R/check_ssl_certs.R
 \name{check_ssl_certs}
 \alias{check_ssl_certs}
-\title{Check SSL certificates for nyu.databary.org.}
+\title{Check SSL Certificates For nyu.databary.org.}
 \usage{
 check_ssl_certs(host = "nyu.databrary.org")
 }
 \arguments{
 \item{host}{Target URL. Defaults to 'nyu.databrary.org'.}
 }
+\value{
+A data frame with information about the SSL certificates.
+}
 \description{
-Check SSL certificates for nyu.databary.org.
+\code{check_ssl_certs} checks the SSL certificates for nyu.databrary.org
+and returns a data frame with the relevant information.
 }
 \examples{
+\dontrun{
 check_ssl_certs()
+}
 }

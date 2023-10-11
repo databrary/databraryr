@@ -5,7 +5,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a volume.
 #' @examples
+#' \dontrun{
 #' list_volume() # Default is volume 1
+#' }
 #' @export
 list_volume <- function(vol_id = 1, search_str = "",
                       vb = FALSE) {

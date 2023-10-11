@@ -16,5 +16,7 @@ Status code if successful.
 Log Out of Databrary.org.
 }
 \examples{
+\dontrun{
 logout_db()
+}
 }

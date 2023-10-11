@@ -235,4 +235,3 @@ is_institution <- function(party_id=8, vb = FALSE) {
 is_person <- function(party_id = 7, vb = FALSE){
   return(!is_institution(party_id, vb = vb))
 }
-

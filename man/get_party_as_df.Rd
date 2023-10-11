@@ -20,6 +20,8 @@ A data frame with information about the selected party.
 Retrieve Party (Person/Institution) Info as Data Frame.
 }
 \examples{
+\dontrun{
 get_party_as_df() # Info about Rick Gilmore.
 get_party_as_df(party_id = 8) # Info about NYU.
+#' }
 }

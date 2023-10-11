@@ -4,7 +4,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A tibble (data.frame) with information about a party's sponsors.
 #' @examples
+#' \dontrun{
 #' list_sponsors() # Default is Rick Gilmore (party 6)
+#' }
 #' @export
 list_sponsors <- function(party_id = 6, vb = FALSE) {
   

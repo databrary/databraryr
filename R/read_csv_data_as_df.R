@@ -8,7 +8,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the CSV data.
 #' @examples
-#' read_csv_data_as_df() # Loads CSV depicting Databrary growth from volume 1
+#' \dontrun{
+#' read_csv_data_as_df() # Downloads a CSV depicting Databrary growth from volume 1
+#' }
 #' @export
 read_csv_data_as_df <-
   function(session_id = 9807,

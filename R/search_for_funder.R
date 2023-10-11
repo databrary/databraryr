@@ -4,7 +4,10 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about the funder.
 #' @examples
-#' search_for_funder()
+#' \dontrun{
+#' search_for_funder() # Searches for volumes that mention the U.S. National 
+#' Science Foundation as a funder
+#' }
 #' @export
 search_for_funder <-
   function(search_string = "national+science+foundation",

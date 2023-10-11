@@ -19,5 +19,7 @@ range of party ID's.
 List Info About People.
 }
 \examples{
+\dontrun{
 list_people() # Lists people with party IDs 5:7, Databrary's founders
+#' }
 }

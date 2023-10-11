@@ -18,5 +18,7 @@ A data frame with summary statistics about the videos in the volume.
 Report Stats About Videos in a Volume.
 }
 \examples{
+\dontrun{
 get_video_stats() # Retrieves summary statistics about videos in volume 2.
+#' }
 }

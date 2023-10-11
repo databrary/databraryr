@@ -18,5 +18,7 @@ A data frame with information about a selected session.
 Assets In Databrary Session.
 }
 \examples{
+\dontrun{
 list_assets_in_session() # Assets in session 9807 (from Volume 1)
+#' }
 }

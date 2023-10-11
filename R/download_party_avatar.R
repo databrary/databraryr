@@ -7,10 +7,12 @@
 #' @param vb A Boolean value if TRUE returns verbose output. Default is TRUE.
 #' @returns An image file.
 #' @examples
+#' \dontrun{
 #' download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
+#' #' }
 #' @export
 download_party_avatar <- function(party_id = 6,
-                                  show_person_info = TRUE,
+                                  show_person_info = FALSE,
                                   vb = FALSE) {
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)

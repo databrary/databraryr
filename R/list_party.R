@@ -5,7 +5,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output. Default is FALSE.
 #' @returns A data frame with information about a party (person or institution).
 #' @examples
+#' \dontrun{
 #' list_party() # Default is New York University (party 8)
+#' #' }
 #' @export
 list_party <- function(party_id = 8,
                        component = 'all',

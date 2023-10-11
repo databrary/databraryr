@@ -6,6 +6,10 @@
 #' @param vol_id Selected volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A list with the activity history on a volume.
+#' @examples
+#' \dontrun{
+#' list_volume_activity() # Lists activity on Volume 1.
+#' }
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
 

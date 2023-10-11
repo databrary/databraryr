@@ -21,11 +21,14 @@ GET_db_contents(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-Output from GET command.
+Output from GET command with the specified parameters.
 }
 \description{
-Queries the Databrary API with an HTML GET command
+\code{GET_db_contents} is a helper function that retrieves
+information from the 'Databrary.org' API in a structured way.
 }
 \examples{
-GET_db_contents()
+\dontrun{
+GET_db_contents() # Returns a list with data from volume 1.
+#' }
 }

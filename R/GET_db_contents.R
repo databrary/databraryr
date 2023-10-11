@@ -1,12 +1,17 @@
 #' Queries the Databrary API with an HTML GET command
+#' 
+#' @description `GET_db_contents` is a helper function that retrieves 
+#' information from the 'Databrary.org' API in a structured way.
 #'
 #' @param base_URL Base URL for API call. Default is https://nyu.databrary.org.
 #' @param URL_components Other components of API URL usually assembled using a paste0() command.
 #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns Output from GET command.
+#' @returns Output from GET command with the specified parameters.
 #' @examples
-#' GET_db_contents()
+#' \dontrun{
+#' GET_db_contents() # Returns a list with data from volume 1.
+#' #' }
 #' @export
 GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
                             URL_components = '/api/volume/1',

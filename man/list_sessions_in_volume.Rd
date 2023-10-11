@@ -19,5 +19,7 @@ Information abou the sessions in a volume.
 \code{list_sessions_in_volume()} has been superseded in list_sessions().
 }
 \examples{
+\dontrun{
 list_sessions_in_volume() # Lists sessions in volume 1.
+#' }
 }
