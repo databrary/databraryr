@@ -7,7 +7,7 @@
 #' @param URL_components Other components of API URL usually assembled using a paste0() command.
 #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns Output from GET command with the specified parameters.
+#' @returns Output from GET command with the specified parameters, usually a string or a data frame.
 #' @examples
 #' \dontrun{
 #' GET_db_contents() # Returns a list with data from volume 1.

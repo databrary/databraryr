@@ -11,10 +11,10 @@
 #' @examples
 #' \dontrun{
 #' list_individual_sponsors() # Default is Kasey Soska (party 406)
-#' #' }
+#' }
 #' @export
 list_individual_sponsors <- function(party_id = 406, 
-                                     report_target_party = TRUE,
+                                     report_target_party = FALSE,
                                      vb = FALSE) {
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)

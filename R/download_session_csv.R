@@ -9,7 +9,7 @@
 #' @param target_dir Directory to save downloaded file. Default is tempdir().
 #' @param as_df A Boolean value. Default is FALSE.
 #' @param vb A Boolean value. Default is FALSE.
-#' @returns Name of downloaded file or a data frame if `as_df` is TRUE.
+#' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
 #' @examples
 #' \dontrun{
 #' download_session_csv() # Downloads "session" CSV for volume 1

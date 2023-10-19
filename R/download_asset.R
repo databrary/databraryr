@@ -10,7 +10,7 @@
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param return_response A Boolean value.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns File name of the asset.
+#' @returns A string that is the full file name of the asset.
 #' @examples
 #' \dontrun{
 #' download_asset() # Download's 'numbers' file from volume 1.

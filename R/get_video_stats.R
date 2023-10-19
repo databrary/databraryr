@@ -6,7 +6,7 @@
 #' @examples
 #' \dontrun{
 #' get_video_stats() # Retrieves summary statistics about videos in volume 2.
-#' #' }
+#' }
 #' @export
 get_video_stats <- function(this_vol_id = 2, vb = FALSE) {
 
