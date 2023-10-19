@@ -10,7 +10,7 @@ HHMMSSmmm_to_ms(HHMMSSmmm = "01:01:01:333")
 \item{HHMMSSmmm}{a string in the format "HH:MM:SS:mmm"}
 }
 \value{
-A numeric value from the input string.
+A numeric value in ms from the input string.
 }
 \description{
 Convert Timestamp String To ms.

@@ -28,7 +28,7 @@ Default is a temporary directory given by a call to \code{tempdir()}.}
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-File name of the asset.
+A string that is the full file name of the asset.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}

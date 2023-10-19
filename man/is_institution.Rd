@@ -9,14 +9,16 @@ is_institution(party_id = 8, vb = FALSE)
 \arguments{
 \item{party_id}{Databrary party ID}
 
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-TRUE or FALSEl.
+TRUE if the party is an institution, FALSE otherwise.
 }
 \description{
 Is This Party An Institution?
 }
 \examples{
+\dontrun{
 is_institution() # Is party 8 (NYU) an institution.
+}
 }

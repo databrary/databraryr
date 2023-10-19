@@ -24,7 +24,7 @@ download_session_csv(
 \item{vb}{A Boolean value. Default is FALSE.}
 }
 \value{
-Name of downloaded file or a data frame if \code{as_df} is TRUE.
+A character string that is the name of the downloaded file or a data frame if \code{as_df} is TRUE.
 }
 \description{
 Databrary generates a CSV-formated spreadsheet that summarizes

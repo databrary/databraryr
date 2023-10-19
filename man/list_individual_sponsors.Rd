@@ -6,7 +6,7 @@
 \usage{
 list_individual_sponsors(
   party_id = 406,
-  report_target_party = TRUE,
+  report_target_party = FALSE,
   vb = FALSE
 )
 }
@@ -28,5 +28,5 @@ a party.
 \examples{
 \dontrun{
 list_individual_sponsors() # Default is Kasey Soska (party 406)
-#' }
+}
 }

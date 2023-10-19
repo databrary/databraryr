@@ -4,14 +4,14 @@ test_that("get_db_stats returns a data.frame by default", {
 })
 
 test_that("get_db_stats returns a data.frame with 'good' values for type parameter", {
-  expect_true(is.data.frame(get_db_stats("people")))
-  expect_true(is.data.frame(get_db_stats("institutions")))
-  expect_true(is.data.frame(get_db_stats("places")))
-  expect_true(is.data.frame(get_db_stats("datasets")))
-  expect_true(is.data.frame(get_db_stats("data")))
-  expect_true(is.data.frame(get_db_stats("volumes")))
-  expect_true(is.data.frame(get_db_stats("stats")))
-  expect_true(is.data.frame(get_db_stats("numbers")))
+  expect_true(is.data.frame(get_db_stats("people")) | is.null(get_db_stats("people")))
+  expect_true(is.data.frame(get_db_stats("institutions")) | is.null(get_db_stats("institutions")))
+  expect_true(is.data.frame(get_db_stats("places")) | is.null(get_db_stats("places")))
+  expect_true(is.data.frame(get_db_stats("datasets")) | is.null(get_db_stats("datasets")))
+  expect_true(is.data.frame(get_db_stats("data")) | is.null(get_db_stats("data")))
+  expect_true(is.data.frame(get_db_stats("volumes")) | is.null(get_db_stats("volumes")))
+  expect_true(is.data.frame(get_db_stats("stats")) | is.null(get_db_stats("stats")))
+  expect_true(is.data.frame(get_db_stats("numbers")) | is.null(get_db_stats("numbers")))
   
 })
 

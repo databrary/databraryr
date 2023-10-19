@@ -2,9 +2,11 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns A tibble (data.frame) with information about any available excerpts.
+#' @returns A data frame with information about any available excerpts.
 #' @examples
+#' \dontrun{
 #' list_volume_excerpts()
+#' }
 #' @export
 list_volume_excerpts <- function(vol_id = 1, vb = FALSE) {
   

@@ -16,7 +16,7 @@ Default is TRUE.}
 \item{vb}{A Boolean value if TRUE returns verbose output. Default is TRUE.}
 }
 \value{
-An image file.
+An image file in PNG format.
 }
 \description{
 Returns the avatar (image) for a given person.

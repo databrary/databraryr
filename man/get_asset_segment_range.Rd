@@ -34,5 +34,7 @@ The time range (in ms) for an asset, if one is indicated.
 Get Time Range For An Asset.
 }
 \examples{
+\dontrun{
 get_asset_segment_range()
+}
 }

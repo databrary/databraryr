@@ -1,7 +1,7 @@
 #' Log Out of Databrary.org.
 #'
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @returns Status code if successful.
+#' @returns TRUE if logging out succeeds, FALSE otherwise.
 #' @examples
 #' \dontrun{
 #' logout_db()

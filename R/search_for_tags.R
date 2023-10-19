@@ -6,7 +6,7 @@
 #' @examples
 #' \dontrun{
 #' search_for_tags() # Searches for volumes that have the tag "ICIS"
-#' #' }
+#' }
 #' @export
 search_for_tags <- function(search_string="ICIS", vb = FALSE) {
 

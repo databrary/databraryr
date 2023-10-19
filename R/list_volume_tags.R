@@ -2,9 +2,11 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A tibble (data.frame) with the requested data.
+#' @return A data frame with the requested data.
 #' @examples
+#' \dontrun{
 #' list_volume_tags()
+#' }
 #' @export
 list_volume_tags <- function(vol_id = 1, vb = FALSE) {
   

@@ -12,11 +12,13 @@ list_volume_funding(vol_id = 1, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with funder information for the volume.
+A data frame with funder information for the volume.
 }
 \description{
 Lists Funders Associated With a Databrary Volume.
 }
 \examples{
+\dontrun{
 list_volume_funding()
+}
 }

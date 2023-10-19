@@ -20,5 +20,5 @@ Report Stats About Videos in a Volume.
 \examples{
 \dontrun{
 get_video_stats() # Retrieves summary statistics about videos in volume 2.
-#' }
+}
 }

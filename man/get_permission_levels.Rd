@@ -16,5 +16,7 @@ An array with the permission levels that can be assigned to data.
 Extract Databrary Permission Levels.
 }
 \examples{
+\dontrun{
 get_permission_levels()
+}
 }

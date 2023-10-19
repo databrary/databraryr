@@ -7,7 +7,7 @@
 #' \dontrun{
 #' search_for_keywords() # searches for volumes with "locomotion" as a keyword.
 #' search_for_keywords("adult") # searches for volumes with "adult" as a keyword.
-#' #' }
+#' }
 #' @export
 search_for_keywords <-
   function(search_string = "locomotion", vb = FALSE) {

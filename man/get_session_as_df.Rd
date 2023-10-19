@@ -18,5 +18,7 @@ A data frame with session information from a volume.
 Get Session Info From A Volume As A Data Frame.
 }
 \examples{
+\dontrun{
 get_session_as_df() # Return Session Info from Volume 1.
+#' }
 }

@@ -2,9 +2,11 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns A tibble (data.frame) with funder information for the volume.
+#' @returns A data frame with funder information for the volume.
 #' @examples
+#' \dontrun{
 #' list_volume_funding()
+#' }
 #' @export
 list_volume_funding <- function(vol_id = 1, vb = FALSE) {
   

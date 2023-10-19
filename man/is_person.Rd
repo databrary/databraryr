@@ -12,11 +12,13 @@ is_person(party_id = 7, vb = FALSE)
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-TRUE or FALSE.
+TRUE if the party is a person, FALSE otherwise.
 }
 \description{
 Is This Party A Person?
 }
 \examples{
+\dontrun{
 is_person()
+}
 }

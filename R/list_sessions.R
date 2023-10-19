@@ -6,7 +6,7 @@
 #' @examples
 #' \dontrun{
 #' list_sessions() # Lists sessions in volume 1.
-#' #' }
+#' }
 #' @export
 list_sessions <- function(vol_id = 1, vb = FALSE) {
   

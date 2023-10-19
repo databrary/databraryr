@@ -10,7 +10,9 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns Duration of a file in ms.
 #' @examples
+#' \dontrun{
 #' get_file_duration() # default is the test video from databrary.org/volume/1
+#' }
 #' @export
 get_file_duration <- function(asset_id = 1,
                               types_w_durations = c("-600", "-800"),
@@ -56,7 +58,9 @@ get_file_duration <- function(asset_id = 1,
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns The time range (in ms) for an asset, if one is indicated.
 #' @examples
+#' \dontrun{
 #' get_asset_segment_range()
+#' }
 #' @export
 get_asset_segment_range <- function(vol_id = 1,
                                     session_id = 9807,
@@ -135,7 +139,9 @@ get_asset_segment_range <- function(vol_id = 1,
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns An array with the permission levels that can be assigned to data.
 #' @examples
+#' \dontrun{
 #' get_permission_levels()
+#' }
 #' @export
 get_permission_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
@@ -147,7 +153,7 @@ get_permission_levels <- function(vb = FALSE) {
 #' Convert Timestamp String To ms.
 #'
 #' @param HHMMSSmmm a string in the format "HH:MM:SS:mmm"
-#' @returns A numeric value from the input string.
+#' @returns A numeric value in ms from the input string.
 #' @examples
 #' HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 #' @export
@@ -172,7 +178,9 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with Databrary's release levels.
 #' @examples
+#' \dontrun{
 #' get_release_levels()
+#' }
 #' @export
 get_release_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
@@ -186,7 +194,9 @@ get_release_levels <- function(vb = FALSE) {
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the file types permitted on Databrary.
 #' @examples
+#' \dontrun{
 #' get_supported_file_types()
+#' }
 #' @export
 get_supported_file_types <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
@@ -199,10 +209,12 @@ get_supported_file_types <- function(vb = FALSE) {
 #' Is This Party An Institution?
 #'
 #' @param party_id Databrary party ID
-#' @param vb A boolean value. If TRUE provides verbose output.
-#' @returns TRUE or FALSEl.
+#' @param vb A Boolean value. If TRUE provides verbose output.
+#' @returns TRUE if the party is an institution, FALSE otherwise.
 #' @examples
+#' \dontrun{
 #' is_institution() # Is party 8 (NYU) an institution.
+#' }
 #' @export
 is_institution <- function(party_id=8, vb = FALSE) {
   # Error handling
@@ -228,9 +240,11 @@ is_institution <- function(party_id=8, vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
-#' @returns TRUE or FALSE.
+#' @returns TRUE if the party is a person, FALSE otherwise.
 #' @examples
+#' \dontrun{
 #' is_person()
+#' }
 #' @export
 is_person <- function(party_id = 7, vb = FALSE){
   return(!is_institution(party_id, vb = vb))

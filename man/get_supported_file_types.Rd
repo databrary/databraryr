@@ -16,5 +16,7 @@ A data frame with the file types permitted on Databrary.
 Extracts File Types Supported by Databrary.
 }
 \examples{
+\dontrun{
 get_supported_file_types()
+}
 }

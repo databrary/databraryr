@@ -12,7 +12,7 @@ list_sessions_in_volume(vol_id = 1, vb = FALSE)
 \item{vb}{Provide verbose output. Default is FALSE.}
 }
 \value{
-Information abou the sessions in a volume.
+A data frame with information about the sessions in a volume.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}

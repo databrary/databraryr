@@ -2,7 +2,7 @@
 #'
 #' @param party_id Target party ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns A tibble (data.frame) with information about a party's sponsors.
+#' @returns A data frame with information about a party's sponsors.
 #' @examples
 #' \dontrun{
 #' list_sponsors() # Default is Rick Gilmore (party 6)

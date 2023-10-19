@@ -5,7 +5,7 @@
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @returns A data frame with the requested data.
+#' @returns A data frame with the requested data or NULL if there is no new information.
 #' @examples 
 #' \dontrun{
 #' get_db_stats()

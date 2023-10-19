@@ -6,7 +6,7 @@
 #' 
 #' @param vol_id Target volume ID. Defaults to 1.
 #' @param vb Provide verbose output. Default is FALSE.
-#' @returns Information abou the sessions in a volume.
+#' @returns A data frame with information about the sessions in a volume.
 #' @examples
 #' \dontrun{
 #' list_sessions_in_volume() # Lists sessions in volume 1.

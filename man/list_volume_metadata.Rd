@@ -4,19 +4,10 @@
 \alias{list_volume_metadata}
 \title{List Volume Metadata.}
 \usage{
-list_volume_metadata(
-  vol_id = 1,
-  write_header = FALSE,
-  data_frame = TRUE,
-  vb = FALSE
-)
+list_volume_metadata(vol_id = 1, vb = FALSE)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}
-
-\item{write_header}{A Boolean value. If TRUE writes a comma-separated header.}
-
-\item{data_frame}{A Boolean value. If TRUE writes a data frame as output.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
@@ -27,5 +18,7 @@ A data frame with metadata about a volume.
 List Volume Metadata.
 }
 \examples{
+\dontrun{
 list_volume_metadata() # List info about volume 1.
+}
 }

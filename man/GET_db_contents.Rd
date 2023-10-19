@@ -21,7 +21,7 @@ GET_db_contents(
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-Output from GET command with the specified parameters.
+Output from GET command with the specified parameters, usually a string or a data frame.
 }
 \description{
 \code{GET_db_contents} is a helper function that retrieves

@@ -12,11 +12,13 @@ list_volume_tags(vol_id = 1, vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A tibble (data.frame) with the requested data.
+A data frame with the requested data.
 }
 \description{
 Lists Keywords And Tags For A Volume.
 }
 \examples{
+\dontrun{
 list_volume_tags()
+}
 }

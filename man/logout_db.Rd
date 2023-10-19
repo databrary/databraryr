@@ -10,7 +10,7 @@ logout_db(vb = TRUE)
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 }
 \value{
-Status code if successful.
+TRUE if logging out succeeds, FALSE otherwise.
 }
 \description{
 Log Out of Databrary.org.

@@ -20,5 +20,5 @@ Search For Tags on Volumes or Sessions.
 \examples{
 \dontrun{
 search_for_tags() # Searches for volumes that have the tag "ICIS"
-#' }
+}
 }

@@ -12,7 +12,7 @@ get_db_stats(type = "stats", vb = FALSE)
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 }
 \value{
-A data frame with the requested data.
+A data frame with the requested data or NULL if there is no new information.
 }
 \description{
 \code{get_db_stats} returns basic summary information about
