@@ -79,7 +79,104 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">list_containers_records</span><span class="op">(</span><span class="op">)</span> <span class="co"># Containers and records from volume 1.</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Databrary sponsored workshops and events"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $body</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Our mission is to promote sharing and reuse of video data. Most developmental scientists rely on video recordings to capture the complexity and richness of behavior. However, researchers rarely share video data, and this has impeded scientific progress. Enabling reuse of video data is essential to increasing openness, maximizing the efficiency of limited resources, and accelerating the pace of discovery in the developmental and learning sciences.\n\nWe aim to provide tools that encourage good data management, facilitate open data sharing, enable discovery, and foster data reuse and integration. We are working to build functionality that allows researchers to organize, store, code, and share identifiable video data and other contextual information about the videos with other researchers through a secure web-based library.\n\nThe Databrary project is dedicated to transforming the culture of developmental science by building a community of researchers committed to open video data sharing, training a new generation of developmental scientists and empowering them with an unprecedented set of tools for discovery, and raising the profile of behavioral science by bolstering interest in and support for scientific research among the general public."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $doi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "10.17910/B7159Q"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $creation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2013-01-11T10:26:40Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               name   id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    Adolph, Karen    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 Gilmore, Rick O.    6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            Staff  308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 Admin, Databrary 3341</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $publicsharefull</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $publicaccess</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "full"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $containers</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id  top                                                      name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 TRUE                                                      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   6256   NA                                    Advisory Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   6257   NA                                    Advisory Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   6540   NA                                    Advisory Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   7821   NA                               SRCD Preconference Workshop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   8460   NA                                    Advisory Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   9224   NA                    Regional Workshop at NYU (Slides only)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   9578   NA                                CDS Preconference Workshop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   9807 TRUE                                       Top-level materials</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 10068   NA                         Regional Workshop in Philadelphia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 10991   NA                           Regional Workshop at Penn State</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 11362   NA Regional Workshop at University of Maryland, College Park</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 11660   NA                             ICIS16 Preconference Workshop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 11886   NA                                    Advisory Board Meeting</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 14297   NA              Regional Workshop at University of Minnesota</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 14550   NA                              Regional Workshop at Harvard</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 14551   NA                               Regional Workshop in Boston</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 15663   NA                                    Bethesda PLAY Workshop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 16104   NA                   Regional Workshop at University of Iowa</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 16891   NA                                    Pre-Conference at SRCD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 16894   NA Pre-Conference at SRCD "The Science of Play and Learning"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 17187   NA                                     AERA 2017 San Antonio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 17417   NA      Regional Workshop at Emory University in Atlanta, GA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 17886   NA                               Advisory Board Meeting 2017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 21077   NA                                         CDS 2017 Portland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 25952   NA                               Advisory Board Meeting 2018</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          date release</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        &lt;NA&gt;      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2013-10-28       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2014-04-07       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  2014-10-17       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2015-03-18       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2015-05-11       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  2015-09-18       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  2015-10-08       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9        &lt;NA&gt;      NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2015-11-20       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 2016-03-25       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 2016-04-15       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 2016-05-25       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 2016-06-13       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 2016-10-14       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16 2016-10-21       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17 2016-10-21       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18 2016-12-16       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 2017-02-03       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 2017-04-05       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 2017-04-05       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 2017-04-30       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23 2017-05-15       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24 2017-06-09       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25 2017-10-13       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 2018-03-26       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $records</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     id category                                        29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5481        6 Datavyu &amp; Best Practices for Coding Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 5480        6              Managing Data with Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 5479        6   Policies for Sharing Identifiable Video</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 5478        6                 Introduction to Databrary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co">#' # }</span></span></span>
+</code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

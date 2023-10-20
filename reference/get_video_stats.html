@@ -79,9 +79,15 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">get_video_stats</span><span class="op">(</span><span class="op">)</span> <span class="co"># Retrieves summary statistics about videos in volume 2.</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>One or more parsing issues, call `problems()` on your data frame for details,</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> e.g.:</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   dat &lt;- vroom(...)</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   problems(dat)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   vol_id n_vids n_sess tot_vid_hrs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      2     14      4    1.327995</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
