@@ -18,8 +18,7 @@ A data frame with information about the funder.
 Report Information About A Funder.
 }
 \examples{
-\dontrun{
-search_for_funder() # Searches for volumes that mention the U.S. National 
-Science Foundation as a funder
+\donttest{
+search_for_funder("national+science+foundation")
 }
 }

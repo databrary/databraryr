@@ -18,7 +18,7 @@ TRUE if the party is an institution, FALSE otherwise.
 Is This Party An Institution?
 }
 \examples{
-\dontrun{
+\donttest{
 is_institution() # Is party 8 (NYU) an institution.
 }
 }

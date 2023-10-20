@@ -7,8 +7,11 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A list with the activity history on a volume.
 #' @examples
+#' \donttest{
 #' \dontrun{
-#' list_volume_activity() # Lists activity on Volume 1.
+#' list_volume_activity() # Lists activity on Volume 1. This will only be shown
+#' to users who have write access to a Volume.
+#' }
 #' }
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
@@ -28,7 +31,7 @@ list_volume_activity <- function(vol_id = 1, vb = FALSE) {
                                                '/activity'),
                        vb = vb)
   if (is.null(r)) {
-    message("Activity history restricted to volume owners.")
+    if (vb) message("Activity history restricted to volume owners.")
   }
   r
 }

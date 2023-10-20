@@ -33,8 +33,12 @@ Logical value indicating whether log in is successful or not.
 Log In To Databrary.org.
 }
 \examples{
-\dontrun{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 login_db() # Queries user for email and password interactively.
+\dontshow{\}) # examplesIf}
+\donttest{
+\dontrun{
 login_db(email = <you@provider.com>, store = TRUE) # Retrieve stored credentials.
+}
 }
 }

@@ -4,7 +4,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @return A data frame with the requested data.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_volume_tags()
 #' }
 #' @export

@@ -4,7 +4,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about any available excerpts.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_volume_excerpts()
 #' }
 #' @export

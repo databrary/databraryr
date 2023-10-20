@@ -17,7 +17,7 @@ A data frame with information about the SSL certificates.
 and returns a data frame with the relevant information.
 }
 \examples{
-\dontrun{
+\donttest{
 check_ssl_certs()
 }
 }

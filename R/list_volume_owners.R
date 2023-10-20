@@ -4,7 +4,9 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a volume's owner(s).
 #' @examples
-#' list_volume_owners()
+#' \donttest{
+#' list_volume_owners() # Lists information about the owners of volume 1.
+#' }
 #' @export
 list_volume_owners <- function(vol_id = 1,
                                vb = FALSE) {

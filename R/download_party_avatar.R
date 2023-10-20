@@ -7,7 +7,7 @@
 #' @param vb A Boolean value if TRUE returns verbose output. Default is TRUE.
 #' @returns An image file in PNG format.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
 #' #' }
 #' @export

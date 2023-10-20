@@ -6,7 +6,7 @@
 #' @returns A data frame with information about a party's affiliates (sponsored
 #' investigators).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_affiliates() # Lists Rick Gilmore's affiliates
 #' #' }
 #' @export

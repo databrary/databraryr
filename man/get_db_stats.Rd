@@ -19,10 +19,10 @@ A data frame with the requested data or NULL if there is no new information.
 the institutions, people, and data hosted on 'Databrary.org'.
 }
 \examples{
-\dontrun{
+\donttest{
 get_db_stats()
 get_db_stats("stats")
 get_db_stats("people") # Information about the newest authorized investigators.
 get_db_stats("places") # Information about the newest institutions.
-#' }
+}
 }

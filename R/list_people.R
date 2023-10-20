@@ -5,7 +5,7 @@
 #' @returns A data frame with information about the people in the specified
 #'   range of party ID's.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_people() # Lists people with party IDs 5:7, Databrary's founders
 #' #' }
 #' @export

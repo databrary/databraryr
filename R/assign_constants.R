@@ -3,7 +3,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the constants.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' assign_constants()
 #' }
 #' @export

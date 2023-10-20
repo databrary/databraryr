@@ -32,7 +32,7 @@ information about individual sessions. This command downloads that CSV file
 as a temporary file or with a name specified by the user.
 }
 \examples{
-\dontrun{
+\donttest{
 download_session_csv() # Downloads "session" CSV for volume 1
 str(download_session_csv(as_df = TRUE))
 #' }

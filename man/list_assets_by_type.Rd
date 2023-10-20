@@ -21,7 +21,7 @@ type.
 List Stored Assets (Files) By Type.
 }
 \examples{
-\dontrun{
+\donttest{
 list_assets_by_type() # Lists assets in volume 2.
 #' }
 }

@@ -28,7 +28,7 @@ Output from GET command with the specified parameters, usually a string or a dat
 information from the 'Databrary.org' API in a structured way.
 }
 \examples{
-\dontrun{
+\donttest{
 GET_db_contents() # Returns a list with data from volume 1.
 #' }
 }

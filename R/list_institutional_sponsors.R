@@ -9,9 +9,9 @@
 #' @param report_target_party A Boolean value. Print info about the target party.
 #' @returns A data frame with information about a party's *institutional* sponsor(s).
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
-#' #' }
+#' }
 #' @export
 list_institutional_sponsors <-
   function(party_id = 6,

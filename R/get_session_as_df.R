@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @returns A data frame with session information from a volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_session_as_df() # Return Session Info from Volume 1.
 #' #' }
 #' @export

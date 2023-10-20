@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @returns A data frame with information about all assets in a volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_assets_in_volume() # Assets in volume 2
 #' #' }
 #' @export

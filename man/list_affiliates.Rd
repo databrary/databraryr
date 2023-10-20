@@ -21,7 +21,7 @@ investigators).
 List Affiliates for A Databrary Volume.
 }
 \examples{
-\dontrun{
+\donttest{
 list_affiliates() # Lists Rick Gilmore's affiliates
 #' }
 }

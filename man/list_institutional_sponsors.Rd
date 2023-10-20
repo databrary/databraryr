@@ -26,7 +26,7 @@ or an institution. This function lists the \emph{institution(s)} that sponsor
 a party.
 }
 \examples{
-\dontrun{
+\donttest{
 list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
-#' }
+}
 }

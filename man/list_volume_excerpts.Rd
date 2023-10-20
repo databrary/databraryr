@@ -18,7 +18,7 @@ A data frame with information about any available excerpts.
 List Image or Video Excerpts On A Databrary Volume.
 }
 \examples{
-\dontrun{
+\donttest{
 list_volume_excerpts()
 }
 }

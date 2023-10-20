@@ -26,7 +26,7 @@ or an institution. This function lists the \emph{person(s)} who sponsor
 a party.
 }
 \examples{
-\dontrun{
+\donttest{
 list_individual_sponsors() # Default is Kasey Soska (party 406)
 }
 }

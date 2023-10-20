@@ -7,10 +7,13 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @returns Logical value indicating whether log in is successful or not.
-#' @examples
-#' \dontrun{
+#' @examplesIf interactive()
 #' login_db() # Queries user for email and password interactively.
+#' @examples
+#' \donttest{
+#' \dontrun{
 #' login_db(email = <you@provider.com>, store = TRUE) # Retrieve stored credentials.
+#' }
 #' }
 #' @export
 login_db <- function(email = NULL,
@@ -50,9 +53,6 @@ login_db <- function(email = NULL,
     assertthat::assert_that(assertthat::is.string(password))
     do_collect_password <- FALSE
   }
-  
-  # SERVICE <- "org.databrary.databraryr"
-  # SERVICE <- "databrary" # Temporary to test existing keyring store with this service name.
   
   # If the user wants to store or use their stored credentials and
   # doesn't provide a password

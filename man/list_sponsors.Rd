@@ -18,7 +18,7 @@ A data frame with information about a party's sponsors.
 List Sponsors For A Party
 }
 \examples{
-\dontrun{
+\donttest{
 list_sponsors() # Default is Rick Gilmore (party 6)
 }
 }

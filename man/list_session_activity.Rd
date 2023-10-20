@@ -19,9 +19,10 @@ If a user has access to a volume and session, this function returns the
 history of modifications to that session.
 }
 \examples{
+\donttest{
 \dontrun{
-list_session_activity(session_id = 6256) # Returns information about the history of
-modifications to session 6256. History information is only shown to
-researchers who have read and write privileges on a volume.
-#' }
+list_session_activity(session_id = 6256) # History of session 6256. Only
+shown to researchers who have write privileges on this session.
+}
+}
 }

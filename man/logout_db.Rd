@@ -16,7 +16,7 @@ TRUE if logging out succeeds, FALSE otherwise.
 Log Out of Databrary.org.
 }
 \examples{
-\dontrun{
+\donttest{
 logout_db()
 }
 }

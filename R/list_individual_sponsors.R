@@ -9,7 +9,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a party.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_individual_sponsors() # Default is Kasey Soska (party 406)
 #' }
 #' @export

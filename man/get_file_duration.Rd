@@ -24,7 +24,7 @@ Duration of a file in ms.
 Get Duration (In ms) Of A File.
 }
 \examples{
-\dontrun{
+\donttest{
 get_file_duration() # default is the test video from databrary.org/volume/1
 }
 }

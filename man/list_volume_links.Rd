@@ -18,7 +18,7 @@ A data frame with the requested data.
 Retrieves URL Links From A Databrary Volume.
 }
 \examples{
-\dontrun{
+\donttest{
 list_volume_links() # Links from volume 1
 }
 }

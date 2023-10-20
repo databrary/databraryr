@@ -20,7 +20,7 @@ A data frame with information about a party (person or institution).
 List Data For A Party (person or institution).
 }
 \examples{
-\dontrun{
+\donttest{
 list_party() # Default is New York University (party 8)
 #' }
 }

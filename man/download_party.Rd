@@ -22,7 +22,7 @@ A data frame with information about the party.
 \code{download_party()} has been superseded in favor of \code{get_party_as_df()}.
 }
 \examples{
-\dontrun{
+\donttest{
 download_party()
 #' }
 }

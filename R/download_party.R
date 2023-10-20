@@ -9,7 +9,7 @@
 #' @param vb A Boolean value if TRUE returns verbose output.
 #' @returns A data frame with information about the party.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' download_party()
 #' #' }
 #' @export

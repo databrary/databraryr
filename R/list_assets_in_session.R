@@ -4,7 +4,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a selected session.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_assets_in_session() # Assets in session 9807 (from Volume 1)
 #' #' }
 #' @export

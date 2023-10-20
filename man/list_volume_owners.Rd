@@ -18,5 +18,7 @@ A data frame with information about a volume's owner(s).
 List Owners of a Databrary Volume.
 }
 \examples{
-list_volume_owners()
+\donttest{
+list_volume_owners() # Lists information about the owners of volume 1.
+}
 }

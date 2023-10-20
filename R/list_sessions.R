@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @returns Information about sessions in a volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_sessions() # Lists sessions in volume 1.
 #' }
 #' @export

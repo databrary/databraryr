@@ -3,7 +3,7 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' logout_db()
 #' }
 #' @export

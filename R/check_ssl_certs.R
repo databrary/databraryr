@@ -6,7 +6,7 @@
 #' @param host Target URL. Defaults to 'nyu.databrary.org'.
 #' @returns A data frame with information about the SSL certificates.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' check_ssl_certs()
 #' }
 #' @export

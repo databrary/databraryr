@@ -16,7 +16,7 @@ A data frame with Databrary's release levels.
 Show Databrary Release Levels
 }
 \examples{
-\dontrun{
+\donttest{
 get_release_levels()
 }
 }

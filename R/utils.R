@@ -10,7 +10,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns Duration of a file in ms.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_file_duration() # default is the test video from databrary.org/volume/1
 #' }
 #' @export
@@ -58,7 +58,7 @@ get_file_duration <- function(asset_id = 1,
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns The time range (in ms) for an asset, if one is indicated.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_asset_segment_range()
 #' }
 #' @export
@@ -139,7 +139,7 @@ get_asset_segment_range <- function(vol_id = 1,
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns An array with the permission levels that can be assigned to data.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_permission_levels()
 #' }
 #' @export
@@ -178,7 +178,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with Databrary's release levels.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_release_levels()
 #' }
 #' @export
@@ -194,7 +194,7 @@ get_release_levels <- function(vb = FALSE) {
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the file types permitted on Databrary.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_supported_file_types()
 #' }
 #' @export
@@ -212,7 +212,7 @@ get_supported_file_types <- function(vb = FALSE) {
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns TRUE if the party is an institution, FALSE otherwise.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' is_institution() # Is party 8 (NYU) an institution.
 #' }
 #' @export
@@ -242,7 +242,7 @@ is_institution <- function(party_id=8, vb = FALSE) {
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @returns TRUE if the party is a person, FALSE otherwise.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' is_person()
 #' }
 #' @export

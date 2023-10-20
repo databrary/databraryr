@@ -21,7 +21,7 @@ If a given Databrary session has a CSV file, this function will
 try to download it as a data frame.
 }
 \examples{
-\dontrun{
+\donttest{
 read_csv_data_as_df() # Downloads a CSV depicting Databrary growth from volume 1
 }
 }

@@ -4,7 +4,7 @@
 #' @param vb A boolean value.
 #' @returns A data frame with summary statistics about the videos in the volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' get_video_stats() # Retrieves summary statistics about videos in volume 2.
 #' }
 #' @export

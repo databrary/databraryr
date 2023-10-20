@@ -19,7 +19,10 @@ If a user has access to a volume, this command lists the modification
 history of the volume.
 }
 \examples{
+\donttest{
 \dontrun{
-list_volume_activity() # Lists activity on Volume 1.
+list_volume_activity() # Lists activity on Volume 1. This will only be shown
+to users who have write access to a Volume.
+}
 }
 }

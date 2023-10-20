@@ -18,7 +18,7 @@ TRUE if the party is a person, FALSE otherwise.
 Is This Party A Person?
 }
 \examples{
-\dontrun{
+\donttest{
 is_person()
 }
 }

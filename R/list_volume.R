@@ -5,7 +5,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_volume() # Default is volume 1
 #' }
 #' @export

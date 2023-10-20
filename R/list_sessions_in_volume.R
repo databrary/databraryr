@@ -8,9 +8,9 @@
 #' @param vb Provide verbose output. Default is FALSE.
 #' @returns A data frame with information about the sessions in a volume.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_sessions_in_volume() # Lists sessions in volume 1.
-#' #' }
+#' }
 #' @export
 list_sessions_in_volume <- function(vol_id = 1, vb = FALSE) {
   list_sessions(vol_id = vol_id, vb = vb)

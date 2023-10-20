@@ -7,12 +7,12 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the requested data or NULL if there is no new information.
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' get_db_stats()
 #' get_db_stats("stats")
 #' get_db_stats("people") # Information about the newest authorized investigators.
 #' get_db_stats("places") # Information about the newest institutions.
-#' #' }
+#' }
 #' @export
 get_db_stats <- function(type = "stats", vb = FALSE) {
   

@@ -22,7 +22,7 @@ An image file in PNG format.
 Returns the avatar (image) for a given person.
 }
 \examples{
-\dontrun{
+\donttest{
 download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
 #' }
 }

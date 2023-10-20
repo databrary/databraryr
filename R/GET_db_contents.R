@@ -9,7 +9,7 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns Output from GET command with the specified parameters, usually a string or a data frame.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' GET_db_contents() # Returns a list with data from volume 1.
 #' #' }
 #' @export

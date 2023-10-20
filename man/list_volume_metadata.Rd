@@ -18,7 +18,7 @@ A data frame with metadata about a volume.
 List Volume Metadata.
 }
 \examples{
-\dontrun{
+\donttest{
 list_volume_metadata() # List info about volume 1.
 }
 }

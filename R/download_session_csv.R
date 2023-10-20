@@ -11,7 +11,7 @@
 #' @param vb A Boolean value. Default is FALSE.
 #' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' download_session_csv() # Downloads "session" CSV for volume 1
 #' str(download_session_csv(as_df = TRUE))
 #' #' }

@@ -20,7 +20,7 @@ A data frame with information about a volume.
 List Info for a Databrary Volume.
 }
 \examples{
-\dontrun{
+\donttest{
 list_volume() # Default is volume 1
 }
 }
