@@ -21,8 +21,10 @@ history of modifications to that session.
 \examples{
 \donttest{
 \dontrun{
-list_session_activity(session_id = 6256) # History of session 6256. Only
-shown to researchers who have write privileges on this session.
+# The following will only return output if the user has write privileges
+# on the session.
+
+list_session_activity(session_id = 6256, vb = FALSE) # Activity for session 6256.
 }
 }
 }

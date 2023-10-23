@@ -1,5 +1,5 @@
 #' List Activity In A Databrary Volume
-#' 
+#'
 #' If a user has access to a volume, this command lists the modification
 #' history of the volume.
 #'
@@ -9,13 +9,14 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' list_volume_activity() # Lists activity on Volume 1. This will only be shown
-#' to users who have write access to a Volume.
+#' # The following will only return output if the user has write privileges
+#' # on the volume.
+#' 
+#' list_volume_activity(vol_id = 1) # Activity on volume 1.
 #' }
 #' }
 #' @export
 list_volume_activity <- function(vol_id = 1, vb = FALSE) {
-
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -23,15 +24,16 @@ list_volume_activity <- function(vol_id = 1, vb = FALSE) {
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-  if (vb) message('list_volume_activity()...')
-
-  # Make URL, GET(), and handle response ---------------------------
-
-  r <- GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
-                                               '/activity'),
-                       vb = vb)
+  if (vb)
+    message('list_volume_activity()...')
+  
+  r <-
+    GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
+                                            '/activity'),
+                    vb = vb)
   if (is.null(r)) {
-    if (vb) message("Activity history restricted to volume owners.")
+    if (vb)
+      message("Activity history restricted to volume owners.")
   }
   r
 }

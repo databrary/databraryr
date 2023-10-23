@@ -38,7 +38,9 @@ login_db() # Queries user for email and password interactively.
 \dontshow{\}) # examplesIf}
 \donttest{
 \dontrun{
-login_db(email = <you@provider.com>, store = TRUE) # Retrieve stored credentials.
+# The following shows how to use credentials that have been stored previously.
+
+login_db(email = "you@provider.com", store = TRUE)
 }
 }
 }

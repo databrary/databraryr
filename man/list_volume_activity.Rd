@@ -21,8 +21,10 @@ history of the volume.
 \examples{
 \donttest{
 \dontrun{
-list_volume_activity() # Lists activity on Volume 1. This will only be shown
-to users who have write access to a Volume.
+# The following will only return output if the user has write privileges
+# on the volume.
+
+list_volume_activity(vol_id = 1) # Activity on volume 1.
 }
 }
 }
