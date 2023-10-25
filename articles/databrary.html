@@ -197,31 +197,31 @@ this:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                  date investigators affiliates institutions datasets_total</span></span>
-<span><span class="co">#&gt; 1 2023-10-23 17:44:46          1730        679          768           1613</span></span>
+<span><span class="co">#&gt; 1 2023-10-25 12:50:10          1733        684          768           1614</span></span>
 <span><span class="co">#&gt;   datasets_shared n_files    hours       TB</span></span>
-<span><span class="co">#&gt; 1             954  236998 113517.7 51.74739</span></span>
+<span><span class="co">#&gt; 1             955  237067 113553.8 51.82223</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 4</span></span></span>
-<span><span class="co">#&gt;      id sortname prename affiliation             </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">11</span>557 Roth     Guy     Ben-Gurion university   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">11</span>783 Fouhey   David   New York University     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">11</span>824 Gervain  Judit   CNRS                    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">2</span>620 Herrera  Carol   Brigham Young University</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">11</span>844 Reschke  Peter   BYU</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
+<span><span class="co">#&gt;      id sortname      prename   affiliation             </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">11</span>654 Nelson-Coffey Katherine Arizona State University</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">11</span>894 Ginzburg      Jonathan  Université Paris Cité   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">11</span>557 Roth          Guy       Ben-Gurion university   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">11</span>783 Fouhey        David     New York University     </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">11</span>824 Gervain       Judit     CNRS                    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">2</span>620 Herrera       Carol     Brigham Young University</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"institutions"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; NULL</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
 <span><span class="co">#&gt;      id name                    body  creation owners permission publicsharefull</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>658 test-volume             <span style="color: #949494;">"</span>tes… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>657 PLAYProject_PENNS       <span style="color: #949494;">"</span>Hom… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>655 Learning to Walk over … <span style="color: #949494;">"</span>Thi… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>653 Mitten data sharing fo… <span style="color: #949494;">"</span>Dat… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>652 LR-MEL Year 1           <span style="color: #949494;">"</span>Thi… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>632 Academic Language of P… <span style="color: #949494;">"</span>Thi… 2023-07… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">1</span>651 Parent-Child Conversat… <span style="color: #949494;">"</span>Vid… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>659 MB4 Posture             <span style="color: #949494;">"</span>Con… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>658 test-volume             <span style="color: #949494;">"</span>tes… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>657 PLAYProject_PENNS       <span style="color: #949494;">"</span>Hom… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>655 Learning to Walk over … <span style="color: #949494;">"</span>Thi… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>653 Mitten data sharing fo… <span style="color: #949494;">"</span>Dat… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>652 LR-MEL Year 1           <span style="color: #949494;">"</span>Thi… 2023-10… <span style="color: #949494;">&lt;df&gt;</span>            1 FALSE</span></span></code></pre></div>
 <p>Depending on when you run this command, there may or may not be new
 items.</p>
 </div>
