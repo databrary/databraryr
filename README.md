@@ -6,7 +6,7 @@ This repository contains code for the `databraryR` R package.
 
 Full package documentation built using `pkgdown` can be found [here](https://databrary.github.io/databraryr/).
 
-## Installation (development release)
+## Installation
 
 ### Official CRAN release
 

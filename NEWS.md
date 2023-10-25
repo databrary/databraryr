@@ -1,5 +1,9 @@
 # databraryr 0.5.0
 
+## Major changes
+
+- First release approved by CRAN: <https://cran.r-project.org/web/packages/databraryr/index.html>
+
 # databraryr 0.4.4
 
 # databraryr 0.4.3
