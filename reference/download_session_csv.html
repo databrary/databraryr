@@ -14,7 +14,7 @@ as a temporary file or with a name specified by the user."><meta property="og:im
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,9 +105,10 @@ as a temporary file or with a name specified by the user.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">download_session_csv</span><span class="op">(</span><span class="op">)</span> <span class="co"># Downloads "session" CSV for volume 1</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmpnzu7o1/test.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 1.4 kB     Downloading: 1.4 kB     Downloading: 1.4 kB     Downloading: 1.4 kB     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmp4OYe9d/test.csv"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">download_session_csv</span><span class="op">(</span>as_df <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	25 obs. of  4 variables:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 1.4 kB     Downloading: 1.4 kB     Downloading: 1.4 kB     Downloading: 1.4 kB     'data.frame':	25 obs. of  4 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ session-id     : chr  "6256" "6257" "6540" "7821" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ session-name   : chr  "Advisory Board Meeting" "Advisory Board Meeting" "Advisory Board Meeting" "SRCD Preconference Workshop" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ session-date   : chr  "2013-10-28" "2014-04-07" "2014-10-17" "2015-03-18" ...</span>
