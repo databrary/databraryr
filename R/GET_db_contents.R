@@ -38,7 +38,8 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
   if (vb) {
     message(paste0("Sending GET to ", URL))
   }
-  g <- httr::GET(URL)
+  g <- httr::GET(URL, httr::progress())
+  
   if (httr::status_code(g) == 200) {
     if (vb) {
       message('Successful HTML GET query.')
@@ -60,11 +61,12 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
           g_content
         }
       } else if (stringr::str_detect(g$headers$`content-type`, "text/csv")) {
-        if (vb) message(paste0("CSV/text file."))
         httr::content(g, as='parsed', col_types = list(.default="c"))
       } else if (stringr::str_detect(g$headers$`content-type`, "text/html")) {
-        if (vb) message(paste0("text/html file."))
         httr::content(g, 'text', encoding = 'UTF-8')
+      # Zip file
+      } else if (stringr::str_detect(g$headers$`content-type`, "application/zip")) {
+        httr::content(g, as='raw')
       }
     } else {
       if (vb) message(paste0('Content type is unknown. Assuming JSON text.'))
