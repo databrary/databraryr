@@ -60,6 +60,7 @@ download_session_zip <- function(vol_id = 31,
   
   bin <- databraryr::GET_db_contents(
     URL_components = paste("/volume", vol_id,
+                           "slot", session_id,
                            "zip/false", sep = "/"),
     vb = vb
   )
