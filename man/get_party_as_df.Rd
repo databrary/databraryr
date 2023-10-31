@@ -7,14 +7,14 @@
 get_party_as_df(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 }
 \arguments{
-\item{party_id}{Party number to retrieve information about.}
+\item{party_id}{Party number(s) to retrieve information about.}
 
 \item{convert_JSON}{A Boolean value if TRUE converts the JSON download.}
 
 \item{vb}{A Boolean value if TRUE returns verbose output.}
 }
 \value{
-A data frame with information about the selected party.
+A data frame with information about the selected party or parties.
 }
 \description{
 Retrieve Party (Person/Institution) Info as Data Frame.
@@ -22,6 +22,9 @@ Retrieve Party (Person/Institution) Info as Data Frame.
 \examples{
 \donttest{
 get_party_as_df() # Info about Rick Gilmore.
+
 get_party_as_df(party_id = 8) # Info about NYU.
+
+get_party_as_df(5:7) # Info about Databrary's founders
 #' }
 }

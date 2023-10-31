@@ -33,7 +33,8 @@ as a temporary file or with a name specified by the user.
 }
 \examples{
 \donttest{
+\dontrun{
 download_session_csv() # Downloads "session" CSV for volume 1
-str(download_session_csv(as_df = TRUE))
-#' }
+}
+}
 }

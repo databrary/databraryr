@@ -29,6 +29,7 @@ get_party_as_df <- function(party_id = 6,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  #------------------------------------------------------------
   # Helper function for handling lists or arrays of party_id
   get_one_party <- function(party_id = NULL,
                             convert_JSON = TRUE,
@@ -42,7 +43,9 @@ get_party_as_df <- function(party_id = 6,
       r
     }
   }
-
+  #------------------------------------------------------------
+  
+  if (vb) message("Retrieving info for parties: ", min(party_id), ":", max(party_id))
   purrr::map(party_id, get_one_party, vb = vb, .progress = TRUE) |>
     purrr::list_rbind()
 }

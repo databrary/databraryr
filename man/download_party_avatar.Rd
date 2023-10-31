@@ -2,27 +2,30 @@
 % Please edit documentation in R/download_party_avatar.R
 \name{download_party_avatar}
 \alias{download_party_avatar}
-\title{Returns the avatar (image) for a given person.}
+\title{Returns the Avatar(s) (images) for Authorized User(s).}
 \usage{
-download_party_avatar(party_id = 6, show_person_info = FALSE, vb = FALSE)
+download_party_avatar(party_id = 6, show_party_info = TRUE, vb = FALSE)
 }
 \arguments{
-\item{party_id}{Party number to retrieve information about. Default is 6
+\item{party_id}{A number or range of numbers. Party number or numbers to retrieve information about. Default is 6
 (Rick Gilmore).}
 
-\item{show_person_info}{Show the person's name and affiliation in the output.
+\item{show_party_info}{A logical value. Show the person's name and affiliation in the output.
 Default is TRUE.}
 
-\item{vb}{A Boolean value if TRUE returns verbose output. Default is TRUE.}
+\item{vb}{A Boolean value. If TRUE returns verbose output. Default is FALSE.}
 }
 \value{
-An image file in PNG format.
+An list with the avatar (image) file and a name_affil string.
 }
 \description{
-Returns the avatar (image) for a given person.
+Returns the Avatar(s) (images) for Authorized User(s).
 }
 \examples{
 \donttest{
 download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
-#' }
+
+# Download avatars from Databrary's founders (without name/affiliations)
+download_party_avatar(5:7, show_party_info = FALSE)
+}
 }
