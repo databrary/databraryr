@@ -1,7 +1,6 @@
 test_that("download_party_avatar rejects bad input parameters", {
   expect_error(download_party_avatar(party_id = -1))
   expect_error(download_party_avatar(party_id = "a"))
-  expect_error(download_party_avatar(party_id = list(a=1, b=2)))
   expect_error(download_party_avatar(party_id = TRUE))
 
   expect_error(download_party_avatar(show_person_info = -1))

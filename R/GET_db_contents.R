@@ -47,10 +47,10 @@ GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',
     # Some routes do not report content-type  though content is well-structured
     if ("content-type" %in% names(g$headers)) {
       if (vb) message(paste0('Content type is ', g$headers$`content-type`), '.')
-      if (g$headers$`content-type` == "image/png") {
+      if (g$headers$`content-type` %in% c("image/png", "image/jpeg")) {
         if (vb)
           message('Returning image content.')
-        magick::image_read(g$content)
+        httr::content(g, as='raw')
       } else if (stringr::str_detect(g$headers$`content-type`, "application/json")) {
         g_content <- httr::content(g, 'text', encoding = 'UTF-8')
         if (convert_JSON) {
