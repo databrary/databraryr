@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>party_id</dt>
-<dd><p>Party number to retrieve information about.</p></dd>
+<dd><p>Party number(s) to retrieve information about.</p></dd>
 
 
 <dt>convert_JSON</dt>
@@ -78,7 +78,7 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A data frame with information about the selected party.</p>
+<p>A data frame with information about the selected party or parties.</p>
     </div>
 
     <div class="section level2">
@@ -90,10 +90,22 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  6  Gilmore Rick O. 0000-0002-7676-3982 The Pennsylvania State University</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            url</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://gilmore-lab.github.io</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">get_party_as_df</span><span class="op">(</span>party_id <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="co"># Info about NYU.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id                  sortname                 url institution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  8 New York University (NYU) http://www.nyu.edu/        TRUE</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">get_party_as_df</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span> <span class="co"># Info about Databrary's founders</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id sortname prename                       affiliation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5   Adolph   Karen               New York University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  6  Gilmore Rick O. The Pennsylvania State University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  7  Millman   David               New York University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                url               orcid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://www.psych.nyu.edu/adolph/                &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     http://gilmore-lab.github.io 0000-0002-7676-3982</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                             &lt;NA&gt;                &lt;NA&gt;</span>
 <span class="r-in"><span><span class="co">#' # }</span></span></span>
 </code></pre></div>
     </div>
