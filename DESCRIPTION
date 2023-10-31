@@ -1,7 +1,7 @@
 Package: databraryr
 Type: Package
 Title: Interact with the 'Databrary.org' API
-Version: 0.5.0.9000
+Version: 0.5.0.9001
 Authors@R: c(person("Rick", "O. Gilmore", email = "rog1@psu.edu",
   role = c("aut", "cre", "cph")), person("Jeffrey", "Spies", email = "cran@jeffspies.com",
   role = c("aut")), person("National Science Foundation OAC-2032713", role="fnd"), 
