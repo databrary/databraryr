@@ -6,9 +6,7 @@ test_that("list_volume_funding returns data.frame or is NULL", {
 
 test_that("list_volume_funding rejects bad input parameters", {
   expect_error(list_volume_funding(vol_id = "a"))
-  expect_error(list_volume_funding(vol_id = c(1,2)))
   expect_error(list_volume_funding(vol_id = TRUE))
-  expect_error(list_volume_funding(vol_id = list(a=1, b=2)))
   expect_error(list_volume_funding(vol_id = -1))
   
   expect_error(list_volume_funding(vb = -1))

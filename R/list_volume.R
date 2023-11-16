@@ -6,7 +6,9 @@
 #' @returns A data frame with information about a volume.
 #' @examples
 #' \donttest{
+#' \dontrun{
 #' list_volume() # Default is volume 1
+#' }
 #' }
 #' @export
 list_volume <- function(vol_id = 1, search_str = "",

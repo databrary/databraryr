@@ -23,5 +23,5 @@ List Stored Assets (Files) By Type.
 \examples{
 \donttest{
 list_assets_by_type() # Lists assets in volume 2.
-#' }
+}
 }

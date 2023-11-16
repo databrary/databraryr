@@ -21,6 +21,8 @@ List Info for a Databrary Volume.
 }
 \examples{
 \donttest{
+\dontrun{
 list_volume() # Default is volume 1
+}
 }
 }

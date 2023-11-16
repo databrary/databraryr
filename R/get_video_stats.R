@@ -1,11 +1,17 @@
 #' Report Stats About Videos in a Volume.
 #'
+#'#' @description
+#' `r lifecycle::badge("superseded")`
+#' `get_video_stats()` has been superseded in favor of `summarize_videos_in_volume()`.
+#' 
 #' @param this_vol_id Target volume number.
 #' @param vb A boolean value.
 #' @returns A data frame with summary statistics about the videos in the volume.
 #' @examples
 #' \donttest{
+#' \dontrun{
 #' get_video_stats() # Retrieves summary statistics about videos in volume 2.
+#' }
 #' }
 #' @export
 get_video_stats <- function(this_vol_id = 2, vb = FALSE) {

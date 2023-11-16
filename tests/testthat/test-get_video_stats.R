@@ -1,7 +1,6 @@
 # get_video_stats ---------------------------------------------------------
 test_that("get_video_stats returns a data.frame", {
   expect_true(is.data.frame(get_video_stats()))
-  #expect_true(dim(get_video_stats()) == c(1,4))
 })
 
 test_that("get_video_stats rejects bad input parameters", {

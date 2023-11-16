@@ -18,7 +18,11 @@ A data frame with funder information for the volume.
 Lists Funders Associated With a Databrary Volume.
 }
 \examples{
+\donttest{
 \dontrun{
-list_volume_funding()
+list_volume_funding() # Funding for volume 1
+
+list_volume_funding(vol_id = c(1:10))
+}
 }
 }

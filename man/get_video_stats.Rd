@@ -15,10 +15,14 @@ get_video_stats(this_vol_id = 2, vb = FALSE)
 A data frame with summary statistics about the videos in the volume.
 }
 \description{
-Report Stats About Videos in a Volume.
+#' @description
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+\code{get_video_stats()} has been superseded in favor of \code{summarize_videos_in_volume()}.
 }
 \examples{
 \donttest{
+\dontrun{
 get_video_stats() # Retrieves summary statistics about videos in volume 2.
+}
 }
 }

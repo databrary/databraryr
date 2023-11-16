@@ -1,6 +1,6 @@
 #' Download Information About a Party on Databrary.
 #' 
-#' #' @description
+#' @description
 #' `r lifecycle::badge("superseded")`
 #' `download_party()` has been superseded in favor of `get_party_as_df()`.
 #'

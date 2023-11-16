@@ -7,10 +7,13 @@
 #' \donttest{
 #' \dontrun{
 #' summarize_videos_in_volume(vol_id = 2) # Summary of volume 2
+#' 
+#' summarize_videos_in_volume(vol_id = c(4, 5)) # Summarize volumes 4 & 5
 #' }
 #' }
 #' @export
 summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
+  
   # Check parameters
   assertthat::is.number(vol_id)
   assertthat::assert_that(sum(vol_id >= 1) == length(vol_id))
@@ -51,6 +54,7 @@ summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
       }
     }
   }
+  
   #------------------------------------------------------------
   if (vb)
     message("Summarizing video data for n=", length(vol_id), " volumes.")

@@ -23,9 +23,14 @@ Returns the Avatar(s) (images) for Authorized User(s).
 }
 \examples{
 \donttest{
+\dontrun{
 download_party_avatar() # Show Rick Gilmore's (party 6) avatar.
 
 # Download avatars from Databrary's founders (without name/affiliations)
 download_party_avatar(5:7, show_party_info = FALSE)
+
+# Download NYU logo
+download_party_avatar(party = 8)
+}
 }
 }

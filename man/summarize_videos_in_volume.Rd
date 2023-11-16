@@ -21,6 +21,8 @@ Summarize Data About Videos in Databrary Volume.
 \donttest{
 \dontrun{
 summarize_videos_in_volume(vol_id = 2) # Summary of volume 2
+
+summarize_videos_in_volume(vol_id = c(4, 5)) # Summarize volumes 4 & 5
 }
 }
 }
