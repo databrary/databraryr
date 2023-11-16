@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,19 +86,28 @@ investigators).</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_affiliates</span><span class="op">(</span><span class="op">)</span> <span class="co"># Lists Rick Gilmore's affiliates</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 16 kB     Downloading: 16 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 49 kB     Downloading: 49 kB     Downloading: 65 kB     Downloading: 65 kB     Downloading: 82 kB     Downloading: 82 kB     Downloading: 90 kB     Downloading: 90 kB     Downloading: 90 kB     Downloading: 90 kB     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id  sortname prename                       affiliation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   437   Seisler  Andrea The Pennsylvania State University</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  4650     Spies Jeffrey            University of Virginia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 11556 Gehringer Madison The Pennsylvania State University</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 11753       Liu  Yinghe The Pennsylvania State University</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 11756    Franco  Oriana                              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 16 kB     Downloading: 16 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 33 kB     Downloading: 49 kB     Downloading: 49 kB     Downloading: 65 kB     Downloading: 65 kB     Downloading: 82 kB     Downloading: 82 kB     Downloading: 91 kB     Downloading: 91 kB     Downloading: 91 kB     Downloading: 91 kB     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   party_id affiliate_id last_name             first_name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        6          437   Seisler                 Andrea</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        6         4650     Spies                Jeffrey</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        6        11556 Gehringer                Madison</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        6        11753       Liu                 Yinghe</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        6        11756    Franco                 Oriana</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        6        12002      Cruz Nicole Beatrice Lainez</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         affiliation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 The Pennsylvania State University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            University of Virginia</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 The Pennsylvania State University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 The Pennsylvania State University</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                              &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     Pennsylvania State University</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                             url</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 https://gilmore-lab.github.io/who-we-are.html</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                                          &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3                                          &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4                                          &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5                                          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                          &lt;NA&gt;</span>
 <span class="r-in"><span><span class="co">#' # }</span></span></span>
 </code></pre></div>
     </div>
