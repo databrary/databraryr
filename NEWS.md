@@ -7,7 +7,7 @@
 - Update `list_volume_funding()` to support multiple volumes.
 - Update `download_party_avatar()` to support multiple party IDs and to return a list with party info and the avatar image.
 - Update `get_party_as_df()` to support multiple party IDs.
-- Update `GET_db_contents()` now handles images.
+- Update `GET_db_contents()`; it now handles images.
 - New `download_session_zip()` and `download_volume_zip()` functions.
 - New `summarize_videos_in_volume()` function to support multiple volume video statistics.
 - Update `list_sessions()` to support multiple volumes.
