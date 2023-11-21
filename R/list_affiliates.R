@@ -65,6 +65,17 @@ list_affiliates <-
           }
           p <- g$children$party
           if (!is.null(p)) {
+            
+            id <- NULL
+            prename <- NULL
+            sortname <- NULL
+            pi_first <- NULL
+            pi_last <- NULL
+            pi_affiliation <- NULL
+            last_name <- NULL
+            first_name <- NULL
+            affiliation <- NULL
+            
             p |>
               dplyr::mutate(
                 pi_id = party_id,

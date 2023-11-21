@@ -36,6 +36,12 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
         df <- r$containers[-1,]
         if (dim(df)[1] >= 1) {
           df$vol_id <- vol_id
+          
+          session_id <- NA
+          top <- NA
+          date <- NA
+          release <- NA
+          
           df <- dplyr::rename(df, session_id = "id") |>
             dplyr::select(vol_id, session_id, top, date, release)
           # Not all sessions have a `name` field
