@@ -29,7 +29,7 @@ Let's get started.
 
 ## Registering
 
-Access to most of the material on Databrary requires prior [registration]https://nyu.databrary.org/user/register) and [authorization](https://databrary.org/about/agreement.html) from an institution.
+Access to most of the material on Databrary requires prior [registration](https://nyu.databrary.org/user/register) and [authorization](https://databrary.org/about/agreement.html) from an institution.
 The authorization process requires formal agreement by an institution.
 But you'll create an account ID (email) and secure password when you register.
 Then, when you log in with your new credentials, you'll select an existing institution (if yours is on the list), a new institution (if yours isn't), or an existing authorized investigator (if you are a student, postdoc, or collaborator) to request authorization from.

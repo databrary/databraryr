@@ -16,7 +16,7 @@
 
 ## Major changes
 
-- First release approved by CRAN: <https://cran.r-project.org/web/packages/databraryr/index.html>
+- First release approved by CRAN: <https://cran.r-project.org/package=databraryr>
 
 # databraryr 0.4.4
 
