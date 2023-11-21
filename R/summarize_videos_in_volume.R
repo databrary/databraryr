@@ -14,7 +14,9 @@
 #' @export
 summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
   
+  #------------------------------------------------------------
   # Check parameters
+
   assertthat::is.number(vol_id)
   assertthat::assert_that(sum(vol_id >= 1) == length(vol_id))
   
@@ -22,6 +24,7 @@ summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
   assertthat::assert_that(is.logical(vb))
   
   #------------------------------------------------------------
+  
   # Helper function for handling lists
   get_single_volume_data <- function(vol_id = NULL,
                                      vb = NULL) {
@@ -56,8 +59,11 @@ summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
   }
   
   #------------------------------------------------------------
+  # Map across volumes
+  
   if (vb)
     message("Summarizing video data for n=", length(vol_id), " volumes.")
+  
   purrr::map(vol_id,
              get_single_volume_data,
              vb = vb,

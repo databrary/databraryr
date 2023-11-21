@@ -7,8 +7,9 @@
 #' logout_db()
 #' }
 #' @export
-logout_db <- function(vb = TRUE){
+logout_db <- function(vb = FALSE){
   
+  #------------------------------------------------------------
   # Check parameters
   assertthat::assert_that(is.logical(vb))
   

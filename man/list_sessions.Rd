@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_sessions.R
 \name{list_sessions}
 \alias{list_sessions}
-\title{Download Information About A Volume's Sessions.}
+\title{Download Information About A Volume or Volume's Sessions.}
 \usage{
 list_sessions(vol_id = 1, vb = FALSE)
 }
@@ -15,7 +15,7 @@ list_sessions(vol_id = 1, vb = FALSE)
 Information about sessions in a volume.
 }
 \description{
-Download Information About A Volume's Sessions.
+Download Information About A Volume or Volume's Sessions.
 }
 \examples{
 \donttest{

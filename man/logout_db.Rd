@@ -4,7 +4,7 @@
 \alias{logout_db}
 \title{Log Out of Databrary.org.}
 \usage{
-logout_db(vb = TRUE)
+logout_db(vb = FALSE)
 }
 \arguments{
 \item{vb}{A boolean value. If TRUE provides verbose output.}

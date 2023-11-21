@@ -9,6 +9,8 @@
 - Update `get_party_as_df()` to support multiple party IDs.
 - Update `GET_db_contents()` now handles images.
 - New `download_session_zip()` and `download_volume_zip()` functions.
+- New `summarize_videos_in_volume()` function to support multiple volume video statistics.
+- Update `list_sessions()` to support multiple volumes.
 
 # databraryr 0.5.0
 

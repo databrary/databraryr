@@ -1,5 +1,5 @@
 #' Download Information About a Party on Databrary.
-#' 
+#'
 #' @description
 #' `r lifecycle::badge("superseded")`
 #' `download_party()` has been superseded in favor of `get_party_as_df()`.
@@ -16,7 +16,7 @@
 download_party <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
-
+  
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))
@@ -28,8 +28,13 @@ download_party <- function(party_id = 6,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  r <- GET_db_contents(URL_components = paste('/api/party', party_id, sep='/'), vb=vb,
-                       convert_JSON = convert_JSON)
+  r <-
+    GET_db_contents(
+      URL_components = paste('/api/party', party_id, sep = '/'),
+      vb = vb,
+      convert_JSON = convert_JSON
+    )
+  
   if (!is.null(r)) {
     as.data.frame(r)
   } else {
