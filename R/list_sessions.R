@@ -21,7 +21,6 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  
   #------------------------------------------------------------
   # Helper function
   
@@ -37,10 +36,11 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
         if (dim(df)[1] >= 1) {
           df$vol_id <- vol_id
           
-          session_id <- NA
-          top <- NA
-          date <- NA
-          release <- NA
+          session_id <- NULL
+          top <- NULL
+          date <- NULL
+          release <- NULL
+          name <- NULL
           
           df <- dplyr::rename(df, session_id = "id") |>
             dplyr::select(vol_id, session_id, top, date, release)

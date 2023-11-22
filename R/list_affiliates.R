@@ -69,9 +69,11 @@ list_affiliates <-
             id <- NULL
             prename <- NULL
             sortname <- NULL
+            pi_id <- NULL
             pi_first <- NULL
             pi_last <- NULL
             pi_affiliation <- NULL
+            affiliate_id <- NULL
             last_name <- NULL
             first_name <- NULL
             affiliation <- NULL
