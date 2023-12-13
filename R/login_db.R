@@ -6,6 +6,7 @@
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
+#' @param rq An `http` request object. Defaults to NULL.
 #' @returns Logical value indicating whether log in is successful or not.
 #' @examplesIf interactive()
 #' login_db() # Queries user for email and password interactively.
@@ -23,11 +24,14 @@ login_db <- function(email = NULL,
                      store = FALSE,
                      overwrite = FALSE,
                      vb = FALSE,
-                     SERVICE = "org.databrary.databraryr") {
+                     SERVICE = "org.databrary.databraryr",
+                     rq = rq) {
   
   # Check parameters
+  assertthat::assert_that(length(store) == 1)
   assertthat::assert_that(is.logical(store))
   
+  assertthat::assert_that(length(overwrite) == 1)
   assertthat::assert_that(is.logical(overwrite))
   
   assertthat::assert_that(length(vb) == 1)
@@ -38,7 +42,8 @@ login_db <- function(email = NULL,
   
   # If the user wants to store or use their stored credentials, check for keyring support
   if (store) {
-    assertthat::assert_that(keyring::has_keyring_support(), msg = "No keyring support; please use store=FALSE")
+    assertthat::assert_that(keyring::has_keyring_support(),
+                            msg = "No keyring support; please use store=FALSE")
   }
   
   # Check or get email
@@ -59,7 +64,10 @@ login_db <- function(email = NULL,
   # If the user wants to store or use their stored credentials and
   # doesn't provide a password
   if (store && is.null(password) && !overwrite) {
-    if (vb) message("Retrieving password for service='", SERVICE, "' from keyring.")
+    if (vb)
+      message("Retrieving password for service='",
+              SERVICE,
+              "' from keyring.")
     kl <- keyring::key_list(service = SERVICE)
     # Make sure our service is in the keyring
     if (exists('kl') && is.data.frame(kl)) {
@@ -69,13 +77,18 @@ login_db <- function(email = NULL,
             silent = TRUE)
       if ("try-error" %in% class(password)) {
         do_collect_password <- TRUE
-        if (vb) message("No password found in keyring for service='", SERVICE, ".")
+        if (vb)
+          message("No password found in keyring for service='", SERVICE, ".")
       } else {
         do_collect_password <- FALSE
-        if (vb) message("Password retrieved from keyring.")
+        if (vb)
+          message("Password retrieved from keyring.")
       }
     } else {
-      if (vb) message("Error retrieving keyring data for service='", SERVICE, "'.")
+      if (vb)
+        message("Error retrieving keyring data for service='",
+                SERVICE,
+                "'.")
     }
   }
   
@@ -87,13 +100,30 @@ login_db <- function(email = NULL,
   
   is_login_successful <- FALSE
   
-  r <-
-    httr::POST(
-      paste0("https://nyu.databrary.org/api/user/login"),
-      body = list(email = email, password = password)
-    )
+  if (is.null(rq))
+    rq <- make_default_request()
   
-  if (httr::status_code(r) == 200) {
+  rq <- rq |>
+    httr2::req_url(LOGIN) |>
+    httr2::req_body_json(list(email = email, password = password))
+  
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  
+  # r <-
+  #   httr::POST(
+  #     paste0("https://nyu.databrary.org/api/user/login"),
+  #     body = list(email = email, password = password)
+  #   )
+  #resp <- httr2::req_perform(rq)
+  
+  # if (httr::status_code(r) == 200) {
+  #   is_login_successful <- TRUE
+  # }
+  if (!is.null(resp) & httr2::resp_status(resp) == 200) {
     is_login_successful <- TRUE
   }
   
