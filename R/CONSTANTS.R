@@ -34,3 +34,6 @@ RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1  # seconds
 RETRY_BACKOFF <- 2  # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
+
+ROG_EMAIL <- Sys.getenv("DATABRARY_LOGIN")
+ROG_PW <- keyring::key_get(service = KEYRING_SERVICE, username = ROG_EMAIL)

@@ -15,7 +15,7 @@ logout_db <- function(vb = FALSE, rq = NULL){
   # r <- httr::POST(url)
   if (is.null(rq)) {
     if (vb) message("Empty request. Generating new one.")
-    rq <- make_new_request()
+    rq <- make_default_request()
   }
   rq <- rq |>
     httr2::req_url(LOGOUT)

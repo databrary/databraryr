@@ -131,7 +131,7 @@ get_volume_by_id <- function(volume_id = 8,
 
 make_request <- function() {
   httr2::request(DATABRARY_API) |>
-    httr2::req_headers("Accept" = "application/json") |>
+    httr2::req_headers("Accept" = "application/json, text/plain, */*") |>
     httr2::req_user_agent("databraryr (https://databrary.github.io/databraryr)") |>
     httr2::req_retry(max_tries = RETRY_LIMIT) |>
     httr2::req_timeout(REQUEST_TIMEOUT)
