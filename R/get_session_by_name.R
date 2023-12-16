@@ -19,8 +19,8 @@
 #' @export
 get_session_by_name <-
   function(session_name = "Advisory Board Meeting",
-           volume_json = get_volume_by_id(vol_id = 1, rq),
-           rq) {
+           volume_json = get_volume_by_id(vol_id = 1, DEF_REQ),
+           rq = NULL) {
     
     assertthat::assert_that(is.list(volume_json))
     assertthat::is.string(session_name)

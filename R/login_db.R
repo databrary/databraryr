@@ -25,7 +25,7 @@ login_db <- function(email = NULL,
                      overwrite = FALSE,
                      vb = FALSE,
                      SERVICE = "org.databrary.databraryr",
-                     rq = rq) {
+                     rq = DEF_REQ) {
   
   # Check parameters
   assertthat::assert_that(length(store) == 1)

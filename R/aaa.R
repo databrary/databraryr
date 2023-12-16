@@ -19,4 +19,4 @@ utils::globalVariables(".data")
 
 source("R/make_default_request.R")
 source("R/CONSTANTS.R")
-rq <- make_default_request()
+DEF_REQ <- make_default_request()

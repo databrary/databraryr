@@ -6,6 +6,8 @@
 #' @param show_party_info A logical value. Show the person's name and affiliation in the output.
 #' Default is TRUE.
 #' @param vb A Boolean value. If TRUE returns verbose output. Default is FALSE.
+#' @param req An `httr2` request object. If not provided, a new request is
+#' generated via `make_default_request()`.
 #' @returns An list with the avatar (image) file and a name_affil string.
 #' @examples
 #' \donttest{
@@ -22,7 +24,8 @@
 #' @export
 download_party_avatar <- function(party_id = 6,
                                   show_party_info = TRUE,
-                                  vb = FALSE) {
+                                  vb = FALSE,
+                                  rq = NULL) {
   # Check parameters
   assertthat::is.number(party_id)
   assertthat::assert_that(sum(party_id >= 1) == length(party_id))
@@ -33,17 +36,31 @@ download_party_avatar <- function(party_id = 6,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  if (is.null(rq))
+    rq <- make_default_request()
+  
   #------------------------------------------------------------
   # Helper function for handling multiple queries
   get_single_avatar <- function(party_id = 6,
                                 show_party_info = TRUE,
-                                vb = FALSE) {
-    a <- GET_db_contents(
-      base_URL = "https://nyu.databrary.org",
-      URL_components = paste0('/party/', party_id, '/avatar'),
-      vb = vb,
-      convert_JSON = FALSE
+                                vb = FALSE,
+                                rq) {
+    
+    prq <- rq |>
+      httr2::req_url(sprintf(GET_PARTY_AVATAR, party_id))
+    
+    resp <- tryCatch(
+      httr2::req_perform(prq),
+      httr2_error = function(cnd)
+        NULL
     )
+    
+    # a <- GET_db_contents(
+    #   base_URL = "https://nyu.databrary.org",
+    #   URL_components = paste0('/party/', party_id, '/avatar'),
+    #   vb = vb,
+    #   convert_JSON = FALSE
+    # )
     
     party_str = paste0("Databrary party ", party_id)
     if (show_party_info) {

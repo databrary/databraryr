@@ -23,7 +23,11 @@ SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
 API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
 DOWNLOAD_FILE <-
   "https://nyu.databrary.org/slot/%s/-/asset/%s/download"
-
+GET_PARTY_BY_ID <- "https://nyu.databrary.org/api/party/%s"
+GET_CONSTANTS <- "https://nyu.databrary.org//api/constants"
+GET_PARTY_AVATAR <- "https://nyu.databrary.org/party/%s/avatar"
+GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
+  
 # Authentication parameters
 USER_AGENT <-
   "databraryr (https://cran.r-project.org/package=databraryr)"

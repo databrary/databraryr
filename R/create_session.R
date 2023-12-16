@@ -1,4 +1,4 @@
-#' Get Data From A Databrary Volume
+#' Create New Session on A Databrary Volume
 #'
 #' @param vol_id Volume ID.
 #' @param rq An httr2 request object.
