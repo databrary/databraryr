@@ -6,10 +6,10 @@
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
-#' @param rq An `http` request object. Defaults to NULL.
+#' @param rq An `httr2` request object. Defaults to NULL.
 #' @returns Logical value indicating whether log in is successful or not.
 #' @examplesIf interactive()
-#' login_db() # Queries user for email and password interactively.
+#' make_login_client() # Queries user for email and password interactively.
 #' @examples
 #' \donttest{
 #' \dontrun{

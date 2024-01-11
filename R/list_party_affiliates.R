@@ -22,12 +22,6 @@ list_party_affiliates <- function(party_id = 6,
 
   if (vb)
     message(paste0("Getting affiliates for party ", party_id, "."))
-  # g <-
-  #   databraryr::GET_db_contents(
-  #     URL_components = paste0("/api/party/", party_id,
-  #                             "?parents&children&access"),
-  #     vb = vb
-  #   )
 
   g <- get_party_by_id(party_id, vb, rq)
   
@@ -36,14 +30,29 @@ list_party_affiliates <- function(party_id = 6,
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
-    #p <- g$parents$party
-    # 
-    # if (!is.null(p)) {
-    #   p
-    # } else {
-    #   NULL
-    # }
-    purrr::map(g$children, as.data.frame) |> purrr::list_rbind()
+    purrr::map(g$children, as.data.frame) |> 
+      purrr::list_rbind() |>
+      # TODO(ROG): Handle cases when party.orcid or other variables exist
+      dplyr::select(party.id, 
+                    party.sortname,
+                    party.prename,
+                    party.affiliation) |>
+      dplyr::rename(affiliate_id = party.id,
+                    affiliate_sortname = party.sortname,
+                    affiliate_prename = party.prename,
+                    affiliate_affiliation = party.affiliation) |>
+      dplyr::mutate(party_id = party_id, 
+                    party_sortname = g$sortname,
+                    party_prename = g$prename,
+                    party_affiliation = g$affiliation) |>
+      dplyr::select(party_id,
+                    party_sortname,
+                    party_prename,
+                    party_affiliation,
+                    affiliate_id,
+                    affiliate_sortname,
+                    affiliate_prename,
+                    affiliate_affiliation)
   } else {
     if (vb)
       message(paste0("No data for party ", party_id, "."))

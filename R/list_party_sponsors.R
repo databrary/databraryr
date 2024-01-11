@@ -34,16 +34,26 @@ list_party_sponsors <- function(party_id = 6,
       message(paste0("Retrieving data for party ", party_id, "."))
     purrr::map(g$parents, as.data.frame) |> 
       purrr::list_rbind() |>
+      # TODO(ROG): Handle cases when party.prename, expires, other variables exist
+      dplyr::select(party.id, 
+                    party.sortname, 
+                    party.affiliation) |>
       dplyr::rename(sponsor_id = party.id,
                     sponsor_sortname = party.sortname,
-                    sponsor_affiliation = party.affiliation,
-                    sponsor_institution = party.institution,
-                    sponsor_url = party.url) |>
+                    sponsor_affiliation = party.affiliation) |>
       dplyr::mutate(party_id = party_id, 
                     party_sortname = g$sortname,
                     party_prename = g$prename,
                     party_affiliation = g$affiliation,
-                    party_url = g$url)
+                    party_url = g$url) |>
+      dplyr::select(party_id, 
+                    party_sortname,
+                    party_prename,
+                    party_affiliation,
+                    party_url,
+                    sponsor_id,
+                    sponsor_sortname,
+                    sponsor_affiliation)
   } else {
     if (vb)
       message(paste0("No data for party ", party_id, "."))
