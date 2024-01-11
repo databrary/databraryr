@@ -1,4 +1,4 @@
-#' List Sponsors For A Party
+#' List Volumes For A Party
 #'
 #' @param party_id Target party ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
@@ -8,14 +8,13 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' list_sponsors() # Default is Rick Gilmore (party 6)
+#' list_party_volumes() # Default is Rick Gilmore (party 6)
 #' }
 #' }
 #' @export
-list_sponsors <- function(party_id = 6, 
-                          vb = FALSE,
-                          rq = NULL) {
-  
+list_party_volumes <- function(party_id = 6,
+                               vb = FALSE,
+                               rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))
@@ -23,27 +22,27 @@ list_sponsors <- function(party_id = 6,
   assertthat::assert_that(is.logical(vb))
   
   party_info <- get_party_by_id(party_id, vb, rq)
-
+  
   if (vb)
-    message(paste0("Getting sponsors for party ", party_id, "."))
-
+    message(paste0("Getting affiliates for party ", party_id, "."))
+  
   g <- get_party_by_id(party_id, vb, rq)
-
+  
+  resp <- NULL
+  
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
-    purrr::map(g$parents, as.data.frame) |> 
-      purrr::list_rbind() |>
-      dplyr::rename(sponsor_id = party.id,
-                    sponsor_sortname = party.sortname,
-                    sponsor_affiliation = party.affiliation,
-                    sponsor_institution = party.institution,
-                    sponsor_url = party.url) |>
+    purrr::map(
+      g$access,
+      .f = function(x) {
+        as.data.frame(x[[3]])
+      }
+    ) |> purrr::list_rbind() |>
       dplyr::mutate(party_id = party_id, 
-                    party_sortname = g$sortname,
-                    party_prename = g$prename,
-                    party_affiliation = g$affiliation,
-                    party_url = g$url)
+                    prename = g$prename,
+                    sortname = g$sortname,
+                    affiliation = g$affiliation)
   } else {
     if (vb)
       message(paste0("No data for party ", party_id, "."))

@@ -1,4 +1,4 @@
-#' Download Session Spreadsheet
+#' Download Session Spreadsheet As CSV
 #'
 #' @description Databrary generates a CSV-formated spreadsheet that summarizes
 #' information about individual sessions. This command downloads that CSV file

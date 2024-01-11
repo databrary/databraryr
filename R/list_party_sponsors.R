@@ -8,11 +8,11 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' list_sponsors() # Default is Rick Gilmore (party 6)
+#' list_party_sponsors() # Default is Rick Gilmore (party 6)
 #' }
 #' }
 #' @export
-list_sponsors <- function(party_id = 6, 
+list_party_sponsors <- function(party_id = 6, 
                           vb = FALSE,
                           rq = NULL) {
   
