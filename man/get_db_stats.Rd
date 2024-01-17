@@ -4,7 +4,7 @@
 \alias{get_db_stats}
 \title{Get Stats About Databrary.}
 \usage{
-get_db_stats(type = "stats", vb = FALSE)
+get_db_stats(type = "stats", vb = FALSE, rq)
 }
 \arguments{
 \item{type}{Type of Databrary report to run "institutions", "people", "data"}

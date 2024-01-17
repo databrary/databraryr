@@ -14,7 +14,7 @@
 #' get_db_stats("places") # Information about the newest institutions.
 #' }
 #' @export
-get_db_stats <- function(type = "stats", vb = FALSE, rq) {
+get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(type) == 1)
   assertthat::assert_that(is.character(type))
@@ -33,6 +33,11 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq) {
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  
+  if (is.null(rq)) {
+    if (vb) message("No request object supplied. Using default.")
+    rq <- make_default_request()
+  }
   
   rq <- rq |>
     httr2::req_url(GET_ACTIVITY_DATA)

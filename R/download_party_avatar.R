@@ -1,6 +1,5 @@
 #' Returns the Avatar(s) (images) for Authorized User(s).
 #'
-#'
 #' @param party_id A number or range of numbers. Party number or numbers to retrieve information about. Default is 6
 #' (Rick Gilmore).
 #' @param show_party_info A logical value. Show the person's name and affiliation in the output.
@@ -39,50 +38,6 @@ download_party_avatar <- function(party_id = 6,
   if (is.null(rq))
     rq <- make_default_request()
   
-  #------------------------------------------------------------
-  # Helper function for handling multiple queries
-  get_single_avatar <- function(party_id = 6,
-                                show_party_info = TRUE,
-                                vb = FALSE,
-                                rq) {
-    
-    prq <- rq |>
-      httr2::req_url(sprintf(GET_PARTY_AVATAR, party_id))
-    
-    resp <- tryCatch(
-      httr2::req_perform(prq),
-      httr2_error = function(cnd)
-        NULL
-    )
-    
-    # a <- GET_db_contents(
-    #   base_URL = "https://nyu.databrary.org",
-    #   URL_components = paste0('/party/', party_id, '/avatar'),
-    #   vb = vb,
-    #   convert_JSON = FALSE
-    # )
-    
-    party_str = paste0("Databrary party ", party_id)
-    if (show_party_info) {
-      r <- download_party(party_id)
-      if (is.list(r)) {
-        if ("affiliation" %in% names(r)) {
-          if (vb)
-            message(party_str)
-          party_str <-
-            paste0(r$prename, " ", r$sortname, ", ", r$affiliation)
-        } else {
-          party_str <-
-            paste0(r$sortname)
-        }
-      } else {
-        message("Unable to extract info for party '", party_id, "'.")
-      }
-    }
-    list(avatar = magick::image_read(a), name_affil = party_str)
-  }
-  #------------------------------------------------------------
-  
   if (vb)
     message("Retrieving avatars for parties: ",
             min(party_id),
@@ -90,3 +45,41 @@ download_party_avatar <- function(party_id = 6,
             max(party_id))
   purrr::map(party_id, get_single_avatar, show_party_info, vb, .progress = TRUE)
 }
+
+#------------------------------------------------------------------------------
+# Helper function for handling multiple queries
+get_single_avatar <- function(party_id = 6,
+                              show_party_info = TRUE,
+                              vb = FALSE,
+                              rq) {
+  
+  prq <- rq |>
+    httr2::req_url(sprintf(GET_PARTY_AVATAR, party_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(prq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  
+  party_str = paste0("Databrary party ", party_id)
+  if (show_party_info) {
+    r <- download_party(party_id)
+    if (is.list(r)) {
+      if ("affiliation" %in% names(r)) {
+        if (vb)
+          message(party_str)
+        party_str <-
+          paste0(r$prename, " ", r$sortname, ", ", r$affiliation)
+      } else {
+        party_str <-
+          paste0(r$sortname)
+      }
+    } else {
+      message("Unable to extract info for party '", party_id, "'.")
+    }
+  }
+  list(avatar = magick::image_read(a), name_affil = party_str)
+}
+#------------------------------------------------------------
+

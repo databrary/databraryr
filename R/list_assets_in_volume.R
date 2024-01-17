@@ -1,4 +1,4 @@
-#' Assets in Databrary Volume.
+#' List Assets in Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.
@@ -17,17 +17,6 @@ list_assets_in_volume <- function(vol_id = 2, vb = FALSE) {
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-  
-  # Error handling
-  if (!is.numeric(vol_id)) {
-    stop("vol_id must be numeric.")
-  }
-  if (vol_id < 1) {
-    stop("vol_id must be >= 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a logical value.")
-  }
 
   sl <- list_sessions(vol_id = vol_id, vb = vb)
   if (!is.null(sl)) {

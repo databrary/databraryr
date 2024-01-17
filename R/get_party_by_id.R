@@ -26,7 +26,6 @@ get_party_by_id <- function(party_id = 6,
     rq <- make_default_request()
   }
   
-  url <- 
   prq <- rq |>
     httr2::req_url(sprintf(GET_PARTY_BY_ID, party_id))
   resp <- tryCatch(
