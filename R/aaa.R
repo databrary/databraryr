@@ -17,6 +17,6 @@
 
 utils::globalVariables(".data")
 
-source("R/make_default_request.R")
-source("R/CONSTANTS.R")
-DEF_REQ <- make_default_request()
+#source("R/make_default_request.R")
+#source("R/CONSTANTS.R")
+#DEF_REQ <- databraryr::make_default_request()

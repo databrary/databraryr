@@ -7,7 +7,7 @@
 #' assign_constants()
 #' }
 #' @export
-assign_constants <- function(vb = FALSE, rq = DEF_REQ) {
+assign_constants <- function(vb = FALSE, rq = NULL) {
   # Check parameter
   assertthat::assert_that(is.logical(vb))
   
@@ -28,7 +28,4 @@ assign_constants <- function(vb = FALSE, rq = DEF_REQ) {
   } else {
     resp
   }
-  
-  # r <- GET_db_contents(URL_components = '/api/constants', vb=vb)
-  # r
 }
