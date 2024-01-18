@@ -7,7 +7,13 @@
 #' in to Databrary via `login_db()`.
 #' @examples
 #' \donttest{
-#' create_session() # Default is Volume 1
+#' \dontrun{
+#' # Create `httr2` request objects and log in to Databrary using stored credentials.
+#' rq <- make_default_request()
+#' lrsp <- make_login_client(email = "YOUR_DATABRARY_EMAIL@INSTITUTION.EDU", store = TRUE, rq = rq)
+#' 
+#' create_session(vol_id = TARGET_VOLUME_ID, rq, lrsp)
+#' }
 #' }
 #' @export
 create_session <- function(vol_id, rq = NULL, lrsp = NULL) {

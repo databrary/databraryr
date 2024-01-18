@@ -14,6 +14,9 @@ GET_PARTY_BY_ID <- "https://nyu.databrary.org/api/party/%s?parents&children&acce
 GET_CONSTANTS <- "https://nyu.databrary.org//api/constants"
 GET_PARTY_AVATAR <- "https://nyu.databrary.org/party/%s/avatar"
 GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
+GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
+GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"
+GET_VOLUME_TAGS <- "https://nyu.databrary.org/api/volume/%s?tags=all"
 
 CREATE_SLOT <-
   "https://nyu.databrary.org/api/volume/%s/slot"

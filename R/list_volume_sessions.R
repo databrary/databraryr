@@ -1,0 +1,64 @@
+#' List Sessions in Databrary Volume.
+#'
+#' @param vol_id Target volume number.
+#' @param include_vol_data A Boolean value. Include volume-level metadata 
+#' or not. Default is FALSE.
+#' @param vb A Boolean value. Show verbose output. Default is FALSE.
+#' @param rq An `httr2` request object.
+#' @returns A data frame with information about all assets in a volume.
+#' @examples
+#' \donttest{
+#' \dontrun{
+#' list_volume_sessions() # Sessions in Volume 1
+#' }
+#' }
+#' @export
+list_volume_sessions <- function(vol_id = 1, include_vol_data = FALSE,
+                                 vb = FALSE, rq = NULL) {
+  
+  # Check parameters
+  assertthat::assert_that(length(vol_id) == 1)
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
+  assertthat::assert_that(is.logical(vb))
+  
+  vol_list <- get_volume_by_id(vol_id, rq)
+  if (!("containers" %in% names(vol_list))) {
+    if (vb) message("No session/containers data from volume ", vol_id)
+    return(NULL)
+  }
+  
+  df <- purrr::map(vol_list$containers, get_info_from_session) |>
+    purrr::list_rbind()
+  
+  if (include_vol_data) {
+    df <- df |>
+      dplyr::mutate(vol_id = vol_list$id,
+                    vol_name = vol_list$name,
+                    vol_creation = vol_list$creation,
+                    vol_publicaccess = vol_list$publicaccess)
+  }
+  
+  df
+}
+
+#-------------------------------------------------------------------------------
+#' Helper function for list_volume_assets
+get_info_from_session <- function(volume_container, ignore_materials = FALSE) {
+  
+  # ignore materials
+  if (ignore_materials) {
+    if ("top" %in% names(volume_container)) return(NULL)    
+  } else {
+    if (!("name" %in% names(volume_container))) volume_container$name <- NA
+    if (!("date" %in% names(volume_container))) volume_container$date <- NA
+    if (!("release" %in% names(volume_container))) volume_container$release <- NA
+  }
+
+  tibble::tibble(session_id = volume_container$id,
+                 session_name = volume_container$name,
+                  session_date = volume_container$date,
+                  session_release = volume_container$release)
+}

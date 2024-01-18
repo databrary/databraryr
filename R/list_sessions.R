@@ -1,4 +1,8 @@
 #' Download Information About A Volume or Volume's Sessions.
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#' `list_sessions()` has been deprecated in favor of `list_volume_sessions()`.
 #'
 #' @param vol_id Target volume ID. Defaults to 1.
 #' @param vb A boolean value.

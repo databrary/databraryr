@@ -25,7 +25,7 @@ make_login_client <- function(email = NULL,
                      overwrite = FALSE,
                      vb = FALSE,
                      SERVICE = "org.databrary.databraryr",
-                     rq = DEF_REQ) {
+                     rq = NULL) {
   
   # Check parameters
   assertthat::assert_that(length(store) == 1)

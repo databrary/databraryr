@@ -1,7 +1,7 @@
 #' Get Data From A Databrary Volume
 #'
 #' @param vol_id Volume ID.
-#' @param rq An httr2 request object.
+#' @param rq An `httr2` request object.
 #' @returns A JSON blob with the volume data. If the user has previously logged
 #' in to Databrary via `login_db()`, then volume(s) that have restricted access
 #' can be downloaded, subject to the sharing release levels on those volume(s).
