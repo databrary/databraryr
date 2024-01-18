@@ -20,10 +20,6 @@ list_volume_tags <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  # g <-
-  #   databraryr::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
-  #                                                       "?tags=all"), vb = vb)
-  
   if (is.null(rq)) {
     rq <- make_default_request()
   }
@@ -36,16 +32,6 @@ list_volume_tags <- function(vol_id = 1,
       NULL
     }
   )
-  
-  # if (!is.null(g)) {
-  #   if (vb)
-  #     message("n=", length(g$tags$id), " tags found in volume ", vol_id, ".")
-  #   g$tags
-  # } else {
-  #   if (vb)
-  #     message("No tags available for volume '", vol_id, "'.")
-  #   NULL
-  # }
   
   httr2::resp_body_json(resp)
   if (!is.null(resp)) {

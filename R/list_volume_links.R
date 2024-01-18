@@ -21,11 +21,6 @@ list_volume_links <- function(vol_id = 1, vb = FALSE, rq = NULL) {
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  # g <-
-  #   databraryr::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
-  #                                                         "?links=all"),
-  #                                 vb = vb)
-  
   if (is.null(rq)) {
     rq <- make_default_request()
   }
@@ -39,17 +34,11 @@ list_volume_links <- function(vol_id = 1, vb = FALSE, rq = NULL) {
     }
   )
   
-  # if (!is.null(g)) {
-  #   tibble::tibble(vol_id = vol_id, link_name = g$links$head, url = g$links$url)
-  # } else {
-  #   NULL
-  # }
-  
   httr2::resp_body_json(resp)
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$links))) {
-      purrr::map(res$links, as.data.frame, vol_id) |>
+      purrr::map(res$links, tibble::as_tibble) |>
         purrr::list_rbind() |>
         dplyr::rename(link_name = head, link_url = url) |>
         dplyr::mutate(vol_id = vol_id)
