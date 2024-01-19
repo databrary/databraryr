@@ -17,6 +17,7 @@ GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
 GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
 GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"
 GET_VOLUME_TAGS <- "https://nyu.databrary.org/api/volume/%s?tags=all"
+GET_VOLUME_ACTIVITY <- "https://nyu.databrary.org/api/volume/%s/activity"
 
 CREATE_SLOT <-
   "https://nyu.databrary.org/api/volume/%s/slot"

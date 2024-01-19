@@ -11,8 +11,9 @@
 #' }
 #' }
 #' @export
-list_volume_links <- function(vol_id = 1, vb = FALSE, rq = NULL) {
-  
+list_volume_links <- function(vol_id = 1,
+                              vb = FALSE,
+                              rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -34,7 +35,6 @@ list_volume_links <- function(vol_id = 1, vb = FALSE, rq = NULL) {
     }
   )
   
-  httr2::resp_body_json(resp)
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$links))) {
