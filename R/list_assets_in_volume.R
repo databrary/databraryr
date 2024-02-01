@@ -2,7 +2,8 @@
 #' 
 #'  @description
 #' `r lifecycle::badge("deprecated")`
-#' `list_assets_in_volume()` has been deprecated in favor of `list_volume_assets()`.
+#' 
+#' This function has been deprecated in favor of `list_volume_assets()`.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.

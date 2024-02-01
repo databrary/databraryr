@@ -17,10 +17,14 @@ list_party(party_id = 8, component = "all", vb = FALSE)
 A data frame with information about a party (person or institution).
 }
 \description{
-List Data For A Party (person or institution).
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{get_party_by_id()} for similar functionality.
 }
 \examples{
 \donttest{
 list_party() # Default is New York University (party 8)
 #' }
+
 }

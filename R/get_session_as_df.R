@@ -1,12 +1,20 @@
 #' Get Session Info From A Volume As A Data Frame.
+#' 
+#' @description
+#' `r lifecycle::badge("superseded")`
+#' 
+#' This function has been superceded by `list_volume_sessions()`.
 #'
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.
+#' 
 #' @returns A data frame with session information from a volume.
+#' 
 #' @examples
 #' \donttest{
 #' get_session_as_df() # Return Session Info from Volume 1.
 #' #' }
+#' 
 #' @export
 get_session_as_df <- function(vol_id = 1,
                                vb = FALSE) {

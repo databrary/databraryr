@@ -7,7 +7,8 @@
 list_individual_sponsors(
   party_id = 406,
   report_target_party = FALSE,
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -16,11 +17,20 @@ list_individual_sponsors(
 \item{report_target_party}{Print the party ID and name of the target person.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. If NULL (the default)
+a request will be generated, but this will only permit public information
+to be returned.}
 }
 \value{
 A data frame with information about a party.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{list_party_sponsors()} for similar functionality.
+
 A party (person or institution) may have a sponsor that is another person
 or an institution. This function lists the \emph{person(s)} who sponsor
 a party.
@@ -29,4 +39,5 @@ a party.
 \donttest{
 list_individual_sponsors() # Default is Kasey Soska (party 406)
 }
+
 }

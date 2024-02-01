@@ -3,7 +3,9 @@
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
+#' 
 #' @returns A data frame with funder information for the volume.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -12,6 +14,7 @@
 #' list_volume_funding(vol_id = c(1:10))
 #' }
 #' }
+#' 
 #' @export
 list_volume_funding <- function(vol_id = 1,
                                 vb = FALSE,
@@ -23,6 +26,8 @@ list_volume_funding <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
   #------------------------------------------------------------
   if (vb)

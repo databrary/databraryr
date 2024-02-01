@@ -17,7 +17,9 @@ A data frame with information about all assets in a volume.
 \description{
 @description
 \verb{r lifecycle::badge("deprecated")}
-\code{list_assets_in_volume()} has been deprecated in favor of \code{list_volume_assets()}.
+}
+\details{
+This function has been deprecated in favor of \code{list_volume_assets()}.
 }
 \examples{
 \donttest{

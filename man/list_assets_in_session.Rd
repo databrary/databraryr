@@ -15,10 +15,13 @@ list_assets_in_session(session_id = 9807, vb = FALSE)
 A data frame with information about a selected session.
 }
 \description{
-Assets In Databrary Session.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function has been superseded by \code{list_session_assets()}.
 }
 \examples{
 \donttest{
 list_assets_in_session() # Assets in session 9807 (from Volume 1)
 #' }
+
 }

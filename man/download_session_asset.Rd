@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_session_asset.R
 \name{download_session_asset}
 \alias{download_session_asset}
-\title{Download Video From Databrary.}
+\title{Download Asset From Databrary.}
 \usage{
 download_session_asset(
   asset_id = 1,
@@ -31,12 +31,12 @@ Default is a temporary directory given by a call to \code{tempdir()}.}
 Full file name to the asset.
 }
 \description{
-Download Video From Databrary.
+Download Asset From Databrary.
 }
 \examples{
 \donttest{
-download_asset() # Download's 'numbers' file from volume 1.
-download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
+download_session_asset() # Download's 'numbers' file from volume 1.
+download_session_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' # Downloads a display with a random dot kinematogram (RDK).
 }
 }

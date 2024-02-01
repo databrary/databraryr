@@ -1,9 +1,9 @@
 #' List Affiliates for A Databrary Party.
 #' 
 #' #' @description
-#' `r lifecycle::badge("superceded")`
+#' `r lifecycle::badge("superseded")`
 #' 
-#' This function has been superceded by `list_party_affiliates()`.
+#' This function has been superseded by `list_party_affiliates()`.
 #'
 #' @param party_id Target volume number.
 #' @param report_target_party Report data about the target party. Default is FALSE.

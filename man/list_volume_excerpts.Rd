@@ -4,15 +4,17 @@
 \alias{list_volume_excerpts}
 \title{List Image or Video Excerpts On A Databrary Volume.}
 \usage{
-list_volume_excerpts(vol_id = 1, vb = FALSE)
+list_volume_excerpts(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
-A data frame with information about any available excerpts.
+A list with information about any available excerpts.
 }
 \description{
 List Image or Video Excerpts On A Databrary Volume.
@@ -21,4 +23,5 @@ List Image or Video Excerpts On A Databrary Volume.
 \donttest{
 list_volume_excerpts()
 }
+
 }

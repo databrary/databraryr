@@ -1,4 +1,10 @@
 #' List Data For A Party (person or institution).
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function has been deprecated and may be removed in a future release.
+#' See `get_party_by_id()` for similar functionality.
 #'
 #' @param party_id Target volume number. Default is volume 8 (NYU).
 #' @param component Which data to return 'children', 'parents', or 'all'. Default is all.
@@ -26,31 +32,6 @@ list_party <- function(party_id = 8,
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-  
-  if (length(party_id) > 1) {
-    stop("party_id must have length == 1.")
-  }
-  if (!is.numeric(party_id)) {
-    stop("party_id must be an integer.")
-  }
-  if (party_id < 0) {
-    stop("party_id must be > 0.")
-  }
-  if (length(component) > 1) {
-    stop("component must have length == 1.")
-  }
-  if (!is.character(component)) {
-    stop("component must be a character string.")
-  }
-  if (!(component %in% c('children', 'parents', 'all'))) {
-    stop("component must be one of 'children', 'parents', or 'all'.")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be a Boolean.")
-  }
   
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))

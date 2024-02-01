@@ -10,6 +10,8 @@ search_for_tags(search_string = "ICIS", vb = FALSE)
 \item{search_string}{String to search.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 An array of tags that match the tag_string.
@@ -21,4 +23,5 @@ Search For Tags on Volumes or Sessions.
 \dontrun{
 search_for_tags() # Searches for volumes that have the tag "ICIS"
 }
+
 }

@@ -45,7 +45,7 @@ list_volume_sessions <-
       rq <- make_default_request()
     }
     
-    vol_list <- get_volume_by_id(vol_id, rq)
+    vol_list <- get_volume_by_id(vol_id, vb, rq)
     if (!("containers" %in% names(vol_list))) {
       if (vb)
         message("No session/containers data from volume ", vol_id)

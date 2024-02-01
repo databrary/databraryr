@@ -4,13 +4,16 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2`-style request object. If NULL, then a new request will
 #' be generated using `make_default_request()`.
+#' 
 #' @returns A data frame with information about a party's sponsors.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
 #' list_party_sponsors() # Default is Rick Gilmore (party 6)
 #' }
 #' }
+#' 
 #' @export
 list_party_sponsors <- function(party_id = 6, 
                           vb = FALSE,

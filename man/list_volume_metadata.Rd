@@ -15,7 +15,11 @@ list_volume_metadata(vol_id = 1, vb = FALSE)
 A data frame with metadata about a volume.
 }
 \description{
-List Volume Metadata.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{get_volume_by_id()} and other \verb{list_volume_*} functions for related
+functionality.
 }
 \examples{
 \donttest{

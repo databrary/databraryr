@@ -8,7 +8,8 @@ download_volume_zip(
   vol_id = 31,
   out_dir = tempdir(),
   file_name = "test.zip",
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ download_volume_zip(
 \item{file_name}{Name for downloaded file, default is 'test.mp4'.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 Full filename of the downloaded file.

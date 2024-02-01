@@ -9,7 +9,8 @@ download_session_zip(
   session_id = 9803,
   out_dir = tempdir(),
   file_name = "test.zip",
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ download_session_zip(
 \item{file_name}{Name for downloaded file, default is 'test.zip'.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 Full filename of the downloaded file.
@@ -35,4 +38,5 @@ Download Zip Archive From Databrary Session.
 download_session_zip() # Downloads Zip Archive from volume 31, session 9803
 }
 }
+
 }
