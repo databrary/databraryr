@@ -4,6 +4,7 @@
 #' @param vb A boolean value.
 #' @param rq An `httr2` request object.
 #' @returns A data frame with information about all assets in a volume.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -22,7 +23,16 @@ list_volume_assets <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  vol_list <- get_volume_by_id(vol_id, rq)
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("Only public information will be returned.")
+    }
+    rq <- make_default_request()
+  }
+  
+  vol_list <- get_volume_by_id(vol_id, vb, rq)
   if (!("containers" %in% names(vol_list))) {
     if (vb)
       message("No session/containers data from volume ", vol_id)

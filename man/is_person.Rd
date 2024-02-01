@@ -4,7 +4,7 @@
 \alias{is_person}
 \title{Is This Party A Person?}
 \usage{
-is_person(party_id = 7, vb = FALSE)
+is_person(party_id = 7, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{party_id}{Databrary party ID}
@@ -21,4 +21,5 @@ Is This Party A Person?
 \donttest{
 is_person()
 }
+
 }

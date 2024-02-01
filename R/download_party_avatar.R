@@ -7,7 +7,9 @@
 #' @param vb A Boolean value. If TRUE returns verbose output. Default is FALSE.
 #' @param req An `httr2` request object. If not provided, a new request is
 #' generated via `make_default_request()`.
+#'
 #' @returns An list with the avatar (image) file and a name_affil string.
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -35,15 +37,32 @@ download_party_avatar <- function(party_id = 6,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  if (is.null(rq))
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL request
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("Only public information will be returned.")
+    }
     rq <- make_default_request()
+  }
   
   if (vb)
     message("Retrieving avatars for parties: ",
             min(party_id),
             ":",
             max(party_id))
-  purrr::map(party_id, get_single_avatar, show_party_info, vb, .progress = TRUE)
+  
+  purrr::map(
+    party_id,
+    get_single_avatar,
+    show_party_info = show_party_info,
+    vb = vb,
+    rq = rq,
+    .progress = TRUE
+  )
 }
 
 #------------------------------------------------------------------------------
@@ -51,35 +70,53 @@ download_party_avatar <- function(party_id = 6,
 get_single_avatar <- function(party_id = 6,
                               show_party_info = TRUE,
                               vb = FALSE,
-                              rq) {
+                              rq = NULL) {
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("Only public information will be returned.")
+    }
+    rq <- make_default_request()
+  }
   
-  prq <- rq |>
+  arq <- rq |>
     httr2::req_url(sprintf(GET_PARTY_AVATAR, party_id))
   
   resp <- tryCatch(
-    httr2::req_perform(prq),
-    httr2_error = function(cnd)
+    httr2::req_perform(arq),
+    httr2_error = function(cnd) {
+      if (vb)
+        message("Error retrieving avatar for party_id ", party_id)
       NULL
+    }
   )
   
-  party_str = paste0("Databrary party ", party_id)
+  # Download avatar
+  party_avatar <- httr2::resp_body_raw(resp) |>
+    magick::image_read()
+  
   if (show_party_info) {
-    r <- download_party(party_id)
-    if (is.list(r)) {
-      if ("affiliation" %in% names(r)) {
+    party_str = paste0("Databrary party ", party_id)
+    
+    party_info <- get_party_by_id(party_id)
+    if (is.list(party_info)) {
+      if ("affiliation" %in% names(party_info)) {
         if (vb)
           message(party_str)
         party_str <-
-          paste0(r$prename, " ", r$sortname, ", ", r$affiliation)
+          paste0(party_info$prename,
+                 " ",
+                 party_info$sortname,
+                 ", ",
+                 party_info$affiliation)
       } else {
         party_str <-
-          paste0(r$sortname)
+          paste0(party_info$sortname)
       }
     } else {
       message("Unable to extract info for party '", party_id, "'.")
     }
   }
-  list(avatar = magick::image_read(a), name_affil = party_str)
+  
+  list(avatar = party_avatar, name_affil = party_str)
 }
-#------------------------------------------------------------
-

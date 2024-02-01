@@ -4,7 +4,9 @@
 #' and returns a data frame with the relevant information.
 #' 
 #' @param host Target URL. Defaults to 'nyu.databrary.org'.
+#' 
 #' @returns A data frame with information about the SSL certificates.
+#' 
 #' @examples
 #' \donttest{
 #' check_ssl_certs()

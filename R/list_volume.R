@@ -1,9 +1,15 @@
 #' List Info for a Databrary Volume.
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#' `list_volume()` has been deprecated in lieu of other, more specific,
+#' volume-related functions. It will be dropped from a future release.
 #'
 #' @param vol_id Target volume number.
 #' @param search_str The specific data to retrieve for the volume
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with information about a volume.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{

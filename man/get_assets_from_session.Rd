@@ -4,7 +4,7 @@
 \alias{get_assets_from_session}
 \title{Helper function for list_volume_assets}
 \usage{
-get_assets_from_session(volume_container)
+get_assets_from_session(volume_container, ignore_materials = TRUE)
 }
 \description{
 Helper function for list_volume_assets

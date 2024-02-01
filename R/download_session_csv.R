@@ -10,7 +10,9 @@
 #' @param as_df A Boolean value. Default is FALSE.
 #' @param vb A Boolean value. Default is FALSE.
 #' @param req An `httr2` request object.
+#'
 #' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -24,7 +26,6 @@ download_session_csv <- function(vol_id = 1,
                                  as_df = FALSE,
                                  vb = FALSE,
                                  rq = NULL) {
-  
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -41,6 +42,19 @@ download_session_csv <- function(vol_id = 1,
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  
+  # Handle NULL rq
+  if (is.null(rq))
+    rq <- make_default_request()
+  this_rq <- rq |>
+    httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(this_rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  
   
   full_fn <- file.path(target_dir, file_name)
   
@@ -60,9 +74,6 @@ download_session_csv <- function(vol_id = 1,
       NULL
   )
   
-  # r <-
-  #   GET_db_contents(URL_components = paste0("/volume/", vol_id, "/csv"),
-  #                   vb = vb)
   if (!is.null(resp)) {
     if (vb)
       message("Valid CSV downloaded.")

@@ -2,11 +2,19 @@
 #'
 #' If a given Databrary session has a CSV file, this function will
 #' try to download it as a data frame.
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#' 
+#' This function has been deprecated and may be removed in a future release.
+#' See `download_session_asset()` for more similar, but more general functionality.
 #'
 #' @param session_id Session ID within some volume.
 #' @param asset_id Asset ID within the session.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with the CSV data.
+#' 
 #' @examples
 #' \donttest{
 #' read_csv_data_as_df() # Downloads a CSV depicting Databrary growth from volume 1

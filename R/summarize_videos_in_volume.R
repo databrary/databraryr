@@ -1,8 +1,15 @@
 #' Summarize Data About Videos in Databrary Volume.
-#'
+
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#' 
+#' This function is deprecated and may be removed from a future version of 
+#' the package. `list_volume_assets()` is preferred.
+#' 
 #' @param vol_id An integer. Selected volume number or numbers.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns Data frame with the vol_id, number of videos, and total hours.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{

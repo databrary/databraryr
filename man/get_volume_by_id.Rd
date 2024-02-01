@@ -4,12 +4,12 @@
 \alias{get_volume_by_id}
 \title{Get Data From A Databrary Volume}
 \usage{
-get_volume_by_id(vol_id = 1, rq = NULL)
+get_volume_by_id(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vol_id}{Volume ID.}
 
-\item{rq}{An httr2 request object.}
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A JSON blob with the volume data. If the user has previously logged
@@ -23,4 +23,5 @@ Get Data From A Databrary Volume
 \donttest{
 get_volume_by_id() # Default is Volume 1
 }
+
 }

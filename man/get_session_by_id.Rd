@@ -7,7 +7,8 @@
 get_session_by_id(
   session_id = 9807,
   volume_json = get_volume_by_id(vol_id = 1, rq),
-  rq
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -17,6 +18,8 @@ linked to a volume. Default value is 9807, the materials folder for volume 1.}
 \item{volume_json}{A JSON blob with data from a Databrary volume such as that
 returned by \code{get_volume_by_id()}. If no JSON blob is supplied, the blob
 returned by \code{get_volume_by_id()} is used.}
+
+\item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
 
 \item{rq}{An httr2 request object.}
 }

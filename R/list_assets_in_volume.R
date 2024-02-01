@@ -7,10 +7,12 @@
 #' @param vol_id Target volume number.
 #' @param vb A boolean value.
 #' @returns A data frame with information about all assets in a volume.
+#' 
 #' @examples
 #' \donttest{
 #' list_assets_in_volume() # Assets in volume 2
 #' #' }
+#' 
 #' @export
 list_assets_in_volume <- function(vol_id = 2, vb = FALSE) {
   

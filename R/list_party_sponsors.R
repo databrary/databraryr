@@ -20,7 +20,11 @@ list_party_sponsors <- function(party_id = 6,
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id > 0)
+  
   assertthat::assert_that(is.logical(vb))
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
   party_info <- get_party_by_id(party_id, vb, rq)
 

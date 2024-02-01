@@ -46,7 +46,7 @@ Now, let's see what other files are shared in volume 1.
 This takes a moment to run because there are *many* files in this volume.
 
 ```{r}
-vol1_df <- list_volume_assets()
+vol1_df <- databraryr::list_volume_assets()
 ```
 
 The command returns a data frame we can manipulate using standard R commands.
@@ -66,7 +66,7 @@ But this isn't especially informative since the `asset_format` is a code, and we
 To decode it, we create a data frame of all the file formats Databrary currently recognizes.
 
 ```{r}
-db_constants <- assign_constants()
+db_constants <- databraryr::assign_constants()
 
 formats_df <- purrr::map(db_constants$format, as.data.frame) |>
   purrr::list_rbind()
@@ -85,7 +85,7 @@ these_formats_df <- formats_df |>
   dplyr::select(id, extension, name) |>
   dplyr::rename(asset_type = name)
 
-vol1_df_new <- dplyr::left_join(vol1_df, these_formats_df, by=dplyr::join_by(asset_format==id))
+vol1_df_new <- dplyr::left_join(vol1_df, these_formats_df, by=dplyr::join_by(asset_format_id==id))
 
 vol1_df_new |>
   dplyr::select(asset_id, asset_size, extension, asset_type)
@@ -120,26 +120,26 @@ The function has a parameter `this_vol_id` which is an integer, unique across Da
 The `list_volume_owners()` function uses volume 1 as the default.
 
 ```{r}
-list_volume_owners()
+databraryr::list_volume_owners()
 ```
 
 The command (and many like it) can be "vectorized" using the `purrr` package.
 
 ```{r}
-purrr::map(1:15, list_volume_owners) |> 
+purrr::map(1:15, databraryr::list_volume_owners) |> 
   purrr::list_rbind()
 ```
 
 The `list_volume_metadata()` command gives slightly more information.
 
 ```{r}
-list_volume_metadata()
+databraryr::list_volume_metadata()
 ```
 
 This command can also be "vectorized."
 
 ```{r}
-purrr::map(c(1:50), list_volume_metadata) |>
+purrr::map(c(1:50), databraryr::list_volume_metadata) |>
   purrr::list_rbind()
 ```
 
@@ -150,7 +150,7 @@ Assuming you are *not* logged-in, the above commands will show volumes with `per
 The `permission` field derives from a set of constants the system uses.
 
 ```{r}
-db_constants <- assign_constants()
+db_constants <- databraryr::assign_constants()
 db_constants$permission
 ```
 
@@ -166,18 +166,18 @@ The `list_volume_funding()` command returns information about any funders listed
 Again, the default volume is 1.
 
 ```{r}
-list_volume_funding()
+databraryr::list_volume_funding()
 ```
 
 This can also be "vectorized."
 
 ```{r}
-purrr::map(c(1:20), list_volume_funding) |>
+purrr::map(c(1:20), databraryr::list_volume_funding) |>
   purrr::list_rbind()
 ```
 
 The `list_volume_links()` command returns information about any external (web) links that have been added to a volume, such as to related publications or a GitHub repo.
 
 ```{r}
-list_volume_links()
+databraryr::list_volume_links()
 ```

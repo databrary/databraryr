@@ -11,7 +11,7 @@ make_login_client(
   overwrite = FALSE,
   vb = FALSE,
   SERVICE = "org.databrary.databraryr",
-  rq = DEF_REQ
+  rq = NULL
 )
 }
 \arguments{
@@ -46,4 +46,5 @@ make_login_client() # Queries user for email and password interactively.
 make_login_client(email = "you@provider.com", store = TRUE)
 }
 }
+
 }

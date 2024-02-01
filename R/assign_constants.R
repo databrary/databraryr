@@ -1,7 +1,9 @@
 #' Download Databrary Constants From API.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with the constants.
+#' 
 #' @examples
 #' \donttest{
 #' assign_constants()
@@ -13,7 +15,6 @@ assign_constants <- function(vb = FALSE, rq = NULL) {
   
   if (is.null(rq))
     rq <- make_default_request()
-  
   arq <- rq |>
     httr2::req_url(GET_CONSTANTS)
   

@@ -4,7 +4,9 @@
 #' @param session_id The session number in the selected volume.
 #' @param vb A boolean value.
 #' @param rq An `httr2` request object.
+#' 
 #' @returns A data frame with information about all assets in a volume.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -29,7 +31,10 @@ list_session_assets <-
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
     
-    vol_list <- get_volume_by_id(vol_id, rq)
+    assertthat::assert_that(is.null(rq) |
+                              ("httr2_request" %in% class(rq)))
+    
+    vol_list <- get_volume_by_id(vol_id, vb, rq)
     
     if (!("containers" %in% names(vol_list))) {
       if (vb)
@@ -88,15 +93,6 @@ list_session_assets <-
     out_df <- dplyr::left_join(assets_df,
                                asset_formats_df,
                                by = dplyr::join_by(asset_format_id == format_id))
-    
-    # TODO: Decide whether to add session data, possibly as parameter
-    # out_df <- out_df |>
-    #   dplyr::mutate(
-    #     session_id = this_session$id,
-    #     session_name = this_session$name,
-    #     session_date = this_session$date,
-    #     session_release = this_session$release
-    #   )
     out_df
   }
 

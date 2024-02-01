@@ -2,15 +2,20 @@
 #'
 #' @param search_string String to search.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Default is NULL. 
+#'
 #' @returns A data frame with information about the funder.
+#' 
 #' @examples
 #' \donttest{
 #' search_for_funder("national+science+foundation")
 #' }
+#' 
 #' @export
 search_for_funder <-
   function(search_string = "national+science+foundation",
-           vb = FALSE) {
+           vb = FALSE,
+           rq = NULL) {
     
     # Check parameters
     assertthat::assert_that(length(search_string) == 1)
@@ -19,14 +24,32 @@ search_for_funder <-
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
     
+    assertthat::assert_that(is.null(rq) |
+                              ("httr2_request" %in% class(rq)))
+    
+    if (is.null(rq)) {
+      if (vb) {
+        message("NULL request object. Will generate default.")
+        message("Only public information will be returned.")
+      }
+      rq <- make_default_request()
+    }
+    rq <- rq |>
+      httr2::req_url(sprintf(QUERY_VOLUME_FUNDER, search_string))
+    
+    resp <- tryCatch(
+      httr2::req_perform(rq),
+      httr2_error = function(cnd) {
+        NULL
+      }
+    )
+    
     if (vb)
       message('search_for_keywords()...')
 
-    # Make URL, GET(), and handle response ---------------------------
-    r <-
-      GET_db_contents(URL_components = paste0('/api/funder?query=', search_string),
-                      vb = vb)
-    if (is.null(r))
-      if (vb) message("May need to log in to Databrary via `login_db()`")
-    r
+    if (!is.null(resp)) {
+      httr2::resp_body_json(resp) |> as.data.frame()
+    } else {
+      resp
+    }
   }

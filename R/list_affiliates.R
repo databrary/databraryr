@@ -1,14 +1,22 @@
-#' List Affiliates for A Databrary Volume.
+#' List Affiliates for A Databrary Party.
+#' 
+#' #' @description
+#' `r lifecycle::badge("superceded")`
+#' 
+#' This function has been superceded by `list_party_affiliates()`.
 #'
 #' @param party_id Target volume number.
 #' @param report_target_party Report data about the target party. Default is FALSE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with information about a party's affiliates (sponsored
 #' investigators).
+#' 
 #' @examples
 #' \donttest{
 #' list_affiliates() # Lists Rick Gilmore's affiliates
 #' #' }
+#' 
 #' @export
 list_affiliates <-
   function(party_id = 6,

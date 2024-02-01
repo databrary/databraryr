@@ -7,7 +7,9 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
+#' 
 #' @returns Logical value indicating whether log in is successful or not.
+#' 
 #' @examplesIf interactive()
 #' make_login_client() # Queries user for email and password interactively.
 #' @examples
@@ -18,6 +20,7 @@
 #' make_login_client(email = "you@provider.com", store = TRUE)
 #' }
 #' }
+#' 
 #' @export
 make_login_client <- function(email = NULL,
                      password = NULL,

@@ -4,7 +4,7 @@
 \alias{list_volume_activity}
 \title{List Activity In A Databrary Volume}
 \usage{
-list_volume_activity(vol_id = 1, vb = FALSE)
+list_volume_activity(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}
@@ -16,7 +16,7 @@ A list with the activity history on a volume.
 }
 \description{
 If a user has access to a volume, this command lists the modification
-history of the volume.
+history of the volume as a
 }
 \examples{
 \donttest{

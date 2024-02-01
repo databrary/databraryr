@@ -1,4 +1,4 @@
-#' Download Video From Databrary.
+#' Download Asset From Databrary.
 #'
 #' @param asset_id Asset id for target file.
 #' @param session_id Slot/session number where target file is stored.
@@ -7,11 +7,13 @@
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
+#' 
 #' @returns Full file name to the asset.
+#' 
 #' @examples
 #' \donttest{
-#' download_asset() # Download's 'numbers' file from volume 1.
-#' download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
+#' download_session_asset() # Download's 'numbers' file from volume 1.
+#' download_session_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' #' # Downloads a display with a random dot kinematogram (RDK).
 #' }
 #' @export

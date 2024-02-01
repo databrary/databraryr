@@ -4,12 +4,14 @@
 \alias{list_volume_links}
 \title{Retrieves URL Links From A Databrary Volume.}
 \usage{
-list_volume_links(vol_id = 1, vb = FALSE)
+list_volume_links(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A data frame with the requested data.
@@ -19,6 +21,8 @@ Retrieves URL Links From A Databrary Volume.
 }
 \examples{
 \donttest{
+\dontrun{
 list_volume_links() # Links from volume 1
+}
 }
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_assets_in_volume.R
 \name{list_assets_in_volume}
 \alias{list_assets_in_volume}
-\title{List Assets in Databrary Volume.}
+\title{List Assets in a Databrary Volume.}
 \usage{
 list_assets_in_volume(vol_id = 2, vb = FALSE)
 }
@@ -15,10 +15,13 @@ list_assets_in_volume(vol_id = 2, vb = FALSE)
 A data frame with information about all assets in a volume.
 }
 \description{
-List Assets in Databrary Volume.
+@description
+\verb{r lifecycle::badge("deprecated")}
+\code{list_assets_in_volume()} has been deprecated in favor of \code{list_volume_assets()}.
 }
 \examples{
 \donttest{
 list_assets_in_volume() # Assets in volume 2
 #' }
+
 }

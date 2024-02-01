@@ -10,7 +10,8 @@ get_asset_segment_range(
   asset_id = 1,
   convert_JSON = TRUE,
   segment_only = TRUE,
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -26,6 +27,8 @@ get_asset_segment_range(
 a data frame with two fields, segment and permission. Default is TRUE.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 The time range (in ms) for an asset, if one is indicated.
@@ -37,4 +40,5 @@ Get Time Range For An Asset.
 \donttest{
 get_asset_segment_range()
 }
+
 }

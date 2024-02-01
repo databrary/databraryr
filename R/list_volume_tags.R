@@ -20,9 +20,18 @@ list_volume_tags <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL request
   if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("Only public information will be returned.")
+    }
     rq <- make_default_request()
   }
+  
   rq <- rq |>
     httr2::req_url(sprintf(GET_VOLUME_TAGS, vol_id))
   
@@ -38,8 +47,8 @@ list_volume_tags <- function(vol_id = 1,
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$tags))) {
       purrr::map(res$tags, extract_vol_tag) |>
-         purrr::list_rbind() |>
-         dplyr::mutate(vol_id = vol_id)
+        purrr::list_rbind() |>
+        dplyr::mutate(vol_id = vol_id)
     }
   } else {
     resp
@@ -48,8 +57,6 @@ list_volume_tags <- function(vol_id = 1,
 
 #-------------------------------------------------------------------------------
 extract_vol_tag <- function(tag_list_item) {
-  tibble::tibble(
-    tag_id = tag_list_item$id,
-    tag_weight = tag_list_item$weight
-  )
+  tibble::tibble(tag_id = tag_list_item$id,
+                 tag_weight = tag_list_item$weight)
 }

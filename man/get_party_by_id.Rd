@@ -15,7 +15,8 @@ get_party_by_id(party_id = 6, vb = FALSE, rq = NULL)
 be generated using \code{make_default_request()}.}
 }
 \value{
-A JSON blob with information about the party.
+A nested list with information about the party.
+This can be readily parsed by other functions.
 }
 \description{
 Download Information About a Party on Databrary as JSON

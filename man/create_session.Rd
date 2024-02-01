@@ -11,7 +11,7 @@ create_session(vol_id, rq = NULL, lrsp = NULL)
 
 \item{rq}{An httr2 request object.}
 
-\item{lrsp}{An httr2 response object returned from \code{login_db()}}
+\item{lrsp}{An httr2 response object returned from \code{login_db()}.}
 }
 \value{
 A JSON blob with the new session's data if the user has previously logged
@@ -22,6 +22,12 @@ Create New Session on A Databrary Volume
 }
 \examples{
 \donttest{
-create_session() # Default is Volume 1
+\dontrun{
+# Create `httr2` request objects and log in to Databrary using stored credentials.
+rq <- make_default_request()
+lrsp <- make_login_client(email = "YOUR_DATABRARY_EMAIL@INSTITUTION.EDU", store = TRUE, rq = rq)
+
+create_session(vol_id = TARGET_VOLUME_ID, rq, lrsp)
+}
 }
 }

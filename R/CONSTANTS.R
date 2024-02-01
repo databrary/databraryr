@@ -1,4 +1,6 @@
-# Endpoints
+#' Load Package-wide Constants into Local Environment
+#' 
+#' 
 
 DATABRARY_API <- "https://nyu.databrary.org/api"
 LOGIN <- "https://nyu.databrary.org/api/user/login"
@@ -14,10 +16,15 @@ GET_PARTY_BY_ID <- "https://nyu.databrary.org/api/party/%s?parents&children&acce
 GET_CONSTANTS <- "https://nyu.databrary.org//api/constants"
 GET_PARTY_AVATAR <- "https://nyu.databrary.org/party/%s/avatar"
 GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
+GET_SESSION_ACTIVITY <- "https://nyu.databrary.org/api/slot/%s/activity"
+GET_SESSION_ZIP <- "https://nyu.databrary.org/volume/%s/slot/%s/zip/false"
 GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
 GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"
 GET_VOLUME_TAGS <- "https://nyu.databrary.org/api/volume/%s?tags=all"
 GET_VOLUME_ACTIVITY <- "https://nyu.databrary.org/api/volume/%s/activity"
+GET_VOLUME_ZIP <- "https://nyu.databrary.org/volume/%s/zip/false"
+GET_ASSET_BY_ID <- "https://nyu.databrary.org/api/asset/%s"
+GET_ASSET_BY_VOLUME_SESSION_ID <- "https://nyu.databrary.org/api/volume/%s/slot/%s/asset/%s"
 
 CREATE_SLOT <-
   "https://nyu.databrary.org/api/volume/%s/slot"
@@ -31,6 +38,10 @@ UPDATE_SLOT <- "https://nyu.databrary.org/api/slot/%s"
 
 QUERY_SLOT <-
   "https://nyu.databrary.org/api/slot/%s/-?records&assets&excerpts&tags&comments"
+QUERY_VOLUME_FUNDER <- "https://nyu.databrary.org/api/funder?query=%s"
+QUERY_KEYWORDS <- "https://nyu.databrary.org/api/search?q=%s"
+QUERY_TAGS <- "https://nyu.databrary.org/api/tags/%s"
+
 SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
 API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
 

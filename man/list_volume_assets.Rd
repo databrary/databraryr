@@ -22,7 +22,7 @@ List Assets in Databrary Volume.
 \examples{
 \donttest{
 \dontrun{
-list_assets_in_volume() # Assets in volume 1
+list_volume_assets() # Assets in volume 1
 }
 }
 }
