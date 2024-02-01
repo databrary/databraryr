@@ -10,6 +10,8 @@ is_person(party_id = 7, vb = FALSE, rq = NULL)
 \item{party_id}{Databrary party ID}
 
 \item{vb}{A boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 TRUE if the party is a person, FALSE otherwise.

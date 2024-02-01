@@ -9,8 +9,9 @@ list_party_affiliates(party_id = 6, vb = FALSE, rq = NULL)
 \arguments{
 \item{party_id}{Target party ID.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.
-#' @param rq An \code{httr2} request object. Defaults to NULL.}
+\item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
 \value{
 A data frame with information about a party's affiliates.

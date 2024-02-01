@@ -1,7 +1,8 @@
 #' Download Databrary Constants From API.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' 
+#' @param rq An `httr2` request object. Defaults to NULL.
+#'
 #' @returns A data frame with the constants.
 #' 
 #' @examples

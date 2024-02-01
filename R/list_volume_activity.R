@@ -5,7 +5,10 @@
 #'
 #' @param vol_id Selected volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Defaults to NULL.
+#'
 #' @returns A list with the activity history on a volume.
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{

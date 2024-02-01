@@ -10,6 +10,8 @@ list_volume_activity(vol_id = 1, vb = FALSE, rq = NULL)
 \item{vol_id}{Selected volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
 \value{
 A list with the activity history on a volume.

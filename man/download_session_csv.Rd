@@ -24,7 +24,7 @@ download_session_csv(
 
 \item{vb}{A Boolean value. Default is FALSE.}
 
-\item{req}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A character string that is the name of the downloaded file or a data frame if \code{as_df} is TRUE.

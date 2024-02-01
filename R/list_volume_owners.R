@@ -44,6 +44,9 @@ list_volume_owners <- function(vol_id = 1,
     }
   )
   
+  id <- NULL
+  name <- NULL
+  
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$owners))) {

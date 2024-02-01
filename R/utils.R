@@ -22,22 +22,7 @@ get_file_duration <- function(asset_id = 1,
                               types_w_durations = c("-600", "-800"),
                               vb = FALSE,
                               rq = NULL) {
-  # # Test parameters---------------------------------------------------------
-  # if (length(asset_id) > 1) {
-  #   stop("asset_id must have length == 1.")
-  # }
-  # if (!is.numeric(asset_id)) {
-  #   stop("asset_id must be numeric")
-  # }
-  # if (asset_id < 1) {
-  #   stop("asset_id must be >= 1")
-  # }
-  # if (length(vb) > 1) {
-  #   stop("vb must have length == 1.")
-  # }
-  # if (!is.logical(vb)) {
-  #   stop("vb must be logical")
-  # }
+
   assertthat::assert_that(is.numeric(asset_id))
   assertthat::assert_that(asset_id > 0)
   assertthat::assert_that(length(asset_id) == 1)
@@ -49,10 +34,6 @@ get_file_duration <- function(asset_id = 1,
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
-  # r <-
-  #   GET_db_contents(URL_components = paste0('/api/asset/', asset_id),
-  #                   vb = vb)
   
   # Handle NULL rq
   if (is.null(rq)) {
@@ -80,14 +61,6 @@ get_file_duration <- function(asset_id = 1,
   } else {
     resp
   }
-  
-  # if (resp$format %in% types_w_durations) {
-  #   resp$duration
-  # } else {
-  #   if (vb)
-  #     message("File type does not have a defined duration.")
-  #   return(NULL)
-  # }
 }
 
 #-------------------------------------------------------------------------------
@@ -117,40 +90,6 @@ get_asset_segment_range <- function(vol_id = 1,
                                     segment_only = TRUE,
                                     vb = FALSE,
                                     rq = NULL) {
-  # Test parameters--------------------------------------------------------
-  # if (length(vol_id) > 1) {
-  #   stop("vol_id must have length == 1.")
-  # }
-  # if (!is.numeric(vol_id)) {
-  #   stop("vol_id must be numeric")
-  # }
-  # if (vol_id < 1) {
-  #   stop("vol_id must be >= 1")
-  # }
-  # if (length(session_id) > 1) {
-  #   stop("session_id must have length == 1.")
-  # }
-  # if (!is.numeric(session_id)) {
-  #   stop("session_id must be numeric")
-  # }
-  # if (length(asset_id) > 1) {
-  #   stop("asset_id must have length == 1.")
-  # }
-  # if (session_id < 1) {
-  #   stop("slot.id must be >= 1")
-  # }
-  # if (!is.numeric(asset_id)) {
-  #   stop("asset_id must be numeric")
-  # }
-  # if (asset_id < 1) {
-  #   stop("asset_id must be >= 1")
-  # }
-  # if (length(vb) > 1) {
-  #   stop("vb must have length == 1.")
-  # }
-  # if (!is.logical(vb)) {
-  #   stop("vb must be logical")
-  # }
   
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
@@ -178,21 +117,6 @@ get_asset_segment_range <- function(vol_id = 1,
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-
-  # r <-
-  #   GET_db_contents(
-  #     URL_components = paste0(
-  #       '/api/volume/',
-  #       vol_id,
-  #       "/slot/",
-  #       session_id,
-  #       "/asset/",
-  #       asset_id
-  #     ),
-  #     vb = vb,
-  #     convert_JSON = convert_JSON
-  #   )
-
   # Handle NULL rq
   if (is.null(rq)) {
     if (vb)
@@ -227,22 +151,6 @@ get_asset_segment_range <- function(vol_id = 1,
   } else {
     resp
   }
-  
-  # if (vb) {
-  #   message(
-  #     "Returning segment start & end times (in ms) from volume ",
-  #     vol_id,
-  #     ", session ",
-  #     session_id,
-  #     ", asset ",
-  #     asset_id
-  #   )
-  # }
-  # if (segment_only) {
-  #   return(r$segment)
-  # } else {
-  #   return(r)
-  # }
 }
 
 #-------------------------------------------------------------------------------
@@ -259,8 +167,7 @@ get_asset_segment_range <- function(vol_id = 1,
 #' @export
 get_permission_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  pl <- c$permission
-  return(pl)
+  c$permission |> unlist()
 }
 
 #-------------------------------------------------------------------------------
@@ -301,8 +208,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' @export
 get_release_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  rl <- c$release
-  return(rl)
+  c$release |> unlist()
 }
 
 #-------------------------------------------------------------------------------
@@ -329,6 +235,7 @@ get_supported_file_types <- function(vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object.
 #' 
 #' @returns TRUE if the party is an institution, FALSE otherwise.
 #' 
@@ -339,13 +246,6 @@ get_supported_file_types <- function(vb = FALSE) {
 #' 
 #' @export
 is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
-  # # Error handling
-  # if (length(party_id) > 1) {
-  #   stop("party_id must be single value")
-  # }
-  # if ((!is.numeric(party_id)) || (party_id <= 0)) {
-  #   stop("party_id must be an integer > 0")
-  # }
   
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id > 0)
@@ -366,29 +266,6 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 
   party_info <- get_party_by_id(party_id, vb, rq)
   
-  # resp <- tryCatch(
-  #   httr2::req_perform(rq),
-  #   httr2_error = function(cnd)
-  #     NULL
-  # )
-  # if (!is.null(resp)) {
-  #   httr2::resp_body_json(resp)
-  # } else {
-  #   resp
-  # }
-  
-  
-  # # Process request-----------------------------------------------------
-  # r <- GET_db_contents(URL_components = paste0('/api/party/', party_id),
-  #                      vb = vb)
-  
-  
-  # if (("institution" %in% names(r)) && (!is.null(r[['institution']]))) {
-  #   return(TRUE)
-  # } else {
-  #   return(FALSE)
-  # }
-  
   if (("institution" %in% names(party_info)) && (!is.null(party_info[['institution']]))) {
     TRUE
   } else {
@@ -401,6 +278,7 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object.
 #' @returns TRUE if the party is a person, FALSE otherwise.
 #' 
 #' @examples
@@ -413,30 +291,29 @@ is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
   return(!is_institution(party_id, vb, rq))
 }
 
-#' #-------------------------------------------------------------------------------
-#' #'Extract Session Info
-#' #'
-#' #'
-#' #' @param volume_json. A JSON blob returned by `get_volume_by_id`
-#' #' 
-#' #' @examples
-#' #' \donttest{
-#' #' \dontrun{
-#' #' extract_session_metadata()
-#' #' }
-#' #' }
-#' #' @export
-#' extract_session_metadata <- function(volume_json) {
-#'   
-#'   assertthat::assert_that(is.list(volume_json))
-#'   
-#'   extract_single_session <- function(i, sessions) {
-#'     this_session <- sessions$value[[i]]
-#'     tibble::tibble(id = this_session$id, top = this_session$top, name = this_session$name)
-#'   }
-#'   
-#'   these_sessions <- tibble::enframe(volume_json$containers)
-#'   n_sessions <- dim(these_sessions)[1]
-#'   purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
-#'     purrr::list_rbind()
+#-------------------------------------------------------------------------------
+#'Extract Session Info
+#'
+#' @param volume_json. A JSON blob returned by `get_volume_by_id`
+#'
+#' @examples
+#' \donttest{
+#' \dontrun{
+#' extract_session_metadata()
 #' }
+#' }
+#' @export
+extract_session_metadata <- function(volume_json) {
+
+  assertthat::assert_that(is.list(volume_json))
+
+  extract_single_session <- function(i, sessions) {
+    this_session <- sessions$value[[i]]
+    tibble::tibble(id = this_session$id, top = this_session$top, name = this_session$name)
+  }
+
+  these_sessions <- tibble::enframe(volume_json$containers)
+  n_sessions <- dim(these_sessions)[1]
+  purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
+    purrr::list_rbind()
+}

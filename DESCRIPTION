@@ -15,6 +15,7 @@ LazyData: true
 Imports:
     dplyr,
     httr,
+    httr2,
     rvest,
     jsonlite,
     keyring,
@@ -28,7 +29,8 @@ Imports:
     tidyr,
     lifecycle,
     assertthat,
-    getPass
+    getPass,
+    xfun
 RoxygenNote: 7.2.3
 Suggests: 
     av,

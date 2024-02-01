@@ -9,6 +9,8 @@ get_volume_by_id(vol_id = 1, vb = FALSE, rq = NULL)
 \arguments{
 \item{vol_id}{Volume ID.}
 
+\item{vb}{A logical value. Show verbose messages.}
+
 \item{rq}{An \code{httr2} request object.}
 }
 \value{

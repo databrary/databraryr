@@ -2,7 +2,7 @@
 #'
 #' @param party_id Target party ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' #' @param rq An `httr2` request object. Defaults to NULL.
+#' @param rq An `httr2` request object. Defaults to NULL.
 #' 
 #' @returns A data frame with information about a party's affiliates.
 #' 
@@ -28,6 +28,15 @@ list_party_affiliates <- function(party_id = 6,
     message(paste0("Getting affiliates for party ", party_id, "."))
   
   g <- get_party_by_id(party_id, vb, rq)
+  
+  party.id <- NULL
+  party.prename <- NULL
+  party.sortname <- NULL
+  party.affiliation <- NULL
+  affiliate_id <- NULL
+  affiliate_sortname <- NULL
+  affiliate_affiliation <- NULL
+  
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))

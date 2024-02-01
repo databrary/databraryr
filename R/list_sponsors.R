@@ -29,6 +29,12 @@ list_sponsors <- function(party_id = 6,
 
   g <- get_party_by_id(party_id, vb, rq)
 
+  party.id <- NULL
+  party.sortname <- NULL
+  party.affiliation <- NULL
+  party.institution <- NULL
+  party.url <- NULL
+  
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))

@@ -5,7 +5,7 @@
 #' @param show_party_info A logical value. Show the person's name and affiliation in the output.
 #' Default is TRUE.
 #' @param vb A Boolean value. If TRUE returns verbose output. Default is FALSE.
-#' @param req An `httr2` request object. If not provided, a new request is
+#' @param rq An `httr2` request object. If not provided, a new request is
 #' generated via `make_default_request()`.
 #'
 #' @returns An list with the avatar (image) file and a name_affil string.

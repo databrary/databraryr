@@ -1,7 +1,10 @@
 #' Log Out of Databrary.org.
 #'
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Defaults to NULL.
+#' 
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
+#' 
 #' @examples
 #' \donttest{
 #' logout_db()

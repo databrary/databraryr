@@ -9,7 +9,7 @@
 #' @param target_dir Directory to save downloaded file. Default is tempdir().
 #' @param as_df A Boolean value. Default is FALSE.
 #' @param vb A Boolean value. Default is FALSE.
-#' @param req An `httr2` request object.
+#' @param rq An `httr2` request object.
 #'
 #' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
 #'
@@ -43,7 +43,10 @@ download_session_csv <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  # Handle NULL rq
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL request
   if (is.null(rq))
     rq <- make_default_request()
   this_rq <- rq |>

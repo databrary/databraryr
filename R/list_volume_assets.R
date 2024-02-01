@@ -48,6 +48,12 @@ list_volume_assets <- function(vol_id = 1,
     ) |>
     purrr::list_rbind()
   
+  format_id <- NULL
+  format_mimetype <- NULL
+  format_extension <- NULL
+  format_name <- NULL
+  asset_format_id <- NULL
+  
   asset_formats_df <- list_asset_formats(vb = vb) |>
     dplyr::select(format_id, format_mimetype, format_extension, format_name)
   
@@ -56,13 +62,6 @@ list_volume_assets <- function(vol_id = 1,
     asset_formats_df,
     by = dplyr::join_by(asset_format_id == format_id)
   )
-  
-  # TODO: Decide whether to add volume info here
-  # dplyr::mutate(vol_id = vol_id,
-  #               vol_name = vol_list$name,
-  #               vol_creation = vol_list$creation,
-  #               vol_permission = vol_list$permission,
-  #               vol_publicaccess = vol_list$publicaccess)
 }
 
 #-------------------------------------------------------------------------------

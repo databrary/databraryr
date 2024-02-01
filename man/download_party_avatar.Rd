@@ -20,7 +20,7 @@ Default is TRUE.}
 
 \item{vb}{A Boolean value. If TRUE returns verbose output. Default is FALSE.}
 
-\item{req}{An \code{httr2} request object. If not provided, a new request is
+\item{rq}{An \code{httr2} request object. If not provided, a new request is
 generated via \code{make_default_request()}.}
 }
 \value{

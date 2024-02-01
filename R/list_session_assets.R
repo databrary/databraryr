@@ -74,6 +74,14 @@ list_session_assets <-
     if (!('name' %in% names(assets_df)))
       assets_df$name = NA
     
+    id <- NULL
+    format <- NULL
+    name <- NULL
+    duration <- NULL
+    permission <- NULL
+    size <- NULL
+    asset_format_id <- NULL
+    
     assets_df <- assets_df |>
       dplyr::select(id, format, duration, name, permission, size) |>
       dplyr::rename(
@@ -84,6 +92,11 @@ list_session_assets <-
         asset_permission = permission,
         asset_size = size
       )
+    
+    format_id <- NULL
+    format_mimetype <- NULL
+    format_extension <- NULL
+    format_name <- NULL
     
     # Gather asset format info
     asset_formats_df <- list_asset_formats(vb = vb) |>

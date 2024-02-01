@@ -10,6 +10,8 @@ is_institution(party_id = 8, vb = FALSE, rq = NULL)
 \item{party_id}{Databrary party ID}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 TRUE if the party is an institution, FALSE otherwise.

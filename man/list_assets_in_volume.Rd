@@ -15,10 +15,8 @@ list_assets_in_volume(vol_id = 2, vb = FALSE)
 A data frame with information about all assets in a volume.
 }
 \description{
-@description
-\verb{r lifecycle::badge("deprecated")}
-}
-\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
 This function has been deprecated in favor of \code{list_volume_assets()}.
 }
 \examples{

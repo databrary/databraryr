@@ -1,6 +1,6 @@
 # get_db_stats ---------------------------------------------------------
 test_that("get_db_stats returns a data.frame by default", {
-  expect_true(is.data.frame(get_db_stats()))
+  expect_true('data.frame' %in% class(get_db_stats()))
 })
 
 test_that("get_db_stats returns a data.frame with 'good' values for type parameter", {

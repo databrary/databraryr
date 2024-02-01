@@ -59,6 +59,8 @@ download_session_asset <- function(asset_id = 1,
   )
   
   # Gather asset format info
+  format_mimetype <- NULL
+  format_extension <- NULL
   this_file_extension <- list_asset_formats(vb = vb) |>
     dplyr::filter(httr2::resp_content_type(resp) == format_mimetype) |>
     dplyr::select(format_extension) |>

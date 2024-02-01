@@ -43,6 +43,17 @@ make_login_client <- function(email = NULL,
   assertthat::assert_that(length(SERVICE) == 1)
   assertthat::assert_that(is.character(SERVICE))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL request
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    rq <- make_default_request()
+  }
+  
   # If the user wants to store or use their stored credentials, check for keyring support
   if (store) {
     assertthat::assert_that(keyring::has_keyring_support(),
@@ -116,16 +127,6 @@ make_login_client <- function(email = NULL,
       NULL
   )
   
-  # r <-
-  #   httr::POST(
-  #     paste0("https://nyu.databrary.org/api/user/login"),
-  #     body = list(email = email, password = password)
-  #   )
-  #resp <- httr2::req_perform(rq)
-  
-  # if (httr::status_code(r) == 200) {
-  #   is_login_successful <- TRUE
-  # }
   if (!is.null(resp)) {
     is_login_successful <- TRUE
   } else {

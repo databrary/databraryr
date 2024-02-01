@@ -6,7 +6,7 @@
 \usage{
 get_session_by_name(
   session_name = "Advisory Board Meeting",
-  volume_json = get_volume_by_id(vol_id = 1, DEF_REQ),
+  volume_json = get_volume_by_id(vol_id = 1),
   rq = NULL
 )
 }

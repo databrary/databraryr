@@ -11,7 +11,7 @@ login_db(
   overwrite = FALSE,
   vb = FALSE,
   SERVICE = "org.databrary.databraryr",
-  rq = DEF_REQ
+  rq = NULL
 )
 }
 \arguments{

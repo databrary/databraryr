@@ -34,7 +34,8 @@ list_volume_links <- function(vol_id = 1,
       NULL
     }
   )
-  
+
+  head <- NULL
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$links))) {

@@ -14,6 +14,13 @@ list_asset_formats <- function(vb = FALSE) {
   assertthat::assert_that(is.logical(vb))
   
   db_constants <- assign_constants()
+  
+  id <- NULL
+  mimetype <- NULL
+  extension <- NULL
+  name <- NULL
+  transcodable <- NULL
+  
   if (!is.null(db_constants$format)) {
     purrr::map(db_constants$format, as.data.frame) |>
       purrr::list_rbind() |>
