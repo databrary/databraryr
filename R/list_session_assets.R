@@ -49,6 +49,12 @@ list_session_assets <-
       return(NULL)
     }
     
+    #--------------------------------------------------------------------------
+    get_sessions <- function(volume_container) {
+      tibble::tibble(session_id = volume_container$id)
+    }
+    #--------------------------------------------------------------------------
+    
     # Select session info
     these_sessions <-
       purrr::map(vol_list$containers, get_sessions) |>
@@ -115,9 +121,3 @@ list_session_assets <-
                                by = dplyr::join_by(asset_format_id == format_id))
     out_df
   }
-
-#-------------------------------------------------------------------------------
-#' Helper function for list_session_assets
-get_sessions <- function(volume_container) {
-  tibble::tibble(session_id = volume_container$id)
-}
