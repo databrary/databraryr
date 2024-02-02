@@ -10,9 +10,9 @@ test_that("get_session_by_id rejects bad input parameters", {
   expect_error(get_session_by_id(session_id = c(2,3)))
   expect_error(get_session_by_id(session_id = TRUE))
   
-  expect_error(get_session_by_id(volume_json = 1))
-  expect_error(get_session_by_id(volume_json = "a"))
-  expect_error(get_session_by_id(volume_json = TRUE))
+  expect_error(get_session_by_id(vol_id = -1))
+  expect_error(get_session_by_id(vol_id = "a"))
+  expect_error(get_session_by_id(vol_id = TRUE))
   
   expect_error(get_session_by_id(vb = "a"))
   expect_error(get_session_by_id(vb = -1))

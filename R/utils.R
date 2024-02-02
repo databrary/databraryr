@@ -39,8 +39,8 @@ get_file_duration <- function(asset_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
     }
-    message("\nNot logged in. Only public information will be returned.")  
     rq <- make_default_request()
   }
   rq <- rq |>
@@ -123,8 +123,8 @@ get_asset_segment_range <- function(vol_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
     }
-    message("\nNot logged in. Only public information will be returned.")  
     rq <- make_default_request()
   }
   rq <- rq |>
@@ -265,8 +265,8 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
     }
-    message("\nNot logged in. Only public information will be returned.")  
     rq <- make_default_request()
   }
   
@@ -295,31 +295,4 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 #' @export
 is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
   return(!is_institution(party_id, vb, rq))
-}
-
-#-------------------------------------------------------------------------------
-#'Extract Session Info
-#'
-#' @param volume_json. A JSON blob returned by `get_volume_by_id`
-#'
-#' @examples
-#' \donttest{
-#' \dontrun{
-#' extract_session_metadata()
-#' }
-#' }
-#' @export
-extract_session_metadata <- function(volume_json) {
-
-  assertthat::assert_that(is.list(volume_json))
-
-  extract_single_session <- function(i, sessions) {
-    this_session <- sessions$value[[i]]
-    tibble::tibble(id = this_session$id, top = this_session$top, name = this_session$name)
-  }
-
-  these_sessions <- tibble::enframe(volume_json$containers)
-  n_sessions <- dim(these_sessions)[1]
-  purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
-    purrr::list_rbind()
 }

@@ -44,8 +44,16 @@ download_video <- function(asset_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  if (is.null(rq))
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
     rq <- make_default_request()
+  }
   
   this_rq <- rq |>
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>

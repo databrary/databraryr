@@ -27,7 +27,7 @@ list_volume_assets <- function(vol_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Only public information will be returned.")
+      message("\nNot logged in. Only public information will be returned.")  
     }
     rq <- make_default_request()
   }

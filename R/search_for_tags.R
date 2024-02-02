@@ -29,7 +29,7 @@ search_for_tags <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
-        message("Only public information will be returned.")
+        message("\nNot logged in. Only public information will be returned.")  
       }
       rq <- make_default_request()
     }

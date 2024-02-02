@@ -6,7 +6,7 @@
 \usage{
 get_session_by_name(
   session_name = "Advisory Board Meeting",
-  volume_json = get_volume_by_id(vol_id = 1),
+  vol_id = 1,
   vb = FALSE,
   rq = NULL
 )
@@ -15,8 +15,7 @@ get_session_by_name(
 \item{session_name}{A string. The name of the target session. Defaults to "Advisory
 Board Meeting", the name of several of the sessions in the public Volume 1.}
 
-\item{volume_json}{A JSON blob returned by \code{get_volume_by_id()}. If no
-blob is provided, defaults to the value returned by \code{get_volume_by_id(vol_id = 1, rq)}}
+\item{vol_id}{An integer indicating the volume identifier. Default is 1.}
 
 \item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
 

@@ -13,7 +13,7 @@ list_asset_formats <- function(vb = FALSE) {
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  db_constants <- assign_constants()
+  db_constants <- databraryr::assign_constants()
   
   id <- NULL
   mimetype <- NULL

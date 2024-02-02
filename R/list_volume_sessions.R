@@ -40,10 +40,35 @@ list_volume_sessions <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
+        message("\nNot logged in. Only public information will be returned.")  
       }
-      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
+    
+    #-------------------------------------------------------------------------------
+    get_info_from_session <-
+      function(volume_container, ignore_materials = FALSE) {
+        # ignore materials
+        if (ignore_materials) {
+          if ("top" %in% names(volume_container))
+            return(NULL)
+        } else {
+          if (!("name" %in% names(volume_container)))
+            volume_container$name <- NA
+          if (!("date" %in% names(volume_container)))
+            volume_container$date <- NA
+          if (!("release" %in% names(volume_container)))
+            volume_container$release <- NA
+        }
+        
+        tibble::tibble(
+          session_id = volume_container$id,
+          session_name = volume_container$name,
+          session_date = volume_container$date,
+          session_release = volume_container$release
+        )
+      }
+    #-------------------------------------------------------------------------------
     
     vol_list <- get_volume_by_id(vol_id, vb, rq)
     if (!("containers" %in% names(vol_list))) {
@@ -68,27 +93,3 @@ list_volume_sessions <-
     df
   }
 
-#-------------------------------------------------------------------------------
-#' Helper function for list_volume_assets
-get_info_from_session <-
-  function(volume_container, ignore_materials = FALSE) {
-    # ignore materials
-    if (ignore_materials) {
-      if ("top" %in% names(volume_container))
-        return(NULL)
-    } else {
-      if (!("name" %in% names(volume_container)))
-        volume_container$name <- NA
-      if (!("date" %in% names(volume_container)))
-        volume_container$date <- NA
-      if (!("release" %in% names(volume_container)))
-        volume_container$release <- NA
-    }
-    
-    tibble::tibble(
-      session_id = volume_container$id,
-      session_name = volume_container$name,
-      session_date = volume_container$date,
-      session_release = volume_container$release
-    )
-  }

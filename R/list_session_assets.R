@@ -36,9 +36,9 @@ list_session_assets <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
+        message("\nNot logged in. Only public information will be returned.")  
       }
-      message("\nNot logged in. Only public information will be returned.")  
-      rq <- make_default_request()
+     rq <- make_default_request()
     }
     
     vol_list <- get_volume_by_id(vol_id, vb, rq)

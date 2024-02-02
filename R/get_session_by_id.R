@@ -41,10 +41,27 @@ get_session_by_id <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
+        message("\nNot logged in. Only public information will be returned.")  
       }
-      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
+    
+    #--------------------------------------------------------------------------
+    extract_session_metadata <- function(volume_json) {
+      
+      assertthat::assert_that(is.list(volume_json))
+      
+      extract_single_session <- function(i, sessions) {
+        this_session <- sessions$value[[i]]
+        tibble::tibble(id = this_session$id, top = this_session$top, name = this_session$name)
+      }
+      
+      these_sessions <- tibble::enframe(volume_json$containers)
+      n_sessions <- dim(these_sessions)[1]
+      purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
+        purrr::list_rbind()
+    }
+    #--------------------------------------------------------------------------
     
     volume_json <- NULL
     volume_json <- get_volume_by_id(vol_id, vb, rq)
