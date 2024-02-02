@@ -133,7 +133,8 @@ make_login_client <- function(email = NULL,
     return(NULL)
   }
   
-  # If the username/password was successful and the user wanted to store their credentials
+  # If the username/password was successful and the user wanted to store 
+  # their credentials
   # Store them in the keyring
   if (is_login_successful) {
     if (store && (do_collect_password || overwrite)) {
@@ -154,13 +155,14 @@ make_login_client <- function(email = NULL,
       message(
         paste0(
           'Login failed; nothing stored in keyring; HTTP status ',
-          httr::status_code(r),
+          httr2::resp_status(resp),
           '\n'
         )
       )
   } else {
     if (vb)
-      message(paste0('Login failed; HTTP status ', httr::status_code(r), '\n'))
+      message(paste0('Login failed; HTTP status ', 
+                     httr2::resp_status(resp), '\n'))
   }
   resp
   #return(FALSE)

@@ -26,7 +26,6 @@ Imports:
     methods,
     plyr,
     purrr,
-    tidyr,
     lifecycle,
     assertthat,
     getPass,

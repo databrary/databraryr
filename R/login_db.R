@@ -26,7 +26,6 @@ login_db <- function(email = NULL,
                      vb = FALSE,
                      SERVICE = "org.databrary.databraryr",
                      rq = NULL) {
-  
   # Check parameters
   assertthat::assert_that(length(store) == 1)
   assertthat::assert_that(is.logical(store))
@@ -148,13 +147,14 @@ login_db <- function(email = NULL,
       message(
         paste0(
           'Login failed; nothing stored in keyring; HTTP status ',
-          httr::status_code(r),
+          httr2::resp_status(resp),
           '\n'
         )
       )
   } else {
     if (vb)
-      message(paste0('Login failed; HTTP status ', httr::status_code(r), '\n'))
+      message(paste0('Login failed; HTTP status ', 
+                     httr2::resp_status(resp), '\n'))
   }
   
   return(FALSE)

@@ -21,7 +21,12 @@ get_party_by_id <- function(party_id = 6,
   # Check parameters
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id >= 1)
+  
+  assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
   if (is.null(rq)) {
     if (vb)

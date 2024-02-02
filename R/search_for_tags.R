@@ -12,38 +12,41 @@
 #' }
 #'
 #' @export
-search_for_tags <- function(search_string = "ICIS", vb = FALSE) {
-  # Check parameters
-  assertthat::assert_that(length(search_string) == 1)
-  assertthat::assert_that(is.character(search_string))
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  assertthat::assert_that(is.null(rq) |
-                            ("httr2_request" %in% class(rq)))
-  
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Only public information will be returned.")
+search_for_tags <-
+  function(search_string = "ICIS",
+           vb = FALSE,
+           rq = NULL) {
+    # Check parameters
+    assertthat::assert_that(length(search_string) == 1)
+    assertthat::assert_that(is.character(search_string))
+    
+    assertthat::assert_that(length(vb) == 1)
+    assertthat::assert_that(is.logical(vb))
+    
+    assertthat::assert_that(is.null(rq) |
+                              ("httr2_request" %in% class(rq)))
+    
+    if (is.null(rq)) {
+      if (vb) {
+        message("NULL request object. Will generate default.")
+        message("Only public information will be returned.")
+      }
+      rq <- make_default_request()
     }
-    rq <- make_default_request()
-  }
-  rq <- rq |>
-    httr2::req_url(sprintf(QUERY_TAGS, search_string))
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd) {
-      NULL
+    rq <- rq |>
+      httr2::req_url(sprintf(QUERY_TAGS, search_string))
+    
+    resp <- tryCatch(
+      httr2::req_perform(rq),
+      httr2_error = function(cnd) {
+        NULL
+      }
+    )
+    
+    if (!is.null(resp)) {
+      httr2::resp_body_string(resp)
+    } else {
+      resp
     }
-  )
-  
-  if (!is.null(resp)) {
-    httr2::resp_body_string(resp)
-  } else {
-    resp
+    #TODO: Reformat search data; handle multiple tags (separate with '+')
   }
-  #TODO: Reformat search data; handle multiple tags (separate with '+')
-}

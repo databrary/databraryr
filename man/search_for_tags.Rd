@@ -4,7 +4,7 @@
 \alias{search_for_tags}
 \title{Search For Tags on Volumes or Sessions.}
 \usage{
-search_for_tags(search_string = "ICIS", vb = FALSE)
+search_for_tags(search_string = "ICIS", vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{search_string}{String to search.}

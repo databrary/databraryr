@@ -4,35 +4,30 @@
 \alias{get_session_by_id}
 \title{Get Session (Slot) Data From A Databrary Volume}
 \usage{
-get_session_by_id(
-  session_id = 9807,
-  volume_json = get_volume_by_id(vol_id = 1, rq),
-  vb = FALSE,
-  rq = NULL
-)
+get_session_by_id(session_id = 9807, vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{session_id}{An integer indicating a valid session/slot identifier
 linked to a volume. Default value is 9807, the materials folder for volume 1.}
 
-\item{volume_json}{A JSON blob with data from a Databrary volume such as that
-returned by \code{get_volume_by_id()}. If no JSON blob is supplied, the blob
-returned by \code{get_volume_by_id()} is used.}
+\item{vol_id}{An integer indicating the volume identifier. Default is 1.}
 
 \item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
 
 \item{rq}{An httr2 request object.}
 }
 \value{
-A JSON blob with the volume data. If the user has previously logged
-in to Databrary via \code{login_db()}, then volume(s) that have restricted access
-can be downloaded, subject to the sharing release levels on those volume(s).
+A JSON blob with the session data. If the user has previously logged
+in to Databrary via \code{login_db()}, then session(s) that have restricted access
+can be downloaded, subject to the sharing release levels on those session(s).
 }
 \description{
 Get Session (Slot) Data From A Databrary Volume
 }
 \examples{
 \donttest{
+\dontrun{
 get_session_by_id() # Default is Volume 1, Session 9807, the Materials folder
+}
 }
 }

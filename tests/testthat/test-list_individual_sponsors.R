@@ -1,7 +1,7 @@
 # list_individual_sponsors ---------------------------------------------------------
 test_that("list_individual_sponsors returns a data.frame or is NULL.", {
   expect_true((is.null(list_individual_sponsors()) ||
-                 (class(list_individual_sponsors()) == "data.frame")))
+                 ("data.frame" %in% class(list_individual_sponsors()))))
 })
 
 test_that("list_individual_sponsors rejects bad input parameters", {
@@ -11,11 +11,6 @@ test_that("list_individual_sponsors rejects bad input parameters", {
   expect_error(list_individual_sponsors(party_id = c(1,3)))
   expect_error(list_individual_sponsors(party_id = list(a=1, b=2)))
 
-  expect_error(list_individual_sponsors(report_target_party = "a"))
-  expect_error(list_individual_sponsors(report_target_party = -1))
-  expect_error(list_individual_sponsors(report_target_party = c(2,3)))
-  expect_error(list_individual_sponsors(report_target_party = list(a=1, b=2)))
-  
   expect_error(list_individual_sponsors(vb = "a"))
   expect_error(list_individual_sponsors(vb = -1))
   expect_error(list_individual_sponsors(vb = c(2,3)))

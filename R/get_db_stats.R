@@ -37,11 +37,13 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
   if (is.null(rq)) {
     if (vb) message("No request object supplied. Using default.")
     rq <- make_default_request()
   }
-  
   rq <- rq |>
     httr2::req_url(GET_ACTIVITY_DATA)
   
@@ -51,52 +53,59 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
       NULL
   )
   
-  id <- NULL
-  affiliation <- NULL
-  sortname <- NULL
-  prename <- NULL
-  party <- NULL
-  institution <- NULL
+  # d$id <- NULL
+  # d$affiliation <- NULL
+  # d$sortname <- NULL
+  # d$prename <- NULL
+  # d$party <- NULL
+  # d$institution <- NULL
   
   if (is.null(resp) | httr2::resp_status(resp) != 200) {
     if (vb)
       message("No content returned.")
-    return(NULL)
+    resp
   } else {
     r <- httr2::resp_body_json(resp)
+    
+    id <- NULL
+    affiliation <- NULL
+    sortname <- NULL
+    prename <- NULL
+    party <- NULL
+    institution <- NULL
+    
     if (type == "people") {
       d <- tibble::as_tibble(r$activity$party)
       if (!is.null(d)) {
-        d <-
           dplyr::filter(
             d,
-            !is.na(d$id),
-            !is.na(d$affiliation),
-            !is.na(d$sortname),
-            !is.na(d$prename)
+            !is.na(id),
+            !is.na(affiliation),
+            !is.na(sortname),
+            !is.na(prename)
           )
       } else {
-        d <- NULL
+        NULL
       }
     }
     if (type %in% c("institutions", "places")) {
       d <- tibble::as_tibble(r$activity$party)
       if ("institution" %in% names(d)) {
-        d <- dplyr::filter(d,!is.na(d$id),!is.na(d$institution))
+        dplyr::filter(d, !is.na(id),!is.na(institution))
       } else {
-        d <- NULL # No new institutions
+        NULL
       }
     }
     if (type %in% c("datasets", "volumes", "data")) {
       d <- tibble::as_tibble(r$activity$volume)
       if (!is.null(d)) {
-        d <- dplyr::filter(d,!is.na(d$id))
+        dplyr::filter(d, !is.na(id))
       } else {
-        d <- NULL
+        NULL
       }
     }
     if (type %in% c("stats", "numbers")) {
-      d <- tibble::tibble(
+      tibble::tibble(
         date = Sys.time(),
         investigators = unlist(r$stats$authorized[5]),
         affiliates = unlist(r$stats$authorized[4]),
@@ -109,5 +118,4 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
       ) # seems incorrect
     }
   }
-  return(d)
 }

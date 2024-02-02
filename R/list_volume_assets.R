@@ -66,6 +66,10 @@ list_volume_assets <- function(vol_id = 1,
 
 #-------------------------------------------------------------------------------
 #' Helper function for list_volume_assets
+#' 
+#' @param volume_container The 'container' list from a volume.
+#' @param ignore_materials A logical value.
+#' 
 get_assets_from_session <-
   function(volume_container, ignore_materials = TRUE) {
     # ignore materials
@@ -87,6 +91,13 @@ get_assets_from_session <-
       assets_df$duration = NA
     if (!('name' %in% names(assets_df)))
       assets_df$name = NA
+    
+    # Initialize values to avoid check() error
+    id <- NULL
+    duration <- NULL
+    name <- NULL
+    permission <- NULL
+    size <- NULL
     
     assets_df |>
       dplyr::select(id, format, duration, name, permission, size) |>

@@ -35,6 +35,7 @@ list_party_affiliates <- function(party_id = 6,
   party.affiliation <- NULL
   affiliate_id <- NULL
   affiliate_sortname <- NULL
+  affiliate_prename <- NULL
   affiliate_affiliation <- NULL
   
   if (!is.null(g)) {

@@ -39,6 +39,9 @@ download_session_asset <- function(asset_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
   if (is.null(rq))
     rq <- make_default_request()
   

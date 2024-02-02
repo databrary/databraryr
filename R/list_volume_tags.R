@@ -42,7 +42,6 @@ list_volume_tags <- function(vol_id = 1,
     }
   )
   
-  httr2::resp_body_json(resp)
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$tags))) {

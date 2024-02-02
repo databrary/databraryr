@@ -1,7 +1,7 @@
 # list_volume_excerpts ---------------------------------------------------------
 test_that("list_volume_excerpts returns data.frame or is NULL", {
   expect_true((is.null(list_volume_excerpts()) ||
-                 (class(list_volume_excerpts()) == "data.frame")))
+                 ("list" %in% class(list_volume_excerpts()))))
 })
 
 test_that("list_volume_excerpts rejects bad input parameters", {

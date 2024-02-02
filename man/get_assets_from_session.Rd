@@ -6,6 +6,11 @@
 \usage{
 get_assets_from_session(volume_container, ignore_materials = TRUE)
 }
+\arguments{
+\item{volume_container}{The 'container' list from a volume.}
+
+\item{ignore_materials}{A logical value.}
+}
 \description{
 Helper function for list_volume_assets
 }

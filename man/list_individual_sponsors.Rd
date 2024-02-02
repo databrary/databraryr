@@ -4,17 +4,10 @@
 \alias{list_individual_sponsors}
 \title{List A Party's Individual Sponsors.}
 \usage{
-list_individual_sponsors(
-  party_id = 406,
-  report_target_party = FALSE,
-  vb = FALSE,
-  rq = NULL
-)
+list_individual_sponsors(party_id = 406, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{party_id}{Party number. Default is 406 (Kasey Soska)}
-
-\item{report_target_party}{Print the party ID and name of the target person.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 
@@ -37,7 +30,10 @@ a party.
 }
 \examples{
 \donttest{
+\dontrun{
 list_individual_sponsors() # Default is Kasey Soska (party 406)
+
+}
 }
 
 }

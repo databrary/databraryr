@@ -47,7 +47,7 @@ list_party_sponsors <- function(party_id = 6,
     party_affiliation <- NULL
     party_url <- NULL
     sponsor_id <- NULL
-    sponsor_shortname <- NULL
+    sponsor_sortname <- NULL
     sponsor_affiliation <- NULL
     
     purrr::map(g$parents, as.data.frame) |>

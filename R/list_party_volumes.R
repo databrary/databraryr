@@ -19,16 +19,15 @@ list_party_volumes <- function(party_id = 6,
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id > 0)
+  
   assertthat::assert_that(is.logical(vb))
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
   party_info <- get_party_by_id(party_id, vb, rq)
   
-  if (vb)
-    message(paste0("Getting affiliates for party ", party_id, "."))
-  
   g <- get_party_by_id(party_id, vb, rq)
-  
-  resp <- NULL
   
   if (!is.null(g)) {
     if (vb)
@@ -46,6 +45,7 @@ list_party_volumes <- function(party_id = 6,
   } else {
     if (vb)
       message(paste0("No data for party ", party_id, "."))
-    NULL
+    g
   }
+  #TODO: Reformat output
 }

@@ -1,5 +1,16 @@
 # databraryr 0.6.0
 
+### Major changes
+
+- Implement `httr2` functions throughout.
+  - New `make_default_request()` and `make_login_client()` functions to pave the way for future data uploads.
+  - Revised `login_db()` and `logout_db()` to use `httr2`-style request objects.
+- Reduce redundant calls to Databrary API and better filtering of responses.
+- Introduce new function naming convention:
+  - `list_*` functions return a list or a data frame.
+    - `list_{volume,session,party}*` functions target volumes, sessions, or parties.
+  - `download_*` functions download a file.
+
 # databraryr 0.5.1
 
 ## Major changes
