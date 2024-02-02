@@ -30,8 +30,8 @@ search_for_keywords <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
-        message("Only public information will be returned.")
       }
+      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
     rq <- rq |>
@@ -47,16 +47,9 @@ search_for_keywords <-
     if (vb)
       message('search_for_keywords()...')
     
-    # Make URL, GET(), and handle response ---------------------------
     if (vb)
       message(paste0("Searching for ", search_string))
     
-    # r <- GET_db_contents(
-    #   URL_components = paste0('/api/search?q=',
-    #                           search_string),
-    #   convert_JSON = TRUE,
-    #   vb = vb
-    # )
     if (!is.null(resp)) {
       httr2::resp_body_json(resp)
     } else {

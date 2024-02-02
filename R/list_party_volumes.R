@@ -25,6 +25,15 @@ list_party_volumes <- function(party_id = 6,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
+    rq <- make_default_request()
+  }
+  
   party_info <- get_party_by_id(party_id, vb, rq)
   
   g <- get_party_by_id(party_id, vb, rq)

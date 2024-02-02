@@ -11,7 +11,9 @@ get_volume_by_id(vol_id = 1, vb = FALSE, rq = NULL)
 
 \item{vb}{A logical value. Show verbose messages.}
 
-\item{rq}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object. If NULL (the default), a new request
+is generated using \code{make_default_request()}. To access restricted data,
+the user must login with a specific request object using \code{login_db()}.}
 }
 \value{
 A JSON blob with the volume data. If the user has previously logged

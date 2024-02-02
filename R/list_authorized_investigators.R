@@ -22,6 +22,18 @@ list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) 
   assertthat::assert_that(is.logical(vb))
   assertthat::assert_that(length(vb) == 1)
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
+    rq <- make_default_request()
+  }
+  
   this_party <- get_party_by_id(party_id, vb = vb, rq = rq)
   
   if (is.null(this_party)) {

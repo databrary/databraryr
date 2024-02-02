@@ -39,9 +39,9 @@ list_session_activity <-
     
     if (is.null(rq)) {
       if (vb) {
-        message("NULL request. Using default.")
-        message("No private data will be shown.")
+        message("NULL request object. Will generate default.")
       }
+      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
     rq <- rq |>

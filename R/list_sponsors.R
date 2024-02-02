@@ -22,6 +22,14 @@ list_sponsors <- function(party_id = 6,
   assertthat::assert_that(party_id > 0)
   assertthat::assert_that(is.logical(vb))
   
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
+    rq <- make_default_request()
+  }
+  
   party_info <- get_party_by_id(party_id, vb, rq)
 
   if (vb)

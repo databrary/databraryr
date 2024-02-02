@@ -1,4 +1,10 @@
 #' List Institutional Sponsors For A Party.
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function has been deprecated and may be removed in a future release.
+#'
 #'
 #' A party (person or institution) may have a sponsor that is another person
 #' or an institution. This function lists the *institution(s)* that sponsor
@@ -7,7 +13,9 @@
 #' @param party_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param report_target_party A Boolean value. Print info about the target party.
+#' 
 #' @returns A data frame with information about a party's *institutional* sponsor(s).
+#' 
 #' @examples
 #' \donttest{
 #' list_institutional_sponsors() # Defaults to Rick Gilmore (party 6)
@@ -15,7 +23,7 @@
 #' @export
 list_institutional_sponsors <-
   function(party_id = 6,
-           report_target_party = TRUE,
+           report_target_party = FALSE,
            vb = FALSE) {
 
     # Check parameters
@@ -28,23 +36,7 @@ list_institutional_sponsors <-
     
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
-    
-    if (length(party_id) > 1) {
-      stop("party_id must have length == 1.")
-    }
-    if (!is.numeric(party_id)) {
-      stop("party_id must be an integer.")
-    }
-    if (party_id < 0) {
-      stop("party_id must be > 0.")
-    }
-    if (length(vb) > 1) {
-      stop("vb must have length == 1.")
-    }
-    if (!is.logical(vb)) {
-      stop("vb must be a logical value.")
-    }
-    
+  
     if (report_target_party) {
       g <-
         databraryr::GET_db_contents(

@@ -40,9 +40,9 @@ get_session_by_id <-
     # Handle NULL rq
     if (is.null(rq)) {
       if (vb) {
-        message("NULL request; generating default")
-        message("Only public data will be shown.")
+        message("NULL request object. Will generate default.")
       }
+      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
     

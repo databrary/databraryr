@@ -15,6 +15,11 @@ test_that("list_volume_tags rejects bad input parameters", {
   expect_error(list_volume_tags(vb = 3))
   expect_error(list_volume_tags(vb = "a"))
   expect_error(list_volume_tags(vb = list(a=1, b=2)))
+  
+  expect_error(list_volume_tags(rq = "a"))
+  expect_error(list_volume_tags(rq = -1))
+  expect_error(list_volume_tags(rq = c(2,3)))
+  expect_error(list_volume_tags(rq = list(a=1, b=2)))
 })
 
 test_that("list_volume_tags returns NULL for volume without tags", {

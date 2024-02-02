@@ -24,7 +24,7 @@ List Assets in a Session from a Databrary volume.
 \examples{
 \donttest{
 \dontrun{
-list_volume_assets() # Assets in volume 1
+list_session_assets() # Session 9807 in volume 1
 }
 }
 }

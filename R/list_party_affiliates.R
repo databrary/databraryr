@@ -23,6 +23,14 @@ list_party_affiliates <- function(party_id = 6,
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
+    rq <- make_default_request()
+  }
   
   if (vb)
     message(paste0("Getting affiliates for party ", party_id, "."))

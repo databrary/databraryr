@@ -42,9 +42,14 @@ download_session_asset <- function(asset_id = 1,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
-  if (is.null(rq))
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
     rq <- make_default_request()
-  
+  }
   this_rq <- rq |>
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>
     httr2::req_progress()

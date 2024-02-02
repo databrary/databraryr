@@ -10,7 +10,7 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' list_volume_assets() # Assets in volume 1
+#' list_session_assets() # Session 9807 in volume 1
 #' }
 #' }
 #' @export
@@ -33,6 +33,13 @@ list_session_assets <-
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
+    if (is.null(rq)) {
+      if (vb) {
+        message("NULL request object. Will generate default.")
+      }
+      message("\nNot logged in. Only public information will be returned.")  
+      rq <- make_default_request()
+    }
     
     vol_list <- get_volume_by_id(vol_id, vb, rq)
     

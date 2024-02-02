@@ -1,7 +1,7 @@
 # list_party_affiliates ---------------------------------------------------------
 test_that("list_party_affiliates returns a data frame or is NULL.", {
   expect_true((is.null(list_party_affiliates()) ||
-                 (class(list_party_affiliates()) == "data.frame")))
+                 ("data.frame" %in% class(list_party_affiliates()))))
 })
 
 test_that("list_party rejects bad input parameters", {

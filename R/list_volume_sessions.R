@@ -36,12 +36,12 @@ list_volume_sessions <-
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
     
-    # Handle NULL request
+    # Handle NULL rq
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
-        message("Only public information will be returned.")
       }
+      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
     

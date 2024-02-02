@@ -33,17 +33,11 @@ list_volume_activity <-
     if (vb)
       message('list_volume_activity()...')
     
-    # r <-
-    #   GET_db_contents(URL_components = paste0('/api/volume/', vol_id,
-    #                                           '/activity'),
-    #                   vb = vb)
-    # if (is.null(r)) {
-    #   if (vb)
-    #     message("Activity history restricted to volume owners.")
-    # }
-    # r
-    
     if (is.null(rq)) {
+      if (vb) {
+        message("NULL request object. Will generate default.")
+      }
+      message("\nNot logged in. Only public information will be returned.")  
       rq <- make_default_request()
     }
     rq <- rq |>

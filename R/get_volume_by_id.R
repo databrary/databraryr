@@ -2,8 +2,10 @@
 #'
 #' @param vol_id Volume ID.
 #' @param vb A logical value. Show verbose messages.
-#' @param rq An `httr2` request object.
-#' 
+#' @param rq An `httr2` request object. If NULL (the default), a new request
+#' is generated using `make_default_request()`. To access restricted data,
+#' the user must login with a specific request object using `login_db()`.
+#'
 #' @returns A JSON blob with the volume data. If the user has previously logged
 #' in to Databrary via `login_db()`, then volume(s) that have restricted access
 #' can be downloaded, subject to the sharing release levels on those volume(s).
@@ -29,9 +31,10 @@ get_volume_by_id <- function(vol_id = 1,
   
   # Handle NULL rq
   if (is.null(rq)) {
-    if (vb)
-      message("rq is NULL; generating default.")
-      message("Only public data will be shown.")
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
     rq <- make_default_request()
   }
   rq <- rq |>

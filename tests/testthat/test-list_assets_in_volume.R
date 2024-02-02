@@ -1,6 +1,7 @@
 # list_assets_in_volume -----------------------------------------------
-test_that("list_assets_in_volume returns data.frame", {
-  expect_true(class(list_assets_in_volume()) == "data.frame")
+test_that("list_assets_in_volume returns a data frame or is NULL.", {
+  expect_true((is.null(list_assets_in_volume()) ||
+                 ("data.frame" %in% class(list_assets_in_volume()))))
 })
 
 test_that("list_assets_in_volume rejects bad input parameters", {

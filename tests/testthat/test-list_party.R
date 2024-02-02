@@ -1,7 +1,7 @@
 # list_party ---------------------------------------------------------
 test_that("list_party returns a list or is NULL.", {
   expect_true((is.null(list_party()) ||
-                 (class(list_party()) == "list")))
+                 ("list" %in% class(list_party()))))
 })
 
 test_that("list_party rejects bad input parameters", {

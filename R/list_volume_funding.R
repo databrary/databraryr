@@ -29,6 +29,14 @@ list_volume_funding <- function(vol_id = 1,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+    }
+    message("\nNot logged in. Only public information will be returned.")  
+    rq <- make_default_request()
+  }
+  
   #------------------------------------------------------------
   if (vb)
     message("Summarizing funding for n=", length(vol_id), " volumes.")
