@@ -4,7 +4,12 @@
 \alias{download_party_avatar}
 \title{Returns the Avatar(s) (images) for Authorized User(s).}
 \usage{
-download_party_avatar(party_id = 6, show_party_info = TRUE, vb = FALSE)
+download_party_avatar(
+  party_id = 6,
+  show_party_info = TRUE,
+  vb = FALSE,
+  rq = NULL
+)
 }
 \arguments{
 \item{party_id}{A number or range of numbers. Party number or numbers to retrieve information about. Default is 6
@@ -14,6 +19,9 @@ download_party_avatar(party_id = 6, show_party_info = TRUE, vb = FALSE)
 Default is TRUE.}
 
 \item{vb}{A Boolean value. If TRUE returns verbose output. Default is FALSE.}
+
+\item{rq}{An \code{httr2} request object. If not provided, a new request is
+generated via \code{make_default_request()}.}
 }
 \value{
 An list with the avatar (image) file and a name_affil string.

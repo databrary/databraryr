@@ -1,22 +1,26 @@
 #' Download Information About a Party on Databrary.
 #'
 #' @description
-#' `r lifecycle::badge("superseded")`
-#' `download_party()` has been superseded in favor of `get_party_as_df()`.
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function has been deprecated and may be removed in a future release.
+#' See `get_party_by_id()` for similar, and more general functionality.
 #'
 #' @param party_id Party number to retrieve information about.
 #' @param convert_JSON A Boolean value if TRUE converts the JSON download
 #' @param vb A Boolean value if TRUE returns verbose output.
+#'
 #' @returns A data frame with information about the party.
+#'
 #' @examples
 #' \donttest{
 #' download_party()
 #' #' }
+#'
 #' @export
 download_party <- function(party_id = 6,
                            convert_JSON = TRUE,
                            vb = FALSE) {
-  
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)
   assertthat::assert_that(is.numeric(party_id))

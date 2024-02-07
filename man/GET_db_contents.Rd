@@ -26,9 +26,14 @@ Output from GET command with the specified parameters, usually a string or a dat
 \description{
 \code{GET_db_contents} is a helper function that retrieves
 information from the 'Databrary.org' API in a structured way.
+
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future version.
 }
 \examples{
 \donttest{
 GET_db_contents() # Returns a list with data from volume 1.
 #' }
+
 }

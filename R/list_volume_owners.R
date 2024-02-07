@@ -2,14 +2,20 @@
 #'
 #' @param vol_id Selected volume number. Default is volume 1.
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. If NULL (the default) 
+#' a request will be generated, but this will only permit public information 
+#' to be returned.
+#' 
 #' @returns A data frame with information about a volume's owner(s).
+#' 
 #' @examples
 #' \donttest{
 #' list_volume_owners() # Lists information about the owners of volume 1.
 #' }
 #' @export
 list_volume_owners <- function(vol_id = 1,
-                               vb = FALSE) {
+                               vb = FALSE,
+                               rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -18,29 +24,39 @@ list_volume_owners <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
 
-  v <- list_containers_records(vol_id = vol_id, vb = vb)
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
-  if (!is.null(v$owners)) {
-    owners <- v$owners$id
-    if (length(owners) > 1) {
-      l <- lapply(owners, download_party, vb = vb)
-      Reduce(function(x, y)
-        merge(x, y, all = TRUE), l) ->
-        p
-    } else {
-      p <- as.data.frame(download_party(owners, vb = vb))
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
     }
-    if (!is.null(p)) {
-      p |>
-        dplyr::mutate(vol_id = vol_id) |>
-        dplyr::rename(person_id = "id") |>
-        dplyr::filter(!(is.na(.data$prename)), !(stringr::str_detect(.data$prename, "Databrary"))) |>
-        dplyr::select("vol_id", "person_id", "sortname", "prename")
-    } else {
-      if (vb) message("NULL value returned from `download_party()`.")
-      p
+    rq <- make_default_request()
+  }
+  rq <- rq |>
+    httr2::req_url(sprintf(GET_VOLUME_LINKS, vol_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd) {
+      NULL
+    }
+  )
+  
+  id <- NULL
+  name <- NULL
+  
+  if (!is.null(resp)) {
+    res <- httr2::resp_body_json(resp)
+    if (!(is.null(res$owners))) {
+      purrr::map(res$owners, tibble::as_tibble) |>
+        purrr::list_rbind() |>
+        dplyr::rename(person_id = id) |>
+        dplyr::filter(!(stringr::str_detect(name, "Databrary")))
     }
   } else {
-    NULL
+    resp
   }
 }

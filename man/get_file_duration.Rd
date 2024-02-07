@@ -7,7 +7,8 @@
 get_file_duration(
   asset_id = 1,
   types_w_durations = c("-600", "-800"),
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ get_file_duration(
 \item{types_w_durations}{Asset types that have valid durations.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 Duration of a file in ms.
@@ -27,4 +30,5 @@ Get Duration (In ms) Of A File.
 \donttest{
 get_file_duration() # default is the test video from databrary.org/volume/1
 }
+
 }

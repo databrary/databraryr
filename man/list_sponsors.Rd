@@ -4,12 +4,15 @@
 \alias{list_sponsors}
 \title{List Sponsors For A Party}
 \usage{
-list_sponsors(party_id = 6, vb = FALSE)
+list_sponsors(party_id = 6, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{party_id}{Target party ID.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2}-style request object. If NULL, then a new request will
+be generated using \code{make_default_request()}.}
 }
 \value{
 A data frame with information about a party's sponsors.
@@ -19,6 +22,8 @@ List Sponsors For A Party
 }
 \examples{
 \donttest{
+\dontrun{
 list_sponsors() # Default is Rick Gilmore (party 6)
+}
 }
 }

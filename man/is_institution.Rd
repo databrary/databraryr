@@ -4,12 +4,14 @@
 \alias{is_institution}
 \title{Is This Party An Institution?}
 \usage{
-is_institution(party_id = 8, vb = FALSE)
+is_institution(party_id = 8, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{party_id}{Databrary party ID}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 TRUE if the party is an institution, FALSE otherwise.
@@ -21,4 +23,5 @@ Is This Party An Institution?
 \donttest{
 is_institution() # Is party 8 (NYU) an institution.
 }
+
 }

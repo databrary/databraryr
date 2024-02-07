@@ -24,7 +24,7 @@ Databrary is a powerful tool for storing and sharing video data and documentatio
 With the `databraryr` package, it becomes even more powerful.
 Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
 
-I wrote the Databrary API so I could better understand how the site works under the hood, so that I could streamline my own analysis and data sharing workflows.
+I wrote `databraryr` so that I could better understand how the site works under the hood, and so that I could streamline my own analysis and data sharing workflows.
 Let's get started.
 
 ## Registering
@@ -34,17 +34,28 @@ The authorization process requires formal agreement by an institution.
 But you'll create an account ID (email) and secure password when you register.
 Then, when you log in with your new credentials, you'll select an existing institution (if yours is on the list), a new institution (if yours isn't), or an existing authorized investigator (if you are a student, postdoc, or collaborator) to request authorization from.
 
+## Installation
+
+### Official CRAN release
+
+- Install the package from CRAN via install.packages("databraryr").
+
+### Development release
+
+- Install the devtools package from CRAN: install.packages("devtools") if you have not already done so.
+- Load `devtools` into your local environment: library(devtools)
+- Install the databraryr package via install_github("databrary/databraryr"). Required dependencies will be installed at this time.
+
+### v0.6.0
+
+- A significant refactoring and updating of the code is in-progress.
+
 ## First steps (while you await authorization)
 
 But even before formal authorization is complete, a user can access the public materials on Databrary.
 For this vignette, we'll assume you fall into this category.
 
-First, we need to download and install the `devtools` package and then the `databraryr` package from GitHub.
-
-To install `devtools`, run `install.packages('devtools')`.
-To install `databraryr`, run `devtools::install_github("databrary/databraryr")`
-
-It's a good idea to check that your installation worked by loading it into your local workspace.
+Once you've installed the package following one of the above routes, it's a good idea to check that your installation worked by loading it into your local workspace.
 
 ```{r eval=FALSE}
 library(databraryr)
@@ -80,205 +91,8 @@ databraryr::get_db_stats("datasets")
 
 Depending on when you run this command, there may or may not be new items.
 
-## Once you are authorized
+## Next steps
 
-Congratulations!
-Your institution has approved your access to Databrary's identifiable data.
-Now, it's time to set-up `databraryr` so you can access these materials.
+To see more about how to access data on Databrary using `databraryr` visit the [accessing data](accessing-data.Rmd) vignette.
 
-Once you are authorized, you will gain access to a much wider range of materials on Databrary.
-When that happens, you'll load the package with `library(databraryr)` and then run `login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")`, substituting your actual Databrary account for `<YOUR_EMAIL@PROVIDER.COM>`, of course.
-I prefer to give the package name when I do this, so the following is how I do the same thing.
-
-```{r login, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")
-```
-
-If this is the first time you've logged in, you will be asked to enter your Databrary password in a separate window.
-If everything works out, you should see a `Login successful` message at the R console.
-Congratulations, you are ready to access Databrary's restricted shared information along with any private, but unshared information you have access to.
-
-**NOTE**: You can save yourself some time if you store your Databrary login (email) as an
-environment variable:
-
-1. Install the `usethis` package via `install.packages('usethis')`.
-2. Run `usethis::edit_r_environ()`. This will open your `.Renviron` file in a new window.
-3. Edit the `.Renviron` file by adding a line with `DATABRARY_LOGIN="youremail@yourinstitution.edu"`, substituting your actual Databrary log in email.
-4. Save the file, and restart R.
-
-Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databrary login.
-
-And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
-
-```{r login-w-env-var, eval=FALSE}
-databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
-```
-
-**NOTE**: You can also save yourself even more time by storing your Databrary user account (email) and password in your computer's secure credentials database using the `keyring` package.
-The `keyring` package uses the encrypted file that your computer's operating system uses for storing other passwords.
-There are alternative ways of storing user credentials, but this is the recommended one.
-
-To do this, use the `store` and `overwrite` parameters in `login_db()`:
-
-```{r, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE,
-                     overwrite = TRUE)
-```
-
-This overwrites and securely stores your credentials, so that the next time you log in, you need only use this command:
-
-```{r, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")
-```
-
-or if you've stored your email as an environment variable:
-
-```{r, eval=FALSE}
-databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
-```
-
-### Logging out
-
-The package also has a log out command.
-
-```{r eval=FALSE}
-databraryr::logout_db()
-```
-
-## Accessing data
-
-Databrary is a data library, one specialized for storing and sharing video.
-Let's see how to use *databraryr* to access data.
-
-We'll start simply.
-Let's download a test video from [volume 1 on Databrary](https://databrary.org/volume/1).
-
-The `download_video()` function handles this for us.
-Running it with the default parameters downloads a simple test video with numbers
-than increment.
-The file is stored in a temporary directory created by the file system using the function `tempdir()`.
-The `download_asset()` function returns a character string with the full file name.
-
-```{r, eval=FALSE}
-download_video()
-```
-
-Depending on your operating system, the following commands may open the file so that you can play it with your default video player.
-
-```{r, eval=FALSE}
-nums_vid <- download_video()
-system(paste0("open ", nums_vid))
-```
-
-Or, you can navigate to the temporary directory to open and play the video manually.
-Use `tempdir()` to find the directory where `test.mp4` is stored.
-
-Now, let's see what other files are shared in volume 1.
-This takes a moment to run because there are *many* files in this volume.
-
-```{r}
-vol1_df <- list_assets_in_volume()
-```
-
-The command returns a data frame we can manipulate using standard R commands.
-Here are the variables in the data frame.
-
-```{r}
-names(vol1_df)
-```
-
-The `asset_type` variable tells us the type of the data file.
-
-```{r}
-unique(vol1_df$asset_type)
-```
-
-We can summarize the number of files using the `stats::xtabs()` function:
-
-```{r}
-stats::xtabs(~ asset_type, data = vol1_df)
-```
-So, there are lots of videos and PDFs to examine.
-Here is a table of the ten longest videos.
-
-```{r}
-vol1_df |>
-  dplyr::filter(asset_type == "MPEG-4 video") |>
-  dplyr::select(name, duration) |>
-  dplyr::mutate(hrs = duration/(60*60*1000)) |>
-  dplyr::select(name, hrs) |>
-  dplyr::arrange(desc(hrs)) |>
-  head() |>
-  knitr::kable(format = 'html')
-```
-
-## Accessing metadata
-
-Imagine you are interested in knowing more about this volume, the people who created it, or the agencies that funded it.
-
-The `list_volume_owners()` function returns a data frame with information about the people who created and "own" this particular dataset.
-The function has a parameter `this_vol_id` which is an integer, unique across Databrary, that refers to the specific dataset.
-The `list_volume_owners()` function uses volume 1 as the default.
-
-```{r}
-list_volume_owners()
-```
-
-The command (and many like it) can be "vectorized" using the `purrr` package.
-
-```{r}
-purrr::map(1:15, list_volume_owners) |> 
-  purrr::list_rbind()
-```
-
-The `list_volume_metadata()` command gives slightly more information.
-
-```{r}
-list_volume_metadata()
-```
-
-This command can also be "vectorized."
-
-```{r}
-purrr::map(c(1:50), list_volume_metadata) |>
-  purrr::list_rbind()
-```
-
-The `permission` variable indicates whether a volume is visible by others by a user.
-
-So, if you are not logged-in to Databrary, only data that are visible to the public will be returned.
-Assuming you are *not* logged-in, the above commands will show volumes with `permission` equal to 1.
-The `permission` field derives from a set of constants the system uses.
-
-```{r}
-db_constants <- assign_constants()
-db_constants$permission
-```
-
-The `permission` array is indexed beginning with 0.
-So the 1th value is "`r db_constants$permission[2]`".
-So, the `1` means that the volumes shown above are all visible to the public, and to you.
-
-Volumes that you have not shared and are not visible to the public, will have `permission` equal to 5, or "`r db_constants$permission[6]`".
-We can't demonstrate this to you because we don't have privileges on the same unshared volume, but you can try it on a volume you've created but not yet shared.
-
-The `list_volume()` command returns even more extensive information about volume 1.
-The `list_volume_funding()` command returns information about any funders listed for the project.
-Again, the default volume is 1.
-
-```{r}
-list_volume_funding()
-```
-
-This can also be "vectorized."
-
-```{r}
-purrr::map(c(1:20), list_volume_funding) |>
-  purrr::list_rbind()
-```
-
-The `list_volume_links()` command returns information about any external (web) links that have been added to a volume, such as to related publications or a GitHub repo.
-
-```{r}
-list_volume_links()
-```
+To see how to log in and log out once you have authorization, see the vignette for [authorized users](authorized-users.Rmd).

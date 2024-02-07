@@ -2,14 +2,18 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @return A data frame with the requested data.
+#' @param rq An `httr2` request object.
+#' @returns A data frame with the requested data.
 #' @examples
 #' \donttest{
+#' \dontrun{
 #' list_volume_links() # Links from volume 1
 #' }
+#' }
 #' @export
-list_volume_links <- function(vol_id = 1, vb = FALSE) {
-  
+list_volume_links <- function(vol_id = 1,
+                              vb = FALSE,
+                              rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -18,13 +22,33 @@ list_volume_links <- function(vol_id = 1, vb = FALSE) {
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  g <-
-    databraryr::GET_db_contents(URL_components = paste0("/api/volume/", vol_id,
-                                                          "?links=all"),
-                                  vb = vb)
-  if (!is.null(g)) {
-    tibble::tibble(vol_id = vol_id, link_name = g$links$head, url = g$links$url)
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
+    rq <- make_default_request()
+  }
+  rq <- rq |>
+    httr2::req_url(sprintf(GET_VOLUME_LINKS, vol_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd) {
+      NULL
+    }
+  )
+
+  head <- NULL
+  if (!is.null(resp)) {
+    res <- httr2::resp_body_json(resp)
+    if (!(is.null(res$links))) {
+      purrr::map(res$links, tibble::as_tibble) |>
+        purrr::list_rbind() |>
+        dplyr::rename(link_name = head, link_url = url) |>
+        dplyr::mutate(vol_id = vol_id)
+    }
   } else {
-    NULL
+    resp
   }
 }

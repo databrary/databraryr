@@ -4,15 +4,20 @@
 \alias{list_session_activity}
 \title{List Activity History in Databrary Session.}
 \usage{
-list_session_activity(session_id = 6256, vb = FALSE)
+list_session_activity(session_id = 6256, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{session_id}{Selected session/slot number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Defaults to NULL. To access the activity
+history on a volume a user has privileges on. Create a request
+(\code{rq <- make_default_request()}); login using \code{make_login_client(rq = rq)};
+then run \verb{list_session_activity(session_id = <YOUR_SESSION_ID>, rq = rq)}}
 }
 \value{
-A data frame with the activity history on a session/slot.
+A list with the activity history on a session/slot.
 }
 \description{
 If a user has access to a volume and session, this function returns the

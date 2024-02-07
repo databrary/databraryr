@@ -16,10 +16,14 @@ A data frame with information about the people in the specified
 range of party ID's.
 }
 \description{
-List Info About People.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{get_party_by_id()} for similar functionality.
 }
 \examples{
 \donttest{
 list_people() # Lists people with party IDs 5:7, Databrary's founders
 #' }
+
 }

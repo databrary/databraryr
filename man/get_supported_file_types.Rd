@@ -19,4 +19,5 @@ Extracts File Types Supported by Databrary.
 \donttest{
 get_supported_file_types()
 }
+
 }

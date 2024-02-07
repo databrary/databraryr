@@ -15,4 +15,9 @@ test_that("list_volume_links rejects bad input parameters", {
   expect_error(list_volume_links(vb = 3))
   expect_error(list_volume_links(vb = "a"))
   expect_error(list_volume_links(vb = list(a=1, b=2)))
+  
+  expect_error(list_volume_links(rq = "a"))
+  expect_error(list_volume_links(rq = -1))
+  expect_error(list_volume_links(rq = c(2,3)))
+  expect_error(list_volume_links(rq = list(a=1, b=2)))
 })

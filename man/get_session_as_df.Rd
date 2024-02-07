@@ -15,10 +15,13 @@ get_session_as_df(vol_id = 1, vb = FALSE)
 A data frame with session information from a volume.
 }
 \description{
-Get Session Info From A Volume As A Data Frame.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function has been superceded by \code{list_volume_sessions()}.
 }
 \examples{
 \donttest{
 get_session_as_df() # Return Session Info from Volume 1.
 #' }
+
 }

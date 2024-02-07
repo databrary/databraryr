@@ -6,7 +6,7 @@
 \usage{
 list_institutional_sponsors(
   party_id = 6,
-  report_target_party = TRUE,
+  report_target_party = FALSE,
   vb = FALSE
 )
 }
@@ -21,6 +21,10 @@ list_institutional_sponsors(
 A data frame with information about a party's \emph{institutional} sponsor(s).
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+
 A party (person or institution) may have a sponsor that is another person
 or an institution. This function lists the \emph{institution(s)} that sponsor
 a party.

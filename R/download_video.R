@@ -6,20 +6,25 @@
 #' @param target_dir Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object.
+#' 
 #' @returns Full file name to the asset.
+#' 
 #' @examples
 #' \donttest{
 #' download_asset() # Download's 'numbers' file from volume 1.
 #' download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' #' # Downloads a display with a random dot kinematogram (RDK).
 #' }
+#' 
 #' @export
 download_video <- function(asset_id = 1,
                            session_id = 9807,
-                           file_name = tempfile(paste0(session_id, "_", asset_id),
+                           file_name = tempfile(paste0(session_id, "_", asset_id, "_"),
                                                 fileext = ".mp4"),
                            target_dir = tempdir(),
-                           vb = FALSE) {
+                           vb = FALSE,
+                           rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(asset_id) == 1)
   assertthat::assert_that(is.numeric(asset_id))
@@ -38,6 +43,21 @@ download_video <- function(asset_id = 1,
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
+    rq <- make_default_request()
+  }
+  
+  this_rq <- rq |>
+    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>
+    httr2::req_progress()
   
   if (file.exists(file_name)) {
     if (vb)
@@ -59,24 +79,19 @@ download_video <- function(asset_id = 1,
             " from session_id ",
             session_id)
   
-  asset_url <- paste("/slot", session_id, "-", "asset", asset_id,
-                     "download", sep = "/")
-  url_download <- paste0("https:/nyu.databrary.org", asset_url)
-  r <-
-    httr::GET(url_download, httr::write_disk(file_name, overwrite = TRUE))
+  resp <- tryCatch(
+    httr2::req_perform(this_rq),
+    httr2_error = function(cnd) 
+      NULL
+  )
   
-  if (httr::status_code(r) == 200) {
-    if (vb)
-      message("Successful HTML GET query.\n")
-    if (r$headers$`content-type` != "video/mp4") {
-      message("Content not `video/mp4`.")
-      return(NULL)
-    } else {
-      file_name
-    }
+  if (httr2::resp_content_type(resp) == "video/mp4") {
+    file_con <- file(file_name, "wb")
+    writeBin(resp$body, file_con)
+    close(file_con)
+    file_name    
   } else {
-    if (vb)
-      message('Download Failed, HTTP status ', httr::status_code(r))
-    return(NULL)
+    message("Content type is ", httr2::resp_content_type(resp))
+    NULL
   }
 }

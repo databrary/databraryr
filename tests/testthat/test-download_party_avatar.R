@@ -12,4 +12,9 @@ test_that("download_party_avatar rejects bad input parameters", {
   expect_error(download_party_avatar(vb = 3))
   expect_error(download_party_avatar(vb = "a"))
   expect_error(download_party_avatar(vb = list(a=1, b=2)))
+  
+  expect_error(download_party_avatar(rq = -1))
+  expect_error(download_party_avatar(rq = "a"))
+  expect_error(download_party_avatar(rq = list(a=1, b=2)))
+  expect_error(download_party_avatar(rq = NA))
 })

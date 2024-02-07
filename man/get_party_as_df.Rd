@@ -17,7 +17,10 @@ get_party_as_df(party_id = 6, convert_JSON = TRUE, vb = FALSE)
 A data frame with information about the selected party or parties.
 }
 \description{
-Retrieve Party (Person/Institution) Info as Data Frame.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{get_party_by_id()} for similar, and more general functionality.
 }
 \examples{
 \donttest{
@@ -27,4 +30,5 @@ get_party_as_df(party_id = 8) # Info about NYU.
 
 get_party_as_df(5:7) # Info about Databrary's founders
 #' }
+
 }

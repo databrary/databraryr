@@ -15,7 +15,10 @@ summarize_videos_in_volume(vol_id = 2, vb = FALSE)
 Data frame with the vol_id, number of videos, and total hours.
 }
 \description{
-Summarize Data About Videos in Databrary Volume.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function is deprecated and may be removed from a future version of
+the package. \code{list_volume_assets()} is preferred.
 }
 \examples{
 \donttest{

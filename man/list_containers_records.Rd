@@ -15,10 +15,14 @@ list_containers_records(vol_id = 1, vb = FALSE)
 A list with containers and records from the specified volume.
 }
 \description{
-List Containers and Records In Databrary Volume.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{get_volume_by_id()} for related functionality.
 }
 \examples{
 \donttest{
 list_containers_records() # Containers and records from volume 1.
 #' }
+
 }

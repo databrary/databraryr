@@ -19,4 +19,5 @@ Extract Databrary Permission Levels.
 \donttest{
 get_permission_levels()
 }
+
 }

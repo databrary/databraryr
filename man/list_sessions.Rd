@@ -15,7 +15,8 @@ list_sessions(vol_id = 1, vb = FALSE)
 Information about sessions in a volume.
 }
 \description{
-Download Information About A Volume or Volume's Sessions.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{list_sessions()} has been deprecated in favor of \code{list_volume_sessions()}.
 }
 \examples{
 \donttest{

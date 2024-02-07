@@ -17,6 +17,12 @@ read_csv_data_as_df(session_id = 9807, asset_id = 153108, vb = FALSE)
 A data frame with the CSV data.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function has been deprecated and may be removed in a future release.
+See \code{download_session_asset()} for more similar, but more general functionality.
+}
+\details{
 If a given Databrary session has a CSV file, this function will
 try to download it as a data frame.
 }

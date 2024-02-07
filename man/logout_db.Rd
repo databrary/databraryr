@@ -4,10 +4,12 @@
 \alias{logout_db}
 \title{Log Out of Databrary.org.}
 \usage{
-logout_db(vb = FALSE)
+logout_db(vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vb}{A boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
 \value{
 TRUE if logging out succeeds, FALSE otherwise.

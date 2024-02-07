@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_affiliates.R
 \name{list_affiliates}
 \alias{list_affiliates}
-\title{List Affiliates for A Databrary Volume.}
+\title{List Affiliates for A Databrary Party.}
 \usage{
 list_affiliates(party_id = 6, report_target_party = FALSE, vb = FALSE)
 }
@@ -18,10 +18,15 @@ A data frame with information about a party's affiliates (sponsored
 investigators).
 }
 \description{
-List Affiliates for A Databrary Volume.
+#' @description
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+}
+\details{
+This function has been superseded by \code{list_party_affiliates()}.
 }
 \examples{
 \donttest{
 list_affiliates() # Lists Rick Gilmore's affiliates
 #' }
+
 }

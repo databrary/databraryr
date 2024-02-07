@@ -1,13 +1,22 @@
 #' List Info About People.
+#' 
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function has been deprecated and may be removed in a future release.
+#' See `get_party_by_id()` for similar functionality.
 #'
 #' @param people_list Party number(s) for people to list.
 #' @param vb A Boolean value if TRUE returns verbose output.
+#' 
 #' @returns A data frame with information about the people in the specified
 #'   range of party ID's.
+#'   
 #' @examples
 #' \donttest{
 #' list_people() # Lists people with party IDs 5:7, Databrary's founders
 #' #' }
+#' 
 #' @export
 list_people <- function(people_list = 5:7, vb = FALSE) {
 

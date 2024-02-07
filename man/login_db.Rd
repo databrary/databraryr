@@ -10,7 +10,8 @@ login_db(
   store = FALSE,
   overwrite = FALSE,
   vb = FALSE,
-  SERVICE = "org.databrary.databraryr"
+  SERVICE = "org.databrary.databraryr",
+  rq = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ login_db(
 \item{vb}{A boolean value. If TRUE provides verbose output.}
 
 \item{SERVICE}{A character label for stored credentials in the keyring. Default is "databrary"}
+
+\item{rq}{An \code{http} request object. Defaults to NULL.}
 }
 \value{
 Logical value indicating whether log in is successful or not.

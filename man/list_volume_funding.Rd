@@ -4,12 +4,14 @@
 \alias{list_volume_funding}
 \title{Lists Funders Associated With a Databrary Volume.}
 \usage{
-list_volume_funding(vol_id = 1, vb = FALSE)
+list_volume_funding(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A data frame with funder information for the volume.
@@ -25,4 +27,5 @@ list_volume_funding() # Funding for volume 1
 list_volume_funding(vol_id = c(1:10))
 }
 }
+
 }

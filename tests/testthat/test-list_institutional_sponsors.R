@@ -1,7 +1,7 @@
 # list_institutional_sponsors ---------------------------------------------------------
 test_that("list_institutional_sponsors returns a data.frame or is NULL.", {
   expect_true((is.null(list_institutional_sponsors()) ||
-                 (class(list_institutional_sponsors()) == "data.frame")))
+                 ("data.frame" %in% class(list_institutional_sponsors()))))
 })
 
 test_that("list_institutional_sponsors rejects bad input parameters", {

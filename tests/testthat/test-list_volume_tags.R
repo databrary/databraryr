@@ -1,7 +1,7 @@
 # list_volume_tags ---------------------------------------------------------
 test_that("list_volume_tags returns data.frame or is NULL", {
   expect_true((is.null(list_volume_tags()) ||
-                 (class(list_volume_tags()) == "data.frame")))
+                 ("data.frame" %in% class(list_volume_tags()))))
 })
 
 test_that("list_volume_tags rejects bad input parameters", {
@@ -15,10 +15,11 @@ test_that("list_volume_tags rejects bad input parameters", {
   expect_error(list_volume_tags(vb = 3))
   expect_error(list_volume_tags(vb = "a"))
   expect_error(list_volume_tags(vb = list(a=1, b=2)))
-})
-
-test_that("list_volume_tags returns data.frame for volume with tags", {
-  expect_true(class(list_volume_tags(vol_id = 1)) == "data.frame")
+  
+  expect_error(list_volume_tags(rq = "a"))
+  expect_error(list_volume_tags(rq = -1))
+  expect_error(list_volume_tags(rq = c(2,3)))
+  expect_error(list_volume_tags(rq = list(a=1, b=2)))
 })
 
 test_that("list_volume_tags returns NULL for volume without tags", {

@@ -1,11 +1,13 @@
-#========================================================================================
 #' Download Zip Archive of All Data in a Volume.
 #'
 #' @param vol_id Volume number.
 #' @param out_dir Directory to save output file.
 #' @param file_name Name for downloaded file, default is 'test.mp4'.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Default is NULL.
+#'
 #' @returns Full filename of the downloaded file.
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -17,7 +19,8 @@
 download_volume_zip <- function(vol_id = 31,
                                 out_dir = tempdir(),
                                 file_name = "test.zip",
-                                vb = FALSE) {
+                                vb = FALSE,
+                                rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -32,22 +35,32 @@ download_volume_zip <- function(vol_id = 31,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  url_download <-
-    paste0("https://nyu.databrary.org",
-           paste("/volume", vol_id,
-                 "zip/false",
-                 sep = "/"))
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
   
-  if (vb)
-    message(paste0('Sending GET to ', url_download))
-  if (vb)
-    message(paste0("Attempting to download zip archive from volume ", vol_id, "."))
+  # Handle NULL request
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")
+    }
+    rq <- make_default_request()
+  }
+  rq <- rq |>
+    httr2::req_url(sprintf(GET_VOLUME_ZIP, vol_id))
   
-  bin <- databraryr::GET_db_contents(
-    URL_components = paste("/volume", vol_id,
-                           "zip/false", sep = "/"),
-    vb = vb
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd) {
+      NULL
+    }
   )
+  
+  bin <- NULL
+  if (!is.null(resp)) {
+    bin <- httr2::resp_body_raw(resp)
+  }
+  
   if (is.null(bin)) {
     if (vb) message("Null file returned")
     return(NULL)

@@ -17,7 +17,9 @@ list_volume(vol_id = 1, search_str = "", vb = FALSE)
 A data frame with information about a volume.
 }
 \description{
-List Info for a Databrary Volume.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+\code{list_volume()} has been deprecated in lieu of other, more specific,
+volume-related functions. It will be dropped from a future release.
 }
 \examples{
 \donttest{

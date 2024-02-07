@@ -7,9 +7,10 @@
 download_video(
   asset_id = 1,
   session_id = 9807,
-  file_name = tempfile(paste0(session_id, "_", asset_id), fileext = ".mp4"),
+  file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
   target_dir = tempdir(),
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -23,6 +24,8 @@ download_video(
 Default is a temporary directory given by a call to \code{tempdir()}.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 Full file name to the asset.
@@ -36,4 +39,5 @@ download_asset() # Download's 'numbers' file from volume 1.
 download_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' # Downloads a display with a random dot kinematogram (RDK).
 }
+
 }

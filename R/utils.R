@@ -8,41 +8,60 @@
 #' @param asset_id Asset number.
 #' @param types_w_durations Asset types that have valid durations.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Default is NULL.
+#' 
 #' @returns Duration of a file in ms.
+#' 
 #' @examples
 #' \donttest{
 #' get_file_duration() # default is the test video from databrary.org/volume/1
 #' }
+#' 
 #' @export
 get_file_duration <- function(asset_id = 1,
                               types_w_durations = c("-600", "-800"),
-                              vb = FALSE) {
-  # Test parameters---------------------------------------------------------
-  if (length(asset_id) > 1) {
-    stop("asset_id must have length == 1.")
-  }
-  if (!is.numeric(asset_id)) {
-    stop("asset_id must be numeric")
-  }
-  if (asset_id < 1) {
-    stop("asset_id must be >= 1")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical")
-  }
+                              vb = FALSE,
+                              rq = NULL) {
+
+  assertthat::assert_that(is.numeric(asset_id))
+  assertthat::assert_that(asset_id > 0)
+  assertthat::assert_that(length(asset_id) == 1)
   
-  r <-
-    GET_db_contents(URL_components = paste0('/api/asset/', asset_id),
-                    vb = vb)
-  if (r$format %in% types_w_durations) {
-    r$duration
+  assertthat::assert_that(is.character(types_w_durations))
+  
+  assertthat::assert_that(is.logical(vb))
+  assertthat::assert_that(length(vb) == 1)
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
+    rq <- make_default_request()
+  }
+  rq <- rq |>
+    httr2::req_url(sprintf(GET_ASSET_BY_ID, asset_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  if (!is.null(resp)) {
+    asset_df <- httr2::resp_body_json(resp)
+    if (asset_df$format %in% types_w_durations) {
+      asset_df$duration
+    } else {
+      if (vb)
+        message("File type does not have a defined duration.")
+      return(NULL)
+    }
   } else {
-    if (vb)
-      message("File type does not have a defined duration.")
-    return(NULL)
+    resp
   }
 }
 
@@ -56,80 +75,85 @@ get_file_duration <- function(asset_id = 1,
 #' @param segment_only A Boolean value. If TRUE, returns only the segment values. Otherwise returns
 #' a data frame with two fields, segment and permission. Default is TRUE.
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object. Default is NULL.
+#'
 #' @returns The time range (in ms) for an asset, if one is indicated.
+#' 
 #' @examples
 #' \donttest{
 #' get_asset_segment_range()
 #' }
+#' 
 #' @export
 get_asset_segment_range <- function(vol_id = 1,
                                     session_id = 9807,
                                     asset_id = 1,
                                     convert_JSON = TRUE,
                                     segment_only = TRUE,
-                                    vb = FALSE) {
-  # Test parameters--------------------------------------------------------
-  if (length(vol_id) > 1) {
-    stop("vol_id must have length == 1.")
-  }
-  if (!is.numeric(vol_id)) {
-    stop("vol_id must be numeric")
-  }
-  if (vol_id < 1) {
-    stop("vol_id must be >= 1")
-  }
-  if (length(session_id) > 1) {
-    stop("session_id must have length == 1.")
-  }
-  if (!is.numeric(session_id)) {
-    stop("session_id must be numeric")
-  }
-  if (length(asset_id) > 1) {
-    stop("asset_id must have length == 1.")
-  }
-  if (session_id < 1) {
-    stop("slot.id must be >= 1")
-  }
-  if (!is.numeric(asset_id)) {
-    stop("asset_id must be numeric")
-  }
-  if (asset_id < 1) {
-    stop("asset_id must be >= 1")
-  }
-  if (length(vb) > 1) {
-    stop("vb must have length == 1.")
-  }
-  if (!is.logical(vb)) {
-    stop("vb must be logical")
-  }
+                                    vb = FALSE,
+                                    rq = NULL) {
   
-  r <-
-    GET_db_contents(
-      URL_components = paste0(
-        '/api/volume/',
-        vol_id,
-        "/slot/",
-        session_id,
-        "/asset/",
-        asset_id
-      ),
-      vb = vb,
-      convert_JSON = convert_JSON
-    )
-  if (vb) {
-    message(
-      "Returning segment start & end times (in ms) from volume ",
-      vol_id,
-      ", session ",
-      session_id,
-      ", asset ",
-      asset_id
-    )
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
+  assertthat::assert_that(length(vol_id) == 1)
+  
+  assertthat::assert_that(is.numeric(session_id))
+  assertthat::assert_that(session_id > 0)
+  assertthat::assert_that(length(session_id) == 1)
+  
+  assertthat::assert_that(is.numeric(asset_id))
+  assertthat::assert_that(asset_id > 0)
+  assertthat::assert_that(length(asset_id) == 1)
+  
+  assertthat::assert_that(is.logical(convert_JSON))
+  assertthat::assert_that(length(convert_JSON) == 1)
+  
+  assertthat::assert_that(is.logical(convert_JSON))
+  assertthat::assert_that(length(convert_JSON) == 1)
+  
+  assertthat::assert_that(is.logical(segment_only))
+  assertthat::assert_that(length(segment_only) == 1)
+  
+  assertthat::assert_that(is.logical(vb))
+  assertthat::assert_that(length(vb) == 1)
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
+    rq <- make_default_request()
   }
-  if (segment_only) {
-    return(r$segment)
+  rq <- rq |>
+    httr2::req_url(sprintf(GET_ASSET_BY_VOLUME_SESSION_ID, vol_id, session_id, asset_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  if (!is.null(resp)) {
+    asset_info <- httr2::resp_body_json(resp)
+    if (vb) {
+      message(
+        "Returning segment start & end times (in ms) from volume ",
+        vol_id,
+        ", session ",
+        session_id,
+        ", asset ",
+        asset_id
+      )
+    }
+    if (segment_only) {
+      asset_info$segment |> unlist()
+    } else {
+      asset_info
+    }
   } else {
-    return(r)
+    resp
   }
 }
 
@@ -138,15 +162,16 @@ get_asset_segment_range <- function(vol_id = 1,
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns An array with the permission levels that can be assigned to data.
+#' 
 #' @examples
 #' \donttest{
 #' get_permission_levels()
 #' }
+#' 
 #' @export
 get_permission_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  pl <- c$permission
-  return(pl)
+  c$permission |> unlist()
 }
 
 #-------------------------------------------------------------------------------
@@ -158,6 +183,7 @@ get_permission_levels <- function(vb = FALSE) {
 #' HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 #' @export
 HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
+  
   # Check parameters
   if (!is.character(HHMMSSmmm)) {
     stop("HHMMSSmmm must be a string.")
@@ -177,15 +203,16 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #'
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with Databrary's release levels.
+#' 
 #' @examples
 #' \donttest{
 #' get_release_levels()
 #' }
+#' 
 #' @export
 get_release_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  rl <- c$release
-  return(rl)
+  c$release |> unlist()
 }
 
 #-------------------------------------------------------------------------------
@@ -193,10 +220,12 @@ get_release_levels <- function(vb = FALSE) {
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @returns A data frame with the file types permitted on Databrary.
+#' 
 #' @examples
 #' \donttest{
 #' get_supported_file_types()
 #' }
+#' 
 #' @export
 get_supported_file_types <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
@@ -210,28 +239,43 @@ get_supported_file_types <- function(vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object.
+#' 
 #' @returns TRUE if the party is an institution, FALSE otherwise.
+#' 
 #' @examples
 #' \donttest{
 #' is_institution() # Is party 8 (NYU) an institution.
 #' }
+#' 
 #' @export
-is_institution <- function(party_id=8, vb = FALSE) {
-  # Error handling
-  if (length(party_id) > 1) {
-    stop("party_id must be single value")
-  }
-  if ((!is.numeric(party_id)) || (party_id <= 0)) {
-    stop("party_id must be an integer > 0")
+is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
+  
+  assertthat::assert_that(is.numeric(party_id))
+  assertthat::assert_that(party_id > 0)
+  assertthat::assert_that(length(party_id) == 1)
+  
+  assertthat::assert_that(is.logical(vb))
+  assertthat::assert_that(length(vb) == 1)
+  
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL rq
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")  
+    }
+    rq <- make_default_request()
   }
   
-  # Process request-----------------------------------------------------
-  r <- GET_db_contents(URL_components = paste0('/api/party/', party_id),
-                       vb = vb)
-  if (("institution" %in% names(r)) && (!is.null(r[['institution']]))) {
-    return(TRUE)
+  party_info <- get_party_by_id(party_id, vb, rq)
+  
+  if (("institution" %in% names(party_info)) && (!is.null(party_info[['institution']]))) {
+    TRUE
   } else {
-    return(FALSE)
+    FALSE
   }
 }
 
@@ -240,12 +284,15 @@ is_institution <- function(party_id=8, vb = FALSE) {
 #'
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' @param rq An `httr2` request object.
 #' @returns TRUE if the party is a person, FALSE otherwise.
+#' 
 #' @examples
 #' \donttest{
 #' is_person()
 #' }
+#' 
 #' @export
-is_person <- function(party_id = 7, vb = FALSE){
-  return(!is_institution(party_id, vb = vb))
+is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
+  return(!is_institution(party_id, vb, rq))
 }

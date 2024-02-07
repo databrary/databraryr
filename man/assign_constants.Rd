@@ -4,10 +4,12 @@
 \alias{assign_constants}
 \title{Download Databrary Constants From API.}
 \usage{
-assign_constants(vb = FALSE)
+assign_constants(vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
 \value{
 A data frame with the constants.

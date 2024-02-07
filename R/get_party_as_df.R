@@ -1,9 +1,17 @@
 #' Retrieve Party (Person/Institution) Info as Data Frame.
 #'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' This function has been deprecated and may be removed in a future release.
+#' See `get_party_by_id()` for similar, and more general functionality.
+#'
 #' @param party_id Party number(s) to retrieve information about.
 #' @param convert_JSON A Boolean value if TRUE converts the JSON download.
 #' @param vb A Boolean value if TRUE returns verbose output.
+#'
 #' @returns A data frame with information about the selected party or parties.
+#'
 #' @examples
 #' \donttest{
 #' get_party_as_df() # Info about Rick Gilmore.
@@ -12,6 +20,7 @@
 #'
 #' get_party_as_df(5:7) # Info about Databrary's founders
 #' #' }
+#'
 #' @export
 get_party_as_df <- function(party_id = 6,
                             convert_JSON = TRUE,

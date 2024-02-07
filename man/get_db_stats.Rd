@@ -4,12 +4,14 @@
 \alias{get_db_stats}
 \title{Get Stats About Databrary.}
 \usage{
-get_db_stats(type = "stats", vb = FALSE)
+get_db_stats(type = "stats", vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{type}{Type of Databrary report to run "institutions", "people", "data"}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A data frame with the requested data or NULL if there is no new information.

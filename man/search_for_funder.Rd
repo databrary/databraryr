@@ -4,12 +4,18 @@
 \alias{search_for_funder}
 \title{Report Information About A Funder.}
 \usage{
-search_for_funder(search_string = "national+science+foundation", vb = FALSE)
+search_for_funder(
+  search_string = "national+science+foundation",
+  vb = FALSE,
+  rq = NULL
+)
 }
 \arguments{
 \item{search_string}{String to search.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 A data frame with information about the funder.
@@ -21,4 +27,5 @@ Report Information About A Funder.
 \donttest{
 search_for_funder("national+science+foundation")
 }
+
 }

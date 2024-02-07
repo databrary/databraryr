@@ -1,4 +1,4 @@
-#' Download Session Spreadsheet
+#' Download Session Spreadsheet As CSV
 #'
 #' @description Databrary generates a CSV-formated spreadsheet that summarizes
 #' information about individual sessions. This command downloads that CSV file
@@ -9,7 +9,10 @@
 #' @param target_dir Directory to save downloaded file. Default is tempdir().
 #' @param as_df A Boolean value. Default is FALSE.
 #' @param vb A Boolean value. Default is FALSE.
+#' @param rq An `httr2` request object.
+#'
 #' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -21,7 +24,8 @@ download_session_csv <- function(vol_id = 1,
                                  file_name = "test.csv",
                                  target_dir = tempdir(),
                                  as_df = FALSE,
-                                 vb = FALSE) {
+                                 vb = FALSE,
+                                 rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
@@ -39,6 +43,27 @@ download_session_csv <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
+  assertthat::assert_that(is.null(rq) |
+                            ("httr2_request" %in% class(rq)))
+  
+  # Handle NULL request
+  if (is.null(rq)) {
+    if (vb) {
+      message("NULL request object. Will generate default.")
+      message("\nNot logged in. Only public information will be returned.")
+    }
+    rq <- make_default_request()
+  }
+  this_rq <- rq |>
+    httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(this_rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  
+  
   full_fn <- file.path(target_dir, file_name)
   
   if (vb)
@@ -46,23 +71,34 @@ download_session_csv <- function(vol_id = 1,
   csv_url <-
     paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
   
-  r <-
-    GET_db_contents(URL_components = paste0("/volume/", vol_id, "/csv"),
-                    vb = vb)
-  if (!is.null(r)) {
+  if (is.null(rq))
+    rq <- make_default_request()
+  this_rq <- rq |>
+    httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
+  
+  resp <- tryCatch(
+    httr2::req_perform(this_rq),
+    httr2_error = function(cnd)
+      NULL
+  )
+  
+  if (!is.null(resp)) {
     if (vb)
       message("Valid CSV downloaded.")
+    resp_txt <- httr2::resp_body_string(resp)
+    df <- readr::read_csv(resp_txt, show_col_types = FALSE)
     if (as_df == TRUE) {
-      as.data.frame(r)
+      df
     } else {
       if (vb)
         message("Saving CSV.")
-      readr::write_csv(as.data.frame(r), full_fn)
+      readr::write_csv(df, full_fn)
+      #readr::write_csv(as.data.frame(r), full_fn)
       full_fn
     }
   } else {
     if (vb)
       message("No CSV data returned for vol_id ", vol_id)
-    r
+    resp
   }
 }

@@ -2,14 +2,15 @@
 % Please edit documentation in R/download_session_csv.R
 \name{download_session_csv}
 \alias{download_session_csv}
-\title{Download Session Spreadsheet}
+\title{Download Session Spreadsheet As CSV}
 \usage{
 download_session_csv(
   vol_id = 1,
   file_name = "test.csv",
   target_dir = tempdir(),
   as_df = FALSE,
-  vb = FALSE
+  vb = FALSE,
+  rq = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ download_session_csv(
 \item{as_df}{A Boolean value. Default is FALSE.}
 
 \item{vb}{A Boolean value. Default is FALSE.}
+
+\item{rq}{An \code{httr2} request object.}
 }
 \value{
 A character string that is the name of the downloaded file or a data frame if \code{as_df} is TRUE.

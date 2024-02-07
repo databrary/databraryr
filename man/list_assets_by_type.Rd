@@ -18,7 +18,10 @@ A data frame with information about assets in a volume, sorted by
 type.
 }
 \description{
-List Stored Assets (Files) By Type.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+This function is deprecated and may be removed from a future version of
+the package. \code{list_volume_assets()} is preferred.
 }
 \examples{
 \donttest{

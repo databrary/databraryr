@@ -4,12 +4,14 @@
 \alias{search_for_keywords}
 \title{Search For Keywords in Databrary Volumes.}
 \usage{
-search_for_keywords(search_string = "locomotion", vb = FALSE)
+search_for_keywords(search_string = "locomotion", vb = FALSE, rq = NULL)
 }
 \arguments{
 \item{search_string}{String to search.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 A list with the volumes that contain the keyword.
@@ -20,6 +22,7 @@ Search For Keywords in Databrary Volumes.
 \examples{
 \dontrun{
 search_for_keywords() # searches for volumes with "locomotion" as a keyword.
+
 search_for_keywords("adult") # searches for volumes with "adult" as a keyword.
 }
 }
