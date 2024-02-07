@@ -28,12 +28,23 @@ Once you are authorized, you will gain access to a much wider range of materials
 When that happens, you'll load the package with `library(databraryr)` and then run `login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")`, substituting your actual Databrary account for `<YOUR_EMAIL@PROVIDER.COM>`, of course.
 I prefer to give the package name when I do this, so the following is how I do the same thing.
 
+As of 0.6.0, the package supports http request using the `httr2` package.
+This produces far more transparent responses, but requires a small bit of preparation on the user's part.
+First, we generate and store in a variable a default http request.
+
+```{r make_default_request, eval=FALSE}
+drq <- make_default_request()
+```
+
+Then we give that request to other functions, as needed.
+For example, to call `login_db()`, we do so as follows:
+
 ```{r login, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")
+databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", rq = drq)
 ```
 
 If this is the first time you've logged in, you will be asked to enter your Databrary password in a separate window.
-If everything works out, you should see a `Login successful` message at the R console.
+If everything works out, you should see the function return `TRUE`.
 Congratulations, you are ready to access Databrary's restricted shared information along with any private, but unshared information you have access to.
 
 **NOTE**: You can save yourself some time if you store your Databrary login (email) as an
@@ -49,7 +60,7 @@ Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databra
 And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
 
 ```{r login-w-env-var, eval=FALSE}
-databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
+databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), rq = drq)
 ```
 
 **NOTE**: You can also save yourself even more time by storing your Databrary user account (email) and password in your computer's secure credentials database using the `keyring` package.
@@ -60,19 +71,19 @@ To do this, use the `store` and `overwrite` parameters in `login_db()`:
 
 ```{r, eval=FALSE}
 databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE,
-                     overwrite = TRUE)
+                     overwrite = TRUE, rq = lrq)
 ```
 
 This overwrites and securely stores your credentials, so that the next time you log in, you need only use this command:
 
 ```{r, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>")
+databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE, rq = lrq)
 ```
 
 or if you've stored your email as an environment variable:
 
 ```{r, eval=FALSE}
-databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
+databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), store = TRUE, rq = lrq)
 ```
 
 ### Logging out
@@ -80,5 +91,7 @@ databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"))
 The package also has a log out command.
 
 ```{r eval=FALSE}
-databraryr::logout_db()
+databraryr::logout_db(rq = lrq)
 ```
+
+**NOTE**: Most `databraryr` functions have a verbose (`vb`) parameter. If you set this to `TRUE`, you will get more information about what's going on.

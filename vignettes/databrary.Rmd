@@ -55,12 +55,7 @@ Then, when you log in with your new credentials, you'll select an existing insti
 But even before formal authorization is complete, a user can access the public materials on Databrary.
 For this vignette, we'll assume you fall into this category.
 
-First, we need to download and install the `devtools` package and then the `databraryr` package from GitHub.
-
-To install `devtools`, run `install.packages('devtools')`.
-To install `databraryr`, run `devtools::install_github("databrary/databraryr")`
-
-It's a good idea to check that your installation worked by loading it into your local workspace.
+Once you've installed the package following one of the above routes, it's a good idea to check that your installation worked by loading it into your local workspace.
 
 ```{r eval=FALSE}
 library(databraryr)
