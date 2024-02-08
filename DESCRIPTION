@@ -30,7 +30,7 @@ Imports:
     assertthat,
     getPass,
     xfun
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Suggests: 
     av,
     knitr,
