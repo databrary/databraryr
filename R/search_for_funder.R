@@ -32,7 +32,7 @@ search_for_funder <-
         message("NULL request object. Will generate default.")
         message("\nNot logged in. Only public information will be returned.")  
       }
-      rq <- make_default_request()
+      rq <- databraryr::make_default_request()
     }
     rq <- rq |>
       httr2::req_url(sprintf(QUERY_VOLUME_FUNDER, search_string))

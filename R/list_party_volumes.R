@@ -31,12 +31,10 @@ list_party_volumes <- function(party_id = 6,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
-  party_info <- get_party_by_id(party_id, vb, rq)
-  
-  g <- get_party_by_id(party_id, vb, rq)
+  g <- databraryr::get_party_by_id(party_id, vb, rq)
   
   if (!is.null(g)) {
     if (vb)

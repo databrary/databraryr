@@ -31,10 +31,10 @@ list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) 
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
-  this_party <- get_party_by_id(party_id, vb = vb, rq = rq)
+  this_party <- databraryr::get_party_by_id(party_id, vb = vb, rq = rq)
   
   if (is.null(this_party)) {
     if (vb) message("No data for party ", party_id)

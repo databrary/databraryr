@@ -38,7 +38,7 @@ list_volume_activity <-
         message("NULL request object. Will generate default.")
         message("\nNot logged in. Only public information will be returned.")  
       }
-      rq <- make_default_request()
+      rq <- databraryr::make_default_request()
     }
     rq <- rq |>
       httr2::req_url(sprintf(GET_VOLUME_ACTIVITY, vol_id))

@@ -38,10 +38,10 @@ list_session_assets <-
         message("NULL request object. Will generate default.")
         message("\nNot logged in. Only public information will be returned.")  
       }
-     rq <- make_default_request()
+     rq <- databraryr::make_default_request()
     }
     
-    vol_list <- get_volume_by_id(vol_id, vb, rq)
+    vol_list <- databraryr::get_volume_by_id(vol_id, vb, rq)
     
     if (!("containers" %in% names(vol_list))) {
       if (vb)

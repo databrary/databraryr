@@ -34,7 +34,7 @@ list_volume_funding <- function(vol_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
   #------------------------------------------------------------
@@ -56,7 +56,7 @@ list_volume_funding <- function(vol_id = 1,
 list_single_volume_funding <-
   function(vol_id = NULL, vb = NULL, rq) {
     if (is.null(rq)) {
-      rq <- make_default_request()
+      rq <- databraryr::make_default_request()
     }
     rq <- rq |>
       httr2::req_url(sprintf(GET_VOLUME_FUNDING, vol_id))

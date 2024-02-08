@@ -48,7 +48,7 @@ download_session_asset <- function(asset_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   this_rq <- rq |>
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>

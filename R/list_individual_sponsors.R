@@ -48,13 +48,13 @@ list_individual_sponsors <- function(party_id = 406,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   if (vb)
     message(paste0("Retrieving sponsors for party ", party_id, "."))
   
   party <- NULL
-  party <- get_party_by_id(party_id, vb, rq)
+  party <- databraryr::get_party_by_id(party_id, vb, rq)
   
   if (!is.null(party)) {
     party.institution <- NULL
