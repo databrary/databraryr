@@ -1,8 +1,8 @@
 #' List Assets in Databrary Volume.
 #'
-#' @param vol_id Target volume number.
-#' @param vb A boolean value.
-#' @param rq An `httr2` request object.
+#' @param vol_id Target volume number. Default is 1.
+#' @param vb A logical value. Default is FALSE.
+#' @param rq An `httr2` request object. Default is NULL.
 #' @returns A data frame with information about all assets in a volume.
 #' 
 #' @examples
@@ -32,7 +32,7 @@ list_volume_assets <- function(vol_id = 1,
     rq <- make_default_request()
   }
   
-  vol_list <- get_volume_by_id(vol_id, vb, rq)
+  vol_list <- databraryr::get_volume_by_id(vol_id, vb, rq)
   if (!("containers" %in% names(vol_list))) {
     if (vb)
       message("No session/containers data from volume ", vol_id)
@@ -54,7 +54,7 @@ list_volume_assets <- function(vol_id = 1,
   format_name <- NULL
   asset_format_id <- NULL
   
-  asset_formats_df <- list_asset_formats(vb = vb) |>
+  asset_formats_df <- databraryr::list_asset_formats(vb = vb) |>
     dplyr::select(format_id, format_mimetype, format_extension, format_name)
   
   dplyr::left_join(

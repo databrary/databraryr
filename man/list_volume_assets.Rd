@@ -7,11 +7,11 @@
 list_volume_assets(vol_id = 1, vb = FALSE, rq = NULL)
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{vol_id}{Target volume number. Default is 1.}
 
-\item{vb}{A boolean value.}
+\item{vb}{A logical value. Default is FALSE.}
 
-\item{rq}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 A data frame with information about all assets in a volume.
