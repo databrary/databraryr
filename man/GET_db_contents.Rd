@@ -34,6 +34,6 @@ This function has been deprecated and may be removed in a future version.
 \examples{
 \donttest{
 GET_db_contents() # Returns a list with data from volume 1.
-#' }
+}
 
 }

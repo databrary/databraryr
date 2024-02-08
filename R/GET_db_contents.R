@@ -17,7 +17,7 @@
 #' @examples
 #' \donttest{
 #' GET_db_contents() # Returns a list with data from volume 1.
-#' #' }
+#' }
 #'
 #' @export
 GET_db_contents <- function(base_URL = 'https://nyu.databrary.org',

@@ -2,7 +2,7 @@
 title: "Accessing Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{accessing-data}
+  %\VignetteIndexEntry{Accessing Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,9 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Accessing data
-
-Databrary is a data library, one specialized for storing and sharing video.
+Databrary is a data library, one specialized for storing and sharing video with a restricted audience of institutionally approved researchers.
 In this vignette, we'll see how to use `databraryr` to access data.
 
 We'll start simply.
