@@ -29,13 +29,13 @@ list_party_affiliates <- function(party_id = 6,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
   if (vb)
     message(paste0("Getting affiliates for party ", party_id, "."))
   
-  g <- get_party_by_id(party_id, vb, rq)
+  g <- databraryr::get_party_by_id(party_id, vb, rq)
   
   party.id <- NULL
   party.prename <- NULL

@@ -52,7 +52,7 @@ download_session_csv <- function(vol_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   this_rq <- rq |>
     httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))

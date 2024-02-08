@@ -1,8 +1,8 @@
 ---
-title: "authorized-users"
+title: "Authorized Users"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{authorized-users}
+  %\VignetteIndexEntry{Authorized Users}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,6 +17,13 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(databraryr)
 ```
+
+## Requesting authorization
+
+Access to restricted data requires [registration](https://nyu.databrary.org/user/register) and formal approval by an institution.
+The registration process involves the creation of an (email-account-based) user account and secure password.
+Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
+Many commands in the `databraryr` package return meaningful results *without* or *prior to* formal authorization.
 
 ## Once you are authorized
 

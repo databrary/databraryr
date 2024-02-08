@@ -1,8 +1,8 @@
 ---
-title: "databrary"
+title: "About Databrary"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{databrary}
+  %\VignetteIndexEntry{About Databrary}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,12 +13,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-```{r setup}
-library(databraryr)
-```
-
-## Vignette Info
 
 Databrary is a powerful tool for storing and sharing video data and documentation with other researchers.
 With the `databraryr` package, it becomes even more powerful.

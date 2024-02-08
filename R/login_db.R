@@ -46,7 +46,7 @@ login_db <- function(email = NULL,
     if (vb) {
       message("NULL request object. Will generate default.")
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
   # If the user wants to store or use their stored credentials, check for keyring support

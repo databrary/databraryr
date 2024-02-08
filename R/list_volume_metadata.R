@@ -32,7 +32,6 @@ list_volume_metadata <- function(vol_id = 1,
       paste0("https://doi.org/", doi)
     } else {
       paste("NA")
-      #stop("DOI must be character string")
     }
   }
   

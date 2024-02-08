@@ -41,7 +41,7 @@ get_file_duration <- function(asset_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   rq <- rq |>
     httr2::req_url(sprintf(GET_ASSET_BY_ID, asset_id))
@@ -125,7 +125,7 @@ get_asset_segment_range <- function(vol_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   rq <- rq |>
     httr2::req_url(sprintf(GET_ASSET_BY_VOLUME_SESSION_ID, vol_id, session_id, asset_id))
@@ -267,10 +267,10 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
-  party_info <- get_party_by_id(party_id, vb, rq)
+  party_info <- databraryr::get_party_by_id(party_id, vb, rq)
   
   if (("institution" %in% names(party_info)) && (!is.null(party_info[['institution']]))) {
     TRUE

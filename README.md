@@ -1,10 +1,10 @@
 # databraryr <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
-This repository contains code for the `databraryR` R package.
+This repository contains code for the `databraryr` R package.
 
 ## Documentation
 
-Full package documentation built using `pkgdown` can be found [here](https://databrary.github.io/databraryr/).
+Full package documentation built using `pkgdown` can be found at [databrary.github.io/databraryr/](https://databrary.github.io/databraryr/).
 
 ## Installation
 
@@ -25,7 +25,7 @@ Running `devtools::install_github("databrary/databraryr", force=TRUE)` regularly
 
 ### Databrary credentials
 
-Databrary ([databrary.org](https://databrary.org)) is a research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats) of associated data.
+Databrary ([databrary.org](https://databrary.org)) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats) of associated data.
 Access to restricted data requires [registration](https://nyu.databrary.org/user/register) and formal approval by an institution.
 The registration process involves the creation of an (email-account-based) user account and secure password.
 Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.

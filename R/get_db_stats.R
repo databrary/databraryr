@@ -45,7 +45,7 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   rq <- rq |>
     httr2::req_url(GET_ACTIVITY_DATA)

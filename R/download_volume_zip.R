@@ -44,7 +44,7 @@ download_volume_zip <- function(vol_id = 31,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   rq <- rq |>
     httr2::req_url(sprintf(GET_VOLUME_ZIP, vol_id))

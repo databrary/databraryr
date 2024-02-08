@@ -25,7 +25,7 @@ get_video_stats <- function(this_vol_id = 2, vb = FALSE) {
   assertthat::assert_that(is.logical(vb))  # Error handling
   
   # get list of videos in volume -------------------------------------------
-  vids_df <- list_assets_by_type(vol_id = this_vol_id, type = "video", vb = vb)
+  vids_df <- databraryr::list_assets_by_type(vol_id = this_vol_id, type = "video", vb = vb)
   if (is.null(vids_df)) {
     if (vb) message(paste0("No videos found in volume ", this_vol_id, ".\n"))
     return(NULL)
@@ -34,7 +34,7 @@ get_video_stats <- function(this_vol_id = 2, vb = FALSE) {
   }
 
   # get session metadata from volume ---------------------------------------
-  sess_df <- get_session_as_df(vol_id = this_vol_id, vb = vb)
+  sess_df <- databraryr::get_session_as_df(vol_id = this_vol_id, vb = vb)
   if (is.null(sess_df)) {
     if (vb) message(paste0("No session spreadsheet found in volume ", this_vol_id, ".\n"))
     return(NULL)

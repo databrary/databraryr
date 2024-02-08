@@ -52,7 +52,7 @@ download_video <- function(asset_id = 1,
       message("NULL request object. Will generate default.")
       message("\nNot logged in. Only public information will be returned.")  
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
   this_rq <- rq |>
