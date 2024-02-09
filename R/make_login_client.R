@@ -27,7 +27,7 @@ make_login_client <- function(email = NULL,
                      store = FALSE,
                      overwrite = FALSE,
                      vb = FALSE,
-                     SERVICE = "org.databrary.databraryr",
+                     SERVICE = KEYRING_SERVICE,
                      rq = NULL) {
   
   # Check parameters
