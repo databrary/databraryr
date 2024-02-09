@@ -46,7 +46,7 @@ list_volume_funding <- function(vol_id = 1,
     vb = vb,
     rq = rq,
     .progress = "Volume funding: "
-  ) |>
+  ) %>%
     purrr::list_rbind()
 }
 
@@ -58,7 +58,7 @@ list_single_volume_funding <-
     if (is.null(rq)) {
       rq <- databraryr::make_default_request()
     }
-    rq <- rq |>
+    rq <- rq %>%
       httr2::req_url(sprintf(GET_VOLUME_FUNDING, vol_id))
     
     resp <- tryCatch(
@@ -71,7 +71,7 @@ list_single_volume_funding <-
     if (!is.null(resp)) {
       res <- httr2::resp_body_json(resp)
       if (!(is.null(res))) {
-        purrr::map(res$funding, extract_funder_info) |>
+        purrr::map(res$funding, extract_funder_info) %>%
           purrr::list_rbind()
       }
     } else {
@@ -87,7 +87,7 @@ extract_funder_info <- function(vol_funder_list_item) {
   if (length(vol_funder_list_item$awards) == 0) {
     funder_award <- NA
   } else {
-    funder_award <- vol_funder_list_item$awards |> unlist()
+    funder_award <- vol_funder_list_item$awards %>% unlist()
   }
   tibble::tibble(
     funder_id = funder_id,

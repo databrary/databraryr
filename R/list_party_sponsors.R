@@ -59,24 +59,24 @@ list_party_sponsors <- function(party_id = 6,
     sponsor_sortname <- NULL
     sponsor_affiliation <- NULL
     
-    purrr::map(g$parents, as.data.frame) |>
-      purrr::list_rbind() |>
+    purrr::map(g$parents, as.data.frame) %>%
+      purrr::list_rbind() %>%
       # TODO(ROG): Handle cases when party.prename, expires, other variables exist
       dplyr::select(party.id,
                     party.sortname,
-                    party.affiliation) |>
+                    party.affiliation) %>%
       dplyr::rename(
         sponsor_id = party.id,
         sponsor_sortname = party.sortname,
         sponsor_affiliation = party.affiliation
-      ) |>
+      ) %>%
       dplyr::mutate(
         party_id = party_id,
         party_sortname = g$sortname,
         party_prename = g$prename,
         party_affiliation = g$affiliation,
         party_url = g$url
-      ) |>
+      ) %>%
       dplyr::select(
         party_id,
         party_sortname,

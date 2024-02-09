@@ -79,7 +79,7 @@ get_single_avatar <- function(party_id = 6,
     rq <- make_default_request()
   }
   
-  arq <- rq |>
+  arq <- rq %>%
     httr2::req_url(sprintf(GET_PARTY_AVATAR, party_id))
   
   resp <- tryCatch(
@@ -92,7 +92,7 @@ get_single_avatar <- function(party_id = 6,
   )
   
   # Download avatar
-  party_avatar <- httr2::resp_body_raw(resp) |>
+  party_avatar <- httr2::resp_body_raw(resp) %>%
     magick::image_read()
   
   if (show_party_info) {

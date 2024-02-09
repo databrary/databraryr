@@ -16,7 +16,7 @@ assign_constants <- function(vb = FALSE, rq = NULL) {
   
   if (is.null(rq))
     rq <- databraryr::make_default_request()
-  arq <- rq |>
+  arq <- rq %>%
     httr2::req_url(GET_CONSTANTS)
   
   resp <- tryCatch(

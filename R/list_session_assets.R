@@ -57,7 +57,7 @@ list_session_assets <-
     
     # Select session info
     these_sessions <-
-      purrr::map(vol_list$containers, get_sessions) |>
+      purrr::map(vol_list$containers, get_sessions) %>%
       purrr::list_rbind()
     
     session_match <- (session_id == these_sessions$session_id)
@@ -73,7 +73,7 @@ list_session_assets <-
       return(NULL)
     
     assets_df <-
-      purrr::map(this_session$assets, as.data.frame) |>
+      purrr::map(this_session$assets, as.data.frame) %>%
       purrr::list_rbind()
     
     # ignore empty sessions
@@ -95,8 +95,8 @@ list_session_assets <-
     size <- NULL
     asset_format_id <- NULL
     
-    assets_df <- assets_df |>
-      dplyr::select(id, format, duration, name, permission, size) |>
+    assets_df <- assets_df %>%
+      dplyr::select(id, format, duration, name, permission, size) %>%
       dplyr::rename(
         asset_id = id,
         asset_format_id = format,
@@ -112,7 +112,7 @@ list_session_assets <-
     format_name <- NULL
     
     # Gather asset format info
-    asset_formats_df <- list_asset_formats(vb = vb) |>
+    asset_formats_df <- list_asset_formats(vb = vb) %>%
       dplyr::select(format_id, format_mimetype, format_extension, format_name)
     
     # Join assets with asset format info

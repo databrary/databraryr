@@ -55,8 +55,8 @@ download_video <- function(asset_id = 1,
     rq <- databraryr::make_default_request()
   }
   
-  this_rq <- rq |>
-    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>
+  this_rq <- rq %>%
+    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
     httr2::req_progress()
   
   if (file.exists(file_name)) {

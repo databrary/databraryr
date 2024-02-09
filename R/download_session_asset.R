@@ -50,8 +50,8 @@ download_session_asset <- function(asset_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  this_rq <- rq |>
-    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) |>
+  this_rq <- rq %>%
+    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
     httr2::req_progress()
   
   if (vb)
@@ -69,9 +69,9 @@ download_session_asset <- function(asset_id = 1,
   # Gather asset format info
   format_mimetype <- NULL
   format_extension <- NULL
-  this_file_extension <- list_asset_formats(vb = vb) |>
-    dplyr::filter(httr2::resp_content_type(resp) == format_mimetype) |>
-    dplyr::select(format_extension) |>
+  this_file_extension <- list_asset_formats(vb = vb) %>%
+    dplyr::filter(httr2::resp_content_type(resp) == format_mimetype) %>%
+    dplyr::select(format_extension) %>%
     as.character()
   
   # Check file name or generate

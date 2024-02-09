@@ -22,8 +22,8 @@ list_asset_formats <- function(vb = FALSE) {
   transcodable <- NULL
   
   if (!is.null(db_constants$format)) {
-    purrr::map(db_constants$format, as.data.frame) |>
-      purrr::list_rbind() |>
+    purrr::map(db_constants$format, as.data.frame) %>%
+      purrr::list_rbind() %>%
       dplyr::rename(format_id = id,
                     format_mimetype = mimetype,
                     format_extension = extension,

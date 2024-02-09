@@ -36,7 +36,7 @@ get_party_by_id <- function(party_id = 6,
     rq <- databraryr::make_default_request()
   }
   
-  prq <- rq |>
+  prq <- rq %>%
     httr2::req_url(sprintf(GET_PARTY_BY_ID, party_id))
   resp <- tryCatch(
     httr2::req_perform(prq),

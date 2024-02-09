@@ -74,6 +74,6 @@ summarize_videos_in_volume <- function(vol_id = 2, vb = FALSE) {
   purrr::map(vol_id,
              get_single_volume_data,
              vb = vb,
-             .progress = TRUE) |>
+             .progress = TRUE) %>%
     purrr::list_rbind()
 }

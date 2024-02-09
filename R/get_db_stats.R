@@ -47,7 +47,7 @@ get_db_stats <- function(type = "stats", vb = FALSE, rq = NULL) {
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(GET_ACTIVITY_DATA)
   
   resp <- tryCatch(

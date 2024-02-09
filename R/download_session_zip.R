@@ -51,7 +51,7 @@ download_session_zip <- function(vol_id = 31,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_SESSION_ZIP, vol_id, session_id))
   
   resp <- tryCatch(

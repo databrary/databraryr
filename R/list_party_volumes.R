@@ -44,7 +44,7 @@ list_party_volumes <- function(party_id = 6,
       .f = function(x) {
         as.data.frame(x[[3]])
       }
-    ) |> purrr::list_rbind() |>
+    ) %>% purrr::list_rbind() %>%
       dplyr::mutate(party_id = party_id, 
                     prename = g$prename,
                     sortname = g$sortname,

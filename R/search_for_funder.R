@@ -34,7 +34,7 @@ search_for_funder <-
       }
       rq <- databraryr::make_default_request()
     }
-    rq <- rq |>
+    rq <- rq %>%
       httr2::req_url(sprintf(QUERY_VOLUME_FUNDER, search_string))
     
     resp <- tryCatch(
@@ -48,7 +48,7 @@ search_for_funder <-
       message('search_for_keywords()...')
 
     if (!is.null(resp)) {
-      httr2::resp_body_json(resp) |> as.data.frame()
+      httr2::resp_body_json(resp) %>% as.data.frame()
     } else {
       resp
     }

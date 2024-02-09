@@ -86,18 +86,18 @@ list_affiliates <-
             first_name <- NULL
             affiliation <- NULL
             
-            p |>
+            p %>%
               dplyr::mutate(
                 pi_id = party_id,
                 pi_first = g$prename,
                 pi_last = g$sortname,
                 pi_affiliation = g$affiliation
-              ) |>
+              ) %>%
               dplyr::rename(
                 affiliate_id = id,
                 last_name = sortname,
                 first_name = prename
-              ) |>
+              ) %>%
               dplyr::select(
                 pi_id,
                 pi_first,
@@ -130,7 +130,7 @@ list_affiliates <-
       report_target_party = report_target_party,
       vb = vb,
       .progress = "Party affiliates: "
-    ) |>
+    ) %>%
       purrr::list_rbind()
     
   }

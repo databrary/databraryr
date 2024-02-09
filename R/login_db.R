@@ -113,8 +113,8 @@ login_db <- function(email = NULL,
   if (is.null(rq))
     rq <- make_default_request()
   
-  rq <- rq |>
-    httr2::req_url(LOGIN) |>
+  rq <- rq %>%
+    httr2::req_url(LOGIN) %>%
     httr2::req_body_json(list(email = email, password = password))
   
   resp <- tryCatch(

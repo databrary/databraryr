@@ -44,13 +44,13 @@ list_sponsors <- function(party_id = 6,
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
-    purrr::map(g$parents, as.data.frame) |> 
-      purrr::list_rbind() |>
+    purrr::map(g$parents, as.data.frame) %>% 
+      purrr::list_rbind() %>%
       dplyr::rename(sponsor_id = party.id,
                     sponsor_sortname = party.sortname,
                     sponsor_affiliation = party.affiliation,
                     sponsor_institution = party.institution,
-                    sponsor_url = party.url) |>
+                    sponsor_url = party.url) %>%
       dplyr::mutate(party_id = party_id, 
                     party_sortname = g$sortname,
                     party_prename = g$prename,

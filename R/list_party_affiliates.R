@@ -49,14 +49,14 @@ list_party_affiliates <- function(party_id = 6,
   if (!is.null(g)) {
     if (vb)
       message(paste0("Retrieving data for party ", party_id, "."))
-    purrr::map(g$children, as.data.frame) |>
-      purrr::list_rbind() |>
+    purrr::map(g$children, as.data.frame) %>%
+      purrr::list_rbind() %>%
       dplyr::rename(
         affiliate_id = party.id,
         affiliate_sortname = party.sortname,
         affiliate_prename = party.prename,
         affiliate_affiliation = party.affiliation
-      ) |>
+      ) %>%
       dplyr::select(
         affiliate_id,
         affiliate_sortname,

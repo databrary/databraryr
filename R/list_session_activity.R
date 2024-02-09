@@ -44,7 +44,7 @@ list_session_activity <-
       }
       rq <- databraryr::make_default_request()
     }
-    rq <- rq |>
+    rq <- rq %>%
       httr2::req_url(sprintf(GET_SESSION_ACTIVITY, session_id))
     
     resp <- tryCatch(

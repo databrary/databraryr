@@ -58,7 +58,7 @@ get_session_by_id <-
       
       these_sessions <- tibble::enframe(volume_json$containers)
       n_sessions <- dim(these_sessions)[1]
-      purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
+      purrr::map(1:n_sessions, extract_single_session, these_sessions) %>%
         purrr::list_rbind()
     }
     #--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ get_session_by_id <-
         if (vb) message("Session ", session_id, " not found.")
         return(NULL)
       } else {
-        rq <- rq |>
+        rq <- rq %>%
           httr2::req_url(sprintf(QUERY_SLOT, session_id))
         resp <- tryCatch(
           httr2::req_perform(rq),

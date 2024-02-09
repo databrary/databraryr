@@ -77,11 +77,11 @@ list_volume_sessions <-
       return(NULL)
     }
     
-    df <- purrr::map(vol_list$containers, get_info_from_session) |>
+    df <- purrr::map(vol_list$containers, get_info_from_session) %>%
       purrr::list_rbind()
     
     if (include_vol_data) {
-      df <- df |>
+      df <- df %>%
         dplyr::mutate(
           vol_id = vol_list$id,
           vol_name = vol_list$name,

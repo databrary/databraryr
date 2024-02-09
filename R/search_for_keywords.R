@@ -34,7 +34,7 @@ search_for_keywords <-
       }
       rq <- databraryr::make_default_request()
     }
-    rq <- rq |>
+    rq <- rq %>%
       httr2::req_url(sprintf(QUERY_KEYWORDS, search_string))
     
     resp <- tryCatch(

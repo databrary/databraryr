@@ -54,7 +54,7 @@ download_session_csv <- function(vol_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  this_rq <- rq |>
+  this_rq <- rq %>%
     httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
   
   resp <- tryCatch(
@@ -73,7 +73,7 @@ download_session_csv <- function(vol_id = 1,
   
   if (is.null(rq))
     rq <- make_default_request()
-  this_rq <- rq |>
+  this_rq <- rq %>%
     httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
   
   resp <- tryCatch(

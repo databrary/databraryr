@@ -69,6 +69,6 @@ get_party_as_df <- function(party_id = 6,
   purrr::map(party_id,
              get_one_party,
              vb = vb,
-             .progress = TRUE) |>
+             .progress = TRUE) %>%
     purrr::list_rbind()
 }

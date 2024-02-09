@@ -35,7 +35,7 @@ list_volume_owners <- function(vol_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_VOLUME_LINKS, vol_id))
   
   resp <- tryCatch(
@@ -51,9 +51,9 @@ list_volume_owners <- function(vol_id = 1,
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$owners))) {
-      purrr::map(res$owners, tibble::as_tibble) |>
-        purrr::list_rbind() |>
-        dplyr::rename(person_id = id) |>
+      purrr::map(res$owners, tibble::as_tibble) %>%
+        purrr::list_rbind() %>%
+        dplyr::rename(person_id = id) %>%
         dplyr::filter(!(stringr::str_detect(name, "Databrary")))
     }
   } else {

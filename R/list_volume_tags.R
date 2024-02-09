@@ -31,7 +31,7 @@ list_volume_tags <- function(vol_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_VOLUME_TAGS, vol_id))
   
   resp <- tryCatch(
@@ -44,8 +44,8 @@ list_volume_tags <- function(vol_id = 1,
   if (!is.null(resp)) {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$tags))) {
-      purrr::map(res$tags, extract_vol_tag) |>
-        purrr::list_rbind() |>
+      purrr::map(res$tags, extract_vol_tag) %>%
+        purrr::list_rbind() %>%
         dplyr::mutate(vol_id = vol_id)
     }
   } else {

@@ -40,7 +40,7 @@ list_volume_activity <-
       }
       rq <- databraryr::make_default_request()
     }
-    rq <- rq |>
+    rq <- rq %>%
       httr2::req_url(sprintf(GET_VOLUME_ACTIVITY, vol_id))
     
     resp <- tryCatch(

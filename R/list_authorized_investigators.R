@@ -51,6 +51,6 @@ list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) 
     return(NULL)
   }
   
-  purrr::map(this_party$children, as.data.frame, .progress = TRUE) |>
+  purrr::map(this_party$children, as.data.frame, .progress = TRUE) %>%
     purrr::list_rbind()
 }

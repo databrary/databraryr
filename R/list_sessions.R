@@ -46,11 +46,11 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
           release <- NULL
           name <- NULL
           
-          df <- dplyr::rename(df, session_id = "id") |>
+          df <- dplyr::rename(df, session_id = "id") %>%
             dplyr::select(vol_id, session_id, top, date, release)
           # Not all sessions have a `name` field
           if ("name" %in% names(df)) {
-            df <- df |>
+            df <- df %>%
               dplyr::mutate(name = name)
           } else {
             df$name = NA
@@ -75,6 +75,6 @@ list_sessions <- function(vol_id = 1, vb = FALSE) {
   
   if (vb) message("Retrieving sessions for n= ", length(vol_id), " volumes.")
   
-  purrr::map(vol_id, list_one_session, vb = vb) |>
+  purrr::map(vol_id, list_one_session, vb = vb) %>%
     purrr::list_rbind()
 }

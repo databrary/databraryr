@@ -13,26 +13,27 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:
-    dplyr,
-    httr,
-    httr2,
-    rvest,
-    jsonlite,
-    keyring,
-    stringr,
-    magick,
-    utils,
-    tibble,
-    methods,
-    plyr,
-    purrr,
-    lifecycle,
-    assertthat,
-    getPass,
-    xfun
+    dplyr (>= 1.1.4),
+    httr (>= 1.4.7),
+    httr2 (>= 1.0.0),
+    rvest (>= 1.0.3),
+    jsonlite (>= 1.8.8),
+    keyring (>= 1.3.2),
+    stringr (>= 1.5.1),
+    magick (>= 2.8.2),
+    utils (>= 4.3.2),
+    tibble (>= 3.2.1),
+    methods (>= 4.3.2),
+    plyr (>= 1.8.9),
+    purrr (>= 1.0.2),
+    lifecycle (>= 1.0.4),
+    assertthat (>= 0.2.1),
+    getPass (>= 0.2.4),
+    xfun (>= 0.41),
+    magrittr
 RoxygenNote: 7.3.1
-Suggests: 
-    av,
+Suggests:
+    av (>= 0.9.0),
     knitr,
     openssl,
     testthat (>= 3.0.0),

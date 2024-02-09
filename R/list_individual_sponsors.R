@@ -58,7 +58,7 @@ list_individual_sponsors <- function(party_id = 406,
   
   if (!is.null(party)) {
     party.institution <- NULL
-    df <- purrr::map(party$parents, as.data.frame) |>
+    df <- purrr::map(party$parents, as.data.frame) %>%
       purrr::list_rbind()
     if ("party.institution" %in% names(df)) {
       dplyr::filter(df, is.na(party.institution))

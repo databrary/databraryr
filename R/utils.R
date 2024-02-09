@@ -43,7 +43,7 @@ get_file_duration <- function(asset_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_ASSET_BY_ID, asset_id))
   
   resp <- tryCatch(
@@ -127,7 +127,7 @@ get_asset_segment_range <- function(vol_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_ASSET_BY_VOLUME_SESSION_ID, vol_id, session_id, asset_id))
   
   resp <- tryCatch(
@@ -148,7 +148,7 @@ get_asset_segment_range <- function(vol_id = 1,
       )
     }
     if (segment_only) {
-      asset_info$segment |> unlist()
+      asset_info$segment %>% unlist()
     } else {
       asset_info
     }
@@ -171,7 +171,7 @@ get_asset_segment_range <- function(vol_id = 1,
 #' @export
 get_permission_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  c$permission |> unlist()
+  c$permission %>% unlist()
 }
 
 #-------------------------------------------------------------------------------
@@ -212,7 +212,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' @export
 get_release_levels <- function(vb = FALSE) {
   c <- assign_constants(vb = vb)
-  c$release |> unlist()
+  c$release %>% unlist()
 }
 
 #-------------------------------------------------------------------------------

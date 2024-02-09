@@ -45,7 +45,7 @@ list_volume_assets <- function(vol_id = 1,
       get_assets_from_session,
       ignore_materials = FALSE,
       .progress = TRUE
-    ) |>
+    ) %>%
     purrr::list_rbind()
   
   format_id <- NULL
@@ -54,7 +54,7 @@ list_volume_assets <- function(vol_id = 1,
   format_name <- NULL
   asset_format_id <- NULL
   
-  asset_formats_df <- databraryr::list_asset_formats(vb = vb) |>
+  asset_formats_df <- databraryr::list_asset_formats(vb = vb) %>%
     dplyr::select(format_id, format_mimetype, format_extension, format_name)
   
   dplyr::left_join(
@@ -78,7 +78,7 @@ get_assets_from_session <-
         return(NULL)
     }
     
-    assets_df <- purrr::map(volume_container$assets, as.data.frame) |>
+    assets_df <- purrr::map(volume_container$assets, as.data.frame) %>%
       purrr::list_rbind()
     
     # ignore empty sessions
@@ -99,8 +99,8 @@ get_assets_from_session <-
     permission <- NULL
     size <- NULL
     
-    assets_df |>
-      dplyr::select(id, format, duration, name, permission, size) |>
+    assets_df %>%
+      dplyr::select(id, format, duration, name, permission, size) %>%
       dplyr::rename(
         asset_id = id,
         asset_format_id = format,
@@ -108,7 +108,7 @@ get_assets_from_session <-
         asset_duration = duration,
         asset_permission = permission,
         asset_size = size
-      ) |>
+      ) %>%
       dplyr::mutate(
         session_id = volume_container$id,
         session_date = volume_container$date,

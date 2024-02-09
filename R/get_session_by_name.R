@@ -57,7 +57,7 @@ get_session_by_name <-
       
       these_sessions <- tibble::enframe(volume_json$containers)
       n_sessions <- dim(these_sessions)[1]
-      purrr::map(1:n_sessions, extract_single_session, these_sessions) |>
+      purrr::map(1:n_sessions, extract_single_session, these_sessions) %>%
         purrr::list_rbind()
     }
     #--------------------------------------------------------------------------

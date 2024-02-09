@@ -37,7 +37,7 @@ get_volume_by_id <- function(vol_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(sprintf(GET_VOL_BY_ID, vol_id))
   
   resp <- tryCatch(

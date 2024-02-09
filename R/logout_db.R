@@ -18,7 +18,7 @@ logout_db <- function(vb = FALSE, rq = NULL){
     if (vb) message("Empty request. Generating new one.")
     rq <- databraryr::make_default_request()
   }
-  rq <- rq |>
+  rq <- rq %>%
     httr2::req_url(LOGOUT)
   
   r <- httr2::req_perform(rq)
