@@ -10,7 +10,7 @@ make_login_client(
   store = FALSE,
   overwrite = FALSE,
   vb = FALSE,
-  SERVICE = "org.databrary.databraryr",
+  SERVICE = KEYRING_SERVICE,
   rq = NULL
 )
 }

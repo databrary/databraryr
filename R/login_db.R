@@ -16,6 +16,7 @@
 #'# The following shows how to use credentials that have been stored previously.
 #'
 #' login_db(email = "you@provider.com", store = TRUE)
+#' 
 #' }
 #' }
 #' @export
@@ -24,7 +25,7 @@ login_db <- function(email = NULL,
                      store = FALSE,
                      overwrite = FALSE,
                      vb = FALSE,
-                     SERVICE = "org.databrary.databraryr",
+                     SERVICE = KEYRING_SERVICE,
                      rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(store) == 1)

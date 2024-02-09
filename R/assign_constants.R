@@ -15,7 +15,7 @@ assign_constants <- function(vb = FALSE, rq = NULL) {
   assertthat::assert_that(is.logical(vb))
   
   if (is.null(rq))
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   arq <- rq |>
     httr2::req_url(GET_CONSTANTS)
   

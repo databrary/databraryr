@@ -10,7 +10,7 @@ login_db(
   store = FALSE,
   overwrite = FALSE,
   vb = FALSE,
-  SERVICE = "org.databrary.databraryr",
+  SERVICE = KEYRING_SERVICE,
   rq = NULL
 )
 }
@@ -44,6 +44,7 @@ login_db() # Queries user for email and password interactively.
 # The following shows how to use credentials that have been stored previously.
 
 login_db(email = "you@provider.com", store = TRUE)
+
 }
 }
 }
