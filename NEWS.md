@@ -1,3 +1,5 @@
+# databraryr 0.6.1
+
 # databraryr 0.6.0
 
 ### Major changes
