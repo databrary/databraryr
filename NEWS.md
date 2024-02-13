@@ -1,5 +1,9 @@
 # databraryr 0.6.1
 
+## Major changes
+
+- In testing 0.6.0, several users with installed versions of R before 4.0.1 could not use the package because of its dependency on the native (`|>`) pipe operator. This version reverts to using the `magrittr` pipe (`%>%`).
+
 # databraryr 0.6.0
 
 ### Major changes

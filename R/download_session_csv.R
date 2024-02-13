@@ -63,7 +63,6 @@ download_session_csv <- function(vol_id = 1,
       NULL
   )
   
-  
   full_fn <- file.path(target_dir, file_name)
   
   if (vb)
@@ -86,14 +85,20 @@ download_session_csv <- function(vol_id = 1,
     if (vb)
       message("Valid CSV downloaded.")
     resp_txt <- httr2::resp_body_string(resp)
-    df <- readr::read_csv(resp_txt, show_col_types = FALSE)
+    df <-
+      readr::read_csv(
+        resp_txt,
+        show_col_types = FALSE,
+        col_types = readr::cols(.default = readr::col_character())
+      ) %>%
+      # Replace dashes in column names with underscores
+      dplyr::rename_with(~gsub("-", "_", .x, fixed = TRUE))
     if (as_df == TRUE) {
       df
     } else {
       if (vb)
         message("Saving CSV.")
       readr::write_csv(df, full_fn)
-      #readr::write_csv(as.data.frame(r), full_fn)
       full_fn
     }
   } else {
