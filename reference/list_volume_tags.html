@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
+    <a class="dropdown-item" href="../articles/accessing-data.html">Accessing Data</a>
+    <a class="dropdown-item" href="../articles/authorized-users.html">Authorized Users</a>
+    <a class="dropdown-item" href="../articles/databrary.html">About Databrary</a>
   </div>
 </li>
 <li class="nav-item">
@@ -57,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_volume_tags</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_volume_tags</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, vb <span class="op">=</span> <span class="cn">FALSE</span>, rq <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,6 +70,10 @@
 
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
+
+
+<dt>rq</dt>
+<dd><p>An <code>httr2</code> request object.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -81,14 +87,15 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_volume_tags</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 1.9 kB     Downloading: 1.9 kB     Downloading: 1.9 kB     Downloading: 1.9 kB     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              id weight coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     icis nola      1   NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          icis      1   NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          talk      1   NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 presentations      1   NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     workshops      1   NA, NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      meetings      1   NA, NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   tag_id        tag_weight vol_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> icis nola              1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> icis                   1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> talk                   1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> presentations          1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> workshops              1      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> meetings               1      1</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

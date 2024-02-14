@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
+    <a class="dropdown-item" href="../articles/accessing-data.html">Accessing Data</a>
+    <a class="dropdown-item" href="../articles/authorized-users.html">Authorized Users</a>
+    <a class="dropdown-item" href="../articles/databrary.html">About Databrary</a>
   </div>
 </li>
 <li class="active nav-item">
@@ -50,6 +52,33 @@
       <small>Source: <a href="https://github.com/databrary/databraryr/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.1" id="databraryr-061">databraryr 0.6.1<a class="anchor" aria-label="anchor" href="#databraryr-061"></a></h2>
+<div class="section level3">
+<h3 id="major-changes-0-6-1">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-6-1"></a></h3>
+<ul><li>In testing 0.6.0, several users with installed versions of R before 4.0.1 could not use the package because of its dependency on the native (<code>|&gt;</code>) pipe operator. This version reverts to using the <code>magrittr</code> pipe (<code>%&gt;%</code>).</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.6.0" id="databraryr-060">databraryr 0.6.0<a class="anchor" aria-label="anchor" href="#databraryr-060"></a></h2><p class="text-muted">CRAN release: 2024-02-09</p>
+<div class="section level4">
+<h4 id="major-changes-0-6-0">Major changes<a class="anchor" aria-label="anchor" href="#major-changes-0-6-0"></a></h4>
+<ul><li>Implement <code>httr2</code> functions throughout.
+<ul><li>New <code><a href="../reference/make_default_request.html">make_default_request()</a></code> and <code><a href="../reference/make_login_client.html">make_login_client()</a></code> functions to pave the way for future data uploads.</li>
+<li>Revised <code><a href="../reference/login_db.html">login_db()</a></code> and <code><a href="../reference/logout_db.html">logout_db()</a></code> to use <code>httr2</code>-style request objects.</li>
+</ul></li>
+<li>Reduce redundant calls to Databrary API and better filtering of responses.</li>
+<li>Introduce new function naming convention:
+<ul><li>
+<code>list_*</code> functions return a list or a data frame.
+<ul><li>
+<code>list_{volume,session,party}*</code> functions target volumes, sessions, or parties.</li>
+</ul></li>
+<li>
+<code>download_*</code> functions download a file.</li>
+</ul></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.1" id="databraryr-051">databraryr 0.5.1<a class="anchor" aria-label="anchor" href="#databraryr-051"></a></h2><p class="text-muted">CRAN release: 2023-11-22</p>
 <div class="section level3">

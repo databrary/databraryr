@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
+    <a class="dropdown-item" href="../articles/accessing-data.html">Accessing Data</a>
+    <a class="dropdown-item" href="../articles/authorized-users.html">Authorized Users</a>
+    <a class="dropdown-item" href="../articles/databrary.html">About Databrary</a>
   </div>
 </li>
 <li class="nav-item">
@@ -57,7 +59,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_party_avatar</span><span class="op">(</span>party_id <span class="op">=</span> <span class="fl">6</span>, show_party_info <span class="op">=</span> <span class="cn">TRUE</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">download_party_avatar</span><span class="op">(</span></span>
+<span>  party_id <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  show_party_info <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  rq <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,6 +81,11 @@ Default is TRUE.</p></dd>
 
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE returns verbose output. Default is FALSE.</p></dd>
+
+
+<dt>rq</dt>
+<dd><p>An <code>httr2</code> request object. If not provided, a new request is
+generated via <code><a href="make_default_request.html">make_default_request()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

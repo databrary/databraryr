@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
+    <a class="dropdown-item" href="../articles/accessing-data.html">Accessing Data</a>
+    <a class="dropdown-item" href="../articles/authorized-users.html">Authorized Users</a>
+    <a class="dropdown-item" href="../articles/databrary.html">About Databrary</a>
   </div>
 </li>
 <li class="nav-item">
@@ -57,7 +59,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_volume_excerpts</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, vb <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">list_volume_excerpts</span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, vb <span class="op">=</span> <span class="cn">FALSE</span>, rq <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -69,29 +71,165 @@
 <dt>vb</dt>
 <dd><p>A Boolean value. If TRUE provides verbose output.</p></dd>
 
+
+<dt>rq</dt>
+<dd><p>An <code>httr2</code> request object. Default is NULL.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A data frame with information about any available excerpts.</p>
+<p>A list with information about any available excerpts.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_volume_excerpts</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 2 kB     Downloading: 2 kB     Downloading: 2 kB     Downloading: 2 kB     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              segment permission excerpt asset.id asset.format asset.duration</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 16852000, 16916503          1      NA    84000         -800       14589934</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  0          1      NA     9200            5             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        asset.segment                        asset.name asset.permission</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 15824072, 30414006 DatabraryAdvisoryBoardMeeting2017                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2               NULL                              logo                1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   asset.size asset.container asset.classification</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 4611531493           17886                   NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     104419            9807                    3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Databrary sponsored workshops and events"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $body</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Our mission is to promote sharing and reuse of video data. Most developmental scientists rely on video recordings to capture the complexity and richness of behavior. However, researchers rarely share video data, and this has impeded scientific progress. Enabling reuse of video data is essential to increasing openness, maximizing the efficiency of limited resources, and accelerating the pace of discovery in the developmental and learning sciences.\n\nWe aim to provide tools that encourage good data management, facilitate open data sharing, enable discovery, and foster data reuse and integration. We are working to build functionality that allows researchers to organize, store, code, and share identifiable video data and other contextual information about the videos with other researchers through a secure web-based library.\n\nThe Databrary project is dedicated to transforming the culture of developmental science by building a community of researchers committed to open video data sharing, training a new generation of developmental scientists and empowering them with an unprecedented set of tools for discovery, and raising the profile of behavioral science by bolstering interest in and support for scientific research among the general public."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $doi</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "10.17910/B7159Q"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $creation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2013-01-11T10:26:40Z"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[1]]$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Adolph, Karen"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[1]]$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[2]]$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gilmore, Rick O."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[2]]$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[3]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[3]]$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Staff"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[3]]$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[4]]$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Admin, Databrary"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $owners[[4]]$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3341</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $publicsharefull</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $publicaccess</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "full"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$segment</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$segment[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16852000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$segment[[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16916503</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$excerpt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 84000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$duration</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 14589934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$segment</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$segment[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15824072</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$segment[[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30414006</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DatabraryAdvisoryBoardMeeting2017"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4611531493</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[1]]$asset$container</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 17886</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$segment</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$excerpt</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$format</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$classification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "logo"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$permission</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 104419</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $excerpts[[2]]$asset$container</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9807</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

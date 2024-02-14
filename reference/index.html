@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +24,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/databrary.html">databrary</a>
+    <a class="dropdown-item" href="../articles/accessing-data.html">Accessing Data</a>
+    <a class="dropdown-item" href="../articles/authorized-users.html">Authorized Users</a>
+    <a class="dropdown-item" href="../articles/databrary.html">About Databrary</a>
   </div>
 </li>
 <li class="nav-item">
@@ -62,6 +64,11 @@
 
       <dl><dt>
           
+          <code><a href="DATABRARY_API.html">DATABRARY_API</a></code> 
+        </dt>
+        <dd>Load Package-wide Constants into Local Environment</dd>
+      </dl><dl><dt>
+          
           <code><a href="GET_db_contents.html">GET_db_contents()</a></code> 
         </dt>
         <dd>Queries the Databrary API with an HTML GET command</dd>
@@ -97,9 +104,14 @@
         <dd>Returns the Avatar(s) (images) for Authorized User(s).</dd>
       </dl><dl><dt>
           
+          <code><a href="download_session_asset.html">download_session_asset()</a></code> 
+        </dt>
+        <dd>Download Asset From Databrary.</dd>
+      </dl><dl><dt>
+          
           <code><a href="download_session_csv.html">download_session_csv()</a></code> 
         </dt>
-        <dd>Download Session Spreadsheet</dd>
+        <dd>Download Session Spreadsheet As CSV</dd>
       </dl><dl><dt>
           
           <code><a href="download_session_zip.html">download_session_zip()</a></code> 
@@ -122,6 +134,11 @@
         <dd>Get Time Range For An Asset.</dd>
       </dl><dl><dt>
           
+          <code><a href="get_assets_from_session.html">get_assets_from_session()</a></code> 
+        </dt>
+        <dd>Helper function for list_volume_assets</dd>
+      </dl><dl><dt>
+          
           <code><a href="get_db_stats.html">get_db_stats()</a></code> 
         </dt>
         <dd>Get Stats About Databrary.</dd>
@@ -135,6 +152,11 @@
           <code><a href="get_party_as_df.html">get_party_as_df()</a></code> 
         </dt>
         <dd>Retrieve Party (Person/Institution) Info as Data Frame.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_party_by_id.html">get_party_by_id()</a></code> 
+        </dt>
+        <dd>Download Information About a Party on Databrary as JSON</dd>
       </dl><dl><dt>
           
           <code><a href="get_permission_levels.html">get_permission_levels()</a></code> 
@@ -152,6 +174,16 @@
         <dd>Get Session Info From A Volume As A Data Frame.</dd>
       </dl><dl><dt>
           
+          <code><a href="get_session_by_id.html">get_session_by_id()</a></code> 
+        </dt>
+        <dd>Get Session (Slot) Data From A Databrary Volume</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_session_by_name.html">get_session_by_name()</a></code> 
+        </dt>
+        <dd>Get Session (Slot) Data From A Databrary Volume By Session Name.</dd>
+      </dl><dl><dt>
+          
           <code><a href="get_supported_file_types.html">get_supported_file_types()</a></code> 
         </dt>
         <dd>Extracts File Types Supported by Databrary.</dd>
@@ -160,6 +192,11 @@
           <code><a href="get_video_stats.html">get_video_stats()</a></code> 
         </dt>
         <dd>Report Stats About Videos in a Volume.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="get_volume_by_id.html">get_volume_by_id()</a></code> 
+        </dt>
+        <dd>Get Data From A Databrary Volume</dd>
       </dl><dl><dt>
           
           <code><a href="is_institution.html">is_institution()</a></code> 
@@ -174,7 +211,12 @@
           
           <code><a href="list_affiliates.html">list_affiliates()</a></code> 
         </dt>
-        <dd>List Affiliates for A Databrary Volume.</dd>
+        <dd>List Affiliates for A Databrary Party.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="list_asset_formats.html">list_asset_formats()</a></code> 
+        </dt>
+        <dd>List Stored Assets (Files) By Type.</dd>
       </dl><dl><dt>
           
           <code><a href="list_assets_by_type.html">list_assets_by_type()</a></code> 
@@ -189,7 +231,12 @@
           
           <code><a href="list_assets_in_volume.html">list_assets_in_volume()</a></code> 
         </dt>
-        <dd>Assets in Databrary Volume.</dd>
+        <dd>List Assets in a Databrary Volume.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="list_authorized_investigators.html">list_authorized_investigators()</a></code> 
+        </dt>
+        <dd>List Authorized Investigators at Institution</dd>
       </dl><dl><dt>
           
           <code><a href="list_containers_records.html">list_containers_records()</a></code> 
@@ -212,6 +259,21 @@
         <dd>List Data For A Party (person or institution).</dd>
       </dl><dl><dt>
           
+          <code><a href="list_party_affiliates.html">list_party_affiliates()</a></code> 
+        </dt>
+        <dd>List Affiliates For A Party</dd>
+      </dl><dl><dt>
+          
+          <code><a href="list_party_sponsors.html">list_party_sponsors()</a></code> 
+        </dt>
+        <dd>List Sponsors For A Party</dd>
+      </dl><dl><dt>
+          
+          <code><a href="list_party_volumes.html">list_party_volumes()</a></code> 
+        </dt>
+        <dd>List Volumes For A Party</dd>
+      </dl><dl><dt>
+          
           <code><a href="list_people.html">list_people()</a></code> 
         </dt>
         <dd>List Info About People.</dd>
@@ -220,6 +282,11 @@
           <code><a href="list_session_activity.html">list_session_activity()</a></code> 
         </dt>
         <dd>List Activity History in Databrary Session.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="list_session_assets.html">list_session_assets()</a></code> 
+        </dt>
+        <dd>List Assets in a Session from a Databrary volume.</dd>
       </dl><dl><dt>
           
           <code><a href="list_sessions.html">list_sessions()</a></code> 
@@ -252,6 +319,11 @@
         <dd>List Activity In A Databrary Volume</dd>
       </dl><dl><dt>
           
+          <code><a href="list_volume_assets.html">list_volume_assets()</a></code> 
+        </dt>
+        <dd>List Assets in Databrary Volume.</dd>
+      </dl><dl><dt>
+          
           <code><a href="list_volume_excerpts.html">list_volume_excerpts()</a></code> 
         </dt>
         <dd>List Image or Video Excerpts On A Databrary Volume.</dd>
@@ -277,6 +349,11 @@
         <dd>List Owners of a Databrary Volume.</dd>
       </dl><dl><dt>
           
+          <code><a href="list_volume_sessions.html">list_volume_sessions()</a></code> 
+        </dt>
+        <dd>List Sessions in Databrary Volume.</dd>
+      </dl><dl><dt>
+          
           <code><a href="list_volume_tags.html">list_volume_tags()</a></code> 
         </dt>
         <dd>Lists Keywords And Tags For A Volume.</dd>
@@ -290,6 +367,16 @@
           <code><a href="logout_db.html">logout_db()</a></code> 
         </dt>
         <dd>Log Out of Databrary.org.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_default_request.html">make_default_request()</a></code> 
+        </dt>
+        <dd>Set default httr request parameters.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="make_login_client.html">make_login_client()</a></code> 
+        </dt>
+        <dd>Log In To Databrary.org.</dd>
       </dl><dl><dt>
           
           <code><a href="read_csv_data_as_df.html">read_csv_data_as_df()</a></code> 
