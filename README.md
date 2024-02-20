@@ -1,32 +1,89 @@
-# databraryr <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
-This repository contains code for the `databraryr` R package.
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## Documentation
+# databraryr <a href="https://databrary.github.io/databraryr"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
-Full package documentation built using `pkgdown` can be found at [databrary.github.io/databraryr/](https://databrary.github.io/databraryr/).
+<!-- badges: start -->
+
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr)](https://cran.r-project.org/package=databraryr)
+<!-- badges: end -->
+
+## Overview
+
+databraryr is a wrapper for the [Databrary](https://databrary.org) data
+library’s application programming interface (API). The package can be
+used to create reproducible data wrangling, analysis, and visualization
+pipelines from data stored and shared on Databrary.
 
 ## Installation
 
-### Official CRAN release
+``` r
+# The easiest way to install databraryr is from CRAN
+install.packages("databraryr")
 
-- Install the package from CRAN via `install.packages("databraryr")`.
+# The development release can be installed from GitHub
+# install.packages("pak")
+pak::pak("databrary/databraryr")
+```
 
-### Development release
+## Usage
 
-- Install the `devtools` package from CRAN: `install.packages("devtools")` if you have not already done so.
-- Load `devtools` into your local environment: `library(devtools)`
-- Install the `databraryr` package via `install_github("databrary/databraryr")`. Required dependencies will be installed at this time.
+Databrary ([databrary.org](https://databrary.org)) is a
+restricted-access research data library specialized for storing and
+sharing video with capabilities of storing [other
+types](https://nyu.databrary.org/asset/formats) of associated data.
+Access to restricted data requires
+[registration](https://nyu.databrary.org/user/register) and formal
+approval by an institution. The registration process involves the
+creation of an (email-account-based) user account and secure password.
+Once institutional authorization has been granted, a user may gain
+access to shared video, audio, and other data.
 
-## Use
+However, many commands in the `databraryr` package return meaningful
+results *without* or *prior to* formal authorization. These commands
+access public data or metadata.
 
-The package is under active development, as is the documentation.
-Running `devtools::install_github("databrary/databraryr", force=TRUE)` regularly to get updates is strongly recommended.
+``` r
+library(databraryr)
+#> Welcome to the databraryr package.
 
-### Databrary credentials
+get_db_stats()
+#> # A tibble: 1 × 9
+#>   date                investigators affiliates institutions datasets_total
+#>   <dttm>                      <int>      <int>        <int>          <int>
+#> 1 2024-02-20 13:07:47          1718        680          777           1653
+#> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
+#> #   TB <dbl>
 
-Databrary ([databrary.org](https://databrary.org)) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats) of associated data.
-Access to restricted data requires [registration](https://nyu.databrary.org/user/register) and formal approval by an institution.
-The registration process involves the creation of an (email-account-based) user account and secure password.
-Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
-Many commands in the `databraryr` package return meaningful results *without* or *prior to* formal authorization.
+list_volume_assets() |> 
+  head()
+#>   asset_id asset_format_id asset_duration                 asset_name
+#> 1     9826            -800         335883               Introduction
+#> 2     9830            -800        4277835         Databrary 1.0 plan
+#> 3     9832            -800        3107147                    Datavyu
+#> 4    22412               6             NA                     Slides
+#> 5     9828            -800        4425483             Databrary demo
+#> 6     9834            -800        4964011 Overview and Policy Update
+#>   asset_permission asset_size session_id session_date session_release
+#> 1                1   88610655       6256   2013-10-28               3
+#> 2                1  899912341       6256   2013-10-28               3
+#> 3                1  764340542       6256   2013-10-28               3
+#> 4                1    4573426       6256   2013-10-28               3
+#> 5                1  917124852       6256   2013-10-28               3
+#> 6                1 1301079971       6257   2014-04-07               3
+#>   format_mimetype format_extension       format_name
+#> 1       video/mp4              mp4      MPEG-4 video
+#> 2       video/mp4              mp4      MPEG-4 video
+#> 3       video/mp4              mp4      MPEG-4 video
+#> 4 application/pdf              pdf Portable document
+#> 5       video/mp4              mp4      MPEG-4 video
+#> 6       video/mp4              mp4      MPEG-4 video
+```
+
+## Lifecycle
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+Rick Gilmore has been using experimental versions of databraryr for many
+years, but the package was only released to CRAN in the fall of 2023.
+Some new features are on the roadmap, but the package is largely stable.

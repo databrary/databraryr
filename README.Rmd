@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# databraryr <a href="https://databrary.github.io/databraryr"><img src="man/figures/logo.png" align="right" height="138" /></a>
+
+<!-- badges: start -->
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr)](https://cran.r-project.org/package=databraryr)
+<!-- badges: end -->
+
+## Overview
+
+databraryr is a wrapper for the [Databrary](https://databrary.org) data library's application programming interface (API).
+The package can be used to create reproducible data wrangling, analysis, and visualization pipelines from data stored and shared on Databrary.
+
+## Installation
+
+```{r, eval = FALSE}
+# The easiest way to install databraryr is from CRAN
+install.packages("databraryr")
+
+# The development release can be installed from GitHub
+# install.packages("pak")
+pak::pak("databrary/databraryr")
+```
+
+## Usage
+
+Databrary ([databrary.org](https://databrary.org)) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats) of associated data.
+Access to restricted data requires [registration](https://nyu.databrary.org/user/register) and formal approval by an institution.
+The registration process involves the creation of an (email-account-based) user account and secure password.
+Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
+
+However, many commands in the `databraryr` package return meaningful results *without* or *prior to* formal authorization.
+These commands access public data or metadata.
+
+```{r example}
+library(databraryr)
+
+get_db_stats()
+
+list_volume_assets() |> 
+  head()
+```
+
+## Lifecycle
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+
+Rick Gilmore has been using experimental versions of databraryr for many years, but the package was only released to CRAN in the fall of 2023.
+Some new features are on the roadmap, but the package is largely stable.
