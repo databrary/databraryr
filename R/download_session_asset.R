@@ -55,7 +55,7 @@ download_session_asset <- function(asset_id = 1,
     httr2::req_progress()
   
   if (vb)
-    message("Downloading video with asset_id ",
+    message("Downloading file with asset_id ",
             asset_id,
             " from session_id ",
             session_id)
