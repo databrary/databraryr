@@ -79,45 +79,74 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="databraryr-">databraryr <a class="anchor" aria-label="anchor" href="#databraryr-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="databraryr-">databraryr 
+<a class="anchor" aria-label="anchor" href="#databraryr-"></a>
 </h1>
 </div>
-<p>This repository contains code for the <code>databraryr</code> R package.</p>
+<!-- badges: start -->
+
 <div class="section level2">
-<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>Full package documentation built using <code>pkgdown</code> can be found at <a href="https://databrary.github.io/databraryr/">databrary.github.io/databraryr/</a>.</p>
+<p>databraryr is a wrapper for the <a href="https://databrary.org" class="external-link">Databrary</a> data library’s application programming interface (API). The package can be used to create reproducible data wrangling, analysis, and visualization pipelines from data stored and shared on Databrary.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<div class="section level3">
-<h3 id="official-cran-release">Official CRAN release<a class="anchor" aria-label="anchor" href="#official-cran-release"></a>
-</h3>
-<ul>
-<li>Install the package from CRAN via <code>install.packages("databraryr")</code>.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="development-release">Development release<a class="anchor" aria-label="anchor" href="#development-release"></a>
-</h3>
-<ul>
-<li>Install the <code>devtools</code> package from CRAN: <code>install.packages("devtools")</code> if you have not already done so.</li>
-<li>Load <code>devtools</code> into your local environment: <code><a href="https://devtools.r-lib.org/" class="external-link">library(devtools)</a></code>
-</li>
-<li>Install the <code>databraryr</code> package via <code>install_github("databrary/databraryr")</code>. Required dependencies will be installed at this time.</li>
-</ul>
-</div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># The easiest way to install databraryr is from CRAN</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"databraryr"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># The development release can be installed from GitHub</span></span>
+<span><span class="co"># install.packages("pak")</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"databrary/databraryr"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="use">Use<a class="anchor" aria-label="anchor" href="#use"></a>
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>The package is under active development, as is the documentation. Running <code>devtools::install_github("databrary/databraryr", force=TRUE)</code> regularly to get updates is strongly recommended.</p>
-<div class="section level3">
-<h3 id="databrary-credentials">Databrary credentials<a class="anchor" aria-label="anchor" href="#databrary-credentials"></a>
-</h3>
-<p>Databrary (<a href="https://databrary.org" class="external-link">databrary.org</a>) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing <a href="https://nyu.databrary.org/asset/formats" class="external-link">other types</a> of associated data. Access to restricted data requires <a href="https://nyu.databrary.org/user/register" class="external-link">registration</a> and formal approval by an institution. The registration process involves the creation of an (email-account-based) user account and secure password. Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data. Many commands in the <code>databraryr</code> package return meaningful results <em>without</em> or <em>prior to</em> formal authorization.</p>
+<p>Databrary (<a href="https://databrary.org" class="external-link">databrary.org</a>) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing <a href="https://nyu.databrary.org/asset/formats" class="external-link">other types</a> of associated data. Access to restricted data requires <a href="https://nyu.databrary.org/user/register" class="external-link">registration</a> and formal approval by an institution. The registration process involves the creation of an (email-account-based) user account and secure password. Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.</p>
+<p>However, many commands in the <code>databraryr</code> package return meaningful results <em>without</em> or <em>prior to</em> formal authorization. These commands access public data or metadata.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/databrary/databraryr" class="external-link">databraryr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Welcome to the databraryr package.</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
+<span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
+<span><span class="co">#&gt;   &lt;dttm&gt;                      &lt;int&gt;      &lt;int&gt;        &lt;int&gt;          &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 2024-02-21 09:20:05          1718        680          777           1654</span></span>
+<span><span class="co">#&gt; # ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   TB &lt;dbl&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   asset_id asset_format_id asset_duration                 asset_name</span></span>
+<span><span class="co">#&gt; 1     9826            -800         335883               Introduction</span></span>
+<span><span class="co">#&gt; 2     9830            -800        4277835         Databrary 1.0 plan</span></span>
+<span><span class="co">#&gt; 3     9832            -800        3107147                    Datavyu</span></span>
+<span><span class="co">#&gt; 4    22412               6             NA                     Slides</span></span>
+<span><span class="co">#&gt; 5     9828            -800        4425483             Databrary demo</span></span>
+<span><span class="co">#&gt; 6     9834            -800        4964011 Overview and Policy Update</span></span>
+<span><span class="co">#&gt;   asset_permission asset_size session_id session_date session_release</span></span>
+<span><span class="co">#&gt; 1                1   88610655       6256   2013-10-28               3</span></span>
+<span><span class="co">#&gt; 2                1  899912341       6256   2013-10-28               3</span></span>
+<span><span class="co">#&gt; 3                1  764340542       6256   2013-10-28               3</span></span>
+<span><span class="co">#&gt; 4                1    4573426       6256   2013-10-28               3</span></span>
+<span><span class="co">#&gt; 5                1  917124852       6256   2013-10-28               3</span></span>
+<span><span class="co">#&gt; 6                1 1301079971       6257   2014-04-07               3</span></span>
+<span><span class="co">#&gt;   format_mimetype format_extension       format_name</span></span>
+<span><span class="co">#&gt; 1       video/mp4              mp4      MPEG-4 video</span></span>
+<span><span class="co">#&gt; 2       video/mp4              mp4      MPEG-4 video</span></span>
+<span><span class="co">#&gt; 3       video/mp4              mp4      MPEG-4 video</span></span>
+<span><span class="co">#&gt; 4 application/pdf              pdf Portable document</span></span>
+<span><span class="co">#&gt; 5       video/mp4              mp4      MPEG-4 video</span></span>
+<span><span class="co">#&gt; 6       video/mp4              mp4      MPEG-4 video</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="lifecycle">Lifecycle<a class="anchor" aria-label="anchor" href="#lifecycle"></a>
+</h2>
+<p><a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></p>
+<p>Rick Gilmore has been using experimental versions of databraryr for many years, but the package was only released to CRAN in the fall of 2023. Some new features are on the roadmap, but the package is largely stable.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -156,7 +185,12 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://cran.r-project.org/package=databraryr" class="external-link"><img src="https://www.r-pkg.org/badges/version/databraryr" alt="CRAN_Status_Badge"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
