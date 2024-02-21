@@ -51,7 +51,7 @@ get_db_stats()
 #> # A tibble: 1 × 9
 #>   date                investigators affiliates institutions datasets_total
 #>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-02-20 13:07:47          1718        680          777           1653
+#> 1 2024-02-21 09:20:05          1718        680          777           1654
 #> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
 #> #   TB <dbl>
 
