@@ -12,10 +12,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-# databraryr <a href="https://databrary.github.io/databraryr"><img src="man/figures/logo.png" align="right" height="138" /></a>
+# databraryr <a href="https://databrary.github.io/databraryr/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr)](https://cran.r-project.org/package=databraryr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr/)](https://cran.r-project.org/package=databraryr)
 <!-- badges: end -->
 
 ## Overview
@@ -36,7 +36,7 @@ pak::pak("databrary/databraryr")
 
 ## Usage
 
-Databrary ([databrary.org](https://databrary.org)) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats) of associated data.
+Databrary ([databrary.org](https://databrary.org)) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing [other types](https://nyu.databrary.org/asset/formats/) of associated data.
 Access to restricted data requires [registration](https://nyu.databrary.org/user/register) and formal approval by an institution.
 The registration process involves the creation of an (email-account-based) user account and secure password.
 Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.

@@ -13,7 +13,7 @@
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/databrary/databraryr}
+  \item \url{https://github.com/databrary/databraryr/}
   \item \url{https://databrary.github.io/databraryr/}
   \item Report bugs at \url{https://github.com/databrary/databraryr/issues}
 }

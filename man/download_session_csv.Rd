@@ -14,17 +14,20 @@ download_session_csv(
 )
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{vol_id}{An integer. Target volume number. Default is 1.}
 
-\item{file_name}{Name for the output file. Default is 'test.csv'.}
+\item{file_name}{A character string. Name for the output file.
+Default is 'test.csv'.}
 
-\item{target_dir}{Directory to save downloaded file. Default is tempdir().}
+\item{target_dir}{A character string. Directory to save downloaded file.
+Default is \code{tempdir()}.}
 
-\item{as_df}{A Boolean value. Default is FALSE.}
+\item{as_df}{A logical value. Convert the data from a list to a data frame.
+Default is FALSE.}
 
-\item{vb}{A Boolean value. Default is FALSE.}
+\item{vb}{A logical value. Provide verbose feedback. Default is FALSE.}
 
-\item{rq}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 A character string that is the name of the downloaded file or a data frame if \code{as_df} is TRUE.
@@ -40,4 +43,5 @@ as a temporary file or with a name specified by the user.
 download_session_csv() # Downloads "session" CSV for volume 1
 }
 }
+
 }
