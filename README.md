@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# databraryr <a href="https://databrary.github.io/databraryr"><img src="man/figures/logo.png" align="right" height="138" /></a>
+# databraryr <a href="https://databrary.github.io/databraryr/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr)](https://cran.r-project.org/package=databraryr)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr/)](https://cran.r-project.org/package=databraryr)
 <!-- badges: end -->
 
 ## Overview
@@ -31,13 +31,14 @@ pak::pak("databrary/databraryr")
 Databrary ([databrary.org](https://databrary.org)) is a
 restricted-access research data library specialized for storing and
 sharing video with capabilities of storing [other
-types](https://nyu.databrary.org/asset/formats) of associated data.
-Access to restricted data requires
-[registration](https://nyu.databrary.org/user/register) and formal
-approval by an institution. The registration process involves the
-creation of an (email-account-based) user account and secure password.
-Once institutional authorization has been granted, a user may gain
-access to shared video, audio, and other data.
+types](https://nyu.databrary.org/asset/formats/) of associated data.
+Access to restricted data requires registration and formal approval by
+an institution. The registration process involves the creation of an
+(email-account-based) user account and secure password. Once
+institutional authorization has been granted, a user may gain access to
+shared video, audio, and other data. See
+<https://databrary.org/about.html> for more information about gaining
+access to restricted data.
 
 However, many commands in the `databraryr` package return meaningful
 results *without* or *prior to* formal authorization. These commands
@@ -51,7 +52,7 @@ get_db_stats()
 #> # A tibble: 1 × 9
 #>   date                investigators affiliates institutions datasets_total
 #>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-02-21 09:20:05          1718        680          777           1654
+#> 1 2024-02-22 09:50:08          1718        682          777           1654
 #> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
 #> #   TB <dbl>
 
