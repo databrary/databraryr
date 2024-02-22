@@ -38,7 +38,8 @@ Suggests:
     openssl,
     testthat (>= 3.0.0),
     ggplot2,
-    readr
+    readr,
+    rmarkdown
 VignetteBuilder: knitr
 URL: https://databrary.github.io/databraryr/, https://github.com/databrary/databraryr
 BugReports: https://github.com/databrary/databraryr/issues
