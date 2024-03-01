@@ -1,11 +1,11 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   accessing-data: accessing-data.html
   authorized-users: authorized-users.html
   databrary: databrary.html
-last_built: 2024-02-22T20:42Z
+last_built: 2024-03-01T19:23Z
 urls:
   reference: https://databrary.github.io/databraryr/reference
   article: https://databrary.github.io/databraryr/articles
