@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,28 +155,17 @@ into your local workspace.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://databrary.github.io/databraryr/">databraryr</a></span><span class="op">)</span></span></code></pre></div>
 <p>Then, try this command to pull data about Databrary’s founders:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>databraryr<span class="sc">::</span><span class="fu">list_people</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;   id sortname prename                       affiliation</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 1  5   Adolph   Karen               New York University</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt; 2  6  Gilmore Rick O. The Pennsylvania State University</span></span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt; 3  7  Millman   David               New York University</span></span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;                                url               orcid</span></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 1 http://www.psych.nyu.edu/adolph/                &lt;NA&gt;</span></span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 2     http://gilmore-lab.github.io 0000-0002-7676-3982</span></span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; 3                             &lt;NA&gt;                &lt;NA&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B</span></span>
+<span><span class="co">#&gt;   id sortname prename                       affiliation</span></span>
+<span><span class="co">#&gt; 1  5   Adolph   Karen               New York University</span></span>
+<span><span class="co">#&gt; 2  6  Gilmore Rick O. The Pennsylvania State University</span></span>
+<span><span class="co">#&gt; 3  7  Millman   David               New York University</span></span>
+<span><span class="co">#&gt;                                url               orcid</span></span>
+<span><span class="co">#&gt; 1 http://www.psych.nyu.edu/adolph/                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2     http://gilmore-lab.github.io 0000-0002-7676-3982</span></span>
+<span><span class="co">#&gt; 3                             &lt;NA&gt;                &lt;NA&gt;</span></span></code></pre></div>
 <p>Note that this command returns a data frame (tibble) with columns
 that include the first name (<code>prename</code>), last name
 (<code>sortname</code>), affiliation, lab or personal website, and ORCID
@@ -186,118 +175,41 @@ the system called a ‘party id’. When we run
 <code>list_people(1:25)</code> we are asking the system to provide us
 information about all of the <em>people</em> whose party id’s are
 between 1 and 25. Let’s try it:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>databraryr<span class="sc">::</span><span class="fu">list_people</span>(<span class="at">people_list =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">75</span> B     </span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">75</span> B     </span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">75</span> B     </span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">75</span> B     </span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">120</span> B     </span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">170</span> B     </span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B     </span>
-<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">83</span> B</span>
-<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="co">#&gt; People info:  [32m■■■■■■■■■                        [39m  28% |  ETA:  3s</span></span>
-<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">94</span> B     </span>
-<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">94</span> B     </span>
-<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">94</span> B     </span>
-<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">94</span> B     </span>
-<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">72</span> B     </span>
-<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">130</span> B     </span>
-<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">130</span> B     </span>
-<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">130</span> B     </span>
-<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">130</span> B     </span>
-<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">81</span> B     </span>
-<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">81</span> B     </span>
-<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">81</span> B     </span>
-<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">81</span> B     </span>
-<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">57</span> B     </span>
-<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">57</span> B     </span>
-<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">57</span> B     </span>
-<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">57</span> B     </span>
-<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">42</span> B     </span>
-<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">42</span> B     </span>
-<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">42</span> B     </span>
-<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">42</span> B     </span>
-<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">44</span> B     </span>
-<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">44</span> B     </span>
-<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">44</span> B     </span>
-<span id="cb3-56"><a href="#cb3-56" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">44</span> B     </span>
-<span id="cb3-57"><a href="#cb3-57" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">100</span> B     </span>
-<span id="cb3-58"><a href="#cb3-58" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">100</span> B     </span>
-<span id="cb3-59"><a href="#cb3-59" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">100</span> B     </span>
-<span id="cb3-60"><a href="#cb3-60" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">100</span> B     </span>
-<span id="cb3-61"><a href="#cb3-61" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-62"><a href="#cb3-62" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-63"><a href="#cb3-63" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-64"><a href="#cb3-64" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-65"><a href="#cb3-65" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-66"><a href="#cb3-66" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-67"><a href="#cb3-67" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-68"><a href="#cb3-68" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-69"><a href="#cb3-69" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-70"><a href="#cb3-70" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-71"><a href="#cb3-71" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-72"><a href="#cb3-72" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-73"><a href="#cb3-73" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">66</span> B     </span>
-<span id="cb3-74"><a href="#cb3-74" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">66</span> B     </span>
-<span id="cb3-75"><a href="#cb3-75" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">66</span> B     </span>
-<span id="cb3-76"><a href="#cb3-76" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="dv">66</span> B     </span>
-<span id="cb3-77"><a href="#cb3-77" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-78"><a href="#cb3-78" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-79"><a href="#cb3-79" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB     </span>
-<span id="cb3-80"><a href="#cb3-80" tabindex="-1"></a>Downloading<span class="sc">:</span> <span class="fl">3.7</span> kB</span>
-<span id="cb3-81"><a href="#cb3-81" tabindex="-1"></a><span class="co">#&gt;    id        sortname       prename               orcid</span></span>
-<span id="cb3-82"><a href="#cb3-82" tabindex="-1"></a><span class="co">#&gt; 1   1           Simon         Dylan 0000-0002-2793-1679</span></span>
-<span id="cb3-83"><a href="#cb3-83" tabindex="-1"></a><span class="co">#&gt; 2   3         Steiger          Lisa                &lt;NA&gt;</span></span>
-<span id="cb3-84"><a href="#cb3-84" tabindex="-1"></a><span class="co">#&gt; 3   4           Byrne        Andrea                &lt;NA&gt;</span></span>
-<span id="cb3-85"><a href="#cb3-85" tabindex="-1"></a><span class="co">#&gt; 4   5          Adolph         Karen                &lt;NA&gt;</span></span>
-<span id="cb3-86"><a href="#cb3-86" tabindex="-1"></a><span class="co">#&gt; 5   6         Gilmore       Rick O. 0000-0002-7676-3982</span></span>
-<span id="cb3-87"><a href="#cb3-87" tabindex="-1"></a><span class="co">#&gt; 6   7         Millman         David                &lt;NA&gt;</span></span>
-<span id="cb3-88"><a href="#cb3-88" tabindex="-1"></a><span class="co">#&gt; 7  11   Tamis-LeMonda     Catherine                &lt;NA&gt;</span></span>
-<span id="cb3-89"><a href="#cb3-89" tabindex="-1"></a><span class="co">#&gt; 8  13             Roy Lina Wictoren                &lt;NA&gt;</span></span>
-<span id="cb3-90"><a href="#cb3-90" tabindex="-1"></a><span class="co">#&gt; 9  14        Franchak          John                &lt;NA&gt;</span></span>
-<span id="cb3-91"><a href="#cb3-91" tabindex="-1"></a><span class="co">#&gt; 10 16       Professor    Suzanne Q.                &lt;NA&gt;</span></span>
-<span id="cb3-92"><a href="#cb3-92" tabindex="-1"></a><span class="co">#&gt; 11 17 Jimenez-Robbins        Carmen                &lt;NA&gt;</span></span>
-<span id="cb3-93"><a href="#cb3-93" tabindex="-1"></a><span class="co">#&gt; 12 18             Coe           Jon                &lt;NA&gt;</span></span>
-<span id="cb3-94"><a href="#cb3-94" tabindex="-1"></a><span class="co">#&gt; 13 19             Foo         Vicky                &lt;NA&gt;</span></span>
-<span id="cb3-95"><a href="#cb3-95" tabindex="-1"></a><span class="co">#&gt; 14 20          Gordon         Peter                &lt;NA&gt;</span></span>
-<span id="cb3-96"><a href="#cb3-96" tabindex="-1"></a><span class="co">#&gt; 15 24            Chan        Gladys                &lt;NA&gt;</span></span>
-<span id="cb3-97"><a href="#cb3-97" tabindex="-1"></a><span class="co">#&gt;                              affiliation                              url</span></span>
-<span id="cb3-98"><a href="#cb3-98" tabindex="-1"></a><span class="co">#&gt; 1                                   &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span id="cb3-99"><a href="#cb3-99" tabindex="-1"></a><span class="co">#&gt; 2                              Databrary                             &lt;NA&gt;</span></span>
-<span id="cb3-100"><a href="#cb3-100" tabindex="-1"></a><span class="co">#&gt; 3                              Databrary                             &lt;NA&gt;</span></span>
-<span id="cb3-101"><a href="#cb3-101" tabindex="-1"></a><span class="co">#&gt; 4                    New York University http://www.psych.nyu.edu/adolph/</span></span>
-<span id="cb3-102"><a href="#cb3-102" tabindex="-1"></a><span class="co">#&gt; 5      The Pennsylvania State University     http://gilmore-lab.github.io</span></span>
-<span id="cb3-103"><a href="#cb3-103" tabindex="-1"></a><span class="co">#&gt; 6                    New York University                             &lt;NA&gt;</span></span>
-<span id="cb3-104"><a href="#cb3-104" tabindex="-1"></a><span class="co">#&gt; 7                    New York University                             &lt;NA&gt;</span></span>
-<span id="cb3-105"><a href="#cb3-105" tabindex="-1"></a><span class="co">#&gt; 8                                    NYU                             &lt;NA&gt;</span></span>
-<span id="cb3-106"><a href="#cb3-106" tabindex="-1"></a><span class="co">#&gt; 9    University of California, Riverside            http://padlab.ucr.edu</span></span>
-<span id="cb3-107"><a href="#cb3-107" tabindex="-1"></a><span class="co">#&gt; 10                             Databrary                             &lt;NA&gt;</span></span>
-<span id="cb3-108"><a href="#cb3-108" tabindex="-1"></a><span class="co">#&gt; 11                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span id="cb3-109"><a href="#cb3-109" tabindex="-1"></a><span class="co">#&gt; 12                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span id="cb3-110"><a href="#cb3-110" tabindex="-1"></a><span class="co">#&gt; 13                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span id="cb3-111"><a href="#cb3-111" tabindex="-1"></a><span class="co">#&gt; 14 Teachers College, Columbia University                             &lt;NA&gt;</span></span>
-<span id="cb3-112"><a href="#cb3-112" tabindex="-1"></a><span class="co">#&gt; 15                                   NYU                             &lt;NA&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span>people_list <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Downloading: 75 B     Downloading: 75 B     Downloading: 75 B     Downloading: 75 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 130 B     Downloading: 130 B     Downloading: 130 B     Downloading: 130 B     Downloading: 81 B     Downloading: 81 B     Downloading: 81 B     Downloading: 81 B     Downloading: 57 B     Downloading: 57 B     Downloading: 57 B     Downloading: 57 B     Downloading: 42 B     Downloading: 42 B     Downloading: 42 B     Downloading: 42 B     Downloading: 44 B     Downloading: 44 B     Downloading: 44 B     Downloading: 44 B     Downloading: 100 B     Downloading: 100 B     Downloading: 100 B     Downloading: 100 B     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 66 B     Downloading: 66 B     Downloading: 66 B     Downloading: 66 B     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB</span></span>
+<span><span class="co">#&gt;    id        sortname       prename               orcid</span></span>
+<span><span class="co">#&gt; 1   1           Simon         Dylan 0000-0002-2793-1679</span></span>
+<span><span class="co">#&gt; 2   3         Steiger          Lisa                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3   4           Byrne        Andrea                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4   5          Adolph         Karen                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 5   6         Gilmore       Rick O. 0000-0002-7676-3982</span></span>
+<span><span class="co">#&gt; 6   7         Millman         David                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7  11   Tamis-LeMonda     Catherine                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8  13             Roy Lina Wictoren                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9  14        Franchak          John                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 10 16       Professor    Suzanne Q.                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11 17 Jimenez-Robbins        Carmen                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12 18             Coe           Jon                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 13 19             Foo         Vicky                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14 20          Gordon         Peter                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15 24            Chan        Gladys                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;                              affiliation                              url</span></span>
+<span><span class="co">#&gt; 1                                   &lt;NA&gt;                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2                              Databrary                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 3                              Databrary                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 4                    New York University http://www.psych.nyu.edu/adolph/</span></span>
+<span><span class="co">#&gt; 5      The Pennsylvania State University     http://gilmore-lab.github.io</span></span>
+<span><span class="co">#&gt; 6                    New York University                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 7                    New York University                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 8                                    NYU                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 9    University of California, Riverside            http://padlab.ucr.edu</span></span>
+<span><span class="co">#&gt; 10                             Databrary                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 11                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 12                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 13                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14 Teachers College, Columbia University                             &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15                                   NYU                             &lt;NA&gt;</span></span></code></pre></div>
 <p>It’s a bit slow, but you should see information about people
 beginning with Dylan Simon, the developer who designed and built most of
 the Databrary system, and ending with Gladys Chan, a graphic designer
@@ -312,7 +224,7 @@ this:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 9</span></span></span>
 <span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-03-01 <span style="color: #949494;">19:23:57</span>          <span style="text-decoration: underline;">1</span>728        682          778           <span style="text-decoration: underline;">1</span>657</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-03-14 <span style="color: #949494;">15:29:36</span>          <span style="text-decoration: underline;">1</span>730        668          778           <span style="text-decoration: underline;">1</span>662</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>

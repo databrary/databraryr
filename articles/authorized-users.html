@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,20 +165,20 @@ recommended one.</p>
 parameters in <code><a href="../reference/login_db.html">login_db()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"&lt;YOUR_EMAIL@PROVIDER.COM&gt;"</span>, store <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>                     overwrite <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">lrq</span><span class="op">)</span></span></code></pre></div>
+<span>                     overwrite <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
 <p>This overwrites and securely stores your credentials, so that the
 next time you log in, you need only use this command:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"&lt;YOUR_EMAIL@PROVIDER.COM&gt;"</span>, store <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">lrq</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"&lt;YOUR_EMAIL@PROVIDER.COM&gt;"</span>, store <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
 <p>or if you’ve stored your email as an environment variable:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"DATABRARY_LOGIN"</span><span class="op">)</span>, store <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">lrq</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"DATABRARY_LOGIN"</span><span class="op">)</span>, store <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="logging-out">Logging out<a class="anchor" aria-label="anchor" href="#logging-out"></a>
 </h3>
 <p>The package also has a log out command.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/logout_db.html">logout_db</a></span><span class="op">(</span>rq <span class="op">=</span> <span class="va">lrq</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/logout_db.html">logout_db</a></span><span class="op">(</span>rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
 <p><strong>NOTE</strong>: Most <code>databraryr</code> functions have a
 verbose (<code>vb</code>) parameter. If you set this to
 <code>TRUE</code>, you will get more information about what’s going
