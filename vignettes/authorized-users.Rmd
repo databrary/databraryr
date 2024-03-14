@@ -80,19 +80,19 @@ To do this, use the `store` and `overwrite` parameters in `login_db()`:
 
 ```{r, eval=FALSE}
 databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE,
-                     overwrite = TRUE, rq = lrq)
+                     overwrite = TRUE, rq = drq)
 ```
 
 This overwrites and securely stores your credentials, so that the next time you log in, you need only use this command:
 
 ```{r, eval=FALSE}
-databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE, rq = lrq)
+databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE, rq = drq)
 ```
 
 or if you've stored your email as an environment variable:
 
 ```{r, eval=FALSE}
-databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), store = TRUE, rq = lrq)
+databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), store = TRUE, rq = drq)
 ```
 
 ### Logging out
@@ -100,7 +100,7 @@ databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), store = TRUE, rq = l
 The package also has a log out command.
 
 ```{r eval=FALSE}
-databraryr::logout_db(rq = lrq)
+databraryr::logout_db(rq = drq)
 ```
 
 **NOTE**: Most `databraryr` functions have a verbose (`vb`) parameter. If you set this to `TRUE`, you will get more information about what's going on.

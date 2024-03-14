@@ -37,8 +37,6 @@ list_party_sponsors <- function(party_id = 6,
     rq <- make_default_request()
   }
   
-  party_info <- get_party_by_id(party_id, vb, rq)
-  
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
   
