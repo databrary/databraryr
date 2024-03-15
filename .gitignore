@@ -16,6 +16,7 @@ tmp
 *.csv
 *.opf
 *.mp4
+*.png
 docs
 /doc/
 /Meta/

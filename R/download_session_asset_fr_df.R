@@ -5,7 +5,7 @@
 #' (asset_id) and system-unique session (slot) identifier (session_id).
 #'
 #' @param asset_id An integer. Asset id for target file. Default is 1.
-#' @param session_id An integer. Slot/session number where target file is 
+#' @param session_id An integer. Slot/session number where target file is
 #' stored. Default is 9807.
 #' @param file_name A character string. Name for downloaded file. Default is NULL.
 #' @param target_dir A character string. Directory to save the downloaded file.
@@ -24,13 +24,14 @@
 #' }
 #' }
 #' @export
-download_session_asset <- function(asset_id = 1,
-                                   session_id = 9807,
-                                   file_name = NULL,
-                                   target_dir = paste0("./", session_id),
-                                   # target_dir = tempdir(),
-                                   vb = FALSE,
-                                   rq = NULL) {
+download_session_asset_fr_df <- function(asset_id = NULL,
+                                         file_name = NULL,
+                                         session_id = 9807,
+                                         target_dir = paste0("./", session_id),
+                                         # target_dir = tempdir(),
+                                         overwrite = TRUE,
+                                         vb = FALSE,
+                                         rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(asset_id) == 1)
   assertthat::assert_that(is.numeric(asset_id))
@@ -58,8 +59,6 @@ download_session_asset <- function(asset_id = 1,
     }
     rq <- databraryr::make_default_request()
   }
-  
-  
   
   this_rq <- rq %>%
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
@@ -103,16 +102,23 @@ download_session_asset <- function(asset_id = 1,
   
   if (file.exists(file_name)) {
     if (vb)
-      message("File exists. Generating new unique name.\n")
-    file_name <- file.path(dirname(file_name),
-                           paste0(
-                             session_id,
-                             "-",
-                             asset_id,
-                             "-",
-                             format(Sys.time(), "%F-%H%M-%S"),
-                             paste0(".", this_file_extension)
-                           ))
+      message("File exists.")
+    if (!overwrite) {
+      if (vb)
+        message("Generating new unique file name.")
+      file_name <- file.path(dirname(file_name),
+                             paste0(
+                               session_id,
+                               "-",
+                               asset_id,
+                               "-",
+                               format(Sys.time(), "%F-%H%M-%S"),
+                               paste0(".", this_file_extension)
+                             ))
+    } else {
+    }
+    if (vb)
+      message("Overwriting existing file.")
   }
   
   if (!(this_file_extension == xfun::file_ext(file_name))) {
