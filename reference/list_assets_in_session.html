@@ -12,7 +12,7 @@ This function has been superseded by list_session_assets()."><meta property="og:
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,23 +86,23 @@ This function has been superseded by list_session_assets()."><meta property="og:
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_assets_in_session</span><span class="op">(</span><span class="op">)</span> <span class="co"># Assets in session 9807 (from Volume 1)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 770 B     Downloading: 770 B     Downloading: 770 B     Downloading: 770 B     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   asset_id asset_type_id                                 name permission</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   153109             2            volumes-citations-monthly          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   153108             2 databrary-institutions-investigators          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   117035            16         counting (demo Datavyu file)          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4      314             6               NIH Proposal Narrative          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5     9200             5                                 logo          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        1          -800                counting (demo video)          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      315             6               NSF Proposal Narrative          1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   classification    size duration                mimetype extension</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             NA      NA       NA                text/csv       csv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              3    1826       NA                text/csv       csv</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              3    1030       NA application/vnd.datavyu       opf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              3 3826718       NA         application/pdf       pdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              3  104419       NA               image/png       png</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              3  394499    40000               video/mp4       mp4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              3 4120930       NA         application/pdf       pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 800 B     Downloading: 800 B     Downloading: 800 B     Downloading: 800 B     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   asset_id asset_type_id classification                                 name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   153109             2              3            volumes-citations-monthly</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   153108             2              3 databrary-institutions-investigators</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   117035            16              3         counting (demo Datavyu file)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      314             6              3               NIH Proposal Narrative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5     9200             5              3                                 logo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        1          -800              3                counting (demo video)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      315             6              3               NSF Proposal Narrative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   permission    size duration                mimetype extension</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1     417       NA                text/csv       csv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          1    1826       NA                text/csv       csv</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          1    1030       NA application/vnd.datavyu       opf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          1 3826718       NA         application/pdf       pdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          1  104419       NA               image/png       png</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          1  394499    40000               video/mp4       mp4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7          1 4120930       NA         application/pdf       pdf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  asset_type transcodable</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    Comma-separated values           NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    Comma-separated values           NA</span>
