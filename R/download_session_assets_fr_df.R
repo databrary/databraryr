@@ -19,6 +19,11 @@
 #' \dontrun{
 #' download_session_assets_fr_df() # Downloads all of the files from session
 #' 9807 in Databrary volume 1.
+#' 
+#' # Just the CSVs
+#' v1 <- list_session_assets_2()
+#' v1_csv <- dplyr::filter(v1, format_extension == "csv")
+#' download_session_assets_fr_df(v1_csv, vb = TRUE)
 #' }
 #' }
 #' @export
@@ -42,13 +47,13 @@ download_session_assets_fr_df <-
         message("Target directory not found: ", target_dir)
         message("Creating: ", target_dir)
       }
-      dir.create(target_dir)
+      dir.create(target_dir, recursive = TRUE)
     } else {
       if (vb)
         message("Target directory exists: ", target_dir)
       if (overwrite) {
         if (vb)
-          message("Overwriting directory: ", target_dir)
+          message("`overwrite` is TRUE. Overwriting directory: ", target_dir)
       } else {
         if (vb)
           message("`overwrite` is FALSE. Cannot continue.")
@@ -66,7 +71,6 @@ download_session_assets_fr_df <-
     fns <-
       file.path(target_dir,
                 paste0(session_df$asset_name, ".", session_df$format_extension))
-    
     if (vb)
       message(
         "Downloading n=",
