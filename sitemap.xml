@@ -58,6 +58,12 @@
     <loc>https://databrary.github.io/databraryr/reference/download_session_asset.html</loc>
   </url>
   <url>
+    <loc>https://databrary.github.io/databraryr/reference/download_session_asset_fr_df.html</loc>
+  </url>
+  <url>
+    <loc>https://databrary.github.io/databraryr/reference/download_session_assets_fr_df.html</loc>
+  </url>
+  <url>
     <loc>https://databrary.github.io/databraryr/reference/download_session_csv.html</loc>
   </url>
   <url>
@@ -167,6 +173,9 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_session_assets.html</loc>
+  </url>
+  <url>
+    <loc>https://databrary.github.io/databraryr/reference/list_session_assets_2.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_sessions.html</loc>
