@@ -30,7 +30,7 @@ The package can be used to create reproducible data wrangling, analysis, and vis
 install.packages("databraryr")
 
 # The development release can be installed from GitHub
-# install.packages("pak")
+install.packages("pak")
 pak::pak("databrary/databraryr")
 ```
 

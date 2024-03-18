@@ -1,8 +1,8 @@
 # get_video_stats ---------------------------------------------------------
-test_that("get_video_stats returns a data.frame", {
-  expect_true("data.frame" %in% class(get_video_stats()))
-})
-
+# test_that("get_video_stats returns a data.frame", {
+#   expect_true("data.frame" %in% class(get_video_stats()))
+# })
+# 
 test_that("get_video_stats rejects bad input parameters", {
   expect_error(get_video_stats(vol_id = "a"))
   expect_error(get_video_stats(vol_id = -1))

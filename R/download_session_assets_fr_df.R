@@ -7,9 +7,10 @@
 #' @param session_id An integer. Slot/session number where target file is
 #' stored. Default is the unique session_id from `session_df`. This makes piped
 #' workflows possible.
-#' @param target_dir A character string. Directory to save the downloaded file. 
+#' @param target_dir A character string. Directory to save the downloaded file.
 #' Default is directory named after the session_id.
 #' @param vb A logical value. If TRUE provides verbose output. Default is FALSE.
+#' @param overwrite A logical value. Overwrite existing data or not. Default is TRUE.
 #' @param rq A list in the form of an `httr2` request object. Default is NULL.
 #'
 #' @returns Full file names to the downloaded assets or NULL.
@@ -19,7 +20,7 @@
 #' \dontrun{
 #' download_session_assets_fr_df() # Downloads all of the files from session
 #' 9807 in Databrary volume 1.
-#' 
+#'
 #' # Just the CSVs
 #' v1 <- list_session_assets_2()
 #' v1_csv <- dplyr::filter(v1, format_extension == "csv")
@@ -34,7 +35,6 @@ download_session_assets_fr_df <-
            overwrite = TRUE,
            vb = FALSE,
            rq = NULL) {
-    
     # Check parameters
     assertthat::assert_that(is.data.frame(session_df))
     

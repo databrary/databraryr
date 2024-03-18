@@ -31,6 +31,7 @@
 #'   vb = TRUE)
 #'
 #' }
+#' }
 #' @export
 download_session_asset_fr_df <- function(asset_id = NULL,
                                          file_name = NULL,

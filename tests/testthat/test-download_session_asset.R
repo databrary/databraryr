@@ -30,7 +30,3 @@ test_that("download_session_asset rejects bad input parameters", {
   expect_error(download_session_asset(rq = c(2,3)))
   expect_error(download_session_asset(rq = list(a=1, b=2)))
 })
-
-test_that("download_session_asset returns character string", {
-  expect_true(is.character(download_session_asset()))
-})

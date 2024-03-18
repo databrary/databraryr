@@ -51,14 +51,14 @@ databraryr::list_volume_assets()
 ```
 
 **NOTE**: These commands return public data, that is, data we do not need an account or log-in to see.
-We have not provided a request parameter, so the function generates a default one.
+We have not provided an `httr2` request parameter, so the function generates a default one.
 We can see this happening if we set `vb = TRUE`.
 
 ```{r}
 databraryr::list_volume_assets(vb = TRUE)
 ```
 
-If we log-in using the commands described in [authorized users](authorized-users.Rmd), and provide the function with a valid (non-NULL) request parameter, the following function call would show files and data that are restricted to authorized users:
+If we log-in using the commands described in [authorized users](authorized-users.Rmd), and provide the function with a valid (non-NULL) `httr2` request parameter, the following function call would show files and data that are restricted to authorized users:
 
 ```{r, eval=FALSE}
 databraryr::list_volume_assets(vol_id = `<SOME_OTHER_VOLUME_ID>`, rq = rq)
@@ -74,12 +74,14 @@ vol1_assets <- databraryr::list_volume_assets()
 names(vol1_assets)
 ```
 
-Or, if you use the R 'pipe' syntax:
+Or, if you use the R (version 4.3) 'pipe' syntax:
 
 ```{r}
 databraryr::list_volume_assets() |>
   names()
 ```
+
+The `magrittr` package pipe ('%>%') also works.
 
 The `asset_format_id` variable tells us information about the type of the data file.
 
@@ -193,3 +195,17 @@ databraryr::list_volume_links()
 ```
 
 There's much more to learn about accessing Databrary information using `databraryr`, but this should get you started.
+
+## Downloading multiple files
+
+As of 0.6.3, it's possible to download multiple files.
+The following set of commands downloads all of the 'csv' files in the volume.
+It creates a new directory based on the session/slot ID (9807).
+The function returns the file path to the downloaded files.
+
+```{r}
+vol1_assets |> 
+  dplyr::filter(format_extension == "csv") |>
+  databraryr::download_session_assets_fr_df()
+```
+

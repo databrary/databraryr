@@ -8,7 +8,7 @@ download_session_asset(
   asset_id = 1,
   session_id = 9807,
   file_name = NULL,
-  target_dir = tempdir(),
+  target_dir = paste0("./", session_id),
   vb = FALSE,
   rq = NULL
 )
