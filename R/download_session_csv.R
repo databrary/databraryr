@@ -61,29 +61,16 @@ download_session_csv <- function(vol_id = 1,
   this_rq <- rq %>%
     httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
   
-  resp <- tryCatch(
-    httr2::req_perform(this_rq),
-    httr2_error = function(cnd)
-      NULL
-  )
-  
-  full_fn <- file.path(target_dir, file_name)
-  
   if (vb)
     message(paste0("Downloading spreadsheet from volume ", vol_id, '.'))
-  csv_url <-
-    paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
-  
-  if (is.null(rq))
-    rq <- make_default_request()
-  this_rq <- rq %>%
-    httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
-  
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)
       NULL
   )
+  
+  csv_url <-
+    paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
   
   if (!is.null(resp)) {
     if (vb)
@@ -102,6 +89,10 @@ download_session_csv <- function(vol_id = 1,
     } else {
       if (vb)
         message("Saving CSV.")
+      full_fn <- file.path(target_dir, file_name)
+      assertthat::is.string(full_fn)
+      assertthat::is.writeable(full_fn)
+
       readr::write_csv(df, full_fn)
       full_fn
     }
