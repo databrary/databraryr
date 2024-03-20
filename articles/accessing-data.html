@@ -1526,11 +1526,11 @@ information about Databrary volumes. For example, the
 funders listed for the project. Again, the default volume is 1.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_funding.html">list_volume_funding</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
-<span><span class="co">#&gt;   funder_id funder_name                                             funder_award</span></span>
-<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 100<span style="text-decoration: underline;">000</span>001 National Science Foundation (NSF)                       BCS-1238599 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 100<span style="text-decoration: underline;">000</span>071 National Institute of Child Health and Human Developme… U01-HD-0765…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
+<span><span class="co">#&gt;   funder_id funder_name                                      funder_award vol_id</span></span>
+<span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 100<span style="text-decoration: underline;">000</span>001 National Science Foundation (NSF)                BCS-1238599       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 100<span style="text-decoration: underline;">000</span>071 National Institute of Child Health and Human De… U01-HD-0765…      1</span></span></code></pre></div>
 <p>The <code><a href="../reference/list_volume_links.html">list_volume_links()</a></code> command returns information
 about any external (web) links that have been added to a volume, such as
 to related publications or a GitHub repo.</p>
