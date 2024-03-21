@@ -58,26 +58,12 @@ get_db_stats <- function(type = "stats",
       NULL
   )
   
-  # d$id <- NULL
-  # d$affiliation <- NULL
-  # d$sortname <- NULL
-  # d$prename <- NULL
-  # d$party <- NULL
-  # d$institution <- NULL
-  
   if (is.null(resp) | httr2::resp_status(resp) != 200) {
     if (vb)
       message("No content returned.")
     resp
   } else {
     r <- httr2::resp_body_json(resp)
-    
-    # id <- NULL
-    # affiliation <- NULL
-    # sortname <- NULL
-    # prename <- NULL
-    # party <- NULL
-    # institution <- NULL
     
     if (type %in% c("stats", "numbers")) {
       tibble::tibble(
@@ -103,34 +89,32 @@ process_db_activity_blob_item <- function(activity_blob, type) {
   df <- activity_blob |>
     purrr::flatten() |>
     tibble::as_tibble()
-  if ("owners" %in% names(df)) {
+  
+  if (!is.null(df)) {
     if (type %in% c("datasets", "volumes", "data")) {
-      return(dplyr::filter(df, !is.na(id)))
-    } else {
-      return(NULL)
-    }
-  } else if ("institution" %in% names(df)) {
-    if (type %in% c("institutions", "places")) {
+      if ("owners" %in% names(df)) {
+        df <- dplyr::filter(df,!is.na(df$id))
+      } else {
+        return(NULL)
+      }
+    } else if ("institution" %in% names(df)) {
       if ("institution" %in% names(df)) {
-        return(dplyr::filter(df, !is.na(id), !is.na(institution)))
+        if (type %in% c("institutions", "places")) {
+          df <- dplyr::filter(df,!is.na(df$id),!is.na(df$institution))
+        } else {
+          return(NULL)
+        }
+      }
+    } else if (type %in% c("people", "researchers", "investigators")) {
+      if ("affiliation" %in% names(df)) {
+        df <- dplyr::filter(
+          df,
+          !is.na(df$id),!is.na(df$affiliation),!is.na(df$sortname),!is.na(df$prename)
+        )
       } else {
         return(NULL)
       }
-    } else {
-      return(NULL)
-    }
-  } else if ("affiliation" %in% names(df)) {
-    if (type %in% c("people", "researchers", "investigators")) {
-      if (!is.null(df)) {
-        return(dplyr::filter(df,!is.na(id),
-                             !is.na(affiliation),
-                             !is.na(sortname),
-                             !is.na(prename)))
-      } else {
-        return(NULL)
-      }
-    } else {
-      return(NULL)
     }
   }
+  df
 }
