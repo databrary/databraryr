@@ -40,7 +40,7 @@ list_volume_sessions <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
-        message("\nNot logged in. Only public information will be returned.")  
+        message("Not logged in. Only public information will be returned.")  
       }
       rq <- make_default_request()
     }

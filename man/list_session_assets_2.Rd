@@ -2,7 +2,7 @@
 % Please edit documentation in R/list_session_assets_2.R
 \name{list_session_assets_2}
 \alias{list_session_assets_2}
-\title{List Assets in a Session from a Databrary volume.}
+\title{List Assets in a Databrary Session.}
 \usage{
 list_session_assets_2(session_id = 9807, vb = FALSE, rq = NULL)
 }

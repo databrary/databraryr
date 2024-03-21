@@ -39,7 +39,7 @@ get_file_duration <- function(asset_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("\nNot logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
   }
@@ -123,7 +123,7 @@ get_asset_segment_range <- function(vol_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("\nNot logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
   }
@@ -265,7 +265,7 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("\nNot logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
   }

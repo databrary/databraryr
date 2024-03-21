@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
 # databraryr <a href="https://databrary.github.io/databraryr/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr/)](https://cran.r-project.org/package=databraryr)
+usethis::use_cran_badge()
+usethis::use_lifecycle_badge("stable")
 <!-- badges: end -->
 
 ## Overview
@@ -55,8 +56,6 @@ list_volume_assets() |>
 ```
 
 ## Lifecycle
-
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 Rick Gilmore has been using experimental versions of databraryr for many years, but the package was only released to CRAN in the fall of 2023.
 Some new features are on the roadmap, but the package is largely stable.

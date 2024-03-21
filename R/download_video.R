@@ -50,7 +50,7 @@ download_video <- function(asset_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("\nNot logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
   }

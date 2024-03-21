@@ -1,4 +1,4 @@
-#' List Assets in a Session from a Databrary volume.
+#' List Assets in a Databrary Session.
 #' 
 #' #' @description
 #' `r lifecycle::badge("experimental")`

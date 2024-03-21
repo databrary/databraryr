@@ -1,5 +1,17 @@
 # databraryr (development version)
 
+# databraryr 0.6.3
+
+## Major changes
+
+- New `download_session_assets_fr_df()` function that supports piping syntax. 
+- New `list_session_assets_2()` function that provides input to the "pipe-able" `download_session_assets_fr_df()`.
+- Fixed bug in `get_db_stats()` that did not return valid data except for summary statistics.
+
+## Minor changes
+
+- More condensed messages when the user supplies a NULL httr2 request.
+
 # databraryr 0.6.2
 
 # databraryr 0.6.1

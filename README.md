@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/databraryr/)](https://cran.r-project.org/package=databraryr)
+usethis::use_cran_badge() usethis::use_lifecycle_badge(“stable”)
 <!-- badges: end -->
 
 ## Overview
@@ -22,7 +22,7 @@ pipelines from data stored and shared on Databrary.
 install.packages("databraryr")
 
 # The development release can be installed from GitHub
-# install.packages("pak")
+install.packages("pak")
 pak::pak("databrary/databraryr")
 ```
 
@@ -52,7 +52,7 @@ get_db_stats()
 #> # A tibble: 1 × 9
 #>   date                investigators affiliates institutions datasets_total
 #>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-02-22 09:50:08          1718        682          777           1654
+#> 1 2024-03-21 10:34:52          1732        673          781           1663
 #> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
 #> #   TB <dbl>
 
@@ -82,8 +82,6 @@ list_volume_assets() |>
 ```
 
 ## Lifecycle
-
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 
 Rick Gilmore has been using experimental versions of databraryr for many
 years, but the package was only released to CRAN in the fall of 2023.
