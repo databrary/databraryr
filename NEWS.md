@@ -1,7 +1,5 @@
 # databraryr 0.6.3
 
-# databraryr 0.6.3
-
 ## Major changes
 
 - New `download_session_assets_fr_df()` function that supports piping syntax. 

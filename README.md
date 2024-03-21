@@ -5,7 +5,10 @@
 
 <!-- badges: start -->
 
-usethis::use_cran_badge() usethis::use_lifecycle_badge(“stable”)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/databraryr)](https://CRAN.R-project.org/package=databraryr)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 ## Overview
@@ -52,7 +55,7 @@ get_db_stats()
 #> # A tibble: 1 × 9
 #>   date                investigators affiliates institutions datasets_total
 #>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-03-21 10:34:52          1732        673          781           1663
+#> 1 2024-03-21 11:12:17          1732        673          781           1663
 #> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
 #> #   TB <dbl>
 

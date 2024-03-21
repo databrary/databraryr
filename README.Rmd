@@ -15,8 +15,12 @@ knitr::opts_chunk$set(
 # databraryr <a href="https://databrary.github.io/databraryr/"><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
+```{r include=FALSE}
 usethis::use_cran_badge()
 usethis::use_lifecycle_badge("stable")
+```
+[![CRAN status](https://www.r-pkg.org/badges/version/databraryr)](https://CRAN.R-project.org/package=databraryr)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- badges: end -->
 
 ## Overview
