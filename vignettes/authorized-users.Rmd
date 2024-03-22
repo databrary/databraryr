@@ -56,15 +56,14 @@ If this is the first time you've logged in, you will be asked to enter your Data
 If everything works out, you should see the function return `TRUE`.
 Congratulations, you are ready to access Databrary's restricted shared information along with any private, but unshared information you have access to.
 
-**NOTE**: You can save yourself some time if you store your Databrary login (email) as an
-environment variable:
+**NOTE**: You can save yourself some time if you store your Databrary login (email) as an environment variable:
 
 1. Install the `usethis` package via `install.packages('usethis')`.
 2. Run `usethis::edit_r_environ()`. This will open your `.Renviron` file in a new window.
-3. Edit the `.Renviron` file by adding a line with `DATABRARY_LOGIN="youremail@yourinstitution.edu"`, substituting your actual Databrary log in email.
+3. Edit the `.Renviron` file by adding a line with `DATABRARY_LOGIN="youremail@yourinstitution.edu"`, substituting your actual Databrary login email.
 4. Save the file, and restart R.
 
-Now, you can run `Sys.getenv("DATABRARY_LOGIN")` and it will return your Databrary login.
+Now, you can run `Sys.getenv("DATABRARY_LOGIN")`, and it will return your Databrary login.
 
 And going forward, you can use `Sys.getenv("DATABRARY_LOGIN")` wherever you would enter your Databrary login:
 
@@ -76,7 +75,7 @@ databraryr::login_db(email = Sys.getenv("DATABRARY_LOGIN"), rq = drq)
 The `keyring` package uses the encrypted file that your computer's operating system uses for storing other passwords.
 There are alternative ways of storing user credentials, but this is the recommended one.
 
-To do this, use the `store` and `overwrite` parameters in `login_db()`:
+To do this for the first time, use the `store` and `overwrite` parameters in `login_db()`:
 
 ```{r, eval=FALSE}
 databraryr::login_db(email = "<YOUR_EMAIL@PROVIDER.COM>", store = TRUE,
@@ -103,4 +102,6 @@ The package also has a log out command.
 databraryr::logout_db(rq = drq)
 ```
 
-**NOTE**: Most `databraryr` functions have a verbose (`vb`) parameter. If you set this to `TRUE`, you will get more information about what's going on.
+**NOTE**: Most `databraryr` functions have a verbose (`vb`) parameter. If you set this to `TRUE`, you will get more information about what's going on behind the scenes.
+I use this to debug workflows.
+

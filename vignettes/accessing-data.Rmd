@@ -24,14 +24,16 @@ The `download_video()` function handles this for us.
 Running it with the default parameters downloads a simple test video with numbers
 than increment.
 The file is stored in a temporary directory created by the file system using the function `tempdir()`.
-The `download_asset()` function returns a character string with the full file name.
+The `download_video()` function returns a character string with the full file name.
 
 ```{r, eval=FALSE}
 databraryr::download_video()
 ```
 
 The function returns a path to the video on your file system.
-The file name chosen, since we didn't specify one, is the session number `9807`, an underscore, the file/asset number `1`, another underscore, and a timestamp.
+The file name chosen, since we didn't specify one, is the session number `9807`, an underscore, the file/asset number `1`, another underscore, and a time stamp.
+
+**Note**: You can navigate to the location where we're downloading files by opening the following URL in your browser: <https://databrary.org/volume/1/slot/9807>
 
 Depending on your operating system, the following commands may open the file so that you can play it with your default video player.
 
@@ -43,7 +45,7 @@ system(paste0("open ", nums_vid))
 Or, you can navigate to the temporary directory to open and play the video manually.
 Use `tempdir()` to find the directory where `test.mp4` is stored.
 
-Now, let's see what other files are shared in volume 1.
+Now, let's see what other files are shared in volume 1, not just those in session (slot) 9807.
 This takes a moment to run because there are *many* files in this volume.
 
 ```{r}
@@ -74,14 +76,14 @@ vol1_assets <- databraryr::list_volume_assets()
 names(vol1_assets)
 ```
 
-Or, if you use the R (version 4.3) 'pipe' syntax:
+Or, if you use the R (> version 4.3) 'pipe' syntax:
 
 ```{r}
 databraryr::list_volume_assets() |>
   names()
 ```
 
-The `magrittr` package pipe ('%>%') also works.
+The `magrittr` package pipe ('%>%') also works (as of databraryr v0.6.2).
 
 The `asset_format_id` variable tells us information about the type of the data file.
 
@@ -112,7 +114,7 @@ We can summarize the number of files using the `stats::xtabs()` function:
 ```{r}
 stats::xtabs(~ format_name, data = vol1_assets)
 ```
-So, there are lots of videos and PDFs to examine.
+So, there are lots of videos and PDFs to examine in volume 1.
 Here is a table of the ten longest videos.
 
 ```{r}
@@ -139,6 +141,7 @@ databraryr::list_volume_owners()
 ```
 
 The command (and many like it) can be "vectorized" using the `purrr` package.
+This let's us generate a tibble with the owners of the first fifteen volumes.
 
 ```{r}
 purrr::map(1:15, databraryr::list_volume_owners) |> 
@@ -162,7 +165,7 @@ vol1_df <- tibble::tibble(id = vol1_list$id,
 vol1_df
 ```
 
-The `permission` variable indicates whether a volume is visible by others by a user.
+The `permission` variable indicates whether a volume is visible by you, and if so with what privileges.
 
 So, if you are not logged-in to Databrary, only data that are visible to the public will be returned.
 Assuming you are *not* logged-in, the above commands will show volumes with `permission` equal to 1.
@@ -199,8 +202,8 @@ There's much more to learn about accessing Databrary information using `databrar
 ## Downloading multiple files
 
 As of 0.6.3, it's possible to download multiple files.
-The following set of commands downloads all of the 'csv' files in the volume.
-It creates a new directory based on the session/slot ID (9807).
+The following set of commands downloads all of the 'csv' files in volume 1 using the output from `list_volume_session_assets()` (when you have a volume ID and a session ID) or `list_session_assets()` when you have only the session ID.
+The code below creates a new directory based on the session/slot ID (9807).
 The function returns the file path to the downloaded files.
 
 ```{r}
@@ -208,4 +211,3 @@ vol1_assets |>
   dplyr::filter(format_extension == "csv") |>
   databraryr::download_session_assets_fr_df()
 ```
-

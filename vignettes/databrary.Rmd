@@ -19,6 +19,7 @@ With the `databraryr` package, it becomes even more powerful.
 Rather than interact with Databrary through a web browser, users can write their own code to download participant data or even specific files.
 
 I wrote `databraryr` so that I could better understand how the site works under the hood, and so that I could streamline my own analysis and data sharing workflows.
+
 Let's get started.
 
 ## Registering
@@ -36,13 +37,13 @@ Then, when you log in with your new credentials, you'll select an existing insti
 
 ### Development release
 
-- Install the devtools package from CRAN: install.packages("devtools") if you have not already done so.
-- Load `devtools` into your local environment: library(devtools)
-- Install the databraryr package via install_github("databrary/databraryr"). Required dependencies will be installed at this time.
+- Install the devtools package from CRAN: `install.packages("devtools")` if you have not already done so.
+- Load `devtools` into your local environment: `library(devtools)`.
+- Install the databraryr package via `install_github("databrary/databraryr")`. Required dependencies will be installed at this time.
 
-### v0.6.0
+### v0.6.2
 
-- A significant refactoring and updating of the code is in-progress.
+- The latest version of the code is v0.6.2. This version uses the `httr2` package under the hood, and it runs much faster than v0.5.x.
 
 ## First steps (while you await authorization)
 
@@ -63,7 +64,7 @@ databraryr::list_people()
 
 Note that this command returns a data frame (tibble) with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
 
-Databrary assigns a unique number for each person and institution on the system called a 'party id'. 
+Databrary assigns a unique integer for each person and institution on the system called a 'party id'.
 When we run `list_people(1:25)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 25. Let's try it:
 
 ```{r list-people-1-25}
@@ -83,7 +84,7 @@ databraryr::get_db_stats("institutions")
 databraryr::get_db_stats("datasets")
 ```
 
-Depending on when you run this command, there may or may not be new items.
+Depending on when you run this command and how often, there may or may not be new items.
 
 ## Next steps
 
