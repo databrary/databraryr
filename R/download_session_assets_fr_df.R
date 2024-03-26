@@ -22,14 +22,14 @@
 #' 9807 in Databrary volume 1.
 #'
 #' # Just the CSVs
-#' v1 <- list_session_assets_2()
+#' v1 <- list_session_assets()
 #' v1_csv <- dplyr::filter(v1, format_extension == "csv")
 #' download_session_assets_fr_df(v1_csv, vb = TRUE)
 #' }
 #' }
 #' @export
 download_session_assets_fr_df <-
-  function(session_df = list_session_assets_2(),
+  function(session_df = list_session_assets(),
            session_id = unique(session_df$session_id),
            target_dir = file.path(session_id),
            overwrite = TRUE,

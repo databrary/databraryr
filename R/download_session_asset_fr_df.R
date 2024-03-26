@@ -21,7 +21,7 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' vol_1 <- list_session_assets_2(session_id = 9807)
+#' vol_1 <- list_session_assets(session_id = 9807)
 #' a_1 <- vol_1[1,]
 #' tmp_dir <- tempdir()
 #' fn <- file.path(tmp_dir, paste0(a_1$asset_name, ".", a_1$format_extension))

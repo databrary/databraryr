@@ -2,24 +2,30 @@
 % Please edit documentation in R/list_session_assets.R
 \name{list_session_assets}
 \alias{list_session_assets}
-\title{List Assets in a Session from a Databrary volume.}
+\title{List Assets in a Databrary Session.}
 \usage{
-list_session_assets(vol_id = 1, session_id = 9807, vb = FALSE, rq = NULL)
+list_session_assets(session_id = 9807, vb = FALSE, rq = NULL)
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{session_id}{An integer. A Databrary session number. Default is 9807,
+the "materials" folder from Databrary volume 1.}
 
-\item{session_id}{The session number in the selected volume.}
+\item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
 
-\item{vb}{A boolean value.}
-
-\item{rq}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object. If NULL, a default request is generated
+from databraryr::make_default_request().}
 }
 \value{
 A data frame with information about all assets in a volume.
 }
 \description{
-List Assets in a Session from a Databrary volume.
+#' @description
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
+As of v0.6.3 \code{list_session_assets()} replaces an older function that is now
+named \code{list_volume_session_assets()}.  The older function requires both
+a volume ID and a session ID. The new function requires only a session ID.
 }
 \examples{
 \donttest{

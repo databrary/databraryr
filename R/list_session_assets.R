@@ -18,7 +18,7 @@
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' list_session_assets_2() # Session 9807 in volume 1
+#' list_session_assets() # Session 9807 in volume 1
 #' }
 #' }
 #' @export
