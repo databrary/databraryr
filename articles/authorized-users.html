@@ -144,10 +144,10 @@ your Databrary login (email) as an environment variable:</p>
 <code>.Renviron</code> file in a new window.</li>
 <li>Edit the <code>.Renviron</code> file by adding a line with
 <code>DATABRARY_LOGIN="youremail@yourinstitution.edu"</code>,
-substituting your actual Databrary log in email.</li>
+substituting your actual Databrary login email.</li>
 <li>Save the file, and restart R.</li>
 </ol>
-<p>Now, you can run <code>Sys.getenv("DATABRARY_LOGIN")</code> and it
+<p>Now, you can run <code>Sys.getenv("DATABRARY_LOGIN")</code>, and it
 will return your Databrary login.</p>
 <p>And going forward, you can use
 <code>Sys.getenv("DATABRARY_LOGIN")</code> wherever you would enter your
@@ -161,8 +161,8 @@ package. The <code>keyring</code> package uses the encrypted file that
 your computer’s operating system uses for storing other passwords. There
 are alternative ways of storing user credentials, but this is the
 recommended one.</p>
-<p>To do this, use the <code>store</code> and <code>overwrite</code>
-parameters in <code><a href="../reference/login_db.html">login_db()</a></code>:</p>
+<p>To do this for the first time, use the <code>store</code> and
+<code>overwrite</code> parameters in <code><a href="../reference/login_db.html">login_db()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/login_db.html">login_db</a></span><span class="op">(</span>email <span class="op">=</span> <span class="st">"&lt;YOUR_EMAIL@PROVIDER.COM&gt;"</span>, store <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                     overwrite <span class="op">=</span> <span class="cn">TRUE</span>, rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
@@ -181,8 +181,8 @@ next time you log in, you need only use this command:</p>
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/logout_db.html">logout_db</a></span><span class="op">(</span>rq <span class="op">=</span> <span class="va">drq</span><span class="op">)</span></span></code></pre></div>
 <p><strong>NOTE</strong>: Most <code>databraryr</code> functions have a
 verbose (<code>vb</code>) parameter. If you set this to
-<code>TRUE</code>, you will get more information about what’s going
-on.</p>
+<code>TRUE</code>, you will get more information about what’s going on
+behind the scenes. I use this to debug workflows.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

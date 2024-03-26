@@ -98,14 +98,16 @@ researchers. In this vignette, we’ll see how to use
 Running it with the default parameters downloads a simple test video
 with numbers than increment. The file is stored in a temporary directory
 created by the file system using the function <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code>.
-The <code><a href="../reference/download_asset.html">download_asset()</a></code> function returns a character string
+The <code><a href="../reference/download_video.html">download_video()</a></code> function returns a character string
 with the full file name.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/download_video.html">download_video</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The function returns a path to the video on your file system. The
 file name chosen, since we didn’t specify one, is the session number
 <code>9807</code>, an underscore, the file/asset number <code>1</code>,
-another underscore, and a timestamp.</p>
+another underscore, and a time stamp.</p>
+<p><strong>Note</strong>: You can navigate to the location where we’re
+downloading files by opening the following URL in your browser: <a href="https://databrary.org/volume/1/slot/9807" class="external-link uri">https://databrary.org/volume/1/slot/9807</a></p>
 <p>Depending on your operating system, the following commands may open
 the file so that you can play it with your default video player.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -114,8 +116,9 @@ the file so that you can play it with your default video player.</p>
 <p>Or, you can navigate to the temporary directory to open and play the
 video manually. Use <code><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir()</a></code> to find the directory where
 <code>test.mp4</code> is stored.</p>
-<p>Now, let’s see what other files are shared in volume 1. This takes a
-moment to run because there are <em>many</em> files in this volume.</p>
+<p>Now, let’s see what other files are shared in volume 1, not just
+those in session (slot) 9807. This takes a moment to run because there
+are <em>many</em> files in this volume.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;     asset_id asset_format_id asset_duration</span></span>
@@ -1176,14 +1179,15 @@ data frame.</p>
 <span><span class="co">#&gt;  [1] "asset_id"         "asset_format_id"  "asset_duration"   "asset_name"      </span></span>
 <span><span class="co">#&gt;  [5] "asset_permission" "asset_size"       "session_id"       "session_date"    </span></span>
 <span><span class="co">#&gt;  [9] "session_release"  "format_mimetype"  "format_extension" "format_name"</span></span></code></pre></div>
-<p>Or, if you use the R (version 4.3) ‘pipe’ syntax:</p>
+<p>Or, if you use the R (&gt; version 4.3) ‘pipe’ syntax:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "asset_id"         "asset_format_id"  "asset_duration"   "asset_name"      </span></span>
 <span><span class="co">#&gt;  [5] "asset_permission" "asset_size"       "session_id"       "session_date"    </span></span>
 <span><span class="co">#&gt;  [9] "session_release"  "format_mimetype"  "format_extension" "format_name"</span></span></code></pre></div>
-<p>The <code>magrittr</code> package pipe (‘%&gt;%’) also works.</p>
+<p>The <code>magrittr</code> package pipe (‘%&gt;%’) also works (as of
+databraryr v0.6.2).</p>
 <p>The <code>asset_format_id</code> variable tells us information about
 the type of the data file.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -1316,8 +1320,8 @@ to the data frame.</p>
 <span><span class="co">#&gt;                                2                               75 </span></span>
 <span><span class="co">#&gt;                Portable document        Portable network graphics </span></span>
 <span><span class="co">#&gt;                               47                                1</span></span></code></pre></div>
-<p>So, there are lots of videos and PDFs to examine. Here is a table of
-the ten longest videos.</p>
+<p>So, there are lots of videos and PDFs to examine in volume 1. Here is
+a table of the ten longest videos.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">format_name</span> <span class="op">==</span> <span class="st">"MPEG-4 video"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1439,7 +1443,8 @@ the default.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Gilmore, Rick O.         6</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Staff                  308</span></span></code></pre></div>
 <p>The command (and many like it) can be “vectorized” using the
-<code>purrr</code> package.</p>
+<code>purrr</code> package. This let’s us generate a tibble with the
+owners of the first fifteen volumes.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fu">databraryr</span><span class="fu">::</span><span class="va"><a href="../reference/list_volume_owners.html">list_volume_owners</a></span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1485,7 +1490,7 @@ variables.</p>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>     1 Databrary sponsored workshops and events 2013-01-11T10:26:40Z          1</span></span></code></pre></div>
 <p>The <code>permission</code> variable indicates whether a volume is
-visible by others by a user.</p>
+visible by you, and if so with what privileges.</p>
 <p>So, if you are not logged-in to Databrary, only data that are visible
 to the public will be returned. Assuming you are <em>not</em> logged-in,
 the above commands will show volumes with <code>permission</code> equal
@@ -1547,9 +1552,12 @@ using <code>databraryr</code>, but this should get you started.</p>
 <h2 id="downloading-multiple-files">Downloading multiple files<a class="anchor" aria-label="anchor" href="#downloading-multiple-files"></a>
 </h2>
 <p>As of 0.6.3, it’s possible to download multiple files. The following
-set of commands downloads all of the ‘csv’ files in the volume. It
-creates a new directory based on the session/slot ID (9807). The
-function returns the file path to the downloaded files.</p>
+set of commands downloads all of the ‘csv’ files in volume 1 using the
+output from <code><a href="../reference/list_volume_session_assets.html">list_volume_session_assets()</a></code> (when you have a
+volume ID and a session ID) or <code><a href="../reference/list_session_assets.html">list_session_assets()</a></code> when
+you have only the session ID. The code below creates a new directory
+based on the session/slot ID (9807). The function returns the file path
+to the downloaded files.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">format_extension</span> <span class="op">==</span> <span class="st">"csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>

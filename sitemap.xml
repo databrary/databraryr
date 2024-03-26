@@ -175,9 +175,6 @@
     <loc>https://databrary.github.io/databraryr/reference/list_session_assets.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_session_assets_2.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_sessions.html</loc>
   </url>
   <url>
@@ -212,6 +209,9 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_volume_owners.html</loc>
+  </url>
+  <url>
+    <loc>https://databrary.github.io/databraryr/reference/list_volume_session_assets.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_volume_sessions.html</loc>
