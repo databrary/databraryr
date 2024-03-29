@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/databraryr)](https://CRAN.R-project.org/package=databraryr)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R-CMD-check](https://github.com/databrary/databraryr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/databrary/databraryr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Overview
@@ -55,7 +56,7 @@ get_db_stats()
 #> # A tibble: 1 × 9
 #>   date                investigators affiliates institutions datasets_total
 #>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-03-21 11:12:17          1732        673          781           1663
+#> 1 2024-03-29 14:38:54          1740        680          784           1670
 #> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
 #> #   TB <dbl>
 
