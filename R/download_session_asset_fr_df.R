@@ -131,7 +131,6 @@ download_session_asset_fr_df <- function(asset_id = NULL,
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
     httr2::req_progress()
   
-  
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)
@@ -144,7 +143,7 @@ download_session_asset_fr_df <- function(asset_id = NULL,
               session_id,
               " asset ",
               asset_id,
-              "returned NULL. Skipping.")
+              " returned NULL. Skipping.")
     return(NULL)
   }
   

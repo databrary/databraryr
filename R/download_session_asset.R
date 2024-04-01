@@ -59,8 +59,6 @@ download_session_asset <- function(asset_id = 1,
     rq <- databraryr::make_default_request()
   }
   
-  
-  
   this_rq <- rq %>%
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
     httr2::req_progress()
@@ -76,6 +74,16 @@ download_session_asset <- function(asset_id = 1,
     httr2_error = function(cnd)
       NULL
   )
+  
+  if (is.null(resp)) {
+    if (vb)
+      message("Request for session ",
+              session_id,
+              " asset ",
+              asset_id,
+              " returned NULL. Skipping.")
+    return(NULL)
+  }
   
   # Gather asset format info
   format_mimetype <- NULL
