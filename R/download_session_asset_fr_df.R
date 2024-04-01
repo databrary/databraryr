@@ -25,8 +25,8 @@
 #' a_1 <- vol_1[1,]
 #' tmp_dir <- tempdir()
 #' fn <- file.path(tmp_dir, paste0(a_1$asset_name, ".", a_1$format_extension))
-#' download_session_asset_fr_df(a_1$asset_id, 
-#'   fn, 
+#' download_session_asset_fr_df(a_1$asset_id,
+#'   fn,
 #'   session_id = a_1$session_id,
 #'   vb = TRUE)
 #'
@@ -44,7 +44,7 @@ download_session_asset_fr_df <- function(asset_id = NULL,
   assertthat::assert_that(length(asset_id) == 1)
   assertthat::assert_that(is.numeric(asset_id))
   assertthat::assert_that(asset_id >= 1)
-
+  
   if (is.null(file_name)) {
     if (vb)
       message("Missing file name, creating temporary file name.")
@@ -69,6 +69,7 @@ download_session_asset_fr_df <- function(asset_id = NULL,
                                paste0(".", this_file_extension)
                              ))
     } else {
+      
     }
     if (vb)
       message("Will overwrite existing file.")
@@ -115,21 +116,32 @@ download_session_asset_fr_df <- function(asset_id = NULL,
     rq <- databraryr::make_default_request()
   }
   
-  this_rq <- rq %>%
-    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
-    httr2::req_progress()
-  
   if (vb)
     message("Downloading file with asset_id ",
             asset_id,
             " from session_id ",
             session_id)
   
+  this_rq <- rq %>%
+    httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
+    httr2::req_progress()
+  
+  
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)
       NULL
   )
+  
+  if (is.null(resp)) {
+    if (vb)
+      message("Request for session ",
+              session_id,
+              " asset ",
+              asset_id,
+              "returned NULL. Skipping.")
+    return(NULL)
+  }
   
   # Gather asset format info
   format_mimetype <- NULL

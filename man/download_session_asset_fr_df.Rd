@@ -48,8 +48,8 @@ vol_1 <- list_session_assets(session_id = 9807)
 a_1 <- vol_1[1,]
 tmp_dir <- tempdir()
 fn <- file.path(tmp_dir, paste0(a_1$asset_name, ".", a_1$format_extension))
-download_session_asset_fr_df(a_1$asset_id, 
-  fn, 
+download_session_asset_fr_df(a_1$asset_id,
+  fn,
   session_id = a_1$session_id,
   vb = TRUE)
 

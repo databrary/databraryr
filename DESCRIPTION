@@ -30,7 +30,6 @@ Imports:
     methods (>= 4.3.2),
     plyr,
     purrr (>= 1.0.2),
-    rmarkdown (>= 2.26),
     rvest,
     stringr (>= 1.5.1),
     tibble (>= 3.2.1),
@@ -42,6 +41,7 @@ Suggests:
     knitr,
     openssl,
     readr,
+    rmarkdown (>= 2.26),
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr

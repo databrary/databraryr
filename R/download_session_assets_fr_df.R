@@ -61,9 +61,14 @@ download_session_assets_fr_df <-
       }
     }
     assertthat::is.writeable(target_dir)
+ 
+    assertthat::assert_that(length(overwrite) == 1)
+    assertthat::assert_that(is.logical(overwrite))
     
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
+    
+    assertthat::assert_that(length(overwrite) == 1)
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
