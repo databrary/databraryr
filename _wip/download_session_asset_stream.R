@@ -24,7 +24,7 @@
 #' }
 #' }
 #' @export
-download_session_asset <- function(asset_id = 1,
+download_session_asset_stream <- function(asset_id = 1,
                                    session_id = 9807,
                                    file_name = NULL,
                                    target_dir = paste0("./", session_id),
@@ -42,7 +42,6 @@ download_session_asset <- function(asset_id = 1,
   
   assertthat::assert_that(length(target_dir) == 1)
   assertthat::assert_that(is.character(target_dir))
-  assertthat::assert_that(dir.exists(target_dir))
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
@@ -59,9 +58,15 @@ download_session_asset <- function(asset_id = 1,
     rq <- databraryr::make_default_request()
   }
   
-  # Up default timeout for possibly big files
+  #--- Up default timeout for big files
   rq <- 
-    httr2::req_timeout(rq, seconds = 600)
+    httr2::req_timeout(rq, seconds = 10000)
+  
+  #--- Helper
+  show_bytes <- function(x) {
+    cat("Got ", length(x), " bytes\n", sep = "")
+    TRUE
+  }
   
   this_rq <- rq %>%
     httr2::req_url(sprintf(DOWNLOAD_FILE, session_id, asset_id)) %>%
@@ -71,10 +76,11 @@ download_session_asset <- function(asset_id = 1,
     message("Downloading file with asset_id ",
             asset_id,
             " from session_id ",
-            session_id)
+            session_id, " to ", target_dir)
   
   resp <- tryCatch(
     httr2::req_perform(this_rq),
+    #httr2::req_perform_stream(this_rq, show_bytes, buffer_kb = 64),
     httr2_error = function(cnd)
       NULL
   )
