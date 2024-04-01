@@ -296,3 +296,40 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
   return(!is_institution(party_id, vb, rq))
 }
+
+#-------------------------------------------------------------------------------
+#' Make Portable File Names
+#'
+#' @param fn Databrary party ID
+#' @param vb A boolean value. If TRUE provides verbose output.
+#' @param replace_regex A character string. A regular expression to capture 
+#' the "non-portable" characters in fn.
+#' @param replacement_char A character string. The character(s) that will replace
+#' the non-portable characters.
+#' 
+#' @returns A "cleaned" portable file name
+make_fn_portable <- function(fn, vb = FALSE, 
+                             replace_regex = "[ &\\!\\)\\(\\}\\{\\[\\]\\+\\=@#\\$%\\^\\*]",
+                             replacement_char = "_") {
+  
+  assertthat::is.string(fn)
+  assertthat::assert_that(!is.numeric(fn))
+  assertthat::assert_that(!is.logical(fn))
+  assertthat::assert_that(length(fn) == 1)
+  
+  assertthat::assert_that(is.logical(vb))
+  assertthat::assert_that(length(vb) == 1)
+  
+  assertthat::is.string(replace_regex)
+  assertthat::assert_that(length(replace_regex) == 1)
+  
+  assertthat::is.string(replacement_char)
+  assertthat::assert_that(length(replacement_char) == 1)
+  
+  if (vb) {
+    non_portable_chars <- stringr::str_detect(fn, replace_regex)
+    message("There are ", sum(non_portable_chars), " in ", fn)
+  }
+  new_fn <- stringr::str_replace_all(fn, replace_regex, replacement_char)
+  new_fn
+}

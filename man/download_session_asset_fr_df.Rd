@@ -10,6 +10,7 @@ download_session_asset_fr_df(
   session_id = NULL,
   target_dir = file.path(tempdir(), session_id),
   overwrite = TRUE,
+  make_portable_fn = FALSE,
   vb = FALSE,
   rq = NULL
 )
@@ -26,6 +27,9 @@ stored. Default is 9807.}
 Default is a temporary directory given by a call to \code{tempdir()}.}
 
 \item{overwrite}{A logical value. Overwrite an existing file. Default is TRUE.}
+
+\item{make_portable_fn}{A logical value. Replace characters in file names
+that are not broadly portable across file systems. Default is FALSE.}
 
 \item{vb}{A logical value. If TRUE provides verbose output. Default is FALSE.}
 

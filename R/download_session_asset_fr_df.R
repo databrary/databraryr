@@ -13,6 +13,8 @@
 #' @param target_dir A character string. Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param overwrite A logical value. Overwrite an existing file. Default is TRUE.
+#' @param make_portable_fn A logical value. Replace characters in file names
+#' that are not broadly portable across file systems. Default is FALSE.
 #' @param vb A logical value. If TRUE provides verbose output. Default is FALSE.
 #' @param rq A list in the form of an `httr2` request object. Default is NULL.
 #'
@@ -38,6 +40,7 @@ download_session_asset_fr_df <- function(asset_id = NULL,
                                          session_id = NULL,
                                          target_dir = file.path(tempdir(), session_id),
                                          overwrite = TRUE,
+                                         make_portable_fn = FALSE,
                                          vb = FALSE,
                                          rq = NULL) {
   # Check parameters
@@ -51,8 +54,6 @@ download_session_asset_fr_df <- function(asset_id = NULL,
     file_name = tempfile(paste0(session_id, "_", asset_id, "_"),
                          fileext = paste0(".", this_file_extension))
   }
-  assertthat::is.string(file_name)
-  
   if (file.exists(file_name)) {
     if (vb)
       message("File exists.")
@@ -69,11 +70,15 @@ download_session_asset_fr_df <- function(asset_id = NULL,
                                paste0(".", this_file_extension)
                              ))
     } else {
-      
+      if (vb)
+        message("Will overwrite existing file.")
     }
-    if (vb)
-      message("Will overwrite existing file.")
   }
+  if (make_portable_fn) {
+    if (vb) message("Making file name '", file_name, "' portable.")
+    file_name <- make_fn_portable(file_name, vb = vb)
+  }
+  assertthat::is.string(file_name)
   
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
