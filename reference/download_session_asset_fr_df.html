@@ -77,6 +77,7 @@ files can be downloaded simultaneously.</p>
 <span>  session_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  target_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">session_id</span><span class="op">)</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  make_portable_fn <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  vb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  rq <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -104,6 +105,11 @@ Default is a temporary directory given by a call to <code><a href="https://rdrr.
 
 <dt>overwrite</dt>
 <dd><p>A logical value. Overwrite an existing file. Default is TRUE.</p></dd>
+
+
+<dt>make_portable_fn</dt>
+<dd><p>A logical value. Replace characters in file names
+that are not broadly portable across file systems. Default is FALSE.</p></dd>
 
 
 <dt>vb</dt>
