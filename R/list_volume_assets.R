@@ -48,6 +48,15 @@ list_volume_assets <- function(vol_id = 1,
     ) %>%
     purrr::list_rbind()
   
+  if (dim(this_volume_assets_df)[1] == 0) {
+    if (vb) message("No assets in volume_id ", vol_id, ".")
+    return(NULL)
+  }
+  if (!("asset_format_id" %in% names(this_volume_assets_df))) {
+    if (vb) message("'asset_format_id' field not found in assets data frame.")
+    return(NULL)
+  }
+  
   format_id <- NULL
   format_mimetype <- NULL
   format_extension <- NULL
