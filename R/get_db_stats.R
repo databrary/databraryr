@@ -28,6 +28,8 @@ get_db_stats <- function(type = "stats",
       "institutions",
       "places",
       "people",
+      "researchers",
+      "investigators",
       "datasets",
       "data",
       "volumes",
@@ -93,28 +95,29 @@ process_db_activity_blob_item <- function(activity_blob, type) {
   if (!is.null(df)) {
     if (type %in% c("datasets", "volumes", "data")) {
       if ("owners" %in% names(df)) {
-        df <- dplyr::filter(df,!is.na(df$id))
+        df <- dplyr::filter(df, !is.na(df$id))
       } else {
         return(NULL)
       }
-    } else if ("institution" %in% names(df)) {
+    } else if (type %in% c("institutions", "places")) {
       if ("institution" %in% names(df)) {
-        if (type %in% c("institutions", "places")) {
-          df <- dplyr::filter(df,!is.na(df$id),!is.na(df$institution))
-        } else {
-          return(NULL)
-        }
+        df <- dplyr::filter(df, !is.na(df$id),!is.na(df$institution))
+      } else {
+        return(NULL)
       }
     } else if (type %in% c("people", "researchers", "investigators")) {
       if ("affiliation" %in% names(df)) {
         df <- dplyr::filter(
           df,
-          !is.na(df$id),!is.na(df$affiliation),!is.na(df$sortname),!is.na(df$prename)
+          !is.na(df$id),
+          !is.na(df$affiliation),
+          !is.na(df$sortname),
+          !is.na(df$prename)
         )
       } else {
         return(NULL)
       }
     }
+    df
   }
-  df
 }
