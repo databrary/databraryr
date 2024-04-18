@@ -40,6 +40,7 @@
 download_single_session_asset_fr_df <- function(i = NULL,
                                                 session_df = NULL,
                                                 target_dir = tempdir(),
+                                                add_session_subdir = TRUE,
                                                 overwrite = TRUE,
                                                 make_portable_fn = FALSE,
                                                 timeout_secs = 600,
@@ -60,9 +61,12 @@ download_single_session_asset_fr_df <- function(i = NULL,
   assertthat::is.string(target_dir)
   assertthat::is.writeable(target_dir)
   
+  assertthat::assert_that(length(add_session_subdir) == 1)
+  assertthat::assert_that(is.logical(add_session_subdir))
+  
   assertthat::assert_that(length(overwrite) == 1)
   assertthat::assert_that(is.logical(overwrite))
-  
+
   assertthat::assert_that(length(make_portable_fn) == 1)
   assertthat::assert_that(is.logical(make_portable_fn))
   
