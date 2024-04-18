@@ -1,5 +1,9 @@
 # databraryr 0.6.4
 
+## Minor changes
+
+- Added `timeout_secs` parameter in `download_session_assets_fr_df()` to accommodate downloads of very big files.
+
 # databraryr 0.6.3
 
 ## Major changes
