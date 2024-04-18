@@ -12,6 +12,9 @@
 #' or `list_volume_assets()`. Default is NULL>
 #' @param target_dir A character string. Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
+#' @param add_session_subdir A logical value. Add add the session name to the 
+#' file path so that files are in a subdirectory specific to the session. Default
+#' is TRUE.
 #' @param overwrite A logical value. Overwrite an existing file. Default is TRUE.
 #' @param make_portable_fn A logical value. Replace characters in file names
 #' that are not broadly portable across file systems. Default is FALSE.
@@ -93,15 +96,26 @@ download_single_session_asset_fr_df <- function(i = NULL,
     return(NULL)
   }
   
-  full_fn <- file.path(
-    target_dir,
-    this_asset$session_id,
-    paste0(
-      this_asset$asset_name,
-      ".",
-      this_asset$format_extension
-    )
-  )
+  if (add_session_subdir) {
+    full_fn <- file.path(
+      target_dir,
+      this_asset$session_id,
+      paste0(
+        this_asset$asset_name,
+        ".",
+        this_asset$format_extension
+      ))
+    if (vb) message("`add_session_subdir` is TRUE.")
+  } else {
+    full_fn <- file.path(
+      target_dir,
+      paste0(
+        this_asset$asset_name,
+        ".",
+        this_asset$format_extension
+      ))
+    if (vb) message("`add_session_subdir` is FALSE.")
+  }
   
   if (file.exists(full_fn)) {
     if (vb)
