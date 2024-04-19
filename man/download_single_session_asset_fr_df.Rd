@@ -8,6 +8,7 @@ download_single_session_asset_fr_df(
   i = NULL,
   session_df = NULL,
   target_dir = tempdir(),
+  add_session_subdir = TRUE,
   overwrite = TRUE,
   make_portable_fn = FALSE,
   timeout_secs = 600,
@@ -24,6 +25,10 @@ or \code{list_volume_assets()}. Default is NULL>}
 
 \item{target_dir}{A character string. Directory to save the downloaded file.
 Default is a temporary directory given by a call to \code{tempdir()}.}
+
+\item{add_session_subdir}{A logical value. Add add the session name to the
+file path so that files are in a subdirectory specific to the session. Default
+is TRUE.}
 
 \item{overwrite}{A logical value. Overwrite an existing file. Default is TRUE.}
 

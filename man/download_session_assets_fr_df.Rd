@@ -7,6 +7,7 @@
 download_session_assets_fr_df(
   session_df = list_session_assets(),
   target_dir = tempdir(),
+  add_session_subdir = TRUE,
   overwrite = TRUE,
   make_portable_fn = FALSE,
   timeout_secs = 600,
@@ -19,6 +20,10 @@ download_session_assets_fr_df(
 
 \item{target_dir}{A character string. Directory to save the downloaded file.
 Default is directory named after the session_id.}
+
+\item{add_session_subdir}{A logical value. Add add the session name to the
+file path so that files are in a subdirectory specific to the session. Default
+is TRUE.}
 
 \item{overwrite}{A logical value. Overwrite an existing file. Default is TRUE.}
 
