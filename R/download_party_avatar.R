@@ -91,6 +91,11 @@ get_single_avatar <- function(party_id = 6,
     }
   )
   
+  if (is.null(resp)) {
+    if (vb) message("Error retrieving avatar for party_id ", party_id)
+    return(resp)
+  }
+  
   # Download avatar
   party_avatar <- httr2::resp_body_raw(resp) %>%
     magick::image_read()

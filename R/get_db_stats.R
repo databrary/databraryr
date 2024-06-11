@@ -60,11 +60,15 @@ get_db_stats <- function(type = "stats",
       NULL
   )
   
-  if (is.null(resp) | httr2::resp_status(resp) != 200) {
+  if (is.null(resp) ) {
     if (vb)
       message("No content returned.")
     resp
   } else {
+    if(httr2::resp_status(resp) == 200) {
+      if (vb) message("No content returned")
+      resp
+    } else {
     r <- httr2::resp_body_json(resp)
     
     if (type %in% c("stats", "numbers")) {
@@ -82,6 +86,7 @@ get_db_stats <- function(type = "stats",
     } else {
       purrr::map(r$activity, process_db_activity_blob_item, type) |>
         purrr::list_rbind()
+    }
     }
   }
 }

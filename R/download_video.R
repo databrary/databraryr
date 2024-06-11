@@ -85,6 +85,12 @@ download_video <- function(asset_id = 1,
       NULL
   )
   
+  if (is.null(resp)) {
+    if (vb) message("Error downloading video with asset_id ", asset_id, 
+                    " from session_id ", session_id)
+    return(NULL)
+  }
+  
   if (httr2::resp_content_type(resp) == "video/mp4") {
     file_con <- file(file_name, "wb")
     writeBin(resp$body, file_con)

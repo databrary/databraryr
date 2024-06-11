@@ -89,10 +89,9 @@ download_session_csv <- function(vol_id = 1,
     } else {
       if (vb)
         message("Saving CSV.")
+      assertthat::is.writeable(target_dir)
       full_fn <- file.path(target_dir, file_name)
       assertthat::is.string(full_fn)
-      assertthat::is.writeable(full_fn)
-
       readr::write_csv(df, full_fn)
       full_fn
     }
