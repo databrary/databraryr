@@ -74,21 +74,23 @@ download_video <- function(asset_id = 1,
   }
   
   if (vb)
-    message("Downloading video with asset_id ",
+    message("Attempting to download video with asset_id ",
             asset_id,
             " from session_id ",
             session_id)
   
   resp <- tryCatch(
     httr2::req_perform(this_rq),
-    httr2_error = function(cnd) 
+    httr2_error = function(cnd) {
+      if (vb) message(message("Error retrieving video with asset_id ", asset_id, 
+                              " from session_id ", session_id))
       NULL
+    }
   )
   
   if (is.null(resp)) {
-    if (vb) message("Error downloading video with asset_id ", asset_id, 
-                    " from session_id ", session_id)
-    return(NULL)
+    if (vb) message("Exiting.")
+    return(resp)
   }
   
   if (httr2::resp_content_type(resp) == "video/mp4") {

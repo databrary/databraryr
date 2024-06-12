@@ -38,7 +38,7 @@ download_session_assets_fr_df <-
            add_session_subdir = TRUE,
            overwrite = TRUE,
            make_portable_fn = FALSE,
-           timeout_secs = 600,
+           timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
            vb = FALSE,
            rq = NULL) {
     # Check parameters

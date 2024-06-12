@@ -6,13 +6,13 @@
 #' is designed to work with download_session_assets_fr_df() so that multiple
 #' files can be downloaded simultaneously.
 #'
-#' @param i An integer. Index into a row of the session asset data frame. 
+#' @param i An integer. Index into a row of the session asset data frame.
 #' Default is NULL.
 #' @param session_df A row from a data frame from `list_session_assets()`
 #' or `list_volume_assets()`. Default is NULL>
 #' @param target_dir A character string. Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
-#' @param add_session_subdir A logical value. Add add the session name to the 
+#' @param add_session_subdir A logical value. Add add the session name to the
 #' file path so that files are in a subdirectory specific to the session. Default
 #' is TRUE.
 #' @param overwrite A logical value. Overwrite an existing file. Default is TRUE.
@@ -46,7 +46,7 @@ download_single_session_asset_fr_df <- function(i = NULL,
                                                 add_session_subdir = TRUE,
                                                 overwrite = TRUE,
                                                 make_portable_fn = FALSE,
-                                                timeout_secs = 600,
+                                                timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
                                                 vb = FALSE,
                                                 rq = NULL) {
   # Check parameters
@@ -69,7 +69,7 @@ download_single_session_asset_fr_df <- function(i = NULL,
   
   assertthat::assert_that(length(overwrite) == 1)
   assertthat::assert_that(is.logical(overwrite))
-
+  
   assertthat::assert_that(length(make_portable_fn) == 1)
   assertthat::assert_that(is.logical(make_portable_fn))
   
@@ -83,16 +83,10 @@ download_single_session_asset_fr_df <- function(i = NULL,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
-  # if (is.null(file_name)) {
-  #   if (vb)
-  #     message("Missing file name, creating temporary file name.")
-  #   file_name = tempfile(paste0(session_id, "_", asset_id, "_"),
-  #                        fileext = paste0(".", this_file_extension))
-  # }
-  
-  this_asset <- session_df[i,]
+  this_asset <- session_df[i, ]
   if (is.null(this_asset)) {
-    if (vb) message("No asset for index ", i)
+    if (vb)
+      message("No asset for index ", i)
     return(NULL)
   }
   
@@ -100,21 +94,15 @@ download_single_session_asset_fr_df <- function(i = NULL,
     full_fn <- file.path(
       target_dir,
       this_asset$session_id,
-      paste0(
-        this_asset$asset_name,
-        ".",
-        this_asset$format_extension
-      ))
-    if (vb) message("`add_session_subdir` is TRUE.")
+      paste0(this_asset$asset_name, ".", this_asset$format_extension)
+    )
+    if (vb)
+      message("`add_session_subdir` is TRUE.")
   } else {
-    full_fn <- file.path(
-      target_dir,
-      paste0(
-        this_asset$asset_name,
-        ".",
-        this_asset$format_extension
-      ))
-    if (vb) message("`add_session_subdir` is FALSE.")
+    full_fn <- file.path(target_dir,
+                         paste0(this_asset$asset_name, ".", this_asset$format_extension))
+    if (vb)
+      message("`add_session_subdir` is FALSE.")
   }
   
   if (file.exists(full_fn)) {
@@ -123,15 +111,17 @@ download_single_session_asset_fr_df <- function(i = NULL,
     if (!overwrite) {
       if (vb)
         message("Generating new unique (time-stamped) file name.")
-      full_fn <- file.path(dirname(full_fn),
-                           paste0(
-                             this_asset$session_id,
-                             "-",
-                             this_asset$asset_id,
-                             "-",
-                             format(Sys.time(), "%F-%H%M-%S"),
-                             paste0(".", this_asset$format_extension)
-                           ))
+      full_fn <- file.path(
+        dirname(full_fn),
+        paste0(
+          this_asset$session_id,
+          "-",
+          this_asset$asset_id,
+          "-",
+          format(Sys.time(), "%F-%H%M-%S"),
+          paste0(".", this_asset$format_extension)
+        )
+      )
     } else {
       if (vb)
         message("Will overwrite existing file.")
@@ -187,20 +177,27 @@ download_single_session_asset_fr_df <- function(i = NULL,
     httr2::req_timeout(rq, seconds = timeout_secs)
   
   this_rq <- rq %>%
-    httr2::req_url(
-      sprintf(
-        DOWNLOAD_FILE,
-        this_asset$session_id,
-        this_asset$asset_id
-      )
-    ) %>%
+    httr2::req_url(sprintf(DOWNLOAD_FILE, this_asset$session_id, this_asset$asset_id)) %>%
     httr2::req_progress()
   
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)
-      NULL
+      if (vb)
+        message(
+          "Error downloading asset ",
+          this_asset$asset_name,
+          " from session_id ",
+          this_asset$session_id
+        ),
+    NULL
   )
+  
+  if (is.null(resp)) {
+    if (vb)
+      message("Exiting.")
+    return(resp)
+  }
   
   if (is.null(resp)) {
     if (vb)
@@ -213,31 +210,6 @@ download_single_session_asset_fr_df <- function(i = NULL,
       )
     return(NULL)
   }
-  
-  # Gather asset format info
-  # format_mimetype <- NULL
-  # format_extension <- NULL
-  # this_file_extension <- list_asset_formats(vb = vb) %>%
-  #   dplyr::filter(httr2::resp_content_type(resp) == format_mimetype) %>%
-  #   dplyr::select(format_extension) %>%
-  #   as.character()
-  #
-  # # Check file name or generate
-  # if (is.null(this_file_extension)) {
-  #   if (vb)
-  #     message("No matching file extension for ",
-  #             httr2::resp_content_type(resp))
-  #   return(NULL)
-  # }
-  #
-  # if (!(this_file_extension == xfun::file_ext(file_name))) {
-  #   if (vb)
-  #     message("File name ",
-  #             file_name,
-  #             " doesn't match extension ",
-  #             this_file_extension)
-  #   return(NULL)
-  # }
   
   write_file <- tryCatch(
     error = function(cnd) {

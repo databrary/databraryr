@@ -56,19 +56,20 @@ get_db_stats <- function(type = "stats",
   
   resp <- tryCatch(
     httr2::req_perform(rq),
-    httr2_error = function(cnd)
+    httr2_error = function(cnd) {
+      if (vb)
+        message("Error retrieving Databrary '", type, "' stats.")
       NULL
+    }
   )
   
-  if (is.null(resp) ) {
+  if (is.null(resp)) {
     if (vb)
-      message("No content returned.")
-    resp
-  } else {
-    if(httr2::resp_status(resp) == 200) {
-      if (vb) message("No content returned")
-      resp
-    } else {
+      message("Exiting.")
+    return(resp)
+  }
+  
+  if (httr2::resp_status(resp) == 200) {
     r <- httr2::resp_body_json(resp)
     
     if (type %in% c("stats", "numbers")) {
@@ -86,7 +87,6 @@ get_db_stats <- function(type = "stats",
     } else {
       purrr::map(r$activity, process_db_activity_blob_item, type) |>
         purrr::list_rbind()
-    }
     }
   }
 }
@@ -106,7 +106,7 @@ process_db_activity_blob_item <- function(activity_blob, type) {
       }
     } else if (type %in% c("institutions", "places")) {
       if ("institution" %in% names(df)) {
-        df <- dplyr::filter(df, !is.na(df$id),!is.na(df$institution))
+        df <- dplyr::filter(df, !is.na(df$id), !is.na(df$institution))
       } else {
         return(NULL)
       }

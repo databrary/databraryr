@@ -24,12 +24,3 @@ test_that("download_session_csv rejects bad input parameters", {
   expect_error(download_session_csv(vb = "a"))
   expect_error(download_session_csv(vb = list(a=1, b=2)))
 })
-
-# test_that("download_session_csv returns string", {
-#   expect_true(is.character(download_session_csv(as_df = FALSE)))
-# })
-# 
-# test_that("download_session_csv returns data frame", {
-#   expect_true(is.data.frame(download_session_csv(as_df = TRUE)))
-# })
-

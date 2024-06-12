@@ -52,15 +52,19 @@ download_volume_zip <- function(vol_id = 31,
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd) {
+      if (vb) message("Error downloading zip archive from vol_id ", vol_id)
       NULL
     }
   )
   
-  bin <- NULL
-  if (!is.null(resp)) {
-    bin <- httr2::resp_body_raw(resp)
+  if (is.null(resp)) {
+    if (vb) message("Exiting.")
+    return(resp)
   }
   
+  bin <- NULL
+  bin <- httr2::resp_body_raw(resp)
+
   if (is.null(bin)) {
     if (vb) message("Null file returned")
     return(NULL)

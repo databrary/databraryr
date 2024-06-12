@@ -2,9 +2,22 @@
 #' 
 #' 
 
+API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
+
+CREATE_SLOT <-
+  "https://nyu.databrary.org/api/volume/%s/slot"
+CREATE_UPLOAD_FLOW <-
+  "https://nyu.databrary.org/api/volume/%s/upload"
+CREATE_FILE_FROM_FLOW <-
+  "https://nyu.databrary.org/api/volume/%s/asset"
+
 DATABRARY_API <- "https://nyu.databrary.org/api"
-LOGIN <- "https://nyu.databrary.org/api/user/login"
-LOGOUT <- "https://nyu.databrary.org/api/user/logout"
+DOWNLOAD_FILE <-
+  "https://nyu.databrary.org/slot/%s/-/asset/%s/download"
+DOWNLOAD_SESSION_ZIP <-
+  "https://nyu.databrary.org/volume/%s/slot/%s/zip/%s"
+DOWNLOAD_VOLUME_ZIP <- 
+  "https://nyu.databrary.org/volume/%s/zip/false"
 
 GET_VOL_BY_ID <-
   "https://nyu.databrary.org/api/volume/%s?access&citation&links&funding&top&tags&excerpts&comments&records&containers=all&metrics&state"
@@ -30,15 +43,8 @@ GET_VOLUME_EXCERPTS <- "https://nyu.databrary.org/api/volume/%s?excerpts=all"
 GET_ASSET_BY_ID <- "https://nyu.databrary.org/api/asset/%s"
 GET_ASSET_BY_VOLUME_SESSION_ID <- "https://nyu.databrary.org/api/volume/%s/slot/%s/asset/%s"
 
-CREATE_SLOT <-
-  "https://nyu.databrary.org/api/volume/%s/slot"
-CREATE_UPLOAD_FLOW <-
-  "https://nyu.databrary.org/api/volume/%s/upload"
-CREATE_FILE_FROM_FLOW <-
-  "https://nyu.databrary.org/api/volume/%s/asset"
-
-UPLOAD_CHUNK <- "https://nyu.databrary.org/api/upload"
-UPDATE_SLOT <- "https://nyu.databrary.org/api/slot/%s"
+LOGIN <- "https://nyu.databrary.org/api/user/login"
+LOGOUT <- "https://nyu.databrary.org/api/user/logout"
 
 QUERY_SLOT <-
   "https://nyu.databrary.org/api/slot/%s/-?records&assets&excerpts&tags&comments"
@@ -47,15 +53,10 @@ QUERY_KEYWORDS <- "https://nyu.databrary.org/api/search?q=%s"
 QUERY_TAGS <- "https://nyu.databrary.org/api/tags/%s"
 
 SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
-API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
 
-DOWNLOAD_FILE <-
-  "https://nyu.databrary.org/slot/%s/-/asset/%s/download"
-DOWNLOAD_SESSION_ZIP <-
-  "https://nyu.databrary.org/volume/%s/slot/%s/zip/%s"
-DOWNLOAD_VOLUME_ZIP <- 
-  "https://nyu.databrary.org/volume/%s/zip/false"
-  
+UPLOAD_CHUNK <- "https://nyu.databrary.org/api/upload"
+UPDATE_SLOT <- "https://nyu.databrary.org/api/slot/%s"
+
 # Authentication parameters
 USER_AGENT <-
   "databraryr (https://cran.r-project.org/package=databraryr)"
@@ -66,3 +67,4 @@ RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1  # seconds
 RETRY_BACKOFF <- 2  # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
+REQUEST_TIMEOUT_VERY_LONG <- 600

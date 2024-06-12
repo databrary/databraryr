@@ -57,14 +57,18 @@ download_session_zip <- function(vol_id = 31,
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd) {
+      if (vb) message("Error downloading zip from sprintf(GET_SESSION_ZIP, vol_id, session_id)")
       NULL
     }
   )
   
-  bin <- NULL
-  if (!is.null(resp)) {
-    bin <- httr2::resp_body_raw(resp)
+  if (is.null(resp)) {
+    if (vb) message("Exiting.")
+    return(NULL)
   }
+
+  bin <- NULL
+  bin <- httr2::resp_body_raw(resp)
   
   if (is.null(bin)) {
     if (vb) message("Null file returned")
@@ -106,7 +110,7 @@ make_zip_fn_sess <- function(out_dir, vol_id, session_id) {
     out_dir,
     "/vol-",
     vol_id,
-    "-sess_",
+    "-sess-",
     session_id,
     "-",
     format(Sys.time(), "%F-%H%M-%S"),

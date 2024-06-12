@@ -21,13 +21,16 @@ assign_constants <- function(vb = FALSE, rq = NULL) {
   
   resp <- tryCatch(
     httr2::req_perform(arq),
-    httr2_error = function(cnd)
+    httr2_error = function(cnd) {
+      if (vb) message("Error loading Databrary constants.")
       NULL
+    }
   )
   
-  if (!is.null(resp)) {
-    httr2::resp_body_json(resp)
-  } else {
+  if (is.null(resp)) {
+    if (vb) message("Exiting")
     resp
+  } else {
+    httr2::resp_body_json(resp)
   }
 }

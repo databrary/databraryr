@@ -5,9 +5,9 @@
 #' as a temporary file or with a name specified by the user.
 #'
 #' @param vol_id An integer. Target volume number. Default is 1.
-#' @param file_name A character string. Name for the output file. 
+#' @param file_name A character string. Name for the output file.
 #' Default is 'test.csv'.
-#' @param target_dir A character string. Directory to save downloaded file. 
+#' @param target_dir A character string. Directory to save downloaded file.
 #' Default is `tempdir()`.
 #' @param as_df A logical value. Convert the data from a list to a data frame.
 #' Default is FALSE.
@@ -22,7 +22,7 @@
 #' download_session_csv() # Downloads "session" CSV for volume 1
 #' }
 #' }
-#' 
+#'
 #' @export
 download_session_csv <- function(vol_id = 1,
                                  file_name = "test.csv",
@@ -62,42 +62,43 @@ download_session_csv <- function(vol_id = 1,
     httr2::req_url(sprintf(GET_SESSION_CSV, vol_id))
   
   if (vb)
-    message(paste0("Downloading spreadsheet from volume ", vol_id, '.'))
+    message(paste0("Downloading spreadsheet from vol_id ", vol_id, '.'))
   resp <- tryCatch(
     httr2::req_perform(this_rq),
-    httr2_error = function(cnd)
+    httr2_error = function(cnd) {
+      if (vb)
+        message("Error retrieving spreadsheet from vol_id ", vol_id, ".")
       NULL
+    }
   )
   
-  csv_url <-
-    paste0("https://nyu.databrary.org/volume/", vol_id, "/csv")
-  
-  if (!is.null(resp)) {
+  if (is.null(resp)) {
     if (vb)
-      message("Valid CSV downloaded.")
-    resp_txt <- httr2::resp_body_string(resp)
-    df <-
-      readr::read_csv(
-        resp_txt,
-        show_col_types = FALSE,
-        col_types = readr::cols(.default = readr::col_character())
-      ) %>%
-      # Replace dashes in column names with underscores
-      dplyr::rename_with(~gsub("-", "_", .x, fixed = TRUE))
-    if (as_df == TRUE) {
-      df
-    } else {
-      if (vb)
-        message("Saving CSV.")
-      assertthat::is.writeable(target_dir)
-      full_fn <- file.path(target_dir, file_name)
-      assertthat::is.string(full_fn)
-      readr::write_csv(df, full_fn)
-      full_fn
-    }
+      message("Exiting.")
+    return(resp)
+  }
+  
+  if (vb)
+    message("Valid CSV downloaded from ", sprintf(GET_SESSION_CSV, vol_id))
+  
+  resp_txt <- httr2::resp_body_string(resp)
+  df <-
+    readr::read_csv(
+      resp_txt,
+      show_col_types = FALSE,
+      col_types = readr::cols(.default = readr::col_character())
+    ) %>%
+    # Replace dashes in column names with underscores
+    dplyr::rename_with(~ gsub("-", "_", .x, fixed = TRUE))
+  if (as_df == TRUE) {
+    df
   } else {
     if (vb)
-      message("No CSV data returned for vol_id ", vol_id)
-    resp
+      message("Saving CSV.")
+    assertthat::is.writeable(target_dir)
+    full_fn <- file.path(target_dir, file_name)
+    assertthat::is.string(full_fn)
+    readr::write_csv(df, full_fn)
+    full_fn
   }
 }
