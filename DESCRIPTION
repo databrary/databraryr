@@ -1,7 +1,7 @@
 Type: Package
 Package: databraryr
 Title: Interact with the 'Databrary.org' API
-Version: 0.6.4.9002
+Version: 0.6.4.9003
 Authors@R: c(
     person("Rick", "O. Gilmore", , "rog1@psu.edu", role = c("aut", "cre", "cph")),
     person("Jeffrey", "Spies", , "cran@jeffspies.com", role = "aut"),
