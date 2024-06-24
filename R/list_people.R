@@ -28,9 +28,9 @@ list_people <- function(people_list = 5:7, vb = FALSE) {
   assertthat::assert_that(is.logical(vb))
   
   # Get one party's data
-  list_person <- function(party) {
-    if (is_person(party, vb = vb)) {
-      p <- download_party(party, vb = vb)
+  list_person <- function(party_id) {
+    if (is_person(party_id = party_id, vb = vb)) {
+      p <- download_party(party_id = party_id, vb = vb)
       # Drop parties without names
       if (is.null(p$sortname)) {
         return(NULL)

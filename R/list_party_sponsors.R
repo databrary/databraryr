@@ -40,7 +40,7 @@ list_party_sponsors <- function(party_id = 6,
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
   
-  g <- get_party_by_id(party_id, vb, rq)
+  g <- get_party_by_id(party_id = party_id, vb = vb, rq = rq)
   
   if (!is.null(g)) {
     if (vb)

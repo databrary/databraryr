@@ -270,7 +270,7 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
     rq <- databraryr::make_default_request()
   }
   
-  party_info <- databraryr::get_party_by_id(party_id, vb, rq)
+  party_info <- databraryr::get_party_by_id(party_id = party_id, vb = vb, rq = rq)
   
   if (("institution" %in% names(party_info)) && (!is.null(party_info[['institution']]))) {
     TRUE
@@ -294,7 +294,7 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 #' 
 #' @export
 is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
-  return(!is_institution(party_id, vb, rq))
+  return(!is_institution(party_id = party_id, vb = vb, rq = rq))
 }
 
 #-------------------------------------------------------------------------------

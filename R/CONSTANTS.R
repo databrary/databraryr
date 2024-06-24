@@ -26,6 +26,7 @@ GET_SESSIONS_IN_VOL <-
 GET_ACTIVITY_DATA <-
   "https://nyu.databrary.org/api/activity"
 GET_PARTY_BY_ID <- "https://nyu.databrary.org/api/party/%s?parents&children&access"
+GET_PARTY_NO_PARENTS_CHILDREN <- "https://nyu.databrary.org/api/party/%s"
 GET_CONSTANTS <- "https://nyu.databrary.org/api/constants"
 GET_PARTY_AVATAR <- "https://nyu.databrary.org/party/%s/avatar"
 

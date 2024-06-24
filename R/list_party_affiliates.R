@@ -35,7 +35,7 @@ list_party_affiliates <- function(party_id = 6,
   if (vb)
     message(paste0("Getting affiliates for party ", party_id, "."))
   
-  g <- databraryr::get_party_by_id(party_id, vb, rq)
+  g <- databraryr::get_party_by_id(party_id = party_id, vb = vb, rq = rq)
   
   party.id <- NULL
   party.prename <- NULL

@@ -54,7 +54,7 @@ list_individual_sponsors <- function(party_id = 406,
     message(paste0("Retrieving sponsors for party ", party_id, "."))
   
   party <- NULL
-  party <- databraryr::get_party_by_id(party_id, vb, rq)
+  party <- databraryr::get_party_by_id(party_id = party_id, vb = vb, rq = rq)
   
   if (!is.null(party)) {
     party.institution <- NULL

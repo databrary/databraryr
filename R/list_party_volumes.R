@@ -38,7 +38,8 @@ list_party_volumes <- function(party_id = 6,
   
   if (vb)
     message(paste0("Retrieving data for party ", party_id, "."))
-  party_info <- databraryr::get_party_by_id(party_id, vb, rq)
+  party_info <- databraryr::get_party_by_id(party_id = party_id, vb = vb, 
+                                            rq = rq)
   
   if (!is.null(party_info)) {
     if (vb)

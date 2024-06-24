@@ -33,7 +33,7 @@ list_sponsors <- function(party_id = 6,
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
 
-  g <- databraryr::get_party_by_id(party_id, vb, rq)
+  g <- databraryr::get_party_by_id(party_id = party_id, vb = vb, rq = rq)
 
   party.id <- NULL
   party.sortname <- NULL
