@@ -8,7 +8,8 @@ download_session_asset(
   asset_id = 1,
   session_id = 9807,
   file_name = NULL,
-  target_dir = paste0("./", session_id),
+  target_dir = tempdir(),
+  timeout_secs = REQUEST_TIMEOUT,
   vb = FALSE,
   rq = NULL
 )
@@ -23,6 +24,11 @@ stored. Default is 9807.}
 
 \item{target_dir}{A character string. Directory to save the downloaded file.
 Default is a temporary directory given by a call to \code{tempdir()}.}
+
+\item{timeout_secs}{An integer constant. The default value, defined in
+CONSTANTS.R is REQUEST_TIMEOUT. This value determines the default timeout
+value for the httr2 request object. When downloading large files, it can be
+useful to set this value to a large number.}
 
 \item{vb}{A logical value. If TRUE provides verbose output. Default is FALSE.}
 
