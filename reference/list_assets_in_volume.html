@@ -86,58 +86,8 @@ This function has been deprecated in favor of list_volume_assets()."><meta prope
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">list_assets_in_volume</span><span class="op">(</span><span class="op">)</span> <span class="co"># Assets in volume 2</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 990 B     Downloading: 990 B     Downloading: 990 B     Downloading: 990 B     Downloading: 810 B     Downloading: 810 B     Downloading: 810 B     Downloading: 810 B     Downloading: 800 B     Downloading: 800 B     Downloading: 800 B     Downloading: 800 B     Downloading: 290 B     Downloading: 290 B     Downloading: 290 B     Downloading: 290 B     Downloading: 240 B     Downloading: 240 B     Downloading: 240 B     Downloading: 240 B     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    asset_id asset_type_id duration          segment               name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         2          -800   633942        0, 633942        Rick part 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         5          -800   634434        0, 634434     Florian part 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         6          -800   380032  633906, 1013938     Florian part 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        15          -800   378816  635094, 1013910        Rick part 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        13          -800   177228 1013875, 1191103     Florian part 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        12          -800   175979 1016187, 1192166        Rick part 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        14          -800   252822        0, 252822     Florian part 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         4          -800   253526        0, 253526        Rick part 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         7          -800   217818   253531, 471349     Florian part 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10       11          -800   216832   255875, 472707        Rick part 2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11       10          -800    67818   472687, 540505     Florian part 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        8          -800    67222   474781, 542003        Rick part 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        9          -800   662212        0, 662212            Florian</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        3          -800   662102     1969, 664071               Rick</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15       17             2       NA             NULL 2013-8-30 metadata</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16       16             6       NA             NULL               Info</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    permission      size        mimetype extension             asset_type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           1 499271255       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2           1 466760824       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3           1 296226810       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4           1 360846586       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5           1 126511616       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6           1 151741089       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7           1 192735602       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8           1 218803157       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9           1 148811524       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10          1 173818370       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11          1  26284689       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12          1  22714940       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13          1 470909386       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14          1 416913623       video/mp4       mp4           MPEG-4 video</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15          1      1022        text/csv       csv Comma-separated values</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16          1     74400 application/pdf       pdf      Portable document</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    transcodable classification</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11         -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         -800             NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15           NA              3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16           NA              3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 6.8 kB     Downloading: 6.8 kB     Downloading: 6.8 kB     Downloading: 6.8 kB     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span><span class="co">#' # }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

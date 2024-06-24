@@ -160,15 +160,8 @@ into your local workspace.</p>
 <p>Then, try this command to pull data about Databrary’s founders:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B</span></span>
-<span><span class="co">#&gt;   id sortname prename                       affiliation</span></span>
-<span><span class="co">#&gt; 1  5   Adolph   Karen               New York University</span></span>
-<span><span class="co">#&gt; 2  6  Gilmore Rick O. The Pennsylvania State University</span></span>
-<span><span class="co">#&gt; 3  7  Millman   David               New York University</span></span>
-<span><span class="co">#&gt;                                url               orcid</span></span>
-<span><span class="co">#&gt; 1 http://www.psych.nyu.edu/adolph/                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2     http://gilmore-lab.github.io 0000-0002-7676-3982</span></span>
-<span><span class="co">#&gt; 3                             &lt;NA&gt;                &lt;NA&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre></div>
 <p>Note that this command returns a data frame (tibble) with columns
 that include the first name (<code>prename</code>), last name
 (<code>sortname</code>), affiliation, lab or personal website, and ORCID
@@ -180,39 +173,8 @@ information about all of the <em>people</em> whose party id’s are
 between 1 and 25. Let’s try it:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span>people_list <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading: 75 B     Downloading: 75 B     Downloading: 75 B     Downloading: 75 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 120 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 170 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 83 B     Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     Downloading: 94 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 72 B     Downloading: 130 B     Downloading: 130 B     Downloading: 130 B     Downloading: 130 B     Downloading: 81 B     Downloading: 81 B     Downloading: 81 B     Downloading: 81 B     Downloading: 57 B     Downloading: 57 B     Downloading: 57 B     Downloading: 57 B     Downloading: 42 B     Downloading: 42 B     Downloading: 42 B     Downloading: 42 B     Downloading: 44 B     Downloading: 44 B     Downloading: 44 B     Downloading: 44 B     Downloading: 100 B     Downloading: 100 B     Downloading: 100 B     Downloading: 100 B     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 66 B     Downloading: 66 B     Downloading: 66 B     Downloading: 66 B     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB     Downloading: 3.7 kB</span></span>
-<span><span class="co">#&gt;    id        sortname       prename               orcid</span></span>
-<span><span class="co">#&gt; 1   1           Simon         Dylan 0000-0002-2793-1679</span></span>
-<span><span class="co">#&gt; 2   3         Steiger          Lisa                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3   4           Byrne        Andrea                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4   5          Adolph         Karen                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 5   6         Gilmore       Rick O. 0000-0002-7676-3982</span></span>
-<span><span class="co">#&gt; 6   7         Millman         David                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7  11   Tamis-LeMonda     Catherine                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8  13             Roy Lina Wictoren                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 9  14        Franchak          John                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 10 16       Professor    Suzanne Q.                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 17 Jimenez-Robbins        Carmen                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12 18             Coe           Jon                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 13 19             Foo         Vicky                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 14 20          Gordon         Peter                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 15 24            Chan        Gladys                &lt;NA&gt;</span></span>
-<span><span class="co">#&gt;                              affiliation                              url</span></span>
-<span><span class="co">#&gt; 1                                   &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 2                              Databrary                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 3                              Databrary                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 4                    New York University http://www.psych.nyu.edu/adolph/</span></span>
-<span><span class="co">#&gt; 5      The Pennsylvania State University     http://gilmore-lab.github.io</span></span>
-<span><span class="co">#&gt; 6                    New York University                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7                    New York University                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 8                                    NYU                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 9    University of California, Riverside            http://padlab.ucr.edu</span></span>
-<span><span class="co">#&gt; 10                             Databrary                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 12                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 13                                  &lt;NA&gt;                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 14 Teachers College, Columbia University                             &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 15                                   NYU                             &lt;NA&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB     Downloading: 6.7 kB</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre></div>
 <p>It’s a bit slow, but you should see information about people
 beginning with Dylan Simon, the developer who designed and built most of
 the Databrary system, and ending with Gladys Chan, a graphic designer
@@ -227,36 +189,36 @@ this:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 9</span></span></span>
 <span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-06-12 <span style="color: #949494;">20:22:59</span>          <span style="text-decoration: underline;">1</span>768        666          792           <span style="text-decoration: underline;">1</span>717</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-06-24 <span style="color: #949494;">13:54:26</span>          <span style="text-decoration: underline;">1</span>768        659          793           <span style="text-decoration: underline;">1</span>720</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 6</span></span></span>
-<span><span class="co">#&gt;      id sortname      prename affiliation                          time    url  </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">13</span>679 Kurdi         Benedek University of Illinois               2024-0… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">3</span>121 Foster-Hanson Emily   Swarthmore College                   2024-0… http…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">12</span>562 Gopalan       Sandeep University of Maryland Eastern Shore 2024-0… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">11</span>997 Davenport     Mae     University of Minnesota              2024-0… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>601 Budin         Shannon Buffalo State University             2024-0… <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
+<span><span class="co">#&gt;      id sortname      prename          affiliation                   time  url  </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">12</span>597 Burr          Sabrina Michelle University of Sheffield       2024… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">19</span>807 Kitamura      Haruka           Australian College of Applie… 2024… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">8</span>524 Gilmore       Rick (Admin)     Databrary admin               2024… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">13</span>679 Kurdi         Benedek          University of Illinois        2024… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">3</span>121 Foster-Hanson Emily            Swarthmore College            2024… http…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> <span style="text-decoration: underline;">12</span>562 Gopalan       Sandeep          University of Maryland Easte… 2024… <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"institutions"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 5</span></span></span>
-<span><span class="co">#&gt;      id sortname                              url              institution time </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">22</span>535 University of Maryland, Eastern Shore https://wwwcp.u… TRUE        2024…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 5</span></span></span>
+<span><span class="co">#&gt;      id sortname                                  url          institution time </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>   139 University of Sheffield                   https://www… TRUE        2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">22</span>583 Australian College of Applied Professions https://www… TRUE        2024…</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 8</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 8</span></span></span>
 <span><span class="co">#&gt;      id name        body  creation owners       permission publicsharefull time </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>762 Temporal S… Cate… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>761 Temporal S… Cate… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>760 UCI 24 mo … This… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>759 UMD 24 mo … This… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>758 UCI 18 mo … This… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>757 UCI Toy Pl… This… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>765 On the oth… Vide… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>764 Flexibilit… TBD   2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>763 Inclusive … Vide… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>762 Temporal S… Cate… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span></code></pre></div>
 <p>Depending on when you run this command and how often, there may or
 may not be new items.</p>
 </div>

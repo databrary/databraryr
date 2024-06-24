@@ -98,64 +98,8 @@ try to download it as a data frame.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">read_csv_data_as_df</span><span class="op">(</span><span class="op">)</span> <span class="co"># Downloads a CSV depicting Databrary growth from volume 1</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |======================================================================| 100%</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> No encoding supplied: defaulting to UTF-8.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                      Date Institutions Auth_Investigators</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  2014-04-01 00:00:00-04           13                  7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2014-05-01 00:00:00-04           13                  9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2014-07-01 00:00:00-04           40                 38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  2014-08-01 00:00:00-04           41                 48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  2014-09-01 00:00:00-04           42                 62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  2014-10-01 00:00:00-04           46                 85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  2014-11-01 00:00:00-04           49                 90</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  2014-12-01 00:00:00-05           51                 96</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  2015-01-01 00:00:00-05           53                102</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 2015-02-01 00:00:00-05           56                115</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 2015-03-01 00:00:00-05           57                164</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 2015-04-01 00:00:00-04           60                177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 2015-05-01 00:00:00-04           71                182</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 2015-06-01 00:00:00-04           76                199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 2015-07-01 00:00:00-04           85                204</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16 2015-08-01 00:00:00-04           91                216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17 2015-09-01 00:00:00-04           97                254</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18 2015-10-01 00:00:00-04          113                283</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 2015-11-01 00:00:00-04          122                298</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 2015-12-01 00:00:00-05          133                310</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 2016-01-01 00:00:00-05          140                318</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 2016-02-01 00:00:00-05          150                343</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23 2016-03-01 00:00:00-05          159                354</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24 2016-04-01 00:00:00-04          170                377</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25 2016-05-01 00:00:00-04          185                422</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 2016-06-01 00:00:00-04          194                437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27 2016-07-01 00:00:00-04          208                448</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28 2016-08-01 00:00:00-04          215                453</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29 2016-09-01 00:00:00-04          222                474</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30 2016-10-01 00:00:00-04          227                497</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31 2016-11-01 00:00:00-04          233                511</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32 2016-12-01 00:00:00-05          238                521</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33 2017-01-01 00:00:00-05          243                535</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34 2017-02-01 00:00:00-05          254                550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35 2017-03-01 00:00:00-05          264                568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36 2017-04-01 00:00:00-04          273                584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37 2017-05-01 00:00:00-04          279                596</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38 2017-06-01 00:00:00-04          285                616</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39 2017-07-01 00:00:00-04          287                623</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40 2017-08-01 00:00:00-04          292                648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41 2017-09-01 00:00:00-04          298                660</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42 2017-10-01 00:00:00-04          308                666</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43 2017-11-01 00:00:00-04          314                678</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44 2017-12-01 00:00:00-05          320                684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45 2018-01-01 00:00:00-05          329                693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46 2018-02-01 00:00:00-05          336                696</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47 2018-03-15 00:00:00-05          388                712</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48 2018-04-11 00:00:00-05          394                725</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49 2018-05-04 00:00:00-05          397                739</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50 2018-06-04 00:00:00-05          404                761</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51 2018-07-13 00:00:00-05          407                769</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52 2018-08-03 00:00:00-05          406                772</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53 2018-09-07 00:00:00-05          411                784</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54 2018-10-05 00:00:00-05          416                802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55 2019-01-04 00:00:00-05          439                862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Downloading: 6.9 kB     Downloading: 6.9 kB     Downloading: 6.9 kB     Downloading: 6.9 kB     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
