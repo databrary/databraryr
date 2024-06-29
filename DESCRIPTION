@@ -28,12 +28,9 @@ Imports:
     magick (>= 2.8.2),
     magrittr,
     methods (>= 4.3.2),
-    plyr,
     purrr (>= 1.0.2),
-    rvest,
     stringr (>= 1.5.1),
     tibble (>= 3.2.1),
-    utils (>= 4.3.2),
     xfun (>= 0.41)
 Suggests:
     av (>= 0.9.0),
