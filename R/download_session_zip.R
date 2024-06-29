@@ -6,16 +6,16 @@
 #' @param file_name Name for downloaded file, default is 'test.zip'.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Default is NULL.
-#' 
+#'
 #' @returns Full filename of the downloaded file.
-#' 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
 #' download_session_zip() # Downloads Zip Archive from volume 31, session 9803
 #' }
 #' }
-#' 
+#'
 #' @export
 download_session_zip <- function(vol_id = 31,
                                  session_id = 9803,
@@ -47,7 +47,7 @@ download_session_zip <- function(vol_id = 31,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -57,21 +57,24 @@ download_session_zip <- function(vol_id = 31,
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd) {
-      if (vb) message("Error downloading zip from sprintf(GET_SESSION_ZIP, vol_id, session_id)")
+      if (vb)
+        message("Error downloading zip from sprintf(GET_SESSION_ZIP, vol_id, session_id)")
       NULL
     }
   )
   
   if (is.null(resp)) {
-    if (vb) message("Exiting.")
+    if (vb)
+      message("Exiting.")
     return(NULL)
   }
-
+  
   bin <- NULL
   bin <- httr2::resp_body_raw(resp)
   
   if (is.null(bin)) {
-    if (vb) message("Null file returned")
+    if (vb)
+      message("Null file returned")
     return(NULL)
   }
   
@@ -92,7 +95,6 @@ download_session_zip <- function(vol_id = 31,
 
 #-------------------------------------------------------------------------------
 make_zip_fn_sess <- function(out_dir, vol_id, session_id) {
-  
   # Check parameters
   assertthat::is.string(out_dir)
   assertthat::is.writeable(out_dir)

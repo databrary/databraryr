@@ -35,9 +35,11 @@ Download Video From Databrary.
 }
 \examples{
 \donttest{
+\dontrun{
 download_video() # Download's 'numbers' file from volume 1.
 download_video(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' # Downloads a display with a random dot kinematogram (RDK).
+}
 }
 
 }

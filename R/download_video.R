@@ -7,21 +7,22 @@
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
-#' 
+#'
 #' @returns Full file name to the asset.
-#' 
+#'
 #' @examples
 #' \donttest{
+#' \dontrun{
 #' download_video() # Download's 'numbers' file from volume 1.
 #' download_video(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
 #' #' # Downloads a display with a random dot kinematogram (RDK).
 #' }
-#' 
+#' }
+#'
 #' @export
 download_video <- function(asset_id = 1,
                            session_id = 9807,
-                           file_name = tempfile(paste0(session_id, "_", asset_id, "_"),
-                                                fileext = ".mp4"),
+                           file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
                            target_dir = tempdir(),
                            vb = FALSE,
                            rq = NULL) {
@@ -50,7 +51,7 @@ download_video <- function(asset_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -82,14 +83,22 @@ download_video <- function(asset_id = 1,
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd) {
-      if (vb) message(message("Error retrieving video with asset_id ", asset_id, 
-                              " from session_id ", session_id))
+      if (vb)
+        message(
+          message(
+            "Error retrieving video with asset_id ",
+            asset_id,
+            " from session_id ",
+            session_id
+          )
+        )
       NULL
     }
   )
   
   if (is.null(resp)) {
-    if (vb) message("Exiting.")
+    if (vb)
+      message("Exiting.")
     return(resp)
   }
   
@@ -97,7 +106,7 @@ download_video <- function(asset_id = 1,
     file_con <- file(file_name, "wb")
     writeBin(resp$body, file_con)
     close(file_con)
-    file_name    
+    file_name
   } else {
     message("Content type is ", httr2::resp_content_type(resp))
     NULL
