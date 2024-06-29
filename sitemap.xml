@@ -46,9 +46,6 @@
     <loc>https://databrary.github.io/databraryr/reference/databraryr-package.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/download_asset.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/download_party.html</loc>
   </url>
   <url>
@@ -100,9 +97,6 @@
     <loc>https://databrary.github.io/databraryr/reference/get_release_levels.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/get_session_as_df.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/get_session_by_id.html</loc>
   </url>
   <url>
@@ -110,9 +104,6 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/get_supported_file_types.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/get_video_stats.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/get_volume_by_id.html</loc>
@@ -133,19 +124,7 @@
     <loc>https://databrary.github.io/databraryr/reference/list_asset_formats.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_assets_by_type.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_assets_in_session.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_assets_in_volume.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_authorized_investigators.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_containers_records.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_individual_sponsors.html</loc>
@@ -181,9 +160,6 @@
     <loc>https://databrary.github.io/databraryr/reference/list_sessions_in_volume.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_specified_assets_in_session.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_sponsors.html</loc>
   </url>
   <url>
@@ -203,9 +179,6 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_volume_links.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_volume_metadata.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_volume_owners.html</loc>
@@ -238,9 +211,6 @@
     <loc>https://databrary.github.io/databraryr/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/read_csv_data_as_df.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/search_for_funder.html</loc>
   </url>
   <url>
@@ -248,8 +218,5 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/search_for_tags.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/summarize_videos_in_volume.html</loc>
   </url>
 </urlset>
