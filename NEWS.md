@@ -1,5 +1,12 @@
 # databraryr (development version)
 
+# databraryr 0.6.5
+
+## Minor changes
+
+- Removed many superceded and deprecated functions.
+- Improved error handling in many functions.
+
 # databraryr 0.6.4
 
 ## Minor changes
