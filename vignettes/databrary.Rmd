@@ -41,9 +41,10 @@ Then, when you log in with your new credentials, you'll select an existing insti
 - Load `devtools` into your local environment: `library(devtools)`.
 - Install the databraryr package via `install_github("databrary/databraryr")`. Required dependencies will be installed at this time.
 
-### v0.6.2
+### v0.6.5
 
-- The latest version of the code is v0.6.2. This version uses the `httr2` package under the hood, and it runs much faster than v0.5.x.
+- The latest version of the code is v0.6.5.
+The v0.6.x code uses the `httr2` package under the hood, and it runs much faster than v0.5.x.
 
 ## First steps (while you await authorization)
 
@@ -56,22 +57,40 @@ Once you've installed the package following one of the above routes, it's a good
 library(databraryr)
 ```
 
-Then, try this command to pull data about Databrary's founders:
+Then, try this command to pull data about one of Databrary's founders:
 
-```{r list-people-default}
-databraryr::list_people()
+```{r get_party_by_id}
+# The default parameter settings return a very detailed set of information about 
+# a party that we do not need for this example.
+party_6 <- databraryr::get_party_by_id(parents_children_access = FALSE)
+
+party_6 |>
+  as.data.frame()
 ```
 
-Note that this command returns a data frame (tibble) with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
+Note that this command returns a data frame with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
 
 Databrary assigns a unique integer for each person and institution on the system called a 'party id'.
-When we run `list_people(1:25)` we are asking the system to provide us information about all of the _people_ whose party id's are between 1 and 25. Let's try it:
+We can create a simple helper function to collect information about a larger group of people.
 
-```{r list-people-1-25}
-databraryr::list_people(people_list = 1:25)
+```{r list-people-5-7}
+# Helper function
+get_party_as_df <- function(party_id) {
+  this_party <- databraryr::get_party_by_id(party_id, 
+                                            parents_children_access = FALSE)
+  if (!is.null(this_party)) {
+    as.data.frame(this_party)
+  } else {
+    NULL
+  }
+}
+
+# 
+purrr::map(5:7, get_party_as_df, .progress = TRUE) |>
+  purrr::list_rbind()
 ```
 
-It's a bit slow, but you should see information about people beginning with Dylan Simon, the developer who designed and built most of the Databrary system, and ending with Gladys Chan, a graphic designer who created the Databrary and Datavyu logos and other graphic identity elements.
+You should see information about Databrary's three founders.
 
 You can also try seeing what's new on Databrary.
 The `get_db_stats()` command gives you information about the newly authorized people, institutions, and newly uploaded datasets.
