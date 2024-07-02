@@ -31,9 +31,6 @@
     <loc>https://databrary.github.io/databraryr/reference/API_CONSTANTS.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/GET_db_contents.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/HHMMSSmmm_to_ms.html</loc>
   </url>
   <url>
@@ -44,9 +41,6 @@
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/databraryr-package.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/download_party.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/download_party_avatar.html</loc>
@@ -85,9 +79,6 @@
     <loc>https://databrary.github.io/databraryr/reference/get_file_duration.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/get_party_as_df.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/get_party_by_id.html</loc>
   </url>
   <url>
@@ -118,22 +109,10 @@
     <loc>https://databrary.github.io/databraryr/reference/is_person.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_affiliates.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_asset_formats.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_authorized_investigators.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_individual_sponsors.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_institutional_sponsors.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_party.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_party_affiliates.html</loc>
@@ -145,25 +124,13 @@
     <loc>https://databrary.github.io/databraryr/reference/list_party_volumes.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_people.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_session_activity.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_session_assets.html</loc>
   </url>
   <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_sessions.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_sessions_in_volume.html</loc>
-  </url>
-  <url>
     <loc>https://databrary.github.io/databraryr/reference/list_sponsors.html</loc>
-  </url>
-  <url>
-    <loc>https://databrary.github.io/databraryr/reference/list_volume.html</loc>
   </url>
   <url>
     <loc>https://databrary.github.io/databraryr/reference/list_volume_activity.html</loc>

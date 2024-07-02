@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -137,10 +137,10 @@ dependencies will be installed at this time.</li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="v0-6-2">v0.6.2<a class="anchor" aria-label="anchor" href="#v0-6-2"></a>
+<h3 id="v0-6-5">v0.6.5<a class="anchor" aria-label="anchor" href="#v0-6-5"></a>
 </h3>
 <ul>
-<li>The latest version of the code is v0.6.2. This version uses the
+<li>The latest version of the code is v0.6.5. The v0.6.x code uses the
 <code>httr2</code> package under the hood, and it runs much faster than
 v0.5.x.</li>
 </ul>
@@ -157,41 +157,51 @@ it’s a good idea to check that your installation worked by loading it
 into your local workspace.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://databrary.github.io/databraryr/">databraryr</a></span><span class="op">)</span></span></code></pre></div>
-<p>Then, try this command to pull data about Databrary’s founders:</p>
+<p>Then, try this command to pull data about one of Databrary’s
+founders:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading: 1.4 kB     Downloading: 1.4 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% |  ETA:  1s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre></div>
-<p>Note that this command returns a data frame (tibble) with columns
-that include the first name (<code>prename</code>), last name
+<code class="sourceCode R"><span><span class="co"># The default parameter settings return a very detailed set of information about </span></span>
+<span><span class="co"># a party that we do not need for this example.</span></span>
+<span><span class="va">party_6</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_party_by_id.html">get_party_by_id</a></span><span class="op">(</span>parents_children_access <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">party_6</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   id sortname prename               orcid                       affiliation</span></span>
+<span><span class="co">#&gt; 1  6  Gilmore Rick O. 0000-0002-7676-3982 The Pennsylvania State University</span></span>
+<span><span class="co">#&gt;                            url</span></span>
+<span><span class="co">#&gt; 1 http://gilmore-lab.github.io</span></span></code></pre></div>
+<p>Note that this command returns a data frame with columns that include
+the first name (<code>prename</code>), last name
 (<code>sortname</code>), affiliation, lab or personal website, and ORCID
 ID if available.</p>
 <p>Databrary assigns a unique integer for each person and institution on
-the system called a ‘party id’. When we run
-<code>list_people(1:25)</code> we are asking the system to provide us
-information about all of the <em>people</em> whose party id’s are
-between 1 and 25. Let’s try it:</p>
+the system called a ‘party id’. We can create a simple helper function
+to collect information about a larger group of people.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_people.html">list_people</a></span><span class="op">(</span>people_list <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">25</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■                        </span>  24% |  ETA: 10s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■                    </span>  36% |  ETA: 11s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■■■■                 </span>  48% |  ETA: 12s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■             </span>  60% |  ETA:  8s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; People info: <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■        </span>  76% |  ETA:  5s</span></span>
-<span><span class="co">#&gt; Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB     Downloading: 6.6 kB</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre></div>
-<p>It’s a bit slow, but you should see information about people
-beginning with Dylan Simon, the developer who designed and built most of
-the Databrary system, and ending with Gladys Chan, a graphic designer
-who created the Databrary and Datavyu logos and other graphic identity
-elements.</p>
+<code class="sourceCode R"><span><span class="co"># Helper function</span></span>
+<span><span class="va">get_party_as_df</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">party_id</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">this_party</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_party_by_id.html">get_party_by_id</a></span><span class="op">(</span><span class="va">party_id</span>, </span>
+<span>                                            parents_children_access <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">this_party</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">this_party</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="cn">NULL</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># </span></span>
+<span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">7</span>, <span class="va">get_party_as_df</span>, .progress <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■           </span>  67% |  ETA:  1s</span></span>
+<span><span class="co">#&gt;   id sortname prename                       affiliation</span></span>
+<span><span class="co">#&gt; 1  5   Adolph   Karen               New York University</span></span>
+<span><span class="co">#&gt; 2  6  Gilmore Rick O. The Pennsylvania State University</span></span>
+<span><span class="co">#&gt; 3  7  Millman   David               New York University</span></span>
+<span><span class="co">#&gt;                                url               orcid</span></span>
+<span><span class="co">#&gt; 1 http://www.psych.nyu.edu/adolph/                &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2     http://gilmore-lab.github.io 0000-0002-7676-3982</span></span>
+<span><span class="co">#&gt; 3                             &lt;NA&gt;                &lt;NA&gt;</span></span></code></pre></div>
+<p>You should see information about Databrary’s three founders.</p>
 <p>You can also try seeing what’s new on Databrary. The
 <code><a href="../reference/get_db_stats.html">get_db_stats()</a></code> command gives you information about the
 newly authorized people, institutions, and newly uploaded datasets. Try
@@ -201,7 +211,7 @@ this:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 9</span></span></span>
 <span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-07-02 <span style="color: #949494;">17:43:44</span>          <span style="text-decoration: underline;">1</span>771        650          795           <span style="text-decoration: underline;">1</span>727</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-07-02 <span style="color: #949494;">18:43:30</span>          <span style="text-decoration: underline;">1</span>771        650          795           <span style="text-decoration: underline;">1</span>727</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">

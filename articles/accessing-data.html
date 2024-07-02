@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -1183,6 +1183,8 @@ data frame.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■                     </span></span></span>
+<span><span class="co">#&gt; Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span></span></span>
 <span><span class="co">#&gt;  [1] "asset_id"         "asset_format_id"  "asset_duration"   "asset_name"      </span></span>
 <span><span class="co">#&gt;  [5] "asset_permission" "asset_size"       "session_id"       "session_date"    </span></span>
 <span><span class="co">#&gt;  [9] "session_release"  "format_mimetype"  "format_extension" "format_name"</span></span></code></pre></div>
@@ -1562,8 +1564,8 @@ to the downloaded files.</p>
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">format_extension</span> <span class="op">==</span> <span class="st">"csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/download_session_assets_fr_df.html">download_session_assets_fr_df</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp8pgxet/9807/databrary-institutions-investigators.csv"</span></span>
-<span><span class="co">#&gt; [2] "/tmp/Rtmp8pgxet/9807/volumes-citations-monthly.csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "/tmp/Rtmp2tcET1/9807/databrary-institutions-investigators.csv"</span></span>
+<span><span class="co">#&gt; [2] "/tmp/Rtmp2tcET1/9807/volumes-citations-monthly.csv"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
