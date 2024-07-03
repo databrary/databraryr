@@ -7,7 +7,7 @@
 get_party_by_id(
   party_id = 6,
   parents_children_access = TRUE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

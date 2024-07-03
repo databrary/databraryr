@@ -5,6 +5,8 @@
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A list with the volumes that contain the keyword.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \dontrun{
@@ -15,7 +17,7 @@
 #' @export
 search_for_keywords <-
   function(search_string = "locomotion",
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(search_string) == 1)
@@ -37,6 +39,7 @@ search_for_keywords <-
     rq <- rq %>%
       httr2::req_url(sprintf(QUERY_KEYWORDS, search_string))
     
+    if (vb) message("Retrieving data for search string '", search_string, "'.")
     resp <- tryCatch(
       httr2::req_perform(rq),
       httr2_error = function(cnd) {

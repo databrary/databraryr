@@ -4,7 +4,7 @@
 \alias{get_volume_by_id}
 \title{Get Data From A Databrary Volume}
 \usage{
-get_volume_by_id(vol_id = 1, vb = FALSE, rq = NULL)
+get_volume_by_id(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vol_id}{Volume ID.}

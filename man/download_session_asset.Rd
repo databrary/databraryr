@@ -10,7 +10,7 @@ download_session_asset(
   file_name = NULL,
   target_dir = tempdir(),
   timeout_secs = REQUEST_TIMEOUT,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

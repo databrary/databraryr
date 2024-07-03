@@ -2,9 +2,9 @@
 % Please edit documentation in R/list_party_volumes.R
 \name{list_party_volumes}
 \alias{list_party_volumes}
-\title{List Volumes For A Party}
+\title{List Volumes A Party Has Access To}
 \usage{
-list_party_volumes(party_id = 6, vb = FALSE, rq = NULL)
+list_party_volumes(party_id = 6, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{party_id}{Target party ID.}
@@ -18,7 +18,7 @@ be generated using \code{make_default_request()}.}
 A data frame with information about a party's sponsors.
 }
 \description{
-List Volumes For A Party
+List Volumes A Party Has Access To
 }
 \examples{
 \donttest{

@@ -1,14 +1,18 @@
 #' List Stored Assets (Files) By Type.
 #'
 #' @param vb A boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with information about the data formats Databrary
 #' supports.
+#' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' list_asset_formats()
 #' }
 #' @export
-list_asset_formats <- function(vb = FALSE) {
+list_asset_formats <- function(vb = options::opt("vb")) {
   # Check parameters
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))

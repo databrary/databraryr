@@ -8,6 +8,8 @@
 #'
 #' @returns Full filename of the downloaded file.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -19,7 +21,7 @@
 download_volume_zip <- function(vol_id = 31,
                                 out_dir = tempdir(),
                                 file_name = "test.zip",
-                                vb = FALSE,
+                                vb = options::opt("vb"),
                                 rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)
@@ -41,8 +43,8 @@ download_volume_zip <- function(vol_id = 31,
   # Handle NULL request
   if (is.null(rq)) {
     if (vb) {
-      message("NULL request object. Will generate default.")
-      message("\nNot logged in. Only public information will be returned.")
+      message("\nNULL request object. Will generate default.")
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }

@@ -4,7 +4,7 @@
 \alias{list_session_activity}
 \title{List Activity History in Databrary Session.}
 \usage{
-list_session_activity(session_id = 6256, vb = FALSE, rq = NULL)
+list_session_activity(session_id = 6256, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{session_id}{Selected session/slot number.}

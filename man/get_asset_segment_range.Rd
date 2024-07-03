@@ -10,7 +10,7 @@ get_asset_segment_range(
   asset_id = 1,
   convert_JSON = TRUE,
   segment_only = TRUE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

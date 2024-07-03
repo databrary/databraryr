@@ -4,7 +4,7 @@
 \alias{assign_constants}
 \title{Download Databrary Constants From API.}
 \usage{
-assign_constants(vb = FALSE, rq = NULL)
+assign_constants(vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}

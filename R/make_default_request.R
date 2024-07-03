@@ -1,7 +1,8 @@
 #' Set default httr request parameters.
 #'
 #' `make_default_request` sets default parameters for httr requests.
-#' @returns An `httr2` request object
+#' @returns An `httr2` request object.
+#' 
 #' @examples
 #' make_default_request()
 #' @export

@@ -4,7 +4,7 @@
 \alias{list_asset_formats}
 \title{List Stored Assets (Files) By Type.}
 \usage{
-list_asset_formats(vb = FALSE)
+list_asset_formats(vb = options::opt("vb"))
 }
 \arguments{
 \item{vb}{A boolean value. If TRUE provides verbose output.}

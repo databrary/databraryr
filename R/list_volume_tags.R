@@ -2,15 +2,19 @@
 #'
 #' @param vol_id Target volume number.
 #' @param vb A Boolean value. If TRUE provides verbose output.
-#' @param rq An `httr2` request object.
-#' @return A data frame with the requested data.
+#' @param rq An `httr2` request object. Default is NULL.
+#' 
+#' @returns A data frame with the requested data.
+#' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' list_volume_tags()
 #' }
 #' @export
 list_volume_tags <- function(vol_id = 1,
-                             vb = FALSE,
+                             vb = options::opt("vb"),
                              rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)

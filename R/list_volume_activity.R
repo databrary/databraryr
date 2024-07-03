@@ -8,6 +8,8 @@
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A list with the activity history on a volume.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -21,7 +23,7 @@
 #' @export
 list_volume_activity <-
   function(vol_id = 1,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(vol_id) == 1)

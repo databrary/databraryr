@@ -8,6 +8,8 @@
 #' 
 #' @returns One or more JSON blobs (as lists) whose session name(s) match 
 #' `name` in the given volume.
+#'
+#' @inheritParams options_params
 #' 
 #' @examples
 #' \donttest{
@@ -22,7 +24,7 @@
 get_session_by_name <-
   function(session_name = "Advisory Board Meeting",
            vol_id = 1,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     
     assertthat::is.string(session_name)
@@ -40,7 +42,7 @@ get_session_by_name <-
     
     if (is.null(rq)) {
       if (vb) {
-        message("NULL request object. Will generate default.")
+        message("\nNULL request object. Will generate default.")
         message("Not logged in. Only public information will be returned.")  
       }
       rq <- databraryr::make_default_request()

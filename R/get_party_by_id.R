@@ -10,6 +10,8 @@
 #'
 #' @returns A nested list with information about the party. 
 #' This can be readily parsed by other functions.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -20,7 +22,7 @@
 #' @export
 get_party_by_id <- function(party_id = 6,
                             parents_children_access = TRUE,
-                            vb = FALSE,
+                            vb = options::opt("vb"),
                             rq = NULL) {
   # Check parameters
   assertthat::assert_that(is.numeric(party_id))
@@ -28,9 +30,6 @@ get_party_by_id <- function(party_id = 6,
   
   assertthat::assert_that(length(parents_children_access) == 1)
   assertthat::assert_that(is.logical(parents_children_access))
-  
-  assertthat::assert_that(length(return_df) == 1)
-  assertthat::assert_that(is.logical(return_df))
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
@@ -40,12 +39,13 @@ get_party_by_id <- function(party_id = 6,
   
   if (is.null(rq)) {
     if (vb) {
-      message("NULL request object. Will generate default.")
+      message("\nNULL request object. Will generate default.")
       message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
   }
   
+  if (vb) message("Querying API.")
   if (parents_children_access) {
     endpoint <- GET_PARTY_BY_ID 
   } else {

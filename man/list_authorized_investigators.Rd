@@ -4,7 +4,11 @@
 \alias{list_authorized_investigators}
 \title{List Authorized Investigators at Institution}
 \usage{
-list_authorized_investigators(party_id = 12, vb = FALSE, rq = NULL)
+list_authorized_investigators(
+  party_id = 12,
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
 \item{party_id}{Target party ID.}

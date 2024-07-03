@@ -10,6 +10,8 @@
 #' in to Databrary via `login_db()`, then session(s) that have restricted access
 #' can be downloaded, subject to the sharing release levels on those session(s).
 #'
+#' @inheritParams options_params
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -20,7 +22,7 @@
 get_session_by_id <-
   function(session_id = 9807,
            vol_id = 1,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     
     assertthat::assert_that(is.numeric(session_id))
@@ -40,7 +42,7 @@ get_session_by_id <-
     # Handle NULL rq
     if (is.null(rq)) {
       if (vb) {
-        message("NULL request object. Will generate default.")
+        message("\nNULL request object. Will generate default.")
         message("Not logged in. Only public information will be returned.")  
       }
       rq <- databraryr::make_default_request()

@@ -9,7 +9,7 @@ download_video(
   session_id = 9807,
   file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
   target_dir = tempdir(),
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

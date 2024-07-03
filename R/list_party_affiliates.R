@@ -6,13 +6,15 @@
 #' 
 #' @returns A data frame with information about a party's affiliates.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' list_party_affiliates() # Default is Rick Gilmore (party 6)
 #' }
 #' @export
 list_party_affiliates <- function(party_id = 6,
-                                  vb = FALSE,
+                                  vb = options::opt("vb"),
                                   rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(party_id) == 1)

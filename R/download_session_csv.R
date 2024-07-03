@@ -16,6 +16,8 @@
 #'
 #' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
 #'
+#' @inheritParams options_params
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -28,7 +30,7 @@ download_session_csv <- function(vol_id = 1,
                                  file_name = "test.csv",
                                  target_dir = tempdir(),
                                  as_df = FALSE,
-                                 vb = FALSE,
+                                 vb = options::opt("vb"),
                                  rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)

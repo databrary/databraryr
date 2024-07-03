@@ -6,6 +6,8 @@
 #'
 #' @returns A data frame with information about the funder.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' search_for_funder("national+science+foundation")
@@ -14,7 +16,7 @@
 #' @export
 search_for_funder <-
   function(search_string = "national+science+foundation",
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     
     # Check parameters
@@ -37,6 +39,7 @@ search_for_funder <-
     rq <- rq %>%
       httr2::req_url(sprintf(QUERY_VOLUME_FUNDER, search_string))
     
+    if (vb) message("Retrieving data for funder string '", search_string, "'.")
     resp <- tryCatch(
       httr2::req_perform(rq),
       httr2_error = function(cnd) {

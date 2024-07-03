@@ -4,7 +4,7 @@
 \alias{is_institution}
 \title{Is This Party An Institution?}
 \usage{
-is_institution(party_id = 8, vb = FALSE, rq = NULL)
+is_institution(party_id = 8, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{party_id}{Databrary party ID}

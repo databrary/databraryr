@@ -4,7 +4,12 @@
 \alias{list_volume_funding}
 \title{Lists Funders Associated With a Databrary Volume.}
 \usage{
-list_volume_funding(vol_id = 1, add_id = TRUE, vb = FALSE, rq = NULL)
+list_volume_funding(
+  vol_id = 1,
+  add_id = TRUE,
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
 \item{vol_id}{Target volume number.}

@@ -6,7 +6,7 @@
 \usage{
 search_for_funder(
   search_string = "national+science+foundation",
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

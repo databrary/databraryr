@@ -4,7 +4,11 @@
 \alias{search_for_keywords}
 \title{Search For Keywords in Databrary Volumes.}
 \usage{
-search_for_keywords(search_string = "locomotion", vb = FALSE, rq = NULL)
+search_for_keywords(
+  search_string = "locomotion",
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
 \item{search_string}{String to search.}

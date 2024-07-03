@@ -1,3 +1,17 @@
+# Items related to use of the options package.
+options::define_options(
+  "Show verbose messages.",
+  vb = TRUE,
+  "Be quiet in messaging",
+  quiet = TRUE
+)
+
+#' @eval options::as_roxygen_docs()
+NULL
+
+#' @eval options::as_params()
+#' @name options_params
+
 .onLoad <- function(libname, pkgname) {
   op <- options()
   op.devtools <- list(
@@ -17,6 +31,3 @@
 
 utils::globalVariables(".data")
 
-#source("R/make_default_request.R")
-#source("R/CONSTANTS.R")
-#DEF_REQ <- databraryr::make_default_request()

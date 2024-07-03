@@ -9,6 +9,8 @@
 #' generated via `make_default_request()`.
 #'
 #' @returns An list with the avatar (image) file and a name_affil string.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -25,7 +27,7 @@
 #' @export
 download_party_avatar <- function(party_id = 6,
                                   show_party_info = TRUE,
-                                  vb = FALSE,
+                                  vb = options::opt("vb"),
                                   rq = NULL) {
   
   # Check parameters
@@ -79,7 +81,7 @@ get_single_avatar <- function(party_id = 6,
       message("NULL request object. Will generate default.")
       message("Only public information will be returned.")
     }
-    rq <- make_default_request()
+    rq <- databraryr::make_default_request()
   }
   
   arq <- rq %>%
@@ -104,9 +106,9 @@ get_single_avatar <- function(party_id = 6,
     magick::image_read()
   
   if (show_party_info) {
-    party_str = paste0("Databrary party ", party_id)
+    party_str = paste0("Data for Databrary party ", party_id, ":")
     
-    party_info <- get_party_by_id(party_id)
+    party_info <- databraryr::get_party_by_id(party_id)
     if (is.list(party_info)) {
       if ("affiliation" %in% names(party_info)) {
         if (vb)

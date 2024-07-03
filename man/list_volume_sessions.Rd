@@ -7,7 +7,7 @@
 list_volume_sessions(
   vol_id = 1,
   include_vol_data = FALSE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

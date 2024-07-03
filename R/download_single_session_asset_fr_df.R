@@ -24,6 +24,8 @@
 #' @param rq A list in the form of an `httr2` request object. Default is NULL.
 #'
 #' @returns Full file name to the asset or NULL.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -47,7 +49,7 @@ download_single_session_asset_fr_df <- function(i = NULL,
                                                 overwrite = TRUE,
                                                 make_portable_fn = FALSE,
                                                 timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
-                                                vb = FALSE,
+                                                vb = options::opt("vb"),
                                                 rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(i) == 1)

@@ -9,6 +9,8 @@
 #'
 #' @returns A data frame with the requested data or NULL if there is no new information.
 #'
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' get_db_stats()
@@ -18,7 +20,7 @@
 #' }
 #' @export
 get_db_stats <- function(type = "stats",
-                         vb = FALSE,
+                         vb = options::opt("vb"),
                          rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(type) == 1)
@@ -46,7 +48,7 @@ get_db_stats <- function(type = "stats",
   
   if (is.null(rq)) {
     if (vb) {
-      message("NULL request object. Will generate default.")
+      message("\nNULL request object. Will generate default.")
       message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()

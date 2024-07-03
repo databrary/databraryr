@@ -9,6 +9,8 @@
 #' to be returned.
 #'
 #' @returns A data frame with information about all assets in a volume.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -20,7 +22,7 @@
 list_volume_sessions <-
   function(vol_id = 1,
            include_vol_data = FALSE,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(vol_id) == 1)
@@ -42,7 +44,7 @@ list_volume_sessions <-
         message("NULL request object. Will generate default.")
         message("Not logged in. Only public information will be returned.")  
       }
-      rq <- make_default_request()
+      rq <- databraryr::make_default_request()
     }
     
     #-------------------------------------------------------------------------------

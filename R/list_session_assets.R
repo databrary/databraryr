@@ -15,6 +15,8 @@
 #' 
 #' @returns A data frame with information about all assets in a volume.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -23,7 +25,7 @@
 #' }
 #' @export
 list_session_assets <- function(session_id = 9807,
-                                  vb = FALSE,
+                                  vb = options::opt("vb"),
                                   rq = NULL) {
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
@@ -45,6 +47,7 @@ list_session_assets <- function(session_id = 9807,
     httr2::req_url(sprintf(QUERY_SLOT, session_id)) %>%
     httr2::req_progress()
   
+  if (vb) message("Retrieving assets from session id ", session_id, ".")
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)

@@ -4,7 +4,7 @@
 \alias{list_volume_activity}
 \title{List Activity In A Databrary Volume}
 \usage{
-list_volume_activity(vol_id = 1, vb = FALSE, rq = NULL)
+list_volume_activity(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}

@@ -12,6 +12,8 @@
 #' 
 #' @returns Duration of a file in ms.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' get_file_duration() # default is the test video from databrary.org/volume/1
@@ -20,7 +22,7 @@
 #' @export
 get_file_duration <- function(asset_id = 1,
                               types_w_durations = c("-600", "-800"),
-                              vb = FALSE,
+                              vb = options::opt("vb"),
                               rq = NULL) {
 
   assertthat::assert_that(is.numeric(asset_id))
@@ -79,6 +81,8 @@ get_file_duration <- function(asset_id = 1,
 #'
 #' @returns The time range (in ms) for an asset, if one is indicated.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' get_asset_segment_range()
@@ -90,7 +94,7 @@ get_asset_segment_range <- function(vol_id = 1,
                                     asset_id = 1,
                                     convert_JSON = TRUE,
                                     segment_only = TRUE,
-                                    vb = FALSE,
+                                    vb = options::opt("vb"),
                                     rq = NULL) {
   
   assertthat::assert_that(is.numeric(vol_id))
@@ -161,7 +165,10 @@ get_asset_segment_range <- function(vol_id = 1,
 #' Extract Databrary Permission Levels.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns An array with the permission levels that can be assigned to data.
+#' 
+#' @inheritParams options_params
 #' 
 #' @examples
 #' \donttest{
@@ -169,7 +176,7 @@ get_asset_segment_range <- function(vol_id = 1,
 #' }
 #' 
 #' @export
-get_permission_levels <- function(vb = FALSE) {
+get_permission_levels <- function(vb = options::opt("vb")) {
   c <- assign_constants(vb = vb)
   c$permission %>% unlist()
 }
@@ -178,7 +185,9 @@ get_permission_levels <- function(vb = FALSE) {
 #' Convert Timestamp String To ms.
 #'
 #' @param HHMMSSmmm a string in the format "HH:MM:SS:mmm"
+#' 
 #' @returns A numeric value in ms from the input string.
+#' 
 #' @examples
 #' HHMMSSmmm_to_ms() # 01:01:01:333 in ms
 #' @export
@@ -202,7 +211,10 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' Show Databrary Release Levels
 #'
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with Databrary's release levels.
+#' 
+#' @inheritParams options_params
 #' 
 #' @examples
 #' \donttest{
@@ -210,7 +222,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #' }
 #' 
 #' @export
-get_release_levels <- function(vb = FALSE) {
+get_release_levels <- function(vb = options::opt("vb")) {
   c <- assign_constants(vb = vb)
   c$release %>% unlist()
 }
@@ -219,7 +231,10 @@ get_release_levels <- function(vb = FALSE) {
 #' Extracts File Types Supported by Databrary.
 #' 
 #' @param vb A Boolean value. If TRUE provides verbose output.
+#' 
 #' @returns A data frame with the file types permitted on Databrary.
+#' 
+#' @inheritParams options_params
 #' 
 #' @examples
 #' \donttest{
@@ -227,7 +242,7 @@ get_release_levels <- function(vb = FALSE) {
 #' }
 #' 
 #' @export
-get_supported_file_types <- function(vb = FALSE) {
+get_supported_file_types <- function(vb = options::opt("vb")) {
   c <- assign_constants(vb = vb)
   ft <- Reduce(function(x,y) merge(x, y, all=TRUE), c$format)
   ft <- dplyr::rename(ft, asset_type = "name", asset_type_id = "id")
@@ -243,13 +258,15 @@ get_supported_file_types <- function(vb = FALSE) {
 #' 
 #' @returns TRUE if the party is an institution, FALSE otherwise.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' is_institution() # Is party 8 (NYU) an institution.
 #' }
 #' 
 #' @export
-is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
+is_institution <- function(party_id = 8, vb = options::opt("vb"), rq = NULL) {
   
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id > 0)
@@ -285,7 +302,10 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 #' @param party_id Databrary party ID
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
+#' 
 #' @returns TRUE if the party is a person, FALSE otherwise.
+#' 
+#' @inheritParams options_params
 #' 
 #' @examples
 #' \donttest{
@@ -293,7 +313,7 @@ is_institution <- function(party_id = 8, vb = FALSE, rq = NULL) {
 #' }
 #' 
 #' @export
-is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
+is_person <- function(party_id = 7, vb = options::opt("vb"), rq = NULL){
   return(!is_institution(party_id = party_id, vb = vb, rq = rq))
 }
 
@@ -308,7 +328,10 @@ is_person <- function(party_id = 7, vb = FALSE, rq = NULL){
 #' the non-portable characters.
 #' 
 #' @returns A "cleaned" portable file name
-make_fn_portable <- function(fn, vb = FALSE, 
+#' 
+#' @inheritParams options_params
+#' 
+make_fn_portable <- function(fn, vb = options::opt("vb"), 
                              replace_regex = "[ &\\!\\)\\(\\}\\{\\[\\]\\+\\=@#\\$%\\^\\*]",
                              replacement_char = "_") {
   

@@ -7,7 +7,11 @@
 #' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `http` request object. Defaults to NULL.
+#' 
 #' @returns Logical value indicating whether log in is successful or not.
+#' 
+#' @inheritParams options_params
+#' 
 #' @examplesIf interactive()
 #' login_db() # Queries user for email and password interactively.
 #' @examples
@@ -24,7 +28,7 @@ login_db <- function(email = NULL,
                      password = NULL,
                      store = FALSE,
                      overwrite = FALSE,
-                     vb = FALSE,
+                     vb = options::opt("vb"),
                      SERVICE = KEYRING_SERVICE,
                      rq = NULL) {
   # Check parameters

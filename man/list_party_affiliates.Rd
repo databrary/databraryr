@@ -4,7 +4,7 @@
 \alias{list_party_affiliates}
 \title{List Affiliates For A Party}
 \usage{
-list_party_affiliates(party_id = 6, vb = FALSE, rq = NULL)
+list_party_affiliates(party_id = 6, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{party_id}{Target party ID.}

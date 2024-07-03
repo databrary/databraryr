@@ -4,7 +4,7 @@
 \alias{get_permission_levels}
 \title{Extract Databrary Permission Levels.}
 \usage{
-get_permission_levels(vb = FALSE)
+get_permission_levels(vb = options::opt("vb"))
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}

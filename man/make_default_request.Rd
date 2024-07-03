@@ -7,7 +7,7 @@
 make_default_request()
 }
 \value{
-An \code{httr2} request object
+An \code{httr2} request object.
 }
 \description{
 \code{make_default_request} sets default parameters for httr requests.

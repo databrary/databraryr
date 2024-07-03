@@ -4,7 +4,7 @@
 \alias{get_release_levels}
 \title{Show Databrary Release Levels}
 \usage{
-get_release_levels(vb = FALSE)
+get_release_levels(vb = options::opt("vb"))
 }
 \arguments{
 \item{vb}{A Boolean value. If TRUE provides verbose output.}

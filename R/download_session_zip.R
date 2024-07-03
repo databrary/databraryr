@@ -21,7 +21,7 @@ download_session_zip <- function(vol_id = 31,
                                  session_id = 9803,
                                  out_dir = tempdir(),
                                  file_name = "test.zip",
-                                 vb = FALSE,
+                                 vb = options::opt("vb"),
                                  rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)

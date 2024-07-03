@@ -7,7 +7,7 @@
 get_file_duration(
   asset_id = 1,
   types_w_durations = c("-600", "-800"),
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

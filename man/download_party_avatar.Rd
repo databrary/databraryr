@@ -7,7 +7,7 @@
 download_party_avatar(
   party_id = 6,
   show_party_info = TRUE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

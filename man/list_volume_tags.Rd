@@ -4,14 +4,14 @@
 \alias{list_volume_tags}
 \title{Lists Keywords And Tags For A Volume.}
 \usage{
-list_volume_tags(vol_id = 1, vb = FALSE, rq = NULL)
+list_volume_tags(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vol_id}{Target volume number.}
 
 \item{vb}{A Boolean value. If TRUE provides verbose output.}
 
-\item{rq}{An \code{httr2} request object.}
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 A data frame with the requested data.

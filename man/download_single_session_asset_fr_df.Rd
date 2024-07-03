@@ -12,7 +12,7 @@ download_single_session_asset_fr_df(
   overwrite = TRUE,
   make_portable_fn = FALSE,
   timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

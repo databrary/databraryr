@@ -11,7 +11,9 @@
 #' then run `list_session_activity(session_id = <YOUR_SESSION_ID>, rq = rq)`
 
 #' @returns A list with the activity history on a session/slot.
-
+#' 
+#' @inheritParams options_params 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -24,7 +26,7 @@
 #' @export
 list_session_activity <-
   function(session_id = 6256,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(session_id) == 1)
@@ -47,6 +49,7 @@ list_session_activity <-
     rq <- rq %>%
       httr2::req_url(sprintf(GET_SESSION_ACTIVITY, session_id))
     
+    if (vb) message("Retrieving activity for session id, ", session_id, ".")
     resp <- tryCatch(
       httr2::req_perform(rq),
       httr2_error = function(cnd) {

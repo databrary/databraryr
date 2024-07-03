@@ -5,12 +5,14 @@
 #'
 #' @returns A data frame with the constants.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' assign_constants()
 #' }
 #' @export
-assign_constants <- function(vb = FALSE, rq = NULL) {
+assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
   # Check parameter
   assertthat::assert_that(is.logical(vb))
   

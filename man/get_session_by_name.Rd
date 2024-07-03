@@ -7,7 +7,7 @@
 get_session_by_name(
   session_name = "Advisory Board Meeting",
   vol_id = 1,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

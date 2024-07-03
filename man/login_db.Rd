@@ -9,7 +9,7 @@ login_db(
   password = NULL,
   store = FALSE,
   overwrite = FALSE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   SERVICE = KEYRING_SERVICE,
   rq = NULL
 )

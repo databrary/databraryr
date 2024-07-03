@@ -19,6 +19,8 @@
 #'
 #' @returns Full file names to the downloaded assets or NULL.
 #'
+#' @inheritParams options_params
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -39,7 +41,7 @@ download_session_assets_fr_df <-
            overwrite = TRUE,
            make_portable_fn = FALSE,
            timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(is.data.frame(session_df))

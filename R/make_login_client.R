@@ -10,6 +10,8 @@
 #' 
 #' @returns Logical value indicating whether log in is successful or not.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examplesIf interactive()
 #' make_login_client() # Queries user for email and password interactively.
 #' @examples
@@ -26,7 +28,7 @@ make_login_client <- function(email = NULL,
                      password = NULL,
                      store = FALSE,
                      overwrite = FALSE,
-                     vb = FALSE,
+                     vb = options::opt("vb"),
                      SERVICE = KEYRING_SERVICE,
                      rq = NULL) {
   

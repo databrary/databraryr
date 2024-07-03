@@ -4,7 +4,7 @@
 \alias{list_volume_links}
 \title{Retrieves URL Links From A Databrary Volume.}
 \usage{
-list_volume_links(vol_id = 1, vb = FALSE, rq = NULL)
+list_volume_links(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vol_id}{Target volume number.}

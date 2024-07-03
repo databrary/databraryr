@@ -6,6 +6,8 @@
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with funder information for the volume.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -19,7 +21,7 @@
 #' @export
 list_volume_funding <- function(vol_id = 1,
                                 add_id = TRUE,
-                                vb = FALSE,
+                                vb = options::opt("vb"),
                                 rq = NULL) {
   # Check parameters
   assertthat::assert_that(is.numeric(vol_id))

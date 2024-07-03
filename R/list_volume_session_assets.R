@@ -15,6 +15,8 @@
 #' 
 #' @returns A data frame with information about all assets in a volume.
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -25,7 +27,7 @@
 list_volume_session_assets <-
   function(vol_id = 1,
            session_id = 9807,
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(vol_id) == 1)

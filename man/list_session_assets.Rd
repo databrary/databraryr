@@ -4,7 +4,7 @@
 \alias{list_session_assets}
 \title{List Assets in a Databrary Session.}
 \usage{
-list_session_assets(session_id = 9807, vb = FALSE, rq = NULL)
+list_session_assets(session_id = 9807, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{session_id}{An integer. A Databrary session number. Default is 9807,

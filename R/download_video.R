@@ -9,6 +9,8 @@
 #' @param rq An `httr2` request object.
 #'
 #' @returns Full file name to the asset.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -24,7 +26,7 @@ download_video <- function(asset_id = 1,
                            session_id = 9807,
                            file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
                            target_dir = tempdir(),
-                           vb = FALSE,
+                           vb = options::opt("vb"),
                            rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(asset_id) == 1)

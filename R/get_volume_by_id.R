@@ -10,6 +10,8 @@
 #' in to Databrary via `login_db()`, then volume(s) that have restricted access
 #' can be downloaded, subject to the sharing release levels on those volume(s).
 #'
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' get_volume_by_id() # Default is Volume 1
@@ -17,7 +19,7 @@
 #'
 #' @export
 get_volume_by_id <- function(vol_id = 1,
-                             vb = FALSE,
+                             vb = options::opt("vb"),
                              rq = NULL) {
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)

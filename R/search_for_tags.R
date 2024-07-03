@@ -5,6 +5,8 @@
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns An array of tags that match the tag_string.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \dontrun{
@@ -14,7 +16,7 @@
 #' @export
 search_for_tags <-
   function(search_string = "ICIS",
-           vb = FALSE,
+           vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
     assertthat::assert_that(length(search_string) == 1)

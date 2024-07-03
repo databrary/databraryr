@@ -8,7 +8,7 @@ download_volume_zip(
   vol_id = 31,
   out_dir = tempdir(),
   file_name = "test.zip",
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

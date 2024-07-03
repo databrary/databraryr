@@ -9,7 +9,7 @@ download_session_csv(
   file_name = "test.csv",
   target_dir = tempdir(),
   as_df = FALSE,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

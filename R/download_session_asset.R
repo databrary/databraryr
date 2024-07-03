@@ -17,7 +17,10 @@
 #' CONSTANTS.R is REQUEST_TIMEOUT. This value determines the default timeout
 #' value for the httr2 request object. When downloading large files, it can be
 #' useful to set this value to a large number.
+#' 
 #' @returns Full file name to the asset or NULL.
+#' 
+#' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
@@ -34,7 +37,7 @@ download_session_asset <- function(asset_id = 1,
                                    #target_dir = paste0("./", session_id),
                                    target_dir = tempdir(),
                                    timeout_secs = REQUEST_TIMEOUT,
-                                   vb = FALSE,
+                                   vb = options::opt("vb"),
                                    rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(asset_id) == 1)

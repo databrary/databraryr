@@ -6,7 +6,7 @@
 \usage{
 make_fn_portable(
   fn,
-  vb = FALSE,
+  vb = options::opt("vb"),
   replace_regex = "[ &\\\\!\\\\)\\\\(\\\\}\\\\{\\\\[\\\\]\\\\+\\\\=@#\\\\$\%\\\\^\\\\*]",
   replacement_char = "_"
 )

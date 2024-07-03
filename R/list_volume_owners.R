@@ -8,13 +8,15 @@
 #' 
 #' @returns A data frame with information about a volume's owner(s).
 #' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' list_volume_owners() # Lists information about the owners of volume 1.
 #' }
 #' @export
 list_volume_owners <- function(vol_id = 1,
-                               vb = FALSE,
+                               vb = options::opt("vb"),
                                rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(vol_id) == 1)

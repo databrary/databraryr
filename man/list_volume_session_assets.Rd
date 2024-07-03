@@ -7,7 +7,7 @@
 list_volume_session_assets(
   vol_id = 1,
   session_id = 9807,
-  vb = FALSE,
+  vb = options::opt("vb"),
   rq = NULL
 )
 }

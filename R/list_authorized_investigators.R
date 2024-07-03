@@ -4,7 +4,11 @@
 #' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2`-style request object. If NULL, then a new request will
 #' be generated using `make_default_request()`.
+#'
 #' @returns A data frame with information the institution's authorized investigators.
+#'
+#' @inheritParams options_params
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -12,8 +16,9 @@
 #' }
 #' }
 #' @export
-list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) {
-  
+list_authorized_investigators <- function(party_id = 12,
+                                          vb = options::opt("vb"),
+                                          rq = NULL) {
   assertthat::is.number(party_id)
   assertthat::assert_that(is.numeric(party_id))
   assertthat::assert_that(party_id >= 1)
@@ -29,7 +34,7 @@ list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) 
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -37,17 +42,20 @@ list_authorized_investigators <- function(party_id = 12, vb = FALSE, rq = NULL) 
   this_party <- databraryr::get_party_by_id(party_id, vb = vb, rq = rq)
   
   if (is.null(this_party)) {
-    if (vb) message("No data for party ", party_id)
+    if (vb)
+      message("No data for party ", party_id)
     return(NULL)
   }
   
   if (!("institution" %in% names(this_party))) {
-    if (vb) message("Party ", party_id, " not an institution.")
+    if (vb)
+      message("Party ", party_id, " not an institution.")
     return(NULL)
   }
   
   if (dim(as.data.frame(this_party$children))[1] == 0) {
-    if (vb) message("Party ", party_id, " has no affiliates.")
+    if (vb)
+      message("Party ", party_id, " has no affiliates.")
     return(NULL)
   }
   
