@@ -1,4 +1,4 @@
-#' List Volumes For A Party
+#' List Volumes A Party Has Access To
 #'
 #' @param party_id Target party ID.
 #' @param vb A Boolean value. If TRUE provides verbose output.

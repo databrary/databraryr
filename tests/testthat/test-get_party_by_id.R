@@ -13,7 +13,7 @@ test_that("get_party_by_id rejects bad input parameters", {
   expect_error(get_party_by_id(parents_children_access = "a"))
   expect_error(get_party_by_id(parents_children_access = -1))
   expect_error(get_party_by_id(parents_children_access = c(2,3)))
-  
+
   expect_error(get_party_by_id(vb = "a"))
   expect_error(get_party_by_id(vb = -1))
   expect_error(get_party_by_id(vb = c(2,3)))

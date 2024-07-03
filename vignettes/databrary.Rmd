@@ -85,7 +85,7 @@ get_party_as_df <- function(party_id) {
   }
 }
 
-# 
+# Party's 5, 6, and 7 are Databrary's founders
 purrr::map(5:7, get_party_as_df, .progress = TRUE) |>
   purrr::list_rbind()
 ```

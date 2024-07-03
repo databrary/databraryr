@@ -29,6 +29,9 @@ get_party_by_id <- function(party_id = 6,
   assertthat::assert_that(length(parents_children_access) == 1)
   assertthat::assert_that(is.logical(parents_children_access))
   
+  assertthat::assert_that(length(return_df) == 1)
+  assertthat::assert_that(is.logical(return_df))
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
@@ -60,7 +63,7 @@ get_party_by_id <- function(party_id = 6,
   )
   
   if (!is.null(resp)) {
-    httr2::resp_body_json(resp)
+    httr2::resp_body_json(resp)      
   } else {
     resp
   }
