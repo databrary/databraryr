@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,6 +121,9 @@ those in session (slot) 9807. This takes a moment to run because there
 are <em>many</em> files in this volume.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Retrieving data for volume id 1.</span></span>
 <span><span class="co">#&gt;     asset_id asset_format_id asset_duration</span></span>
 <span><span class="co">#&gt; 1       9826            -800         335883</span></span>
 <span><span class="co">#&gt; 2       9830            -800        4277835</span></span>
@@ -646,6 +649,7 @@ default one. We can see this happening if we set
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span>vb <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
 <span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Retrieving data for volume id 1.</span></span>
 <span><span class="co">#&gt;     asset_id asset_format_id asset_duration</span></span>
 <span><span class="co">#&gt; 1       9826            -800         335883</span></span>
 <span><span class="co">#&gt; 2       9830            -800        4277835</span></span>
@@ -1175,16 +1179,21 @@ can manipulate using standard R commands. Here are the variables in the
 data frame.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">vol1_assets</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Retrieving data for volume id 1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">vol1_assets</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "asset_id"         "asset_format_id"  "asset_duration"   "asset_name"      </span></span>
 <span><span class="co">#&gt;  [5] "asset_permission" "asset_size"       "session_id"       "session_date"    </span></span>
 <span><span class="co">#&gt;  [9] "session_release"  "format_mimetype"  "format_extension" "format_name"</span></span></code></pre></div>
 <p>Or, if you use the R (&gt; version 4.3) ‘pipe’ syntax:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■                     </span></span></span>
-<span><span class="co">#&gt; Waiting 3s for retry backoff <span style="color: #00BB00;">■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  </span></span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Retrieving data for volume id 1.</span></span>
 <span><span class="co">#&gt;  [1] "asset_id"         "asset_format_id"  "asset_duration"   "asset_name"      </span></span>
 <span><span class="co">#&gt;  [5] "asset_permission" "asset_size"       "session_id"       "session_date"    </span></span>
 <span><span class="co">#&gt;  [9] "session_release"  "format_mimetype"  "format_extension" "format_name"</span></span></code></pre></div>
@@ -1192,7 +1201,7 @@ data frame.</p>
 databraryr v0.6.2).</p>
 <p>The <code>asset_format_id</code> variable tells us information about
 the type of the data file.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">vol1_assets</span><span class="op">$</span><span class="va">asset_format_id</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] -800    6    5   16    2 -600</span></span></code></pre></div>
 <p>But this isn’t especially informative since the
@@ -1200,7 +1209,7 @@ the type of the data file.</p>
 <code>-800</code> or <code>6</code> or the other numbers refer to. To
 decode it, we create a data frame of all the file formats Databrary
 currently recognizes.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">db_constants</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/assign_constants.html">assign_constants</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">formats_df</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">db_constants</span><span class="op">$</span><span class="va">format</span>, <span class="va">as.data.frame</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1313,7 +1322,7 @@ a PDF document.</p>
 to the data frame.</p>
 <p>We can summarize the number of files using the
 <code><a href="https://rdrr.io/r/stats/xtabs.html" class="external-link">stats::xtabs()</a></code> function:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/xtabs.html" class="external-link">xtabs</a></span><span class="op">(</span><span class="op">~</span> <span class="va">format_name</span>, data <span class="op">=</span> <span class="va">vol1_assets</span><span class="op">)</span></span>
 <span><span class="co">#&gt; format_name</span></span>
 <span><span class="co">#&gt;           Comma-separated values                          Datavyu </span></span>
@@ -1324,7 +1333,7 @@ to the data frame.</p>
 <span><span class="co">#&gt;                               47                                1</span></span></code></pre></div>
 <p>So, there are lots of videos and PDFs to examine in volume 1. Here is
 a table of the ten longest videos.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">format_name</span> <span class="op">==</span> <span class="st">"MPEG-4 video"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">asset_name</span>, <span class="va">asset_duration</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1436,43 +1445,80 @@ dataset. The function has a parameter <code>this_vol_id</code> which is
 an integer, unique across Databrary, that refers to the specific
 dataset. The <code><a href="../reference/list_volume_owners.html">list_volume_owners()</a></code> function uses volume 1 as
 the default.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_owners.html">list_volume_owners</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 2</span></span></span>
-<span><span class="co">#&gt;   name             person_id</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Adolph, Karen            5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Gilmore, Rick O.         6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Staff                  308</span></span></code></pre></div>
+<span><span class="co">#&gt;   owner_name       party_id</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Adolph, Karen           5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Gilmore, Rick O.        6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> Staff                 308</span></span></code></pre></div>
 <p>The command (and many like it) can be “vectorized” using the
 <code>purrr</code> package. This let’s us generate a tibble with the
 owners of the first fifteen volumes.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fu">databraryr</span><span class="fu">::</span><span class="va"><a href="../reference/list_volume_owners.html">list_volume_owners</a></span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/list_c.html" class="external-link">list_rbind</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 2</span></span></span>
-<span><span class="co">#&gt;    name                     person_id</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Gilmore, Rick O.                 6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Staff                          308</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Gilmore, Rick O.                 6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Tamis-LeMonda, Catherine        11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Gordon, Peter                   20</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Karasik, Lana                   32</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Tamis-LeMonda, Catherine        11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Adolph, Karen                    5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Messinger, Daniel               70</span></span></code></pre></div>
+<span><span class="co">#&gt;    owner_name               party_id</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Gilmore, Rick O.                6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Staff                         308</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Gilmore, Rick O.                6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Tamis-LeMonda, Catherine       11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Gordon, Peter                  20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Karasik, Lana                  32</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Tamis-LeMonda, Catherine       11</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Adolph, Karen                   5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Messinger, Daniel              70</span></span></code></pre></div>
 <p>As of 0.6.0, the <code><a href="../reference/get_volume_by_id.html">get_volume_by_id()</a></code> returns a list of
 all data about a volume that is accessible to a particular user. The
 default is volume 1.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_list</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_volume_by_id.html">get_volume_by_id</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">vol1_list</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Retrieving data for volume id 1.</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">vol1_list</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  [1] "id"              "name"            "body"            "doi"            </span></span>
 <span><span class="co">#&gt;  [5] "creation"        "owners"          "permission"      "publicsharefull"</span></span>
 <span><span class="co">#&gt;  [9] "publicaccess"    "access"          "citation"        "links"          </span></span>
@@ -1481,7 +1527,7 @@ default is volume 1.</p>
 <span><span class="co">#&gt; [21] "state"</span></span></code></pre></div>
 <p>Let’s create our own tibble/data frame with a subset of these
 variables.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_df</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">vol1_list</span><span class="op">$</span><span class="va">id</span>,</span>
 <span>                          name <span class="op">=</span> <span class="va">vol1_list</span><span class="op">$</span><span class="va">name</span>,</span>
 <span>                          doi <span class="op">=</span> <span class="va">vol1_list</span><span class="op">$</span><span class="va">creation</span>,</span>
@@ -1498,7 +1544,7 @@ to the public will be returned. Assuming you are <em>not</em> logged-in,
 the above commands will show volumes with <code>permission</code> equal
 to 1. The <code>permission</code> field derives from a set of constants
 the system uses.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">db_constants</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/assign_constants.html">assign_constants</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">db_constants</span><span class="op">$</span><span class="va">permission</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
@@ -1530,8 +1576,11 @@ yet shared.</p>
 information about Databrary volumes. For example, the
 <code><a href="../reference/list_volume_funding.html">list_volume_funding()</a></code> command returns information about any
 funders listed for the project. Again, the default volume is 1.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_funding.html">list_volume_funding</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Summarizing funding for n=1 volumes.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
 <span><span class="co">#&gt;   funder_id funder_name                                      funder_award vol_id</span></span>
 <span><span class="co">#&gt;       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -1540,8 +1589,10 @@ funders listed for the project. Again, the default volume is 1.</p>
 <p>The <code><a href="../reference/list_volume_links.html">list_volume_links()</a></code> command returns information
 about any external (web) links that have been added to a volume, such as
 to related publications or a GitHub repo.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/list_volume_links.html">list_volume_links</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 3</span></span></span>
 <span><span class="co">#&gt;   link_name                                       link_url                vol_id</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
@@ -1560,12 +1611,27 @@ volume ID and a session ID) or <code><a href="../reference/list_session_assets.h
 you have only the session ID. The code below creates a new directory
 based on the session/slot ID (9807). The function returns the file path
 to the downloaded files.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">vol1_assets</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">format_extension</span> <span class="op">==</span> <span class="st">"csv"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/download_session_assets_fr_df.html">download_session_assets_fr_df</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "/tmp/Rtmp2tcET1/9807/databrary-institutions-investigators.csv"</span></span>
-<span><span class="co">#&gt; [2] "/tmp/Rtmp2tcET1/9807/volumes-citations-monthly.csv"</span></span></code></pre></div>
+<span><span class="co">#&gt; Target directory exists: /tmp/RtmpPg6HP1</span></span>
+<span><span class="co">#&gt; `overwrite` is TRUE. Overwriting directory: /tmp/RtmpPg6HP1</span></span>
+<span><span class="co">#&gt; Downloading n=2 files to //tmp/RtmpPg6HP1</span></span>
+<span><span class="co">#&gt; `add_session_subdir` is TRUE.</span></span>
+<span><span class="co">#&gt; Target directory not found: /tmp/RtmpPg6HP1/9807</span></span>
+<span><span class="co">#&gt; Creating: /tmp/RtmpPg6HP1/9807</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Downloading file with asset_id 153108 from session_id 9807</span></span>
+<span><span class="co">#&gt; `add_session_subdir` is TRUE.</span></span>
+<span><span class="co">#&gt; Target directory exists: /tmp/RtmpPg6HP1/9807</span></span>
+<span><span class="co">#&gt; Overwriting directory: /tmp/RtmpPg6HP1/9807</span></span>
+<span><span class="co">#&gt; NULL request object. Will generate default.</span></span>
+<span><span class="co">#&gt; Not logged in. Only public information will be returned.</span></span>
+<span><span class="co">#&gt; Downloading file with asset_id 153109 from session_id 9807</span></span>
+<span><span class="co">#&gt; [1] "/tmp/RtmpPg6HP1/9807/databrary-institutions-investigators.csv"</span></span>
+<span><span class="co">#&gt; [2] "/tmp/RtmpPg6HP1/9807/volumes-citations-monthly.csv"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

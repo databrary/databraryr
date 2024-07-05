@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.5.9002</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
 <span>  asset_id <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  convert_JSON <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  segment_only <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  vb <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  vb <span class="op">=</span> <span class="fu">options</span><span class="fu">::</span><span class="fu"><a href="https://dgkf.github.io/options/reference/opt.html" class="external-link">opt</a></span><span class="op">(</span><span class="st">"vb"</span><span class="op">)</span>,</span>
 <span>  rq <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -112,6 +112,9 @@ a data frame with two fields, segment and permission. Default is TRUE.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">get_asset_segment_range</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> NULL request object. Will generate default.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Not logged in. Only public information will be returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Returning segment start &amp; end times (in ms) from volume 1, session 9807, asset 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]     0 40000</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
