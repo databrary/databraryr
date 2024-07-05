@@ -19,8 +19,6 @@ DOWNLOAD_SESSION_ZIP <-
 DOWNLOAD_VOLUME_ZIP <- 
   "https://nyu.databrary.org/volume/%s/zip/false"
 
-GET_VOL_BY_ID <-
-  "https://nyu.databrary.org/api/volume/%s?access&citation&links&funding&top&tags&excerpts&comments&records&containers=all&metrics&state"
 GET_SESSIONS_IN_VOL <-
   "https://nyu.databrary.org/api/volume/%s?records&containers=all"
 GET_ACTIVITY_DATA <-
@@ -34,7 +32,10 @@ GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
 GET_SESSION_ACTIVITY <- "https://nyu.databrary.org/api/slot/%s/activity"
 GET_SESSION_ZIP <- "https://nyu.databrary.org/volume/%s/slot/%s/zip/false"
 
+GET_VOL_BY_ID <-
+  "https://nyu.databrary.org/api/volume/%s?access&citation&links&funding&top&tags&excerpts&comments&records&containers=all&metrics&state"
 GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
+GET_VOLUME_MINIMUM <- "https://nyu.databrary.org/api/volume/%s"
 GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"
 GET_VOLUME_TAGS <- "https://nyu.databrary.org/api/volume/%s?tags=all"
 GET_VOLUME_ACTIVITY <- "https://nyu.databrary.org/api/volume/%s/activity"

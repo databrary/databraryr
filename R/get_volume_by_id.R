@@ -34,7 +34,7 @@ get_volume_by_id <- function(vol_id = 1,
   # Handle NULL rq
   if (is.null(rq)) {
     if (vb) {
-      message("NULL request object. Will generate default.")
+      message("\nNULL request object. Will generate default.")
       message("Not logged in. Only public information will be returned.")  
     }
     rq <- databraryr::make_default_request()
@@ -42,6 +42,7 @@ get_volume_by_id <- function(vol_id = 1,
   rq <- rq %>%
     httr2::req_url(sprintf(GET_VOL_BY_ID, vol_id))
   
+  if (vb) message("Retrieving data for volume id ", vol_id, ".")
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd)

@@ -7,6 +7,7 @@
 ## Minor changes
 
 - Removed superceded and deprecated functions: list_affiliate(), GET_db_contents(), download_party(), get_party_as_df(), list_individual_sponsors(), list_institutional_sponsors(), list_party(), list_people(), list_sessions(), list_volume(), list_sessions_in_volume()
+- list_volume_sessions() returns text label for release level.
 
 # databraryr 0.6.5
 

@@ -38,7 +38,7 @@ list_volume_owners <- function(vol_id = 1,
     rq <- databraryr::make_default_request()
   }
   rq <- rq %>%
-    httr2::req_url(sprintf(GET_VOLUME_LINKS, vol_id))
+    httr2::req_url(sprintf(GET_VOLUME_MINIMUM, vol_id))
   
   resp <- tryCatch(
     httr2::req_perform(rq),
@@ -47,7 +47,10 @@ list_volume_owners <- function(vol_id = 1,
     }
   )
   
+  # Initialize
+  party_id <- NULL
   id <- NULL
+  owner_name <- NULL
   name <- NULL
   
   if (!is.null(resp)) {
@@ -55,8 +58,9 @@ list_volume_owners <- function(vol_id = 1,
     if (!(is.null(res$owners))) {
       purrr::map(res$owners, tibble::as_tibble) %>%
         purrr::list_rbind() %>%
-        dplyr::rename(person_id = id) %>%
-        dplyr::filter(!(stringr::str_detect(name, "Databrary")))
+        dplyr::rename(party_id = id,
+                      owner_name = name) %>%
+        dplyr::filter(!(stringr::str_detect(owner_name, "Databrary")))
     }
   } else {
     resp
