@@ -1,12 +1,16 @@
+#' @eval options::as_params()
+#' @name options_params
+#'
+NULL
+
 #' Lists Funders Associated With a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param add_id A logical value. Include the volume ID in the output. Default is TRUE.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with funder information for the volume.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -26,7 +30,7 @@ list_volume_funding <- function(vol_id = 1,
   # Check parameters
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(sum(vol_id >= 1) == length(vol_id))
-
+  
   assertthat::assert_that(length(add_id) == 1)
   assertthat::assert_that(is.logical(add_id))
   
@@ -79,7 +83,10 @@ list_single_volume_funding <-
       }
     )
     
-    if (!is.null(resp)) {
+    if (is.null(resp)) {
+      message("Cannot access requested resource on Databrary. Exiting.")
+      return(resp)
+    } else {
       res <- httr2::resp_body_json(resp)
       if (!(is.null(res))) {
         out_df <- purrr::map(res$funding, extract_funder_info) %>%
@@ -88,8 +95,6 @@ list_single_volume_funding <-
           out_df <- dplyr::mutate(out_df, vol_id = vol_id)
         out_df
       }
-    } else {
-      resp
     }
   }
 

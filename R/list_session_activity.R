@@ -1,10 +1,14 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Activity History in Databrary Session.
 #'
 #' If a user has access to a volume and session, this function returns the
 #' history of modifications to that session.
 #'
 #' @param session_id Selected session/slot number.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Defaults to NULL. To access the activity
 #' history on a volume a user has privileges on. Create a request 
 #' (`rq <- make_default_request()`); login using `make_login_client(rq = rq)`; 
@@ -57,10 +61,11 @@ list_session_activity <-
       }
     )
     
-    if (!is.null(resp)) {
-      httr2::resp_body_json(resp)
+    if (is.null(resp)) {
+      message("Cannot access requested resource on Databrary. Exiting.")
+      return(resp)
     } else {
-      resp
+      httr2::resp_body_json(resp)
     }
     #TODO: Reformat response.
   }

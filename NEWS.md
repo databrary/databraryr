@@ -3,6 +3,7 @@
 ## Major changes
 
 - Incorporated package-wide option management using the {options} package.
+- Added obligatory message when access to an internet resource fails. This responds to the 2024-07-04 archiving of the previous version due to a violation of CRAN's policy on packages that access internet resources.
 
 ## Minor changes
 

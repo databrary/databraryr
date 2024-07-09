@@ -1,3 +1,8 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Download Single Asset From Databrary
 #'
 #' @description Databrary stores file types (assets) of many types. This
@@ -20,7 +25,6 @@
 #' that are not broadly portable across file systems. Default is FALSE.
 #' @param timeout_secs An integer. The seconds an httr2 request will run before
 #' timing out. Default is 600 (10 min). This is to handle very large files.
-#' @param vb A logical value. If TRUE provides verbose output. Default is FALSE.
 #' @param rq A list in the form of an `httr2` request object. Default is NULL.
 #'
 #' @returns Full file name to the asset or NULL.
@@ -196,22 +200,21 @@ download_single_session_asset_fr_df <- function(i = NULL,
   )
   
   if (is.null(resp)) {
-    if (vb)
-      message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   }
   
-  if (is.null(resp)) {
-    if (vb)
-      message(
-        "Download request for session ",
-        this_asset$session_id,
-        " asset ",
-        this_asset$asset_id,
-        " returned NULL. Skipping."
-      )
-    return(NULL)
-  }
+  # if (is.null(resp)) {
+  #   if (vb)
+  #     message(
+  #       "Download request for session ",
+  #       this_asset$session_id,
+  #       " asset ",
+  #       this_asset$asset_id,
+  #       " returned NULL. Skipping."
+  #     )
+  #   return(NULL)
+  # }
   
   write_file <- tryCatch(
     error = function(cnd) {

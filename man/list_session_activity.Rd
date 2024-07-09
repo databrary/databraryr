@@ -9,7 +9,7 @@ list_session_activity(session_id = 6256, vb = options::opt("vb"), rq = NULL)
 \arguments{
 \item{session_id}{Selected session/slot number.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. Defaults to NULL. To access the activity
 history on a volume a user has privileges on. Create a request

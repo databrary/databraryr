@@ -17,7 +17,7 @@ linked to a volume. Default value is 9807, the materials folder for volume 1.}
 
 \item{vol_id}{An integer indicating the volume identifier. Default is 1.}
 
-\item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An httr2 request object.}
 }

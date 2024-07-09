@@ -1,7 +1,11 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Image or Video Excerpts On A Databrary Volume.
 #'
 #' @param vol_id Target volume number.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A list with information about any available excerpts.
@@ -46,12 +50,11 @@ list_volume_excerpts <-
       }
     )
     
-    if (!is.null(resp)) {
-      httr2::resp_body_json(resp)
+    if (is.null(resp)) {
+      message("Cannot access requested resource on Databrary. Exiting.")
+      return(resp)
     } else {
-      if (vb)
-        message("No excerpts in volume ", vol_id)
-      resp
+      httr2::resp_body_json(resp)
     }
     # TODO: Reformat response.
   }

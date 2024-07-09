@@ -17,7 +17,7 @@ list_volume_sessions(
 \item{include_vol_data}{A Boolean value. Include volume-level metadata
 or not. Default is FALSE.}
 
-\item{vb}{A Boolean value. Show verbose output. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. If NULL (the default)
 a request will be generated, but this will only permit public information

@@ -19,7 +19,7 @@ download_volume_zip(
 
 \item{file_name}{Name for downloaded file, default is 'test.mp4'.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }

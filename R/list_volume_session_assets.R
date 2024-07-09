@@ -1,3 +1,8 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Assets in a Session from a Databrary volume.
 #'
 #'#' @description
@@ -10,7 +15,6 @@
 #'
 #' @param vol_id Target volume number.
 #' @param session_id The session number in the selected volume.
-#' @param vb A boolean value.
 #' @param rq An `httr2` request object.
 #' 
 #' @returns A data frame with information about all assets in a volume.

@@ -1,10 +1,14 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Get Stats About Databrary.
 #'
 #' `get_db_stats` returns basic summary information about
 #' the institutions, people, and data hosted on 'Databrary.org'.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with the requested data or NULL if there is no new information.
@@ -66,8 +70,7 @@ get_db_stats <- function(type = "stats",
   )
   
   if (is.null(resp)) {
-    if (vb)
-      message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   }
   

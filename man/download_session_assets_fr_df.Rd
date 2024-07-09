@@ -33,7 +33,7 @@ that are not broadly portable across file systems. Default is FALSE.}
 \item{timeout_secs}{An integer. The seconds an httr2 request will run before
 timing out. Default is 600 (10 min). This is to handle very large files.}
 
-\item{vb}{A logical value. If TRUE provides verbose output. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{A list in the form of an \code{httr2} request object. Default is NULL.}
 }

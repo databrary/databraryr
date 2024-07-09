@@ -18,7 +18,7 @@ get_party_by_id(
 returns \emph{all} of the data about the party. If FALSE, only a minimum amount
 of information about the party is returned.}
 
-\item{vb}{A logical value if TRUE returns verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2}-style request object. If NULL, then a new request will
 be generated using \code{make_default_request()}.}

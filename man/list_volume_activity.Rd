@@ -9,7 +9,7 @@ list_volume_activity(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 \arguments{
 \item{vol_id}{Selected volume number.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }

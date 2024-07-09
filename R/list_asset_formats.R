@@ -1,6 +1,9 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Stored Assets (Files) By Type.
-#'
-#' @param vb A boolean value. If TRUE provides verbose output.
 #' 
 #' @returns A data frame with information about the data formats Databrary
 #' supports.

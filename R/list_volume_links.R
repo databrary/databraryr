@@ -1,13 +1,17 @@
+#' @eval options::as_params()
+#' @name options_params
+#'
+NULL
+
 #' Retrieves URL Links From A Databrary Volume.
 #'
 #' @param vol_id Target volume number.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
-#' 
+#'
 #' @returns A data frame with the requested data.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -29,7 +33,7 @@ list_volume_links <- function(vol_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -42,9 +46,12 @@ list_volume_links <- function(vol_id = 1,
       NULL
     }
   )
-
+  
   head <- NULL
-  if (!is.null(resp)) {
+  if (is.null(resp)) {
+    message("Cannot access requested resource on Databrary. Exiting.")
+    return(resp)
+  } else {
     res <- httr2::resp_body_json(resp)
     if (!(is.null(res$links))) {
       purrr::map(res$links, tibble::as_tibble) %>%
@@ -52,7 +59,5 @@ list_volume_links <- function(vol_id = 1,
         dplyr::rename(link_name = head, link_url = url) %>%
         dplyr::mutate(vol_id = vol_id)
     }
-  } else {
-    resp
   }
 }

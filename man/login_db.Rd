@@ -23,7 +23,7 @@ login_db(
 
 \item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.}
 
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{SERVICE}{A character label for stored credentials in the keyring. Default is "databrary"}
 

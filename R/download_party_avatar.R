@@ -1,10 +1,14 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Returns the Avatar(s) (images) for Authorized User(s).
 #'
 #' @param party_id A number or range of numbers. Party number or numbers to retrieve information about. Default is 6
 #' (Rick Gilmore).
 #' @param show_party_info A logical value. Show the person's name and affiliation in the output.
 #' Default is TRUE.
-#' @param vb A Boolean value. If TRUE returns verbose output. Default is FALSE.
 #' @param rq An `httr2` request object. If not provided, a new request is
 #' generated via `make_default_request()`.
 #'
@@ -97,7 +101,7 @@ get_single_avatar <- function(party_id = 6,
   )
   
   if (is.null(resp)) {
-    if (vb) message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   }
   

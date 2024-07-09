@@ -9,7 +9,7 @@ list_volume_owners(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 \arguments{
 \item{vol_id}{Selected volume number. Default is volume 1.}
 
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. If NULL (the default)
 a request will be generated, but this will only permit public information

@@ -1,14 +1,20 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Download Zip Archive From Databrary Session.
 #'
 #' @param vol_id Volume number.
 #' @param session_id Slot/session number.
 #' @param out_dir Directory to save output file.
 #' @param file_name Name for downloaded file, default is 'test.zip'.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns Full filename of the downloaded file.
-#'
+#' 
+#' @inheritParams options_params
+#' 
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -64,8 +70,7 @@ download_session_zip <- function(vol_id = 31,
   )
   
   if (is.null(resp)) {
-    if (vb)
-      message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(NULL)
   }
   

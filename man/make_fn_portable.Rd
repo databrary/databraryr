@@ -14,7 +14,7 @@ make_fn_portable(
 \arguments{
 \item{fn}{Databrary party ID}
 
-\item{vb}{A boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{replace_regex}{A character string. A regular expression to capture
 the "non-portable" characters in fn.}

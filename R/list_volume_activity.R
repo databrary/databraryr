@@ -1,14 +1,18 @@
+#' @eval options::as_params()
+#' @name options_params
+#'
+NULL
+
 #' List Activity In A Databrary Volume
 #'
 #' If a user has access to a volume, this command lists the modification
-#' history of the volume as a 
+#' history of the volume as a
 #'
 #' @param vol_id Selected volume number.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A list with the activity history on a volume.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -38,7 +42,7 @@ list_volume_activity <-
     if (is.null(rq)) {
       if (vb) {
         message("NULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")  
+        message("Not logged in. Only public information will be returned.")
       }
       rq <- databraryr::make_default_request()
     }
@@ -52,13 +56,16 @@ list_volume_activity <-
       }
     )
     
-    # TODO: Parse nested list into tibble/data.frame
-    if (!is.null(resp)) {
+    if (is.null(resp)) {
+      message("Cannot access requested resource on Databrary. Exiting.")
+      return(resp)
+    } else {
       res <- httr2::resp_body_json(resp)
       if (!(is.null(res))) {
         res
+      } else {
+        if (vb) message("Unable to convert from JSON.")
+        return(NULL)
       }
-    } else {
-      resp
     }
   }

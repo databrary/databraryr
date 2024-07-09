@@ -1,3 +1,8 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Download Video From Databrary.
 #'
 #' @param asset_id Asset id for target file.
@@ -5,7 +10,6 @@
 #' @param file_name Name for downloaded file.
 #' @param target_dir Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object.
 #'
 #' @returns Full file name to the asset.
@@ -99,8 +103,7 @@ download_video <- function(asset_id = 1,
   )
   
   if (is.null(resp)) {
-    if (vb)
-      message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   }
   

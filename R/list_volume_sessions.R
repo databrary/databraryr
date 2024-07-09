@@ -1,9 +1,13 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Sessions in Databrary Volume.
 #'
 #' @param vol_id Target volume number.
 #' @param include_vol_data A Boolean value. Include volume-level metadata
 #' or not. Default is FALSE.
-#' @param vb A Boolean value. Show verbose output. Default is FALSE.
 #' @param rq An `httr2` request object. If NULL (the default)
 #' a request will be generated, but this will only permit public information
 #' to be returned.

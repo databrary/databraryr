@@ -30,7 +30,7 @@ CONSTANTS.R is REQUEST_TIMEOUT. This value determines the default timeout
 value for the httr2 request object. When downloading large files, it can be
 useful to set this value to a large number.}
 
-\item{vb}{A logical value. If TRUE provides verbose output. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{A list in the form of an \code{httr2} request object. Default is NULL.}
 }

@@ -21,15 +21,9 @@ options::opt(x, default, env = "databraryr")
 
 \describe{
 \item{vb}{\describe{
-Show verbose messages.\item{default: }{\preformatted{TRUE}}
+Show verbose messages.\item{default: }{\preformatted{FALSE}}
 \item{option: }{databraryr.vb}
 \item{envvar: }{R_DATABRARYR_VB (evaluated if possible, raw string otherwise)}
-}}
-
-\item{quiet}{\describe{
-Be quiet in messaging\item{default: }{\preformatted{TRUE}}
-\item{option: }{databraryr.quiet}
-\item{envvar: }{R_DATABRARYR_QUIET (evaluated if possible, raw string otherwise)}
 }}
 
 }

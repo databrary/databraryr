@@ -25,7 +25,7 @@ Default is \code{tempdir()}.}
 \item{as_df}{A logical value. Convert the data from a list to a data frame.
 Default is FALSE.}
 
-\item{vb}{A logical value. Provide verbose feedback. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }

@@ -1,9 +1,13 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Download Zip Archive of All Data in a Volume.
 #'
 #' @param vol_id Volume number.
 #' @param out_dir Directory to save output file.
 #' @param file_name Name for downloaded file, default is 'test.mp4'.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns Full filename of the downloaded file.
@@ -60,7 +64,7 @@ download_volume_zip <- function(vol_id = 31,
   )
   
   if (is.null(resp)) {
-    if (vb) message("Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   }
   

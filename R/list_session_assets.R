@@ -1,22 +1,26 @@
+#' @eval options::as_params()
+#' @name options_params
+#'
+NULL
+
 #' List Assets in a Databrary Session.
-#' 
+#'
 #' #' @description
 #' `r lifecycle::badge("experimental")`
-#' 
+#'
 #' As of v0.6.3 `list_session_assets()` replaces an older function that is now
 #' named `list_volume_session_assets()`.  The older function requires both
 #' a volume ID and a session ID. The new function requires only a session ID.
 #'
 #' @param session_id An integer. A Databrary session number. Default is 9807,
 #' the "materials" folder from Databrary volume 1.
-#' @param vb A logical value. Show verbose feedback. Default is FALSE.
 #' @param rq An `httr2` request object. If NULL, a default request is generated
 #' from databraryr::make_default_request().
-#' 
+#'
 #' @returns A data frame with information about all assets in a volume.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -25,8 +29,8 @@
 #' }
 #' @export
 list_session_assets <- function(session_id = 9807,
-                                  vb = options::opt("vb"),
-                                  rq = NULL) {
+                                vb = options::opt("vb"),
+                                rq = NULL) {
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
   assertthat::assert_that(session_id >= 1)
@@ -47,14 +51,18 @@ list_session_assets <- function(session_id = 9807,
     httr2::req_url(sprintf(QUERY_SLOT, session_id)) %>%
     httr2::req_progress()
   
-  if (vb) message("Retrieving assets from session id ", session_id, ".")
+  if (vb)
+    message("Retrieving assets from session id ", session_id, ".")
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd)
       NULL
   )
   
-  if (!is.null(resp)) {
+  if (is.null(resp)) {
+    message("Cannot access requested resource on Databrary. Exiting.")
+    return(resp)
+  } else {
     session_list <- httr2::resp_body_json(resp)
     if ("assets" %in% names(session_list)) {
       assets_df <- purrr::map(session_list$assets, as.data.frame) %>%
@@ -97,7 +105,10 @@ list_session_assets <- function(session_id = 9807,
       
       # Gather asset format info
       asset_formats_df <- list_asset_formats(vb = vb) %>%
-        dplyr::select(format_id, format_mimetype, format_extension, format_name)
+        dplyr::select(format_id,
+                      format_mimetype,
+                      format_extension,
+                      format_name)
       
       # Join assets with asset format info
       out_df <- dplyr::left_join(assets_df,
@@ -107,10 +118,9 @@ list_session_assets <- function(session_id = 9807,
       
       out_df
     } else {
-      if (vb) message("No assets for session_id ", session_id)
+      if (vb)
+        message("No assets for session_id ", session_id)
       session_list
     }
-  } else {
-    resp
   }
 }

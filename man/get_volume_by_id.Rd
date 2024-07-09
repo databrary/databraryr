@@ -9,7 +9,7 @@ get_volume_by_id(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 \arguments{
 \item{vol_id}{Volume ID.}
 
-\item{vb}{A logical value. Show verbose messages.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. If NULL (the default), a new request
 is generated using \code{make_default_request()}. To access restricted data,

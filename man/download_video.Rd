@@ -23,7 +23,7 @@ download_video(
 \item{target_dir}{Directory to save the downloaded file.
 Default is a temporary directory given by a call to \code{tempdir()}.}
 
-\item{vb}{A Boolean value. If TRUE provides verbose output.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object.}
 }

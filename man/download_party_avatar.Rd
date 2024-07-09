@@ -18,7 +18,7 @@ download_party_avatar(
 \item{show_party_info}{A logical value. Show the person's name and affiliation in the output.
 Default is TRUE.}
 
-\item{vb}{A Boolean value. If TRUE returns verbose output. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. If not provided, a new request is
 generated via \code{make_default_request()}.}

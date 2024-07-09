@@ -1,7 +1,11 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Assets in Databrary Volume.
 #'
 #' @param vol_id Target volume number. Default is 1.
-#' @param vb A logical value. Default is FALSE.
 #' @param rq An `httr2` request object. Default is NULL.
 #' 
 #' @returns A data frame with information about all assets in a volume.

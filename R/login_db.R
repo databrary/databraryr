@@ -1,10 +1,14 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' Log In To Databrary.org.
 #'
 #' @param email Databrary account email address.
 #' @param password Databrary password (not recommended as it will displayed as you type)
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
-#' @param vb A boolean value. If TRUE provides verbose output.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `http` request object. Defaults to NULL.
 #' 

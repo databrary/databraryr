@@ -1,7 +1,11 @@
+#' @eval options::as_params()
+#' @name options_params
+#' 
+NULL
+
 #' List Affiliates For A Party
 #'
 #' @param party_id Target party ID.
-#' @param vb A Boolean value. If TRUE provides verbose output.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #' 
 #' @returns A data frame with information about a party's affiliates.

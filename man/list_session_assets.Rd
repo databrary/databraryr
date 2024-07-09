@@ -10,7 +10,7 @@ list_session_assets(session_id = 9807, vb = options::opt("vb"), rq = NULL)
 \item{session_id}{An integer. A Databrary session number. Default is 9807,
 the "materials" folder from Databrary volume 1.}
 
-\item{vb}{A logical value. Show verbose feedback. Default is FALSE.}
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
 \item{rq}{An \code{httr2} request object. If NULL, a default request is generated
 from databraryr::make_default_request().}
