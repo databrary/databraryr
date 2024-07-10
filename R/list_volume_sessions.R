@@ -42,6 +42,7 @@ list_volume_sessions <-
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
     
+    
     # Handle NULL rq
     if (is.null(rq)) {
       if (vb) {
@@ -51,42 +52,17 @@ list_volume_sessions <-
       rq <- databraryr::make_default_request()
     }
     
-    # Make character array of "release" constants to decode release index
-    constants <- databraryr::assign_constants()
-    release_levels <- constants$release |>
-      as.character()
-    
-    #-------------------------------------------------------------------------------
-    get_info_from_session <-
-      function(volume_container, ignore_materials = FALSE, release_levels) {
-        # ignore materials
-        if (ignore_materials) {
-          if ("top" %in% names(volume_container))
-            return(NULL)
-        } else {
-          if (!("name" %in% names(volume_container)))
-            volume_container$name <- NA
-          if (!("date" %in% names(volume_container)))
-            volume_container$date <- NA
-          if (!("release" %in% names(volume_container)))
-            volume_container$release <- NA
-        }
-        
-        tibble::tibble(
-          session_id = volume_container$id,
-          session_name = volume_container$name,
-          session_date = volume_container$date,
-          session_release = release_levels[volume_container$release]
-        )
-      }
-    #-------------------------------------------------------------------------------
-    
-    vol_list <- get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
+    vol_list <- databraryr::get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
     if (!("containers" %in% names(vol_list))) {
       if (vb)
         message("No session/containers data from volume ", vol_id)
       return(NULL)
     }
+    
+    # Make character array of "release" constants to decode release index
+    constants <- databraryr::assign_constants()
+    release_levels <- constants$release |>
+      as.character()
     
     df <- purrr::map(vol_list$containers, get_info_from_session, 
                      release_levels = release_levels) %>%
@@ -101,7 +77,38 @@ list_volume_sessions <-
           vol_publicaccess = vol_list$publicaccess
         )
     }
-    
     df
   }
 
+#-------------------------------------------------------------------------------
+#' List Sessions Info in Databrary Volume Container
+#'
+get_info_from_session <-
+  function(volume_container, ignore_materials = FALSE, release_levels) {
+    
+    # Make character array of "release" constants to decode release index
+    constants <- databraryr::assign_constants()
+    release_levels <- constants$release |>
+      as.character()
+    
+    # ignore materials
+    if (ignore_materials) {
+      if ("top" %in% names(volume_container))
+        return(NULL)
+    } else {
+      if (!("name" %in% names(volume_container)))
+        volume_container$name <- NA
+      if (!("date" %in% names(volume_container)))
+        volume_container$date <- NA
+      if (!("release" %in% names(volume_container)))
+        volume_container$release <- NA
+    }
+    
+    tibble::tibble(
+      session_id = volume_container$id,
+      session_name = as.character(volume_container$name),
+      session_date = volume_container$date,
+      session_release = release_levels[volume_container$release]
+    )
+  }
+#-------------------------------------------------------------------------------
