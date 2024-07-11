@@ -10,6 +10,14 @@ get_info_from_session(
   release_levels
 )
 }
+\arguments{
+\item{volume_container}{A component of a volume list returned by get_volume_by_id.}
+
+\item{ignore_materials}{A logical value specifying whether to ignore "materials" folders.
+Default is TRUE}
+
+\item{release_levels}{A data frame mapping release level indices to release level text values.}
+}
 \description{
 List Sessions Info in Databrary Volume Container
 }

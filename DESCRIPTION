@@ -29,6 +29,7 @@ Imports:
     options (>= 0.2.0),
     purrr (>= 1.0.2),
     stringr (>= 1.5.1),
+    stats,
     tibble (>= 3.2.1),
     xfun (>= 0.41)
 Suggests:

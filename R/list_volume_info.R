@@ -58,6 +58,9 @@ list_volume_info <-
       # Extract owner info
       if (vb) message("Extracting owner info...")
       #vol_owners <- databraryr::list_volume_owners(vol_id = vol_id, vb = vb, rq = rq)
+      id <- NULL
+      name <- NULL
+      owner_name <- NULL
       vol_owners <- purrr::map(vol_list$owners, tibble::as_tibble) %>%
         purrr::list_rbind() %>%
         dplyr::rename(party_id = id, owner_name = name) %>%
@@ -98,8 +101,8 @@ list_volume_info <-
         tot_vol_dur_hrs <- 0
       } else {
         n_vol_assets <- dim(vol_assets)[1]
-        tot_vol_size_mb <- round(sum(na.omit(vol_assets$asset_size))/(1024*1024), 3)
-        tot_vol_dur_hrs <- round(sum(na.omit(vol_assets$asset_duration))/(1000*60*60), 3)
+        tot_vol_size_mb <- round(sum(stats::na.omit(vol_assets$asset_size))/(1024*1024), 3)
+        tot_vol_dur_hrs <- round(sum(stats::na.omit(vol_assets$asset_duration))/(1000*60*60), 3)
       }
       
       # Create output data frame/tibble
