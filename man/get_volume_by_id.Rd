@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_volume_by_id.R
 \name{get_volume_by_id}
 \alias{get_volume_by_id}
-\title{Get Data From A Databrary Volume}
+\title{Get Summary Data About A Databrary Volume}
 \usage{
 get_volume_by_id(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
@@ -16,12 +16,10 @@ is generated using \code{make_default_request()}. To access restricted data,
 the user must login with a specific request object using \code{login_db()}.}
 }
 \value{
-A JSON blob with the volume data. If the user has previously logged
-in to Databrary via \code{login_db()}, then volume(s) that have restricted access
-can be downloaded, subject to the sharing release levels on those volume(s).
+A tibble with summary information about a volume.
 }
 \description{
-Get Data From A Databrary Volume
+Get Summary Data About A Databrary Volume
 }
 \examples{
 \donttest{
