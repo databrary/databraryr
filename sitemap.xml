@@ -25,6 +25,7 @@
 <url><loc>https://databrary.github.io/databraryr/reference/get_assets_from_session.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/get_db_stats.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/get_file_duration.html</loc></url>
+<url><loc>https://databrary.github.io/databraryr/reference/get_info_from_session.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/get_party_by_id.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/get_permission_levels.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/get_release_levels.html</loc></url>
@@ -47,6 +48,7 @@
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_assets.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_excerpts.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_funding.html</loc></url>
+<url><loc>https://databrary.github.io/databraryr/reference/list_volume_info.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_links.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_owners.html</loc></url>
 <url><loc>https://databrary.github.io/databraryr/reference/list_volume_session_assets.html</loc></url>
