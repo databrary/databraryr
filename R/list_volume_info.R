@@ -20,6 +20,7 @@ NULL
 #' list_volume_info() # Sessions in Volume 1
 #' }
 #' }
+#' 
 #' @export
 list_volume_info <-
   function(vol_id = 1,
@@ -54,31 +55,54 @@ list_volume_info <-
     if (is.null(vol_list)) {
       return(NULL)
     } else {
-      vol_owners <- databraryr::list_volume_owners(vol_id = vol_id, vb = vb, rq = rq)
+      # Extract owner info
+      if (vb) message("Extracting owner info...")
+      #vol_owners <- databraryr::list_volume_owners(vol_id = vol_id, vb = vb, rq = rq)
+      vol_owners <- purrr::map(vol_list$owners, tibble::as_tibble) %>%
+        purrr::list_rbind() %>%
+        dplyr::rename(party_id = id, owner_name = name) %>%
+        dplyr::filter(!(stringr::str_detect(owner_name, "Databrary")))
+      
       vol_owners_str <- stringr::str_flatten(vol_owners$owner_name,
                                              collapse = "; ")
       
-      vol_sessions <- list_volume_sessions(vol_id = vol_id, vb = vb, rq = rq)
+      # Extract session info
+      if (vb) message("Extracting session info...")
+      #vol_sessions <- list_volume_sessions(vol_id = vol_id, vb = vb, rq = rq)
+      vol_sessions <- purrr::map(vol_list$containers, get_info_from_session, 
+                       release_levels = release_levels) %>%
+        purrr::list_rbind()
       if (is.null(vol_sessions)) {
         n_vol_sessions <- 0      
       } else {
         n_vol_sessions <- dim(vol_sessions)[1]      
       }
       
-      vol_funders <- list_volume_funding(vol_id = vol_id, vb = vb, rq = rq)
+      # Extract funder info
+      if (vb) message("Extracting funder info...")
+      #vol_funders <- list_volume_funding(vol_id = vol_id, vb = vb, rq = rq)
+      vol_funders <- purrr::map(vol_list$funding, extract_funder_info) %>%
+        purrr::list_rbind()
       if (is.null(vol_funders)) {
         n_vol_funders <- 0
       } else {
         n_vol_funders <- dim(vol_funders)[1]
       }
       
+      # Extract asset info
       vol_assets <- list_volume_assets(vol_id = vol_id, vb = vb, rq = rq)
+      
       if (is.null(vol_assets)) {
         n_vol_assets <- 0
+        tot_vol_size_mb <- 0
+        tot_vol_dur_hrs <- 0
       } else {
         n_vol_assets <- dim(vol_assets)[1]
+        tot_vol_size_mb <- round(sum(na.omit(vol_assets$asset_size))/(1024*1024), 3)
+        tot_vol_dur_hrs <- round(sum(na.omit(vol_assets$asset_duration))/(1000*60*60), 3)
       }
       
+      # Create output data frame/tibble
       tibble::tibble(
         vol_id = vol_list$id,
         vol_name = vol_list$name,
@@ -89,6 +113,8 @@ list_volume_info <-
         vol_owners = vol_owners_str,
         vol_n_sessions = n_vol_sessions,
         vol_n_assets = n_vol_assets,
+        vol_tot_size_mb = tot_vol_size_mb,
+        vol_tot_dur_hrs = tot_vol_dur_hrs,
         vol_n_funders = n_vol_funders
       )      
     }

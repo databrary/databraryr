@@ -46,6 +46,7 @@ list_volume_assets <- function(vol_id = 1,
     return(NULL)
   }
   
+  if (vb) message("Extracting asset info...")
   this_volume_assets_df <-
     purrr::map(
       vol_list$containers,

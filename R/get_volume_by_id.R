@@ -45,14 +45,14 @@ get_volume_by_id <- function(vol_id = 1,
     httr2::req_url(sprintf(GET_VOL_BY_ID, vol_id))
   
   if (vb)
-    message("Retrieving data for volume id ", vol_id, ".")
+    message("Retrieving data for vol_id ", vol_id, ".")
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd)
       NULL
   )
   if (is.null(resp)) {
-    message("\nCannot access requested resource on Databrary. Exiting.")
+    message("Cannot access requested resource on Databrary. Exiting.")
     return(resp)
   } else {
     httr2::resp_body_json(resp)

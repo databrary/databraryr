@@ -107,7 +107,7 @@ get_info_from_session <-
     tibble::tibble(
       session_id = volume_container$id,
       session_name = as.character(volume_container$name),
-      session_date = volume_container$date,
+      session_date = as.character(volume_container$date),
       session_release = release_levels[volume_container$release]
     )
   }
