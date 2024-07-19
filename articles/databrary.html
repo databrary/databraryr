@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,7 +143,7 @@ into your local workspace.</p>
 <p>Then, try this command to pull data about one of Databrary’s
 founders:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># The default parameter settings return a very detailed set of information about </span></span>
+<code class="sourceCode R"><span><span class="co"># The default parameter settings return a very detailed set of information about</span></span>
 <span><span class="co"># a party that we do not need for this example.</span></span>
 <span><span class="va">party_6</span> <span class="op">&lt;-</span> <span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_party_by_id.html">get_party_by_id</a></span><span class="op">(</span>parents_children_access <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
@@ -193,35 +193,34 @@ this:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 9</span></span></span>
 <span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-07-11 <span style="color: #949494;">19:01:02</span>          <span style="text-decoration: underline;">1</span>775        650          795           <span style="text-decoration: underline;">1</span>729</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-07-19 <span style="color: #949494;">15:19:00</span>          <span style="text-decoration: underline;">1</span>777        639          795           <span style="text-decoration: underline;">1</span>731</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 5</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 5</span></span></span>
 <span><span class="co">#&gt;      id sortname prename      affiliation                          time         </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">6</span>104 Heck     Isobel Azani University of Rochester              2024-07-10T1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">20</span>597 Stacey   Paula        Nottingham Trent University          2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">12</span>635 McDonald Kristina     University of Alabama                2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">21</span>666 Gard     Arianna      University of Maryland, College Park 2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>640 Zamani   Hamed        University of Massachusetts Amherst  2024-06-28T2…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">12</span>088 Benton   Deon         Vanderbilt University                2024-07-18T1…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">12</span>707 Mavrides Maria        Hunter College, CUNY                 2024-07-18T1…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">6</span>104 Heck     Isobel Azani University of Rochester              2024-07-10T1…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">20</span>597 Stacey   Paula        Nottingham Trent University          2024-07-09T2…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>635 McDonald Kristina     University of Alabama                2024-07-09T2…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> <span style="text-decoration: underline;">21</span>666 Gard     Arianna      University of Maryland, College Park 2024-07-09T2…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> <span style="text-decoration: underline;">12</span>640 Zamani   Hamed        University of Massachusetts Amherst  2024-06-28T2…</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"institutions"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; data frame with 0 columns and 0 rows</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 8</span></span></span>
-<span><span class="co">#&gt;       id name       body  creation owners       permission publicsharefull time </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>  <span style="text-decoration: underline;">1</span>774 RISE Batt… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>  <span style="text-decoration: underline;">1</span>774 RISE Batt… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>  <span style="text-decoration: underline;">1</span>774 RISE Batt… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>  <span style="text-decoration: underline;">1</span>773 DBN Relig… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>  <span style="text-decoration: underline;">1</span>773 DBN Relig… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>  <span style="text-decoration: underline;">1</span>772 Metacogni… Buil… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>  <span style="text-decoration: underline;">1</span>771 Gendered … Gend… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>  <span style="text-decoration: underline;">1</span>768 AI x Voice new … 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>  <span style="text-decoration: underline;">1</span>767 Templeton… Stud… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>  <span style="text-decoration: underline;">1</span>767 Templeton… Stud… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>  <span style="text-decoration: underline;">1</span>766 crawlwalk… craw… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 8</span></span></span>
+<span><span class="co">#&gt;      id name        body  creation owners       permission publicsharefull time </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>775 Developmen… This… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>773 DBN Religi… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>773 DBN Religi… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">1</span>772 Metacognit… Buil… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">1</span>771 Gendered E… Gend… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span></code></pre></div>
 <p>Depending on when you run this command and how often, there may or
 may not be new items.</p>
 </div>

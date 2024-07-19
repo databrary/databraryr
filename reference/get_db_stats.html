@@ -9,7 +9,7 @@ the institutions, people, and data hosted on 'Databrary.org'."><meta property="o
 
     <a class="navbar-brand me-2" href="../index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,8 @@ the institutions, people, and data hosted on 'Databrary.org'.</p>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A data frame with the requested data or NULL if there is no new information.</p>
+    <p>A data frame with the requested data or NULL if there is
+no new information.</p>
     </div>
 
     <div class="section level2">
@@ -78,25 +79,27 @@ the institutions, people, and data hosted on 'Databrary.org'.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   date                investigators affiliates institutions datasets_total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-07-11 <span style="color: #949494;">19:00:44</span>          <span style="text-decoration: underline;">1</span>775        650          795           <span style="text-decoration: underline;">1</span>729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-07-19 <span style="color: #949494;">15:18:39</span>          <span style="text-decoration: underline;">1</span>777        639          795           <span style="text-decoration: underline;">1</span>731</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"stats"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   date                investigators affiliates institutions datasets_total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-07-11 <span style="color: #949494;">19:00:44</span>          <span style="text-decoration: underline;">1</span>775        650          795           <span style="text-decoration: underline;">1</span>729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 2024-07-19 <span style="color: #949494;">15:18:39</span>          <span style="text-decoration: underline;">1</span>777        639          795           <span style="text-decoration: underline;">1</span>731</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span> <span class="co"># Information about the newest authorized investigators.</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 5 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      id sortname prename      affiliation                          time         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">6</span>104 Heck     Isobel Azani University of Rochester              2024-07-10T1…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">20</span>597 Stacey   Paula        Nottingham Trent University          2024-07-09T2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">12</span>635 McDonald Kristina     University of Alabama                2024-07-09T2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">21</span>666 Gard     Arianna      University of Maryland, College Park 2024-07-09T2…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>640 Zamani   Hamed        University of Massachusetts Amherst  2024-06-28T2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">12</span>088 Benton   Deon         Vanderbilt University                2024-07-18T1…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">12</span>707 Mavrides Maria        Hunter College, CUNY                 2024-07-18T1…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">6</span>104 Heck     Isobel Azani University of Rochester              2024-07-10T1…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">20</span>597 Stacey   Paula        Nottingham Trent University          2024-07-09T2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>635 McDonald Kristina     University of Alabama                2024-07-09T2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> <span style="text-decoration: underline;">21</span>666 Gard     Arianna      University of Maryland, College Park 2024-07-09T2…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> <span style="text-decoration: underline;">12</span>640 Zamani   Hamed        University of Massachusetts Amherst  2024-06-28T2…</span>
 <span class="r-in"><span><span class="fu">get_db_stats</span><span class="op">(</span><span class="st">"places"</span><span class="op">)</span> <span class="co"># Information about the newest institutions.</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
