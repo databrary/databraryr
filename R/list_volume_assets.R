@@ -1,17 +1,17 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' List Assets in Databrary Volume.
 #'
 #' @param vol_id Target volume number. Default is 1.
 #' @param rq An `httr2` request object. Default is NULL.
-#' 
+#'
 #' @returns A data frame with information about all assets in a volume.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -34,7 +34,7 @@ list_volume_assets <- function(vol_id = 1,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -46,7 +46,8 @@ list_volume_assets <- function(vol_id = 1,
     return(NULL)
   }
   
-  if (vb) message("Extracting asset info...")
+  if (vb)
+    message("Extracting asset info...")
   this_volume_assets_df <-
     purrr::map(
       vol_list$containers,
@@ -57,11 +58,13 @@ list_volume_assets <- function(vol_id = 1,
     purrr::list_rbind()
   
   if (dim(this_volume_assets_df)[1] == 0) {
-    if (vb) message("No assets in volume_id ", vol_id, ".")
+    if (vb)
+      message("No assets in volume_id ", vol_id, ".")
     return(NULL)
   }
   if (!("asset_format_id" %in% names(this_volume_assets_df))) {
-    if (vb) message("'asset_format_id' field not found in assets data frame.")
+    if (vb)
+      message("'asset_format_id' field not found in assets data frame.")
     return(NULL)
   }
   
@@ -83,10 +86,10 @@ list_volume_assets <- function(vol_id = 1,
 
 #-------------------------------------------------------------------------------
 #' Helper function for list_volume_assets
-#' 
+#'
 #' @param volume_container The 'container' list from a volume.
 #' @param ignore_materials A logical value.
-#' 
+#'
 get_assets_from_session <-
   function(volume_container, ignore_materials = TRUE) {
     # ignore materials
@@ -103,11 +106,11 @@ get_assets_from_session <-
       return(NULL)
     
     if (!('size' %in% names(assets_df)))
-      assets_df$size = NA
+      assets_df$size <- NA
     if (!('duration' %in% names(assets_df)))
-      assets_df$duration = NA
+      assets_df$duration <- NA
     if (!('name' %in% names(assets_df)))
-      assets_df$name = NA
+      assets_df$name <- NA
     
     # Initialize values to avoid check() error
     id <- NULL

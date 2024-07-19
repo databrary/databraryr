@@ -9,7 +9,8 @@ NULL
 #' @param rq An `httr2`-style request object. If NULL, then a new request will
 #' be generated using `make_default_request()`.
 #'
-#' @returns A data frame with information the institution's authorized investigators.
+#' @returns A data frame with information the institution's authorized 
+#' investigators.
 #'
 #' @inheritParams options_params
 #'

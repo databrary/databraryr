@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Asset From Databrary.
@@ -10,20 +10,20 @@ NULL
 #' (asset_id) and system-unique session (slot) identifier (session_id).
 #'
 #' @param asset_id An integer. Asset id for target file. Default is 1.
-#' @param session_id An integer. Slot/session number where target file is 
+#' @param session_id An integer. Slot/session number where target file is
 #' stored. Default is 9807.
 #' @param file_name A character string. Name for downloaded file. Default is NULL.
-#' 
+#'
 #' @param target_dir A character string. Directory to save the downloaded file.
 #' Default is a temporary directory given by a call to `tempdir()`.
 #' @param rq A list in the form of an `httr2` request object. Default is NULL.
-#' @param timeout_secs An integer constant. The default value, defined in 
+#' @param timeout_secs An integer constant. The default value, defined in
 #' CONSTANTS.R is REQUEST_TIMEOUT. This value determines the default timeout
 #' value for the httr2 request object. When downloading large files, it can be
 #' useful to set this value to a large number.
-#' 
+#'
 #' @returns Full file name to the asset or NULL.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -80,22 +80,28 @@ download_session_asset <- function(asset_id = 1,
     httr2::req_progress()
   
   if (vb)
-    message("Attempting to download file with asset_id ",
-            asset_id,
-            " from session_id ",
-            session_id, ".")
+    message(
+      "Attempting to download file with asset_id ",
+      asset_id,
+      " from session_id ",
+      session_id,
+      "."
+    )
   
   resp <- tryCatch(
     httr2::req_perform(this_rq),
     httr2_error = function(cnd) {
       if (vb)
-      message("Error downloading file with asset_id ",
-              asset_id,
-              " from session_id ",
-              session_id, ".")
+        message(
+          "Error downloading file with asset_id ",
+          asset_id,
+          " from session_id ",
+          session_id,
+          "."
+        )
       NULL
     }
-
+    
   )
   
   if (is.null(resp)) {
@@ -122,8 +128,8 @@ download_session_asset <- function(asset_id = 1,
   if (is.null(file_name)) {
     if (vb)
       message("Missing file name, creating temporary file name.")
-    file_name = tempfile(paste0(session_id, "_", asset_id, "_"),
-                         fileext = paste0(".", this_file_extension))
+    file_name <- tempfile(paste0(session_id, "_", asset_id, "_"),
+                          fileext = paste0(".", this_file_extension))
   }
   assertthat::is.string(file_name)
   

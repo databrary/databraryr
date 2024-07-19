@@ -60,7 +60,7 @@ library(databraryr)
 Then, try this command to pull data about one of Databrary's founders:
 
 ```{r get_party_by_id}
-# The default parameter settings return a very detailed set of information about 
+# The default parameter settings return a very detailed set of information about
 # a party that we do not need for this example.
 party_6 <- databraryr::get_party_by_id(parents_children_access = FALSE)
 

@@ -1,4 +1,4 @@
-# list_volume_sessions --------------------------------------------------------------
+# list_volume_sessions --------------------------------------------------------
 test_that("list_volume_sessions returns data.frame given valid vol_id", {
   expect_true("data.frame" %in% class(list_volume_sessions()))
 })

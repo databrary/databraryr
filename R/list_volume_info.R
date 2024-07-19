@@ -57,7 +57,6 @@ list_volume_info <-
     } else {
       # Extract owner info
       if (vb) message("Extracting owner info...")
-      #vol_owners <- databraryr::list_volume_owners(vol_id = vol_id, vb = vb, rq = rq)
       id <- NULL
       name <- NULL
       owner_name <- NULL
@@ -71,7 +70,6 @@ list_volume_info <-
       
       # Extract session info
       if (vb) message("Extracting session info...")
-      #vol_sessions <- list_volume_sessions(vol_id = vol_id, vb = vb, rq = rq)
       vol_sessions <- purrr::map(vol_list$containers, get_info_from_session, 
                        release_levels = release_levels) %>%
         purrr::list_rbind()
@@ -83,7 +81,6 @@ list_volume_info <-
       
       # Extract funder info
       if (vb) message("Extracting funder info...")
-      #vol_funders <- list_volume_funding(vol_id = vol_id, vb = vb, rq = rq)
       vol_funders <- purrr::map(vol_list$funding, extract_funder_info) %>%
         purrr::list_rbind()
       if (is.null(vol_funders)) {

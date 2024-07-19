@@ -110,7 +110,7 @@ get_single_avatar <- function(party_id = 6,
     magick::image_read()
   
   if (show_party_info) {
-    party_str = paste0("Data for Databrary party ", party_id, ":")
+    party_str <- paste0("Data for Databrary party ", party_id, ":")
     
     party_info <- databraryr::get_party_by_id(party_id)
     if (is.list(party_info)) {

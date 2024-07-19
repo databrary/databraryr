@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' List Sponsors For A Party
@@ -10,7 +10,7 @@ NULL
 #' be generated using `make_default_request()`.
 #'
 #' @returns A data frame with information about a party's sponsors.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -38,7 +38,7 @@ list_party_sponsors <- function(party_id = 6,
   if (is.null(rq)) {
     if (vb) {
       message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")  
+      message("Not logged in. Only public information will be returned.")
     }
     rq <- databraryr::make_default_request()
   }
@@ -46,7 +46,9 @@ list_party_sponsors <- function(party_id = 6,
   if (vb)
     message(paste0("Getting sponsors for party ", party_id, "."))
   
-  g <- databraryr::get_party_by_id(party_id = party_id, vb = vb, rq = rq)
+  g <- databraryr::get_party_by_id(party_id = party_id,
+                                   vb = vb,
+                                   rq = rq)
   
   if (!is.null(g)) {
     if (vb)
@@ -65,10 +67,8 @@ list_party_sponsors <- function(party_id = 6,
     
     purrr::map(g$parents, as.data.frame) %>%
       purrr::list_rbind() %>%
-      # TODO(ROG): Handle cases when party.prename, expires, other variables exist
-      dplyr::select(party.id,
-                    party.sortname,
-                    party.affiliation) %>%
+      # TODO(ROG): Handle cases when other variables exist
+      dplyr::select(party.id, party.sortname, party.affiliation) %>%
       dplyr::rename(
         sponsor_id = party.id,
         sponsor_sortname = party.sortname,

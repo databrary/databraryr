@@ -6,10 +6,14 @@ NULL
 #' Log In To Databrary.org.
 #'
 #' @param email Databrary account email address.
-#' @param password Databrary password (not recommended as it will displayed as you type)
-#' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
-#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
-#' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
+#' @param password Databrary password (not recommended as it will displayed 
+#' as you type)
+#' @param store A boolean value. If TRUE store/retrieve credentials from the 
+#' system keyring/keychain.
+#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ 
+#' update stored credentials in keyring/keychain.
+#' @param SERVICE A character label for stored credentials in the keyring. 
+#' Default is "databrary"
 #' @param rq An `http` request object. Defaults to NULL.
 #' 
 #' @returns Logical value indicating whether log in is successful or not.
@@ -58,7 +62,8 @@ login_db <- function(email = NULL,
     rq <- databraryr::make_default_request()
   }
   
-  # If the user wants to store or use their stored credentials, check for keyring support
+  # If the user wants to store or use their stored credentials, 
+  # check for keyring support
   if (store) {
     assertthat::assert_that(keyring::has_keyring_support(),
                             msg = "No keyring support; please use store=FALSE")
@@ -89,7 +94,8 @@ login_db <- function(email = NULL,
     kl <- keyring::key_list(service = SERVICE)
     # Make sure our service is in the keyring
     if (exists('kl') && is.data.frame(kl)) {
-      # If it is under the email entered, keep it to try later and not collect it here
+      # If it is under the email entered, keep it to try later and not 
+      # collect it here
       password <-
         try(keyring::key_get(service = SERVICE, username = email),
             silent = TRUE)
@@ -135,7 +141,9 @@ login_db <- function(email = NULL,
     is_login_successful <- TRUE
   }
   
-  # If the username/password was successful and the user wanted to store their credentials
+  # If the username/password was successful and the user wanted to 
+  # store their credentials
+  
   # Store them in the keyring
   if (is_login_successful) {
     if (store && (do_collect_password || overwrite)) {

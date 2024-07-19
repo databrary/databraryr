@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Zip Archive From Databrary Session.
@@ -12,9 +12,9 @@ NULL
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns Full filename of the downloaded file.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' \dontrun{
@@ -64,7 +64,8 @@ download_session_zip <- function(vol_id = 31,
     httr2::req_perform(rq),
     httr2_error = function(cnd) {
       if (vb)
-        message("Error downloading zip from sprintf(GET_SESSION_ZIP, vol_id, session_id)")
+        message("Error downloading zip from sprintf(GET_SESSION_ZIP, vol_id, 
+                session_id)")
       NULL
     }
   )

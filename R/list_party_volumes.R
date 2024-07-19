@@ -88,7 +88,7 @@ extract_vol_fr_party <- function(p_info) {
   vol_name <- this_vol$name
   vol_body <- this_vol$body
   if (!("alias" %in% vol_names)) {
-    vol_alias = NA
+    vol_alias <- NA
   } else {
     vol_alias <- this_vol$alias    
   }

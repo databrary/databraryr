@@ -6,7 +6,8 @@ NULL
 #' Lists Funders Associated With a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
-#' @param add_id A logical value. Include the volume ID in the output. Default is TRUE.
+#' @param add_id A logical value. Include the volume ID in the output. 
+#' Default is TRUE.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with funder information for the volume.

@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Session Spreadsheet As CSV
@@ -18,7 +18,8 @@ NULL
 #' Default is FALSE.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
-#' @returns A character string that is the name of the downloaded file or a data frame if `as_df` is TRUE.
+#' @returns A character string that is the name of the downloaded file or a 
+#' data frame if `as_df` is TRUE.
 #'
 #' @inheritParams options_params
 #'
@@ -94,7 +95,7 @@ download_session_csv <- function(vol_id = 1,
       col_types = readr::cols(.default = readr::col_character())
     ) %>%
     # Replace dashes in column names with underscores
-    dplyr::rename_with(~ gsub("-", "_", .x, fixed = TRUE))
+    dplyr::rename_with( ~ gsub("-", "_", .x, fixed = TRUE))
   if (as_df == TRUE) {
     df
   } else {

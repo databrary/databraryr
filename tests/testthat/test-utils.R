@@ -38,7 +38,7 @@ test_that("get_asset_segment_range rejects bad input parameters", {
   expect_error(get_asset_segment_range(vb = c(2, 3)))
 })
 
-# get_permission_levels ---------------------------------------------------------
+# get_permission_levels -------------------------------------------------------
 test_that("get_permission_levels returns a character array", {
   expect_true(class(get_permission_levels()) == "character")
   expect_true(length(get_permission_levels()) == 6)
@@ -62,7 +62,7 @@ test_that("get_release_levels rejects bad input parameters", {
   expect_error(get_release_levels(vb = c(2, 3)))
 })
 
-# get_supported_file_types ---------------------------------------------------------
+# get_supported_file_types ----------------------------------------------------
 
 test_that("get_supported_file_types returns data.frame", {
   expect_true(is.data.frame(get_supported_file_types()))

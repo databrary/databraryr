@@ -73,11 +73,11 @@ list_session_assets <- function(session_id = 9807,
         return(NULL)
       
       if (!('size' %in% names(assets_df)))
-        assets_df$size = NA
+        assets_df$size <- NA
       if (!('duration' %in% names(assets_df)))
-        assets_df$duration = NA
+        assets_df$duration <- NA
       if (!('name' %in% names(assets_df)))
-        assets_df$name = NA
+        assets_df$name <- NA
       
       id <- NULL
       format <- NULL
@@ -113,7 +113,8 @@ list_session_assets <- function(session_id = 9807,
       # Join assets with asset format info
       out_df <- dplyr::left_join(assets_df,
                                  asset_formats_df,
-                                 by = dplyr::join_by(asset_format_id == format_id)) %>%
+                                 by = dplyr::join_by(asset_format_id == 
+                                                       format_id)) %>%
         dplyr::mutate(session_id = session_id)
       
       out_df

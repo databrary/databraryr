@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Video From Databrary.
@@ -13,7 +13,7 @@ NULL
 #' @param rq An `httr2` request object.
 #'
 #' @returns Full file name to the asset.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -28,7 +28,9 @@ NULL
 #' @export
 download_video <- function(asset_id = 1,
                            session_id = 9807,
-                           file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
+                           file_name = tempfile(paste0(session_id, "_", 
+                                                       asset_id, "_"), 
+                                                      fileext = ".mp4"),
                            target_dir = tempdir(),
                            vb = options::opt("vb"),
                            rq = NULL) {

@@ -1,4 +1,4 @@
-# list_volume_info --------------------------------------------------------------
+# list_volume_info ------------------------------------------------------------
 test_that("list_volume_info returns data.frame given valid vol_id", {
   expect_true("data.frame" %in% class(list_volume_info()))
 })
@@ -11,7 +11,7 @@ test_that("list_volume_info rejects bad input parameters", {
   expect_error(list_volume_info(vol_id = "a"))
   expect_error(list_volume_info(vol_id = TRUE))
   expect_error(list_volume_info(vol_id = -1))
-
+  
   expect_error(list_volume_info(vb = -1))
   expect_error(list_volume_info(vb = 3))
   expect_error(list_volume_info(vb = "a"))

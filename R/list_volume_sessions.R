@@ -83,10 +83,13 @@ list_volume_sessions <-
 #-------------------------------------------------------------------------------
 #' List Sessions Info in Databrary Volume Container
 #'
-#' @param volume_container A component of a volume list returned by get_volume_by_id.
-#' @param ignore_materials A logical value specifying whether to ignore "materials" folders.
+#' @param volume_container A component of a volume list returned by 
+#' get_volume_by_id().
+#' @param ignore_materials A logical value specifying whether to ignore 
+#' "materials" folders.
 #' Default is TRUE
-#' @param release_levels A data frame mapping release level indices to release level text values.
+#' @param release_levels A data frame mapping release level indices to release 
+#' level text values.
 get_info_from_session <-
   function(volume_container, ignore_materials = FALSE, release_levels) {
     
@@ -115,4 +118,3 @@ get_info_from_session <-
       session_release = release_levels[volume_container$release]
     )
   }
-#-------------------------------------------------------------------------------

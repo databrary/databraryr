@@ -15,8 +15,10 @@ NULL
 #' @examples
 #' \dontrun{
 #' search_for_keywords() # searches for volumes with "locomotion" as a keyword.
+#' search_for_keywords()
 #' 
-#' search_for_keywords("adult") # searches for volumes with "adult" as a keyword.
+#' # searches for volumes with "adult" as a keyword.
+#' search_for_keywords("adult") 
 #' }
 #' @export
 search_for_keywords <-

@@ -2,7 +2,7 @@
 #
 # Utility functions.
 
-#-------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 #' @eval options::as_params()
 #' @name options_params
 #'
@@ -67,14 +67,16 @@ get_file_duration <- function(asset_id = 1,
   }
 }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Get Time Range For An Asset.
   #'
   #' @param vol_id Volume ID
   #' @param session_id Slot/session number.
   #' @param asset_id Asset number.
-  #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.
-  #' @param segment_only A Boolean value. If TRUE, returns only the segment values. Otherwise returns
+  #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data 
+  #' frame. Default is TRUE.
+  #' @param segment_only A Boolean value. If TRUE, returns only the segment 
+  #' values. Otherwise returns
   #' a data frame with two fields, segment and permission. Default is TRUE.
   #' @param rq An `httr2` request object. Default is NULL.
   #'
@@ -165,7 +167,7 @@ get_file_duration <- function(asset_id = 1,
     }
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Extract Databrary Permission Levels.
   #'
   #' @returns An array with the permission levels that can be assigned to data.
@@ -183,7 +185,7 @@ get_file_duration <- function(asset_id = 1,
     c$permission %>% unlist()
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Convert Timestamp String To ms.
   #'
   #' @param HHMMSSmmm a string in the format "HH:MM:SS:mmm"
@@ -203,15 +205,15 @@ get_file_duration <- function(asset_id = 1,
                             "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")) {
       time_segs <- stringr::str_match(HHMMSSmmm,
                                       "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")
-      as.numeric(time_segs[5]) + as.numeric(time_segs[4]) * 1000 + as.numeric(time_segs[3]) *
-        1000 * 60 +
+      as.numeric(time_segs[5]) + as.numeric(time_segs[4]) * 
+        1000 + as.numeric(time_segs[3]) * 1000 * 60 +
         as.numeric(time_segs[2]) * 1000 * 60 * 60
     } else {
       NULL
     }
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Show Databrary Release Levels
   #'
   #' @returns A data frame with Databrary's release levels.
@@ -229,7 +231,7 @@ get_file_duration <- function(asset_id = 1,
     c$release %>% unlist()
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Extracts File Types Supported by Databrary.
   #'
   #'
@@ -251,7 +253,7 @@ get_file_duration <- function(asset_id = 1,
     ft
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Is This Party An Institution?
   #'
   #' @param party_id Databrary party ID
@@ -301,7 +303,7 @@ get_file_duration <- function(asset_id = 1,
     }
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Is This Party A Person?
   #'
   #' @param party_id Databrary party ID
@@ -327,14 +329,14 @@ get_file_duration <- function(asset_id = 1,
     ))
   }
   
-  #-------------------------------------------------------------------------------
+  #----------------------------------------------------------------------------
   #' Make Portable File Names
   #'
   #' @param fn Databrary party ID
   #' @param replace_regex A character string. A regular expression to capture
   #' the "non-portable" characters in fn.
-  #' @param replacement_char A character string. The character(s) that will replace
-  #' the non-portable characters.
+  #' @param replacement_char A character string. The character(s) that will 
+  #' replace the non-portable characters.
   #'
   #' @returns A "cleaned" portable file name
   #'

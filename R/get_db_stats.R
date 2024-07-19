@@ -11,7 +11,8 @@ NULL
 #' @param type Type of Databrary report to run "institutions", "people", "data"
 #' @param rq An `httr2` request object.
 #'
-#' @returns A data frame with the requested data or NULL if there is no new information.
+#' @returns A data frame with the requested data or NULL if there is 
+#' no new information.
 #'
 #' @inheritParams options_params
 #' 

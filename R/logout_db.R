@@ -34,7 +34,8 @@ logout_db <- function(vb = options::opt("vb"), rq = NULL){
     if (vb) message('Logout Successful.')
     TRUE
   } else {
-    if (vb) message(paste0('Logout Failed, HTTP status: ', httr2::resp_status(r), '.\n'))
+    if (vb) message(paste0('Logout Failed, HTTP status: ', 
+                           httr2::resp_status(r), '.\n'))
     FALSE
   }
 }
