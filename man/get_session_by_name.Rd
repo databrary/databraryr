@@ -32,7 +32,7 @@ Get Session (Slot) Data From A Databrary Volume By Session Name.
 \donttest{
 \dontrun{
 # Returns multiple JSON blobs with the name "Advisory Board Meeting" in Volume 1.
-get_session_by_name() 
+get_session_by_name()
 
 get_session_by_name(name = 'Top-level materials')
 }

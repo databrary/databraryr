@@ -19,8 +19,8 @@ make_fn_portable(
 \item{replace_regex}{A character string. A regular expression to capture
 the "non-portable" characters in fn.}
 
-\item{replacement_char}{A character string. The character(s) that will replace
-the non-portable characters.}
+\item{replacement_char}{A character string. The character(s) that will
+replace the non-portable characters.}
 }
 \value{
 A "cleaned" portable file name

@@ -14,7 +14,8 @@ get_db_stats(type = "stats", vb = options::opt("vb"), rq = NULL)
 \item{rq}{An \code{httr2} request object.}
 }
 \value{
-A data frame with the requested data or NULL if there is no new information.
+A data frame with the requested data or NULL if there is
+no new information.
 }
 \description{
 \code{get_db_stats} returns basic summary information about

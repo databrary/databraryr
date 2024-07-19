@@ -19,7 +19,8 @@ list_authorized_investigators(
 be generated using \code{make_default_request()}.}
 }
 \value{
-A data frame with information the institution's authorized investigators.
+A data frame with information the institution's authorized
+investigators.
 }
 \description{
 List Authorized Investigators at Institution

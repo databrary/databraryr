@@ -21,9 +21,11 @@ get_asset_segment_range(
 
 \item{asset_id}{Asset number.}
 
-\item{convert_JSON}{A Boolean value. If TRUE, convert JSON to a data frame. Default is TRUE.}
+\item{convert_JSON}{A Boolean value. If TRUE, convert JSON to a data
+frame. Default is TRUE.}
 
-\item{segment_only}{A Boolean value. If TRUE, returns only the segment values. Otherwise returns
+\item{segment_only}{A Boolean value. If TRUE, returns only the segment
+values. Otherwise returns
 a data frame with two fields, segment and permission. Default is TRUE.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}

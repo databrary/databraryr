@@ -30,7 +30,8 @@ Default is FALSE.}
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
-A character string that is the name of the downloaded file or a data frame if \code{as_df} is TRUE.
+A character string that is the name of the downloaded file or a
+data frame if \code{as_df} is TRUE.
 }
 \description{
 Databrary generates a CSV-formated spreadsheet that summarizes

@@ -14,7 +14,8 @@ list_volume_funding(
 \arguments{
 \item{vol_id}{Target volume number.}
 
-\item{add_id}{A logical value. Include the volume ID in the output. Default is TRUE.}
+\item{add_id}{A logical value. Include the volume ID in the output.
+Default is TRUE.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 

@@ -29,7 +29,7 @@ history of modifications to that session.
 # The following will only return output if the user has write privileges
 # on the session.
 
-list_session_activity(session_id = 6256, vb = FALSE) # Activity for session 6256.
+list_session_activity(session_id = 6256, vb = FALSE)
 }
 }
 }
