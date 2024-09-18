@@ -65,16 +65,17 @@ list_volume_sessions <-
       as.character()
     
     df <- purrr::map(vol_list$containers, get_info_from_session, 
-                     release_levels = release_levels) %>%
+                     release_levels = release_levels,
+                     .progress = vb) %>%
       purrr::list_rbind()
     
     if (include_vol_data) {
       df <- df %>%
         dplyr::mutate(
-          vol_id = vol_list$id,
-          vol_name = vol_list$name,
-          vol_creation = vol_list$creation,
-          vol_publicaccess = vol_list$publicaccess
+          vol_id = as.character(vol_list$id),
+          vol_name = as.character(vol_list$name),
+          vol_creation = as.character(vol_list$creation),
+          vol_publicaccess = as.character(vol_list$publicaccess)
         )
     }
     df
@@ -112,9 +113,9 @@ get_info_from_session <-
     }
     
     tibble::tibble(
-      session_id = volume_container$id,
+      session_id = as.character(volume_container$id),
       session_name = as.character(volume_container$name),
       session_date = as.character(volume_container$date),
-      session_release = release_levels[volume_container$release]
+      session_release = as.character(release_levels[volume_container$release])
     )
   }
