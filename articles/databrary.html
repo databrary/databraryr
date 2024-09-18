@@ -193,34 +193,37 @@ this:</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 9</span></span></span>
 <span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-07-19 <span style="color: #949494;">15:19:00</span>          <span style="text-decoration: underline;">1</span>777        639          795           <span style="text-decoration: underline;">1</span>731</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2024-09-18 <span style="color: #949494;">12:26:19</span>          <span style="text-decoration: underline;">1</span>805        622          807           <span style="text-decoration: underline;">1</span>754</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   TB &lt;dbl&gt;</span></span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"people"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 5</span></span></span>
-<span><span class="co">#&gt;      id sortname prename      affiliation                          time         </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">12</span>088 Benton   Deon         Vanderbilt University                2024-07-18T1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">12</span>707 Mavrides Maria        Hunter College, CUNY                 2024-07-18T1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">6</span>104 Heck     Isobel Azani University of Rochester              2024-07-10T1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">20</span>597 Stacey   Paula        Nottingham Trent University          2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="text-decoration: underline;">12</span>635 McDonald Kristina     University of Alabama                2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> <span style="text-decoration: underline;">21</span>666 Gard     Arianna      University of Maryland, College Park 2024-07-09T2…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> <span style="text-decoration: underline;">12</span>640 Zamani   Hamed        University of Massachusetts Amherst  2024-06-28T2…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 5</span></span></span>
+<span><span class="co">#&gt;      id sortname prename   affiliation                     time                 </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">10</span>687 Addyman  Caspar    Stellenbosch University         2024-09-16T15:32:55.…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">22</span>783 Mielke   Alexander Queen Mary University of London 2024-09-16T14:13:57.…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">22</span>864 Hojeij   Zeina     Zayed University                2024-09-13T12:14:27.…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">22</span>658 Fusi     Stefano   Columbia University             2024-09-12T17:53:58.…</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"institutions"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; data frame with 0 columns and 0 rows</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 3 × 5</span></span></span>
+<span><span class="co">#&gt;      id sortname                           url                 institution time </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">22</span>916 Stellenbosch University            http://www.sun.ac.… TRUE        2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="text-decoration: underline;">22</span>908 Zayed University                   https://www.zu.ac.… TRUE        2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="text-decoration: underline;">22</span>880 University of Texas at San Antonio https://www.utsa.e… TRUE        2024…</span></span>
 <span><span class="fu">databraryr</span><span class="fu">::</span><span class="fu"><a href="../reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="st">"datasets"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 8</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 8</span></span></span>
 <span><span class="co">#&gt;      id name        body  creation owners       permission publicsharefull time </span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>775 Developmen… This… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>774 RISE Batte… Copy… 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>773 DBN Religi… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>773 DBN Religi… DBN … 2024-07… <span style="color: #949494;">&lt;named list&gt;</span>          1 TRUE            2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">1</span>772 Metacognit… Buil… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">1</span>771 Gendered E… Gend… 2024-06… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">1</span>800 DBN - Nort… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">1</span>800 DBN - Nort… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">1</span>800 DBN - Nort… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span>  <span style="text-decoration: underline;">1</span>799 Test        <span style="color: #949494;">"</span>Aud… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span>  <span style="text-decoration: underline;">1</span>798 IDCxContex… <span style="color: #949494;">"</span>The… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span>  <span style="text-decoration: underline;">1</span>797 DBN - Isra… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span>  <span style="text-decoration: underline;">1</span>797 DBN - Isra… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span>  <span style="text-decoration: underline;">1</span>797 DBN - Isra… <span style="color: #949494;">"</span>Thi… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span>  <span style="text-decoration: underline;">1</span>796 Global BAB… <span style="color: #949494;">"</span>Hom… 2024-09… <span style="color: #949494;">&lt;named list&gt;</span>          1 FALSE           2024…</span></span></code></pre></div>
 <p>Depending on when you run this command and how often, there may or
 may not be new items.</p>
 </div>
@@ -244,7 +247,7 @@ vignette for <a href="authorized-users.Rmd">authorized users</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
