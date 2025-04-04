@@ -3,9 +3,9 @@
 #'
 NULL
 
-#' Download Information About a Party on Databrary as JSON
+#' Download Information About a User on Databrary as JSON
 #'
-#' @param party_id An integer. The party number to retrieve information about.
+#' @param user_id An integer. The user number to retrieve information about.
 #' @param rq An `httr2`-style request object. If NULL, then a new request will
 #' be generated using `make_default_request()`.
 #'
@@ -17,16 +17,14 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' get_party_by_id()
+#' get_user_by_id()
 #' }
 #' }
 #' @export
-get_party_by_id <- function(party_id = 6,
-                            vb = options::opt("vb"),
-                            rq = NULL) {
+get_user_by_id <- function(user_id = 6, vb = options::opt("vb"), rq = NULL) {
   # Check parameters
-  assertthat::assert_that(is.numeric(party_id))
-  assertthat::assert_that(party_id >= 1)
+  assertthat::assert_that(is.numeric(user_id))
+  assertthat::assert_that(user_id >= 1)
   
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
@@ -43,16 +41,17 @@ get_party_by_id <- function(party_id = 6,
   }
   
   endpoint <- GET_PARTY_BY_ID
+  
   prq <- rq %>%
-    httr2::req_url(sprintf(endpoint, party_id))
+    httr2::req_url(sprintf(endpoint, user_id))
   
   if (vb)
-    message("Querying API for user id ", party_id, ".")
+    message("Querying API for 'user id'= ", user_id, ".")
   resp <- tryCatch(
     httr2::req_perform(prq),
     httr2_error = function(cnd) {
       if (vb)
-        message("Error retrieving information for 'user_id'= ", party_id)
+        message("Error retrieving information for 'user_id'= ", user_id)
       NULL
     }
   )
