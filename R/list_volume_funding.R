@@ -71,31 +71,17 @@ list_single_volume_funding <-
            add_id = NULL,
            vb = NULL,
            rq) {
-    if (is.null(rq)) {
-      rq <- databraryr::make_default_request()
-    }
-    rq <- rq %>%
-      httr2::req_url(sprintf(GET_VOLUME_FUNDING, vol_id))
-    
-    resp <- tryCatch(
-      httr2::req_perform(rq),
-      httr2_error = function(cnd) {
-        NULL
-      }
-    )
+    resp <- get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
     
     if (is.null(resp)) {
       message("Cannot access requested resource on Databrary. Exiting.")
       return(resp)
     } else {
-      res <- httr2::resp_body_json(resp)
-      if (!(is.null(res))) {
-        out_df <- purrr::map(res$funding, extract_funder_info) %>%
-          purrr::list_rbind()
-        if (add_id)
-          out_df <- dplyr::mutate(out_df, vol_id = vol_id)
-        out_df
-      }
+      out_df <- purrr::map(resp$fundings, extract_funder_info) %>%
+        purrr::list_rbind()
+      if (add_id)
+        out_df <- dplyr::mutate(out_df, vol_id = vol_id)
+      out_df
     }
   }
 
