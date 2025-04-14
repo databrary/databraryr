@@ -36,6 +36,10 @@ GET_PARTY_NO_PARENTS_CHILDREN <- "https://api.databrary.org/users/%s"
 
 GET_VOL_BY_ID <-
   "https://api.databrary.org/volumes/%s"
+GET_VOLUME_SESSIONS <- "https://api.databrary.org/volumes/%s/sessions/?page_size=%s&page=%s"
+MAX_SESSIONS <- 100
+PAGE_NUM <- 1
+
 # GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
 # GET_VOLUME_MINIMUM <- "https://nyu.databrary.org/api/volume/%s"
 # GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"

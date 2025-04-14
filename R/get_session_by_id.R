@@ -28,6 +28,7 @@ get_session_by_id <-
            vol_id = 1,
            vb = options::opt("vb"),
            rq = NULL) {
+    
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id > 0)
     assertthat::assert_that(length(session_id) == 1)

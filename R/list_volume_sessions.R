@@ -47,38 +47,70 @@ list_volume_sessions <-
     if (is.null(rq)) {
       if (vb) {
         message("\nNULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")  
+        message("Not logged in. Only public information will be returned.")
       }
       rq <- databraryr::make_default_request()
     }
+    # 
+    # 
+    # vol_list <- databraryr::get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
+    # if (!("containers" %in% names(vol_list))) {
+    #   if (vb)
+    #     message("No session/containers data from volume ", vol_id)
+    #   return(NULL)
+    # }
     
-    vol_list <- databraryr::get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
-    if (!("containers" %in% names(vol_list))) {
-      if (vb)
-        message("No session/containers data from volume ", vol_id)
-      return(NULL)
+    rq <- rq %>%
+      httr2::req_url(url = sprintf(GET_VOLUME_SESSIONS, vol_id, MAX_SESSIONS, PAGE_NUM))
+    
+    if (vb)
+      message("Retrieving session data for 'vol_id'= ",
+              vol_id)
+    resp <- tryCatch(
+      httr2::req_perform(rq),
+      httr2_error = function(cnd)
+        NULL
+    )
+    if (is.null(resp)) {
+      message("Request URL: ", )
+      message("Cannot access requested resource on Databrary. Exiting.")
+      return(resp)
+    } else {
+      vol_sessions <- httr2::resp_body_json(resp)
     }
     
-    # Make character array of "release" constants to decode release index
-    constants <- databraryr::assign_constants()
-    release_levels <- constants$release |>
-      as.character()
+    assertthat::assert_that(is.list(vol_sessions))
+    assertthat::has_attr(vol_sessions, "count")
     
-    df <- purrr::map(vol_list$containers, get_info_from_session, 
-                     release_levels = release_levels,
-                     .progress = vb) %>%
+    if (vb)
+      message("There are n=", vol_sessions$count, " sessions.")
+    
+    session_results <- vol_sessions$results
+    purrr::map(session_results, extract_session_info,
+               .progress = TRUE) |>
       purrr::list_rbind()
     
-    if (include_vol_data) {
-      df <- df %>%
-        dplyr::mutate(
-          vol_id = as.character(vol_list$id),
-          vol_name = as.character(vol_list$name),
-          vol_creation = as.character(vol_list$creation),
-          vol_publicaccess = as.character(vol_list$publicaccess)
-        )
-    }
-    df
+    
+    # Make character array of "release" constants to decode release index
+    # constants <- databraryr::assign_constants()
+    # release_levels <- constants$release |>
+    #   as.character()
+    # 
+    # df <- purrr::map(vol_list$containers, get_info_from_session, 
+    #                  release_levels = release_levels,
+    #                  .progress = vb) %>%
+    #   purrr::list_rbind()
+    # 
+    # if (include_vol_data) {
+    #   df <- df %>%
+    #     dplyr::mutate(
+    #       vol_id = as.character(vol_list$id),
+    #       vol_name = as.character(vol_list$name),
+    #       vol_creation = as.character(vol_list$creation),
+    #       vol_publicaccess = as.character(vol_list$publicaccess)
+    #     )
+    # }
+    # df
   }
 
 #-------------------------------------------------------------------------------

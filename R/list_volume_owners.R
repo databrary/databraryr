@@ -67,6 +67,7 @@ list_single_volume_owner <-
       return(resp)
     } else {
       assertthat::assert_that("list" %in% class(resp$ownerConnection))
+      
       owner <- resp$ownerConnection$user
       owner_inst <- resp$ownerConnection$institution
       
