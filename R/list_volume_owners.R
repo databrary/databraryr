@@ -80,7 +80,8 @@ list_single_volume_owner <-
       )
       
       if (add_id) {
-        out_df <- dplyr::mutate(out_df, vol_id = vol_id)
+        out_df <- dplyr::mutate(out_df, vol_id = vol_id) |>
+          dplyr::relocate(vol_id)
       }
       out_df
     }

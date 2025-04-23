@@ -80,7 +80,8 @@ list_single_volume_funding <-
       out_df <- purrr::map(resp$fundings, extract_funder_info) %>%
         purrr::list_rbind()
       if (add_id)
-        out_df <- dplyr::mutate(out_df, vol_id = vol_id)
+        out_df <- dplyr::mutate(out_df, vol_id = vol_id) |>
+          dplyr::relocate(vol_id)
       out_df
     }
   }
