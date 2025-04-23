@@ -47,12 +47,12 @@ get_party_by_id <- function(party_id = 6,
     httr2::req_url(sprintf(endpoint, party_id))
   
   if (vb)
-    message("Querying API for user id ", party_id, ".")
+    message("Querying API for user_id: ", party_id, ".")
   resp <- tryCatch(
     httr2::req_perform(prq),
     httr2_error = function(cnd) {
       if (vb)
-        message("Error retrieving information for 'user_id'= ", party_id)
+        message("Error retrieving information for 'user_id': ", party_id)
       NULL
     }
   )

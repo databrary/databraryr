@@ -34,9 +34,21 @@ list_user_inst_sponsors <- function(user_id = 6,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
-  purrr::map(user_id, get_single_user_inst_sponsors, vb = vb, rq = rq,
-             .progress = TRUE) |>
+  out_df <- NULL
+  out_df <- purrr::map(
+    user_id,
+    get_single_user_inst_sponsors,
+    vb = vb,
+    rq = rq,
+    .progress = TRUE
+  ) |>
     purrr::list_rbind()
+  
+  if (length(out_df) == 0) {
+    NULL
+  } else {
+    out_df
+  }
 }
 
 #---------------------------
@@ -48,15 +60,24 @@ get_single_user_inst_sponsors <- function(user_id = NULL,
                                 rq = rq)
   
   if ('institutionSponsorships' %in% names(this_party)) {
-    purrr::map(this_party$institutionSponsorships,
-               unpack_user_sponsor_list,
-               user_id) |>
-      purrr::list_rbind()
+    if (length(this_party$institutionSponsorships) == 0) {
+      if (vb)
+        message("No institutional sponsors for user_id: ", user_id)
+      return(NULL)
+    } else {
+      if (vb)
+        message("Retrieving 'institutionSponsorships' for user_id: ",
+                user_id)
+      purrr::map(this_party$institutionSponsorships,
+                 unpack_user_sponsor_list,
+                 user_id) |>
+        purrr::list_rbind()
+    }
   } else {
     if (vb)
       message("No institutional sponsorships for user_id: ", user_id)
     NULL
-  }  
+  }
 }
 
 #----------------------------
@@ -71,9 +92,11 @@ unpack_user_sponsor_list <- function(x, user_id) {
   inst_name <- x$institution$name
   inst_url <- x$institution$url
   
-  data.frame(user_id = user_id,
-             sponsorship_id = sponsorship_id,
-             inst_id = inst_id,
-             inst_name = inst_name,
-             inst_url = inst_url)
+  data.frame(
+    user_id = user_id,
+    sponsorship_id = sponsorship_id,
+    inst_id = inst_id,
+    inst_name = inst_name,
+    inst_url = inst_url
+  )
 }
