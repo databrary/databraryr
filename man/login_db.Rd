@@ -7,11 +7,12 @@
 login_db(
   email = NULL,
   password = NULL,
+  client_id = NULL,
+  client_secret = NULL,
   store = FALSE,
   overwrite = FALSE,
-  vb = options::opt("vb"),
   SERVICE = KEYRING_SERVICE,
-  rq = NULL
+  vb = options::opt("vb")
 )
 }
 \arguments{
@@ -20,18 +21,20 @@ login_db(
 \item{password}{Databrary password (not recommended as it will displayed
 as you type)}
 
+\item{client_id}{OAuth2 client identifier.}
+
+\item{client_secret}{OAuth2 client secret.}
+
 \item{store}{A boolean value. If TRUE store/retrieve credentials from the
 system keyring/keychain.}
 
 \item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/
 update stored credentials in keyring/keychain.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
-
 \item{SERVICE}{A character label for stored credentials in the keyring.
-Default is "databrary"}
+Default is \code{org.databrary.databraryr}.}
 
-\item{rq}{An \code{http} request object. Defaults to NULL.}
+\item{vb}{Show verbose messages.}
 }
 \value{
 Logical value indicating whether log in is successful or not.
@@ -40,7 +43,7 @@ Logical value indicating whether log in is successful or not.
 Log In To Databrary.org.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 login_db() # Queries user for email and password interactively.
 \dontshow{\}) # examplesIf}
 \donttest{

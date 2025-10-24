@@ -48,16 +48,23 @@ The registration process involves the creation of an (email-account-based) user 
 Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data.
 See <https://databrary.org/about.html> for more information about gaining access to restricted data.
 
-However, many commands in the `databraryr` package return meaningful results *without* or *prior to* formal authorization.
-These commands access public data or metadata.
+All API calls now require OAuth2 authentication. Before
+running the examples below, ensure you have set the following environment variables
+or stored values with `login_db(store = TRUE)`:
+
+- `DATABRARY_CLIENT_ID`
+- `DATABRARY_CLIENT_SECRET`
+- `DATABRARY_LOGIN` (your Databrary account email)
+- `DATABRARY_PASSWORD` (optional; prompted securely if missing)
+
+You can configure these via `usethis::edit_r_environ()`.
 
 ```{r example}
 library(databraryr)
 
-get_db_stats()
+login_db()
 
-list_volume_assets() |> 
-  head()
+whoami()
 ```
 
 ## Lifecycle
