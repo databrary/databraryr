@@ -5,25 +5,14 @@ test_that("whoami returns NULL when unauthenticated", {
 
 test_that("whoami fetches user info", {
   clear_token_bundle()
-  set_token_bundle(access_token = "abc", refresh_token = NULL)
+  login_test_account()
+  on.exit(clear_token_bundle(), add = TRUE)
 
-  local_mocked_bindings(
-    req_perform = function(...) {
-      httr2::response(
-        method = "GET",
-        url = OAUTH_TEST_URL,
-        status_code = 200,
-        headers = list("Content-Type" = "application/json"),
-        body = charToRaw('{"auth_method":"password","user":{"id":1}}')
-      )
-    },
-    .package = "httr2"
-  )
+  result <- whoami(refresh = TRUE, vb = FALSE)
+  skip_if_null_response(result, "whoami")
 
-  result <- whoami(refresh = FALSE, vb = FALSE)
-
-  expect_equal(result$auth_method, "password")
-  expect_equal(result$user$id, 1)
-  clear_token_bundle()
+  expect_true(nzchar(result$message))
+  expect_match(result$path, "oauth2/test")
+  expect_equal(result$authMethod, "OAuth2")
 })
 

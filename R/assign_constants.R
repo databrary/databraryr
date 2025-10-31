@@ -17,27 +17,43 @@ NULL
 #' }
 #' @export
 assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
-  # Check parameter
   assertthat::assert_that(is.logical(vb))
-  
-  if (is.null(rq))
-    rq <- databraryr::make_default_request()
-  arq <- rq %>%
-    httr2::req_url(GET_CONSTANTS)
-  
-  if (vb) message("Retrieving constants.")
-  resp <- tryCatch(
-    httr2::req_perform(arq),
-    httr2_error = function(cnd) {
-      if (vb) message("Error loading Databrary constants.")
-      NULL
-    }
-  )
-  
-  if (is.null(resp)) {
-    message("Cannot access requested resource on Databrary. Exiting.")
-    resp
-  } else {
-    httr2::resp_body_json(resp)
+  if (vb) {
+    message("Retrieving grouped formats and static enums.")
   }
+
+  grouped <- perform_api_get(
+    path = API_GROUPED_FORMATS,
+    rq = rq,
+    vb = vb,
+    normalize = TRUE
+  )
+
+  if (is.null(grouped)) {
+    message("Unable to load grouped format metadata from Databrary.")
+    return(NULL)
+  }
+
+  lists <- grouped$root
+  if (is.null(lists)) {
+    lists <- grouped
+  }
+
+  format_entries <- purrr::imap(lists, function(items, category) {
+    purrr::map(items, function(item) {
+      item$category <- category
+      item
+    })
+  }) |>
+    purrr::list_c()
+
+  formats_df <- purrr::map(format_entries, tibble::as_tibble) |>
+    purrr::list_rbind()
+
+  list(
+    format = format_entries,
+    format_df = formats_df,
+    permission = databraryr:::get_permission_levels_enums(),
+    release = databraryr:::get_release_levels_enums()
+  )
 }

@@ -25,5 +25,6 @@ test_that("download_session_zip rejects bad input parameters", {
 })
 
 test_that("download_session_zip returns string", {
+  testthat::skip("Download route still under migration to Django signed-link workflow")
   expect_true(is.character(download_session_zip()))
 })

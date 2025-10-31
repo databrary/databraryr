@@ -1,7 +1,11 @@
 # list_volume_tags ---------------------------------------------------------
-test_that("list_volume_tags returns data.frame or is NULL", {
-  expect_true((is.null(list_volume_tags()) ||
-                 ("data.frame" %in% class(list_volume_tags()))))
+test_that("list_volume_tags returns tags for volume 1", {
+  login_test_account()
+  tags <- list_volume_tags(vol_id = 1)
+  skip_if_null_response(tags, "list_volume_tags(vol_id = 1)")
+  expect_true(is.list(tags))
+  expect_gt(length(tags), 0)
+  expect_true(any(vapply(tags, function(x) any(grepl("icis", x, ignore.case = TRUE)), logical(1))))
 })
 
 test_that("list_volume_tags rejects bad input parameters", {
@@ -23,5 +27,6 @@ test_that("list_volume_tags rejects bad input parameters", {
 })
 
 test_that("list_volume_tags returns NULL for volume without tags", {
+  login_test_account()
   expect_true(is.null(list_volume_tags(vol_id = 3)))
 })

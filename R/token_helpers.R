@@ -1,13 +1,6 @@
 # Token-aware request helpers -------------------------------------------------
 
 #' @noRd
-add_bearer_token <- function(rq) {
-  assertthat::assert_that(inherits(rq, "httr2_request"))
-  access_token <- require_access_token()
-  httr2::req_headers(rq, Authorization = paste("Bearer", access_token))
-}
-
-#' @noRd
 ensure_valid_token <- function(refresh = TRUE,
                                client_id = NULL,
                                client_secret = NULL,
@@ -57,5 +50,3 @@ ensure_valid_token <- function(refresh = TRUE,
 
   get_token_bundle()
 }
-
-

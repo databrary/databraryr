@@ -5,13 +5,17 @@
 \title{Report Information About A Funder.}
 \usage{
 search_for_funder(
-  search_string = "national+science+foundation",
+  search_string = "national science foundation",
+  approved_only = TRUE,
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
 \item{search_string}{String to search.}
+
+\item{approved_only}{Logical. When TRUE (default) only approved funders are
+returned. Set to FALSE to include unapproved funders as well.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 

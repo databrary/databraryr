@@ -30,34 +30,23 @@ list_volume_links <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
   
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  rq <- rq %>%
-    httr2::req_url(sprintf(GET_VOLUME_LINKS, vol_id))
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd) {
-      NULL
-    }
+  links <- perform_api_get(
+    path = sprintf(API_VOLUME_LINKS, vol_id),
+    rq = rq,
+    vb = vb
   )
-  
-  head <- NULL
-  if (is.null(resp)) {
-    message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
-  } else {
-    res <- httr2::resp_body_json(resp)
-    if (!(is.null(res$links))) {
-      purrr::map(res$links, tibble::as_tibble) %>%
-        purrr::list_rbind() %>%
-        dplyr::rename(link_name = head, link_url = url) %>%
-        dplyr::mutate(vol_id = vol_id)
-    }
+
+  if (is.null(links) || length(links) == 0) {
+    return(NULL)
   }
+
+  purrr::map_dfr(links, function(link) {
+    tibble::tibble(
+      link_id = link$id,
+      link_label = link$title,
+      link_url = link$url,
+      link_description = link$description,
+      link_release_level = link$release_level
+    )
+  })
 }

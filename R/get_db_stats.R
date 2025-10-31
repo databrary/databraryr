@@ -58,77 +58,28 @@ get_db_stats <- function(type = "stats",
     }
     rq <- databraryr::make_default_request()
   }
-  rq <- rq %>%
-    httr2::req_url(GET_ACTIVITY_DATA)
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd) {
-      if (vb)
-        message("Error retrieving Databrary '", type, "' stats.")
-      NULL
-    }
+  stats <- perform_api_get(
+    path = API_ACTIVITY_SUMMARY,
+    rq = rq,
+    vb = vb
   )
   
-  if (is.null(resp)) {
+  if (is.null(stats)) {
     message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
+    return(NULL)
   }
   
-  if (httr2::resp_status(resp) == 200) {
-    r <- httr2::resp_body_json(resp)
-    
-    if (type %in% c("stats", "numbers")) {
-      tibble::tibble(
-        date = Sys.time(),
-        investigators = unlist(r$stats$authorized[5]),
-        affiliates = unlist(r$stats$authorized[4]),
-        institutions = unlist(r$stats$authorized[6]),
-        datasets_total = r$stats$volumes,
-        datasets_shared = r$stats$shared,
-        n_files = r$stats$assets,
-        hours = r$stats$duration / (1000 * 60 * 60),
-        TB = r$stats$bytes / (1e12)
-      ) # seems incorrect
-    } else {
-      purrr::map(r$activity, process_db_activity_blob_item, type) |>
-        purrr::list_rbind()
-    }
-  }
-}
-
-#------------------------------------------------------------------------------
-process_db_activity_blob_item <- function(activity_blob, type) {
-  df <- activity_blob |>
-    purrr::flatten() |>
-    tibble::as_tibble()
-  
-  if (!is.null(df)) {
-    if (type %in% c("datasets", "volumes", "data")) {
-      if ("owners" %in% names(df)) {
-        df <- dplyr::filter(df, !is.na(df$id))
-      } else {
-        return(NULL)
-      }
-    } else if (type %in% c("institutions", "places")) {
-      if ("institution" %in% names(df)) {
-        df <- dplyr::filter(df, !is.na(df$id), !is.na(df$institution))
-      } else {
-        return(NULL)
-      }
-    } else if (type %in% c("people", "researchers", "investigators")) {
-      if ("affiliation" %in% names(df)) {
-        df <- dplyr::filter(
-          df,
-          !is.na(df$id),
-          !is.na(df$affiliation),
-          !is.na(df$sortname),
-          !is.na(df$prename)
-        )
-      } else {
-        return(NULL)
-      }
-    }
-    df
+  if (type %in% c("stats", "numbers")) {
+    tibble::tibble(
+      date = Sys.time(),
+      investors = stats$authorized_users,
+      datasets_total = stats$total_volumes,
+      datasets_shared = stats$public_volumes,
+      n_files = stats$total_files,
+      hours = stats$total_duration_hours,
+      TB = stats$total_storage_tb
+    )
+  } else {
+    tibble::as_tibble(stats$recent_activity)
   }
 }

@@ -2,33 +2,22 @@
 % Please edit documentation in R/list_authorized_investigators.R
 \name{list_authorized_investigators}
 \alias{list_authorized_investigators}
-\title{List Authorized Investigators at Institution}
+\title{List authorized investigators for an institution}
 \usage{
 list_authorized_investigators(
-  party_id = 12,
+  institution_id = 12,
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{party_id}{Target party ID.}
+\item{institution_id}{Institution identifier.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
-
-\item{rq}{An \code{httr2}-style request object. If NULL, then a new request will
-be generated using \code{make_default_request()}.}
 }
 \value{
-A data frame with information the institution's authorized
-investigators.
+Tibble of investigators; NULL if none.
 }
 \description{
-List Authorized Investigators at Institution
-}
-\examples{
-\donttest{
-\dontrun{
-list_institutional_affiliates() # Default is Penn State (party 12)
-}
-}
+List authorized investigators for an institution
 }

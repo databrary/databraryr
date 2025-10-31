@@ -28,72 +28,32 @@ get_session_by_id <-
            vol_id = 1,
            vb = options::opt("vb"),
            rq = NULL) {
-    
+
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id > 0)
     assertthat::assert_that(length(session_id) == 1)
-    
+
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
-    
+
     assertthat::assert_that(is.logical(vb))
     assertthat::assert_that(length(vb) == 1)
-    
-    assertthat::assert_that(is.null(rq) |
-                              ("httr2_request" %in% class(rq)))
-    
-    # Handle NULL rq
-    if (is.null(rq)) {
+
+    assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+
+    session <- perform_api_get(
+      path = sprintf(API_SESSION_DETAIL, vol_id, session_id),
+      rq = rq,
+      vb = vb
+    )
+
+    if (is.null(session)) {
       if (vb) {
-        message("\nNULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")  
+        message("Cannot access requested session ", session_id, " in volume ", vol_id)
       }
-      rq <- databraryr::make_default_request()
+      return(NULL)
     }
-    
-    #--------------------------------------------------------------------------
-    extract_session_metadata <- function(volume_json) {
-      
-      assertthat::assert_that(is.list(volume_json))
-      
-      extract_single_session <- function(i, sessions) {
-        this_session <- sessions$value[[i]]
-        tibble::tibble(id = this_session$id, top = this_session$top, name = this_session$name)
-      }
-      
-      these_sessions <- tibble::enframe(volume_json$containers)
-      n_sessions <- dim(these_sessions)[1]
-      purrr::map(1:n_sessions, extract_single_session, these_sessions) %>%
-        purrr::list_rbind()
-    }
-    #--------------------------------------------------------------------------
-    
-    volume_json <- NULL
-    volume_json <- get_volume_by_id(vol_id, vb, rq)
-    
-    if (!is.null(volume_json)) {
-      session_metadata <- extract_session_metadata(volume_json)
-      if (!(session_id %in% session_metadata$id)) {
-        if (vb) message("Session ", session_id, " not found.")
-        return(NULL)
-      } else {
-        rq <- rq %>%
-          httr2::req_url(sprintf(QUERY_SLOT, session_id))
-        resp <- tryCatch(
-          httr2::req_perform(rq),
-          httr2_error = function(cnd)
-            NULL
-        )
-        if (is.null(resp)) {
-          message("Cannot access requested resource on Databrary. Exiting.")
-          return(resp)
-        } else {
-          httr2::resp_body_json(resp) 
-        }
-      }
-    } else {
-      if (vb) message("No data returned from volume ", vol_id)
-      NULL
-    }
+
+    session
   }

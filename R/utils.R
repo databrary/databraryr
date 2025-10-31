@@ -10,6 +10,8 @@ NULL
 
 #' Get Duration (In ms) Of A File.
 #'
+#' @param vol_id Volume ID.
+#' @param session_id Session ID containing the asset.
 #' @param asset_id Asset number.
 #' @param types_w_durations Asset types that have valid durations.
 #' @param rq An `httr2` request object. Default is NULL.
@@ -20,152 +22,76 @@ NULL
 #'
 #' @examples
 #' \donttest{
-#' get_file_duration() # default is the test video from databrary.org/volume/1
+#' get_file_duration() # default is a public video from volume 1
 #' }
 #'
 #' @export
-get_file_duration <- function(asset_id = 1,
-                              types_w_durations = c("-600", "-800"),
+get_file_duration <- function(vol_id = 2,
+                              session_id = 9,
+                              asset_id = 2,
+                              types_w_durations = c(-600, -800),
                               vb = options::opt("vb"),
                               rq = NULL) {
+  assertthat::assert_that(is.numeric(vol_id))
+  assertthat::assert_that(vol_id > 0)
+  assertthat::assert_that(length(vol_id) == 1)
+
+  assertthat::assert_that(is.numeric(session_id))
+  assertthat::assert_that(session_id > 0)
+  assertthat::assert_that(length(session_id) == 1)
+
   assertthat::assert_that(is.numeric(asset_id))
   assertthat::assert_that(asset_id > 0)
   assertthat::assert_that(length(asset_id) == 1)
   
-  assertthat::assert_that(is.character(types_w_durations))
+  assertthat::assert_that(is.atomic(types_w_durations))
   
   assertthat::assert_that(is.logical(vb))
   assertthat::assert_that(length(vb) == 1)
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
-  # Handle NULL rq
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  rq <- rq %>%
-    httr2::req_url(sprintf(GET_ASSET_BY_ID, asset_id))
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd)
-      NULL
+
+  types_w_durations <- as.character(types_w_durations)
+
+  asset <- perform_api_get(
+    path = sprintf(API_SESSION_FILE_DETAIL, vol_id, session_id, asset_id),
+    rq = rq,
+    vb = vb
   )
-  if (is.null(resp)) {
+
+  if (is.null(asset)) {
     message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
-  } else {
-    asset_df <- httr2::resp_body_json(resp)
-    if (asset_df$format %in% types_w_durations) {
-      asset_df$duration
-    }
+    return(NULL)
   }
+
+  format <- asset$format
+  format_id_chr <- as.character(format$id)
+
+  if (!is.na(format_id_chr) && !(format_id_chr %in% types_w_durations)) {
+    if (vb) {
+      message("Asset format does not include duration metadata.")
+    }
+    return(NULL)
+  }
+
+  duration_value <- asset$duration
+
+  if (is.null(duration_value)) {
+    if (vb) {
+      message("Duration metadata not available for the requested asset.")
+    }
+    return(NULL)
+  }
+
+  duration_value <- suppressWarnings(as.numeric(duration_value))
+
+  if (is.na(duration_value)) {
+    return(NULL)
+  }
+
+  round(duration_value * 1000)
 }
-  
-  #----------------------------------------------------------------------------
-  #' Get Time Range For An Asset.
-  #'
-  #' @param vol_id Volume ID
-  #' @param session_id Slot/session number.
-  #' @param asset_id Asset number.
-  #' @param convert_JSON A Boolean value. If TRUE, convert JSON to a data 
-  #' frame. Default is TRUE.
-  #' @param segment_only A Boolean value. If TRUE, returns only the segment 
-  #' values. Otherwise returns
-  #' a data frame with two fields, segment and permission. Default is TRUE.
-  #' @param rq An `httr2` request object. Default is NULL.
-  #'
-  #' @returns The time range (in ms) for an asset, if one is indicated.
-  #'
-  #' @inheritParams options_params
-  #'
-  #' @examples
-  #' \donttest{
-  #' get_asset_segment_range()
-  #' }
-  #'
-  #' @export
-  get_asset_segment_range <- function(vol_id = 1,
-                                      session_id = 9807,
-                                      asset_id = 1,
-                                      convert_JSON = TRUE,
-                                      segment_only = TRUE,
-                                      vb = options::opt("vb"),
-                                      rq = NULL) {
-    assertthat::assert_that(is.numeric(vol_id))
-    assertthat::assert_that(vol_id > 0)
-    assertthat::assert_that(length(vol_id) == 1)
-    
-    assertthat::assert_that(is.numeric(session_id))
-    assertthat::assert_that(session_id > 0)
-    assertthat::assert_that(length(session_id) == 1)
-    
-    assertthat::assert_that(is.numeric(asset_id))
-    assertthat::assert_that(asset_id > 0)
-    assertthat::assert_that(length(asset_id) == 1)
-    
-    assertthat::assert_that(is.logical(convert_JSON))
-    assertthat::assert_that(length(convert_JSON) == 1)
-    
-    assertthat::assert_that(is.logical(convert_JSON))
-    assertthat::assert_that(length(convert_JSON) == 1)
-    
-    assertthat::assert_that(is.logical(segment_only))
-    assertthat::assert_that(length(segment_only) == 1)
-    
-    assertthat::assert_that(is.logical(vb))
-    assertthat::assert_that(length(vb) == 1)
-    
-    assertthat::assert_that(is.null(rq) |
-                              ("httr2_request" %in% class(rq)))
-    # Handle NULL rq
-    if (is.null(rq)) {
-      if (vb) {
-        message("NULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")
-      }
-      rq <- databraryr::make_default_request()
-    }
-    rq <- rq %>%
-      httr2::req_url(sprintf(
-        GET_ASSET_BY_VOLUME_SESSION_ID,
-        vol_id,
-        session_id,
-        asset_id
-      ))
-    
-    resp <- tryCatch(
-      httr2::req_perform(rq),
-      httr2_error = function(cnd)
-        NULL
-    )
-    if (is.null(resp)) {
-      message("Cannot access requested resource on Databrary. Exiting.")
-      return(resp)
-    } else {
-      asset_info <- httr2::resp_body_json(resp)
-      if (vb) {
-        message(
-          "Returning segment start & end times (in ms) from volume ",
-          vol_id,
-          ", session ",
-          session_id,
-          ", asset ",
-          asset_id
-        )
-      }
-      if (segment_only) {
-        asset_info$segment %>% unlist()
-      } else {
-        asset_info
-      }
-    }
-  }
   
   #----------------------------------------------------------------------------
   #' Extract Databrary Permission Levels.
@@ -180,10 +106,10 @@ get_file_duration <- function(asset_id = 1,
   #' }
   #'
   #' @export
-  get_permission_levels <- function(vb = options::opt("vb")) {
-    c <- assign_constants(vb = vb)
-    c$permission %>% unlist()
-  }
+get_permission_levels <- function(vb = options::opt("vb")) {
+  enums <- get_permission_levels_enums()
+  enums$volume_access_levels
+}
   
   #----------------------------------------------------------------------------
   #' Convert Timestamp String To ms.
@@ -227,8 +153,8 @@ get_file_duration <- function(asset_id = 1,
   #'
   #' @export
   get_release_levels <- function(vb = options::opt("vb")) {
-    c <- assign_constants(vb = vb)
-    c$release %>% unlist()
+  enums <- get_release_levels_enums()
+  vapply(enums$levels, function(item) item$code, character(1))
   }
   
   #----------------------------------------------------------------------------
@@ -246,87 +172,13 @@ get_file_duration <- function(asset_id = 1,
   #'
   #' @export
   get_supported_file_types <- function(vb = options::opt("vb")) {
-    c <- assign_constants(vb = vb)
-    ft <- Reduce(function(x, y)
-      merge(x, y, all = TRUE), c$format)
-    ft <- dplyr::rename(ft, asset_type = "name", asset_type_id = "id")
-    ft
-  }
-  
-  #----------------------------------------------------------------------------
-  #' Is This Party An Institution?
-  #'
-  #' @param party_id Databrary party ID
-  #' @param rq An `httr2` request object.
-  #'
-  #' @returns TRUE if the party is an institution, FALSE otherwise.
-  #'
-  #' @inheritParams options_params
-  #'
-  #' @examples
-  #' \donttest{
-  #' is_institution() # Is party 8 (NYU) an institution.
-  #' }
-  #'
-  #' @export
-  is_institution <- function(party_id = 8,
-                             vb = options::opt("vb"),
-                             rq = NULL) {
-    assertthat::assert_that(is.numeric(party_id))
-    assertthat::assert_that(party_id > 0)
-    assertthat::assert_that(length(party_id) == 1)
-    
-    assertthat::assert_that(is.logical(vb))
-    assertthat::assert_that(length(vb) == 1)
-    
-    assertthat::assert_that(is.null(rq) |
-                              ("httr2_request" %in% class(rq)))
-    
-    # Handle NULL rq
-    if (is.null(rq)) {
-      if (vb) {
-        message("NULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")
-      }
-      rq <- databraryr::make_default_request()
-    }
-    
-    party_info <- databraryr::get_party_by_id(party_id = party_id,
-                                              vb = vb,
-                                              rq = rq)
-    
-    if (("institution" %in% names(party_info)) &&
-        (!is.null(party_info[['institution']]))) {
-      TRUE
-    } else {
-      FALSE
-    }
-  }
-  
-  #----------------------------------------------------------------------------
-  #' Is This Party A Person?
-  #'
-  #' @param party_id Databrary party ID
-  #' @param rq An `httr2` request object.
-  #'
-  #' @returns TRUE if the party is a person, FALSE otherwise.
-  #'
-  #' @inheritParams options_params
-  #'
-  #' @examples
-  #' \donttest{
-  #' is_person()
-  #' }
-  #'
-  #' @export
-  is_person <- function(party_id = 7,
-                        vb = options::opt("vb"),
-                        rq = NULL) {
-    return(!is_institution(
-      party_id = party_id,
-      vb = vb,
-      rq = rq
-    ))
+  constants <- assign_constants(vb = vb)
+  constants$format_df |>
+    dplyr::rename(
+      asset_type = name,
+      asset_type_id = id,
+      asset_category = category
+    )
   }
   
   #----------------------------------------------------------------------------

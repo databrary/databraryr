@@ -5,13 +5,19 @@
 \title{Get Duration (In ms) Of A File.}
 \usage{
 get_file_duration(
-  asset_id = 1,
-  types_w_durations = c("-600", "-800"),
+  vol_id = 2,
+  session_id = 9,
+  asset_id = 2,
+  types_w_durations = c(-600, -800),
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
+\item{vol_id}{Volume ID.}
+
+\item{session_id}{Session ID containing the asset.}
+
 \item{asset_id}{Asset number.}
 
 \item{types_w_durations}{Asset types that have valid durations.}
@@ -28,7 +34,7 @@ Get Duration (In ms) Of A File.
 }
 \examples{
 \donttest{
-get_file_duration() # default is the test video from databrary.org/volume/1
+get_file_duration() # default is a public video from volume 1
 }
 
 }

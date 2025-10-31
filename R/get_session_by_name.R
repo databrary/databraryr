@@ -30,8 +30,9 @@ get_session_by_name <-
            vol_id = 1,
            vb = options::opt("vb"),
            rq = NULL) {
-    assertthat::is.string(session_name)
+    assertthat::assert_that(assertthat::is.string(session_name))
     assertthat::assert_that(length(session_name) == 1)
+    assertthat::assert_that(!is.na(session_name))
     
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
@@ -40,52 +41,21 @@ get_session_by_name <-
     assertthat::assert_that(is.logical(vb))
     assertthat::assert_that(length(vb) == 1)
     
-    assertthat::assert_that(is.null(rq) |
-                              ("httr2_request" %in% class(rq)))
+    assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
     
-    if (is.null(rq)) {
-      if (vb) {
-        message("\nNULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")
-      }
-      rq <- databraryr::make_default_request()
-    }
-    
-    #--------------------------------------------------------------------------
-    extract_session_metadata <- function(volume_json) {
-      assertthat::assert_that(is.list(volume_json))
-      
-      extract_single_session <- function(i, sessions) {
-        this_session <- sessions$value[[i]]
-        tibble::tibble(id = this_session$id,
-                       top = this_session$top,
-                       name = this_session$name)
-      }
-      
-      these_sessions <- tibble::enframe(volume_json$containers)
-      n_sessions <- dim(these_sessions)[1]
-      purrr::map(1:n_sessions, extract_single_session, these_sessions) %>%
-        purrr::list_rbind()
-    }
-    #--------------------------------------------------------------------------
-    
-    volume_json <- NULL
-    volume_json <- get_volume_by_id(vol_id, vb, rq)
-    session_metadata <- extract_session_metadata(volume_json)
-    
-    name <- NULL
-    name_matches <- dplyr::filter(session_metadata, name == session_name)
-    
-    if (is.null(name_matches)) {
-      message("No matches")
+    sessions <- collect_paginated_get(
+      path = sprintf(API_VOLUME_SESSIONS, vol_id),
+      params = list(search = session_name),
+      rq = rq,
+      vb = vb
+    )
+
+    if (is.null(sessions) || length(sessions) == 0) {
+      if (vb) message("No sessions named '", session_name, "' in volume ", vol_id)
       return(NULL)
     }
-    if (dim(name_matches)[1] == 0) {
-      message("Empty array")
-      return(NULL)
-    }
-    if (dim(name_matches)[1] > 1) {
-      message("\nMultiple sessions with name '", session_name, "'.")
-    }
-    purrr::map(name_matches$id, get_session_by_id, vol_id, rq = rq)
+
+    purrr::map(sessions, function(session) {
+      databraryr::get_session_by_id(session_id = session$id, vol_id = vol_id, vb = vb, rq = rq)
+    })
   }
