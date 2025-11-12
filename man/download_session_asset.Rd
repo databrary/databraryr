@@ -2,11 +2,12 @@
 % Please edit documentation in R/download_session_asset.R
 \name{download_session_asset}
 \alias{download_session_asset}
-\title{Download Asset From Databrary.}
+\title{Download an Asset via Signed Link.}
 \usage{
 download_session_asset(
-  asset_id = 1,
+  vol_id = 1,
   session_id = 9807,
+  asset_id = 1,
   file_name = NULL,
   target_dir = tempdir(),
   timeout_secs = REQUEST_TIMEOUT,
@@ -15,39 +16,41 @@ download_session_asset(
 )
 }
 \arguments{
-\item{asset_id}{An integer. Asset id for target file. Default is 1.}
+\item{vol_id}{Integer. Volume identifier. Default is 1.}
 
-\item{session_id}{An integer. Slot/session number where target file is
-stored. Default is 9807.}
+\item{session_id}{Integer. Session identifier. Default is 9807.}
 
-\item{file_name}{A character string. Name for downloaded file. Default is NULL.}
+\item{asset_id}{Integer. Asset identifier within the session. Default is 1.}
 
-\item{target_dir}{A character string. Directory to save the downloaded file.
-Default is a temporary directory given by a call to \code{tempdir()}.}
+\item{file_name}{Optional character string. Target file name. Defaults to the
+API-provided file name.}
 
-\item{timeout_secs}{An integer constant. The default value, defined in
-CONSTANTS.R is REQUEST_TIMEOUT. This value determines the default timeout
-value for the httr2 request object. When downloading large files, it can be
-useful to set this value to a large number.}
+\item{target_dir}{Character string. Directory where the file will be saved.
+Default is \code{tempdir()}.}
+
+\item{timeout_secs}{Numeric. Timeout (seconds) applied to the download
+request. Default is \code{REQUEST_TIMEOUT}.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
-\item{rq}{A list in the form of an \code{httr2} request object. Default is NULL.}
+\item{rq}{An \code{httr2} request object. Default is \code{NULL}, in which case a
+default authenticated request is generated.}
 }
 \value{
-Full file name to the asset or NULL.
+The path to the downloaded file (character string) or \code{NULL} if the
+download fails.
 }
 \description{
-Databrary stores file types (assets) of many types. This
-function downloads an asset based on its system-unique integer identifer
-(asset_id) and system-unique session (slot) identifier (session_id).
+Databrary serves assets through short-lived, signed URLs. This helper
+requests the signed link for a session asset and streams the file to the
+requested directory.
 }
 \examples{
 \donttest{
 \dontrun{
-download_session_asset() # Download's 'numbers' file from volume 1.
-download_session_asset(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
-# Downloads a display with a random dot kinematogram (RDK).
+download_session_asset() # Default public asset in volume 1
+download_session_asset(vol_id = 1, session_id = 9825, asset_id = 11643,
+                       file_name = "rdk.mp4")
 }
 }
 }

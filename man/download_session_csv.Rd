@@ -2,46 +2,44 @@
 % Please edit documentation in R/download_session_csv.R
 \name{download_session_csv}
 \alias{download_session_csv}
-\title{Download Session Spreadsheet As CSV}
+\title{Request a Session or Volume CSV Export.}
 \usage{
 download_session_csv(
   vol_id = 1,
-  file_name = "test.csv",
-  target_dir = tempdir(),
-  as_df = FALSE,
+  session_id = NULL,
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{vol_id}{An integer. Target volume number. Default is 1.}
+\item{vol_id}{Integer. Target volume identifier. Default is 1.}
 
-\item{file_name}{A character string. Name for the output file.
-Default is 'test.csv'.}
-
-\item{target_dir}{A character string. Directory to save downloaded file.
-Default is \code{tempdir()}.}
-
-\item{as_df}{A logical value. Convert the data from a list to a data frame.
-Default is FALSE.}
+\item{session_id}{Optional integer. When provided, requests a session-level
+CSV export. When \code{NULL}, a volume-level CSV export is requested.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
-\item{rq}{An \code{httr2} request object. Default is NULL.}
+\item{rq}{An \code{httr2} request object. Default is \code{NULL}, meaning a default
+authenticated request is generated.}
 }
 \value{
-A character string that is the name of the downloaded file or a
-data frame if \code{as_df} is TRUE.
+A list describing the processing task (\code{status}, \code{message},
+\code{task_id}) or \code{NULL} if the request fails.
 }
 \description{
-Databrary generates a CSV-formated spreadsheet that summarizes
-information about individual sessions. This command downloads that CSV file
-as a temporary file or with a name specified by the user.
+The Django API generates CSV reports asynchronously. This function queues a
+CSV export for a specific session when \code{session_id} is supplied, or for the
+entire volume when \code{session_id} is \code{NULL}. The API delivers the final signed
+download link via email once the export is ready.
 }
 \examples{
 \donttest{
 \dontrun{
-download_session_csv() # Downloads "session" CSV for volume 1
+# Request a volume-wide CSV export
+download_session_csv(vol_id = 1)
+
+# Request a session-specific CSV export
+download_session_csv(vol_id = 1, session_id = 9807)
 }
 }
 

@@ -3,18 +3,18 @@
 #'
 NULL
 
-#' Download an Asset via Signed Link.
+#' Download a Folder Asset via Signed Link.
 #'
 #' @description
-#' Databrary serves assets through short-lived, signed URLs. This helper
-#' requests the signed link for a session asset and streams the file to the
-#' requested directory.
+#' Databrary serves folder-scoped assets through signed URLs. This helper
+#' requests the signed link for a folder asset and streams the file to the
+#' specified directory.
 #'
-#' @param vol_id Integer. Volume identifier. Default is 1.
-#' @param session_id Integer. Session identifier. Default is 9807.
-#' @param asset_id Integer. Asset identifier within the session. Default is 1.
-#' @param file_name Optional character string. Target file name. Defaults to the
-#'   API-provided file name.
+#' @param vol_id Integer. Volume identifier containing the folder. Default is 1.
+#' @param folder_id Integer. Folder identifier within the volume. Default is 1.
+#' @param asset_id Integer. Asset identifier within the folder. Default is 1.
+#' @param file_name Optional character string. File name to use when saving the
+#'   asset. Defaults to the API-provided file name.
 #' @param target_dir Character string. Directory where the file will be saved.
 #'   Default is `tempdir()`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
@@ -30,27 +30,28 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' download_session_asset() # Default public asset in volume 1
-#' download_session_asset(vol_id = 1, session_id = 9825, asset_id = 11643,
-#'                        file_name = "rdk.mp4")
+#' download_folder_asset() # Default public asset in folder 1 of volume 1
+#' download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3,
+#'                       file_name = "example.mp4")
 #' }
 #' }
+#'
 #' @export
-download_session_asset <- function(vol_id = 1,
-                                   session_id = 9807,
-                                   asset_id = 1,
-                                   file_name = NULL,
-                                   target_dir = tempdir(),
-                                   timeout_secs = REQUEST_TIMEOUT,
-                                   vb = options::opt("vb"),
-                                   rq = NULL) {
+download_folder_asset <- function(vol_id = 1,
+                                  folder_id = 1,
+                                  asset_id = 1,
+                                  file_name = NULL,
+                                  target_dir = tempdir(),
+                                  timeout_secs = REQUEST_TIMEOUT,
+                                  vb = options::opt("vb"),
+                                  rq = NULL) {
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
 
-  assertthat::assert_that(length(session_id) == 1)
-  assertthat::assert_that(is.numeric(session_id))
-  assertthat::assert_that(session_id >= 1)
+  assertthat::assert_that(length(folder_id) == 1)
+  assertthat::assert_that(is.numeric(folder_id))
+  assertthat::assert_that(folder_id >= 1)
 
   assertthat::assert_that(length(asset_id) == 1)
   assertthat::assert_that(is.numeric(asset_id))
@@ -74,7 +75,7 @@ download_session_asset <- function(vol_id = 1,
 
   assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
 
-  path <- sprintf(API_FILES_DOWNLOAD_LINK, vol_id, session_id, asset_id)
+  path <- sprintf(API_FOLDER_FILE_DOWNLOAD_LINK, vol_id, folder_id, asset_id)
   link <- request_signed_download_link(path = path, rq = rq, vb = vb)
 
   if (is.null(link)) {
@@ -87,7 +88,7 @@ download_session_asset <- function(vol_id = 1,
     link$file_name
   } else {
     paste0(
-      session_id,
+      folder_id,
       "-",
       asset_id,
       "-",
@@ -121,3 +122,6 @@ download_session_asset <- function(vol_id = 1,
     vb = vb
   )
 }
+
+
+
