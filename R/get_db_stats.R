@@ -70,16 +70,23 @@ get_db_stats <- function(type = "stats",
   }
   
   if (type %in% c("stats", "numbers")) {
+    # Map new API field names to output
     tibble::tibble(
       date = Sys.time(),
-      investors = stats$authorized_users,
-      datasets_total = stats$total_volumes,
-      datasets_shared = stats$public_volumes,
-      n_files = stats$total_files,
-      hours = stats$total_duration_hours,
-      TB = stats$total_storage_tb
+      institutions = if (!is.null(stats$institutions)) stats$institutions else NA_integer_,
+      affiliates = if (!is.null(stats$affiliates)) stats$affiliates else NA_integer_,
+      investigators = if (!is.null(stats$investigators)) stats$investigators else NA_integer_,
+      hours_of_recordings = if (!is.null(stats$hours_of_recordings)) stats$hours_of_recordings else NA_integer_,
+      # Legacy fields (may not be present in new API)
+      authorized_users = if (!is.null(stats$authorized_users)) stats$authorized_users else NA_integer_,
+      total_volumes = if (!is.null(stats$total_volumes)) stats$total_volumes else NA_integer_,
+      public_volumes = if (!is.null(stats$public_volumes)) stats$public_volumes else NA_integer_,
+      total_files = if (!is.null(stats$total_files)) stats$total_files else NA_integer_,
+      total_duration_hours = if (!is.null(stats$total_duration_hours)) stats$total_duration_hours else NA_real_,
+      total_storage_tb = if (!is.null(stats$total_storage_tb)) stats$total_storage_tb else NA_real_
     )
   } else {
-    tibble::as_tibble(stats$recent_activity)
+    # For other types, return the raw stats as a tibble
+    tibble::as_tibble(stats)
   }
 }
