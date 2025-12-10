@@ -41,6 +41,7 @@ API_SEARCH_USERS <- "/search/users/"
 API_SEARCH_INSTITUTIONS <- "/search/institutions/"
 API_FUNDERS <- "/funders/"
 API_FUNDER_DETAIL <- "/funders/%s/"
+API_TAG_DETAIL <- "/tags/%s/"
 
 RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1  # seconds
