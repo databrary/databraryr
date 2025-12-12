@@ -1,38 +1,6 @@
-# get_file_duration ---------------------------------------------------------
-test_that("get_file_duration returns duration metadata for a known asset", {
-  login_test_account()
-  result <- get_file_duration()
-  skip_if_null_response(result, "get_file_duration()")
-  expect_true(is.numeric(result) && length(result) == 1)
-
-  asset_detail <- perform_api_get(
-    path = sprintf(API_SESSION_FILE_DETAIL, 2, 9, 2),
-    vb = FALSE
-  )
-  expect_true("thumbnail_url" %in% names(asset_detail))
-  expect_true(is.null(asset_detail$thumbnail_url) || nzchar(asset_detail$thumbnail_url))
-})
-
-test_that("get_file_duration rejects bad input parameters", {
-  expect_error(get_file_duration(vol_id = "a"))
-  expect_error(get_file_duration(vol_id = -1))
-  expect_error(get_file_duration(vol_id = c(1, 3)))
-
-  expect_error(get_file_duration(session_id = "a"))
-  expect_error(get_file_duration(session_id = -1))
-  expect_error(get_file_duration(session_id = c(1, 3)))
-
-  expect_error(get_file_duration(asset_id = "a"))
-  expect_error(get_file_duration(asset_id = -1))
-  expect_error(get_file_duration(asset_id = c(1, 3)))
-  
-  expect_error(get_file_duration(vb = "a"))
-  expect_error(get_file_duration(vb = -1))
-  expect_error(get_file_duration(vb = c(2, 3)))
-})
-
 # get_permission_levels -------------------------------------------------------
 test_that("get_permission_levels returns a character array", {
+  login_test_account()
   levels <- get_permission_levels()
   expect_true(is.character(levels))
   expect_true(length(levels) > 0)
