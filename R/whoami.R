@@ -34,10 +34,16 @@ whoami <- function(refresh = TRUE, vb = options::opt("vb")) {
   }
 
   resp <- tryCatch(
-    httr2::req_url(req, OAUTH_TEST_URL) |>
+    req |>
+      httr2::req_url(OAUTH_TEST_URL) |>
+      httr2::req_headers(`Content-Type` = "application/json") |>
       httr2::req_perform(),
     error = function(err) {
-      if (vb) message("whoami request failed: ", conditionMessage(err))
+      if (vb) {
+        message("whoami request failed: ", conditionMessage(err))
+        message("whoami -> request url: ", OAUTH_TEST_URL)
+        message("whoami -> authorization header: ", if (!is.null(req$headers$Authorization)) req$headers$Authorization else "<missing>")
+      }
       NULL
     }
   )

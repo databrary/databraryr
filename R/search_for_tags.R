@@ -32,27 +32,25 @@ search_for_tags <-
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
     
-    if (is.null(rq)) {
-      if (vb) {
-        message("NULL request object. Will generate default.")
-        message("Not logged in. Only public information will be returned.")  
-      }
-      rq <- databraryr::make_default_request()
-    }
-    rq <- rq |>
-      httr2::req_url(sprintf(QUERY_TAGS, search_string))
-    
-    resp <- tryCatch(
-      httr2::req_perform(rq),
-      httr2_error = function(cnd) {
-        NULL
-      }
+  results <- collect_paginated_get(
+    path = API_SEARCH_VOLUMES,
+    params = list(tag = search_string),
+    rq = rq,
+    vb = vb
+  )
+
+  if (is.null(results) || length(results) == 0) {
+    if (vb) message("No volumes tagged '", search_string, "'.")
+    return(NULL)
+  }
+  
+  purrr::map_dfr(results, function(entry) {
+    tibble::tibble(
+      vol_id = entry$id,
+      vol_title = entry$title,
+      vol_sharing_level = entry$sharing_level,
+      vol_tags = list(entry$tags),
+      score = entry$score
     )
-    
-    if (!is.null(resp)) {
-      httr2::resp_body_string(resp)
-    } else {
-      resp
-    }
-    #TODO: Reformat search data; handle multiple tags (separate with '+')
+  })
   }

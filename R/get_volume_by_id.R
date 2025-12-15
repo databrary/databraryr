@@ -33,28 +33,43 @@ get_volume_by_id <- function(vol_id = 1,
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
   
-  # Handle NULL rq
-  if (is.null(rq)) {
-    if (vb) {
-      message("\nNULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  rq <- rq %>%
-    httr2::req_url(sprintf(GET_VOL_BY_ID, vol_id))
-  
   if (vb)
     message("Retrieving data for vol_id ", vol_id, ".")
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd)
-      NULL
+
+  volume <- perform_api_get(
+    path = sprintf(API_VOLUME_DETAIL, vol_id),
+    rq = rq,
+    vb = vb
   )
-  if (is.null(resp)) {
+
+  if (is.null(volume)) {
     message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
-  } else {
-    httr2::resp_body_json(resp)
+    return(NULL)
   }
+
+  tibble::tibble(
+    id = volume$id,
+    updated_at = volume$updated_at,
+    created_at = volume$created_at,
+    title = volume$title,
+    description = purrr::pluck(volume, "description", .default = NA_character_),
+    short_name = purrr::pluck(volume, "short_name", .default = NA_character_),
+    owner_connection = list(purrr::pluck(volume, "owner_connection", .default = NULL)),
+    owner_institution = list(volume$owner_institution),
+    sharing_level = volume$sharing_level,
+    access_level = volume$access_level,
+    has_admin_access = purrr::pluck(volume, "has_admin_access", .default = NA),
+    fundings = list(purrr::pluck(volume, "fundings", .default = NULL)),
+    coauthors = list(purrr::pluck(volume, "coauthors", .default = NULL)),
+    links = list(purrr::pluck(volume, "links", .default = NULL)),
+    enabled_categories = list(purrr::pluck(volume, "enabled_categories", .default = NULL)),
+    enabled_metrics = list(purrr::pluck(volume, "enabled_metrics", .default = NULL)),
+    citation = list(purrr::pluck(volume, "citation", .default = NULL)),
+    session_count = volume$session_count,
+    session_count_shared = volume$session_count_shared,
+    participant_count = purrr::pluck(volume, "participant_count", .default = NA_integer_),
+    participant_gender_counts = list(purrr::pluck(volume, "participant_gender_counts", .default = NULL)),
+    file_counts = list(volume$file_counts),
+    thumbnail = list(purrr::pluck(volume, "thumbnail", .default = NULL))
+  )
 }

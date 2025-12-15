@@ -4,7 +4,7 @@
 \alias{list_volume_activity}
 \title{List Activity In A Databrary Volume}
 \usage{
-list_volume_activity(vol_id = 1, vb = options::opt("vb"), rq = NULL)
+list_volume_activity(vol_id = 1892, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{vol_id}{Selected volume number.}
@@ -26,7 +26,7 @@ history of the volume as a
 # The following will only return output if the user has write privileges
 # on the volume.
 
-list_volume_activity(vol_id = 1) # Activity on volume 1.
+list_volume_activity(vol_id = 1892) # Activity on volume 1892.
 }
 }
 }

@@ -5,8 +5,8 @@
 \title{List Assets in a Session from a Databrary volume.}
 \usage{
 list_volume_session_assets(
-  vol_id = 1,
-  session_id = 9807,
+  vol_id = 2,
+  session_id = 11,
   vb = options::opt("vb"),
   rq = NULL
 )
@@ -36,7 +36,7 @@ ID.
 \examples{
 \donttest{
 \dontrun{
-list_volume_session_assets() # Session 9807 in volume 1
+list_volume_session_assets() # Defaults to session 11 in volume 2
 }
 }
 }

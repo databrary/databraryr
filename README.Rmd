@@ -65,6 +65,29 @@ library(databraryr)
 login_db()
 
 whoami()
+
+get_db_stats()
+#> # A tibble: 1 × 1
+#>   date               
+#>   <dttm>             
+#> 1 2025-10-31 12:05:57
+
+list_volume_assets() |> 
+  head()
+#> # A tibble: 6 × 17
+#>   asset_id asset_name                asset_permission asset_size
+#>      <int> <chr>                     <chr>                 <dbl>
+#> 1     9826 Introduction              public             88610655
+#> 2     9828 Databrary demo            public            917124852
+#> 3     9830 Databrary 1               public            899912341
+#> 4     9832 Datavyu                   public            764340542
+#> 5    22412 Slides                    public              4573426
+#> 6     9834 Overview and Policy Upda… public           1301079971
+#> # ℹ 12 more variables: asset_mime_type <chr>, asset_format_id <int>,
+#> #   asset_format_name <chr>, asset_created_at <chr>, asset_updated_at <chr>,
+#> #   asset_sha1 <chr>, session_id <int>, session_name <chr>,
+#> #   session_date <chr>, session_release <chr>, asset_uploader_id <int>,
+#> #   asset_uploader_first_name <chr>, asset_uploader_last_name <chr>
 ```
 
 ## Lifecycle

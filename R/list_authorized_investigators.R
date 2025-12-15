@@ -1,69 +1,30 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
-#' List Authorized Investigators at Institution
+#' List authorized investigators for an institution
 #'
-#' @param party_id Target party ID.
-#' @param rq An `httr2`-style request object. If NULL, then a new request will
-#' be generated using `make_default_request()`.
+#' @inheritParams list_institution_affiliates
 #'
-#' @returns A data frame with information the institution's authorized 
-#' investigators.
-#'
-#' @inheritParams options_params
-#'
-#' @examples
-#' \donttest{
-#' \dontrun{
-#' list_institutional_affiliates() # Default is Penn State (party 12)
-#' }
-#' }
+#' @return Tibble of investigators; NULL if none.
 #' @export
-list_authorized_investigators <- function(party_id = 12,
+list_authorized_investigators <- function(institution_id = 12,
                                           vb = options::opt("vb"),
                                           rq = NULL) {
-  assertthat::is.number(party_id)
-  assertthat::assert_that(is.numeric(party_id))
-  assertthat::assert_that(party_id >= 1)
-  assertthat::assert_that(length(party_id) == 1)
-  
-  assertthat::assert_that(is.logical(vb))
-  assertthat::assert_that(length(vb) == 1)
-  
-  assertthat::assert_that(is.null(rq) |
-                            ("httr2_request" %in% class(rq)))
-  
-  # Handle NULL rq
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  
-  this_party <- databraryr::get_party_by_id(party_id, vb = vb, rq = rq)
-  
-  if (is.null(this_party)) {
-    if (vb)
-      message("No data for party ", party_id)
+  assertthat::assert_that(is.numeric(institution_id), length(institution_id) == 1, institution_id > 0)
+  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+
+  affiliates <- list_institution_affiliates(institution_id, vb = vb, rq = rq)
+  if (is.null(affiliates)) {
     return(NULL)
   }
-  
-  if (!("institution" %in% names(this_party))) {
-    if (vb)
-      message("Party ", party_id, " not an institution.")
+
+  investigators <- affiliates |> dplyr::filter(.data$role == "investigator")
+  if (nrow(investigators) == 0) {
     return(NULL)
   }
-  
-  if (dim(as.data.frame(this_party$children))[1] == 0) {
-    if (vb)
-      message("Party ", party_id, " has no affiliates.")
-    return(NULL)
-  }
-  
-  purrr::map(this_party$children, as.data.frame, .progress = TRUE) %>%
-    purrr::list_rbind()
+  investigators
 }
+
