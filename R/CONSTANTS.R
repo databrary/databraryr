@@ -2,6 +2,8 @@
 #'
 #'
 
+# Legacy endpoints (temporary until all functions migrated) -------------------
+
 API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
 
 CREATE_SLOT <-
@@ -47,8 +49,8 @@ GET_ASSET_BY_ID <- "https://nyu.databrary.org/api/asset/%s"
 GET_ASSET_BY_VOLUME_SESSION_ID <- 
   "https://nyu.databrary.org/api/volume/%s/slot/%s/asset/%s"
 
-LOGIN <- "https://nyu.databrary.org/api/user/login"
-LOGOUT <- "https://nyu.databrary.org/api/user/logout"
+# LOGIN <- "https://nyu.databrary.org/api/user/login"
+# LOGOUT <- "https://nyu.databrary.org/api/user/logout"
 
 QUERY_SLOT <-
   "https://nyu.databrary.org/api/slot/%s/-?records&assets&excerpts&tags&comments"
@@ -62,9 +64,9 @@ UPLOAD_CHUNK <- "https://nyu.databrary.org/api/upload"
 UPDATE_SLOT <- "https://nyu.databrary.org/api/slot/%s"
 
 # Authentication parameters
-USER_AGENT <-
-  "databraryr (https://cran.r-project.org/package=databraryr)"
-KEYRING_SERVICE <- 'org.databrary.databraryr'
+# USER_AGENT <-
+#   "databraryr (https://cran.r-project.org/package=databraryr)"
+# KEYRING_SERVICE <- 'org.databrary.databraryr'
 
 # httr2 request parameters
 RETRY_LIMIT <- 3
@@ -72,3 +74,17 @@ RETRY_WAIT_TIME <- 1  # seconds
 RETRY_BACKOFF <- 2  # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
 REQUEST_TIMEOUT_VERY_LONG <- 600
+
+# Base host -----------------------------------------------------------------
+
+DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.stg-databrary.its.nyu.edu")
+
+# OAuth endpoints -------------------------------------------------------------
+
+OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
+OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
+
+# Authentication parameters ---------------------------------------------------
+
+USER_AGENT <- Sys.getenv("USER_AGENT", "SRW$*Kxy2nYdyo4LozoGV#i6LvH/")
+KEYRING_SERVICE <- 'org.databrary.databraryr'

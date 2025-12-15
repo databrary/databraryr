@@ -2,15 +2,29 @@
 % Please edit documentation in R/make_default_request.R
 \name{make_default_request}
 \alias{make_default_request}
-\title{Set default httr request parameters.}
+\title{Set base request defaults for Databrary API.}
 \usage{
-make_default_request()
+make_default_request(
+  with_token = TRUE,
+  refresh = TRUE,
+  vb = options::opt("vb")
+)
+}
+\arguments{
+\item{with_token}{Should the request include an OAuth2 \code{Authorization} header?
+Defaults to \code{TRUE} since all API calls now require authentication.}
+
+\item{refresh}{When \code{with_token = TRUE}, determines whether to refresh the
+cached token if it is near expiry. Defaults to \code{TRUE}.}
+
+\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 }
 \value{
-An \code{httr2} request object.
+An \code{httr2_request} object configured for the Databrary API.
 }
 \description{
-\code{make_default_request} sets default parameters for httr requests.
+Creates an \code{httr2} request with the package's default options, including
+base URL, user agent, Accept header, and timeout tuned for the Django API.
 }
 \examples{
 make_default_request()

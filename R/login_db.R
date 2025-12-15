@@ -1,25 +1,20 @@
-#' @eval options::as_params()
-#' @name options_params
-#' 
-NULL
-
 #' Log In To Databrary.org.
 #'
 #' @param email Databrary account email address.
 #' @param password Databrary password (not recommended as it will displayed 
 #' as you type)
-#' @param store A boolean value. If TRUE store/retrieve credentials from the 
-#' system keyring/keychain.
-#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ 
-#' update stored credentials in keyring/keychain.
-#' @param SERVICE A character label for stored credentials in the keyring. 
-#' Default is "databrary"
-#' @param rq An `http` request object. Defaults to NULL.
-#' 
+#' @param client_id OAuth2 client identifier.
+#' @param client_secret OAuth2 client secret.
+#' @param store A boolean value. If TRUE store/retrieve credentials from the
+#'   system keyring/keychain.
+#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/
+#'   update stored credentials in keyring/keychain.
+#' @param SERVICE A character label for stored credentials in the keyring.
+#'   Default is `org.databrary.databraryr`.
+#' @param vb Show verbose messages.
+#'
 #' @returns Logical value indicating whether log in is successful or not.
-#' 
-#' @inheritParams options_params
-#' 
+#'
 #' @examplesIf interactive()
 #' login_db() # Queries user for email and password interactively.
 #' @examples
@@ -34,145 +29,92 @@ NULL
 #' @export
 login_db <- function(email = NULL,
                      password = NULL,
+                     client_id = NULL,
+                     client_secret = NULL,
                      store = FALSE,
                      overwrite = FALSE,
-                     vb = options::opt("vb"),
                      SERVICE = KEYRING_SERVICE,
-                     rq = NULL) {
-  # Check parameters
-  assertthat::assert_that(length(store) == 1)
-  assertthat::assert_that(is.logical(store))
-  
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  assertthat::assert_that(length(SERVICE) == 1)
-  assertthat::assert_that(is.character(SERVICE))
-  
-  assertthat::assert_that(is.null(rq) |
-                            ("httr2_request" %in% class(rq)))
-  # Handle NULL request
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  
+                     vb = options::opt("vb")) {
+  assertthat::assert_that(length(store) == 1, is.logical(store))
+  assertthat::assert_that(length(overwrite) == 1, is.logical(overwrite))
+  assertthat::assert_that(length(vb) == 1, is.logical(vb))
+  assertthat::assert_that(length(SERVICE) == 1, is.character(SERVICE))
+
   # If the user wants to store or use their stored credentials, 
   # check for keyring support
   if (store) {
     assertthat::assert_that(keyring::has_keyring_support(),
                             msg = "No keyring support; please use store=FALSE")
   }
-  
-  # Check or get email
-  if (!is.null(email)) {
-    assertthat::assert_that(assertthat::is.string(email))
-  } else {
-    message("Please enter your Databrary user ID (email).")
-    email <- readline(prompt = "Email: ")
-  }
-  
-  do_collect_password <- TRUE
-  
-  if (!is.null(password)) {
-    assertthat::assert_that(assertthat::is.string(password))
-    do_collect_password <- FALSE
-  }
-  
-  # If the user wants to store or use their stored credentials and
-  # doesn't provide a password
-  if (store && is.null(password) && !overwrite) {
-    if (vb)
-      message("Retrieving password for service='",
-              SERVICE,
-              "' from keyring.")
-    kl <- keyring::key_list(service = SERVICE)
-    # Make sure our service is in the keyring
-    if (exists('kl') && is.data.frame(kl)) {
-      # If it is under the email entered, keep it to try later and not 
-      # collect it here
-      password <-
-        try(keyring::key_get(service = SERVICE, username = email),
-            silent = TRUE)
-      if ("try-error" %in% class(password)) {
-        do_collect_password <- TRUE
-        if (vb)
-          message("No password found in keyring for service='", SERVICE, ".")
-      } else {
-        do_collect_password <- FALSE
-        if (vb)
-          message("Password retrieved from keyring.")
-      }
-    } else {
-      if (vb)
-        message("Error retrieving keyring data for service='",
-                SERVICE,
-                "'.")
-    }
-  }
-  
-  # If we need to, securely collect the password
-  if (do_collect_password) {
-    password <-
-      getPass::getPass("Please enter your Databrary password ")
-  }
-  
-  is_login_successful <- FALSE
-  
-  if (is.null(rq))
-    rq <- make_default_request()
-  
-  rq <- rq %>%
-    httr2::req_url(LOGIN) %>%
-    httr2::req_body_json(list(email = email, password = password))
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd)
-      NULL
+
+  email_value <- resolve_credential_value(
+    label = "email",
+    value = email,
+    prompt_label = "Databrary user ID (email)",
+    service = SERVICE,
+    overwrite = overwrite,
+    vb = vb
   )
-  
-  if (!is.null(resp) & httr2::resp_status(resp) == 200) {
-    is_login_successful <- TRUE
+
+  password_value <- resolve_secret_value(
+    label = "password",
+    value = password,
+    prompt_label = "Databrary password",
+    service = SERVICE,
+    username = paste0(email_value, "::password"),
+    overwrite = overwrite,
+    vb = vb
+  )
+
+  client_id_value <- resolve_credential_value(
+    label = "client_id",
+    value = client_id,
+    prompt_label = "OAuth client ID",
+    service = SERVICE,
+    username = paste0(email_value, "::client_id"),
+    overwrite = overwrite,
+    vb = vb
+  )
+
+  client_secret_value <- resolve_secret_value(
+    label = "client_secret",
+    value = client_secret,
+    prompt_label = "OAuth client secret",
+    service = SERVICE,
+    username = paste0(email_value, "::client_secret"),
+    overwrite = overwrite,
+    vb = vb
+  )
+
+  token <- oauth_password_grant(
+    username = email_value,
+    password = password_value,
+    client_id = client_id_value,
+    client_secret = client_secret_value,
+    vb = vb
+  )
+
+  if (is.null(token)) {
+    if (vb) message("Login failed; see previous messages for details.")
+    return(FALSE)
   }
-  
-  # If the username/password was successful and the user wanted to 
-  # store their credentials
-  
-  # Store them in the keyring
-  if (is_login_successful) {
-    if (store && (do_collect_password || overwrite)) {
-      keyring::key_set_with_value(service = SERVICE,
-                                  username = email,
-                                  password = password)
-      if (vb)
-        message(paste0("Login successful; password stored in keyring/keychain"))
-    } else {
-      if (vb)
-        message(paste("Login successful."))
-    }
-    return(TRUE)
-  }
-  
+
+  set_token_bundle(
+    access_token = token$access_token,
+    refresh_token = token$refresh_token,
+    expires_in = token$expires_in,
+    issued_at = Sys.time(),
+    client_id = client_id_value,
+    client_secret = client_secret_value,
+    username = email_value
+  )
+
   if (store) {
-    if (vb)
-      message(
-        paste0(
-          'Login failed; nothing stored in keyring; HTTP status ',
-          httr2::resp_status(resp),
-          '\n'
-        )
-      )
-  } else {
-    if (vb)
-      message(paste0('Login failed; HTTP status ', 
-                     httr2::resp_status(resp), '\n'))
+    store_keyring_value(service = SERVICE, username = paste0(email_value, "::password"), value = password_value, vb = vb)
+    store_keyring_value(service = SERVICE, username = paste0(email_value, "::client_id"), value = client_id_value, vb = vb)
+    store_keyring_value(service = SERVICE, username = paste0(email_value, "::client_secret"), value = client_secret_value, vb = vb)
   }
-  
-  return(FALSE)
+
+  if (vb) message("Login successful.")
+  TRUE
 }
