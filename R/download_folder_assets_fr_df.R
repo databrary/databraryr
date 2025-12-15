@@ -3,19 +3,19 @@
 #'
 NULL
 
-#' Download Multiple Assets From a Session Data Frame.
+#' Download Multiple Assets From a Folder Data Frame.
 #'
 #' @description
-#' Iterates over a data frame of session assets, requesting signed download
-#' links for each asset and saving them to disk. Designed to work with
-#' `list_session_assets()` or `list_volume_session_assets()` output.
+#' Iterates over a data frame of folder assets, requesting signed download links
+#' for each asset and saving them to disk. Designed to work with
+#' `list_folder_assets()` output.
 #'
-#' @param session_df Data frame describing assets. Must include `vol_id`,
-#'   `session_id`, `asset_id`, and `asset_name` columns.
+#' @param folder_df Data frame describing assets. Must include `vol_id`,
+#'   `folder_id`, `asset_id`, and `asset_name` columns.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
-#' @param add_session_subdir Logical. When `TRUE`, creates a subdirectory per
-#'   session inside `target_dir`.
+#' @param add_folder_subdir Logical. When `TRUE`, creates a subdirectory per
+#'   folder inside `target_dir`.
 #' @param overwrite Logical. When `FALSE`, the function aborts if the target
 #'   directory already exists.
 #' @param make_portable_fn Logical. When `TRUE`, filenames are sanitized via
@@ -32,26 +32,27 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' assets <- list_session_assets(vol_id = 1, session_id = 9807)
-#' download_session_assets_fr_df(assets, vb = TRUE)
+#' assets <- list_folder_assets(folder_id = 1, vol_id = 1)
+#' download_folder_assets_fr_df(assets, vb = TRUE)
 #' }
 #' }
+#'
 #' @export
-download_session_assets_fr_df <-
-  function(session_df = list_session_assets(),
+download_folder_assets_fr_df <-
+  function(folder_df = list_folder_assets(vol_id = 1),
            target_dir = tempdir(),
-           add_session_subdir = TRUE,
+           add_folder_subdir = TRUE,
            overwrite = TRUE,
            make_portable_fn = FALSE,
            timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
            vb = options::opt("vb"),
            rq = NULL) {
-    assertthat::assert_that(is.data.frame(session_df))
-    required_cols <- c("vol_id", "session_id", "asset_id", "asset_name")
-    missing_cols <- setdiff(required_cols, names(session_df))
+    assertthat::assert_that(is.data.frame(folder_df))
+    required_cols <- c("vol_id", "folder_id", "asset_id", "asset_name")
+    missing_cols <- setdiff(required_cols, names(folder_df))
     if (length(missing_cols) > 0) {
       stop(
-        "session_df is missing required columns: ",
+        "folder_df is missing required columns: ",
         paste(missing_cols, collapse = ", "),
         call. = FALSE
       )
@@ -71,8 +72,8 @@ download_session_assets_fr_df <-
     }
     assertthat::is.writeable(target_dir)
 
-    assertthat::assert_that(length(add_session_subdir) == 1)
-    assertthat::assert_that(is.logical(add_session_subdir))
+    assertthat::assert_that(length(add_folder_subdir) == 1)
+    assertthat::assert_that(is.logical(add_folder_subdir))
 
     assertthat::assert_that(length(overwrite) == 1)
     assertthat::assert_that(is.logical(overwrite))
@@ -90,15 +91,15 @@ download_session_assets_fr_df <-
     assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
 
     if (vb) {
-      message("Downloading n=", nrow(session_df), " files to ", target_dir)
+      message("Downloading n=", nrow(folder_df), " files to ", target_dir)
     }
 
     purrr::map(
-      seq_len(nrow(session_df)),
-      download_single_session_asset_fr_df,
-      session_df = session_df,
+      seq_len(nrow(folder_df)),
+      download_single_folder_asset_fr_df,
+      folder_df = folder_df,
       target_dir = target_dir,
-      add_session_subdir = add_session_subdir,
+      add_folder_subdir = add_folder_subdir,
       overwrite = overwrite,
       make_portable_fn = make_portable_fn,
       timeout_secs = timeout_secs,
@@ -108,3 +109,6 @@ download_session_assets_fr_df <-
     ) |>
       purrr::list_c()
   }
+
+
+
