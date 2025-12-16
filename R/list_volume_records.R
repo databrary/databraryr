@@ -34,24 +34,30 @@ NULL
 #' }
 #' }
 #' @export
-list_volume_records <- function(vol_id = 1,
-                                 category_id = NULL,
-                                 vb = options::opt("vb"),
-                                 rq = NULL) {
+list_volume_records <- function(
+  vol_id = 1,
+  category_id = NULL,
+  vb = options::opt("vb"),
+  rq = NULL
+) {
   # Validate vol_id
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(vol_id == floor(vol_id),
-                          msg = "vol_id must be an integer")
+  assertthat::assert_that(
+    vol_id == floor(vol_id),
+    msg = "vol_id must be an integer"
+  )
 
   # Validate category_id
   if (!is.null(category_id)) {
     assertthat::assert_that(length(category_id) == 1)
     assertthat::assert_that(is.numeric(category_id))
     assertthat::assert_that(category_id > 0)
-    assertthat::assert_that(category_id == floor(category_id),
-                            msg = "category_id must be an integer")
+    assertthat::assert_that(
+      category_id == floor(category_id),
+      msg = "category_id must be an integer"
+    )
   }
 
   # Validate vb
@@ -94,13 +100,41 @@ list_volume_records <- function(vol_id = 1,
     age_is_blurred <- NA
 
     if (!is.null(record$age)) {
-      age_years <- if (!is.null(record$age$years)) record$age$years else NA_integer_
-      age_months <- if (!is.null(record$age$months)) record$age$months else NA_integer_
-      age_days <- if (!is.null(record$age$days)) record$age$days else NA_integer_
-      age_total_days <- if (!is.null(record$age$total_days)) record$age$total_days else NA_integer_
-      age_formatted <- if (!is.null(record$age$formatted_value)) record$age$formatted_value else NA_character_
-      age_is_estimated <- if (!is.null(record$age$is_estimated)) record$age$is_estimated else NA
-      age_is_blurred <- if (!is.null(record$age$is_blurred)) record$age$is_blurred else NA
+      age_years <- if (!is.null(record$age$years)) {
+        record$age$years
+      } else {
+        NA_integer_
+      }
+      age_months <- if (!is.null(record$age$months)) {
+        record$age$months
+      } else {
+        NA_integer_
+      }
+      age_days <- if (!is.null(record$age$days)) {
+        record$age$days
+      } else {
+        NA_integer_
+      }
+      age_total_days <- if (!is.null(record$age$total_days)) {
+        record$age$total_days
+      } else {
+        NA_integer_
+      }
+      age_formatted <- if (!is.null(record$age$formatted_value)) {
+        record$age$formatted_value
+      } else {
+        NA_character_
+      }
+      age_is_estimated <- if (!is.null(record$age$is_estimated)) {
+        record$age$is_estimated
+      } else {
+        NA
+      }
+      age_is_blurred <- if (!is.null(record$age$is_blurred)) {
+        record$age$is_blurred
+      } else {
+        NA
+      }
     }
 
     tibble::tibble(
@@ -108,7 +142,11 @@ list_volume_records <- function(vol_id = 1,
       record_volume = record$volume,
       record_category_id = record$category_id,
       record_measures = list(record$measures),
-      record_birthday = if (is.null(record$birthday)) NA_character_ else as.character(record$birthday),
+      record_birthday = if (is.null(record$birthday)) {
+        NA_character_
+      } else {
+        as.character(record$birthday)
+      },
       age_years = age_years,
       age_months = age_months,
       age_days = age_days,

@@ -27,8 +27,7 @@ NULL
 #' }
 #' }
 #' @export
-list_categories <- function(vb = options::opt("vb"),
-                            rq = NULL) {
+list_categories <- function(vb = options::opt("vb"), rq = NULL) {
   # Validate vb
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
@@ -72,7 +71,11 @@ list_categories <- function(vb = options::opt("vb"),
     tibble::tibble(
       category_id = category$id,
       category_name = category$name,
-      category_description = if (is.null(category$description)) NA_character_ else category$description,
+      category_description = if (is.null(category$description)) {
+        NA_character_
+      } else {
+        category$description
+      },
       metrics = list(metrics)
     )
   })

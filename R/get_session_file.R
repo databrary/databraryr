@@ -25,12 +25,13 @@ NULL
 #' }
 #' @export
 get_session_file <-
-  function(vol_id = 1,
-           session_id = 9807,
-           file_id,
-           vb = options::opt("vb"),
-           rq = NULL) {
-
+  function(
+    vol_id = 1,
+    session_id = 9807,
+    file_id,
+    vb = options::opt("vb"),
+    rq = NULL
+  ) {
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
@@ -56,7 +57,14 @@ get_session_file <-
 
     if (is.null(file)) {
       if (vb) {
-        message("Cannot access requested file ", file_id, " in session ", session_id, " of volume ", vol_id)
+        message(
+          "Cannot access requested file ",
+          file_id,
+          " in session ",
+          session_id,
+          " of volume ",
+          vol_id
+        )
       }
       return(NULL)
     }

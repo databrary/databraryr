@@ -40,10 +40,12 @@ NULL
 #' }
 #' }
 #' @export
-get_user_avatar <- function(user_id,
-                            dest_path = NULL,
-                            vb = options::opt("vb"),
-                            rq = NULL) {
+get_user_avatar <- function(
+  user_id,
+  dest_path = NULL,
+  vb = options::opt("vb"),
+  rq = NULL
+) {
   # Validate user_id
   assertthat::assert_that(length(user_id) == 1)
   assertthat::assert_that(is.numeric(user_id) || is.integer(user_id))
@@ -110,7 +112,11 @@ get_user_avatar <- function(user_id,
   # If no destination path, return bytes
   if (is.null(dest_path)) {
     if (vb) {
-      message("Returning avatar as raw bytes (", length(avatar_bytes), " bytes)")
+      message(
+        "Returning avatar as raw bytes (",
+        length(avatar_bytes),
+        " bytes)"
+      )
     }
     return(avatar_bytes)
   }
@@ -126,10 +132,13 @@ get_user_avatar <- function(user_id,
 
     if (!is.null(content_disp) && grepl("filename=", content_disp)) {
       # Extract filename from content-disposition header
-      filename_match <- regmatches(content_disp, regexpr("filename=([^;]+)", content_disp))
+      filename_match <- regmatches(
+        content_disp,
+        regexpr("filename=([^;]+)", content_disp)
+      )
       if (length(filename_match) > 0) {
         filename <- sub("filename=", "", filename_match)
-        filename <- gsub('^"|"$', '', filename)  # Remove quotes
+        filename <- gsub('^"|"$', '', filename) # Remove quotes
         filename <- trimws(filename)
       }
     } else {

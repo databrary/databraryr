@@ -33,9 +33,11 @@ NULL
 #' }
 #' }
 #' @export
-list_institutions <- function(search_string = NULL,
-                               vb = options::opt("vb"),
-                               rq = NULL) {
+list_institutions <- function(
+  search_string = NULL,
+  vb = options::opt("vb"),
+  rq = NULL
+) {
   # Validate search_string
   if (!is.null(search_string)) {
     assertthat::assert_that(assertthat::is.string(search_string))
@@ -79,15 +81,51 @@ list_institutions <- function(search_string = NULL,
       institution_id = entry$id,
       institution_name = entry$name,
       institution_url = if (is.null(entry$url)) NA_character_ else entry$url,
-      institution_date_signed = if (is.null(entry$date_signed)) NA_character_ else as.character(entry$date_signed),
-      institution_source = if (is.null(entry$source)) NA_character_ else entry$source,
-      institution_created_at = if (is.null(entry$created_at)) NA_character_ else as.character(entry$created_at),
-      institution_updated_at = if (is.null(entry$updated_at)) NA_character_ else as.character(entry$updated_at),
-      institution_has_avatar = if (is.null(entry$has_avatar)) NA else entry$has_avatar,
-      institution_has_administrators = if (is.null(entry$has_administrators)) NA else entry$has_administrators,
-      institution_latitude = if (is.null(entry$latitude)) NA_real_ else as.numeric(entry$latitude),
-      institution_longitude = if (is.null(entry$longitude)) NA_real_ else as.numeric(entry$longitude),
-      institution_manual_coordinates = if (is.null(entry$manual_coordinates)) NA else entry$manual_coordinates
+      institution_date_signed = if (is.null(entry$date_signed)) {
+        NA_character_
+      } else {
+        as.character(entry$date_signed)
+      },
+      institution_source = if (is.null(entry$source)) {
+        NA_character_
+      } else {
+        entry$source
+      },
+      institution_created_at = if (is.null(entry$created_at)) {
+        NA_character_
+      } else {
+        as.character(entry$created_at)
+      },
+      institution_updated_at = if (is.null(entry$updated_at)) {
+        NA_character_
+      } else {
+        as.character(entry$updated_at)
+      },
+      institution_has_avatar = if (is.null(entry$has_avatar)) {
+        NA
+      } else {
+        entry$has_avatar
+      },
+      institution_has_administrators = if (is.null(entry$has_administrators)) {
+        NA
+      } else {
+        entry$has_administrators
+      },
+      institution_latitude = if (is.null(entry$latitude)) {
+        NA_real_
+      } else {
+        as.numeric(entry$latitude)
+      },
+      institution_longitude = if (is.null(entry$longitude)) {
+        NA_real_
+      } else {
+        as.numeric(entry$longitude)
+      },
+      institution_manual_coordinates = if (is.null(entry$manual_coordinates)) {
+        NA
+      } else {
+        entry$manual_coordinates
+      }
     )
   })
 }

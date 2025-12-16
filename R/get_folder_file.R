@@ -25,12 +25,13 @@ NULL
 #' }
 #' @export
 get_folder_file <-
-  function(vol_id = 1,
-           folder_id = 9807,
-           file_id,
-           vb = options::opt("vb"),
-           rq = NULL) {
-
+  function(
+    vol_id = 1,
+    folder_id = 9807,
+    file_id,
+    vb = options::opt("vb"),
+    rq = NULL
+  ) {
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
@@ -56,7 +57,14 @@ get_folder_file <-
 
     if (is.null(file)) {
       if (vb) {
-        message("Cannot access requested file ", file_id, " in folder ", folder_id, " of volume ", vol_id)
+        message(
+          "Cannot access requested file ",
+          file_id,
+          " in folder ",
+          folder_id,
+          " of volume ",
+          vol_id
+        )
       }
       return(NULL)
     }

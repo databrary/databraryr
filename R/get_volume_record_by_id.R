@@ -31,23 +31,29 @@ NULL
 #' }
 #' }
 #' @export
-get_volume_record_by_id <- function(vol_id = 1,
-                                     record_id = 1,
-                                     vb = options::opt("vb"),
-                                     rq = NULL) {
+get_volume_record_by_id <- function(
+  vol_id = 1,
+  record_id = 1,
+  vb = options::opt("vb"),
+  rq = NULL
+) {
   # Validate vol_id
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(vol_id == floor(vol_id),
-                          msg = "vol_id must be an integer")
+  assertthat::assert_that(
+    vol_id == floor(vol_id),
+    msg = "vol_id must be an integer"
+  )
 
   # Validate record_id
   assertthat::assert_that(is.numeric(record_id))
   assertthat::assert_that(length(record_id) == 1)
   assertthat::assert_that(record_id > 0)
-  assertthat::assert_that(record_id == floor(record_id),
-                          msg = "record_id must be an integer")
+  assertthat::assert_that(
+    record_id == floor(record_id),
+    msg = "record_id must be an integer"
+  )
 
   # Validate vb
   assertthat::assert_that(length(vb) == 1)
@@ -65,7 +71,13 @@ get_volume_record_by_id <- function(vol_id = 1,
 
   if (is.null(record)) {
     if (vb) {
-      message("Record ", record_id, " in volume ", vol_id, " not found or inaccessible.")
+      message(
+        "Record ",
+        record_id,
+        " in volume ",
+        vol_id,
+        " not found or inaccessible."
+      )
     }
     return(NULL)
   }

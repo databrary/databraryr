@@ -32,23 +32,29 @@ NULL
 #' }
 #' }
 #' @export
-get_volume_collaborator_by_id <- function(vol_id = 1,
-                                           collaborator_id = 1,
-                                           vb = options::opt("vb"),
-                                           rq = NULL) {
+get_volume_collaborator_by_id <- function(
+  vol_id = 1,
+  collaborator_id = 1,
+  vb = options::opt("vb"),
+  rq = NULL
+) {
   # Validate vol_id
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(vol_id == floor(vol_id),
-                          msg = "vol_id must be an integer")
+  assertthat::assert_that(
+    vol_id == floor(vol_id),
+    msg = "vol_id must be an integer"
+  )
 
   # Validate collaborator_id
   assertthat::assert_that(is.numeric(collaborator_id))
   assertthat::assert_that(length(collaborator_id) == 1)
   assertthat::assert_that(collaborator_id > 0)
-  assertthat::assert_that(collaborator_id == floor(collaborator_id),
-                          msg = "collaborator_id must be an integer")
+  assertthat::assert_that(
+    collaborator_id == floor(collaborator_id),
+    msg = "collaborator_id must be an integer"
+  )
 
   # Validate vb
   assertthat::assert_that(length(vb) == 1)
@@ -66,7 +72,13 @@ get_volume_collaborator_by_id <- function(vol_id = 1,
 
   if (is.null(collaborator)) {
     if (vb) {
-      message("Collaborator ", collaborator_id, " in volume ", vol_id, " not found or inaccessible.")
+      message(
+        "Collaborator ",
+        collaborator_id,
+        " in volume ",
+        vol_id,
+        " not found or inaccessible."
+      )
     }
     return(NULL)
   }
@@ -108,7 +120,10 @@ get_volume_collaborator_by_id <- function(vol_id = 1,
 
   # Process sponsored_users if present
   sponsored_users <- NULL
-  if (!is.null(collaborator$sponsored_users) && length(collaborator$sponsored_users) > 0) {
+  if (
+    !is.null(collaborator$sponsored_users) &&
+      length(collaborator$sponsored_users) > 0
+  ) {
     sponsored_users <- lapply(collaborator$sponsored_users, function(u) {
       list(
         user_id = u$id,
