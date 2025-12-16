@@ -35,7 +35,7 @@ Get Session File Data From A Databrary Volume
 \examples{
 \donttest{
 \dontrun{
-get_session_file(vol_id = 2, session_id = 11, file_id = 1)
+get_folder_file(vol_id = 2, folder_id = 11, file_id = 1)
 }
 }
 }
