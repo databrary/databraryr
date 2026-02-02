@@ -59,6 +59,9 @@ list_volumes <- function(search = NULL,
     }
     return(NULL)
   }
+  if (vb) message("Found n = ",
+                  length(volumes),
+                  " volumes that matched the supplied filters.")
 
   purrr::map_dfr(volumes, function(volume) {
     owner_connection <- volume$owner_connection
@@ -81,7 +84,7 @@ list_volumes <- function(search = NULL,
       volume_owner_institution_id = if (is.null(owner_institution)) NA_integer_ else owner_institution$id,
       volume_owner_institution_name = if (is.null(owner_institution$name)) NA_character_ else owner_institution$name
     )
-  })
+  }, .progress = TRUE)
 }
 
 

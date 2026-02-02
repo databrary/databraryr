@@ -7,28 +7,28 @@ NULL
 #'
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
 #' @param session_id An integer indicating a valid session/slot identifier
-#' linked to a volume. Default value is 9807, the materials folder for volume 1.
-#' @param file_id An integer indicating the file identifier.
+#' linked to a volume. Default value is 9578.
+#' @param file_id An integer indicating the file identifier. The default is
+#' 27227.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An httr2 request object.
 #'
-#' @returns A JSON blob with the file data. If the user has previously logged
-#' in to Databrary via `login_db()`, then files that have restricted access
-#' can be downloaded, subject to the sharing release levels on those files.
+#' @returns Metadata about the file if the user has read privileges.
 #'
 #' @inheritParams options_params
 #'
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' get_session_file(vol_id = 2, session_id = 11, file_id = 1)
+#' get_session_file(vol_id = 2, session_id = 11, file_id = 3) 
+#' # A video from volume 1, session 11.
 #' }
 #' }
 #' @export
 get_session_file <-
   function(vol_id = 1,
-           session_id = 9807,
-           file_id,
+           session_id = 9578,
+           file_id = 27227,
            vb = options::opt("vb"),
            rq = NULL) {
     assertthat::assert_that(is.numeric(vol_id))

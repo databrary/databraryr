@@ -6,7 +6,7 @@ NULL
 #' List Assets Within a Databrary Folder.
 #'
 #' @param folder_id Folder identifier scoped to the given volume. Must be a
-#' positive integer. Default is 1.
+#' positive integer. Default is 9807.
 #' @param vol_id Volume containing the folder. Required for Django API calls.
 #' Must be a positive integer. Default is 1.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
@@ -24,8 +24,8 @@ NULL
 #' }
 #' }
 #' @export
-list_folder_assets <- function(folder_id = 1,
-                               vol_id = NULL,
+list_folder_assets <- function(folder_id = 9807,
+                               vol_id = 1,
                                vb = options::opt("vb"),
                                rq = NULL) {
   assertthat::assert_that(length(folder_id) == 1)

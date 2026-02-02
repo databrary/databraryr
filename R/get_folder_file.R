@@ -8,7 +8,7 @@ NULL
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
 #' @param folder_id An integer indicating a valid folder identifier
 #' linked to a volume. Default value is 9807, the materials folder for volume 1.
-#' @param file_id An integer indicating the file identifier.
+#' @param file_id An integer indicating the file identifier. Default is 1.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An httr2 request object.
 #'
@@ -28,7 +28,7 @@ NULL
 get_folder_file <-
   function(vol_id = 1,
            folder_id = 9807,
-           file_id,
+           file_id = 1,
            vb = options::opt("vb"),
            rq = NULL) {
     assertthat::assert_that(is.numeric(vol_id))

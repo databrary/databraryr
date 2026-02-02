@@ -6,7 +6,7 @@ NULL
 #' Get Session (Slot) Data From A Databrary Volume
 #'
 #' @param session_id An integer indicating a valid session/slot identifier
-#' linked to a volume. Default value is 9807, the materials folder for volume 1.
+#' linked to a volume. Default value is 6256 in volume 1.
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An httr2 request object.
@@ -25,7 +25,7 @@ NULL
 #' }
 #' @export
 get_session_by_id <-
-  function(session_id = 9807,
+  function(session_id = 6256,
            vol_id = 1,
            vb = options::opt("vb"),
            rq = NULL) {

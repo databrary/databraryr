@@ -6,9 +6,9 @@ NULL
 #' List Activity In A Databrary Volume
 #'
 #' @description If a user has access to a volume, this command lists the modification
-#' history of the volume as a
+#' history of the volume.
 #'
-#' @param vol_id Selected volume number. Must be a positive integer. Default is 1892.
+#' @param vol_id Selected volume number. Must be a positive integer. Default is NULL.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
@@ -19,15 +19,15 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' # The following will only return output if the user has write privileges
+#' # The following will only return output if the user has *write* privileges
 #' # on the volume.
 #'
-#' list_volume_activity(vol_id = 1892) # Activity on volume 1892.
+#' list_volume_activity(vol_id) 
 #' }
 #' }
 #' @export
 list_volume_activity <-
-  function(vol_id = 1892,
+  function(vol_id = NULL,
            vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
@@ -104,5 +104,5 @@ list_volume_activity <-
         folder_id = safe_int(folder_id),
         deleted_at = entry$deleted_at
       )
-    })
+    }, .progress = TRUE)
   }

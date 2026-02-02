@@ -10,8 +10,9 @@ NULL
 #' collaborator details including user information, sponsor details, access
 #' level, and visibility settings.
 #'
-#' @param vol_id Target volume number. Must be a positive integer.
-#' @param collaborator_id Numeric collaborator identifier. Must be a positive integer.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param collaborator_id Numeric collaborator identifier. 
+#' Must be a positive integer. Default is 1.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'

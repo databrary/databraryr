@@ -55,6 +55,10 @@ list_volume_sessions <-
         message("No session data for volume ", vol_id)
       return(NULL)
     }
+    if (vb) message("Found n = ",
+                    length(sessions),
+                    " sessions in vol_id ",
+                    vol_id)
 
     df <- purrr::map_dfr(sessions, function(session) {
       tibble::tibble(

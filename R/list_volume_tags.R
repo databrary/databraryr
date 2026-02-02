@@ -39,8 +39,14 @@ list_volume_tags <- function(vol_id = 1,
   )
 
   if (is.null(tags) || length(tags) == 0) {
+    if (vb)
+      message("No tags for vol_id ", vol_id)
     return(NULL)
   }
+  if (vb) message("Found n = ",
+                  length(tags),
+                  " tags in vol_id ",
+                  vol_id)
 
   tags
 }

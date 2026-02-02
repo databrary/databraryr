@@ -115,5 +115,5 @@ list_volume_collaborators <- function(vol_id = 1,
       else
         entry$expiration_date
     )
-  })
+  }, .progress = TRUE)
 }
