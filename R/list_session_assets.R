@@ -17,6 +17,7 @@ NULL
 #' @param vol_id Optional integer. The volume containing the session. Recent
 #' versions of the Databrary API require this value to be supplied because
 #' session identifiers are scoped to volumes.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL, a default request is generated
 #' from databraryr::make_default_request().
 #'

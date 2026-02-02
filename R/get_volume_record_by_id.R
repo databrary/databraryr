@@ -10,8 +10,9 @@ NULL
 #' Records contain participant information including age, birthday, category,
 #' and associated measures collected during sessions.
 #'
-#' @param vol_id Target volume number. Must be a positive integer.
-#' @param record_id Numeric record identifier. Must be a positive integer.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param record_id Numeric record identifier. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the record's metadata including id, volume, category_id,

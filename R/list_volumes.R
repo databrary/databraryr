@@ -12,9 +12,10 @@ NULL
 #'   description.
 #' @param ordering Optional character string indicating the sort field accepted
 #'   by the API (e.g., `"title"`, `"-title"`).
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
-#' @return A tibble summarizing each accessible volume, or `NULL` when no
+#' @returns A tibble summarizing each accessible volume, or `NULL` when no
 #'   volumes match the supplied filters.
 #'
 #' @inheritParams options_params

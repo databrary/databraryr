@@ -5,10 +5,11 @@ NULL
 
 #' List Activity In A Databrary Volume
 #'
-#' If a user has access to a volume, this command lists the modification
+#' @description If a user has access to a volume, this command lists the modification
 #' history of the volume as a
 #'
-#' @param vol_id Selected volume number.
+#' @param vol_id Selected volume number. Must be a positive integer. Default is 1892.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A list with the activity history on a volume.

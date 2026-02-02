@@ -5,7 +5,8 @@ NULL
 
 #' List Assets in Databrary Volume.
 #'
-#' @param vol_id Target volume number. Default is 1.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with information about all assets in a volume.

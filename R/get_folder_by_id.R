@@ -7,6 +7,7 @@ NULL
 #'
 #' @param folder_id Folder identifier within the specified volume.
 #' @param vol_id Volume identifier containing the folder.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @returns A list representing the folder metadata, or `NULL` when the folder
@@ -28,29 +29,32 @@ get_folder_by_id <- function(folder_id = 1,
   assertthat::assert_that(length(folder_id) == 1)
   assertthat::assert_that(is.numeric(folder_id))
   assertthat::assert_that(folder_id >= 1)
-
+  
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   folder <- perform_api_get(
     path = sprintf(API_FOLDER_DETAIL, vol_id, folder_id),
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(folder)) {
     if (vb) {
-      message("Cannot access requested folder ", folder_id, " in volume ", vol_id)
+      message("Cannot access requested folder ",
+              folder_id,
+              " in volume ",
+              vol_id)
     }
     return(NULL)
   }
-
+  
   folder
 }
-

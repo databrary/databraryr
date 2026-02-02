@@ -1,7 +1,8 @@
 #' Load Package-wide Constants into Local Environment
 #'
 #'
-DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.stg-databrary.its.nyu.edu")
+# DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.stg-databrary.its.nyu.edu")
+DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.databrary.org")
 
 API_ACTIVITY_SUMMARY <- "/statistics/summary/"
 API_GROUPED_FORMATS <- "/grouped-formats/"

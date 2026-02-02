@@ -8,6 +8,7 @@
 #'   Defaults to `TRUE` since all API calls now require authentication.
 #' @param refresh When `with_token = TRUE`, determines whether to refresh the
 #'   cached token if it is near expiry. Defaults to `TRUE`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #'
 #' @returns An `httr2_request` object configured for the Databrary API.
 #'

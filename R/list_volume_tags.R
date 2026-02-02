@@ -5,7 +5,8 @@ NULL
 
 #' Lists Keywords And Tags For A Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with the requested data.

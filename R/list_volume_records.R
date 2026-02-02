@@ -12,6 +12,7 @@ NULL
 #' @param vol_id Target volume number. Must be a positive integer.
 #' @param category_id Optional numeric category identifier to filter records
 #'   by category type.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing metadata for each record including id, volume,
@@ -34,45 +35,38 @@ NULL
 #' }
 #' }
 #' @export
-list_volume_records <- function(
-  vol_id = 1,
-  category_id = NULL,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
+list_volume_records <- function(vol_id = 1,
+                                category_id = NULL,
+                                vb = options::opt("vb"),
+                                rq = NULL) {
   # Validate vol_id
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
-
+  assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
+  
   # Validate category_id
   if (!is.null(category_id)) {
     assertthat::assert_that(length(category_id) == 1)
     assertthat::assert_that(is.numeric(category_id))
     assertthat::assert_that(category_id > 0)
-    assertthat::assert_that(
-      category_id == floor(category_id),
-      msg = "category_id must be an integer"
-    )
+    assertthat::assert_that(category_id == floor(category_id), msg = "category_id must be an integer")
   }
-
+  
   # Validate vb
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
+  
   # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   # Build params list
   params <- list()
   if (!is.null(category_id)) {
     params$category_id <- category_id
   }
-
+  
   # Perform API call
   records <- collect_paginated_get(
     path = sprintf(API_VOLUME_RECORDS, vol_id),
@@ -80,14 +74,14 @@ list_volume_records <- function(
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(records) || length(records) == 0) {
     if (vb) {
       message("No records found for volume ", vol_id)
     }
     return(NULL)
   }
-
+  
   # Process records into tibble
   purrr::map_dfr(records, function(record) {
     # Process age if present
@@ -98,7 +92,7 @@ list_volume_records <- function(
     age_formatted <- NA_character_
     age_is_estimated <- NA
     age_is_blurred <- NA
-
+    
     if (!is.null(record$age)) {
       age_years <- if (!is.null(record$age$years)) {
         record$age$years
@@ -136,7 +130,7 @@ list_volume_records <- function(
         NA
       }
     }
-
+    
     tibble::tibble(
       record_id = record$id,
       record_volume = record$volume,

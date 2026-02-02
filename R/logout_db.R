@@ -5,7 +5,7 @@ NULL
 
 #' Log Out of Databrary.org.
 #'
-#' @param rq An `httr2` request object. Defaults to NULL.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' 
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
 #' 

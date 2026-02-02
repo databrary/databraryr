@@ -9,6 +9,7 @@ NULL
 #' the institutions, people, and data hosted on 'Databrary.org'.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with the requested data or NULL if there is

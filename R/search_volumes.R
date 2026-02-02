@@ -9,6 +9,7 @@ NULL
 #' endpoint.
 #'
 #' @param search_string Character string describing the volume search query.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing matching volumes ordered by relevance, or `NULL`

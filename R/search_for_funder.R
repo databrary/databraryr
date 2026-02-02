@@ -5,9 +5,10 @@ NULL
 
 #' Report Information About A Funder.
 #'
-#' @param search_string String to search.
+#' @param search_string String to search. Default is "national science foundation".
 #' @param approved_only Logical. When TRUE (default) only approved funders are
 #'   returned. Set to FALSE to include unapproved funders as well.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with information about the funder.

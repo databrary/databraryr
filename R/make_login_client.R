@@ -9,6 +9,7 @@ NULL
 #' @param password Databrary password (not recommended as it will displayed as you type)
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
 #' 

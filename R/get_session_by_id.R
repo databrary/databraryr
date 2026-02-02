@@ -8,6 +8,7 @@ NULL
 #' @param session_id An integer indicating a valid session/slot identifier
 #' linked to a volume. Default value is 9807, the materials folder for volume 1.
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An httr2 request object.
 #'
 #' @returns A JSON blob with the session data. If the user has previously logged

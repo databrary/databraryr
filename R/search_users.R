@@ -9,6 +9,7 @@ NULL
 #' email address.
 #'
 #' @param search_string Character string describing the search query.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing user matches ordered by relevance, or `NULL`

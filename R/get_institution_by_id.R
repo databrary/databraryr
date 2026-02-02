@@ -5,7 +5,8 @@ NULL
 
 #' Get institution metadata
 #'
-#' @param institution_id Institution identifier.
+#' @param institution_id Institution identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @inheritParams options_params
 #'
 #' @return List of institution metadata or NULL when inaccessible.

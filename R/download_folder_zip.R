@@ -13,6 +13,7 @@ NULL
 #'
 #' @param vol_id Volume identifier for the folder.
 #' @param folder_id Folder identifier scoped within the specified volume.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #'
@@ -36,19 +37,17 @@ download_folder_zip <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-
+  
   assertthat::assert_that(length(folder_id) == 1)
   assertthat::assert_that(is.numeric(folder_id))
   assertthat::assert_that(folder_id >= 1)
-
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
-
+  
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
+  
   path <- sprintf(API_FOLDER_DOWNLOAD_LINK, vol_id, folder_id)
   request_processing_task(path = path, rq = rq, vb = vb)
 }
-
-
-

@@ -5,7 +5,8 @@ NULL
 
 #' Get Summary Data About A Databrary Volume
 #'
-#' @param vol_id Volume ID.
+#' @param vol_id Volume ID. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL (the default), a new request
 #' is generated using `make_default_request()`. To access restricted data,
 #' the user must login with a specific request object using `login_db()`.

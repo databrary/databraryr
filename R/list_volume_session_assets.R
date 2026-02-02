@@ -13,8 +13,9 @@ NULL
 #' requre the volume ID. The `list_volume_session_assets()` *requires* a volume
 #' ID.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. 
 #' @param session_id The session number in the selected volume.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #' 
 #' @returns A data frame with information about all assets in a volume.

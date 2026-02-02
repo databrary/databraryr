@@ -3,9 +3,12 @@
 #'
 NULL
 
-#' List volumes associated with a user
+#' List Volumes Associated With A User
 #'
-#' @param user_id User identifier.
+#' @param user_id User identifier. Must be a positive integer. Default is 6.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Default is NULL.
+#' 
 #' @inheritParams options_params
 #'
 #' @return Tibble of volumes the user owns or collaborates on.

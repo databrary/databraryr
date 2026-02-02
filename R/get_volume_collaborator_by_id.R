@@ -12,6 +12,7 @@ NULL
 #'
 #' @param vol_id Target volume number. Must be a positive integer.
 #' @param collaborator_id Numeric collaborator identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the collaborator's metadata including id, volume, user
@@ -32,44 +33,37 @@ NULL
 #' }
 #' }
 #' @export
-get_volume_collaborator_by_id <- function(
-  vol_id = 1,
-  collaborator_id = 1,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
+get_volume_collaborator_by_id <- function(vol_id = 1,
+                                          collaborator_id = 1,
+                                          vb = options::opt("vb"),
+                                          rq = NULL) {
   # Validate vol_id
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
-
+  assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
+  
   # Validate collaborator_id
   assertthat::assert_that(is.numeric(collaborator_id))
   assertthat::assert_that(length(collaborator_id) == 1)
   assertthat::assert_that(collaborator_id > 0)
-  assertthat::assert_that(
-    collaborator_id == floor(collaborator_id),
-    msg = "collaborator_id must be an integer"
-  )
-
+  assertthat::assert_that(collaborator_id == floor(collaborator_id), msg = "collaborator_id must be an integer")
+  
   # Validate vb
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
+  
   # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   # Perform API call
   collaborator <- perform_api_get(
     path = sprintf(API_VOLUME_COLLABORATOR_DETAIL, vol_id, collaborator_id),
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(collaborator)) {
     if (vb) {
       message(
@@ -82,7 +76,7 @@ get_volume_collaborator_by_id <- function(
     }
     return(NULL)
   }
-
+  
   # Process user information
   user <- NULL
   if (!is.null(collaborator$user)) {
@@ -95,7 +89,7 @@ get_volume_collaborator_by_id <- function(
       has_avatar = collaborator$user$has_avatar
     )
   }
-
+  
   # Process sponsor information
   sponsor <- NULL
   if (!is.null(collaborator$sponsor)) {
@@ -106,7 +100,7 @@ get_volume_collaborator_by_id <- function(
       email = collaborator$sponsor$email
     )
   }
-
+  
   # Process sponsorship information
   sponsorship <- NULL
   if (!is.null(collaborator$sponsorship)) {
@@ -117,13 +111,11 @@ get_volume_collaborator_by_id <- function(
       status = collaborator$sponsorship$status
     )
   }
-
+  
   # Process sponsored_users if present
   sponsored_users <- NULL
-  if (
-    !is.null(collaborator$sponsored_users) &&
-      length(collaborator$sponsored_users) > 0
-  ) {
+  if (!is.null(collaborator$sponsored_users) &&
+      length(collaborator$sponsored_users) > 0) {
     sponsored_users <- lapply(collaborator$sponsored_users, function(u) {
       list(
         user_id = u$id,
@@ -133,7 +125,7 @@ get_volume_collaborator_by_id <- function(
       )
     })
   }
-
+  
   # Return structured list
   list(
     collaborator_id = collaborator$id,

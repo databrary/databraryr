@@ -5,7 +5,8 @@ NULL
 
 #' Retrieves URL Links From A Databrary Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with the requested data.
@@ -35,11 +36,11 @@ list_volume_links <- function(vol_id = 1,
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(links) || length(links) == 0) {
     return(NULL)
   }
-
+  
   purrr::map_dfr(links, function(link) {
     tibble::tibble(
       link_id = link$id,

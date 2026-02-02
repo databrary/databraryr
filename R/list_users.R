@@ -19,6 +19,7 @@ NULL
 #'   response to authorized investigators.
 #' @param has_api_access Optional logical value restricting the response to
 #'   accounts with API access enabled.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing directory metadata for each user, or `NULL` when

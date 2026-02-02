@@ -13,6 +13,7 @@ NULL
 #'
 #' @param vol_id Volume identifier that owns the session.
 #' @param session_id Session identifier within the volume.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #'
@@ -36,16 +37,17 @@ download_session_zip <- function(vol_id = 31,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-
+  
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
   assertthat::assert_that(session_id >= 1)
-
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
-
+  
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
+  
   path <- sprintf(API_SESSION_DOWNLOAD_LINK, vol_id, session_id)
   request_processing_task(path = path, rq = rq, vb = vb)
 }

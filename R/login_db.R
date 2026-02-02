@@ -11,7 +11,7 @@
 #'   update stored credentials in keyring/keychain.
 #' @param SERVICE A character label for stored credentials in the keyring.
 #'   Default is `org.databrary.databraryr`.
-#' @param vb Show verbose messages.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #'
 #' @returns Logical value indicating whether log in is successful or not.
 #'

@@ -5,9 +5,10 @@ NULL
 
 #' List Sessions in Databrary Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
 #' @param include_vol_data A Boolean value. Include volume-level metadata
 #' or not. Default is FALSE.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL (the default)
 #' a request will be generated, but this will only permit public information
 #' to be returned.

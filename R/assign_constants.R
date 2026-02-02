@@ -5,6 +5,7 @@ NULL
 
 #' Download Databrary Constants From API.
 #' 
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A data frame with the constants.

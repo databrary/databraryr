@@ -5,8 +5,9 @@ NULL
 
 #' List Basic Volume Info.
 #'
-#' @param vol_id Target volume number.
-#' @param rq An `httr2` request object. If NULL (the default)
+#' @param vol_id Target volume number. Must be a positive integer. Defaults to 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. If NULL (the default).
 #' a request will be generated, but this will only permit public information
 #' to be returned.
 #'

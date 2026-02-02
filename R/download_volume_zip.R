@@ -11,7 +11,8 @@ NULL
 #' descriptor. When the archive is ready, Databrary emails a signed download
 #' link to the authenticated user.
 #'
-#' @param vol_id Volume identifier.
+#' @param vol_id An integer. Volume identifier. Default is 31.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #'

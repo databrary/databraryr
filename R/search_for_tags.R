@@ -6,6 +6,7 @@ NULL
 #' Search For Tags on Volumes or Sessions.
 #'
 #' @param search_string String to search.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns An array of tags that match the tag_string.
