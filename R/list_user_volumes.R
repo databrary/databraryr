@@ -29,6 +29,7 @@ list_user_volumes <- function(user_id = 6,
     if (vb) message("No volume data for user ", user_id)
     return(NULL)
   }
+  if (vb) message("Found n = ", length(volumes), " volumes for user_id ", user_id, ".")
 
   user <- get_user_by_id(user_id, vb = vb, rq = rq)
   user_df <- tibble::as_tibble(user)

@@ -3,7 +3,7 @@
 #'
 NULL
 
-#' Get Stats About Databrary.
+#' Get Stats About Databrary
 #'
 #' Returns basic summary information about
 #' the institutions, people, and video data hosted on Databrary.
