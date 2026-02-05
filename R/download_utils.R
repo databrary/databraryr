@@ -77,7 +77,11 @@ download_signed_file <- function(download_url,
   }
   assertthat::is.writeable(parent_dir)
 
-  req <- httr2::request(download_url) |
+  token <- require_access_token()
+
+  req <- httr2::request(download_url) |>
+    httr2::req_user_agent(USER_AGENT) |>
+    httr2::req_headers(Authorization = paste("Bearer", token)) |>
     httr2::req_timeout(seconds = timeout_secs)
 
   if (vb) {
