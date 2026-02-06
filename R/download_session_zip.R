@@ -11,8 +11,10 @@ NULL
 #' summary. Once the archive is ready, Databrary emails a signed download link
 #' to the authenticated user.
 #'
-#' @param vol_id Volume identifier that owns the session.
-#' @param session_id Session identifier within the volume.
+#' @param vol_id Volume identifier that owns the session. Must be a positive 
+#' integer. Default is 31.
+#' @param session_id Session identifier within the volume. Must be a positive
+#' integer. Default is 9803.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
@@ -42,8 +44,7 @@ download_session_zip <- function(vol_id = 31,
   assertthat::assert_that(is.numeric(session_id))
   assertthat::assert_that(session_id >= 1)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))

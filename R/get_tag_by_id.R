@@ -31,17 +31,13 @@ NULL
 get_tag_by_id <- function(tag_id = 1,
                           vb = options::opt("vb"),
                           rq = NULL) {
-  # Validate tag_id
   assertthat::assert_that(is.numeric(tag_id))
   assertthat::assert_that(length(tag_id) == 1)
   assertthat::assert_that(tag_id > 0)
   assertthat::assert_that(tag_id == floor(tag_id), msg = "tag_id must be an integer")
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
-  # Validate rq
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

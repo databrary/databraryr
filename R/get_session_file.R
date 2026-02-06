@@ -43,8 +43,7 @@ get_session_file <-
     assertthat::assert_that(file_id > 0)
     assertthat::assert_that(length(file_id) == 1)
     
-    assertthat::assert_that(is.logical(vb))
-    assertthat::assert_that(length(vb) == 1)
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) ||
                               inherits(rq, "httr2_request"))

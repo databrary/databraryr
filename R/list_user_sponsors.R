@@ -17,8 +17,7 @@ list_user_sponsors <- function(user_id = 6,
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))

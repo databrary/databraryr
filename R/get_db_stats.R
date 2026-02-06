@@ -56,21 +56,13 @@ get_db_stats <- function(type = "stats", vb = options::opt("vb"), rq = NULL) {
     message("Legacy parameter not supported in new API")
   }
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
   assertthat::assert_that(
     is.null(rq) |
       ("httr2_request" %in% class(rq))
   )
 
-  # if (is.null(rq)) {
-  #   if (vb) {
-  #     message("\nNULL request object. Will generate default.")
-  #     message("Not logged in. Only public information will be returned.")
-  #   }
-  #   rq <- databraryr::make_default_request()
-  # }
   stats <- perform_api_get(
     path = API_ACTIVITY_SUMMARY,
     rq = rq,

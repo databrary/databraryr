@@ -18,7 +18,7 @@ NULL
 #' }
 #' @export
 assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   if (vb) {
     message("Retrieving grouped formats and static enums.")
   }

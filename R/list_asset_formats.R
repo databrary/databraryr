@@ -21,8 +21,7 @@ NULL
 #' @export
 list_asset_formats <- function(vb = options::opt("vb")) {
   # Check parameters
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   db_constants <- databraryr::assign_constants()
   

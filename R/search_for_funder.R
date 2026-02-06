@@ -31,9 +31,8 @@ search_for_funder <-
     search_string <- gsub("[+]", " ", search_string)
     pattern <- stringr::str_trim(search_string)
     
-    assertthat::assert_that(is.logical(approved_only), length(approved_only) == 1)
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(approved_only, "approved_only")
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))

@@ -15,6 +15,9 @@ get_user_by_id <- function(user_id = 6,
                            vb = options::opt("vb"),
                            rq = NULL) {
   assertthat::assert_that(is.numeric(user_id), length(user_id) == 1, user_id > 0)
+  
+  validate_flag(vb, "vb")
+  
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

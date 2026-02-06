@@ -36,8 +36,8 @@ login_db <- function(email = NULL,
                      SERVICE = KEYRING_SERVICE,
                      vb = options::opt("vb")) {
   assertthat::assert_that(length(store) == 1, is.logical(store))
-  assertthat::assert_that(length(overwrite) == 1, is.logical(overwrite))
-  assertthat::assert_that(length(vb) == 1, is.logical(vb))
+  validate_flag(overwrite, "overwrite")
+  validate_flag(vb, "vb")
   assertthat::assert_that(length(SERVICE) == 1, is.character(SERVICE))
 
   # If the user wants to store or use their stored credentials, 

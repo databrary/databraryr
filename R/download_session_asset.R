@@ -71,8 +71,7 @@ download_session_asset <- function(vol_id = 1,
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))

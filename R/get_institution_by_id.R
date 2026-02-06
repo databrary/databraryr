@@ -15,6 +15,9 @@ get_institution_by_id <- function(institution_id = 12,
                                   vb = options::opt("vb"),
                                   rq = NULL) {
   assertthat::assert_that(is.numeric(institution_id), length(institution_id) == 1, institution_id > 0)
+  
+  validate_flag(vb, "vb")
+  
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   institution <- perform_api_get(

@@ -21,8 +21,8 @@
 #' @export
 whoami <- function(refresh = TRUE,
                    vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(refresh), length(refresh) == 1)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  validate_flag(refresh, "refresh")
+  validate_flag(vb, "vb")
   
   req <- tryCatch(
     make_default_request(refresh = refresh, vb = vb),

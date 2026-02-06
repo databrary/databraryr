@@ -52,22 +52,17 @@ get_institution_avatar <- function(institution_id = 1,
                                    dest_path = NULL,
                                    vb = options::opt("vb"),
                                    rq = NULL) {
-  # Validate institution_id
   assertthat::assert_that(is.numeric(institution_id))
   assertthat::assert_that(length(institution_id) == 1)
   assertthat::assert_that(institution_id > 0)
   assertthat::assert_that(institution_id == floor(institution_id), msg = "institution_id must be an integer")
   
-  # Validate dest_path
   if (!is.null(dest_path)) {
     assertthat::assert_that(assertthat::is.string(dest_path))
   }
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
-  # Validate rq
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

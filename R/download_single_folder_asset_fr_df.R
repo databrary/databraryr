@@ -59,21 +59,15 @@ download_single_folder_asset_fr_df <- function(i = NULL,
   )
   assertthat::is.writeable(target_dir)
   
-  assertthat::assert_that(length(add_folder_subdir) == 1)
-  assertthat::assert_that(is.logical(add_folder_subdir))
-  
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
-  
-  assertthat::assert_that(length(make_portable_fn) == 1)
-  assertthat::assert_that(is.logical(make_portable_fn))
+  validate_flag(add_folder_subdir, "add_folder_subdir")
+  validate_flag(overwrite, "overwrite")
+  validate_flag(make_portable_fn, "make_portable_fn")
   
   assertthat::is.number(timeout_secs)
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))

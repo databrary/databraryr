@@ -17,7 +17,7 @@ NULL
 #' }
 #' @export
 logout_db <- function(vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  validate_flag(vb, "vb")
 
   bundle <- get_token_bundle()
   if (is.null(bundle)) {

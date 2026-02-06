@@ -41,11 +41,9 @@ make_login_client <- function(email = NULL,
   assertthat::assert_that(length(store) == 1)
   assertthat::assert_that(is.logical(store))
   
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(store, "store")
+  validate_flag(overwrite, "overwrite")
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(length(SERVICE) == 1)
   assertthat::assert_that(is.character(SERVICE))

@@ -42,19 +42,10 @@ list_volume_session_assets <-
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id >= 1)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
-    # Not needed in DB2 API. Delete.
-    # if (is.null(rq)) {
-    #   if (vb) {
-    #     message("NULL request object. Will generate default.")
-    #   }
-    #  rq <- databraryr::make_default_request()
-    # }
     
     session <- perform_api_get(
       path = sprintf(API_SESSION_DETAIL, vol_id, session_id),

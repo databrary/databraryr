@@ -37,8 +37,7 @@ list_volume_sessions <-
     assertthat::assert_that(is.logical(include_vol_data))
     assertthat::assert_that(length(include_vol_data) == 1)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))

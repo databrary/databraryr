@@ -37,16 +37,12 @@ NULL
 list_institutions <- function(search_string = NULL,
                               vb = options::opt("vb"),
                               rq = NULL) {
-  # Validate search_string
   if (!is.null(search_string)) {
     assertthat::assert_that(assertthat::is.string(search_string))
   }
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
-  # Validate rq
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

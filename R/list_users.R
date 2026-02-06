@@ -45,13 +45,6 @@ list_users <- function(search = NULL,
     assertthat::assert_that(assertthat::is.string(search))
   }
 
-  validate_flag <- function(value, name) {
-    if (!is.null(value)) {
-      assertthat::assert_that(length(value) == 1)
-      assertthat::assert_that(is.logical(value), msg = paste0(name, " must be logical."))
-    }
-  }
-
   validate_flag(include_suspended, "include_suspended")
   validate_flag(exclude_self, "exclude_self")
   validate_flag(is_authorized_investigator, "is_authorized_investigator")

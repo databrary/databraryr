@@ -26,8 +26,7 @@ list_volume_tags <- function(vol_id = 1,
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))

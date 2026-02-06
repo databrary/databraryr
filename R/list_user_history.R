@@ -32,8 +32,7 @@ list_user_history <- function(user_id = 22582,
   assertthat::assert_that(length(user_id) == 1)
   assertthat::assert_that(user_id > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))

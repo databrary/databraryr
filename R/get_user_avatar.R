@@ -44,22 +44,17 @@ get_user_avatar <- function(user_id,
                             dest_path = NULL,
                             vb = options::opt("vb"),
                             rq = NULL) {
-  # Validate user_id
   assertthat::assert_that(length(user_id) == 1)
   assertthat::assert_that(is.numeric(user_id) ||
                             is.integer(user_id))
   assertthat::assert_that(user_id > 0)
   
-  # Validate dest_path
   if (!is.null(dest_path)) {
     assertthat::assert_that(assertthat::is.string(dest_path))
   }
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
-  # Validate rq
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

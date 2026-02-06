@@ -31,17 +31,13 @@ NULL
 get_funder_by_id <- function(funder_id = 1,
                              vb = options::opt("vb"),
                              rq = NULL) {
-  # Validate funder_id
   assertthat::assert_that(is.numeric(funder_id))
   assertthat::assert_that(length(funder_id) == 1)
   assertthat::assert_that(funder_id > 0)
   assertthat::assert_that(funder_id == floor(funder_id), msg = "funder_id must be an integer")
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  # Validate rq
+  validate_flag(vb, "vb")
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

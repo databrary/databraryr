@@ -38,23 +38,18 @@ get_volume_collaborator_by_id <- function(vol_id = 1,
                                           collaborator_id = 1,
                                           vb = options::opt("vb"),
                                           rq = NULL) {
-  # Validate vol_id
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
   assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
   
-  # Validate collaborator_id
   assertthat::assert_that(is.numeric(collaborator_id))
   assertthat::assert_that(length(collaborator_id) == 1)
   assertthat::assert_that(collaborator_id > 0)
   assertthat::assert_that(collaborator_id == floor(collaborator_id), msg = "collaborator_id must be an integer")
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  # Validate rq
+  validate_flag(vb, "vb")
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

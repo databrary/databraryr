@@ -36,21 +36,11 @@ list_volume_funding <- function(vol_id = 1,
   assertthat::assert_that(length(add_id) == 1)
   assertthat::assert_that(is.logical(add_id))
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
-  # Not needed for new API. Delete
-  # if (is.null(rq)) {
-  #   if (vb) {
-  #     message("NULL request object. Will generate default.")
-  #     message("Not logged in. Only public information will be returned.")
-  #   }
-  #   rq <- databraryr::make_default_request()
-  # }
-  
+
   if (vb)
     message("Summarizing funding for n=", length(vol_id), " volumes.")
   

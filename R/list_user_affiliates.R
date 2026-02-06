@@ -19,8 +19,7 @@ list_user_affiliates <- function(user_id = 6,
   assertthat::assert_that(is.numeric(user_id), length(user_id) == 1, user_id > 0)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))

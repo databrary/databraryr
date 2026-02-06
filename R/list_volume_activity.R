@@ -35,8 +35,9 @@ list_volume_activity <-
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
+    
+    validate_flag(vb, "vb")
     if (vb)
       message('list_volume_activity()...')
 

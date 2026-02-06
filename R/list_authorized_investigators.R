@@ -21,7 +21,7 @@ list_authorized_investigators <- function(institution_id = 12,
   assertthat::assert_that(is.numeric(institution_id),
                           length(institution_id) == 1,
                           institution_id > 0)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  validate_flag(vb, "vb")
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

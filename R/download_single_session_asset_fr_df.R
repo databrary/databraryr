@@ -59,11 +59,9 @@ download_single_session_asset_fr_df <- function(i = NULL,
   )
   assertthat::is.writeable(target_dir)
   
-  assertthat::assert_that(length(add_session_subdir) == 1)
-  assertthat::assert_that(is.logical(add_session_subdir))
+  validate_flag(add_session_subdir, "add_session_subdir")
+  validate_flag(overwrite, "overwrite")
   
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
   
   assertthat::assert_that(length(make_portable_fn) == 1)
   assertthat::assert_that(is.logical(make_portable_fn))
@@ -72,8 +70,7 @@ download_single_session_asset_fr_df <- function(i = NULL,
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))

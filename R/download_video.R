@@ -65,8 +65,7 @@ download_video <- function(vol_id = 1,
   )
   assertthat::is.writeable(target_dir)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))

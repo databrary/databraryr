@@ -18,9 +18,10 @@
 make_default_request <- function(with_token = TRUE,
                                  refresh = TRUE,
                                  vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(with_token), length(with_token) == 1)
-  assertthat::assert_that(is.logical(refresh), length(refresh) == 1)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  
+  validate_flag(with_token, "with_token")
+  validate_flag(refresh, "refresh")
+  validate_flag(vb, "vb")
 
   req <- httr2::request(DATABRARY_BASE_URL) |>
     httr2::req_user_agent(USER_AGENT) |>

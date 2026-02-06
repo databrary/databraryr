@@ -20,8 +20,7 @@ list_institution_affiliates <- function(institution_id = 12,
                           length(institution_id) == 1,
                           institution_id > 0)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))

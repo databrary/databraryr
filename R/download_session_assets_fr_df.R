@@ -11,7 +11,8 @@ NULL
 #' `list_session_assets()` or `list_volume_session_assets()` output.
 #'
 #' @param session_df Data frame describing assets. Must include `vol_id`,
-#'   `session_id`, `asset_id`, and `asset_name` columns.
+#'   `session_id`, `asset_id`, and `asset_name` columns. Default is the result
+#'   `download_session_assets_fr_df(session_id = assets, vol_id = 1)`.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
 #' @param add_session_subdir Logical. When `TRUE`, creates a subdirectory per
@@ -33,13 +34,14 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' assets <- list_session_assets(vol_id = 1, session_id = 9807)
+#' assets <- list_session_assets(vol_id = 1, session_id = 9224)
 #' download_session_assets_fr_df(assets, vb = TRUE)
 #' }
 #' }
 #' @export
 download_session_assets_fr_df <-
-  function(session_df = list_session_assets(),
+  function(session_df = list_session_assets(session_id = 9224,
+                                            vol_id = 1),
            target_dir = tempdir(),
            add_session_subdir = TRUE,
            overwrite = TRUE,

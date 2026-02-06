@@ -39,13 +39,11 @@ list_volume_records <- function(vol_id = 1,
                                 category_id = NULL,
                                 vb = options::opt("vb"),
                                 rq = NULL) {
-  # Validate vol_id
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
   assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
   
-  # Validate category_id
   if (!is.null(category_id)) {
     assertthat::assert_that(length(category_id) == 1)
     assertthat::assert_that(is.numeric(category_id))
@@ -53,11 +51,8 @@ list_volume_records <- function(vol_id = 1,
     assertthat::assert_that(category_id == floor(category_id), msg = "category_id must be an integer")
   }
   
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
-  # Validate rq
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
   

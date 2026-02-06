@@ -28,18 +28,7 @@ list_volume_assets <- function(vol_id = 1,
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
   
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  # Not needed for DB2 API. Delete
-  # Handle NULL rq
-  # if (is.null(rq)) {
-  #   if (vb) {
-  #     message("NULL request object. Will generate default.")
-  #     message("Not logged in. Only public information will be returned.")
-  #   }
-  #   rq <- databraryr::make_default_request()
-  # }
+  validate_flag(vb, "vb")
   
   sessions <- collect_paginated_get(
     path = sprintf(API_VOLUME_SESSIONS, vol_id),
