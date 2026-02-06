@@ -4,7 +4,12 @@
 NULL
 
 #' Get Session File Data From A Databrary Volume
-#'
+#' 
+#' @description
+#' Databrary volumes have folders where study or collection-wide files 
+#' can be stored and shared. `get_folder_file()` returns metadata about
+#' specific files stored in a volume folder.
+#' 
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
 #' @param folder_id An integer indicating a valid folder identifier
 #' linked to a volume. Default value is 9807, the materials folder for volume 1.
@@ -21,7 +26,8 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' get_folder_file(vol_id = 2, folder_id = 11, file_id = 1)
+#' get_folder_file() # Data about file_id 1 from folder_id 9807 in Volume 1.
+#' get_folder_file(vol_id = 2, folder_id = 9819, file_id = 16) # A PDF from Volume 2.
 #' }
 #' }
 #' @export

@@ -70,6 +70,7 @@ download_signed_file <- function(download_url,
   assertthat::assert_that(assertthat::is.string(dest_path))
   assertthat::is.number(timeout_secs)
   assertthat::assert_that(timeout_secs > 0)
+  assertthat::assert_that(length(timeout_secs == 1))
 
   parent_dir <- dirname(dest_path)
   if (!dir.exists(parent_dir)) {
@@ -77,16 +78,15 @@ download_signed_file <- function(download_url,
   }
   assertthat::is.writeable(parent_dir)
 
-  req <- httr2::request(download_url) |
+  req <- httr2::request(download_url) |>
     httr2::req_timeout(seconds = timeout_secs)
-
-  if (vb) {
-    message("Saving download to '", dest_path, "'.")
-  }
 
   tryCatch(
     {
       httr2::req_perform(req, path = dest_path)
+      if (vb) {
+        message("Saving download to '", dest_path, "'.")
+      }
       dest_path
     },
     httr2_error = function(cnd) {

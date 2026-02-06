@@ -3,10 +3,11 @@
 #'
 NULL
 
-#' Get Folder Metadata From a Databrary Volume.
+#' Get Folder Metadata From a Databrary Volume
 #'
-#' @param folder_id Folder identifier within the specified volume.
-#' @param vol_id Volume identifier containing the folder.
+#' @param folder_id Folder identifier within the specified volume. Default is 
+#' 9807, the Materials folder for Volume 1.
+#' @param vol_id Volume identifier containing the folder. Default is 1.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
@@ -22,7 +23,7 @@ NULL
 #' }
 #' }
 #' @export
-get_folder_by_id <- function(folder_id = 1,
+get_folder_by_id <- function(folder_id = 9807,
                              vol_id = 1,
                              vb = options::opt("vb"),
                              rq = NULL) {
