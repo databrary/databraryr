@@ -28,9 +28,12 @@ API_VOLUME_SESSIONS <- "/volumes/%s/sessions/"
 API_VOLUME_FOLDERS <- "/volumes/%s/folders/"
 API_VOLUME_RECORDS <- "/volumes/%s/records/"
 API_VOLUME_RECORD_DETAIL <- "/volumes/%s/records/%s/"
+API_RECORD_MEASURES <- "/volumes/%s/records/%s/measures/%s/"
 API_SESSION_DETAIL <- "/volumes/%s/sessions/%s/"
 API_SESSION_FILES <- "/volumes/%s/sessions/%s/files/"
 API_SESSION_FILE_DETAIL <- "/volumes/%s/sessions/%s/files/%s/"
+API_SESSION_FILE_ASSIGN <- "/volumes/%s/sessions/%s/files/%s/assign-record/"
+API_SESSION_FILE_UNASSIGN <- "/volumes/%s/sessions/%s/files/%s/unassign-record/"
 API_FILES_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/files/%s/download-link/"
 API_SESSION_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/download-link/"
 API_SESSION_CSV_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/csv-download-link/"
@@ -60,5 +63,6 @@ REQUEST_TIMEOUT_VERY_LONG <- 600
 OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
 OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
 
-USER_AGENT <- Sys.getenv("USER_AGENT", "SRW$*Kxy2nYdyo4LozoGV#i6LvH/")
+USER_AGENT <- paste0("databraryr/", as.character(utils::packageVersion("databraryr")))
+
 KEYRING_SERVICE <- 'org.databrary.databraryr'

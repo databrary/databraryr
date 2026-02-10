@@ -3,6 +3,24 @@
 #'
 NULL
 
+#' @noRd
+empty_volume_records_tibble <- function() {
+  tibble::tibble(
+    record_id = integer(0),
+    record_volume = integer(0),
+    record_category_id = integer(0),
+    record_measures = list(),
+    record_birthday = character(0),
+    age_years = integer(0),
+    age_months = integer(0),
+    age_days = integer(0),
+    age_total_days = integer(0),
+    age_formatted = character(0),
+    age_is_estimated = logical(0),
+    age_is_blurred = logical(0)
+  )
+}
+
 #' List Records in Databrary Volume
 #'
 #' @description Retrieve all records (participant data with measures) from a
@@ -15,8 +33,9 @@ NULL
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing metadata for each record including id, volume,
-#'   category_id, measures, birthday, and age information, or `NULL` when no
-#'   records are available.
+#'   category_id, measures, birthday, and age information. Returns an empty
+#'   tibble (with the same columns) when the volume has no records, or `NULL`
+#'   when the API call fails (e.g. non-existent volume).
 #'
 #' @inheritParams options_params
 #'
@@ -81,11 +100,15 @@ list_volume_records <- function(
     vb = vb
   )
 
-  if (is.null(records) || length(records) == 0) {
+  if (is.null(records)) {
+    return(NULL)
+  }
+
+  if (length(records) == 0) {
     if (vb) {
       message("No records found for volume ", vol_id)
     }
-    return(NULL)
+    return(empty_volume_records_tibble())
   }
 
   # Process records into tibble

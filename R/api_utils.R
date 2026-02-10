@@ -174,3 +174,119 @@ snake_case_list <- function(obj) {
   }
 }
 
+#' @noRd
+perform_api_post <- function(path,
+                             body = list(),
+                             rq = NULL,
+                             vb = FALSE,
+                             normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "POST")
+  
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("POST request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_patch <- function(path,
+                              body = list(),
+                              rq = NULL,
+                              vb = FALSE,
+                              normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "PATCH")
+  
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("PATCH request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_delete <- function(path,
+                               rq = NULL,
+                               vb = FALSE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "DELETE")
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("DELETE request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(FALSE)
+  }
+
+  # DELETE typically returns 204 No Content or 200 OK
+  TRUE
+}
+

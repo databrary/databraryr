@@ -3,26 +3,26 @@ login_test_account()
 
 test_that("get_volume_record_by_id retrieves valid record", {
   # First get a list of records to find a valid record_id
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
 
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     expect_type(result, "list")
     expect_named(result, c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age"))
     expect_equal(result$record_id, test_record_id)
-    expect_equal(result$record_volume, 1)
+    expect_equal(result$record_volume, 1777)
     expect_true(is.numeric(result$record_category_id) || is.integer(result$record_category_id))
   }
 })
 
 test_that("get_volume_record_by_id returns NULL for non-existent record", {
   # Use a very large ID that likely doesn't exist
-  result <- get_volume_record_by_id(vol_id = 1, record_id = 999999, vb = FALSE)
+  result <- get_volume_record_by_id(vol_id = 1777, record_id = 999999, vb = FALSE)
   expect_null(result)
 })
 
@@ -32,13 +32,13 @@ test_that("get_volume_record_by_id returns NULL for non-existent volume", {
 })
 
 test_that("get_volume_record_by_id works with verbose mode", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id, vb = TRUE)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d, vb = TRUE)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id, vb = TRUE)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d, vb = TRUE)", test_record_id))
 
     expect_type(result, "list")
     expect_true(!is.null(result$record_id))
@@ -61,7 +61,7 @@ test_that("get_volume_record_by_id rejects invalid vol_id", {
   expect_error(get_volume_record_by_id(vol_id = c(1, 2), record_id = 1))
 
   # Decimal/non-integer
-  expect_error(get_volume_record_by_id(vol_id = 1.5, record_id = 1))
+  expect_error(get_volume_record_by_id(vol_id = 1777.5, record_id = 1))
   expect_error(get_volume_record_by_id(vol_id = 2.7, record_id = 1))
 
   # NULL
@@ -73,55 +73,55 @@ test_that("get_volume_record_by_id rejects invalid vol_id", {
 
 test_that("get_volume_record_by_id rejects invalid record_id", {
   # Negative ID
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = -1))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = -1))
 
   # Zero ID
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 0))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 0))
 
   # Non-numeric ID
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = "1"))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = TRUE))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = list(a = 1)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = "1"))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = TRUE))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = list(a = 1)))
 
   # Multiple values
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = c(1, 2)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = c(1, 2)))
 
   # Decimal/non-integer
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1.5))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 2.7))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1.5))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 2.7))
 
   # NULL
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = NULL))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = NULL))
 
   # NA
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = NA))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = NA))
 })
 
 test_that("get_volume_record_by_id rejects invalid vb parameter", {
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = -1))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = 3))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = "a"))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = list(a = 1, b = 2)))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = c(TRUE, FALSE)))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, vb = NULL))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = -1))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = 3))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = "a"))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = list(a = 1, b = 2)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = c(TRUE, FALSE)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, vb = NULL))
 })
 
 test_that("get_volume_record_by_id rejects invalid rq parameter", {
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, rq = "a"))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, rq = -1))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, rq = c(2, 3)))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, rq = list(a = 1, b = 2)))
-  expect_error(get_volume_record_by_id(vol_id = 1, record_id = 1, rq = TRUE))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, rq = "a"))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, rq = -1))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, rq = c(2, 3)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, rq = list(a = 1, b = 2)))
+  expect_error(get_volume_record_by_id(vol_id = 1777, record_id = 1, rq = TRUE))
 })
 
 test_that("get_volume_record_by_id result structure is consistent", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     # Check that all expected fields exist
     expect_true(all(c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age") %in% names(result)))
@@ -136,18 +136,18 @@ test_that("get_volume_record_by_id result structure is consistent", {
     expect_equal(result$record_id, test_record_id)
 
     # Check that record_volume matches requested volume
-    expect_equal(result$record_volume, 1)
+    expect_equal(result$record_volume, 1777)
   }
 })
 
 test_that("get_volume_record_by_id handles age structure correctly", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     # If age exists, check its structure
     if (!is.null(result$age)) {
@@ -159,13 +159,13 @@ test_that("get_volume_record_by_id handles age structure correctly", {
 })
 
 test_that("get_volume_record_by_id handles measures correctly", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     # Measures should be a list (can be empty)
     expect_true(is.list(result$measures) || is.null(result$measures))
@@ -173,14 +173,14 @@ test_that("get_volume_record_by_id handles measures correctly", {
 })
 
 test_that("get_volume_record_by_id works with custom request object", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
     custom_rq <- databraryr::make_default_request()
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id, rq = custom_rq)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d, rq = custom_rq)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id, rq = custom_rq)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d, rq = custom_rq)", test_record_id))
 
     expect_type(result, "list")
     expect_equal(result$record_id, test_record_id)
@@ -188,34 +188,36 @@ test_that("get_volume_record_by_id works with custom request object", {
 })
 
 test_that("get_volume_record_by_id can retrieve multiple different records", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
-  if (nrow(records) >= 2) {
-    record_id_1 <- records$record_id[1]
-    record_id_2 <- records$record_id[2]
-
-    result1 <- get_volume_record_by_id(vol_id = 1, record_id = record_id_1, vb = FALSE)
-    result2 <- get_volume_record_by_id(vol_id = 1, record_id = record_id_2, vb = FALSE)
-
-    skip_if_null_response(result1, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", record_id_1))
-    skip_if_null_response(result2, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", record_id_2))
-
-    # If both exist, they should be different
-    expect_false(identical(result1$record_id, result2$record_id))
-    expect_equal(result1$record_id, record_id_1)
-    expect_equal(result2$record_id, record_id_2)
+  unique_ids <- unique(records$record_id)
+  if (length(unique_ids) < 2) {
+    testthat::skip("Volume has fewer than 2 records; need 2+ to verify multiple retrieval")
   }
+
+  record_id_1 <- unique_ids[1]
+  record_id_2 <- unique_ids[2]
+
+  result1 <- get_volume_record_by_id(vol_id = 1777, record_id = record_id_1, vb = FALSE)
+  result2 <- get_volume_record_by_id(vol_id = 1777, record_id = record_id_2, vb = FALSE)
+
+  skip_if_null_response(result1, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", record_id_1))
+  skip_if_null_response(result2, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", record_id_2))
+
+  expect_false(identical(result1$record_id, result2$record_id))
+  expect_equal(as.integer(result1$record_id), as.integer(record_id_1))
+  expect_equal(as.integer(result2$record_id), as.integer(record_id_2))
 })
 
 test_that("get_volume_record_by_id returns complete structure with all fields", {
-  records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(records, "list_volume_records(vol_id = 1)")
+  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
     test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1, record_id = %d)", test_record_id))
+    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     # Record should have all expected fields
     expect_length(result, 6)

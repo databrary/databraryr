@@ -23,8 +23,9 @@ by category type.}
 }
 \value{
 A tibble containing metadata for each record including id, volume,
-category_id, measures, birthday, and age information, or \code{NULL} when no
-records are available.
+category_id, measures, birthday, and age information. Returns an empty
+tibble (with the same columns) when the volume has no records, or \code{NULL}
+when the API call fails (e.g. non-existent volume).
 }
 \description{
 Retrieve all records (participant data with measures) from a
