@@ -17,7 +17,7 @@ supports.
 List the data (file) formats supported by Databrary.
 }
 \examples{
-\donttest{
+\dontrun{
 list_asset_formats()
 }
 }

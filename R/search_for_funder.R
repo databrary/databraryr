@@ -16,7 +16,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' search_for_funder("national+science+foundation")
 #' }
 #'

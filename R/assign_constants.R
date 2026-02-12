@@ -13,7 +13,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' assign_constants()
 #' }
 #' @export

@@ -22,7 +22,7 @@ A tibble with summary information about a volume.
 Get Summary Data About A Databrary Volume
 }
 \examples{
-\donttest{
+\dontrun{
 get_volume_by_id() # Default is Volume 1
 }
 

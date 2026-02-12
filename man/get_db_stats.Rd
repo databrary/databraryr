@@ -22,7 +22,7 @@ Returns basic summary information about
 the institutions, people, and video data hosted on Databrary.
 }
 \examples{
-\donttest{
+\dontrun{
 get_db_stats()
 get_db_stats("stats")
 }

@@ -27,5 +27,5 @@ Creates an \code{httr2} request with the package's default options, including
 base URL, user agent, Accept header, and timeout tuned for the Django API.
 }
 \examples{
-make_default_request()
+make_default_request(with_token = FALSE)
 }

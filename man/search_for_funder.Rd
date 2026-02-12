@@ -28,7 +28,7 @@ A data frame with information about the funder.
 Report Information About A Funder.
 }
 \examples{
-\donttest{
+\dontrun{
 search_for_funder("national+science+foundation")
 }
 

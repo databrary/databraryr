@@ -16,7 +16,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_volume_by_id() # Default is Volume 1
 #' }
 #'

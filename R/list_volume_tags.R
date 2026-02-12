@@ -14,7 +14,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' list_volume_tags()
 #' }
 #' @export

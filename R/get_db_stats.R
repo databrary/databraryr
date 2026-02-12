@@ -18,7 +18,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_db_stats()
 #' get_db_stats("stats")
 #' }

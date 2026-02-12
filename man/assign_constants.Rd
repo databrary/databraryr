@@ -18,7 +18,7 @@ A data frame with the constants.
 Download Databrary Constants From API.
 }
 \examples{
-\donttest{
+\dontrun{
 assign_constants()
 }
 }

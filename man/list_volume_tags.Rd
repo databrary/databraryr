@@ -20,7 +20,7 @@ A data frame with the requested data.
 Lists Keywords And Tags For A Volume.
 }
 \examples{
-\donttest{
+\dontrun{
 list_volume_tags()
 }
 }

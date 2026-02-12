@@ -8,7 +8,7 @@
 #' @returns A data frame with information about the SSL certificates.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' check_ssl_certs()
 #' }
 #' @export

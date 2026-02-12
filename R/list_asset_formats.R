@@ -15,7 +15,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' list_asset_formats()
 #' }
 #' @export
