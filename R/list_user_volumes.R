@@ -3,6 +3,8 @@
 #'
 NULL
 
+utils::globalVariables("vol_id")
+
 #' List Volumes Associated With A User
 #'
 #' @param user_id User identifier. Must be a positive integer. Default is 6.

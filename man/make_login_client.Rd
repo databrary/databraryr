@@ -10,7 +10,7 @@ make_login_client(
   store = FALSE,
   overwrite = FALSE,
   vb = options::opt("vb"),
-  SERVICE = KEYRING_SERVICE,
+  service = KEYRING_SERVICE,
   rq = NULL
 )
 }
@@ -21,11 +21,12 @@ make_login_client(
 
 \item{store}{A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.}
 
-\item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.}
+\item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite or
+update stored credentials in keyring/keychain.}
 
 \item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
-\item{SERVICE}{A character label for stored credentials in the keyring. Default is "databrary"}
+\item{service}{A character label for stored credentials in the keyring. Default is "databrary"}
 
 \item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }

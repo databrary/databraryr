@@ -100,7 +100,7 @@ download_folder_assets_fr_df <-
 
     purrr::map(
       seq_len(nrow(folder_df)),
-      download_single_folder_asset_fr_df,
+      download_folder_asset_from_df,
       folder_df = folder_df,
       target_dir = target_dir,
       add_folder_subdir = add_folder_subdir,

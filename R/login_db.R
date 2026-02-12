@@ -9,7 +9,7 @@
 #'   system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/
 #'   update stored credentials in keyring/keychain.
-#' @param SERVICE A character label for stored credentials in the keyring.
+#' @param service A character label for stored credentials in the keyring.
 #'   Default is `org.databrary.databraryr`.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #'
@@ -33,12 +33,12 @@ login_db <- function(email = NULL,
                      client_secret = NULL,
                      store = FALSE,
                      overwrite = FALSE,
-                     SERVICE = KEYRING_SERVICE,
+                     service = KEYRING_SERVICE,
                      vb = options::opt("vb")) {
   assertthat::assert_that(length(store) == 1, is.logical(store))
   validate_flag(overwrite, "overwrite")
   validate_flag(vb, "vb")
-  assertthat::assert_that(length(SERVICE) == 1, is.character(SERVICE))
+  assertthat::assert_that(length(service) == 1, is.character(service))
 
   # If the user wants to store or use their stored credentials,
   # check for keyring support
@@ -51,7 +51,7 @@ login_db <- function(email = NULL,
     label = "email",
     value = email,
     prompt_label = "Databrary user ID (email)",
-    service = SERVICE,
+    service = service,
     overwrite = overwrite,
     vb = vb
   )
@@ -60,7 +60,7 @@ login_db <- function(email = NULL,
     label = "password",
     value = password,
     prompt_label = "Databrary password",
-    service = SERVICE,
+    service = service,
     username = paste0(email_value, "::password"),
     overwrite = overwrite,
     vb = vb
@@ -70,7 +70,7 @@ login_db <- function(email = NULL,
     label = "client_id",
     value = client_id,
     prompt_label = "OAuth client ID",
-    service = SERVICE,
+    service = service,
     username = paste0(email_value, "::client_id"),
     overwrite = overwrite,
     vb = vb
@@ -80,7 +80,7 @@ login_db <- function(email = NULL,
     label = "client_secret",
     value = client_secret,
     prompt_label = "OAuth client secret",
-    service = SERVICE,
+    service = service,
     username = paste0(email_value, "::client_secret"),
     overwrite = overwrite,
     vb = vb
@@ -111,15 +111,15 @@ login_db <- function(email = NULL,
 
   if (store) {
     store_keyring_value(
-      service = SERVICE, username = paste0(email_value, "::password"),
+      service = service, username = paste0(email_value, "::password"),
       value = password_value, vb = vb
     )
     store_keyring_value(
-      service = SERVICE, username = paste0(email_value, "::client_id"),
+      service = service, username = paste0(email_value, "::client_id"),
       value = client_id_value, vb = vb
     )
     store_keyring_value(
-      service = SERVICE, username = paste0(email_value, "::client_secret"),
+      service = service, username = paste0(email_value, "::client_secret"),
       value = client_secret_value, vb = vb
     )
   }

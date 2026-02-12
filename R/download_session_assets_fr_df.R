@@ -101,7 +101,7 @@ download_session_assets_fr_df <-
 
     purrr::map(
       seq_len(nrow(session_df)),
-      download_single_session_asset_fr_df,
+      download_session_asset_from_df,
       session_df = session_df,
       target_dir = target_dir,
       add_session_subdir = add_session_subdir,

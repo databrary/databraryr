@@ -27,15 +27,15 @@ NULL
 #' @inheritParams options_params
 #'
 #' @export
-download_single_session_asset_fr_df <- function(i = NULL,
-                                                session_df = NULL,
-                                                target_dir = tempdir(),
-                                                add_session_subdir = TRUE,
-                                                overwrite = TRUE,
-                                                make_portable_fn = FALSE,
-                                                timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
-                                                vb = options::opt("vb"),
-                                                rq = NULL) {
+download_session_asset_from_df <- function(i = NULL,
+                                           session_df = NULL,
+                                           target_dir = tempdir(),
+                                           add_session_subdir = TRUE,
+                                           overwrite = TRUE,
+                                           make_portable_fn = FALSE,
+                                           timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
+                                           vb = options::opt("vb"),
+                                           rq = NULL) {
   assertthat::assert_that(length(i) == 1)
   assertthat::is.number(i)
   assertthat::assert_that(i > 0)

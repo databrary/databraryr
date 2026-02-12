@@ -11,7 +11,7 @@ NULL
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite or
 #'   update stored credentials in keyring/keychain.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
-#' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
+#' @param service A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns Logical value indicating whether log in is successful or not.
@@ -35,7 +35,7 @@ make_login_client <- function(email = NULL,
                               store = FALSE,
                               overwrite = FALSE,
                               vb = options::opt("vb"),
-                              SERVICE = KEYRING_SERVICE,
+                              service = KEYRING_SERVICE,
                               rq = NULL) {
 
   # Check parameters
@@ -46,8 +46,8 @@ make_login_client <- function(email = NULL,
   validate_flag(overwrite, "overwrite")
   validate_flag(vb, "vb")
 
-  assertthat::assert_that(length(SERVICE) == 1)
-  assertthat::assert_that(is.character(SERVICE))
+  assertthat::assert_that(length(service) == 1)
+  assertthat::assert_that(is.character(service))
 
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
@@ -86,19 +86,19 @@ make_login_client <- function(email = NULL,
   if (store && is.null(password) && !overwrite) {
     if (vb)
       message("Retrieving password for service='",
-              SERVICE,
+              service,
               "' from keyring.")
-    kl <- keyring::key_list(service = SERVICE)
+    kl <- keyring::key_list(service = service)
     # Make sure our service is in the keyring
     if (exists("kl") && is.data.frame(kl)) {
       # If it is under the email entered, keep it to try later and not collect it here
       password <-
-        try(keyring::key_get(service = SERVICE, username = email),
+        try(keyring::key_get(service = service, username = email),
             silent = TRUE)
       if ("try-error" %in% class(password)) {
         do_collect_password <- TRUE
         if (vb)
-          message("No password found in keyring for service='", SERVICE, ".")
+          message("No password found in keyring for service='", service, ".")
       } else {
         do_collect_password <- FALSE
         if (vb)
@@ -107,7 +107,7 @@ make_login_client <- function(email = NULL,
     } else {
       if (vb)
         message("Error retrieving keyring data for service='",
-                SERVICE,
+                service,
                 "'.")
     }
   }
@@ -145,7 +145,7 @@ make_login_client <- function(email = NULL,
   # Store them in the keyring
   if (is_login_successful) {
     if (store && (do_collect_password || overwrite)) {
-      keyring::key_set_with_value(service = SERVICE,
+      keyring::key_set_with_value(service = service,
                                   username = email,
                                   password = password)
       if (vb)

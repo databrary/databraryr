@@ -1,5 +1,7 @@
 # Utility functions for the databraryr package.
 
+utils::globalVariables(c("name", "id", "category"))
+
 #------------------------------------------------------------------------------
 #' @eval options::as_params()
 #' @name options_params
