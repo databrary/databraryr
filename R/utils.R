@@ -85,7 +85,7 @@ get_release_levels <- function(vb = options::opt("vb")) {
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_supported_file_types()
 #' }
 #'

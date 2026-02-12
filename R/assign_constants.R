@@ -54,7 +54,7 @@ assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
   list(
     format = format_entries,
     format_df = formats_df,
-    permission = databraryr:::get_permission_levels_enums(),
-    release = databraryr:::get_release_levels_enums()
+    permission = get_permission_levels_enums(),
+    release = get_release_levels_enums()
   )
 }
