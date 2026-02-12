@@ -5,6 +5,10 @@ NULL
 
 #' List Stored Assets (Files) By Type.
 #' 
+#' @description List the data (file) formats supported by Databrary.
+#' 
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' 
 #' @returns A data frame with information about the data formats Databrary
 #' supports.
 #' 
@@ -17,8 +21,7 @@ NULL
 #' @export
 list_asset_formats <- function(vb = options::opt("vb")) {
   # Check parameters
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   
   db_constants <- databraryr::assign_constants()
   

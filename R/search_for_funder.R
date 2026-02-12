@@ -5,9 +5,10 @@ NULL
 
 #' Report Information About A Funder.
 #'
-#' @param search_string String to search.
+#' @param search_string String to search. Default is "national science foundation".
 #' @param approved_only Logical. When TRUE (default) only approved funders are
 #'   returned. Set to FALSE to include unapproved funders as well.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with information about the funder.
@@ -30,9 +31,8 @@ search_for_funder <-
     search_string <- gsub("[+]", " ", search_string)
     pattern <- stringr::str_trim(search_string)
     
-    assertthat::assert_that(is.logical(approved_only), length(approved_only) == 1)
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(approved_only, "approved_only")
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))

@@ -11,12 +11,15 @@ NULL
 #' specified directory.
 #'
 #' @param vol_id Integer. Volume identifier containing the folder. Default is 1.
-#' @param folder_id Integer. Folder identifier within the volume. Default is 1.
-#' @param asset_id Integer. Asset identifier within the folder. Default is 1.
+#' @param folder_id Integer. Folder identifier within the volume. Default is 9807,
+#' the Materials folder for Volume 1.
+#' @param asset_id Integer. Asset identifier within the folder. Default is 1, a
+#' demo video called 'counting_demo_video.mp4'.
 #' @param file_name Optional character string. File name to use when saving the
 #'   asset. Defaults to the API-provided file name.
 #' @param target_dir Character string. Directory where the file will be saved.
 #'   Default is `tempdir()`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #' @param timeout_secs Numeric. Timeout (seconds) applied to the download
@@ -31,16 +34,16 @@ NULL
 #' \donttest{
 #' \dontrun{
 #' download_folder_asset() # Default public asset in folder 1 of volume 1
-#' download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3,
-#'                       file_name = "example.mp4")
+#' download_folder_asset(vol_id = 1, folder_id = 9807, asset_id = 1,
+#'                       file_name = "video.mp4")
 #' }
 #' }
 #'
 #' @export
 download_folder_asset <- function(vol_id = 1,
-                                  folder_id = 1,
+                                  folder_id = 9807,
                                   asset_id = 1,
-                                  file_name = NULL,
+                                  file_name = "video.mp4",
                                   target_dir = tempdir(),
                                   timeout_secs = REQUEST_TIMEOUT,
                                   vb = options::opt("vb"),
@@ -70,8 +73,7 @@ download_folder_asset <- function(vol_id = 1,
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
   assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
 
@@ -122,6 +124,3 @@ download_folder_asset <- function(vol_id = 1,
     vb = vb
   )
 }
-
-
-

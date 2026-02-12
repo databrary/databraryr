@@ -9,6 +9,7 @@ NULL
 #' endpoint.
 #'
 #' @param search_string Character string describing the volume search query.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing matching volumes ordered by relevance, or `NULL`
@@ -27,8 +28,7 @@ search_volumes <- function(search_string,
                            vb = options::opt("vb"),
                            rq = NULL) {
   assertthat::assert_that(assertthat::is.string(search_string))
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   results <- collect_paginated_get(

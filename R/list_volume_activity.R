@@ -5,10 +5,11 @@ NULL
 
 #' List Activity In A Databrary Volume
 #'
-#' If a user has access to a volume, this command lists the modification
-#' history of the volume as a
+#' @description If a user has access to a volume, this command lists the modification
+#' history of the volume.
 #'
-#' @param vol_id Selected volume number.
+#' @param vol_id Selected volume number. Must be a positive integer. Default is NULL.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A list with the activity history on a volume.
@@ -18,15 +19,15 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' # The following will only return output if the user has write privileges
+#' # The following will only return output if the user has *write* privileges
 #' # on the volume.
 #'
-#' list_volume_activity(vol_id = 1892) # Activity on volume 1892.
+#' list_volume_activity(vol_id) 
 #' }
 #' }
 #' @export
 list_volume_activity <-
-  function(vol_id = 1892,
+  function(vol_id = NULL,
            vb = options::opt("vb"),
            rq = NULL) {
     # Check parameters
@@ -34,8 +35,9 @@ list_volume_activity <-
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
+    
+    validate_flag(vb, "vb")
     if (vb)
       message('list_volume_activity()...')
 
@@ -103,5 +105,5 @@ list_volume_activity <-
         folder_id = safe_int(folder_id),
         deleted_at = entry$deleted_at
       )
-    })
+    }, .progress = TRUE)
   }

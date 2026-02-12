@@ -12,9 +12,10 @@ NULL
 #'   description.
 #' @param ordering Optional character string indicating the sort field accepted
 #'   by the API (e.g., `"title"`, `"-title"`).
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
-#' @return A tibble summarizing each accessible volume, or `NULL` when no
+#' @returns A tibble summarizing each accessible volume, or `NULL` when no
 #'   volumes match the supplied filters.
 #'
 #' @inheritParams options_params
@@ -37,8 +38,7 @@ list_volumes <- function(search = NULL,
     assertthat::assert_that(assertthat::is.string(ordering))
   }
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
@@ -58,6 +58,9 @@ list_volumes <- function(search = NULL,
     }
     return(NULL)
   }
+  if (vb) message("Found n = ",
+                  length(volumes),
+                  " volumes that matched the supplied filters.")
 
   purrr::map_dfr(volumes, function(volume) {
     owner_connection <- volume$owner_connection
@@ -80,7 +83,7 @@ list_volumes <- function(search = NULL,
       volume_owner_institution_id = if (is.null(owner_institution)) NA_integer_ else owner_institution$id,
       volume_owner_institution_name = if (is.null(owner_institution$name)) NA_character_ else owner_institution$name
     )
-  })
+  }, .progress = TRUE)
 }
 
 

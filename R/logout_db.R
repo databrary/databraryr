@@ -5,7 +5,7 @@ NULL
 
 #' Log Out of Databrary.org.
 #'
-#' @param rq An `httr2` request object. Defaults to NULL.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' 
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
 #' 
@@ -17,7 +17,7 @@ NULL
 #' }
 #' @export
 logout_db <- function(vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+  validate_flag(vb, "vb")
 
   bundle <- get_token_bundle()
   if (is.null(bundle)) {

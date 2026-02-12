@@ -5,7 +5,8 @@ NULL
 
 #' Get Summary Data About A Databrary Volume
 #'
-#' @param vol_id Volume ID.
+#' @param vol_id Volume ID. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL (the default), a new request
 #' is generated using `make_default_request()`. To access restricted data,
 #' the user must login with a specific request object using `login_db()`.
@@ -27,8 +28,7 @@ get_volume_by_id <- function(vol_id = 1,
   assertthat::assert_that(vol_id > 0)
   assertthat::assert_that(length(vol_id) == 1)
   
-  assertthat::assert_that(is.logical(vb))
-  assertthat::assert_that(length(vb) == 1)
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))

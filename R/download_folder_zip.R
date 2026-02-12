@@ -11,8 +11,11 @@ NULL
 #' descriptor. When the archive is ready, Databrary emails a signed download
 #' link to the authenticated user.
 #'
-#' @param vol_id Volume identifier for the folder.
-#' @param folder_id Folder identifier scoped within the specified volume.
+#' @param vol_id Volume identifier for the folder. Must be a positive integer. 
+#' Default is 1.
+#' @param folder_id Folder identifier scoped within the specified volume. Must
+#' be a positive integer. Default is 9807.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #'
@@ -24,31 +27,29 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' download_folder_zip(vol_id = 1, folder_id = 1)
+#' download_folder_zip() # Volume 1, folder 9807
 #' }
 #' }
 #'
 #' @export
 download_folder_zip <- function(vol_id = 1,
-                                folder_id = 1,
+                                folder_id = 9807,
                                 vb = options::opt("vb"),
                                 rq = NULL) {
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-
+  
   assertthat::assert_that(length(folder_id) == 1)
   assertthat::assert_that(is.numeric(folder_id))
   assertthat::assert_that(folder_id >= 1)
-
+  
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
-
+  
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
+  
   path <- sprintf(API_FOLDER_DOWNLOAD_LINK, vol_id, folder_id)
   request_processing_task(path = path, rq = rq, vb = vb)
 }
-
-
-

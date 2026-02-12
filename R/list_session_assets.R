@@ -17,6 +17,7 @@ NULL
 #' @param vol_id Optional integer. The volume containing the session. Recent
 #' versions of the Databrary API require this value to be supplied because
 #' session identifiers are scoped to volumes.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL, a default request is generated
 #' from databraryr::make_default_request().
 #'
@@ -45,6 +46,8 @@ list_session_assets <- function(session_id = 9807,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
+  
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))

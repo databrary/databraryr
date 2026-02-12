@@ -5,8 +5,9 @@ NULL
 
 #' List Basic Volume Info.
 #'
-#' @param vol_id Target volume number.
-#' @param rq An `httr2` request object. If NULL (the default)
+#' @param vol_id Target volume number. Must be a positive integer. Defaults to 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. If NULL (the default).
 #' a request will be generated, but this will only permit public information
 #' to be returned.
 #'
@@ -31,8 +32,7 @@ list_volume_info <-
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id >= 1)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))

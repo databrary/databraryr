@@ -9,6 +9,7 @@ NULL
 #' @param password Databrary password (not recommended as it will displayed as you type)
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
 #' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
 #' 
@@ -40,11 +41,9 @@ make_login_client <- function(email = NULL,
   assertthat::assert_that(length(store) == 1)
   assertthat::assert_that(is.logical(store))
   
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(store, "store")
+  validate_flag(overwrite, "overwrite")
+  validate_flag(vb, "vb")
   
   assertthat::assert_that(length(SERVICE) == 1)
   assertthat::assert_that(is.character(SERVICE))
