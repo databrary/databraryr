@@ -1,6 +1,4 @@
-# R/utils.R
-#
-# Utility functions.
+# Utility functions for the databraryr package.
 
 #------------------------------------------------------------------------------
 #' @eval options::as_params()
@@ -71,8 +69,9 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 get_release_levels <- function(vb = options::opt("vb")) {
   validate_flag(vb, "vb")
   enums <- get_release_levels_enums()
-  vapply(enums$levels, function(item)
-           item$code, character(1))
+  vapply(enums$levels, function(item) {
+    item$code
+  }, character(1))
 }
 
 #----------------------------------------------------------------------------

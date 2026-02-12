@@ -27,11 +27,20 @@ get_release_levels_enums <- function() {
       ),
       list(
         code = "authorized_users",
-        description = "This content is restricted to authorized Databrary users and may not be redistributed in any form."
+        description = paste0(
+          "This content is restricted to authorized Databrary users and ",
+          "may not be redistributed in any form."
+        )
       ),
       list(
         code = "learning_audiences",
-        description = "This content is restricted to authorized Databrary users, who may use clips or images from it in presentations for informational or educational purposes. Such presentations may be videotaped or recorded and those videos or recordings may then be made available to the public via the internet (e.g., YouTube)."
+        description = paste0(
+          "This content is restricted to authorized Databrary users, who may ",
+          "use clips or images from it in presentations for informational or ",
+          "educational purposes. Such presentations may be videotaped or ",
+          "recorded and those videos or recordings may then be made available ",
+          "to the public via the internet (e.g., YouTube)."
+        )
       ),
       list(
         code = "public",

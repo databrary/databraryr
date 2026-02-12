@@ -39,7 +39,7 @@ list_volume_activity <-
 
     validate_flag(vb, "vb")
     if (vb)
-      message('list_volume_activity()...')
+      message("list_volume_activity()...")
 
     if (is.null(rq)) {
       rq <- databraryr::make_default_request()

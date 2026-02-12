@@ -75,15 +75,16 @@ get_user_avatar <- function(user_id,
     rq |>
       httr2::req_url_path_append(path) |>
       httr2::req_error(
-        is_error = function(resp)
+        is_error = function(resp) {
           FALSE
+        }
       ) |>
       httr2::req_perform()
   }, error = function(e) {
     if (vb) {
       message("Error downloading user avatar: ", conditionMessage(e))
     }
-    return(NULL)
+    NULL
   })
 
   if (is.null(resp)) {
@@ -128,12 +129,11 @@ get_user_avatar <- function(user_id,
                                    regexpr("filename=([^;]+)", content_disp))
       if (length(filename_match) > 0) {
         filename <- sub("filename=", "", filename_match)
-        filename <- gsub('^"|"$', '', filename) # Remove quotes
+        filename <- gsub("^\"|\"$", "", filename) # Remove quotes
         filename <- trimws(filename)
       }
     } else {
-      # Fallback: use URL path basename
-      url_path <- sprintf(API_USER_AVATAR, user_id)
+      # Fallback: use default filename when content-disposition lacks filename
       filename <- paste0("user_", user_id, "_avatar.jpg")
     }
 
@@ -157,6 +157,6 @@ get_user_avatar <- function(user_id,
     if (vb) {
       message("Error saving avatar to file: ", conditionMessage(e))
     }
-    return(NULL)
+    NULL
   })
 }

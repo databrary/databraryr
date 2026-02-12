@@ -82,8 +82,9 @@ get_institution_avatar <- function(institution_id = 1,
     httr2::req_url(full_url) %>%
     httr2::req_method("GET") %>%
     httr2::req_error(
-      is_error = function(resp)
+      is_error = function(resp) {
         FALSE
+      }
     )
 
   if (vb) {
@@ -131,15 +132,14 @@ get_institution_avatar <- function(institution_id = 1,
               grepl("filename=", content_disp)) {
           # Extract filename from content-disposition header
           filename_match <- regmatches(content_disp,
-            regexpr("filename=([^;]+)", content_disp))
+                                       regexpr("filename=([^;]+)", content_disp))
           if (length(filename_match) > 0) {
             filename <- sub("filename=", "", filename_match)
-            filename <- gsub('^"|"$', '', filename) # Remove quotes
+            filename <- gsub("^\"|\"$", "", filename) # Remove quotes
             filename <- trimws(filename)
           }
         } else {
-          # Fallback: use URL path basename
-          url_path <- sprintf(API_INSTITUTION_AVATAR, institution_id)
+          # Fallback: use default filename when content-disposition lacks filename
           filename <- paste0("institution_", institution_id, "_avatar.jpg")
         }
 
@@ -174,6 +174,6 @@ get_institution_avatar <- function(institution_id = 1,
               ": ",
               e$message)
     }
-    return(NULL)
+    NULL
   })
 }

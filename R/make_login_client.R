@@ -8,7 +8,8 @@ NULL
 #' @param email Databrary account email address.
 #' @param password Databrary password (not recommended as it will displayed as you type)
 #' @param store A boolean value. If TRUE store/retrieve credentials from the system keyring/keychain.
-#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.
+#' @param overwrite A boolean value. If TRUE and store is TRUE, overwrite or
+#'   update stored credentials in keyring/keychain.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
@@ -30,12 +31,12 @@ NULL
 #'
 #' @export
 make_login_client <- function(email = NULL,
-                             password = NULL,
-                             store = FALSE,
-                             overwrite = FALSE,
-                             vb = options::opt("vb"),
-                             SERVICE = KEYRING_SERVICE,
-                             rq = NULL) {
+                              password = NULL,
+                              store = FALSE,
+                              overwrite = FALSE,
+                              vb = options::opt("vb"),
+                              SERVICE = KEYRING_SERVICE,
+                              rq = NULL) {
 
   # Check parameters
   assertthat::assert_that(length(store) == 1)
@@ -89,7 +90,7 @@ make_login_client <- function(email = NULL,
               "' from keyring.")
     kl <- keyring::key_list(service = SERVICE)
     # Make sure our service is in the keyring
-    if (exists('kl') && is.data.frame(kl)) {
+    if (exists("kl") && is.data.frame(kl)) {
       # If it is under the email entered, keep it to try later and not collect it here
       password <-
         try(keyring::key_get(service = SERVICE, username = email),
@@ -128,8 +129,9 @@ make_login_client <- function(email = NULL,
 
   resp <- tryCatch(
     httr2::req_perform(rq),
-    httr2_error = function(cnd)
+    httr2_error = function(cnd) {
       NULL
+    }
   )
 
   if (!is.null(resp)) {
@@ -152,23 +154,21 @@ make_login_client <- function(email = NULL,
       if (vb)
         message(paste("Login successful."))
     }
-    #return(resp)
   }
 
   if (store) {
     if (vb)
       message(
         paste0(
-          'Login failed; nothing stored in keyring; HTTP status ',
+          "Login failed; nothing stored in keyring; HTTP status ",
           httr2::resp_status(resp),
-          '\n'
+          "\n"
         )
       )
   } else {
     if (vb)
-      message(paste0('Login failed; HTTP status ',
-                     httr2::resp_status(resp), '\n'))
+      message(paste0("Login failed; HTTP status ",
+                     httr2::resp_status(resp), "\n"))
   }
   resp
-  #return(FALSE)
 }

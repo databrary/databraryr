@@ -110,9 +110,18 @@ login_db <- function(email = NULL,
   )
 
   if (store) {
-    store_keyring_value(service = SERVICE, username = paste0(email_value, "::password"), value = password_value, vb = vb)
-    store_keyring_value(service = SERVICE, username = paste0(email_value, "::client_id"), value = client_id_value, vb = vb)
-    store_keyring_value(service = SERVICE, username = paste0(email_value, "::client_secret"), value = client_secret_value, vb = vb)
+    store_keyring_value(
+      service = SERVICE, username = paste0(email_value, "::password"),
+      value = password_value, vb = vb
+    )
+    store_keyring_value(
+      service = SERVICE, username = paste0(email_value, "::client_id"),
+      value = client_id_value, vb = vb
+    )
+    store_keyring_value(
+      service = SERVICE, username = paste0(email_value, "::client_secret"),
+      value = client_secret_value, vb = vb
+    )
   }
 
   if (vb) message("Login successful.")

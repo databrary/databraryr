@@ -75,7 +75,11 @@ list_volumes <- function(search = NULL,
       volume_access_level = volume$access_level,
       volume_owner_connection_id = if (is.null(owner_connection)) NA_integer_ else owner_connection$id,
       volume_owner_role = if (is.null(owner_connection$role)) NA_character_ else owner_connection$role,
-      volume_owner_expiration_date = if (is.null(owner_connection$expiration_date)) NA_character_ else owner_connection$expiration_date,
+      volume_owner_expiration_date = if (is.null(owner_connection$expiration_date)) {
+        NA_character_
+      } else {
+        owner_connection$expiration_date
+      },
       volume_owner_user_id = if (is.null(owner_user)) NA_integer_ else owner_user$id,
       volume_owner_user_first_name = if (is.null(owner_user$first_name)) NA_character_ else owner_user$first_name,
       volume_owner_user_last_name = if (is.null(owner_user$last_name)) NA_character_ else owner_user$last_name,

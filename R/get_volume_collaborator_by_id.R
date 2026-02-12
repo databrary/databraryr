@@ -111,15 +111,15 @@ get_volume_collaborator_by_id <- function(vol_id = 1,
   # Process sponsored_users if present
   sponsored_users <- NULL
   if (!is.null(collaborator$sponsored_users) &&
-      length(collaborator$sponsored_users) > 0) {
-      sponsored_users <- lapply(collaborator$sponsored_users, function(u) {
-        list(
-          user_id = u$id,
-          first_name = u$first_name,
-          last_name = u$last_name,
-          email = u$email
-        )
-      })
+        length(collaborator$sponsored_users) > 0) {
+    sponsored_users <- lapply(collaborator$sponsored_users, function(u) {
+      list(
+        user_id = u$id,
+        first_name = u$first_name,
+        last_name = u$last_name,
+        email = u$email
+      )
+    })
   }
 
   # Return structured list
