@@ -6,6 +6,7 @@ NULL
 #' List sponsorships for a user
 #'
 #' @param user_id User identifier.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
 #' @inheritParams options_params
 #'
 #' @returns Tibble of sponsors for the user.

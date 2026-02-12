@@ -22,7 +22,7 @@ method and user profile. Requires a valid OAuth2 access token acquired via
 \code{login_db()}.
 }
 \examples{
-\\dontrun{
+\dontrun{
 login_db()
 whoami()
 }

@@ -10,6 +10,8 @@ get_user_by_id(user_id = 6, vb = options::opt("vb"), rq = NULL)
 \item{user_id}{User identifier. Must be a positive integer. Default is 6.}
 
 \item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
+
+\item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
 A list with the user's public metadata.

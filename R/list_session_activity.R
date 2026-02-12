@@ -21,8 +21,8 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \\donttest{
-#' \\dontrun{
+#' \donttest{
+#' \dontrun{
 #' list_session_activity(vol_id = 1892, session_id = 76113)
 #' }
 #' }

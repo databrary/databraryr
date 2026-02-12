@@ -31,8 +31,8 @@ For an accessible session, returns the logged history events associated with
 the session. Requires authenticated access with sufficient permissions.
 }
 \examples{
-\\donttest{
-\\dontrun{
+\donttest{
+\dontrun{
 list_session_activity(vol_id = 1892, session_id = 76113)
 }
 }

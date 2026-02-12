@@ -14,7 +14,7 @@
 #'   `NULL` if the request fails due to lack of authentication.
 #'
 #' @examples
-#' \\dontrun{
+#' \dontrun{
 #' login_db()
 #' whoami()
 #' }

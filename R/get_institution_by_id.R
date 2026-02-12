@@ -7,6 +7,7 @@ NULL
 #'
 #' @param institution_id Institution identifier. Must be a positive integer.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
 #' @inheritParams options_params
 #'
 #' @return List of institution metadata or NULL when inaccessible.
