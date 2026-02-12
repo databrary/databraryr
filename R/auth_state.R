@@ -70,5 +70,3 @@ require_access_token <- function() {
   }
   bundle$access_token
 }
-
-

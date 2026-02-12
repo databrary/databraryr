@@ -40,4 +40,3 @@ get_release_levels_enums <- function() {
     )
   )
 }
-

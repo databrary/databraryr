@@ -31,25 +31,25 @@ list_user_history <- function(user_id = 22582,
   assertthat::assert_that(is.numeric(user_id))
   assertthat::assert_that(length(user_id) == 1)
   assertthat::assert_that(user_id > 0)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   history <- collect_paginated_get(
     path = sprintf(API_USERS_HISTORY, user_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(history) || length(history) == 0) {
     if (vb) {
       message("No activity history available for user ", user_id)
     }
     return(NULL)
   }
-  
+
   purrr::map_dfr(history, function(entry) {
     tibble::tibble(
       user_id = user_id,

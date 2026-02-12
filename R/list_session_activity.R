@@ -36,35 +36,35 @@ list_session_activity <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
-    
+
     assertthat::assert_that(length(session_id) == 1)
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id > 0)
-    
+
     assertthat::assert_that(length(vb) == 1)
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) ||
                               inherits(rq, "httr2_request"))
-    
+
     if (is.null(rq)) {
       rq <- databraryr::make_default_request()
     }
     rq <- httr2::req_timeout(rq, REQUEST_TIMEOUT_VERY_LONG)
-    
+
     activities <- collect_paginated_get(
       path = sprintf(API_VOLUME_HISTORY, vol_id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(activities) || length(activities) == 0) {
       if (vb) {
         message("No activity history available for volume ", vol_id)
       }
       return(NULL)
     }
-    
+
     session_details <- databraryr::get_session_by_id(
       session_id = session_id,
       vol_id = vol_id,
@@ -75,7 +75,7 @@ list_session_activity <-
     if (!is.null(session_details)) {
       session_name <- session_details$name
     }
-    
+
     session_entries <- purrr::keep(activities, function(entry) {
       session_identifier <- entry$session_id
       if (is.null(session_identifier) && !is.null(entry$session)) {
@@ -86,18 +86,18 @@ list_session_activity <-
           session_identifier <- session_value
         }
       }
-      
+
       if (!is.null(session_identifier)) {
         return(isTRUE(session_identifier == session_id))
       }
-      
+
       if (!is.null(session_name) && !is.null(entry$name)) {
         return(isTRUE(entry$name == session_name))
       }
-      
+
       FALSE
     })
-    
+
     if (length(session_entries) == 0) {
       if (vb) {
         message("No activity history for session ",
@@ -107,7 +107,7 @@ list_session_activity <-
       }
       return(NULL)
     }
-    
+
     purrr::map_dfr(session_entries, function(entry) {
       history_user <- entry$history_user
       folder_id <- entry$folder_id
@@ -119,21 +119,21 @@ list_session_activity <-
           folder_id <- folder
         }
       }
-      
+
       safe_int <- function(value) {
         if (is.null(value))
           NA_integer_
         else
           value
       }
-      
+
       safe_chr <- function(value) {
         if (is.null(value))
           NA_character_
         else
           value
       }
-      
+
       tibble::tibble(
         event_type = entry$type,
         event_timestamp = entry$timestamp,

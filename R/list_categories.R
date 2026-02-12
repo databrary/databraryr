@@ -33,23 +33,23 @@ list_categories <- function(vb = options::opt("vb"), rq = NULL) {
 
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Perform API call
   categories <- perform_api_get(path = API_CATEGORIES, rq = rq, vb = vb)
-  
+
   if (is.null(categories) || length(categories) == 0) {
     if (vb) {
       message("No categories available.")
     }
     return(NULL)
   }
-  
+
   # Process categories into tibble
   purrr::map_dfr(categories, function(category) {
     # Process metrics if present
     metrics <- NULL
     if (!is.null(category$metrics) &&
-        length(category$metrics) > 0) {
+          length(category$metrics) > 0) {
       metrics <- lapply(category$metrics, function(metric) {
         list(
           metric_id = metric$id,
@@ -63,7 +63,7 @@ list_categories <- function(vb = options::opt("vb"), rq = NULL) {
         )
       })
     }
-    
+
     tibble::tibble(
       category_id = category$id,
       category_name = category$name,

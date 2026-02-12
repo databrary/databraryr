@@ -18,7 +18,7 @@
 make_default_request <- function(with_token = TRUE,
                                  refresh = TRUE,
                                  vb = options::opt("vb")) {
-  
+
   validate_flag(with_token, "with_token")
   validate_flag(refresh, "refresh")
   validate_flag(vb, "vb")

@@ -23,7 +23,7 @@ whoami <- function(refresh = TRUE,
                    vb = options::opt("vb")) {
   validate_flag(refresh, "refresh")
   validate_flag(vb, "vb")
-  
+
   req <- tryCatch(
     make_default_request(refresh = refresh, vb = vb),
     error = function(err) {
@@ -32,11 +32,11 @@ whoami <- function(refresh = TRUE,
       NULL
     }
   )
-  
+
   if (is.null(req)) {
     return(NULL)
   }
-  
+
   resp <- tryCatch(
     req |>
       httr2::req_url(OAUTH_TEST_URL) |>
@@ -57,17 +57,17 @@ whoami <- function(refresh = TRUE,
       NULL
     }
   )
-  
+
   if (is.null(resp)) {
     return(NULL)
   }
-  
+
   status <- httr2::resp_status(resp)
   if (status >= 400) {
     if (vb)
       message(httr2_error_message(resp))
     return(NULL)
   }
-  
+
   httr2::resp_body_json(resp, simplifyVector = TRUE)
 }

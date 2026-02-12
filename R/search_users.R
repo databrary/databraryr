@@ -60,5 +60,3 @@ search_users <- function(search_string,
     )
   })
 }
-
-

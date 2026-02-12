@@ -8,7 +8,7 @@ NULL
 #' @param user_id User identifier. Must be a positive integer. Default is 6.
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @return Tibble of volumes the user owns or collaborates on.
@@ -54,4 +54,3 @@ list_user_volumes <- function(user_id = 6,
                   user_affiliation = user_df$affiliation) %>%
     dplyr::arrange(vol_id)
 }
-

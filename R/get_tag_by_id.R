@@ -35,24 +35,24 @@ get_tag_by_id <- function(tag_id = 1,
   assertthat::assert_that(length(tag_id) == 1)
   assertthat::assert_that(tag_id > 0)
   assertthat::assert_that(tag_id == floor(tag_id), msg = "tag_id must be an integer")
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Perform API call
   tag <- perform_api_get(path = sprintf(API_TAG_DETAIL, tag_id),
                          rq = rq,
                          vb = vb)
-  
+
   if (is.null(tag)) {
     if (vb) {
       message("Tag ", tag_id, " not found or inaccessible.")
     }
     return(NULL)
   }
-  
+
   # Return structured list
   list(tag_id = tag$id, tag_name = tag$name)
 }

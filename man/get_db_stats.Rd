@@ -2,14 +2,14 @@
 % Please edit documentation in R/get_db_stats.R
 \name{get_db_stats}
 \alias{get_db_stats}
-\title{Get Stats About Databrary.}
+\title{Get Stats About Databrary}
 \usage{
 get_db_stats(type = "stats", vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
 \item{type}{Type of Databrary report to run "institutions", "people", "data"}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose messages. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object.}
 }
@@ -18,14 +18,12 @@ A data frame with the requested data or NULL if there is
 no new information.
 }
 \description{
-\code{get_db_stats} returns basic summary information about
-the institutions, people, and data hosted on 'Databrary.org'.
+Returns basic summary information about
+the institutions, people, and video data hosted on Databrary.
 }
 \examples{
 \donttest{
 get_db_stats()
 get_db_stats("stats")
-get_db_stats("people") # Information about the newest authorized investigators.
-get_db_stats("places") # Information about the newest institutions.
 }
 }

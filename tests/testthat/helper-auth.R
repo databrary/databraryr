@@ -7,7 +7,6 @@ login_test_account <- function() {
   }
 
   set_if_missing("DATABRARY_BASE_URL", "https://api.stg-databrary.its.nyu.edu")
-  set_if_missing("USER_AGENT", "SRW$*Kxy2nYdyo4LozoGV#i6LvH/")
   set_if_missing("DATABRARY_LOGIN", "pawel.armatys+1@montrosesoftware.com")
   set_if_missing("DATABRARY_PASSWORD", "tindov-9ciVxa-hehguw")
   set_if_missing("DATABRARY_CLIENT_ID", "9B0gJF1b5OSkkrjPrkKHeYHgWLOJ0N1Uxv2tW3KS")

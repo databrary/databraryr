@@ -34,7 +34,7 @@ timestamped suffix.}
 
 \item{timeout_secs}{Numeric. Timeout applied to the signed download request.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{Optional \code{httr2} request object reused to request signed links.}
 }

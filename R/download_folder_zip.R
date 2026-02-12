@@ -11,7 +11,7 @@ NULL
 #' descriptor. When the archive is ready, Databrary emails a signed download
 #' link to the authenticated user.
 #'
-#' @param vol_id Volume identifier for the folder. Must be a positive integer. 
+#' @param vol_id Volume identifier for the folder. Must be a positive integer.
 #' Default is 1.
 #' @param folder_id Folder identifier scoped within the specified volume. Must
 #' be a positive integer. Default is 9807.
@@ -39,17 +39,17 @@ download_folder_zip <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   assertthat::assert_that(length(folder_id) == 1)
   assertthat::assert_that(is.numeric(folder_id))
   assertthat::assert_that(folder_id >= 1)
-  
+
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-  
+
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))
-  
+
   path <- sprintf(API_FOLDER_DOWNLOAD_LINK, vol_id, folder_id)
   request_processing_task(path = path, rq = rq, vb = vb)
 }

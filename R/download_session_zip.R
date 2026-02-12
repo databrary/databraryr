@@ -11,7 +11,7 @@ NULL
 #' summary. Once the archive is ready, Databrary emails a signed download link
 #' to the authenticated user.
 #'
-#' @param vol_id Volume identifier that owns the session. Must be a positive 
+#' @param vol_id Volume identifier that owns the session. Must be a positive
 #' integer. Default is 31.
 #' @param session_id Session identifier within the volume. Must be a positive
 #' integer. Default is 9803.
@@ -39,16 +39,16 @@ download_session_zip <- function(vol_id = 31,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
   assertthat::assert_that(session_id >= 1)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))
-  
+
   path <- sprintf(API_SESSION_DOWNLOAD_LINK, vol_id, session_id)
   request_processing_task(path = path, rq = rq, vb = vb)
 }

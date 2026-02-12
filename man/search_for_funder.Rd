@@ -12,12 +12,12 @@ search_for_funder(
 )
 }
 \arguments{
-\item{search_string}{String to search.}
+\item{search_string}{String to search. Default is "national science foundation".}
 
 \item{approved_only}{Logical. When TRUE (default) only approved funders are
 returned. Set to FALSE to include unapproved funders as well.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }

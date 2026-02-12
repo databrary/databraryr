@@ -43,7 +43,7 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
   if (!is.character(HHMMSSmmm)) {
     stop("HHMMSSmmm must be a string.")
   }
-  
+
   if (stringr::str_detect(HHMMSSmmm, "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")) {
     time_segs <- stringr::str_match(HHMMSSmmm,
                                     "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")
@@ -72,7 +72,7 @@ get_release_levels <- function(vb = options::opt("vb")) {
   validate_flag(vb, "vb")
   enums <- get_release_levels_enums()
   vapply(enums$levels, function(item)
-    item$code, character(1))
+           item$code, character(1))
 }
 
 #----------------------------------------------------------------------------
@@ -121,15 +121,15 @@ make_fn_portable <- function(fn,
   assertthat::assert_that(!is.numeric(fn))
   assertthat::assert_that(!is.logical(fn))
   assertthat::assert_that(length(fn) == 1)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::is.string(replace_regex)
   assertthat::assert_that(length(replace_regex) == 1)
-  
+
   assertthat::is.string(replacement_char)
   assertthat::assert_that(length(replacement_char) == 1)
-  
+
   if (vb) {
     non_portable_chars <- stringr::str_detect(fn, replace_regex)
     message("There are ", sum(non_portable_chars), " in ", fn)

@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Log In To Databrary.org.
@@ -12,11 +12,11 @@ NULL
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param SERVICE A character label for stored credentials in the keyring. Default is "databrary"
 #' @param rq An `httr2` request object. Defaults to NULL.
-#' 
+#'
 #' @returns Logical value indicating whether log in is successful or not.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examplesIf interactive()
 #' make_login_client() # Queries user for email and password interactively.
 #' @examples
@@ -27,30 +27,30 @@ NULL
 #' make_login_client(email = "you@provider.com", store = TRUE)
 #' }
 #' }
-#' 
+#'
 #' @export
 make_login_client <- function(email = NULL,
-                     password = NULL,
-                     store = FALSE,
-                     overwrite = FALSE,
-                     vb = options::opt("vb"),
-                     SERVICE = KEYRING_SERVICE,
-                     rq = NULL) {
-  
+                             password = NULL,
+                             store = FALSE,
+                             overwrite = FALSE,
+                             vb = options::opt("vb"),
+                             SERVICE = KEYRING_SERVICE,
+                             rq = NULL) {
+
   # Check parameters
   assertthat::assert_that(length(store) == 1)
   assertthat::assert_that(is.logical(store))
-  
+
   validate_flag(store, "store")
   validate_flag(overwrite, "overwrite")
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(length(SERVICE) == 1)
   assertthat::assert_that(is.character(SERVICE))
-  
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
+
   # Handle NULL request
   if (is.null(rq)) {
     if (vb) {
@@ -58,13 +58,13 @@ make_login_client <- function(email = NULL,
     }
     rq <- databraryr::make_default_request()
   }
-  
+
   # If the user wants to store or use their stored credentials, check for keyring support
   if (store) {
     assertthat::assert_that(keyring::has_keyring_support(),
                             msg = "No keyring support; please use store=FALSE")
   }
-  
+
   # Check or get email
   if (!is.null(email)) {
     assertthat::assert_that(assertthat::is.string(email))
@@ -72,14 +72,14 @@ make_login_client <- function(email = NULL,
     message("Please enter your Databrary user ID (email).")
     email <- readline(prompt = "Email: ")
   }
-  
+
   do_collect_password <- TRUE
-  
+
   if (!is.null(password)) {
     assertthat::assert_that(assertthat::is.string(password))
     do_collect_password <- FALSE
   }
-  
+
   # If the user wants to store or use their stored credentials and
   # doesn't provide a password
   if (store && is.null(password) && !overwrite) {
@@ -110,35 +110,35 @@ make_login_client <- function(email = NULL,
                 "'.")
     }
   }
-  
+
   # If we need to, securely collect the password
   if (do_collect_password) {
     password <-
       getPass::getPass("Please enter your Databrary password ")
   }
-  
+
   is_login_successful <- FALSE
-  
+
   if (is.null(rq))
     rq <- make_default_request()
-  
+
   rq <- rq %>%
     httr2::req_url(LOGIN) %>%
     httr2::req_body_json(list(email = email, password = password))
-  
+
   resp <- tryCatch(
     httr2::req_perform(rq),
     httr2_error = function(cnd)
       NULL
   )
-  
+
   if (!is.null(resp)) {
     is_login_successful <- TRUE
   } else {
     return(NULL)
   }
-  
-  # If the username/password was successful and the user wanted to store 
+
+  # If the username/password was successful and the user wanted to store
   # their credentials
   # Store them in the keyring
   if (is_login_successful) {
@@ -154,7 +154,7 @@ make_login_client <- function(email = NULL,
     }
     #return(resp)
   }
-  
+
   if (store) {
     if (vb)
       message(
@@ -166,7 +166,7 @@ make_login_client <- function(email = NULL,
       )
   } else {
     if (vb)
-      message(paste0('Login failed; HTTP status ', 
+      message(paste0('Login failed; HTTP status ',
                      httr2::resp_status(resp), '\n'))
   }
   resp

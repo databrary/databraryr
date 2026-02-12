@@ -40,15 +40,15 @@ download_video <- function(vol_id = 1,
   assertthat::assert_that(length(asset_id) == 1)
   assertthat::assert_that(is.numeric(asset_id))
   assertthat::assert_that(asset_id >= 1)
-  
+
   assertthat::assert_that(length(session_id) == 1)
   assertthat::assert_that(is.numeric(session_id))
   assertthat::assert_that(session_id >= 1)
-  
+
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   if (!is.null(file_name)) {
     assertthat::assert_that(length(file_name) == 1)
     assertthat::assert_that(is.character(file_name))
@@ -56,7 +56,7 @@ download_video <- function(vol_id = 1,
       stop("file_name must end with '.mp4' when provided.", call. = FALSE)
     }
   }
-  
+
   assertthat::assert_that(length(target_dir) == 1)
   assertthat::assert_that(is.character(target_dir))
   assertthat::assert_that(
@@ -64,12 +64,12 @@ download_video <- function(vol_id = 1,
       dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
   )
   assertthat::is.writeable(target_dir)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))
-  
+
   download_session_asset(
     vol_id = vol_id,
     session_id = session_id,

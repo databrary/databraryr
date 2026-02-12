@@ -7,9 +7,9 @@
 list_user_history(user_id = 22582, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{user_id}{Target user identifier.}
+\item{user_id}{Target user identifier. Must be a positive integer. Default is 22582.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }

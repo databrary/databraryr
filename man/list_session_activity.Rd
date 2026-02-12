@@ -12,11 +12,11 @@ list_session_activity(
 )
 }
 \arguments{
-\item{vol_id}{Volume identifier (required by the Django API).}
+\item{vol_id}{Volume identifier (required by the Django API). Must be a positive integer.}
 
-\item{session_id}{Session identifier.}
+\item{session_id}{Session identifier. Must be a positive integer.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}. When \code{NULL}, a
 default request is generated, but this will only permit public information

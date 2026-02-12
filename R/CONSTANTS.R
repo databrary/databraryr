@@ -61,5 +61,6 @@ REQUEST_TIMEOUT_VERY_LONG <- 600
 OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
 OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
 
-USER_AGENT <- Sys.getenv("USER_AGENT", "SRW$*Kxy2nYdyo4LozoGV#i6LvH/")
+USER_AGENT <- paste0("databraryr/", as.character(utils::packageVersion("databraryr")))
+
 KEYRING_SERVICE <- 'org.databrary.databraryr'

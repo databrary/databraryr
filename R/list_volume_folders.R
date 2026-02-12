@@ -27,31 +27,31 @@ list_volume_folders <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   folders <- collect_paginated_get(
     path = sprintf(API_VOLUME_FOLDERS, vol_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(folders) || length(folders) == 0) {
     if (vb) {
       message("No folders available for volume ", vol_id)
     }
     return(NULL)
   }
-  
+
   purrr::map_dfr(folders, function(folder) {
     volume_value <- folder$volume
     if (is.null(volume_value)) {
       volume_value <- vol_id
     }
-    
+
     tibble::tibble(
       folder_id = folder$id,
       folder_name = folder$name,

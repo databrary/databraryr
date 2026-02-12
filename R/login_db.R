@@ -1,7 +1,7 @@
 #' Log In To Databrary.org.
 #'
 #' @param email Databrary account email address.
-#' @param password Databrary password (not recommended as it will displayed 
+#' @param password Databrary password (not recommended as it will displayed
 #' as you type)
 #' @param client_id OAuth2 client identifier.
 #' @param client_secret OAuth2 client secret.
@@ -23,7 +23,7 @@
 #'# The following shows how to use credentials that have been stored previously.
 #'
 #' login_db(email = "you@provider.com", store = TRUE)
-#' 
+#'
 #' }
 #' }
 #' @export
@@ -40,7 +40,7 @@ login_db <- function(email = NULL,
   validate_flag(vb, "vb")
   assertthat::assert_that(length(SERVICE) == 1, is.character(SERVICE))
 
-  # If the user wants to store or use their stored credentials, 
+  # If the user wants to store or use their stored credentials,
   # check for keyring support
   if (store) {
     assertthat::assert_that(keyring::has_keyring_support(),

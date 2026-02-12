@@ -32,14 +32,14 @@ search_institutions <- function(search_string,
   validate_flag(vb, "vb")
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   results <- collect_paginated_get(
     path = API_SEARCH_INSTITUTIONS,
     params = list(q = search_string),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(results) || length(results) == 0) {
     if (vb) {
       message("No institutions matched the search query '",
@@ -48,7 +48,7 @@ search_institutions <- function(search_string,
     }
     return(NULL)
   }
-  
+
   purrr::map_dfr(results, function(entry) {
     tibble::tibble(
       institution_id = entry$id,

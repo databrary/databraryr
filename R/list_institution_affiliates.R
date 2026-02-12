@@ -19,24 +19,24 @@ list_institution_affiliates <- function(institution_id = 12,
   assertthat::assert_that(is.numeric(institution_id),
                           length(institution_id) == 1,
                           institution_id > 0)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   affiliates <- collect_paginated_get(
     path = sprintf(API_INSTITUTION_AFFILIATES, institution_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(affiliates) || length(affiliates) == 0) {
     if (vb)
       message("No affiliates for institution ", institution_id)
     return(NULL)
   }
-  
+
   purrr::map_dfr(affiliates, function(entry) {
     user <- entry$user
     tibble::tibble(

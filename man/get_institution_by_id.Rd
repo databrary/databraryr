@@ -7,9 +7,9 @@
 get_institution_by_id(institution_id = 12, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{institution_id}{Institution identifier.}
+\item{institution_id}{Institution identifier. Must be a positive integer.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 List of institution metadata or NULL when inaccessible.

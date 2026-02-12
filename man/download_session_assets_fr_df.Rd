@@ -5,7 +5,7 @@
 \title{Download Multiple Assets From a Session Data Frame.}
 \usage{
 download_session_assets_fr_df(
-  session_df = list_session_assets(),
+  session_df = list_session_assets(session_id = 9224, vol_id = 1),
   target_dir = tempdir(),
   add_session_subdir = TRUE,
   overwrite = TRUE,
@@ -17,7 +17,8 @@ download_session_assets_fr_df(
 }
 \arguments{
 \item{session_df}{Data frame describing assets. Must include \code{vol_id},
-\code{session_id}, \code{asset_id}, and \code{asset_name} columns.}
+\code{session_id}, \code{asset_id}, and \code{asset_name} columns. Default is the result
+\code{download_session_assets_fr_df(session_id = assets, vol_id = 1)}.}
 
 \item{target_dir}{Character string. Base directory for downloads. Defaults to
 \code{tempdir()}.}
@@ -33,7 +34,7 @@ directory already exists.}
 
 \item{timeout_secs}{Numeric. Timeout applied to each download request.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An optional \code{httr2} request object reused when requesting signed
 links.}
@@ -50,7 +51,7 @@ links for each asset and saving them to disk. Designed to work with
 \examples{
 \donttest{
 \dontrun{
-assets <- list_session_assets(vol_id = 1, session_id = 9807)
+assets <- list_session_assets(vol_id = 1, session_id = 9224)
 download_session_assets_fr_df(assets, vb = TRUE)
 }
 }

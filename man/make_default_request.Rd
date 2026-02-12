@@ -17,7 +17,7 @@ Defaults to \code{TRUE} since all API calls now require authentication.}
 \item{refresh}{When \code{with_token = TRUE}, determines whether to refresh the
 cached token if it is near expiry. Defaults to \code{TRUE}.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 An \code{httr2_request} object configured for the Databrary API.

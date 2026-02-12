@@ -23,7 +23,7 @@ make_login_client(
 
 \item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/ update stored credentials in keyring/keychain.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{SERVICE}{A character label for stored credentials in the keyring. Default is "databrary"}
 

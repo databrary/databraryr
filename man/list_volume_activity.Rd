@@ -4,12 +4,12 @@
 \alias{list_volume_activity}
 \title{List Activity In A Databrary Volume}
 \usage{
-list_volume_activity(vol_id = 1892, vb = options::opt("vb"), rq = NULL)
+list_volume_activity(vol_id = NULL, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{vol_id}{Selected volume number.}
+\item{vol_id}{Selected volume number. Must be a positive integer. Default is NULL.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
@@ -18,15 +18,15 @@ A list with the activity history on a volume.
 }
 \description{
 If a user has access to a volume, this command lists the modification
-history of the volume as a
+history of the volume.
 }
 \examples{
 \donttest{
 \dontrun{
-# The following will only return output if the user has write privileges
+# The following will only return output if the user has *write* privileges
 # on the volume.
 
-list_volume_activity(vol_id = 1892) # Activity on volume 1892.
+list_volume_activity(vol_id)
 }
 }
 }

@@ -48,28 +48,28 @@ get_user_avatar <- function(user_id,
   assertthat::assert_that(is.numeric(user_id) ||
                             is.integer(user_id))
   assertthat::assert_that(user_id > 0)
-  
+
   if (!is.null(dest_path)) {
     assertthat::assert_that(assertthat::is.string(dest_path))
   }
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Build URL path
   path <- sprintf(API_USER_AVATAR, user_id)
-  
+
   if (vb) {
     message("Getting user avatar for user ID: ", user_id)
   }
-  
+
   # Set up request
   if (is.null(rq)) {
     rq <- make_default_request()
   }
-  
+
   # Perform request
   resp <- tryCatch({
     rq |>
@@ -85,11 +85,11 @@ get_user_avatar <- function(user_id,
     }
     return(NULL)
   })
-  
+
   if (is.null(resp)) {
     return(NULL)
   }
-  
+
   # Check for errors
   if (httr2::resp_status(resp) != 200) {
     if (vb) {
@@ -98,10 +98,10 @@ get_user_avatar <- function(user_id,
     }
     return(NULL)
   }
-  
+
   # Get avatar bytes
   avatar_bytes <- httr2::resp_body_raw(resp)
-  
+
   # If no destination path, return bytes
   if (is.null(dest_path)) {
     if (vb) {
@@ -111,7 +111,7 @@ get_user_avatar <- function(user_id,
     }
     return(avatar_bytes)
   }
-  
+
   # Save to file
   # Resolve destination path
   # If dest_path is a directory, determine filename from response headers or URL
@@ -120,9 +120,9 @@ get_user_avatar <- function(user_id,
     # Try to get filename from content-disposition header
     filename <- "downloaded_file"
     content_disp <- httr2::resp_header(resp, "content-disposition")
-    
+
     if (!is.null(content_disp) &&
-        grepl("filename=", content_disp)) {
+          grepl("filename=", content_disp)) {
       # Extract filename from content-disposition header
       filename_match <- regmatches(content_disp,
                                    regexpr("filename=([^;]+)", content_disp))
@@ -136,16 +136,16 @@ get_user_avatar <- function(user_id,
       url_path <- sprintf(API_USER_AVATAR, user_id)
       filename <- paste0("user_", user_id, "_avatar.jpg")
     }
-    
+
     final_path <- file.path(dest_path, filename)
   }
-  
+
   # Ensure parent directory exists
   parent_dir <- dirname(final_path)
   if (!dir.exists(parent_dir)) {
     dir.create(parent_dir, recursive = TRUE)
   }
-  
+
   # Write to file
   tryCatch({
     writeBin(avatar_bytes, final_path)
