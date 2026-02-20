@@ -160,42 +160,20 @@ create_volume_record <- function(
   vb = options::opt("vb"),
   rq = NULL
 ) {
-  # Validate vol_id
-  assertthat::assert_that(length(vol_id) == 1)
-  assertthat::assert_that(is.numeric(vol_id))
-  assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
+  assert_positive_integer(vol_id, "vol_id")
+  assert_positive_integer(category_id, "category_id")
 
-  # Validate category_id
-  assertthat::assert_that(length(category_id) == 1)
-  assertthat::assert_that(is.numeric(category_id))
-  assertthat::assert_that(category_id > 0)
-  assertthat::assert_that(
-    category_id == floor(category_id),
-    msg = "category_id must be an integer"
-  )
-
-  # Validate name
   assertthat::assert_that(is.character(name))
   assertthat::assert_that(length(name) == 1)
   assertthat::assert_that(nzchar(trimws(name)), msg = "name must not be empty")
 
-  # Validate measures
   assertthat::assert_that(is.list(measures))
 
-  # Validate participant
   if (!is.null(participant)) {
     assertthat::assert_that(is.list(participant))
   }
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
+  assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   # Resolve name metric and build measures with name

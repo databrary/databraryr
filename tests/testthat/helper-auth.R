@@ -1,28 +1,34 @@
 login_test_account <- function() {
-  set_if_missing <- function(var, value) {
-    current <- Sys.getenv(var, NA_character_)
-    if (is.na(current) || !nzchar(current)) {
-      Sys.setenv(var = value)
-    }
-  }
-
-  set_if_missing("DATABRARY_BASE_URL", "https://api.stg-databrary.its.nyu.edu")
-  set_if_missing("DATABRARY_LOGIN", "pawel.armatys+1@montrosesoftware.com")
-  set_if_missing("DATABRARY_PASSWORD", "tindov-9ciVxa-hehguw")
-  set_if_missing("DATABRARY_CLIENT_ID", "9B0gJF1b5OSkkrjPrkKHeYHgWLOJ0N1Uxv2tW3KS")
-  set_if_missing("DATABRARY_CLIENT_SECRET", "Mz7LuOXvWHEEcUIffkOtjXIBrb0brhCVtxIKoOq4GxKrp9ZJAa1fjFSsqAu8HnrPtKpXnYwrWxRsauD3Ap2va1Xc41DOEPWBqQcsRHAC7dZai5LEl5n7lC7Wcb0tKLy2")
-
-  vals <- list(
-    email = Sys.getenv("DATABRARY_LOGIN", "pawel.armatys+1@montrosesoftware.com"),
-    password = Sys.getenv("DATABRARY_PASSWORD", "tindov-9ciVxa-hehguw"),
-    client_id = Sys.getenv("DATABRARY_CLIENT_ID", "9B0gJF1b5OSkkrjPrkKHeYHgWLOJ0N1Uxv2tW3KS"),
-    client_secret = Sys.getenv("DATABRARY_CLIENT_SECRET", "Mz7LuOXvWHEEcUIffkOtjXIBrb0brhCVtxIKoOq4GxKrp9ZJAa1fjFSsqAu8HnrPtKpXnYwrWxRsauD3Ap2va1Xc41DOEPWBqQcsRHAC7dZai5LEl5n7lC7Wcb0tKLy2")
+  required_vars <- c(
+    "DATABRARY_LOGIN",
+    "DATABRARY_PASSWORD",
+    "DATABRARY_CLIENT_ID",
+    "DATABRARY_CLIENT_SECRET"
   )
 
-  have_creds <- all(vapply(vals, function(x) nzchar(x), logical(1)))
-  if (!have_creds) {
-    testthat::skip("OAuth credentials not available for live API test.")
+  missing <- vapply(required_vars, function(v) {
+    val <- Sys.getenv(v, "")
+    !nzchar(val)
+  }, logical(1))
+
+  if (any(missing)) {
+    testthat::skip(paste0(
+      "Missing env vars for live API test: ",
+      paste(required_vars[missing], collapse = ", "),
+      ". See README for required environment variables."
+    ))
   }
+
+  if (!nzchar(Sys.getenv("DATABRARY_BASE_URL", ""))) {
+    Sys.setenv(DATABRARY_BASE_URL = "https://api.stg-databrary.its.nyu.edu")
+  }
+
+  vals <- list(
+    email = Sys.getenv("DATABRARY_LOGIN"),
+    password = Sys.getenv("DATABRARY_PASSWORD"),
+    client_id = Sys.getenv("DATABRARY_CLIENT_ID"),
+    client_secret = Sys.getenv("DATABRARY_CLIENT_SECRET")
+  )
 
   suppressMessages(databraryr::login_db(
     email = vals$email,
@@ -48,4 +54,3 @@ skip_if_null_response <- function(result, context) {
     testthat::skip(paste0(context, " returned NULL on staging; skipping."))
   }
 }
-

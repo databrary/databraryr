@@ -1,5 +1,29 @@
 # Internal helpers for interacting with the Databrary Django API.
 
+#' Validate that a value is a single positive integer (e.g. vol_id, record_id).
+#' @noRd
+assert_positive_integer <- function(x, name = deparse(substitute(x))) {
+  assertthat::assert_that(
+    length(x) == 1,
+    msg = paste(name, "must have length 1")
+  )
+  assertthat::assert_that(
+    is.numeric(x),
+    msg = paste(name, "must be numeric")
+  )
+  assertthat::assert_that(x >= 1, msg = paste(name, "must be >= 1"))
+  assertthat::assert_that(
+    x == floor(x),
+    msg = paste(name, "must be an integer")
+  )
+  invisible(TRUE)
+}
+
+#' @noRd
+resp_has_body <- function(response) {
+  length(httr2::resp_body_raw(response)) > 0
+}
+
 #' @noRd
 ensure_leading_slash <- function(path) {
   assertthat::assert_that(assertthat::is.string(path))
@@ -62,6 +86,11 @@ perform_api_get <- function(path,
   )
 
   if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
     return(NULL)
   }
 
@@ -208,7 +237,7 @@ perform_api_post <- function(path,
   }
 
   status <- httr2::resp_status(response)
-  if (status == 204L) {
+  if (status == 204L || !resp_has_body(response)) {
     return(TRUE)
   }
 
@@ -250,6 +279,11 @@ perform_api_patch <- function(path,
 
   if (is.null(response)) {
     return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
   }
 
   payload <- httr2::resp_body_json(response)

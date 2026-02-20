@@ -20,4 +20,5 @@ tmp
 docs
 /doc/
 /Meta/
+.Renviron*
 

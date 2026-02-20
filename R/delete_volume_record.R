@@ -35,29 +35,9 @@ delete_volume_record <- function(
   vb = options::opt("vb"),
   rq = NULL
 ) {
-  # Validate vol_id
-  assertthat::assert_that(is.numeric(vol_id))
-  assertthat::assert_that(length(vol_id) == 1)
-  assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
-
-  # Validate record_id
-  assertthat::assert_that(is.numeric(record_id))
-  assertthat::assert_that(length(record_id) == 1)
-  assertthat::assert_that(record_id > 0)
-  assertthat::assert_that(
-    record_id == floor(record_id),
-    msg = "record_id must be an integer"
-  )
-
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
+  assert_positive_integer(vol_id, "vol_id")
+  assert_positive_integer(record_id, "record_id")
+  assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   # Perform API call

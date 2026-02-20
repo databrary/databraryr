@@ -54,53 +54,37 @@ update_volume_record <- function(
   vb = options::opt("vb"),
   rq = NULL
 ) {
-  # Validate vol_id
-  assertthat::assert_that(length(vol_id) == 1)
-  assertthat::assert_that(is.numeric(vol_id))
-  assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
+  assert_positive_integer(vol_id, "vol_id")
+  assert_positive_integer(record_id, "record_id")
 
-  # Validate record_id
-  assertthat::assert_that(is.numeric(record_id))
-  assertthat::assert_that(length(record_id) == 1)
-  assertthat::assert_that(record_id > 0)
-  assertthat::assert_that(
-    record_id == floor(record_id),
-    msg = "record_id must be an integer"
-  )
-
-  # Validate measures
   if (!is.null(measures)) {
     assertthat::assert_that(is.list(measures))
   }
 
-  # Validate participant
   if (!is.null(participant)) {
     assertthat::assert_that(is.list(participant))
   }
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
+  assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
-  # Build request body (only include non-NULL fields)
   body <- list()
-  
+
   if (!is.null(measures)) {
     body$measures <- measures
   }
-  
+
   if (!is.null(participant)) {
     body$participant <- participant
   }
 
-  # Perform API call
+  if (length(body) == 0) {
+    if (vb) {
+      message("No fields provided to update for record ", record_id)
+    }
+    return(NULL)
+  }
+
   record <- perform_api_patch(
     path = sprintf(API_VOLUME_RECORD_DETAIL, vol_id, record_id),
     body = body,
@@ -110,12 +94,7 @@ update_volume_record <- function(
 
   if (is.null(record)) {
     if (vb) {
-      message(
-        "Failed to update record ",
-        record_id,
-        " in volume ",
-        vol_id
-      )
+      message("Failed to update record ", record_id, " in volume ", vol_id)
     }
     return(NULL)
   }

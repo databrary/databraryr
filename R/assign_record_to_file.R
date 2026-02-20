@@ -41,47 +41,11 @@ assign_record_to_file <- function(
   vb = options::opt("vb"),
   rq = NULL
 ) {
-  # Validate vol_id
-  assertthat::assert_that(length(vol_id) == 1)
-  assertthat::assert_that(is.numeric(vol_id))
-  assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
-
-  # Validate session_id
-  assertthat::assert_that(is.numeric(session_id))
-  assertthat::assert_that(length(session_id) == 1)
-  assertthat::assert_that(session_id > 0)
-  assertthat::assert_that(
-    session_id == floor(session_id),
-    msg = "session_id must be an integer"
-  )
-
-  # Validate file_id
-  assertthat::assert_that(is.numeric(file_id))
-  assertthat::assert_that(length(file_id) == 1)
-  assertthat::assert_that(file_id > 0)
-  assertthat::assert_that(
-    file_id == floor(file_id),
-    msg = "file_id must be an integer"
-  )
-
-  # Validate record_id
-  assertthat::assert_that(is.numeric(record_id))
-  assertthat::assert_that(length(record_id) == 1)
-  assertthat::assert_that(record_id > 0)
-  assertthat::assert_that(
-    record_id == floor(record_id),
-    msg = "record_id must be an integer"
-  )
-
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
+  assert_positive_integer(vol_id, "vol_id")
+  assert_positive_integer(session_id, "session_id")
+  assert_positive_integer(file_id, "file_id")
+  assert_positive_integer(record_id, "record_id")
+  assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   # Build request body
