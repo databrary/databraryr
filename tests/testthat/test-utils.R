@@ -26,6 +26,7 @@ test_that("get_release_levels handles vb flag", {
 # get_supported_file_types ----------------------------------------------------
 
 test_that("get_supported_file_types returns data.frame", {
+  login_test_account()
   expect_true(is.data.frame(get_supported_file_types()))
 })
 
