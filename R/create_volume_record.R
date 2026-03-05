@@ -15,10 +15,10 @@ NULL
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #' @return The metric ID (integer) for the name field, or \code{NULL} if not found.
 #' @noRd
-get_volume_record_name_metric_id <- function(vol_id,
-                                             category_id,
-                                             vb = options::opt("vb"),
-                                             rq = NULL) {
+get_name_metric_id <- function(vol_id,
+                               category_id,
+                               vb = options::opt("vb"),
+                               rq = NULL) {
   volume <- perform_api_get(
     path = sprintf(API_VOLUME_DETAIL, vol_id),
     rq = rq,
@@ -177,7 +177,7 @@ create_volume_record <- function(
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   # Resolve name metric and build measures with name
-  name_metric_id <- get_volume_record_name_metric_id(
+  name_metric_id <- get_name_metric_id(
     vol_id = vol_id,
     category_id = category_id,
     vb = vb,
