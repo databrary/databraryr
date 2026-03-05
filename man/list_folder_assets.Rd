@@ -5,18 +5,20 @@
 \title{List Assets Within a Databrary Folder.}
 \usage{
 list_folder_assets(
-  folder_id = 1,
-  vol_id = NULL,
+  folder_id = 9807,
+  vol_id = 1,
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{folder_id}{Folder identifier scoped to the given volume.}
+\item{folder_id}{Folder identifier scoped to the given volume. Must be a
+positive integer. Default is 9807.}
 
-\item{vol_id}{Volume containing the folder. Required for Django API calls.}
+\item{vol_id}{Volume containing the folder. Required for Django API calls.
+Must be a positive integer. Default is 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }

@@ -30,7 +30,7 @@ response to authorized investigators.}
 \item{has_api_access}{Optional logical value restricting the response to
 accounts with API access enabled.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }

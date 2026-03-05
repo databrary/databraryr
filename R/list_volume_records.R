@@ -43,25 +43,25 @@ list_volume_records <- function(vol_id = 1,
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
   assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
-  
+
   if (!is.null(category_id)) {
     assertthat::assert_that(length(category_id) == 1)
     assertthat::assert_that(is.numeric(category_id))
     assertthat::assert_that(category_id > 0)
     assertthat::assert_that(category_id == floor(category_id), msg = "category_id must be an integer")
   }
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Build params list
   params <- list()
   if (!is.null(category_id)) {
     params$category_id <- category_id
   }
-  
+
   # Perform API call
   records <- collect_paginated_get(
     path = sprintf(API_VOLUME_RECORDS, vol_id),
@@ -69,7 +69,7 @@ list_volume_records <- function(vol_id = 1,
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(records) || length(records) == 0) {
     if (vb) {
       message("No records found with category_id = ",
@@ -79,7 +79,7 @@ list_volume_records <- function(vol_id = 1,
     }
     return(NULL)
   }
-  
+
   if (vb)
     message(
       "Found n = ",
@@ -89,7 +89,7 @@ list_volume_records <- function(vol_id = 1,
       " in volume ",
       vol_id
     )
-  
+
   # Process records into tibble
   purrr::map_dfr(records, function(record) {
     # Process age if present
@@ -100,7 +100,7 @@ list_volume_records <- function(vol_id = 1,
     age_formatted <- NA_character_
     age_is_estimated <- NA
     age_is_blurred <- NA
-    
+
     if (!is.null(record$age)) {
       age_years <- if (!is.null(record$age$years)) {
         record$age$years
@@ -138,7 +138,7 @@ list_volume_records <- function(vol_id = 1,
         NA
       }
     }
-    
+
     tibble::tibble(
       record_id = record$id,
       record_volume = record$volume,

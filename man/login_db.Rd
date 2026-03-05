@@ -11,7 +11,7 @@ login_db(
   client_secret = NULL,
   store = FALSE,
   overwrite = FALSE,
-  SERVICE = KEYRING_SERVICE,
+  service = KEYRING_SERVICE,
   vb = options::opt("vb")
 )
 }
@@ -31,10 +31,10 @@ system keyring/keychain.}
 \item{overwrite}{A boolean value. If TRUE and store is TRUE, overwrite/
 update stored credentials in keyring/keychain.}
 
-\item{SERVICE}{A character label for stored credentials in the keyring.
+\item{service}{A character label for stored credentials in the keyring.
 Default is \code{org.databrary.databraryr}.}
 
-\item{vb}{Show verbose messages.}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 Logical value indicating whether log in is successful or not.

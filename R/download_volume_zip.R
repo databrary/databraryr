@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Request a Signed ZIP Download for a Volume.

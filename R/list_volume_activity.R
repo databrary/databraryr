@@ -22,7 +22,7 @@ NULL
 #' # The following will only return output if the user has *write* privileges
 #' # on the volume.
 #'
-#' list_volume_activity(vol_id) 
+#' list_volume_activity(vol_id)
 #' }
 #' }
 #' @export
@@ -34,12 +34,12 @@ list_volume_activity <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
-    
+
     validate_flag(vb, "vb")
-    
+
     validate_flag(vb, "vb")
     if (vb)
-      message('list_volume_activity()...')
+      message("list_volume_activity()...")
 
     if (is.null(rq)) {
       rq <- databraryr::make_default_request()

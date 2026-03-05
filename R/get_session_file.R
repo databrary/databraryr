@@ -20,7 +20,7 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' get_session_file(vol_id = 2, session_id = 11, file_id = 3) 
+#' get_session_file(vol_id = 2, session_id = 11, file_id = 3)
 #' # A video from volume 1, session 11.
 #' }
 #' }
@@ -34,26 +34,26 @@ get_session_file <-
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
-    
+
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id > 0)
     assertthat::assert_that(length(session_id) == 1)
-    
+
     assertthat::assert_that(is.numeric(file_id))
     assertthat::assert_that(file_id > 0)
     assertthat::assert_that(length(file_id) == 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) ||
                               inherits(rq, "httr2_request"))
-    
+
     file <- perform_api_get(
       path = sprintf(API_SESSION_FILE_DETAIL, vol_id, session_id, file_id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(file)) {
       if (vb) {
         message(
@@ -67,6 +67,6 @@ get_session_file <-
       }
       return(NULL)
     }
-    
+
     file
   }

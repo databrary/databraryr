@@ -4,12 +4,12 @@
 NULL
 
 #' Get Session File Data From A Databrary Volume
-#' 
+#'
 #' @description
-#' Databrary volumes have folders where study or collection-wide files 
+#' Databrary volumes have folders where study or collection-wide files
 #' can be stored and shared. `get_folder_file()` returns metadata about
 #' specific files stored in a volume folder.
-#' 
+#'
 #' @param vol_id An integer indicating the volume identifier. Default is 1.
 #' @param folder_id An integer indicating a valid folder identifier
 #' linked to a volume. Default value is 9807, the materials folder for volume 1.
@@ -40,26 +40,26 @@ get_folder_file <-
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
-    
+
     assertthat::assert_that(is.numeric(folder_id))
     assertthat::assert_that(folder_id > 0)
     assertthat::assert_that(length(folder_id) == 1)
-    
+
     assertthat::assert_that(is.numeric(file_id))
     assertthat::assert_that(file_id > 0)
     assertthat::assert_that(length(file_id) == 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) ||
                               inherits(rq, "httr2_request"))
-    
+
     file <- perform_api_get(
       path = sprintf(API_FOLDER_FILES_DETAIL, vol_id, folder_id, file_id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(file)) {
       if (vb) {
         message(
@@ -73,6 +73,6 @@ get_folder_file <-
       }
       return(NULL)
     }
-    
+
     file
   }

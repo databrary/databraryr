@@ -27,9 +27,9 @@ list_volume_assets <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   validate_flag(vb, "vb")
-  
+
   sessions <- collect_paginated_get(
     path = sprintf(API_VOLUME_SESSIONS, vol_id),
     rq = rq,
@@ -79,7 +79,8 @@ list_volume_assets <- function(vol_id = 1,
       )
     }, .progress = TRUE) %>%
       purrr::list_rbind()
-  }) %>% purrr::list_rbind()
+  }) %>%
+    purrr::list_rbind()
 
   if (is.null(files) || nrow(files) == 0) {
     if (vb)

@@ -12,11 +12,13 @@ download_session_zip(
 )
 }
 \arguments{
-\item{vol_id}{Volume identifier that owns the session.}
+\item{vol_id}{Volume identifier that owns the session. Must be a positive
+integer. Default is 31.}
 
-\item{session_id}{Session identifier within the volume.}
+\item{session_id}{Session identifier within the volume. Must be a positive
+integer. Default is 9803.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Default is \code{NULL}, in which case a
 default authenticated request is generated.}

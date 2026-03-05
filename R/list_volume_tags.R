@@ -14,7 +14,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' list_volume_tags()
 #' }
 #' @export
@@ -25,12 +25,12 @@ list_volume_tags <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
+
   tags <- perform_api_get(
     path = sprintf(API_VOLUME_TAGS, vol_id),
     rq = rq,

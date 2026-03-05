@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Get Session (Slot) Data From A Databrary Volume

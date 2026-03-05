@@ -8,18 +8,18 @@ request_processing_task <- function(path, rq = NULL, vb = FALSE) {
     vb = vb,
     normalize = TRUE
   )
-  
+
   if (is.null(task)) {
     if (vb) {
       message("Cannot access requested resource on Databrary. Exiting.")
     }
     return(NULL)
   }
-  
+
   if (vb && !is.null(task$message)) {
     message(task$message)
   }
-  
+
   class(task) <- unique(c("databrary_processing_task", class(task)))
   task
 }
@@ -32,21 +32,21 @@ request_signed_download_link <- function(path, rq = NULL, vb = FALSE) {
     vb = vb,
     normalize = TRUE
   )
-  
+
   if (is.null(link)) {
     if (vb) {
       message("Cannot access requested resource on Databrary. Exiting.")
     }
     return(NULL)
   }
-  
+
   if (is.null(link$download_url)) {
     if (vb) {
       message("Download link payload missing 'download_url'.")
     }
     return(NULL)
   }
-  
+
   link$download_url <- ensure_absolute_url(link$download_url)
   class(link) <- unique(c("databrary_signed_download", class(link)))
   link
@@ -70,24 +70,24 @@ download_signed_file <- function(download_url,
   assertthat::assert_that(assertthat::is.string(dest_path))
   assertthat::is.number(timeout_secs)
   assertthat::assert_that(timeout_secs > 0)
-  
+
   parent_dir <- dirname(dest_path)
   if (!dir.exists(parent_dir)) {
     dir.create(parent_dir, recursive = TRUE, showWarnings = FALSE)
   }
   assertthat::is.writeable(parent_dir)
-  
+
   token <- require_access_token()
-  
+
   req <- httr2::request(download_url) |>
     httr2::req_user_agent(USER_AGENT) |>
     httr2::req_headers(Authorization = paste("Bearer", token)) |>
     httr2::req_timeout(seconds = timeout_secs)
-  
+
   if (vb) {
     message("Saving download to '", dest_path, "'.")
   }
-  
+
   tryCatch(
     {
       httr2::req_perform(req, path = dest_path)

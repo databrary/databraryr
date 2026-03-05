@@ -1,16 +1,16 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Log Out of Databrary.org.
 #'
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
-#' 
+#'
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' logout_db()

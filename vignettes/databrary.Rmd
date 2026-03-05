@@ -46,21 +46,19 @@ Then, when you log in with your new credentials, you'll select an existing insti
 - The latest version of the code is v0.6.5.
 The v0.6.x code uses the `httr2` package under the hood, and it runs much faster than v0.5.x.
 
-## First steps (while you await authorization)
+## First steps
 
-But even before formal authorization is complete, a user can access the public materials on Databrary.
-For this vignette, we'll assume you fall into this category.
-
+All Databrary API access requires authentication. See the [authorized users](authorized-users.Rmd) vignette to learn how to log in.
 Once you've installed the package following one of the above routes, it's a good idea to check that your installation worked by loading it into your local workspace.
 
 ```{r eval=FALSE}
 library(databraryr)
 ```
 
-Then, try this command to pull data about one of Databrary's founders:
+After logging in with `login_db()`, you can try this command to pull data about one of Databrary's founders:
 
-```{r get_user_by_id}
-# Retrieve public metadata about one of Databrary's founders.
+```{r get_user_by_id, eval=FALSE}
+# Retrieve metadata about one of Databrary's founders.
 user_6 <- databraryr::get_user_by_id(user_id = 6)
 
 tibble::as_tibble(user_6)
@@ -71,7 +69,7 @@ Note that this command returns a tibble with columns that include the first name
 Databrary assigns a unique integer for each registered user on the system.
 We can create a simple helper function to collect information about a larger group of people.
 
-```{r list-people-5-7}
+```{r list-people-5-7, eval=FALSE}
 # Helper function
 get_user_as_df <- function(user_id) {
   this_user <- databraryr::get_user_by_id(user_id = user_id)
@@ -93,7 +91,7 @@ You can also try seeing what's new on Databrary.
 The `get_db_stats()` command gives you information about the newly authorized people, institutions, and newly uploaded datasets.
 Try this:
 
-```{r get-db-stats}
+```{r get-db-stats, eval=FALSE}
 databraryr::get_db_stats("stats")
 databraryr::get_db_stats("people")
 databraryr::get_db_stats("institutions")

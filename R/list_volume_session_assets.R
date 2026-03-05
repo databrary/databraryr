@@ -37,34 +37,34 @@ list_volume_session_assets <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id >= 1)
-    
+
     assertthat::assert_that(length(session_id) == 1)
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id >= 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
+
     session <- perform_api_get(
       path = sprintf(API_SESSION_DETAIL, vol_id, session_id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(session)) {
       if (vb)
         message("No matching session_id: ", session_id)
       return(NULL)
     }
-    
+
     files <- collect_paginated_get(
       path = sprintf(API_SESSION_FILES, vol_id, session_id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(files) || length(files) == 0) {
       if (vb)
         message("No assets in vol_id ", vol_id, " session_id ", session_id)
@@ -77,11 +77,11 @@ list_volume_session_assets <-
               vol_id,
               " session_id ",
               session_id)
-    
+
     asset_rows <- purrr::map(files, function(file) {
       format <- file$format
       uploader <- file$uploader
-      
+
       tibble::tibble(
         asset_id = file$id,
         asset_name = file$name,
@@ -104,6 +104,6 @@ list_volume_session_assets <-
       )
     }) %>%
       purrr::list_rbind()
-    
+
     asset_rows
   }

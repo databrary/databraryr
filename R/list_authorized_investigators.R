@@ -24,12 +24,12 @@ list_authorized_investigators <- function(institution_id = 12,
   validate_flag(vb, "vb")
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   affiliates <- list_institution_affiliates(institution_id, vb = vb, rq = rq)
   if (is.null(affiliates)) {
     return(NULL)
   }
-  
+
   investigators <- affiliates |> dplyr::filter(.data$role == "investigator")
   if (nrow(investigators) == 0) {
     return(NULL)

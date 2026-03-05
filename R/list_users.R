@@ -105,5 +105,3 @@ list_users <- function(search = NULL,
     )
   })
 }
-
-

@@ -16,7 +16,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' search_for_funder("national+science+foundation")
 #' }
 #'
@@ -30,18 +30,18 @@ search_for_funder <-
     assertthat::assert_that(is.character(search_string))
     search_string <- gsub("[+]", " ", search_string)
     pattern <- stringr::str_trim(search_string)
-    
+
     validate_flag(approved_only, "approved_only")
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
+
     params <- list()
     if (!approved_only) {
       params$all <- "true"
     }
-    
+
     funders <- collect_paginated_get(
       path = API_FUNDERS,
       params = params,
@@ -53,7 +53,7 @@ search_for_funder <-
       if (vb) message("No funders available from API.")
       return(NULL)
     }
-    
+
     funder_tbl <- purrr::map_dfr(funders, function(entry) {
       tibble::tibble(
         funder_id = entry$id,

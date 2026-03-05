@@ -18,7 +18,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_db_stats()
 #' get_db_stats("stats")
 #' }
@@ -53,9 +53,9 @@ get_db_stats <- function(type = "stats", vb = options::opt("vb"), rq = NULL) {
     "numbers"
   )) {
     if (vb)
-    message("Legacy parameter not supported in new API")
+      message("Legacy parameter not supported in new API")
   }
-  
+
   validate_flag(vb, "vb")
 
   assertthat::assert_that(

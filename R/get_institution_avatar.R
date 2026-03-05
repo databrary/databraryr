@@ -56,44 +56,45 @@ get_institution_avatar <- function(institution_id = 1,
   assertthat::assert_that(length(institution_id) == 1)
   assertthat::assert_that(institution_id > 0)
   assertthat::assert_that(institution_id == floor(institution_id), msg = "institution_id must be an integer")
-  
+
   if (!is.null(dest_path)) {
     assertthat::assert_that(assertthat::is.string(dest_path))
   }
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Build URL
   avatar_url <- sprintf(API_INSTITUTION_AVATAR, institution_id)
   full_url <- paste0(DATABRARY_BASE_URL, avatar_url)
-  
+
   # Create request
   if (is.null(rq)) {
     req <- make_default_request()
   } else {
     req <- rq
   }
-  
+
   # Build the request with the avatar URL
   req <- req %>%
     httr2::req_url(full_url) %>%
     httr2::req_method("GET") %>%
     httr2::req_error(
-      is_error = function(resp)
+      is_error = function(resp) {
         FALSE
+      }
     )
-  
+
   if (vb) {
     message("Requesting avatar for institution ", institution_id)
   }
-  
+
   # Perform request
   tryCatch({
     resp <- httr2::req_perform(req)
-    
+
     # Check response status
     status <- httr2::resp_status(resp)
     if (status != 200) {
@@ -108,10 +109,10 @@ get_institution_avatar <- function(institution_id = 1,
       }
       return(NULL)
     }
-    
+
     # Get raw bytes
     avatar_bytes <- httr2::resp_body_raw(resp)
-    
+
     if (is.null(dest_path)) {
       # Return raw bytes
       if (vb) {
@@ -126,26 +127,25 @@ get_institution_avatar <- function(institution_id = 1,
         # Try to get filename from content-disposition header
         filename <- "downloaded_file"
         content_disp <- httr2::resp_header(resp, "content-disposition")
-        
+
         if (!is.null(content_disp) &&
-            grepl("filename=", content_disp)) {
+              grepl("filename=", content_disp)) {
           # Extract filename from content-disposition header
           filename_match <- regmatches(content_disp,
                                        regexpr("filename=([^;]+)", content_disp))
           if (length(filename_match) > 0) {
             filename <- sub("filename=", "", filename_match)
-            filename <- gsub('^"|"$', '', filename) # Remove quotes
+            filename <- gsub("^\"|\"$", "", filename) # Remove quotes
             filename <- trimws(filename)
           }
         } else {
-          # Fallback: use URL path basename
-          url_path <- sprintf(API_INSTITUTION_AVATAR, institution_id)
+          # Fallback: use default filename when content-disposition lacks filename
           filename <- paste0("institution_", institution_id, "_avatar.jpg")
         }
-        
+
         final_path <- file.path(dest_path, filename)
       }
-      
+
       # Create parent directory if needed
       parent_dir <- dirname(final_path)
       if (!dir.exists(parent_dir)) {
@@ -153,10 +153,10 @@ get_institution_avatar <- function(institution_id = 1,
                    recursive = TRUE,
                    showWarnings = FALSE)
       }
-      
+
       # Save to file
       writeBin(avatar_bytes, final_path)
-      
+
       if (vb) {
         message("Saved avatar to: ",
                 final_path,
@@ -164,7 +164,7 @@ get_institution_avatar <- function(institution_id = 1,
                 length(avatar_bytes),
                 " bytes)")
       }
-      
+
       return(normalizePath(final_path))
     }
   }, error = function(e) {
@@ -174,6 +174,6 @@ get_institution_avatar <- function(institution_id = 1,
               ": ",
               e$message)
     }
-    return(NULL)
+    NULL
   })
 }

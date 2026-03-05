@@ -1,19 +1,19 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Databrary Constants From API.
-#' 
+#'
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A data frame with the constants.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' assign_constants()
 #' }
 #' @export
@@ -54,7 +54,7 @@ assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
   list(
     format = format_entries,
     format_df = formats_df,
-    permission = databraryr:::get_permission_levels_enums(),
-    release = databraryr:::get_release_levels_enums()
+    permission = get_permission_levels_enums(),
+    release = get_release_levels_enums()
   )
 }

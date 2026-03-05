@@ -46,12 +46,12 @@ list_session_assets <- function(session_id = 9807,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
+
   session <- databraryr::get_session_by_id(
     session_id = session_id,
     vol_id = vol_id,

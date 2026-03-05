@@ -34,29 +34,29 @@ get_session_by_name <-
     assertthat::assert_that(assertthat::is.string(session_name))
     assertthat::assert_that(length(session_name) == 1)
     assertthat::assert_that(!is.na(session_name))
-    
+
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id > 0)
     assertthat::assert_that(length(vol_id) == 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) ||
                               inherits(rq, "httr2_request"))
-    
+
     sessions <- collect_paginated_get(
       path = sprintf(API_VOLUME_SESSIONS, vol_id),
       params = list(search = session_name),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(sessions) || length(sessions) == 0) {
       if (vb)
         message("No sessions named '", session_name, "' in volume ", vol_id)
       return(NULL)
     }
-    
+
     purrr::map(sessions, function(session) {
       databraryr::get_session_by_id(
         session_id = session$id,

@@ -33,10 +33,10 @@ NULL
 #' }
 #' @export
 get_volume_record_by_id <- function(
-  vol_id = 1,
-  record_id = 1,
-  vb = options::opt("vb"),
-  rq = NULL) {
+    vol_id = 1,
+    record_id = 1,
+    vb = options::opt("vb"),
+    rq = NULL) {
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)

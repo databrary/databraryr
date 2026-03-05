@@ -58,7 +58,7 @@ download_folder_assets_fr_df <-
         call. = FALSE
       )
     }
-    
+
     assertthat::assert_that(length(target_dir) == 1)
     assertthat::assert_that(is.character(target_dir))
     if (dir.exists(target_dir)) {
@@ -74,33 +74,33 @@ download_folder_assets_fr_df <-
                  showWarnings = FALSE)
     }
     assertthat::is.writeable(target_dir)
-    
+
     assertthat::assert_that(length(add_folder_subdir) == 1)
     assertthat::assert_that(is.logical(add_folder_subdir))
-    
+
     assertthat::assert_that(length(overwrite) == 1)
     assertthat::assert_that(is.logical(overwrite))
-    
+
     assertthat::assert_that(length(make_portable_fn) == 1)
     assertthat::assert_that(is.logical(make_portable_fn))
-    
+
     assertthat::is.number(timeout_secs)
     assertthat::assert_that(length(timeout_secs) == 1)
     assertthat::assert_that(timeout_secs > 0)
-    
+
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
-    
+
     assertthat::assert_that(is.null(rq) ||
                               ("httr2_request" %in% class(rq)))
-    
+
     if (vb) {
       message("Downloading n=", nrow(folder_df), " files to ", target_dir)
     }
-    
+
     purrr::map(
       seq_len(nrow(folder_df)),
-      download_single_folder_asset_fr_df,
+      download_folder_asset_from_df,
       folder_df = folder_df,
       target_dir = target_dir,
       add_folder_subdir = add_folder_subdir,

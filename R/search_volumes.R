@@ -78,5 +78,3 @@ search_volumes <- function(search_string,
     )
   })
 }
-
-

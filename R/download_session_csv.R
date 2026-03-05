@@ -43,24 +43,24 @@ download_session_csv <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
+
   if (!is.null(session_id)) {
     assertthat::assert_that(length(session_id) == 1)
     assertthat::assert_that(is.numeric(session_id))
     assertthat::assert_that(session_id >= 1)
   }
-  
+
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
-  
+
   assertthat::assert_that(is.null(rq) ||
                             ("httr2_request" %in% class(rq)))
-  
+
   path <- if (is.null(session_id)) {
     sprintf(API_VOLUME_CSV_DOWNLOAD_LINK, vol_id)
   } else {
     sprintf(API_SESSION_CSV_DOWNLOAD_LINK, vol_id, session_id)
   }
-  
+
   request_processing_task(path = path, rq = rq, vb = vb)
 }

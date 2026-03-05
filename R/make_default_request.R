@@ -13,12 +13,12 @@
 #' @returns An `httr2_request` object configured for the Databrary API.
 #'
 #' @examples
-#' make_default_request()
+#' make_default_request(with_token = FALSE)
 #' @export
 make_default_request <- function(with_token = TRUE,
                                  refresh = TRUE,
                                  vb = options::opt("vb")) {
-  
+
   validate_flag(with_token, "with_token")
   validate_flag(refresh, "refresh")
   validate_flag(vb, "vb")

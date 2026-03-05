@@ -10,6 +10,8 @@ list_user_sponsors(user_id = 6, vb = options::opt("vb"), rq = NULL)
 \item{user_id}{User identifier.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+
+\item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
 Tibble of sponsors for the user.

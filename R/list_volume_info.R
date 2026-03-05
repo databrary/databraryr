@@ -21,7 +21,7 @@ NULL
 #' list_volume_info() # Sessions in Volume 1
 #' }
 #' }
-#' 
+#'
 #' @export
 list_volume_info <-
   function(vol_id = 1,
@@ -31,12 +31,12 @@ list_volume_info <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id >= 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
+
     volume <- databraryr::get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
     if (is.null(volume)) {
       return(NULL)

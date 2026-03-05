@@ -32,29 +32,29 @@ list_volume_funding <- function(vol_id = 1,
   # Check parameters
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(sum(vol_id >= 1) == length(vol_id))
-  
+
   assertthat::assert_that(length(add_id) == 1)
   assertthat::assert_that(is.logical(add_id))
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
 
   if (vb)
     message("Summarizing funding for n=", length(vol_id), " volumes.")
-  
+
   purrr::map(vol_id, function(id) {
     fundings <- perform_api_get(
       path = sprintf(API_VOLUME_FUNDINGS, id),
       rq = rq,
       vb = vb
     )
-    
+
     if (is.null(fundings) || length(fundings) == 0) {
       return(NULL)
     }
-    
+
     rows <- purrr::map_dfr(fundings, function(entry) {
       funder <- entry$funder
       tibble::tibble(

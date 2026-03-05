@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' List Sessions in Databrary Volume.
@@ -14,7 +14,7 @@ NULL
 #' to be returned.
 #'
 #' @returns A data frame with information about all assets in a volume.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -33,16 +33,16 @@ list_volume_sessions <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id >= 1)
-    
+
     assertthat::assert_that(is.logical(include_vol_data))
     assertthat::assert_that(length(include_vol_data) == 1)
-    
+
     validate_flag(vb, "vb")
-    
+
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
-    
+
+
     sessions <- collect_paginated_get(
       path = sprintf(API_VOLUME_SESSIONS, vol_id),
       rq = rq,
@@ -70,7 +70,7 @@ list_volume_sessions <-
         session_has_full_access = session$has_full_access
       )
     })
-    
+
     if (include_vol_data) {
       volume <- perform_api_get(
         path = sprintf(API_VOLUME_DETAIL, vol_id),

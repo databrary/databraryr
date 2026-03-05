@@ -27,7 +27,7 @@ value.}
 \item{target_dir}{Directory to save the downloaded file. Defaults to
 \code{tempdir()}.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{Optional \code{httr2} request object reused when requesting the signed
 link.}

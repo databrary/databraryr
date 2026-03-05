@@ -30,29 +30,29 @@ list_volume_collaborators <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   collaborators <- perform_api_get(
     path = sprintf(API_VOLUME_COLLABORATORS, vol_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(collaborators) || length(collaborators) == 0) {
     if (vb) {
       message("No collaborators found for volume ", vol_id)
     }
     return(NULL)
   }
-  
+
   purrr::map_dfr(collaborators, function(entry) {
     user <- entry$user
     sponsor <- entry$sponsor
-    
+
     sponsor_id <- if (!is.null(sponsor))
       sponsor$id
     else
@@ -69,7 +69,7 @@ list_volume_collaborators <- function(vol_id = 1,
       sponsor$email
     else
       NA_character_
-    
+
     tibble::tibble(
       collaborator_id = entry$id,
       volume_id = vol_id,

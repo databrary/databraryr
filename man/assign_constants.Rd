@@ -7,7 +7,7 @@
 assign_constants(vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to NULL.}
 }
@@ -18,7 +18,7 @@ A data frame with the constants.
 Download Databrary Constants From API.
 }
 \examples{
-\donttest{
+\dontrun{
 assign_constants()
 }
 }

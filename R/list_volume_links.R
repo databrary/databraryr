@@ -27,19 +27,19 @@ list_volume_links <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
-  
+
   validate_flag(vb, "vb")
-  
+
   links <- perform_api_get(
     path = sprintf(API_VOLUME_LINKS, vol_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(links) || length(links) == 0) {
     return(NULL)
   }
-  
+
   purrr::map_dfr(links, function(link) {
     tibble::tibble(
       link_id = link$id,

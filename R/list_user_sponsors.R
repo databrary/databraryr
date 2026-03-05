@@ -6,6 +6,7 @@ NULL
 #' List sponsorships for a user
 #'
 #' @param user_id User identifier.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
 #' @inheritParams options_params
 #'
 #' @returns Tibble of sponsors for the user.
@@ -16,26 +17,26 @@ list_user_sponsors <- function(user_id = 6,
   assertthat::assert_that(is.numeric(user_id), length(user_id) == 1, user_id > 0)
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   sponsorships <- collect_paginated_get(
     path = sprintf(API_USER_SPONSORSHIPS, user_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(sponsorships) || length(sponsorships) == 0) {
     if (vb)
       message("No sponsorships for user ", user_id)
     return(NULL)
   }
-  
+
   user <- get_user_by_id(user_id, vb = vb, rq = rq)
-  
+
   purrr::map_dfr(sponsorships, function(entry) {
     sponsor <- entry$user
     tibble::tibble(

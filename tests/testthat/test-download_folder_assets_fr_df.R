@@ -53,7 +53,7 @@ test_that("download_folder_assets_fr_df iterates rows", {
   calls <- list()
   results <- with_mocked_bindings(
     download_folder_assets_fr_df(folder_df = folder_df, target_dir = tempdir(), vb = FALSE),
-    download_single_folder_asset_fr_df = function(i, folder_df, ...) {
+    download_folder_asset_from_df = function(i, folder_df, ...) {
       calls[[length(calls) + 1]] <<- list(i = i, folder_df = folder_df)
       paste0("path-", i)
     }

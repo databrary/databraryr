@@ -35,26 +35,26 @@ get_funder_by_id <- function(funder_id = 1,
   assertthat::assert_that(length(funder_id) == 1)
   assertthat::assert_that(funder_id > 0)
   assertthat::assert_that(funder_id == floor(funder_id), msg = "funder_id must be an integer")
-  
+
   validate_flag(vb, "vb")
 
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Perform API call
   funder <- perform_api_get(
     path = sprintf(API_FUNDER_DETAIL, funder_id),
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(funder)) {
     if (vb) {
       message("Funder ", funder_id, " not found or inaccessible.")
     }
     return(NULL)
   }
-  
+
   # Return structured list
   list(
     funder_id = funder$id,

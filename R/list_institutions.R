@@ -40,18 +40,18 @@ list_institutions <- function(search_string = NULL,
   if (!is.null(search_string)) {
     assertthat::assert_that(assertthat::is.string(search_string))
   }
-  
+
   validate_flag(vb, "vb")
-  
+
   assertthat::assert_that(is.null(rq) ||
                             inherits(rq, "httr2_request"))
-  
+
   # Build params list
   params <- list()
   if (!is.null(search_string)) {
     params$search <- search_string
   }
-  
+
   # Perform API call with pagination
   results <- collect_paginated_get(
     path = API_INSTITUTIONS_LIST,
@@ -59,7 +59,7 @@ list_institutions <- function(search_string = NULL,
     rq = rq,
     vb = vb
   )
-  
+
   if (is.null(results) || length(results) == 0) {
     if (vb) {
       if (is.null(search_string)) {
@@ -70,7 +70,7 @@ list_institutions <- function(search_string = NULL,
     }
     return(NULL)
   }
-  
+
   # Process results into tibble
   purrr::map_dfr(results, function(entry) {
     tibble::tibble(
