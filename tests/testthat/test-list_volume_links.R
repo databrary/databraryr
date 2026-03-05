@@ -1,10 +1,14 @@
 # list_volume_links ---------------------------------------------------------
 test_that("list_volume_links returns data.frame or is NULL", {
-  expect_true((is.null(list_volume_links())) ||
-                 ("data.frame" %in% class(list_volume_links())))
+  login_test_account()
+  result <- list_volume_links(vol_id = 1)
+  skip_if_null_response(result, "list_volume_links(vol_id = 1)")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
 })
 
 test_that("list_volume_links rejects bad input parameters", {
+  login_test_account()
   expect_error(list_volume_links(vol_id = "a"))
   expect_error(list_volume_links(vol_id = c(1,2)))
   expect_error(list_volume_links(vol_id = TRUE))

@@ -1,6 +1,10 @@
 # search_for_tags() ---------------------------------------------------
-test_that("search_for_tags returns character", {
-  expect_true("character" %in% class(search_for_tags()))
+test_that("search_for_tags returns tagged volumes", {
+  login_test_account()
+  result <- search_for_tags("ICIS")
+  skip_if_null_response(result, "search_for_tags(\"ICIS\")")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
 })
 
 test_that("search_for_tags rejects bad input parameters", {

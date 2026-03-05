@@ -7,17 +7,17 @@
 list_asset_formats(vb = options::opt("vb"))
 }
 \arguments{
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 A data frame with information about the data formats Databrary
 supports.
 }
 \description{
-List Stored Assets (Files) By Type.
+List the data (file) formats supported by Databrary.
 }
 \examples{
-\donttest{
+\dontrun{
 list_asset_formats()
 }
 }

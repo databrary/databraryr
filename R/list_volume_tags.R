@@ -5,7 +5,8 @@ NULL
 
 #' Lists Keywords And Tags For A Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with the requested data.
@@ -13,7 +14,7 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' list_volume_tags()
 #' }
 #' @export
@@ -24,42 +25,29 @@ list_volume_tags <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
+
+  validate_flag(vb, "vb")
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
-  # Handle NULL rq
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  rq <- rq %>%
-    httr2::req_url(sprintf(GET_VOLUME_TAGS, vol_id))
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd) {
-      NULL
-    }
+
+  tags <- perform_api_get(
+    path = sprintf(API_VOLUME_TAGS, vol_id),
+    rq = rq,
+    vb = vb
   )
-  
-  if (is.null(resp)) {
-    message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
-  } else {
-    res <- httr2::resp_body_json(resp)
-    if (!(is.null(res$tags))) {
-      purrr::map(res$tags, extract_vol_tag) %>%
-        purrr::list_rbind() %>%
-        dplyr::mutate(vol_id = vol_id)
-    }
+
+  if (is.null(tags) || length(tags) == 0) {
+    if (vb)
+      message("No tags for vol_id ", vol_id)
+    return(NULL)
   }
+  if (vb) message("Found n = ",
+                  length(tags),
+                  " tags in vol_id ",
+                  vol_id)
+
+  tags
 }
 
 #-------------------------------------------------------------------------------

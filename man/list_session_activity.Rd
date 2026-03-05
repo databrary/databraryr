@@ -4,32 +4,36 @@
 \alias{list_session_activity}
 \title{List Activity History in Databrary Session.}
 \usage{
-list_session_activity(session_id = 6256, vb = options::opt("vb"), rq = NULL)
+list_session_activity(
+  vol_id = 1892,
+  session_id = 76113,
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
-\item{session_id}{Selected session/slot number.}
+\item{vol_id}{Volume identifier (required by the Django API). Must be a positive integer.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{session_id}{Session identifier. Must be a positive integer.}
 
-\item{rq}{An \code{httr2} request object. Defaults to NULL. To access the activity
-history on a volume a user has privileges on. Create a request
-(\code{rq <- make_default_request()}); login using \code{make_login_client(rq = rq)};
-then run \verb{list_session_activity(session_id = <YOUR_SESSION_ID>, rq = rq)}}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
+
+\item{rq}{An \code{httr2} request object. Defaults to \code{NULL}. When \code{NULL}, a
+default request is generated, but this will only permit public information
+to be returned.}
 }
 \value{
-A list with the activity history on a session/slot.
+A tibble with the activity history for a session, or \code{NULL} when
+no data is available.
 }
 \description{
-If a user has access to a volume and session, this function returns the
-history of modifications to that session.
+For an accessible session, returns the logged history events associated with
+the session. Requires authenticated access with sufficient permissions.
 }
 \examples{
 \donttest{
 \dontrun{
-# The following will only return output if the user has write privileges
-# on the session.
-
-list_session_activity(session_id = 6256, vb = FALSE)
+list_session_activity(vol_id = 1892, session_id = 76113)
 }
 }
 }

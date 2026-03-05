@@ -53,36 +53,27 @@ library(databraryr)
 #> Welcome to the databraryr package.
 
 get_db_stats()
-#> # A tibble: 1 × 9
-#>   date                investigators affiliates institutions datasets_total
-#>   <dttm>                      <int>      <int>        <int>          <int>
-#> 1 2024-03-29 14:38:54          1740        680          784           1670
-#> # ℹ 4 more variables: datasets_shared <int>, n_files <int>, hours <dbl>,
-#> #   TB <dbl>
+#> # A tibble: 1 × 1
+#>   date               
+#>   <dttm>             
+#> 1 2025-10-31 12:05:57
 
 list_volume_assets() |> 
   head()
-#>   asset_id asset_format_id asset_duration                 asset_name
-#> 1     9826            -800         335883               Introduction
-#> 2     9830            -800        4277835         Databrary 1.0 plan
-#> 3     9832            -800        3107147                    Datavyu
-#> 4    22412               6             NA                     Slides
-#> 5     9828            -800        4425483             Databrary demo
-#> 6     9834            -800        4964011 Overview and Policy Update
-#>   asset_permission asset_size session_id session_date session_release
-#> 1                1   88610655       6256   2013-10-28               3
-#> 2                1  899912341       6256   2013-10-28               3
-#> 3                1  764340542       6256   2013-10-28               3
-#> 4                1    4573426       6256   2013-10-28               3
-#> 5                1  917124852       6256   2013-10-28               3
-#> 6                1 1301079971       6257   2014-04-07               3
-#>   format_mimetype format_extension       format_name
-#> 1       video/mp4              mp4      MPEG-4 video
-#> 2       video/mp4              mp4      MPEG-4 video
-#> 3       video/mp4              mp4      MPEG-4 video
-#> 4 application/pdf              pdf Portable document
-#> 5       video/mp4              mp4      MPEG-4 video
-#> 6       video/mp4              mp4      MPEG-4 video
+#> # A tibble: 6 × 17
+#>   asset_id asset_name                asset_permission asset_size
+#>      <int> <chr>                     <chr>                 <dbl>
+#> 1     9826 Introduction              public             88610655
+#> 2     9828 Databrary demo            public            917124852
+#> 3     9830 Databrary 1               public            899912341
+#> 4     9832 Datavyu                   public            764340542
+#> 5    22412 Slides                    public              4573426
+#> 6     9834 Overview and Policy Upda… public           1301079971
+#> # ℹ 12 more variables: asset_mime_type <chr>, asset_format_id <int>,
+#> #   asset_format_name <chr>, asset_created_at <chr>, asset_updated_at <chr>,
+#> #   asset_sha1 <chr>, session_id <int>, session_name <chr>,
+#> #   session_date <chr>, session_release <chr>, asset_uploader_id <int>,
+#> #   asset_uploader_first_name <chr>, asset_uploader_last_name <chr>
 ```
 
 ## Lifecycle

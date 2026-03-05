@@ -2,43 +2,48 @@
 % Please edit documentation in R/download_video.R
 \name{download_video}
 \alias{download_video}
-\title{Download Video From Databrary.}
+\title{Download a Video Asset via Signed URL.}
 \usage{
 download_video(
-  asset_id = 1,
+  vol_id = 1,
   session_id = 9807,
-  file_name = tempfile(paste0(session_id, "_", asset_id, "_"), fileext = ".mp4"),
+  asset_id = 1,
+  file_name = NULL,
   target_dir = tempdir(),
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{asset_id}{Asset id for target file.}
+\item{vol_id}{Volume identifier containing the session.}
 
-\item{session_id}{Slot/session number where target file is stored.}
+\item{session_id}{Session identifier containing the asset.}
 
-\item{file_name}{Name for downloaded file.}
+\item{asset_id}{Asset identifier for the video file.}
 
-\item{target_dir}{Directory to save the downloaded file.
-Default is a temporary directory given by a call to \code{tempdir()}.}
+\item{file_name}{Optional explicit file name. Defaults to the API-provided
+value.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{target_dir}{Directory to save the downloaded file. Defaults to
+\code{tempdir()}.}
 
-\item{rq}{An \code{httr2} request object.}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
+
+\item{rq}{Optional \code{httr2} request object reused when requesting the signed
+link.}
 }
 \value{
-Full file name to the asset.
+Path to the downloaded video or \code{NULL} on failure.
 }
 \description{
-Download Video From Databrary.
+Download a Video Asset via Signed URL.
 }
 \examples{
 \donttest{
 \dontrun{
-download_video() # Download's 'numbers' file from volume 1.
-download_video(asset_id = 11643, session_id = 9825, file_name = "rdk.mp4")
-#' # Downloads a display with a random dot kinematogram (RDK).
+download_video() # Default public video from volume 1
+download_video(vol_id = 1, session_id = 9825, asset_id = 11643,
+               file_name = "rdk.mp4")
 }
 }
 

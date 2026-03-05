@@ -1,9 +1,17 @@
 # list_volume_assets -----------------------------------------------
-test_that("list_volume_assets returns data.frame", {
-  expect_true((is.null(list_volume_assets()) ||
-                 (
-                   "data.frame" %in% class(list_volume_assets())
-                 )))
+test_that("list_volume_assets returns tibble or is NULL", {
+  login_test_account()
+  result <- list_volume_assets()
+  skip_if_null_response(result, "list_volume_assets()")
+  expect_s3_class(result, "tbl_df")
+})
+
+test_that("list_volume_assets returns tibble for accessible volume", {
+  login_test_account()
+  result <- list_volume_assets(vol_id = 2)
+  skip_if_null_response(result, "list_volume_assets(vol_id = 2)")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
 })
 
 test_that("list_volume_assets rejects bad input parameters", {
@@ -26,6 +34,7 @@ test_that("list_volume_assets rejects bad input parameters", {
 
 test_that("list_volume_assets returns NULL for invalid/missing volume IDs",
           {
+            login_test_account()
             expect_true(is.null(list_volume_assets(vol_id = 3)))
             expect_true(is.null(list_volume_assets(vol_id = 6)))
           })

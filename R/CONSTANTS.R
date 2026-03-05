@@ -1,74 +1,66 @@
 #' Load Package-wide Constants into Local Environment
 #'
 #'
+DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.databrary.org")
 
-API_CONSTANTS <- "https://nyu.databrary.org/api/constants"
+API_ACTIVITY_SUMMARY <- "/statistics/summary/"
+API_GROUPED_FORMATS <- "/grouped-formats/"
+API_USERS <- "/users/"
+API_USER_DETAIL <- "/users/%s/"
+API_USER_VOLUMES <- "/users/%s/volumes/"
+API_USER_SPONSORSHIPS <- "/users/%s/sponsorships/"
+API_USER_AFFILIATES <- "/users/%s/affiliates/"
+API_USER_AVATAR <- "/users/%s/avatar/"
+API_USERS_HISTORY <- "/users/%s/history/"
+API_INSTITUTIONS_LIST <- "/institutions/"
+API_INSTITUTIONS <- "/institutions/%s/"
+API_INSTITUTION_AFFILIATES <- "/institutions/%s/affiliates/"
+API_INSTITUTION_AVATAR <- "/institutions/%s/avatar/"
+API_VOLUMES <- "/volumes/"
+API_VOLUME_DETAIL <- "/volumes/%s/"
+API_VOLUME_TAGS <- "/volumes/%s/tags/"
+API_VOLUME_LINKS <- "/volumes/%s/links/"
+API_VOLUME_FUNDINGS <- "/volumes/%s/fundings/"
+API_VOLUME_COLLABORATORS <- "/volumes/%s/collaborators/"
+API_VOLUME_COLLABORATOR_DETAIL <- "/volumes/%s/collaborators/%s/"
+API_VOLUME_HISTORY <- "/volumes/%s/history/"
+API_VOLUME_SESSIONS <- "/volumes/%s/sessions/"
+API_VOLUME_FOLDERS <- "/volumes/%s/folders/"
+API_VOLUME_RECORDS <- "/volumes/%s/records/"
+API_VOLUME_RECORD_DETAIL <- "/volumes/%s/records/%s/"
+API_SESSION_DETAIL <- "/volumes/%s/sessions/%s/"
+API_SESSION_FILES <- "/volumes/%s/sessions/%s/files/"
+API_SESSION_FILE_DETAIL <- "/volumes/%s/sessions/%s/files/%s/"
+API_FILES_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/files/%s/download-link/"
+API_SESSION_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/download-link/"
+API_SESSION_CSV_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/csv-download-link/"
+API_FOLDER_DETAIL <- "/volumes/%s/folders/%s/"
+API_FOLDER_FILES <- "/volumes/%s/folders/%s/files/"
+API_FOLDER_FILES_DETAIL <- "/volumes/%s/folders/%s/files/%s/"
+API_FOLDER_DOWNLOAD_LINK <- "/volumes/%s/folders/%s/download-link/"
+API_FOLDER_FILE_DOWNLOAD_LINK <- "/volumes/%s/folders/%s/files/%s/download-link/"
+API_VOLUME_DOWNLOAD_LINK <- "/volumes/%s/download-link/"
+API_VOLUME_CSV_DOWNLOAD_LINK <- "/volumes/%s/csv-download-link/"
+API_SEARCH_VOLUMES <- "/search/volumes/"
+API_SEARCH_USERS <- "/search/users/"
+API_SEARCH_INSTITUTIONS <- "/search/institutions/"
+API_FUNDERS <- "/funders/"
+API_FUNDER_DETAIL <- "/funders/%s/"
+API_TAG_DETAIL <- "/tags/%s/"
+API_CATEGORIES <- "/categories/"
+API_CATEGORY_DETAIL <- "/categories/%s/"
 
-CREATE_SLOT <-
-  "https://nyu.databrary.org/api/volume/%s/slot"
-CREATE_UPLOAD_FLOW <-
-  "https://nyu.databrary.org/api/volume/%s/upload"
-CREATE_FILE_FROM_FLOW <-
-  "https://nyu.databrary.org/api/volume/%s/asset"
-
-DATABRARY_API <- "https://nyu.databrary.org/api"
-DOWNLOAD_FILE <-
-  "https://nyu.databrary.org/slot/%s/-/asset/%s/download"
-DOWNLOAD_SESSION_ZIP <-
-  "https://nyu.databrary.org/volume/%s/slot/%s/zip/%s"
-DOWNLOAD_VOLUME_ZIP <-
-  "https://nyu.databrary.org/volume/%s/zip/false"
-
-GET_SESSIONS_IN_VOL <-
-  "https://nyu.databrary.org/api/volume/%s?records&containers=all"
-GET_ACTIVITY_DATA <-
-  "https://nyu.databrary.org/api/activity"
-GET_PARTY_BY_ID <- 
-  "https://nyu.databrary.org/api/party/%s?parents&children&access"
-GET_PARTY_NO_PARENTS_CHILDREN <- "https://nyu.databrary.org/api/party/%s"
-GET_CONSTANTS <- "https://nyu.databrary.org/api/constants"
-GET_PARTY_AVATAR <- "https://nyu.databrary.org/party/%s/avatar"
-
-GET_SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
-GET_SESSION_ACTIVITY <- "https://nyu.databrary.org/api/slot/%s/activity"
-GET_SESSION_ZIP <- "https://nyu.databrary.org/volume/%s/slot/%s/zip/false"
-
-GET_VOL_BY_ID <-
-  "https://nyu.databrary.org/api/volume/%s?access&citation&links&funding&top&tags&excerpts&comments&records&containers=all&metrics&state"
-GET_VOLUME_FUNDING <- "https://nyu.databrary.org/api/volume/%s?funding=all"
-GET_VOLUME_MINIMUM <- "https://nyu.databrary.org/api/volume/%s"
-GET_VOLUME_LINKS <- "https://nyu.databrary.org/api/volume/%s?links=all"
-GET_VOLUME_TAGS <- "https://nyu.databrary.org/api/volume/%s?tags=all"
-GET_VOLUME_ACTIVITY <- "https://nyu.databrary.org/api/volume/%s/activity"
-GET_VOLUME_ZIP <- "https://nyu.databrary.org/volume/%s/zip/false"
-GET_VOLUME_EXCERPTS <- "https://nyu.databrary.org/api/volume/%s?excerpts=all"
-
-GET_ASSET_BY_ID <- "https://nyu.databrary.org/api/asset/%s"
-GET_ASSET_BY_VOLUME_SESSION_ID <- 
-  "https://nyu.databrary.org/api/volume/%s/slot/%s/asset/%s"
-
-LOGIN <- "https://nyu.databrary.org/api/user/login"
-LOGOUT <- "https://nyu.databrary.org/api/user/logout"
-
-QUERY_SLOT <-
-  "https://nyu.databrary.org/api/slot/%s/-?records&assets&excerpts&tags&comments"
-QUERY_VOLUME_FUNDER <- "https://nyu.databrary.org/api/funder?query=%s"
-QUERY_KEYWORDS <- "https://nyu.databrary.org/api/search?q=%s"
-QUERY_TAGS <- "https://nyu.databrary.org/api/tags/%s"
-
-SESSION_CSV <- "https://nyu.databrary.org/volume/%s/csv"
-
-UPLOAD_CHUNK <- "https://nyu.databrary.org/api/upload"
-UPDATE_SLOT <- "https://nyu.databrary.org/api/slot/%s"
-
-# Authentication parameters
-USER_AGENT <-
-  "databraryr (https://cran.r-project.org/package=databraryr)"
-KEYRING_SERVICE <- 'org.databrary.databraryr'
-
-# httr2 request parameters
 RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1  # seconds
 RETRY_BACKOFF <- 2  # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
 REQUEST_TIMEOUT_VERY_LONG <- 600
+
+
+OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
+OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
+LOGIN <- sprintf("%s/login/", DATABRARY_BASE_URL)
+
+USER_AGENT <- paste0("databraryr/", as.character(utils::packageVersion("databraryr")))
+
+KEYRING_SERVICE <- "org.databrary.databraryr"

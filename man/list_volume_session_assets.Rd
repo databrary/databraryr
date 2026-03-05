@@ -5,18 +5,18 @@
 \title{List Assets in a Session from a Databrary volume.}
 \usage{
 list_volume_session_assets(
-  vol_id = 1,
-  session_id = 9807,
+  vol_id = 2,
+  session_id = 11,
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{vol_id}{Target volume number. Must be a positive integer.}
 
 \item{session_id}{The session number in the selected volume.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object.}
 }
@@ -36,7 +36,7 @@ ID.
 \examples{
 \donttest{
 \dontrun{
-list_volume_session_assets() # Session 9807 in volume 1
+list_volume_session_assets() # Defaults to session 11 in volume 2
 }
 }
 }
