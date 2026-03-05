@@ -1,3 +1,5 @@
+.env
+.env.*
 Meta
 doc
 .Rproj.user

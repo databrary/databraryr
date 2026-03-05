@@ -1,6 +1,6 @@
-# R/utils.R
-#
-# Utility functions.
+# Utility functions for the databraryr package.
+
+utils::globalVariables(c("name", "id", "category"))
 
 #------------------------------------------------------------------------------
 #' @eval options::as_params()
@@ -8,7 +8,7 @@
 #'
 NULL
 
-  
+
 #----------------------------------------------------------------------------
 #' Extract Databrary Permission Levels.
 #'
@@ -23,10 +23,11 @@ NULL
 #'
 #' @export
 get_permission_levels <- function(vb = options::opt("vb")) {
+  validate_flag(vb, "vb")
   enums <- get_permission_levels_enums()
   enums$volume_access_levels
 }
-  
+
 #----------------------------------------------------------------------------
 #' Convert Timestamp String To ms.
 #'
@@ -42,12 +43,11 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
   if (!is.character(HHMMSSmmm)) {
     stop("HHMMSSmmm must be a string.")
   }
-  
-  if (stringr::str_detect(HHMMSSmmm,
-                          "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")) {
+
+  if (stringr::str_detect(HHMMSSmmm, "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")) {
     time_segs <- stringr::str_match(HHMMSSmmm,
                                     "([0-9]{2}):([0-9]{2}):([0-9]{2}):([0-9]{3})")
-    as.numeric(time_segs[5]) + as.numeric(time_segs[4]) * 
+    as.numeric(time_segs[5]) + as.numeric(time_segs[4]) *
       1000 + as.numeric(time_segs[3]) * 1000 * 60 +
       as.numeric(time_segs[2]) * 1000 * 60 * 60
   } else {
@@ -69,8 +69,11 @@ HHMMSSmmm_to_ms <- function(HHMMSSmmm = "01:01:01:333") {
 #'
 #' @export
 get_release_levels <- function(vb = options::opt("vb")) {
-enums <- get_release_levels_enums()
-vapply(enums$levels, function(item) item$code, character(1))
+  validate_flag(vb, "vb")
+  enums <- get_release_levels_enums()
+  vapply(enums$levels, function(item) {
+    item$code
+  }, character(1))
 }
 
 #----------------------------------------------------------------------------
@@ -82,19 +85,20 @@ vapply(enums$levels, function(item) item$code, character(1))
 #' @inheritParams options_params
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_supported_file_types()
 #' }
 #'
 #' @export
 get_supported_file_types <- function(vb = options::opt("vb")) {
-constants <- assign_constants(vb = vb)
-constants$format_df |>
-  dplyr::rename(
-    asset_type = name,
-    asset_type_id = id,
-    asset_category = category
-  )
+  validate_flag(vb, "vb")
+  constants <- assign_constants(vb = vb)
+  constants$format_df |>
+    dplyr::rename(
+      asset_type = name,
+      asset_type_id = id,
+      asset_category = category
+    )
 }
 
 #----------------------------------------------------------------------------
@@ -103,7 +107,7 @@ constants$format_df |>
 #' @param fn Databrary party ID
 #' @param replace_regex A character string. A regular expression to capture
 #' the "non-portable" characters in fn.
-#' @param replacement_char A character string. The character(s) that will 
+#' @param replacement_char A character string. The character(s) that will
 #' replace the non-portable characters.
 #'
 #' @returns A "cleaned" portable file name
@@ -111,23 +115,22 @@ constants$format_df |>
 #' @inheritParams options_params
 #'
 make_fn_portable <- function(fn,
-                              vb = options::opt("vb"),
-                              replace_regex = "[ &\\!\\)\\(\\}\\{\\[\\]\\+\\=@#\\$%\\^\\*]",
-                              replacement_char = "_") {
+                             vb = options::opt("vb"),
+                             replace_regex = "[ &\\!\\)\\(\\}\\{\\[\\]\\+\\=@#\\$%\\^\\*]",
+                             replacement_char = "_") {
   assertthat::is.string(fn)
   assertthat::assert_that(!is.numeric(fn))
   assertthat::assert_that(!is.logical(fn))
   assertthat::assert_that(length(fn) == 1)
-  
-  assertthat::assert_that(is.logical(vb))
-  assertthat::assert_that(length(vb) == 1)
-  
+
+  validate_flag(vb, "vb")
+
   assertthat::is.string(replace_regex)
   assertthat::assert_that(length(replace_regex) == 1)
-  
+
   assertthat::is.string(replacement_char)
   assertthat::assert_that(length(replacement_char) == 1)
-  
+
   if (vb) {
     non_portable_chars <- stringr::str_detect(fn, replace_regex)
     message("There are ", sum(non_portable_chars), " in ", fn)
@@ -135,4 +138,3 @@ make_fn_portable <- function(fn,
   new_fn <- stringr::str_replace_all(fn, replace_regex, replacement_char)
   new_fn
 }
-  

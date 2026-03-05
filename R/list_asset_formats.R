@@ -1,33 +1,36 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' List Stored Assets (Files) By Type.
-#' 
+#'
+#' @description List the data (file) formats supported by Databrary.
+#'
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#'
 #' @returns A data frame with information about the data formats Databrary
 #' supports.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' list_asset_formats()
 #' }
 #' @export
 list_asset_formats <- function(vb = options::opt("vb")) {
   # Check parameters
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
+  validate_flag(vb, "vb")
+
   db_constants <- databraryr::assign_constants()
-  
+
   id <- NULL
   mimetype <- NULL
   extension <- NULL
   name <- NULL
   transcodable <- NULL
-  
+
   if (!is.null(db_constants$format)) {
     purrr::map(db_constants$format, as.data.frame) %>%
       purrr::list_rbind() %>%

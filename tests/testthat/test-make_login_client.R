@@ -21,9 +21,9 @@ test_that("make_login_client rejects bad input parameters", {
   expect_error(make_login_client(vb = 3))
   expect_error(make_login_client(vb = "a"))
 
-  expect_error(make_login_client(SERVICE = -1, email = "user@example.com", password = "pw"))
-  expect_error(make_login_client(SERVICE = TRUE, email = "user@example.com", password = "pw"))
-  expect_error(make_login_client(SERVICE = list("a", "b"), email = "user@example.com", password = "pw"))
+  expect_error(make_login_client(service = -1, email = "user@example.com", password = "pw"))
+  expect_error(make_login_client(service = TRUE, email = "user@example.com", password = "pw"))
+  expect_error(make_login_client(service = list("a", "b"), email = "user@example.com", password = "pw"))
 
   expect_error(make_login_client(rq = 3, email = "user@example.com", password = "pw"))
   expect_error(make_login_client(rq = "a", email = "user@example.com", password = "pw"))

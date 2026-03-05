@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download a Single Asset From a Session Data Frame Row.
@@ -19,6 +19,7 @@ NULL
 #' @param make_portable_fn Logical. When `TRUE`, filenames are sanitized via
 #'   `make_fn_portable()`.
 #' @param timeout_secs Numeric. Timeout applied to the signed download request.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq Optional `httr2` request object reused to request signed links.
 #'
 #' @returns Path to the downloaded asset or `NULL` if the download fails.
@@ -26,15 +27,15 @@ NULL
 #' @inheritParams options_params
 #'
 #' @export
-download_single_session_asset_fr_df <- function(i = NULL,
-                                                session_df = NULL,
-                                                target_dir = tempdir(),
-                                                add_session_subdir = TRUE,
-                                                overwrite = TRUE,
-                                                make_portable_fn = FALSE,
-                                                timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
-                                                vb = options::opt("vb"),
-                                                rq = NULL) {
+download_session_asset_from_df <- function(i = NULL,
+                                           session_df = NULL,
+                                           target_dir = tempdir(),
+                                           add_session_subdir = TRUE,
+                                           overwrite = TRUE,
+                                           make_portable_fn = FALSE,
+                                           timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
+                                           vb = options::opt("vb"),
+                                           rq = NULL) {
   assertthat::assert_that(length(i) == 1)
   assertthat::is.number(i)
   assertthat::assert_that(i > 0)
@@ -52,14 +53,15 @@ download_single_session_asset_fr_df <- function(i = NULL,
 
   assertthat::assert_that(length(target_dir) == 1)
   assertthat::is.string(target_dir)
-  assertthat::assert_that(dir.exists(target_dir) || dir.create(target_dir, recursive = TRUE, showWarnings = FALSE))
+  assertthat::assert_that(
+    dir.exists(target_dir) ||
+      dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
+  )
   assertthat::is.writeable(target_dir)
 
-  assertthat::assert_that(length(add_session_subdir) == 1)
-  assertthat::assert_that(is.logical(add_session_subdir))
+  validate_flag(add_session_subdir, "add_session_subdir")
+  validate_flag(overwrite, "overwrite")
 
-  assertthat::assert_that(length(overwrite) == 1)
-  assertthat::assert_that(is.logical(overwrite))
 
   assertthat::assert_that(length(make_portable_fn) == 1)
   assertthat::assert_that(is.logical(make_portable_fn))
@@ -68,10 +70,10 @@ download_single_session_asset_fr_df <- function(i = NULL,
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
 
   this_asset <- session_df[i, , drop = FALSE]
   if (nrow(this_asset) == 0) {
@@ -98,7 +100,8 @@ download_single_session_asset_fr_df <- function(i = NULL,
   extension <- ""
   if ("format_extension" %in% names(this_asset)) {
     ext_value <- this_asset$format_extension
-    if (!is.null(ext_value) && !is.na(ext_value) && nzchar(ext_value)) {
+    if (!is.null(ext_value) &&
+          !is.na(ext_value) && nzchar(ext_value)) {
       if (tools::file_ext(base_name) != ext_value) {
         extension <- paste0(".", ext_value)
       }

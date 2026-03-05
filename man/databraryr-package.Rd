@@ -25,12 +25,14 @@ Useful links:
 Authors:
 \itemize{
   \item Jeffrey Spies \email{cran@jeffspies.com}
+  \item Pawel pawel.armatys@montrosesoftware.com Armatys
 }
 
 Other contributors:
 \itemize{
   \item National Science Foundation OAC-2032713 [funder]
   \item National Institutes of Health R01HD094830 [funder]
+  \item National Science Foundation BCS 2444730, 2444731 [funder]
 }
 
 }

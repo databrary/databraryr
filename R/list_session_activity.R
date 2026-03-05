@@ -5,11 +5,12 @@ NULL
 
 #' List Activity History in Databrary Session.
 #'
-#' For an accessible session, returns the logged history events associated with
+#' @description For an accessible session, returns the logged history events associated with
 #' the session. Requires authenticated access with sufficient permissions.
 #'
-#' @param vol_id Volume identifier (required by the Django API).
-#' @param session_id Session identifier.
+#' @param vol_id Volume identifier (required by the Django API). Must be a positive integer.
+#' @param session_id Session identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`. When `NULL`, a
 #'   default request is generated, but this will only permit public information
 #'   to be returned.
@@ -20,8 +21,8 @@ NULL
 #' @inheritParams options_params
 #'
 #' @examples
-#' \\donttest{
-#' \\dontrun{
+#' \donttest{
+#' \dontrun{
 #' list_session_activity(vol_id = 1892, session_id = 76113)
 #' }
 #' }
@@ -41,9 +42,10 @@ list_session_activity <-
     assertthat::assert_that(session_id > 0)
 
     assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
 
-    assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+    assertthat::assert_that(is.null(rq) ||
+                              inherits(rq, "httr2_request"))
 
     if (is.null(rq)) {
       rq <- databraryr::make_default_request()
@@ -98,7 +100,10 @@ list_session_activity <-
 
     if (length(session_entries) == 0) {
       if (vb) {
-        message("No activity history for session ", session_id, " within volume ", vol_id)
+        message("No activity history for session ",
+                session_id,
+                " within volume ",
+                vol_id)
       }
       return(NULL)
     }
@@ -116,11 +121,17 @@ list_session_activity <-
       }
 
       safe_int <- function(value) {
-        if (is.null(value)) NA_integer_ else value
+        if (is.null(value))
+          NA_integer_
+        else
+          value
       }
 
       safe_chr <- function(value) {
-        if (is.null(value)) NA_character_ else value
+        if (is.null(value))
+          NA_character_
+        else
+          value
       }
 
       tibble::tibble(

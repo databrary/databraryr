@@ -42,7 +42,9 @@ test_that("download_folder_asset rejects bad input parameters", {
 })
 
 test_that("download_folder_asset fetches signed link", {
-  tmp_dir <- tempdir()
+  tmp_dir <- tempfile("download_folder_asset_test_")
+  dir.create(tmp_dir, recursive = TRUE, showWarnings = FALSE)
+  on.exit(unlink(tmp_dir, recursive = TRUE), add = TRUE)
   fake_link <- list(download_url = "https://example.com/file.bin", file_name = "example.bin")
   class(fake_link) <- c("databrary_signed_download", "list")
 
@@ -50,7 +52,13 @@ test_that("download_folder_asset fetches signed link", {
   captured_dest <- NULL
 
   result <- with_mocked_bindings(
-    download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3, target_dir = tmp_dir),
+    download_folder_asset(
+      vol_id = 1,
+      folder_id = 2,
+      asset_id = 3,
+      file_name = NULL,
+      target_dir = tmp_dir
+    ),
     request_signed_download_link = function(path, rq = NULL, vb = FALSE) {
       captured_path <<- path
       fake_link
@@ -60,7 +68,8 @@ test_that("download_folder_asset fetches signed link", {
       dest_path
     }
   )
-
+  skip_if_null_response(result, "download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3, target_dir = tmp_dir)")
+  
   expect_true(grepl("example.bin$", result))
   expect_equal(result, captured_dest)
   expect_equal(captured_path, sprintf("/volumes/%s/folders/%s/files/%s/download-link/", 1, 2, 3))

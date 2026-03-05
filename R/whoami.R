@@ -5,26 +5,30 @@
 #' `login_db()`.
 #'
 #' @inheritParams options_params
+#'
 #' @param refresh Whether to attempt automatic token refresh when the current
 #'   access token is expired. Defaults to `TRUE`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #'
 #' @returns A list containing `auth_method` and `user` fields (both lists) or
 #'   `NULL` if the request fails due to lack of authentication.
 #'
 #' @examples
-#' \\dontrun{
+#' \dontrun{
 #' login_db()
 #' whoami()
 #' }
 #' @export
-whoami <- function(refresh = TRUE, vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(refresh), length(refresh) == 1)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+whoami <- function(refresh = TRUE,
+                   vb = options::opt("vb")) {
+  validate_flag(refresh, "refresh")
+  validate_flag(vb, "vb")
 
   req <- tryCatch(
     make_default_request(refresh = refresh, vb = vb),
     error = function(err) {
-      if (vb) message("Authentication required: ", conditionMessage(err))
+      if (vb)
+        message("Authentication required: ", conditionMessage(err))
       NULL
     }
   )
@@ -42,7 +46,13 @@ whoami <- function(refresh = TRUE, vb = options::opt("vb")) {
       if (vb) {
         message("whoami request failed: ", conditionMessage(err))
         message("whoami -> request url: ", OAUTH_TEST_URL)
-        message("whoami -> authorization header: ", if (!is.null(req$headers$Authorization)) req$headers$Authorization else "<missing>")
+        message(
+          "whoami -> authorization header: ",
+          if (!is.null(req$headers$Authorization))
+            req$headers$Authorization
+          else
+            "<missing>"
+        )
       }
       NULL
     }
@@ -54,10 +64,10 @@ whoami <- function(refresh = TRUE, vb = options::opt("vb")) {
 
   status <- httr2::resp_status(resp)
   if (status >= 400) {
-    if (vb) message(httr2_error_message(resp))
+    if (vb)
+      message(httr2_error_message(resp))
     return(NULL)
   }
 
   httr2::resp_body_json(resp, simplifyVector = TRUE)
 }
-

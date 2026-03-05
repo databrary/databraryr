@@ -217,7 +217,7 @@ perform_api_post <- function(path,
   url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
   request <- httr2::req_url(request, url)
   request <- httr2::req_method(request, "POST")
-  
+
   if (!is.null(body) && length(body) > 0) {
     request <- httr2::req_body_json(request, body)
   }
@@ -262,7 +262,7 @@ perform_api_patch <- function(path,
   url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
   request <- httr2::req_url(request, url)
   request <- httr2::req_method(request, "PATCH")
-  
+
   if (!is.null(body) && length(body) > 0) {
     request <- httr2::req_body_json(request, body)
   }
@@ -320,7 +320,13 @@ perform_api_delete <- function(path,
     return(FALSE)
   }
 
-  # DELETE typically returns 204 No Content or 200 OK
   TRUE
 }
 
+#' @noRd
+validate_flag <- function(value, name) {
+  if (!is.null(value)) {
+    assertthat::assert_that(length(value) == 1)
+    assertthat::assert_that(is.logical(value), msg = paste0(name, " must be logical."))
+  }
+}

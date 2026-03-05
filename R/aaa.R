@@ -17,10 +17,9 @@ NULL
     devtools.desc = list()
   )
   toset <- !(names(op.devtools) %in% names(op))
-  if(any(toset)) options(op.devtools[toset])
+  if (any(toset)) options(op.devtools[toset])
 
   invisible()
 }
 
 utils::globalVariables(".data")
-

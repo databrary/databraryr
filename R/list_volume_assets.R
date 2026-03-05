@@ -5,7 +5,8 @@ NULL
 
 #' List Assets in Databrary Volume.
 #'
-#' @param vol_id Target volume number. Default is 1.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
 #' @returns A data frame with information about all assets in a volume.
@@ -26,19 +27,9 @@ list_volume_assets <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  # Handle NULL rq
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  
+
+  validate_flag(vb, "vb")
+
   sessions <- collect_paginated_get(
     path = sprintf(API_VOLUME_SESSIONS, vol_id),
     rq = rq,
@@ -86,9 +77,10 @@ list_volume_assets <- function(vol_id = 1,
         session_date = session$source_date,
         session_release = session$release_level
       )
-    }) %>%
+    }, .progress = TRUE) %>%
       purrr::list_rbind()
-  }) %>% purrr::list_rbind()
+  }) %>%
+    purrr::list_rbind()
 
   if (is.null(files) || nrow(files) == 0) {
     if (vb)

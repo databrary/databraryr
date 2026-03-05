@@ -8,18 +8,20 @@
 #'   Defaults to `TRUE` since all API calls now require authentication.
 #' @param refresh When `with_token = TRUE`, determines whether to refresh the
 #'   cached token if it is near expiry. Defaults to `TRUE`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #'
 #' @returns An `httr2_request` object configured for the Databrary API.
 #'
 #' @examples
-#' make_default_request()
+#' make_default_request(with_token = FALSE)
 #' @export
 make_default_request <- function(with_token = TRUE,
                                  refresh = TRUE,
                                  vb = options::opt("vb")) {
-  assertthat::assert_that(is.logical(with_token), length(with_token) == 1)
-  assertthat::assert_that(is.logical(refresh), length(refresh) == 1)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
+
+  validate_flag(with_token, "with_token")
+  validate_flag(refresh, "refresh")
+  validate_flag(vb, "vb")
 
   req <- httr2::request(DATABRARY_BASE_URL) |>
     httr2::req_user_agent(USER_AGENT) |>

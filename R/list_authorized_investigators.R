@@ -5,6 +5,12 @@ NULL
 
 #' List authorized investigators for an institution
 #'
+#' @description Lists the authorized investigators at an institution.
+#'
+#' @param institution_id Institution identifier. Must be a positive integer. Default is 12.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
+#'
 #' @inheritParams list_institution_affiliates
 #'
 #' @return Tibble of investigators; NULL if none.
@@ -12,9 +18,12 @@ NULL
 list_authorized_investigators <- function(institution_id = 12,
                                           vb = options::opt("vb"),
                                           rq = NULL) {
-  assertthat::assert_that(is.numeric(institution_id), length(institution_id) == 1, institution_id > 0)
-  assertthat::assert_that(is.logical(vb), length(vb) == 1)
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.numeric(institution_id),
+                          length(institution_id) == 1,
+                          institution_id > 0)
+  validate_flag(vb, "vb")
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   affiliates <- list_institution_affiliates(institution_id, vb = vb, rq = rq)
   if (is.null(affiliates)) {
@@ -27,4 +36,3 @@ list_authorized_investigators <- function(institution_id = 12,
   }
   investigators
 }
-

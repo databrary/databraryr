@@ -6,8 +6,9 @@ NULL
 #' Lists Funders Associated With a Databrary Volume.
 #'
 #' @param vol_id Target volume number.
-#' @param add_id A logical value. Include the volume ID in the output. 
+#' @param add_id A logical value. Include the volume ID in the output.
 #' Default is TRUE.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with funder information for the volume.
@@ -31,24 +32,15 @@ list_volume_funding <- function(vol_id = 1,
   # Check parameters
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(sum(vol_id >= 1) == length(vol_id))
-  
+
   assertthat::assert_that(length(add_id) == 1)
   assertthat::assert_that(is.logical(add_id))
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
+
+  validate_flag(vb, "vb")
+
   assertthat::assert_that(is.null(rq) |
                             ("httr2_request" %in% class(rq)))
-  
-  if (is.null(rq)) {
-    if (vb) {
-      message("NULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  
+
   if (vb)
     message("Summarizing funding for n=", length(vol_id), " volumes.")
 

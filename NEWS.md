@@ -1,4 +1,8 @@
-# databraryr (development version)
+# databraryr 1.0.0
+
+## Major changes
+
+- Adapted all package functions to Databrary 2.0 API.
 
 # databraryr 0.6.6
 

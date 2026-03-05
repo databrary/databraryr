@@ -17,10 +17,12 @@ NULL
 #'   API-provided file name.
 #' @param target_dir Character string. Directory where the file will be saved.
 #'   Default is `tempdir()`.
-#' @param rq An `httr2` request object. Default is `NULL`, in which case a
-#'   default authenticated request is generated.
 #' @param timeout_secs Numeric. Timeout (seconds) applied to the download
 #'   request. Default is `REQUEST_TIMEOUT`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Default is `NULL`, in which case a
+#'   default authenticated request is generated.
+
 #'
 #' @returns The path to the downloaded file (character string) or `NULL` if the
 #'   download fails.
@@ -69,10 +71,10 @@ download_session_asset <- function(vol_id = 1,
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
 
   path <- sprintf(API_FILES_DOWNLOAD_LINK, vol_id, session_id, asset_id)
   link <- request_signed_download_link(path = path, rq = rq, vb = vb)
@@ -86,32 +88,28 @@ download_session_asset <- function(vol_id = 1,
   } else if (!is.null(link$file_name)) {
     link$file_name
   } else {
-    paste0(
-      session_id,
-      "-",
-      asset_id,
-      "-",
-      format(Sys.time(), "%F-%H%M-%S"),
-      ".bin"
-    )
+    paste0(session_id,
+           "-",
+           asset_id,
+           "-",
+           format(Sys.time(), "%F-%H%M-%S"),
+           ".bin")
   }
 
   dest_path <- file.path(target_dir, resolved_name)
 
   if (file.exists(dest_path)) {
-    dest_path <- file.path(
-      target_dir,
-      paste0(
-        tools::file_path_sans_ext(resolved_name),
-        "-",
-        format(Sys.time(), "%F-%H%M-%S"),
-        ifelse(
-          nzchar(tools::file_ext(resolved_name)),
-          paste0(".", tools::file_ext(resolved_name)),
-          ""
-        )
-      )
-    )
+    dest_path <- file.path(target_dir,
+                           paste0(
+                             tools::file_path_sans_ext(resolved_name),
+                             "-",
+                             format(Sys.time(), "%F-%H%M-%S"),
+                             ifelse(
+                               nzchar(tools::file_ext(resolved_name)),
+                               paste0(".", tools::file_ext(resolved_name)),
+                               ""
+                             )
+                           ))
   }
 
   download_signed_file(

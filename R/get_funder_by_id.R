@@ -9,6 +9,7 @@ NULL
 #' Databrary using its unique identifier.
 #'
 #' @param funder_id Numeric funder identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the funder's metadata including id, name, and approval
@@ -27,26 +28,18 @@ NULL
 #' }
 #' }
 #' @export
-get_funder_by_id <- function(
-  funder_id = 1,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate funder_id
+get_funder_by_id <- function(funder_id = 1,
+                             vb = options::opt("vb"),
+                             rq = NULL) {
   assertthat::assert_that(is.numeric(funder_id))
   assertthat::assert_that(length(funder_id) == 1)
   assertthat::assert_that(funder_id > 0)
-  assertthat::assert_that(
-    funder_id == floor(funder_id),
-    msg = "funder_id must be an integer"
-  )
+  assertthat::assert_that(funder_id == floor(funder_id), msg = "funder_id must be an integer")
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   # Perform API call
   funder <- perform_api_get(

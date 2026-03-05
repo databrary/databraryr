@@ -21,6 +21,7 @@ NULL
 #' @param make_portable_fn Logical. When `TRUE`, filenames are sanitized via
 #'   `make_fn_portable()`.
 #' @param timeout_secs Numeric. Timeout applied to each download request.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An optional `httr2` request object reused when requesting signed
 #'   links.
 #'
@@ -68,7 +69,9 @@ download_folder_assets_fr_df <-
         return(NULL)
       }
     } else {
-      dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
+      dir.create(target_dir,
+                 recursive = TRUE,
+                 showWarnings = FALSE)
     }
     assertthat::is.writeable(target_dir)
 
@@ -88,7 +91,8 @@ download_folder_assets_fr_df <-
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
 
-    assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+    assertthat::assert_that(is.null(rq) ||
+                              ("httr2_request" %in% class(rq)))
 
     if (vb) {
       message("Downloading n=", nrow(folder_df), " files to ", target_dir)
@@ -96,7 +100,7 @@ download_folder_assets_fr_df <-
 
     purrr::map(
       seq_len(nrow(folder_df)),
-      download_single_folder_asset_fr_df,
+      download_folder_asset_from_df,
       folder_df = folder_df,
       target_dir = target_dir,
       add_folder_subdir = add_folder_subdir,
@@ -109,6 +113,3 @@ download_folder_assets_fr_df <-
     ) |>
       purrr::list_c()
   }
-
-
-

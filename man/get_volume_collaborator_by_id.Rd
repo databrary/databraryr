@@ -12,11 +12,12 @@ get_volume_collaborator_by_id(
 )
 }
 \arguments{
-\item{vol_id}{Target volume number. Must be a positive integer.}
+\item{vol_id}{Target volume number. Must be a positive integer. Default is 1.}
 
-\item{collaborator_id}{Numeric collaborator identifier. Must be a positive integer.}
+\item{collaborator_id}{Numeric collaborator identifier.
+Must be a positive integer. Default is 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }

@@ -2,16 +2,22 @@
 % Please edit documentation in R/get_folder_by_id.R
 \name{get_folder_by_id}
 \alias{get_folder_by_id}
-\title{Get Folder Metadata From a Databrary Volume.}
+\title{Get Folder Metadata From a Databrary Volume}
 \usage{
-get_folder_by_id(folder_id = 1, vol_id = 1, vb = options::opt("vb"), rq = NULL)
+get_folder_by_id(
+  folder_id = 9807,
+  vol_id = 1,
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
-\item{folder_id}{Folder identifier within the specified volume.}
+\item{folder_id}{Folder identifier within the specified volume. Default is
+9807, the Materials folder for Volume 1.}
 
-\item{vol_id}{Volume identifier containing the folder.}
+\item{vol_id}{Volume identifier containing the folder. Default is 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
@@ -20,7 +26,7 @@ A list representing the folder metadata, or \code{NULL} when the folder
 cannot be accessed.
 }
 \description{
-Get Folder Metadata From a Databrary Volume.
+Get Folder Metadata From a Databrary Volume
 }
 \examples{
 \donttest{
