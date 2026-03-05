@@ -40,28 +40,23 @@ NULL
 #' }
 #' }
 #' @export
-get_user_avatar <- function(
-  user_id,
-  dest_path = NULL,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate user_id
+get_user_avatar <- function(user_id,
+                            dest_path = NULL,
+                            vb = options::opt("vb"),
+                            rq = NULL) {
   assertthat::assert_that(length(user_id) == 1)
-  assertthat::assert_that(is.numeric(user_id) || is.integer(user_id))
+  assertthat::assert_that(is.numeric(user_id) ||
+                            is.integer(user_id))
   assertthat::assert_that(user_id > 0)
 
-  # Validate dest_path
   if (!is.null(dest_path)) {
     assertthat::assert_that(assertthat::is.string(dest_path))
   }
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   # Build URL path
   path <- sprintf(API_USER_AVATAR, user_id)
@@ -76,20 +71,21 @@ get_user_avatar <- function(
   }
 
   # Perform request
-  resp <- tryCatch(
-    {
-      rq |>
-        httr2::req_url_path_append(path) |>
-        httr2::req_error(is_error = function(resp) FALSE) |>
-        httr2::req_perform()
-    },
-    error = function(e) {
-      if (vb) {
-        message("Error downloading user avatar: ", conditionMessage(e))
-      }
-      return(NULL)
+  resp <- tryCatch({
+    rq |>
+      httr2::req_url_path_append(path) |>
+      httr2::req_error(
+        is_error = function(resp) {
+          FALSE
+        }
+      ) |>
+      httr2::req_perform()
+  }, error = function(e) {
+    if (vb) {
+      message("Error downloading user avatar: ", conditionMessage(e))
     }
-  )
+    NULL
+  })
 
   if (is.null(resp)) {
     return(NULL)
@@ -98,10 +94,8 @@ get_user_avatar <- function(
   # Check for errors
   if (httr2::resp_status(resp) != 200) {
     if (vb) {
-      message(
-        "Failed to download user avatar. Status: ",
-        httr2::resp_status(resp)
-      )
+      message("Failed to download user avatar. Status: ",
+              httr2::resp_status(resp))
     }
     return(NULL)
   }
@@ -112,11 +106,9 @@ get_user_avatar <- function(
   # If no destination path, return bytes
   if (is.null(dest_path)) {
     if (vb) {
-      message(
-        "Returning avatar as raw bytes (",
-        length(avatar_bytes),
-        " bytes)"
-      )
+      message("Returning avatar as raw bytes (",
+              length(avatar_bytes),
+              " bytes)")
     }
     return(avatar_bytes)
   }
@@ -130,20 +122,18 @@ get_user_avatar <- function(
     filename <- "downloaded_file"
     content_disp <- httr2::resp_header(resp, "content-disposition")
 
-    if (!is.null(content_disp) && grepl("filename=", content_disp)) {
+    if (!is.null(content_disp) &&
+          grepl("filename=", content_disp)) {
       # Extract filename from content-disposition header
-      filename_match <- regmatches(
-        content_disp,
-        regexpr("filename=([^;]+)", content_disp)
-      )
+      filename_match <- regmatches(content_disp,
+                                   regexpr("filename=([^;]+)", content_disp))
       if (length(filename_match) > 0) {
         filename <- sub("filename=", "", filename_match)
-        filename <- gsub('^"|"$', '', filename) # Remove quotes
+        filename <- gsub("^\"|\"$", "", filename) # Remove quotes
         filename <- trimws(filename)
       }
     } else {
-      # Fallback: use URL path basename
-      url_path <- sprintf(API_USER_AVATAR, user_id)
+      # Fallback: use default filename when content-disposition lacks filename
       filename <- paste0("user_", user_id, "_avatar.jpg")
     }
 
@@ -157,19 +147,16 @@ get_user_avatar <- function(
   }
 
   # Write to file
-  tryCatch(
-    {
-      writeBin(avatar_bytes, final_path)
-      if (vb) {
-        message("Avatar saved to: ", final_path)
-      }
-      return(normalizePath(final_path))
-    },
-    error = function(e) {
-      if (vb) {
-        message("Error saving avatar to file: ", conditionMessage(e))
-      }
-      return(NULL)
+  tryCatch({
+    writeBin(avatar_bytes, final_path)
+    if (vb) {
+      message("Avatar saved to: ", final_path)
     }
-  )
+    return(normalizePath(final_path))
+  }, error = function(e) {
+    if (vb) {
+      message("Error saving avatar to file: ", conditionMessage(e))
+    }
+    NULL
+  })
 }

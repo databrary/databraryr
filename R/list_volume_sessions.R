@@ -1,19 +1,20 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' List Sessions in Databrary Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
 #' @param include_vol_data A Boolean value. Include volume-level metadata
 #' or not. Default is FALSE.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL (the default)
 #' a request will be generated, but this will only permit public information
 #' to be returned.
 #'
 #' @returns A data frame with information about all assets in a volume.
-#' 
+#'
 #' @inheritParams options_params
 #'
 #' @examples
@@ -32,17 +33,16 @@ list_volume_sessions <-
     assertthat::assert_that(length(vol_id) == 1)
     assertthat::assert_that(is.numeric(vol_id))
     assertthat::assert_that(vol_id >= 1)
-    
+
     assertthat::assert_that(is.logical(include_vol_data))
     assertthat::assert_that(length(include_vol_data) == 1)
-    
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
-    
+
+    validate_flag(vb, "vb")
+
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
-    
-    
+
+
     sessions <- collect_paginated_get(
       path = sprintf(API_VOLUME_SESSIONS, vol_id),
       rq = rq,
@@ -54,6 +54,10 @@ list_volume_sessions <-
         message("No session data for volume ", vol_id)
       return(NULL)
     }
+    if (vb) message("Found n = ",
+                    length(sessions),
+                    " sessions in vol_id ",
+                    vol_id)
 
     df <- purrr::map_dfr(sessions, function(session) {
       tibble::tibble(
@@ -66,7 +70,7 @@ list_volume_sessions <-
         session_has_full_access = session$has_full_access
       )
     })
-    
+
     if (include_vol_data) {
       volume <- perform_api_get(
         path = sprintf(API_VOLUME_DETAIL, vol_id),

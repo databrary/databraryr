@@ -1,6 +1,6 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Request a Signed ZIP Download for a Volume.
@@ -11,7 +11,8 @@ NULL
 #' descriptor. When the archive is ready, Databrary emails a signed download
 #' link to the authenticated user.
 #'
-#' @param vol_id Volume identifier.
+#' @param vol_id An integer. Volume identifier. Default is 31.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, in which case a
 #'   default authenticated request is generated.
 #'
@@ -35,8 +36,7 @@ download_volume_zip <- function(vol_id = 31,
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
   assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
 

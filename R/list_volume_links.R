@@ -5,7 +5,8 @@ NULL
 
 #' Retrieves URL Links From A Databrary Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with the requested data.
@@ -26,10 +27,9 @@ list_volume_links <- function(vol_id = 1,
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id > 0)
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
+
+  validate_flag(vb, "vb")
+
   links <- perform_api_get(
     path = sprintf(API_VOLUME_LINKS, vol_id),
     rq = rq,

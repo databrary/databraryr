@@ -101,5 +101,3 @@ download_signed_file <- function(download_url,
     }
   )
 }
-
-

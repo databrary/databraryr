@@ -5,7 +5,9 @@ NULL
 
 #' Get institution metadata
 #'
-#' @param institution_id Institution identifier.
+#' @param institution_id Institution identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
 #' @inheritParams options_params
 #'
 #' @return List of institution metadata or NULL when inaccessible.
@@ -14,6 +16,9 @@ get_institution_by_id <- function(institution_id = 12,
                                   vb = options::opt("vb"),
                                   rq = NULL) {
   assertthat::assert_that(is.numeric(institution_id), length(institution_id) == 1, institution_id > 0)
+
+  validate_flag(vb, "vb")
+
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   institution <- perform_api_get(
@@ -43,4 +48,3 @@ get_institution_by_id <- function(institution_id = 12,
   ) %>%
     as.list()
 }
-

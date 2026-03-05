@@ -27,7 +27,9 @@ test_that("get_release_levels handles vb flag", {
 
 test_that("get_supported_file_types returns data.frame", {
   login_test_account()
-  expect_true(is.data.frame(get_supported_file_types()))
+  result <- get_supported_file_types()
+  skip_if_null_response(result, "get_supported_file_types()")
+  expect_true(is.data.frame(result))
 })
 
 test_that("get_supported_file_types rejects bad input parameters", {

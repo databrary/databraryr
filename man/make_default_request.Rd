@@ -17,7 +17,7 @@ Defaults to \code{TRUE} since all API calls now require authentication.}
 \item{refresh}{When \code{with_token = TRUE}, determines whether to refresh the
 cached token if it is near expiry. Defaults to \code{TRUE}.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 An \code{httr2_request} object configured for the Databrary API.
@@ -27,5 +27,5 @@ Creates an \code{httr2} request with the package's default options, including
 base URL, user agent, Accept header, and timeout tuned for the Django API.
 }
 \examples{
-make_default_request()
+make_default_request(with_token = FALSE)
 }

@@ -10,8 +10,10 @@ NULL
 #' collaborator details including user information, sponsor details, access
 #' level, and visibility settings.
 #'
-#' @param vol_id Target volume number. Must be a positive integer.
-#' @param collaborator_id Numeric collaborator identifier. Must be a positive integer.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param collaborator_id Numeric collaborator identifier.
+#' Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the collaborator's metadata including id, volume, user
@@ -32,36 +34,24 @@ NULL
 #' }
 #' }
 #' @export
-get_volume_collaborator_by_id <- function(
-  vol_id = 1,
-  collaborator_id = 1,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate vol_id
+get_volume_collaborator_by_id <- function(vol_id = 1,
+                                          collaborator_id = 1,
+                                          vb = options::opt("vb"),
+                                          rq = NULL) {
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
-  assertthat::assert_that(
-    vol_id == floor(vol_id),
-    msg = "vol_id must be an integer"
-  )
+  assertthat::assert_that(vol_id == floor(vol_id), msg = "vol_id must be an integer")
 
-  # Validate collaborator_id
   assertthat::assert_that(is.numeric(collaborator_id))
   assertthat::assert_that(length(collaborator_id) == 1)
   assertthat::assert_that(collaborator_id > 0)
-  assertthat::assert_that(
-    collaborator_id == floor(collaborator_id),
-    msg = "collaborator_id must be an integer"
-  )
+  assertthat::assert_that(collaborator_id == floor(collaborator_id), msg = "collaborator_id must be an integer")
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   # Perform API call
   collaborator <- perform_api_get(
@@ -120,10 +110,8 @@ get_volume_collaborator_by_id <- function(
 
   # Process sponsored_users if present
   sponsored_users <- NULL
-  if (
-    !is.null(collaborator$sponsored_users) &&
-      length(collaborator$sponsored_users) > 0
-  ) {
+  if (!is.null(collaborator$sponsored_users) &&
+        length(collaborator$sponsored_users) > 0) {
     sponsored_users <- lapply(collaborator$sponsored_users, function(u) {
       list(
         user_id = u$id,

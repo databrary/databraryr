@@ -21,7 +21,7 @@ provided, the filename will be determined from the response headers or
 will default to \verb{institution_<id>_avatar.jpg}. If \code{NULL} (the default),
 the raw image bytes are returned instead of being saved to disk.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }

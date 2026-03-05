@@ -2,18 +2,20 @@
 % Please edit documentation in R/list_user_volumes.R
 \name{list_user_volumes}
 \alias{list_user_volumes}
-\title{List volumes associated with a user}
+\title{List Volumes Associated With A User}
 \usage{
 list_user_volumes(user_id = 6, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{user_id}{User identifier.}
+\item{user_id}{User identifier. Must be a positive integer. Default is 6.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
+
+\item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
 Tibble of volumes the user owns or collaborates on.
 }
 \description{
-List volumes associated with a user
+List Volumes Associated With A User
 }

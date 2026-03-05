@@ -10,7 +10,7 @@ whoami(refresh = TRUE, vb = options::opt("vb"))
 \item{refresh}{Whether to attempt automatic token refresh when the current
 access token is expired. Defaults to \code{TRUE}.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 }
 \value{
 A list containing \code{auth_method} and \code{user} fields (both lists) or
@@ -22,7 +22,7 @@ method and user profile. Requires a valid OAuth2 access token acquired via
 \code{login_db()}.
 }
 \examples{
-\\dontrun{
+\dontrun{
 login_db()
 whoami()
 }

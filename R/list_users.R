@@ -19,6 +19,7 @@ NULL
 #'   response to authorized investigators.
 #' @param has_api_access Optional logical value restricting the response to
 #'   accounts with API access enabled.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing directory metadata for each user, or `NULL` when
@@ -42,13 +43,6 @@ list_users <- function(search = NULL,
                        rq = NULL) {
   if (!is.null(search)) {
     assertthat::assert_that(assertthat::is.string(search))
-  }
-
-  validate_flag <- function(value, name) {
-    if (!is.null(value)) {
-      assertthat::assert_that(length(value) == 1)
-      assertthat::assert_that(is.logical(value), msg = paste0(name, " must be logical."))
-    }
   }
 
   validate_flag(include_suspended, "include_suspended")
@@ -111,5 +105,3 @@ list_users <- function(search = NULL,
     )
   })
 }
-
-

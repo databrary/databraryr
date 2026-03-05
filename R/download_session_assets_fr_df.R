@@ -11,7 +11,8 @@ NULL
 #' `list_session_assets()` or `list_volume_session_assets()` output.
 #'
 #' @param session_df Data frame describing assets. Must include `vol_id`,
-#'   `session_id`, `asset_id`, and `asset_name` columns.
+#'   `session_id`, `asset_id`, and `asset_name` columns. Default is the result
+#'   `download_session_assets_fr_df(session_id = assets, vol_id = 1)`.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
 #' @param add_session_subdir Logical. When `TRUE`, creates a subdirectory per
@@ -21,6 +22,7 @@ NULL
 #' @param make_portable_fn Logical. When `TRUE`, filenames are sanitized via
 #'   `make_fn_portable()`.
 #' @param timeout_secs Numeric. Timeout applied to each download request.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An optional `httr2` request object reused when requesting signed
 #'   links.
 #'
@@ -32,13 +34,14 @@ NULL
 #' @examples
 #' \donttest{
 #' \dontrun{
-#' assets <- list_session_assets(vol_id = 1, session_id = 9807)
+#' assets <- list_session_assets(vol_id = 1, session_id = 9224)
 #' download_session_assets_fr_df(assets, vb = TRUE)
 #' }
 #' }
 #' @export
 download_session_assets_fr_df <-
-  function(session_df = list_session_assets(),
+  function(session_df = list_session_assets(session_id = 9224,
+                                            vol_id = 1),
            target_dir = tempdir(),
            add_session_subdir = TRUE,
            overwrite = TRUE,
@@ -67,7 +70,9 @@ download_session_assets_fr_df <-
         return(NULL)
       }
     } else {
-      dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
+      dir.create(target_dir,
+                 recursive = TRUE,
+                 showWarnings = FALSE)
     }
     assertthat::is.writeable(target_dir)
 
@@ -87,7 +92,8 @@ download_session_assets_fr_df <-
     assertthat::assert_that(length(vb) == 1)
     assertthat::assert_that(is.logical(vb))
 
-    assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+    assertthat::assert_that(is.null(rq) ||
+                              ("httr2_request" %in% class(rq)))
 
     if (vb) {
       message("Downloading n=", nrow(session_df), " files to ", target_dir)
@@ -95,7 +101,7 @@ download_session_assets_fr_df <-
 
     purrr::map(
       seq_len(nrow(session_df)),
-      download_single_session_asset_fr_df,
+      download_session_asset_from_df,
       session_df = session_df,
       target_dir = target_dir,
       add_session_subdir = add_session_subdir,

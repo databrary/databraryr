@@ -6,9 +6,9 @@
 \usage{
 download_folder_asset(
   vol_id = 1,
-  folder_id = 1,
+  folder_id = 9807,
   asset_id = 1,
-  file_name = NULL,
+  file_name = "video.mp4",
   target_dir = tempdir(),
   timeout_secs = REQUEST_TIMEOUT,
   vb = options::opt("vb"),
@@ -18,9 +18,11 @@ download_folder_asset(
 \arguments{
 \item{vol_id}{Integer. Volume identifier containing the folder. Default is 1.}
 
-\item{folder_id}{Integer. Folder identifier within the volume. Default is 1.}
+\item{folder_id}{Integer. Folder identifier within the volume. Default is 9807,
+the Materials folder for Volume 1.}
 
-\item{asset_id}{Integer. Asset identifier within the folder. Default is 1.}
+\item{asset_id}{Integer. Asset identifier within the folder. Default is 1, a
+demo video called 'counting_demo_video.mp4'.}
 
 \item{file_name}{Optional character string. File name to use when saving the
 asset. Defaults to the API-provided file name.}
@@ -31,7 +33,7 @@ Default is \code{tempdir()}.}
 \item{timeout_secs}{Numeric. Timeout (seconds) applied to the download
 request. Default is \code{REQUEST_TIMEOUT}.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Default is \code{NULL}, in which case a
 default authenticated request is generated.}
@@ -49,8 +51,8 @@ specified directory.
 \donttest{
 \dontrun{
 download_folder_asset() # Default public asset in folder 1 of volume 1
-download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3,
-                      file_name = "example.mp4")
+download_folder_asset(vol_id = 1, folder_id = 9807, asset_id = 1,
+                      file_name = "video.mp4")
 }
 }
 

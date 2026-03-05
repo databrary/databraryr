@@ -11,9 +11,11 @@ NULL
 #' entire volume when `session_id` is `NULL`. The API delivers the final signed
 #' download link via email once the export is ready.
 #'
-#' @param vol_id Integer. Target volume identifier. Default is 1.
+#' @param vol_id Integer. Target volume identifier. Default is 2.
 #' @param session_id Optional integer. When provided, requests a session-level
-#'   CSV export. When `NULL`, a volume-level CSV export is requested.
+#'   CSV export. When `NULL`, a volume-level CSV export is requested. Default is
+#'   9.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is `NULL`, meaning a default
 #'   authenticated request is generated.
 #'
@@ -26,10 +28,10 @@ NULL
 #' \donttest{
 #' \dontrun{
 #' # Request a volume-wide CSV export
-#' download_session_csv(vol_id = 1)
+#' download_session_csv() # CSV for default volume 2
 #'
 #' # Request a session-specific CSV export
-#' download_session_csv(vol_id = 1, session_id = 9807)
+#' download_session_csv(vol_id = 2, session_id = 9)
 #' }
 #' }
 #'
@@ -51,7 +53,8 @@ download_session_csv <- function(vol_id = 1,
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))
 
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
 
   path <- if (is.null(session_id)) {
     sprintf(API_VOLUME_CSV_DOWNLOAD_LINK, vol_id)

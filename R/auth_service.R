@@ -29,6 +29,7 @@ oauth_password_grant <- function(username,
   assertthat::assert_that(assertthat::is.string(password))
   assertthat::assert_that(assertthat::is.string(client_id))
   assertthat::assert_that(assertthat::is.string(client_secret))
+  validate_flag(vb, "vb")
 
   req <- make_default_request(with_token = FALSE) |>
     httr2::req_url(OAUTH_TOKEN_URL)
@@ -74,6 +75,7 @@ oauth_refresh_grant <- function(refresh_token,
   assertthat::assert_that(assertthat::is.string(refresh_token))
   assertthat::assert_that(assertthat::is.string(client_id))
   assertthat::assert_that(assertthat::is.string(client_secret))
+  validate_flag(vb, "vb")
 
   req <- make_default_request() |>
     httr2::req_url(OAUTH_TOKEN_URL)

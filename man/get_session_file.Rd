@@ -6,8 +6,8 @@
 \usage{
 get_session_file(
   vol_id = 1,
-  session_id = 9807,
-  file_id,
+  session_id = 9578,
+  file_id = 27227,
   vb = options::opt("vb"),
   rq = NULL
 )
@@ -16,18 +16,17 @@ get_session_file(
 \item{vol_id}{An integer indicating the volume identifier. Default is 1.}
 
 \item{session_id}{An integer indicating a valid session/slot identifier
-linked to a volume. Default value is 9807, the materials folder for volume 1.}
+linked to a volume. Default value is 9578.}
 
-\item{file_id}{An integer indicating the file identifier.}
+\item{file_id}{An integer indicating the file identifier. The default is
+27227.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An httr2 request object.}
 }
 \value{
-A JSON blob with the file data. If the user has previously logged
-in to Databrary via \code{login_db()}, then files that have restricted access
-can be downloaded, subject to the sharing release levels on those files.
+Metadata about the file if the user has read privileges.
 }
 \description{
 Get Session File Data From A Databrary Volume
@@ -35,7 +34,8 @@ Get Session File Data From A Databrary Volume
 \examples{
 \donttest{
 \dontrun{
-get_session_file(vol_id = 2, session_id = 11, file_id = 1)
+get_session_file(vol_id = 2, session_id = 11, file_id = 3)
+# A video from volume 1, session 11.
 }
 }
 }

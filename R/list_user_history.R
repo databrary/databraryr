@@ -9,7 +9,8 @@ NULL
 #' user. Access is restricted to administrators and authorized investigators
 #' with sufficient privileges.
 #'
-#' @param user_id Target user identifier.
+#' @param user_id Target user identifier. Must be a positive integer. Default is 22582.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing authentication and activity events for the
@@ -31,10 +32,10 @@ list_user_history <- function(user_id = 22582,
   assertthat::assert_that(length(user_id) == 1)
   assertthat::assert_that(user_id > 0)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   history <- collect_paginated_get(
     path = sprintf(API_USERS_HISTORY, user_id),
@@ -61,5 +62,3 @@ list_user_history <- function(user_id = 22582,
     )
   })
 }
-
-

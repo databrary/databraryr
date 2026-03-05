@@ -12,6 +12,7 @@ NULL
 #'   value.
 #' @param target_dir Directory to save the downloaded file. Defaults to
 #'   `tempdir()`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq Optional `httr2` request object reused when requesting the signed
 #'   link.
 #'
@@ -58,13 +59,16 @@ download_video <- function(vol_id = 1,
 
   assertthat::assert_that(length(target_dir) == 1)
   assertthat::assert_that(is.character(target_dir))
-  assertthat::assert_that(dir.exists(target_dir) || dir.create(target_dir, recursive = TRUE, showWarnings = FALSE))
+  assertthat::assert_that(
+    dir.exists(target_dir) ||
+      dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
+  )
   assertthat::is.writeable(target_dir)
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  assertthat::assert_that(is.null(rq) || ("httr2_request" %in% class(rq)))
+  assertthat::assert_that(is.null(rq) ||
+                            ("httr2_request" %in% class(rq)))
 
   download_session_asset(
     vol_id = vol_id,

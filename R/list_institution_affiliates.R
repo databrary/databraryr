@@ -5,7 +5,10 @@ NULL
 
 #' List affiliates for an institution
 #'
-#' @param institution_id Institution identifier.
+#' @param institution_id Institution identifier. Must be a positive integer. Default is 12.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Defaults to `NULL`.
+#'
 #' @inheritParams options_params
 #'
 #' @return Tibble of affiliates with roles and expiration dates.
@@ -13,8 +16,14 @@ NULL
 list_institution_affiliates <- function(institution_id = 12,
                                         vb = options::opt("vb"),
                                         rq = NULL) {
-  assertthat::assert_that(is.numeric(institution_id), length(institution_id) == 1, institution_id > 0)
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.numeric(institution_id),
+                          length(institution_id) == 1,
+                          institution_id > 0)
+
+  validate_flag(vb, "vb")
+
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
 
   affiliates <- collect_paginated_get(
     path = sprintf(API_INSTITUTION_AFFILIATES, institution_id),
@@ -23,7 +32,8 @@ list_institution_affiliates <- function(institution_id = 12,
   )
 
   if (is.null(affiliates) || length(affiliates) == 0) {
-    if (vb) message("No affiliates for institution ", institution_id)
+    if (vb)
+      message("No affiliates for institution ", institution_id)
     return(NULL)
   }
 
@@ -42,4 +52,3 @@ list_institution_affiliates <- function(institution_id = 12,
     )
   })
 }
-

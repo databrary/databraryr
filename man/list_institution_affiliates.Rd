@@ -11,9 +11,11 @@ list_institution_affiliates(
 )
 }
 \arguments{
-\item{institution_id}{Institution identifier.}
+\item{institution_id}{Institution identifier. Must be a positive integer. Default is 12.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
+
+\item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
 Tibble of affiliates with roles and expiration dates.

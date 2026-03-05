@@ -33,7 +33,7 @@ directory already exists.}
 
 \item{timeout_secs}{Numeric. Timeout applied to each download request.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An optional \code{httr2} request object reused when requesting signed
 links.}
