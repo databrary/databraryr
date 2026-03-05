@@ -228,7 +228,7 @@ snake_case_list <- function(obj) {
       for (i in seq_along(node)) {
         child <- node[[i]]
         if (is.list(child) ||
-          (is.vector(child) && !is.null(names(child)))) {
+              (is.vector(child) && !is.null(names(child)))) {
           queue <- c(queue, list(c(path, i)))
         }
       }
