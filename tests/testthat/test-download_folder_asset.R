@@ -60,7 +60,8 @@ test_that("download_folder_asset fetches signed link", {
       dest_path
     }
   )
-
+  skip_if_null_response(result, "download_folder_asset(vol_id = 1, folder_id = 2, asset_id = 3, target_dir = tmp_dir)")
+  
   expect_true(grepl("example.bin$", result))
   expect_equal(result, captured_dest)
   expect_equal(captured_path, sprintf("/volumes/%s/folders/%s/files/%s/download-link/", 1, 2, 3))

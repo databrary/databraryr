@@ -3,9 +3,12 @@
 #'
 NULL
 
-#' List volumes associated with a user
+#' List Volumes Associated With A User
 #'
-#' @param user_id User identifier.
+#' @param user_id User identifier. Must be a positive integer. Default is 6.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#' @param rq An `httr2` request object. Default is NULL.
+#' 
 #' @inheritParams options_params
 #'
 #' @return Tibble of volumes the user owns or collaborates on.
@@ -14,6 +17,7 @@ list_user_volumes <- function(user_id = 6,
                               vb = options::opt("vb"),
                               rq = NULL) {
   assertthat::assert_that(is.numeric(user_id), length(user_id) == 1, user_id > 0)
+  validate_flag(vb, "vb")
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   volumes <- collect_paginated_get(
@@ -26,6 +30,7 @@ list_user_volumes <- function(user_id = 6,
     if (vb) message("No volume data for user ", user_id)
     return(NULL)
   }
+  if (vb) message("Found n = ", length(volumes), " volumes for user_id ", user_id, ".")
 
   user <- get_user_by_id(user_id, vb = vb, rq = rq)
   user_df <- tibble::as_tibble(user)
@@ -41,7 +46,7 @@ list_user_volumes <- function(user_id = 6,
       vol_access_level = entry$access_level,
       vol_sharing_level = entry$sharing_level
     )
-  }) %>%
+  }, .progress = TRUE) %>%
     purrr::list_rbind() %>%
     dplyr::mutate(user_id = user_df$id,
                   user_prename = user_df$prename,

@@ -10,6 +10,7 @@ NULL
 #'
 #' @param search_string Optional character string to filter institutions. If
 #'   `NULL` (the default), returns all institutions.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A tibble containing institutions with their metadata including id,
@@ -33,29 +34,24 @@ NULL
 #' }
 #' }
 #' @export
-list_institutions <- function(
-  search_string = NULL,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate search_string
+list_institutions <- function(search_string = NULL,
+                              vb = options::opt("vb"),
+                              rq = NULL) {
   if (!is.null(search_string)) {
     assertthat::assert_that(assertthat::is.string(search_string))
   }
-
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  
+  validate_flag(vb, "vb")
+  
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   # Build params list
   params <- list()
   if (!is.null(search_string)) {
     params$search <- search_string
   }
-
+  
   # Perform API call with pagination
   results <- collect_paginated_get(
     path = API_INSTITUTIONS_LIST,
@@ -63,7 +59,7 @@ list_institutions <- function(
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(results) || length(results) == 0) {
     if (vb) {
       if (is.null(search_string)) {
@@ -74,13 +70,16 @@ list_institutions <- function(
     }
     return(NULL)
   }
-
+  
   # Process results into tibble
   purrr::map_dfr(results, function(entry) {
     tibble::tibble(
       institution_id = entry$id,
       institution_name = entry$name,
-      institution_url = if (is.null(entry$url)) NA_character_ else entry$url,
+      institution_url = if (is.null(entry$url))
+        NA_character_
+      else
+        entry$url,
       institution_date_signed = if (is.null(entry$date_signed)) {
         NA_character_
       } else {

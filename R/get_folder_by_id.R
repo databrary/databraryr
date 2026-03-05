@@ -3,10 +3,12 @@
 #'
 NULL
 
-#' Get Folder Metadata From a Databrary Volume.
+#' Get Folder Metadata From a Databrary Volume
 #'
-#' @param folder_id Folder identifier within the specified volume.
-#' @param vol_id Volume identifier containing the folder.
+#' @param folder_id Folder identifier within the specified volume. Default is 
+#' 9807, the Materials folder for Volume 1.
+#' @param vol_id Volume identifier containing the folder. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @returns A list representing the folder metadata, or `NULL` when the folder
@@ -21,36 +23,38 @@ NULL
 #' }
 #' }
 #' @export
-get_folder_by_id <- function(folder_id = 1,
+get_folder_by_id <- function(folder_id = 9807,
                              vol_id = 1,
                              vb = options::opt("vb"),
                              rq = NULL) {
   assertthat::assert_that(length(folder_id) == 1)
   assertthat::assert_that(is.numeric(folder_id))
   assertthat::assert_that(folder_id >= 1)
-
+  
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(vol_id >= 1)
-
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  
+  validate_flag(vb, "vb")
+  
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   folder <- perform_api_get(
     path = sprintf(API_FOLDER_DETAIL, vol_id, folder_id),
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(folder)) {
     if (vb) {
-      message("Cannot access requested folder ", folder_id, " in volume ", vol_id)
+      message("Cannot access requested folder ",
+              folder_id,
+              " in volume ",
+              vol_id)
     }
     return(NULL)
   }
-
+  
   folder
 }
-

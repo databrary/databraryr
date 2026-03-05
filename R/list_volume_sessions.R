@@ -5,9 +5,10 @@ NULL
 
 #' List Sessions in Databrary Volume.
 #'
-#' @param vol_id Target volume number.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
 #' @param include_vol_data A Boolean value. Include volume-level metadata
 #' or not. Default is FALSE.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. If NULL (the default)
 #' a request will be generated, but this will only permit public information
 #' to be returned.
@@ -36,8 +37,7 @@ list_volume_sessions <-
     assertthat::assert_that(is.logical(include_vol_data))
     assertthat::assert_that(length(include_vol_data) == 1)
     
-    assertthat::assert_that(length(vb) == 1)
-    assertthat::assert_that(is.logical(vb))
+    validate_flag(vb, "vb")
     
     assertthat::assert_that(is.null(rq) |
                               ("httr2_request" %in% class(rq)))
@@ -54,6 +54,10 @@ list_volume_sessions <-
         message("No session data for volume ", vol_id)
       return(NULL)
     }
+    if (vb) message("Found n = ",
+                    length(sessions),
+                    " sessions in vol_id ",
+                    vol_id)
 
     df <- purrr::map_dfr(sessions, function(session) {
       tibble::tibble(

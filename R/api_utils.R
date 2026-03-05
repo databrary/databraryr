@@ -174,3 +174,10 @@ snake_case_list <- function(obj) {
   }
 }
 
+#' @noRd
+validate_flag <- function(value, name) {
+  if (!is.null(value)) {
+    assertthat::assert_that(length(value) == 1)
+    assertthat::assert_that(is.logical(value), msg = paste0(name, " must be logical."))
+  }
+}

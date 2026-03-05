@@ -10,8 +10,9 @@ NULL
 #' Records contain participant information including age, birthday, category,
 #' and associated measures collected during sessions.
 #'
-#' @param vol_id Target volume number. Must be a positive integer.
-#' @param record_id Numeric record identifier. Must be a positive integer.
+#' @param vol_id Target volume number. Must be a positive integer. Default is 1.
+#' @param record_id Numeric record identifier. Must be a positive integer. Default is 1.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the record's metadata including id, volume, category_id,
@@ -35,9 +36,7 @@ get_volume_record_by_id <- function(
   vol_id = 1,
   record_id = 1,
   vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate vol_id
+  rq = NULL) {
   assertthat::assert_that(is.numeric(vol_id))
   assertthat::assert_that(length(vol_id) == 1)
   assertthat::assert_that(vol_id >= 1)
@@ -46,7 +45,6 @@ get_volume_record_by_id <- function(
     msg = "vol_id must be an integer"
   )
 
-  # Validate record_id
   assertthat::assert_that(is.numeric(record_id))
   assertthat::assert_that(length(record_id) == 1)
   assertthat::assert_that(record_id > 0)
@@ -55,11 +53,8 @@ get_volume_record_by_id <- function(
     msg = "record_id must be an integer"
   )
 
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  validate_flag(vb, "vb")
 
-  # Validate rq
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
   # Perform API call

@@ -3,12 +3,13 @@
 #'
 NULL
 
-#' Get Stats About Databrary.
+#' Get Stats About Databrary
 #'
-#' `get_db_stats` returns basic summary information about
-#' the institutions, people, and data hosted on 'Databrary.org'.
+#' Returns basic summary information about
+#' the institutions, people, and video data hosted on Databrary.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
+#' @param vb Show verbose messages. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
 #' @returns A data frame with the requested data or NULL if there is
@@ -20,8 +21,6 @@ NULL
 #' \donttest{
 #' get_db_stats()
 #' get_db_stats("stats")
-#' get_db_stats("people") # Information about the newest authorized investigators.
-#' get_db_stats("places") # Information about the newest institutions.
 #' }
 #' @export
 get_db_stats <- function(type = "stats", vb = options::opt("vb"), rq = NULL) {
@@ -44,21 +43,26 @@ get_db_stats <- function(type = "stats", vb = options::opt("vb"), rq = NULL) {
       )
   )
 
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
+  if (!type %in% c(
+    "institutions",
+    "people",
+    "researchers",
+    "investigators",
+    "data",
+    "stats",
+    "numbers"
+  )) {
+    if (vb)
+    message("Legacy parameter not supported in new API")
+  }
+  
+  validate_flag(vb, "vb")
 
   assertthat::assert_that(
     is.null(rq) |
       ("httr2_request" %in% class(rq))
   )
 
-  if (is.null(rq)) {
-    if (vb) {
-      message("\nNULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
   stats <- perform_api_get(
     path = API_ACTIVITY_SUMMARY,
     rq = rq,

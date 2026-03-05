@@ -10,6 +10,7 @@ NULL
 #' that define data collection fields.
 #'
 #' @param category_id Numeric category identifier. Must be a positive integer.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
 #' @return A list with the category's metadata including id, name, description,
@@ -28,41 +29,33 @@ NULL
 #' }
 #' }
 #' @export
-get_category_by_id <- function(
-  category_id = 1,
-  vb = options::opt("vb"),
-  rq = NULL
-) {
-  # Validate category_id
+get_category_by_id <- function(category_id = 1,
+                               vb = options::opt("vb"),
+                               rq = NULL) {
   assertthat::assert_that(is.numeric(category_id))
   assertthat::assert_that(length(category_id) == 1)
   assertthat::assert_that(category_id > 0)
-  assertthat::assert_that(
-    category_id == floor(category_id),
-    msg = "category_id must be an integer"
-  )
-
-  # Validate vb
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-
-  # Validate rq
-  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
-
+  assertthat::assert_that(category_id == floor(category_id), msg = "category_id must be an integer")
+  
+  validate_flag(vb, "vb")
+  
+  assertthat::assert_that(is.null(rq) ||
+                            inherits(rq, "httr2_request"))
+  
   # Perform API call
   category <- perform_api_get(
     path = sprintf(API_CATEGORY_DETAIL, category_id),
     rq = rq,
     vb = vb
   )
-
+  
   if (is.null(category)) {
     if (vb) {
       message("Category ", category_id, " not found or inaccessible.")
     }
     return(NULL)
   }
-
+  
   # Process metrics if present
   metrics <- NULL
   if (!is.null(category$metrics) && length(category$metrics) > 0) {
@@ -79,7 +72,7 @@ get_category_by_id <- function(
       )
     })
   }
-
+  
   # Return structured list
   list(
     category_id = category$id,
