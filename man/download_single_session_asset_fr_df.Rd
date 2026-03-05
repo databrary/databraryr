@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_single_session_asset_fr_df.R
 \name{download_single_session_asset_fr_df}
 \alias{download_single_session_asset_fr_df}
-\title{Download Single Asset From Databrary}
+\title{Download a Single Asset From a Session Data Frame Row.}
 \usage{
 download_single_session_asset_fr_df(
   i = NULL,
@@ -17,53 +17,31 @@ download_single_session_asset_fr_df(
 )
 }
 \arguments{
-\item{i}{An integer. Index into a row of the session asset data frame.
-Default is NULL.}
+\item{i}{Integer. Index of the asset within \code{session_df}.}
 
-\item{session_df}{A row from a data frame from \code{list_session_assets()}
-or \code{list_volume_assets()}. Default is NULL>}
+\item{session_df}{Data frame containing asset metadata.}
 
-\item{target_dir}{A character string. Directory to save the downloaded file.
-Default is a temporary directory given by a call to \code{tempdir()}.}
+\item{target_dir}{Base directory for downloads.}
 
-\item{add_session_subdir}{A logical value. Add add the session name to the
-file path so that files are in a subdirectory specific to the session. Default
-is TRUE.}
+\item{add_session_subdir}{Logical. When \code{TRUE}, creates a subdirectory per
+session inside \code{target_dir}.}
 
-\item{overwrite}{A logical value. Overwrite an existing file. Default is TRUE.}
+\item{overwrite}{Logical. When \code{FALSE}, existing files are saved with a
+timestamped suffix.}
 
-\item{make_portable_fn}{A logical value. Replace characters in file names
-that are not broadly portable across file systems. Default is FALSE.}
+\item{make_portable_fn}{Logical. When \code{TRUE}, filenames are sanitized via
+\code{make_fn_portable()}.}
 
-\item{timeout_secs}{An integer. The seconds an httr2 request will run before
-timing out. Default is 600 (10 min). This is to handle very large files.}
+\item{timeout_secs}{Numeric. Timeout applied to the signed download request.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
-\item{rq}{A list in the form of an \code{httr2} request object. Default is NULL.}
+\item{rq}{Optional \code{httr2} request object reused to request signed links.}
 }
 \value{
-Full file name to the asset or NULL.
+Path to the downloaded asset or \code{NULL} if the download fails.
 }
 \description{
-Databrary stores file types (assets) of many types. This
-function downloads an asset based on its system-unique integer identifer
-(asset_id) and system-unique session (slot) identifier (session_id). It
-is designed to work with download_session_assets_fr_df() so that multiple
-files can be downloaded simultaneously.
-}
-\examples{
-\donttest{
-\dontrun{
-vol_1 <- list_session_assets(session_id = 9807)
-a_1 <- vol_1[1,]
-tmp_dir <- tempdir()
-fn <- file.path(tmp_dir, paste0(a_1$asset_name, ".", a_1$format_extension))
-download_single_session_asset_fr_df(a_1$asset_id,
-  fn,
-  session_id = a_1$session_id,
-  vb = TRUE)
-
-}
-}
+Helper used by \code{download_session_assets_fr_df()} to fetch a single asset via
+the signed-download workflow.
 }

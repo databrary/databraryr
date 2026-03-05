@@ -1,134 +1,137 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
-#' Get Stats About Databrary.
+#' Get Stats About Databrary
 #'
-#' `get_db_stats` returns basic summary information about
-#' the institutions, people, and data hosted on 'Databrary.org'.
+#' Returns basic summary information about
+#' the institutions, people, and video data hosted on Databrary.
 #'
 #' @param type Type of Databrary report to run "institutions", "people", "data"
+#' @param vb Show verbose messages. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object.
 #'
-#' @returns A data frame with the requested data or NULL if there is 
+#' @returns A data frame with the requested data or NULL if there is
 #' no new information.
 #'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
 #' \donttest{
 #' get_db_stats()
 #' get_db_stats("stats")
-#' get_db_stats("people") # Information about the newest authorized investigators.
-#' get_db_stats("places") # Information about the newest institutions.
 #' }
 #' @export
-get_db_stats <- function(type = "stats",
-                         vb = options::opt("vb"),
-                         rq = NULL) {
+get_db_stats <- function(type = "stats", vb = options::opt("vb"), rq = NULL) {
   # Check parameters
   assertthat::assert_that(length(type) == 1)
   assertthat::assert_that(is.character(type))
   assertthat::assert_that(
-    type %in% c(
-      "institutions",
-      "places",
-      "people",
-      "researchers",
-      "investigators",
-      "datasets",
-      "data",
-      "volumes",
-      "stats",
-      "numbers"
-    )
+    type %in%
+      c(
+        "institutions",
+        "places",
+        "people",
+        "researchers",
+        "investigators",
+        "datasets",
+        "data",
+        "volumes",
+        "stats",
+        "numbers"
+      )
   )
-  
-  assertthat::assert_that(length(vb) == 1)
-  assertthat::assert_that(is.logical(vb))
-  
-  assertthat::assert_that(is.null(rq) |
-                            ("httr2_request" %in% class(rq)))
-  
-  if (is.null(rq)) {
-    if (vb) {
-      message("\nNULL request object. Will generate default.")
-      message("Not logged in. Only public information will be returned.")
-    }
-    rq <- databraryr::make_default_request()
-  }
-  rq <- rq %>%
-    httr2::req_url(GET_ACTIVITY_DATA)
-  
-  resp <- tryCatch(
-    httr2::req_perform(rq),
-    httr2_error = function(cnd) {
-      if (vb)
-        message("Error retrieving Databrary '", type, "' stats.")
-      NULL
-    }
-  )
-  
-  if (is.null(resp)) {
-    message("Cannot access requested resource on Databrary. Exiting.")
-    return(resp)
-  }
-  
-  if (httr2::resp_status(resp) == 200) {
-    r <- httr2::resp_body_json(resp)
-    
-    if (type %in% c("stats", "numbers")) {
-      tibble::tibble(
-        date = Sys.time(),
-        investigators = unlist(r$stats$authorized[5]),
-        affiliates = unlist(r$stats$authorized[4]),
-        institutions = unlist(r$stats$authorized[6]),
-        datasets_total = r$stats$volumes,
-        datasets_shared = r$stats$shared,
-        n_files = r$stats$assets,
-        hours = r$stats$duration / (1000 * 60 * 60),
-        TB = r$stats$bytes / (1e12)
-      ) # seems incorrect
-    } else {
-      purrr::map(r$activity, process_db_activity_blob_item, type) |>
-        purrr::list_rbind()
-    }
-  }
-}
 
-#------------------------------------------------------------------------------
-process_db_activity_blob_item <- function(activity_blob, type) {
-  df <- activity_blob |>
-    purrr::flatten() |>
-    tibble::as_tibble()
+  if (!type %in% c(
+    "institutions",
+    "people",
+    "researchers",
+    "investigators",
+    "data",
+    "stats",
+    "numbers"
+  )) {
+    if (vb)
+    message("Legacy parameter not supported in new API")
+  }
   
-  if (!is.null(df)) {
-    if (type %in% c("datasets", "volumes", "data")) {
-      if ("owners" %in% names(df)) {
-        df <- dplyr::filter(df, !is.na(df$id))
+  validate_flag(vb, "vb")
+
+  assertthat::assert_that(
+    is.null(rq) |
+      ("httr2_request" %in% class(rq))
+  )
+
+  stats <- perform_api_get(
+    path = API_ACTIVITY_SUMMARY,
+    rq = rq,
+    vb = vb
+  )
+
+  if (is.null(stats)) {
+    message("Cannot access requested resource on Databrary. Exiting.")
+    return(NULL)
+  }
+
+  if (type %in% c("stats", "numbers")) {
+    # Map new API field names to output
+    tibble::tibble(
+      date = Sys.time(),
+      institutions = if (!is.null(stats$institutions)) {
+        stats$institutions
       } else {
-        return(NULL)
-      }
-    } else if (type %in% c("institutions", "places")) {
-      if ("institution" %in% names(df)) {
-        df <- dplyr::filter(df, !is.na(df$id), !is.na(df$institution))
+        NA_integer_
+      },
+      affiliates = if (!is.null(stats$affiliates)) {
+        stats$affiliates
       } else {
-        return(NULL)
-      }
-    } else if (type %in% c("people", "researchers", "investigators")) {
-      if ("affiliation" %in% names(df)) {
-        df <- dplyr::filter(
-          df,
-          !is.na(df$id),
-          !is.na(df$affiliation),
-          !is.na(df$sortname),
-          !is.na(df$prename)
-        )
+        NA_integer_
+      },
+      investigators = if (!is.null(stats$investigators)) {
+        stats$investigators
       } else {
-        return(NULL)
+        NA_integer_
+      },
+      hours_of_recordings = if (!is.null(stats$hours_of_recordings)) {
+        stats$hours_of_recordings
+      } else {
+        NA_integer_
+      },
+      # Legacy fields (may not be present in new API)
+      authorized_users = if (!is.null(stats$authorized_users)) {
+        stats$authorized_users
+      } else {
+        NA_integer_
+      },
+      total_volumes = if (!is.null(stats$total_volumes)) {
+        stats$total_volumes
+      } else {
+        NA_integer_
+      },
+      public_volumes = if (!is.null(stats$public_volumes)) {
+        stats$public_volumes
+      } else {
+        NA_integer_
+      },
+      total_files = if (!is.null(stats$total_files)) {
+        stats$total_files
+      } else {
+        NA_integer_
+      },
+      total_duration_hours = if (!is.null(stats$total_duration_hours)) {
+        stats$total_duration_hours
+      } else {
+        NA_real_
+      },
+      total_storage_tb = if (!is.null(stats$total_storage_tb)) {
+        stats$total_storage_tb
+      } else {
+        NA_real_
       }
-    }
-    df
+    )
+  } else {
+    # For other types, return the raw stats as a tibble
+    tibble::as_tibble(stats)
   }
 }

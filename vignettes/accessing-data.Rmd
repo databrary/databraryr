@@ -132,44 +132,42 @@ vol1_assets |>
 
 Imagine you are interested in knowing more about this volume, the people who created it, or the agencies that funded it.
 
-The `list_volume_owners()` function returns a data frame with information about the people who created and "own" this particular dataset.
-The function has a parameter `this_vol_id` which is an integer, unique across Databrary, that refers to the specific dataset.
-The `list_volume_owners()` function uses volume 1 as the default.
+The `list_volume_collaborators()` function returns a data frame with information about the people who have been granted access to collaborate on this dataset.
+The function has a parameter `vol_id` which is an integer, unique across Databrary, that refers to the specific dataset.
+The `list_volume_collaborators()` function uses volume 1 as the default.
 
 ```{r}
-databraryr::list_volume_owners()
+databraryr::list_volume_collaborators()
 ```
 
 The command (and many like it) can be "vectorized" using the `purrr` package.
 This let's us generate a tibble with the owners of the first fifteen volumes.
 
 ```{r}
-purrr::map(1:15, databraryr::list_volume_owners) |> 
+purrr::map(1:15, databraryr::list_volume_collaborators) |> 
   purrr::list_rbind()
 ```
 
-As of 0.6.0, the `get_volume_by_id()` returns a list of all data about a volume that is accessible to a particular user.
+As of 0.6.0, the `get_volume_by_id()` function returns a tibble summarising all data about a volume that is accessible to a particular user.
 The default is volume 1.
 
 ```{r}
 vol1_list <- databraryr::get_volume_by_id()
-names(vol1_list)
+vol1_list
 ```
 Let's create our own tibble/data frame with a subset of these variables.
 
 ```{r}
-vol1_df <- tibble::tibble(id = vol1_list$id,
-                          name = vol1_list$name,
-                          doi = vol1_list$creation,
-                          permission = vol1_list$permission)
+vol1_df <- vol1_list |>
+  dplyr::select(id, title, sharing_level, access_level)
 vol1_df
 ```
 
-The `permission` variable indicates whether a volume is visible by you, and if so with what privileges.
+The `access_level` variable indicates whether a volume is visible to you, and if so with what privileges.
 
 So, if you are not logged-in to Databrary, only data that are visible to the public will be returned.
-Assuming you are *not* logged-in, the above commands will show volumes with `permission` equal to 1.
-The `permission` field derives from a set of constants the system uses.
+Assuming you are *not* logged-in, the above commands will show volumes with `access_level` equal to 1.
+The `access_level` field derives from a set of constants the system uses.
 
 ```{r}
 db_constants <- databraryr::assign_constants()
@@ -180,7 +178,7 @@ The `permission` array is indexed beginning with 0.
 So the 1th (1st) value is "`r db_constants$permission[2]`".
 So, the `1` means that the volumes shown above are all visible to the public, and to you.
 
-Volumes that you have not shared and are not visible to the public, will have `permission` equal to 5, or "`r db_constants$permission[6]`".
+Volumes that you have not shared and are not visible to the public, will have `access_level` equal to 5, or "`r db_constants$permission[6]`".
 We can't demonstrate this to you because we don't have privileges on the same unshared volume, but you can try it on a volume you've created but not yet shared.
 
 Other functions with the form `list_volume_*()` provide information about Databrary volumes.
@@ -197,7 +195,7 @@ The `list_volume_links()` command returns information about any external (web) l
 databraryr::list_volume_links()
 ```
 
-There's much more to learn about accessing Databrary information using `databraryr`, but this should get you started.
+There's much more to learn about accessing Databrary information using `databraryr`, but this should get you started. Explore `list_volumes()` to enumerate accessible datasets or `search_volumes()` to find projects matching a keyword.
 
 ## Downloading multiple files
 

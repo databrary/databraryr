@@ -5,7 +5,7 @@ NULL
 
 #' Log Out of Databrary.org.
 #'
-#' @param rq An `httr2` request object. Defaults to NULL.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' 
 #' @returns TRUE if logging out succeeds, FALSE otherwise.
 #' 
@@ -16,26 +16,17 @@ NULL
 #' logout_db()
 #' }
 #' @export
-logout_db <- function(vb = options::opt("vb"), rq = NULL){
+logout_db <- function(vb = options::opt("vb")) {
+  validate_flag(vb, "vb")
 
-  assertthat::assert_that(is.logical(vb))
-  
-  if (is.null(rq)) {
-    if (vb) message("Empty request. Generating new one.")
-    rq <- databraryr::make_default_request()
+  bundle <- get_token_bundle()
+  if (is.null(bundle)) {
+    if (vb) message("No active session; nothing to log out from.")
+    return(TRUE)
   }
-  rq <- rq %>%
-    httr2::req_url(LOGOUT)
-  
-  r <- httr2::req_perform(rq)
 
-  delete_cookie <- file.remove(rq$options$cookiefile)
-  if (httr2::resp_status(r) == 200 & delete_cookie) {
-    if (vb) message('Logout Successful.')
-    TRUE
-  } else {
-    if (vb) message(paste0('Logout Failed, HTTP status: ', 
-                           httr2::resp_status(r), '.\n'))
-    FALSE
-  }
+  clear_token_bundle()
+
+  if (vb) message("Logout successful.")
+  TRUE
 }

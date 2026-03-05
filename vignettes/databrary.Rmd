@@ -59,34 +59,31 @@ library(databraryr)
 
 Then, try this command to pull data about one of Databrary's founders:
 
-```{r get_party_by_id}
-# The default parameter settings return a very detailed set of information about
-# a party that we do not need for this example.
-party_6 <- databraryr::get_party_by_id(parents_children_access = FALSE)
+```{r get_user_by_id}
+# Retrieve public metadata about one of Databrary's founders.
+user_6 <- databraryr::get_user_by_id(user_id = 6)
 
-party_6 |>
-  as.data.frame()
+tibble::as_tibble(user_6)
 ```
 
-Note that this command returns a data frame with columns that include the first name (`prename`), last name (`sortname`), affiliation, lab or personal website, and ORCID ID if available.
+Note that this command returns a tibble with columns that include the first name (`prename`), last name (`sortname`), affiliation, and ORCID ID if available.
 
-Databrary assigns a unique integer for each person and institution on the system called a 'party id'.
+Databrary assigns a unique integer for each registered user on the system.
 We can create a simple helper function to collect information about a larger group of people.
 
 ```{r list-people-5-7}
 # Helper function
-get_party_as_df <- function(party_id) {
-  this_party <- databraryr::get_party_by_id(party_id, 
-                                            parents_children_access = FALSE)
-  if (!is.null(this_party)) {
-    as.data.frame(this_party)
+get_user_as_df <- function(user_id) {
+  this_user <- databraryr::get_user_by_id(user_id = user_id)
+  if (!is.null(this_user)) {
+    tibble::as_tibble(this_user)
   } else {
     NULL
   }
 }
 
-# Party's 5, 6, and 7 are Databrary's founders
-purrr::map(5:7, get_party_as_df, .progress = TRUE) |>
+# Users 5, 6, and 7 are Databrary's founders
+purrr::map(5:7, get_user_as_df, .progress = TRUE) |>
   purrr::list_rbind()
 ```
 

@@ -1,12 +1,14 @@
 Type: Package
 Package: databraryr
 Title: Interact with the 'Databrary.org' API
-Version: 0.6.6.9002
+Version: 1.0.0.9000
 Authors@R: c(
     person("Rick", "O. Gilmore", , "rog1@psu.edu", role = c("aut", "cre", "cph")),
     person("Jeffrey", "Spies", , "cran@jeffspies.com", role = "aut"),
+    person("Pawel", "Armatys", "pawel.armatys@montrosesoftware.com", role="aut"),
     person("National Science Foundation OAC-2032713", role = "fnd"),
-    person("National Institutes of Health R01HD094830", role = "fnd")
+    person("National Institutes of Health R01HD094830", role = "fnd"),
+    person("National Science Foundation BCS 2444730, 2444731", role="fnd")
   )
 Maintainer: Rick O. Gilmore <rog1@psu.edu>
 Description: 'Databrary.org' is a restricted access repository for
@@ -46,4 +48,4 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3

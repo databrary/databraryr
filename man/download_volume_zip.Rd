@@ -2,37 +2,32 @@
 % Please edit documentation in R/download_volume_zip.R
 \name{download_volume_zip}
 \alias{download_volume_zip}
-\title{Download Zip Archive of All Data in a Volume.}
+\title{Request a Signed ZIP Download for a Volume.}
 \usage{
-download_volume_zip(
-  vol_id = 31,
-  out_dir = tempdir(),
-  file_name = "test.zip",
-  vb = options::opt("vb"),
-  rq = NULL
-)
+download_volume_zip(vol_id = 31, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{vol_id}{Volume number.}
-
-\item{out_dir}{Directory to save output file.}
-
-\item{file_name}{Name for downloaded file, default is 'test.mp4'.}
+\item{vol_id}{Volume identifier.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
-\item{rq}{An \code{httr2} request object. Default is NULL.}
+\item{rq}{An \code{httr2} request object. Default is \code{NULL}, in which case a
+default authenticated request is generated.}
 }
 \value{
-Full filename of the downloaded file.
+A list describing the processing task (\code{status}, \code{message},
+\code{task_id}) or \code{NULL} when the request fails.
 }
 \description{
-Download Zip Archive of All Data in a Volume.
+Volume-level ZIP archives are prepared asynchronously by the Django API.
+Calling \code{download_volume_zip()} queues the job and returns a processing task
+descriptor. When the archive is ready, Databrary emails a signed download
+link to the authenticated user.
 }
 \examples{
 \donttest{
 \dontrun{
-download_volume_zip() # Zip file of all data from volume 31, the default.
+download_volume_zip(vol_id = 31)
 }
 }
 
