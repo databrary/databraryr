@@ -1,5 +1,29 @@
 # Internal helpers for interacting with the Databrary Django API.
 
+#' Validate that a value is a single positive integer (e.g. vol_id, record_id).
+#' @noRd
+assert_positive_integer <- function(x, name = deparse(substitute(x))) {
+  assertthat::assert_that(
+    length(x) == 1,
+    msg = paste(name, "must have length 1")
+  )
+  assertthat::assert_that(
+    is.numeric(x),
+    msg = paste(name, "must be numeric")
+  )
+  assertthat::assert_that(x >= 1, msg = paste(name, "must be >= 1"))
+  assertthat::assert_that(
+    x == floor(x),
+    msg = paste(name, "must be an integer")
+  )
+  invisible(TRUE)
+}
+
+#' @noRd
+resp_has_body <- function(response) {
+  length(httr2::resp_body_raw(response)) > 0
+}
+
 #' @noRd
 ensure_leading_slash <- function(path) {
   assertthat::assert_that(assertthat::is.string(path))
@@ -62,6 +86,11 @@ perform_api_get <- function(path,
   )
 
   if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
     return(NULL)
   }
 
@@ -157,21 +186,176 @@ camel_to_snake <- function(x) {
   tolower(gsub("([a-z0-9])([A-Z])", "\\1_\\2", x))
 }
 
+#' Iterative (non-recursive) conversion of all named-list keys to snake_case.
+#'
+#' Uses a BFS queue with nested numeric index paths (`obj[[c(i, j, ...)]]`)
+#' to avoid hitting R's C-stack / expression-depth limits on deeply nested or
+#' wide API responses.
 #' @noRd
 snake_case_list <- function(obj) {
-  if (is.list(obj)) {
-    names_list <- names(obj)
-    if (!is.null(names_list)) {
-      names(obj) <- vapply(names_list, camel_to_snake, character(1))
-    }
-    obj <- lapply(obj, snake_case_list)
-    obj
-  } else if (is.vector(obj) && !is.null(names(obj))) {
-    names(obj) <- vapply(names(obj), camel_to_snake, character(1))
-    obj
-  } else {
-    obj
+  if (!is.list(obj) && !(is.vector(obj) && !is.null(names(obj)))) {
+    return(obj)
   }
+
+  # Rename keys at the top level
+  if (!is.null(names(obj))) {
+    names(obj) <- vapply(names(obj), camel_to_snake, character(1))
+  }
+
+  # Seed the BFS queue with indices of children that need processing
+  queue <- list()
+  if (is.list(obj)) {
+    for (i in seq_along(obj)) {
+      el <- obj[[i]]
+      if (is.list(el) || (is.vector(el) && !is.null(names(el)))) {
+        queue <- c(queue, list(i))
+      }
+    }
+  }
+
+  while (length(queue) > 0) {
+    path <- queue[[1L]]
+    queue <- queue[-1L]
+
+    node <- obj[[path]]
+
+    if (!is.null(names(node))) {
+      names(node) <- vapply(names(node), camel_to_snake, character(1))
+      obj[[path]] <- node
+    }
+
+    if (is.list(node)) {
+      for (i in seq_along(node)) {
+        child <- node[[i]]
+        if (is.list(child) ||
+              (is.vector(child) && !is.null(names(child)))) {
+          queue <- c(queue, list(c(path, i)))
+        }
+      }
+    }
+  }
+
+  obj
+}
+
+#' @noRd
+perform_api_post <- function(path,
+                             body = list(),
+                             rq = NULL,
+                             vb = FALSE,
+                             normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "POST")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("POST request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_patch <- function(path,
+                              body = list(),
+                              rq = NULL,
+                              vb = FALSE,
+                              normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "PATCH")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("PATCH request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_delete <- function(path,
+                               rq = NULL,
+                               vb = FALSE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "DELETE")
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("DELETE request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(FALSE)
+  }
+
+  TRUE
 }
 
 #' @noRd

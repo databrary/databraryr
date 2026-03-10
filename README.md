@@ -76,6 +76,36 @@ list_volume_assets() |>
 #> #   asset_uploader_first_name <chr>, asset_uploader_last_name <chr>
 ```
 
+## Testing
+
+The test suite includes integration tests that run against the Databrary API. These tests require the following environment variables to
+be set:
+
+| Variable | Description |
+|---|---|
+| `DATABRARY_LOGIN` | Email address for the account |
+| `DATABRARY_PASSWORD` | Password for the account |
+| `DATABRARY_CLIENT_ID` | OAuth client ID |
+| `DATABRARY_CLIENT_SECRET` | OAuth client secret |
+| `DATABRARY_BASE_URL` | *(optional)* API base URL; defaults to `https://api.stg-databrary.its.nyu.edu` |
+
+Tests that require authentication are automatically skipped when these
+variables are not available.
+
+The recommended way to provide them is a project-level `.Renviron` file
+in the package root:
+
+``` bash
+DATABRARY_LOGIN=you@example.com
+DATABRARY_PASSWORD=your-password
+DATABRARY_CLIENT_ID=your-client-id
+DATABRARY_CLIENT_SECRET=your-client-secret
+```
+
+R loads this file automatically on startup, so `devtools::test()` and
+`devtools::check()` will pick up the credentials without any extra
+steps.
+
 ## Lifecycle
 
 Rick Gilmore has been using experimental versions of databraryr for many
