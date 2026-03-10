@@ -186,21 +186,56 @@ camel_to_snake <- function(x) {
   tolower(gsub("([a-z0-9])([A-Z])", "\\1_\\2", x))
 }
 
+#' Iterative (non-recursive) conversion of all named-list keys to snake_case.
+#'
+#' Uses a BFS queue with nested numeric index paths (`obj[[c(i, j, ...)]]`)
+#' to avoid hitting R's C-stack / expression-depth limits on deeply nested or
+#' wide API responses.
 #' @noRd
 snake_case_list <- function(obj) {
-  if (is.list(obj)) {
-    names_list <- names(obj)
-    if (!is.null(names_list)) {
-      names(obj) <- vapply(names_list, camel_to_snake, character(1))
-    }
-    obj <- lapply(obj, snake_case_list)
-    obj
-  } else if (is.vector(obj) && !is.null(names(obj))) {
-    names(obj) <- vapply(names(obj), camel_to_snake, character(1))
-    obj
-  } else {
-    obj
+  if (!is.list(obj) && !(is.vector(obj) && !is.null(names(obj)))) {
+    return(obj)
   }
+
+  # Rename keys at the top level
+  if (!is.null(names(obj))) {
+    names(obj) <- vapply(names(obj), camel_to_snake, character(1))
+  }
+
+  # Seed the BFS queue with indices of children that need processing
+  queue <- list()
+  if (is.list(obj)) {
+    for (i in seq_along(obj)) {
+      el <- obj[[i]]
+      if (is.list(el) || (is.vector(el) && !is.null(names(el)))) {
+        queue <- c(queue, list(i))
+      }
+    }
+  }
+
+  while (length(queue) > 0) {
+    path <- queue[[1L]]
+    queue <- queue[-1L]
+
+    node <- obj[[path]]
+
+    if (!is.null(names(node))) {
+      names(node) <- vapply(names(node), camel_to_snake, character(1))
+      obj[[path]] <- node
+    }
+
+    if (is.list(node)) {
+      for (i in seq_along(node)) {
+        child <- node[[i]]
+        if (is.list(child) ||
+              (is.vector(child) && !is.null(names(child)))) {
+          queue <- c(queue, list(c(path, i)))
+        }
+      }
+    }
+  }
+
+  obj
 }
 
 #' @noRd

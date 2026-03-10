@@ -52,6 +52,7 @@ API_FUNDER_DETAIL <- "/funders/%s/"
 API_TAG_DETAIL <- "/tags/%s/"
 API_CATEGORIES <- "/categories/"
 API_CATEGORY_DETAIL <- "/categories/%s/"
+API_VOLUME_CATEGORIES <- "/volumes/%s/categories/"
 
 RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1  # seconds
