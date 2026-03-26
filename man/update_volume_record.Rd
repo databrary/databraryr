@@ -21,11 +21,16 @@ update_volume_record(
 \item{measures}{Optional named list mapping metric IDs (as strings) to values.
 Values can be strings (for text metrics), numbers (for numeric metrics),
 or lists with \code{year}, \code{month}, \code{day}, \code{is_estimated}
-fields (for date metrics). If provided, replaces existing measures.}
+fields (for date metrics). When supplied, must include all required metrics
+for the record's category (use \code{\link{get_volume_enabled_categories}}
+or \code{\link{get_volume_record_by_id}} to discover ids and current values).}
 
 \item{participant}{Optional list for participant records containing
 \code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
-\code{age} (with \code{years}, \code{months}, \code{days} fields).}
+\code{age} (with \code{years}, \code{months}, \code{days} fields). Sending
+only \code{participant} without a complete \code{measures} map may still
+fail validation for categories with required metrics; include required
+measures or use \code{\link{set_record_measure}} for targeted edits.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
@@ -37,27 +42,28 @@ category_id, measures, birthday (if participant), and age (if participant),
 or \code{NULL} if update fails.
 }
 \description{
-Update an existing record in a Databrary volume. This performs
-a partial update (PATCH), modifying only the fields provided.
+Sends a PATCH request to update a record. The HTTP method is
+partial in principle, but the API validates \code{measures} as a complete
+snapshot of \strong{required} metrics for the record's category: every
+required metric must appear in \code{measures}, or the server returns
+\code{400} (\verb{Missing required measures...}). The server then replaces
+stored values for each metric key you send (it does not merge your list with
+existing measures before that check). To change a single metric without
+assembling the full required set, use \code{\link{set_record_measure}}.
 }
 \examples{
 \donttest{
 \dontrun{
-# Update measures for a record
-update_volume_record(
-  vol_id = 1,
-  record_id = 123,
-  measures = list("2" = "Male", "5" = 25.5)
-)
+# Prefer for a single metric (no need to list all required measures)
+set_record_measure(vol_id = 1, record_id = 123, metric_id = 2, value = "Male")
 
-# Update participant birthday
-update_volume_record(
-  vol_id = 1,
-  record_id = 123,
-  participant = list(
-    birthday = list(year = 2021, month = 5, day = 10)
-  )
-)
+# PATCH with measures: merge current values with changes so required metrics stay present
+rec <- get_volume_record_by_id(vol_id = 1, record_id = 123)
+new_measures <- utils::modifyList(rec$measures, list("2" = "Updated label"))
+update_volume_record(vol_id = 1, record_id = 123, measures = new_measures)
 }
 }
+}
+\seealso{
+\code{\link{set_record_measure}}, \code{\link{get_volume_record_by_id}}
 }

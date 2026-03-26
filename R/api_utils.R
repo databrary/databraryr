@@ -21,7 +21,11 @@ assert_positive_integer <- function(x, name = deparse(substitute(x))) {
 
 #' @noRd
 resp_has_body <- function(response) {
-  length(httr2::resp_body_raw(response)) > 0
+  raw <- tryCatch(
+    httr2::resp_body_raw(response),
+    error = function(e) raw(0)
+  )
+  length(raw) > 0
 }
 
 #' @noRd
@@ -170,8 +174,15 @@ collect_paginated_get <- function(path,
     if (!is.null(next_url) && !startsWith(next_url, "http")) {
       next_url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(next_url))
     }
-    if (!is.null(next_url)) {
-      next_url <- sub("^http://", "https://", next_url)
+    # API may return absolute next links with a different host/port than the
+    # configured base (e.g. http://localhost/... while DATABRARY_BASE_URL is
+    # http://localhost:8000). Re-anchor path+query to our base URL.
+    if (!is.null(next_url) && grepl("^https?://", next_url)) {
+      path_query <- sub("^https?://[^/]+", "", next_url)
+      if (!startsWith(path_query, "/")) {
+        path_query <- paste0("/", path_query)
+      }
+      next_url <- paste0(sub("/$", "", DATABRARY_BASE_URL), path_query)
     }
 
     first_iter <- FALSE
@@ -359,9 +370,20 @@ perform_api_delete <- function(path,
 }
 
 #' @noRd
-validate_flag <- function(value, name) {
-  if (!is.null(value)) {
-    assertthat::assert_that(length(value) == 1)
-    assertthat::assert_that(is.logical(value), msg = paste0(name, " must be logical."))
+#' @param optional If `TRUE`, `NULL` is allowed (parameter omitted from an API
+#'   call). If `FALSE`, `value` must be a single logical (e.g. `vb`).
+validate_flag <- function(value, name, optional = FALSE) {
+  if (isTRUE(optional) && is.null(value)) {
+    return(invisible(NULL))
   }
+  assertthat::assert_that(
+    !is.null(value),
+    msg = paste0(name, " must not be NULL.")
+  )
+  assertthat::assert_that(length(value) == 1)
+  assertthat::assert_that(
+    is.logical(value),
+    msg = paste0(name, " must be logical.")
+  )
+  invisible(NULL)
 }

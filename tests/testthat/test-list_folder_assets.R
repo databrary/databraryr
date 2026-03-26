@@ -19,7 +19,7 @@ test_that("list_folder_assets rejects bad input parameters", {
   expect_error(list_folder_assets(folder_id = list(a = 1, b = 2), vol_id = 1))
   expect_error(list_folder_assets(folder_id = -1, vol_id = 1))
 
-  expect_error(list_folder_assets(folder_id = 1))
+  expect_error(list_folder_assets(folder_id = 1, vol_id = NULL))
 
   expect_error(list_folder_assets(folder_id = 1, vol_id = "a"))
   expect_error(list_folder_assets(folder_id = 1, vol_id = c(1, 2)))

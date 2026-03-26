@@ -118,17 +118,17 @@ make_fn_portable <- function(fn,
                              vb = options::opt("vb"),
                              replace_regex = "[ &\\!\\)\\(\\}\\{\\[\\]\\+\\=@#\\$%\\^\\*]",
                              replacement_char = "_") {
-  assertthat::is.string(fn)
+  assertthat::assert_that(assertthat::is.string(fn))
   assertthat::assert_that(!is.numeric(fn))
   assertthat::assert_that(!is.logical(fn))
   assertthat::assert_that(length(fn) == 1)
 
   validate_flag(vb, "vb")
 
-  assertthat::is.string(replace_regex)
+  assertthat::assert_that(assertthat::is.string(replace_regex))
   assertthat::assert_that(length(replace_regex) == 1)
 
-  assertthat::is.string(replacement_char)
+  assertthat::assert_that(assertthat::is.string(replacement_char))
   assertthat::assert_that(length(replacement_char) == 1)
 
   if (vb) {

@@ -37,7 +37,7 @@ download_folder_asset_from_df <- function(i = NULL,
                                           vb = options::opt("vb"),
                                           rq = NULL) {
   assertthat::assert_that(length(i) == 1)
-  assertthat::is.number(i)
+  assertthat::assert_that(assertthat::is.number(i))
   assertthat::assert_that(i > 0)
 
   assertthat::assert_that(is.data.frame(folder_df))
@@ -52,7 +52,7 @@ download_folder_asset_from_df <- function(i = NULL,
   }
 
   assertthat::assert_that(length(target_dir) == 1)
-  assertthat::is.string(target_dir)
+  assertthat::assert_that(assertthat::is.string(target_dir))
   assertthat::assert_that(
     dir.exists(target_dir) ||
       dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
@@ -63,7 +63,7 @@ download_folder_asset_from_df <- function(i = NULL,
   validate_flag(overwrite, "overwrite")
   validate_flag(make_portable_fn, "make_portable_fn")
 
-  assertthat::is.number(timeout_secs)
+  assertthat::assert_that(assertthat::is.number(timeout_secs))
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
 

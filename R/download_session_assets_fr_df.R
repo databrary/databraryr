@@ -85,7 +85,7 @@ download_session_assets_fr_df <-
     assertthat::assert_that(length(make_portable_fn) == 1)
     assertthat::assert_that(is.logical(make_portable_fn))
 
-    assertthat::is.number(timeout_secs)
+    assertthat::assert_that(assertthat::is.number(timeout_secs))
     assertthat::assert_that(length(timeout_secs) == 1)
     assertthat::assert_that(timeout_secs > 0)
 

@@ -170,7 +170,12 @@ list_volume_records <- function(vol_id = 1,
       record_birthday = if (is.null(record$birthday)) {
         NA_character_
       } else {
-        as.character(record$birthday)
+        bc <- as.character(record$birthday)
+        if (length(bc) == 1L) {
+          bc
+        } else {
+          paste(bc, collapse = "; ")
+        }
       },
       age_years = age_years,
       age_months = age_months,

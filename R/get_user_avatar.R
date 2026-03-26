@@ -100,8 +100,26 @@ get_user_avatar <- function(user_id,
     return(NULL)
   }
 
-  # Get avatar bytes
-  avatar_bytes <- httr2::resp_body_raw(resp)
+  # Get avatar bytes (server may return 200 with an empty body)
+  avatar_bytes <- tryCatch(
+    httr2::resp_body_raw(resp),
+    error = function(e) {
+      if (vb) {
+        message(
+          "User avatar unavailable or empty response: ",
+          conditionMessage(e)
+        )
+      }
+      NULL
+    }
+  )
+
+  if (is.null(avatar_bytes) || length(avatar_bytes) == 0L) {
+    if (vb) {
+      message("No avatar bytes returned for user ", user_id)
+    }
+    return(NULL)
+  }
 
   # If no destination path, return bytes
   if (is.null(dest_path)) {
