@@ -2,8 +2,8 @@
 #'
 #'
 DATABRARY_BASE_URL <- Sys.getenv(
-    "DATABRARY_BASE_URL",
-    "https://api.databrary.org"
+  "DATABRARY_BASE_URL",
+  "https://api.databrary.org"
 )
 
 API_ACTIVITY_SUMMARY <- "/statistics/summary/"
@@ -71,8 +71,8 @@ OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
 LOGIN <- sprintf("%s/login/", DATABRARY_BASE_URL)
 
 USER_AGENT <- paste0(
-    "databraryr/",
-    as.character(utils::packageVersion("databraryr"))
+  "databraryr/",
+  as.character(utils::packageVersion("databraryr"))
 )
 
 KEYRING_SERVICE <- "org.databrary.databraryr"

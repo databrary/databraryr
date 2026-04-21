@@ -27,47 +27,47 @@ NULL
 #'   Returns NULL when statistics have not been computed or institution is not found.
 #' @export
 get_institution_statistics <- function(
-    institution_id = 1,
-    vb = options::opt("vb"),
-    rq = NULL
+  institution_id = 1,
+  vb = options::opt("vb"),
+  rq = NULL
 ) {
-    assertthat::assert_that(
-        is.numeric(institution_id),
-        length(institution_id) == 1,
-        institution_id > 0
-    )
+  assertthat::assert_that(
+    is.numeric(institution_id),
+    length(institution_id) == 1,
+    institution_id > 0
+  )
 
-    validate_flag(vb, "vb")
+  validate_flag(vb, "vb")
 
-    assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
+  assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
-    stats <- perform_api_get(
-        path = sprintf(API_INSTITUTION_STATISTICS, institution_id),
-        rq = rq,
-        vb = vb
-    )
+  stats <- perform_api_get(
+    path = sprintf(API_INSTITUTION_STATISTICS, institution_id),
+    rq = rq,
+    vb = vb
+  )
 
-    if (is.null(stats)) {
-        if (vb) {
-            message(
-                "Institution statistics for ",
-                institution_id,
-                " not found or not yet computed."
-            )
-        }
-        return(NULL)
+  if (is.null(stats)) {
+    if (vb) {
+      message(
+        "Institution statistics for ",
+        institution_id,
+        " not found or not yet computed."
+      )
     }
+    return(NULL)
+  }
 
-    tibble::tibble(
-        institution_id = stats$institution_id,
-        volumes_number = stats$volumes_number,
-        files_number = stats$files_number,
-        uploaded_data_footprint = stats$uploaded_data_footprint,
-        transcoded_data_footprint = stats$transcoded_data_footprint,
-        soft_deleted_uploaded_data_footprint = stats$soft_deleted_uploaded_data_footprint,
-        soft_deleted_transcoded_data_footprint = stats$soft_deleted_transcoded_data_footprint,
-        created_at = stats$created_at,
-        updated_at = stats$updated_at
-    ) %>%
-        as.list()
+  tibble::tibble(
+    institution_id = stats$institution_id,
+    volumes_number = stats$volumes_number,
+    files_number = stats$files_number,
+    uploaded_data_footprint = stats$uploaded_data_footprint,
+    transcoded_data_footprint = stats$transcoded_data_footprint,
+    soft_deleted_uploaded_data_footprint = stats$soft_deleted_uploaded_data_footprint,
+    soft_deleted_transcoded_data_footprint = stats$soft_deleted_transcoded_data_footprint,
+    created_at = stats$created_at,
+    updated_at = stats$updated_at
+  ) |>
+    as.list()
 }
