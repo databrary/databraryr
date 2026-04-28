@@ -22,7 +22,7 @@ set_record_measure(
 
 \item{value}{The measure value. Can be a string (for text metrics), a number
 (for numeric metrics), or a list with \code{year}, \code{month}, \code{day},
-\code{is_estimated} fields (for date metrics).}
+optional \code{month} and \code{day} fields (for date metrics).}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
@@ -60,7 +60,7 @@ set_record_measure(
   vol_id = 1,
   record_id = 123,
   metric_id = 4,
-  value = list(year = 2020, month = 3, day = 15, is_estimated = FALSE)
+  value = list(year = 2020, month = 3, day = 15)
 )
 }
 }

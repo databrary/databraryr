@@ -22,10 +22,14 @@ by category type.}
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
-A tibble containing metadata for each record including id, volume,
-category_id, measures, birthday, and age information. Returns an empty
-tibble (with the same columns) when the volume has no records, or \code{NULL}
-when the API call fails (e.g. non-existent volume).
+A tibble containing metadata for each record (aligned with core
+\verb{RecordSerializer}): ids, owning volume (\code{record_volume}), owning volume
+name (\code{record_volume_name}), category, measures, birthday, age columns,
+default sessions (\code{record_default_sessions}, list column of \verb{id}/\verb{name}),
+and linked-content provenance (\code{record_source_kind}). The \code{record_volume}
+column may differ from \code{vol_id} when the volume lists linked records from
+other volumes. Returns an empty tibble when the volume has no records, or
+\code{NULL} when the API call fails (e.g. non-existent volume).
 }
 \description{
 Retrieve all records (participant data with measures) from a

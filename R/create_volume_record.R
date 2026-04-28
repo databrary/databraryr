@@ -108,16 +108,15 @@ get_name_metric_id <- function(vol_id,
 #' @param measures Optional named list mapping additional metric IDs (as strings)
 #'   to values. Values can be strings (for text metrics), numbers (for numeric
 #'   metrics), or lists with \code{year}, \code{month}, \code{day},
-#'   \code{is_estimated} fields (for date metrics).
+#'   optional \code{month} and \code{day} fields (for date metrics).
 #' @param participant Optional list for participant records containing
 #'   \code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
 #'   \code{age} (with \code{years}, \code{months}, \code{days} fields). Cannot
 #'   provide both \code{birthday} and \code{age}.
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #'
-#' @return A list with the created record's metadata including id, volume,
-#'   category_id, measures, birthday (if participant), and age (if participant),
-#'   or \code{NULL} if creation fails.
+#' @return Same shape as \code{\link{get_volume_record_by_id}}, or \code{NULL}
+#'   if creation fails.
 #'
 #' @inheritParams options_params
 #'
@@ -219,27 +218,5 @@ create_volume_record <- function(
     return(NULL)
   }
 
-  # Process age if present
-  age <- NULL
-  if (!is.null(record$age)) {
-    age <- list(
-      years = record$age$years,
-      months = record$age$months,
-      days = record$age$days,
-      total_days = record$age$total_days,
-      formatted_value = record$age$formatted_value,
-      is_estimated = record$age$is_estimated,
-      is_blurred = record$age$is_blurred
-    )
-  }
-
-  # Return structured list
-  list(
-    record_id = record$id,
-    record_volume = record$volume,
-    record_category_id = record$category_id,
-    measures = record$measures,
-    birthday = record$birthday,
-    age = age
-  )
+  record_as_client_list(record)
 }

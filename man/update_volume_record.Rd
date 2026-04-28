@@ -20,7 +20,7 @@ update_volume_record(
 
 \item{measures}{Optional named list mapping metric IDs (as strings) to values.
 Values can be strings (for text metrics), numbers (for numeric metrics),
-or lists with \code{year}, \code{month}, \code{day}, \code{is_estimated}
+or lists with \code{year} and optional \code{month}, \code{day}
 fields (for date metrics). When supplied, must include all required metrics
 for the record's category (use \code{\link{get_volume_enabled_categories}}
 or \code{\link{get_volume_record_by_id}} to discover ids and current values).}
@@ -37,9 +37,8 @@ measures or use \code{\link{set_record_measure}} for targeted edits.}
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
-A list with the updated record's metadata including id, volume,
-category_id, measures, birthday (if participant), and age (if participant),
-or \code{NULL} if update fails.
+A list with the updated record's metadata (same shape as
+\code{\link{get_volume_record_by_id}}), or \code{NULL} if update fails.
 }
 \description{
 Sends a PATCH request to update a record. The HTTP method is

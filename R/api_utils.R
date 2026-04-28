@@ -369,6 +369,53 @@ perform_api_delete <- function(path,
   TRUE
 }
 
+#' Normalize an API record payload (already snake_case) into the package list shape.
+#'
+#' Mirrors read-only fields from core \verb{RecordSerializer}: \verb{id}, \verb{volume},
+#' \verb{volume_name}, \verb{category_id}, \verb{measures}, \verb{birthday}, \verb{age},
+#' \verb{default_sessions}, \verb{record_source_kind}.
+#'
+#' @noRd
+record_as_client_list <- function(record) {
+  age <- NULL
+  if (!is.null(record$age)) {
+    age <- list(
+      years = record$age$years,
+      months = record$age$months,
+      days = record$age$days,
+      total_days = record$age$total_days,
+      formatted_value = record$age$formatted_value,
+      is_partial = record$age$is_partial,
+      is_blurred = record$age$is_blurred
+    )
+  }
+
+  ds <- record$default_sessions
+  if (is.null(ds)) {
+    ds <- list()
+  }
+
+  list(
+    record_id = record$id,
+    record_volume = record$volume,
+    record_volume_name = if (is.null(record$volume_name)) {
+      NA_character_
+    } else {
+      as.character(record$volume_name)
+    },
+    record_category_id = record$category_id,
+    measures = record$measures,
+    birthday = record$birthday,
+    age = age,
+    default_sessions = ds,
+    record_source_kind = if (is.null(record$record_source_kind)) {
+      NA_character_
+    } else {
+      as.character(record$record_source_kind)
+    }
+  )
+}
+
 #' @noRd
 #' @param optional If `TRUE`, `NULL` is allowed (parameter omitted from an API
 #'   call). If `FALSE`, `value` must be a single logical (e.g. `vb`).

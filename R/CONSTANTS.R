@@ -1,7 +1,10 @@
 #' Load Package-wide Constants into Local Environment
 #'
 #'
-DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.databrary.org")
+DATABRARY_BASE_URL <- Sys.getenv(
+  "DATABRARY_BASE_URL",
+  "https://api.databrary.org"
+)
 
 API_ACTIVITY_SUMMARY <- "/statistics/summary/"
 API_GROUPED_FORMATS <- "/grouped-formats/"
@@ -12,10 +15,12 @@ API_USER_SPONSORSHIPS <- "/users/%s/sponsorships/"
 API_USER_AFFILIATES <- "/users/%s/affiliates/"
 API_USER_AVATAR <- "/users/%s/avatar/"
 API_USERS_HISTORY <- "/users/%s/history/"
+API_USER_STATISTICS <- "/users/%s/statistics/"
 API_INSTITUTIONS_LIST <- "/institutions/"
 API_INSTITUTIONS <- "/institutions/%s/"
 API_INSTITUTION_AFFILIATES <- "/institutions/%s/affiliates/"
 API_INSTITUTION_AVATAR <- "/institutions/%s/avatar/"
+API_INSTITUTION_STATISTICS <- "/institutions/%s/statistics/"
 API_VOLUMES <- "/volumes/"
 API_VOLUME_DETAIL <- "/volumes/%s/"
 API_VOLUME_TAGS <- "/volumes/%s/tags/"
@@ -55,8 +60,8 @@ API_CATEGORY_DETAIL <- "/categories/%s/"
 API_VOLUME_CATEGORIES <- "/volumes/%s/categories/"
 
 RETRY_LIMIT <- 3
-RETRY_WAIT_TIME <- 1  # seconds
-RETRY_BACKOFF <- 2  # exponential backoff
+RETRY_WAIT_TIME <- 1 # seconds
+RETRY_BACKOFF <- 2 # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
 REQUEST_TIMEOUT_VERY_LONG <- 600
 
@@ -65,6 +70,9 @@ OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
 OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
 LOGIN <- sprintf("%s/login/", DATABRARY_BASE_URL)
 
-USER_AGENT <- paste0("databraryr/", as.character(utils::packageVersion("databraryr")))
+USER_AGENT <- paste0(
+  "databraryr/",
+  as.character(utils::packageVersion("databraryr"))
+)
 
 KEYRING_SERVICE <- "org.databrary.databraryr"
