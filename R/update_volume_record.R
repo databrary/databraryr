@@ -18,7 +18,7 @@ NULL
 #' @param record_id Numeric record identifier. Must be a positive integer.
 #' @param measures Optional named list mapping metric IDs (as strings) to values.
 #'   Values can be strings (for text metrics), numbers (for numeric metrics),
-#'   or lists with \code{year}, \code{month}, \code{day}, \code{is_estimated}
+#'   or lists with \code{year} and optional \code{month}, \code{day}
 #'   fields (for date metrics). When supplied, must include all required metrics
 #'   for the record's category (use \code{\link{get_volume_enabled_categories}}
 #'   or \code{\link{get_volume_record_by_id}} to discover ids and current values).
@@ -32,9 +32,8 @@ NULL
 #'
 #' @seealso \code{\link{set_record_measure}}, \code{\link{get_volume_record_by_id}}
 #'
-#' @return A list with the updated record's metadata including id, volume,
-#'   category_id, measures, birthday (if participant), and age (if participant),
-#'   or \code{NULL} if update fails.
+#' @return A list with the updated record's metadata (same shape as
+#'   \code{\link{get_volume_record_by_id}}), or \code{NULL} if update fails.
 #'
 #' @inheritParams options_params
 #'
@@ -104,27 +103,5 @@ update_volume_record <- function(
     return(NULL)
   }
 
-  # Process age if present
-  age <- NULL
-  if (!is.null(record$age)) {
-    age <- list(
-      years = record$age$years,
-      months = record$age$months,
-      days = record$age$days,
-      total_days = record$age$total_days,
-      formatted_value = record$age$formatted_value,
-      is_estimated = record$age$is_estimated,
-      is_blurred = record$age$is_blurred
-    )
-  }
-
-  # Return structured list
-  list(
-    record_id = record$id,
-    record_volume = record$volume,
-    record_category_id = record$category_id,
-    measures = record$measures,
-    birthday = record$birthday,
-    age = age
-  )
+  record_as_client_list(record)
 }

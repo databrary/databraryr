@@ -8,6 +8,7 @@ empty_volume_records_tibble <- function() {
   tibble::tibble(
     record_id = integer(0),
     record_volume = integer(0),
+    record_volume_name = character(0),
     record_category_id = integer(0),
     record_measures = list(),
     record_birthday = character(0),
@@ -16,8 +17,10 @@ empty_volume_records_tibble <- function() {
     age_days = integer(0),
     age_total_days = integer(0),
     age_formatted = character(0),
-    age_is_estimated = logical(0),
-    age_is_blurred = logical(0)
+    age_is_partial = logical(0),
+    age_is_blurred = logical(0),
+    record_default_sessions = vector("list", 0),
+    record_source_kind = character(0)
   )
 }
 
@@ -33,10 +36,14 @@ empty_volume_records_tibble <- function() {
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
-#' @return A tibble containing metadata for each record including id, volume,
-#'   category_id, measures, birthday, and age information. Returns an empty
-#'   tibble (with the same columns) when the volume has no records, or `NULL`
-#'   when the API call fails (e.g. non-existent volume).
+#' @return A tibble containing metadata for each record (aligned with core
+#'   \verb{RecordSerializer}): ids, owning volume (`record_volume`), owning volume
+#'   name (`record_volume_name`), category, measures, birthday, age columns,
+#'   default sessions (`record_default_sessions`, list column of \verb{id}/\verb{name}),
+#'   and linked-content provenance (`record_source_kind`). The `record_volume`
+#'   column may differ from `vol_id` when the volume lists linked records from
+#'   other volumes. Returns an empty tibble when the volume has no records, or
+#'   `NULL` when the API call fails (e.g. non-existent volume).
 #'
 #' @inheritParams options_params
 #'
@@ -121,7 +128,7 @@ list_volume_records <- function(vol_id = 1,
     age_days <- NA_integer_
     age_total_days <- NA_integer_
     age_formatted <- NA_character_
-    age_is_estimated <- NA
+    age_is_partial <- NA
     age_is_blurred <- NA
 
     if (!is.null(record$age)) {
@@ -150,8 +157,8 @@ list_volume_records <- function(vol_id = 1,
       } else {
         NA_character_
       }
-      age_is_estimated <- if (!is.null(record$age$is_estimated)) {
-        record$age$is_estimated
+      age_is_partial <- if (!is.null(record$age$is_partial)) {
+        record$age$is_partial
       } else {
         NA
       }
@@ -162,9 +169,19 @@ list_volume_records <- function(vol_id = 1,
       }
     }
 
+    ds_cell <- record$default_sessions
+    if (is.null(ds_cell)) {
+      ds_cell <- list()
+    }
+
     tibble::tibble(
       record_id = record$id,
       record_volume = record$volume,
+      record_volume_name = if (is.null(record$volume_name)) {
+        NA_character_
+      } else {
+        as.character(record$volume_name)
+      },
       record_category_id = record$category_id,
       record_measures = list(record$measures),
       record_birthday = if (is.null(record$birthday)) {
@@ -182,8 +199,14 @@ list_volume_records <- function(vol_id = 1,
       age_days = age_days,
       age_total_days = age_total_days,
       age_formatted = age_formatted,
-      age_is_estimated = age_is_estimated,
-      age_is_blurred = age_is_blurred
+      age_is_partial = age_is_partial,
+      age_is_blurred = age_is_blurred,
+      record_default_sessions = list(ds_cell),
+      record_source_kind = if (is.null(record$record_source_kind)) {
+        NA_character_
+      } else {
+        as.character(record$record_source_kind)
+      }
     )
   })
 }

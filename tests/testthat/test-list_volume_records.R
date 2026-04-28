@@ -7,7 +7,10 @@ test_that("list_volume_records returns tibble given valid vol_id", {
 
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
-  expect_true(all(c("record_id", "record_volume", "record_category_id") %in% names(result)))
+  expect_true(all(c(
+    "record_id", "record_volume", "record_volume_name", "record_category_id",
+    "record_measures", "record_default_sessions", "record_source_kind"
+  ) %in% names(result)))
 })
 
 test_that("list_volume_records returns valid record structure", {
@@ -23,8 +26,10 @@ test_that("list_volume_records returns valid record structure", {
   # Check that record_ids are positive
   expect_true(all(result$record_id > 0))
 
-  # Check that record_volume matches requested volume
-  expect_true(all(result$record_volume == 1777))
+  # record_volume_name / linked provenance / default sessions (core RecordSerializer)
+  expect_true(is.character(result$record_volume_name))
+  expect_true(is.list(result$record_default_sessions))
+  expect_true(is.character(result$record_source_kind))
 })
 
 test_that("list_volume_records returns NULL for non-existent volume", {
@@ -118,7 +123,7 @@ test_that("list_volume_records includes age fields", {
 
   # Check that age fields exist
   age_fields <- c("age_years", "age_months", "age_days", "age_total_days",
-                  "age_formatted", "age_is_estimated", "age_is_blurred")
+                  "age_formatted", "age_is_partial", "age_is_blurred")
   expect_true(all(age_fields %in% names(result)))
 })
 
@@ -151,7 +156,9 @@ test_that("list_volume_records returns for different volumes", {
   expect_s3_class(result1, "tbl_df")
   expect_s3_class(result2, "tbl_df")
 
-  # Records should have different volume IDs
-  expect_true(all(result1$record_volume == 1777))
-  expect_true(all(result2$record_volume == 2))
+  # Owning-volume ids may differ from requested vol_id when volumes expose linked records
+  expect_true(all(is.finite(result1$record_volume)))
+  expect_true(all(is.finite(result2$record_volume)))
+  expect_gt(length(unique(result1$record_id)), 0)
+  expect_gt(length(unique(result2$record_id)), 0)
 })

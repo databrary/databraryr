@@ -17,7 +17,10 @@ test_that("create_volume_record creates a record with valid parameters", {
   }
 
   expect_type(result, "list")
-  expect_named(result, c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age"))
+  expect_named(result, c(
+    "record_id", "record_volume", "record_volume_name", "record_category_id",
+    "measures", "birthday", "age", "default_sessions", "record_source_kind"
+  ))
   expect_equal(as.integer(result$record_volume), 1777L)
   expect_equal(result$record_category_id, 6)
   expect_true(is.numeric(result$record_id) || is.integer(result$record_id))

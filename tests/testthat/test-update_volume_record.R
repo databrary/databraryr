@@ -27,7 +27,10 @@ test_that("update_volume_record updates an existing record", {
   skip_if_null_response(update_result, "update_volume_record")
 
   expect_type(update_result, "list")
-  expect_named(update_result, c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age"))
+  expect_named(update_result, c(
+    "record_id", "record_volume", "record_volume_name", "record_category_id",
+    "measures", "birthday", "age", "default_sessions", "record_source_kind"
+  ))
   expect_equal(update_result$record_id, record_id)
   expect_true(!is.null(update_result$measures))
 })

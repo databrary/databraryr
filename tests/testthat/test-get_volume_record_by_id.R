@@ -13,9 +13,14 @@ test_that("get_volume_record_by_id retrieves valid record", {
     skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     expect_type(result, "list")
-    expect_named(result, c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age"))
+    expect_named(result, c(
+      "record_id", "record_volume", "record_volume_name", "record_category_id",
+      "measures", "birthday", "age", "default_sessions", "record_source_kind"
+    ))
     expect_equal(result$record_id, test_record_id)
-    expect_equal(result$record_volume, 1777)
+    # record_volume is the owning volume id; linked records may differ from requested vol_id
+    row <- match(test_record_id, records$record_id)
+    expect_equal(result$record_volume, records$record_volume[row])
     expect_true(is.numeric(result$record_category_id) || is.integer(result$record_category_id))
   }
 })
@@ -124,19 +129,25 @@ test_that("get_volume_record_by_id result structure is consistent", {
     skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
     # Check that all expected fields exist
-    expect_true(all(c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age") %in% names(result)))
+    expect_true(all(c(
+      "record_id", "record_volume", "record_volume_name", "record_category_id",
+      "measures", "birthday", "age", "default_sessions", "record_source_kind"
+    ) %in% names(result)))
 
     # Check field types
     expect_true(is.numeric(result$record_id) || is.integer(result$record_id))
     expect_true(is.numeric(result$record_volume) || is.integer(result$record_volume))
+    expect_true(is.character(result$record_volume_name))
     expect_true(is.numeric(result$record_category_id) || is.integer(result$record_category_id))
     expect_true(is.list(result$measures) || is.null(result$measures))
+    expect_true(is.list(result$default_sessions))
 
     # Check that record_id matches the requested ID
     expect_equal(result$record_id, test_record_id)
 
-    # Check that record_volume matches requested volume
-    expect_equal(result$record_volume, 1777)
+    # Owning volume may differ from requested vol_id when the list includes linked records
+    row <- match(test_record_id, records$record_id)
+    expect_equal(result$record_volume, records$record_volume[row])
   }
 })
 
@@ -152,7 +163,7 @@ test_that("get_volume_record_by_id handles age structure correctly", {
     # If age exists, check its structure
     if (!is.null(result$age)) {
       expect_type(result$age, "list")
-      expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_estimated", "is_blurred")
+      expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_partial", "is_blurred")
       expect_true(all(expected_fields %in% names(result$age)))
     }
   }
@@ -219,8 +230,11 @@ test_that("get_volume_record_by_id returns complete structure with all fields", 
     result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
     skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
 
-    # Record should have all expected fields
-    expect_length(result, 6)
-    expect_named(result, c("record_id", "record_volume", "record_category_id", "measures", "birthday", "age"))
+    # Record should have all expected fields (parity with RecordSerializer read-only output)
+    expect_length(result, 9)
+    expect_named(result, c(
+      "record_id", "record_volume", "record_volume_name", "record_category_id",
+      "measures", "birthday", "age", "default_sessions", "record_source_kind"
+    ))
   }
 })

@@ -26,7 +26,7 @@ Required; resolves to the category's name metric from volume configuration.}
 \item{measures}{Optional named list mapping additional metric IDs (as strings)
 to values. Values can be strings (for text metrics), numbers (for numeric
 metrics), or lists with \code{year}, \code{month}, \code{day},
-\code{is_estimated} fields (for date metrics).}
+optional \code{month} and \code{day} fields (for date metrics).}
 
 \item{participant}{Optional list for participant records containing
 \code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
@@ -38,9 +38,8 @@ provide both \code{birthday} and \code{age}.}
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
-A list with the created record's metadata including id, volume,
-category_id, measures, birthday (if participant), and age (if participant),
-or \code{NULL} if creation fails.
+Same shape as \code{\link{get_volume_record_by_id}}, or \code{NULL}
+if creation fails.
 }
 \description{
 Create a new record in a Databrary volume. Records contain

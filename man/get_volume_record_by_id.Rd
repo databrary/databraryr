@@ -21,9 +21,12 @@ get_volume_record_by_id(
 \item{rq}{An \code{httr2} request object. Defaults to \code{NULL}.}
 }
 \value{
-A list with the record's metadata including id, volume, category_id,
-measures, birthday, and age information, or \code{NULL} if the record is not
-found or inaccessible.
+A list aligned with the API record payload: \code{record_id}, \code{record_volume},
+\code{record_volume_name}, \code{record_category_id}, \code{measures}, \code{birthday}, \code{age},
+\code{default_sessions} (session ids/names where this record is a default),
+\code{record_source_kind} (linked-content provenance, e.g. \code{native},
+\code{source_linked_file}). \code{record_volume} may differ from \code{vol_id} for linked
+records. Returns \code{NULL} if the record is not found or inaccessible.
 }
 \description{
 Retrieve detailed information about a specific record

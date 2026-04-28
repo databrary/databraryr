@@ -14,7 +14,7 @@ NULL
 #' @param metric_id Numeric metric identifier. Must be a positive integer.
 #' @param value The measure value. Can be a string (for text metrics), a number
 #'   (for numeric metrics), or a list with \code{year}, \code{month}, \code{day},
-#'   \code{is_estimated} fields (for date metrics).
+#'   optional \code{month} and \code{day} fields (for date metrics).
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #'
 #' @return The measure data on success, or \code{NULL} if the operation fails.
@@ -45,7 +45,7 @@ NULL
 #'   vol_id = 1,
 #'   record_id = 123,
 #'   metric_id = 4,
-#'   value = list(year = 2020, month = 3, day = 15, is_estimated = FALSE)
+#'   value = list(year = 2020, month = 3, day = 15)
 #' )
 #' }
 #' }
