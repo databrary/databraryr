@@ -340,6 +340,53 @@ perform_api_patch <- function(path,
 }
 
 #' @noRd
+# TODO: verify behavior against the live API. Mirrors `perform_api_patch`,
+# but no existing wrapper currently issues PUT, so this helper is unexercised.
+perform_api_put <- function(path,
+                            body = list(),
+                            rq = NULL,
+                            vb = FALSE,
+                            normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "PUT")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("PUT request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
 perform_api_delete <- function(path,
                                rq = NULL,
                                vb = FALSE) {
