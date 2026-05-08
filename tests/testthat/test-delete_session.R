@@ -1,20 +1,9 @@
 # delete_session() -------------------------------------------------------------
 login_test_account()
 
-# Internal helper: create a session directly via the API for roundtrip tests.
-# Not using create_session() yet to keep this block self-contained; switch
-# once create_session() lands.
-create_session_for_test <- function(vol_id = 1777, name = "delete_session test") {
-  databraryr:::perform_api_post(
-    path = sprintf(databraryr:::API_VOLUME_SESSIONS, vol_id),
-    body = list(name = name),
-    vb = FALSE
-  )
-}
-
 test_that("delete_session deletes an existing session", {
-  created <- create_session_for_test(name = "delete_session happy path")
-  skip_if_null_response(created, "create session for delete_session happy path")
+  created <- create_session(vol_id = 1777, name = "delete_session happy path", vb = FALSE)
+  skip_if_null_response(created, "create_session for delete_session happy path")
 
   session_id <- created$id
   result <- delete_session(vol_id = 1777, session_id = session_id, vb = FALSE)
@@ -30,15 +19,19 @@ test_that("delete_session returns FALSE for non-existent session", {
 })
 
 test_that("delete_session works with verbose mode", {
-  created <- create_session_for_test(name = "delete_session vb")
-  skip_if_null_response(created, "create session for delete_session vb")
+  created <- create_session(vol_id = 1777, name = "delete_session vb", vb = FALSE)
+  skip_if_null_response(created, "create_session for delete_session vb")
 
   expect_true(delete_session(vol_id = 1777, session_id = created$id, vb = TRUE))
 })
 
 test_that("delete_session works with custom request object", {
-  created <- create_session_for_test(name = "delete_session custom rq")
-  skip_if_null_response(created, "create session for delete_session custom rq")
+  created <- create_session(
+    vol_id = 1777,
+    name = "delete_session custom rq",
+    vb = FALSE
+  )
+  skip_if_null_response(created, "create_session for delete_session custom rq")
 
   custom_rq <- databraryr::make_default_request()
   expect_true(
