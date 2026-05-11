@@ -61,6 +61,10 @@ API_TAG_DETAIL <- "/tags/%s/"
 API_CATEGORIES <- "/categories/"
 API_CATEGORY_DETAIL <- "/categories/%s/"
 API_VOLUME_CATEGORIES <- "/volumes/%s/categories/"
+API_UPLOADS_INITIATE <- "/uploads/initiate/"
+API_UPLOADS_STATUS <- "/uploads/%s/status/"
+API_UPLOADS_COMPLETE_MULTIPART <- "/uploads/complete-multipart/"
+API_UPLOADS_ABORT_MULTIPART <- "/uploads/abort-multipart/"
 
 RETRY_LIMIT <- 3
 RETRY_WAIT_TIME <- 1 # seconds
