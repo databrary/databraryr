@@ -32,7 +32,7 @@ NULL
 #' }
 #' }
 #' @export
-check_duplicate_files_in_session <- function(
+check_duplicate_files_in_session <- function( # nolint: object_length_linter.
   vol_id = 1,
   session_id,
   filenames,

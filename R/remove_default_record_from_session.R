@@ -28,7 +28,7 @@ NULL
 #' }
 #' }
 #' @export
-remove_default_record_from_session <- function(
+remove_default_record_from_session <- function( # nolint: object_length_linter.
   vol_id = 1,
   session_id,
   record_id,
