@@ -163,7 +163,7 @@ test_that("get_volume_record_by_id handles age structure correctly", {
     # If age exists, check its structure
     if (!is.null(result$age)) {
       expect_type(result$age, "list")
-      expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_partial", "is_blurred")
+      expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_estimated", "is_blurred")
       expect_true(all(expected_fields %in% names(result$age)))
     }
   }
