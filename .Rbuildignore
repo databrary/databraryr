@@ -15,3 +15,6 @@
 ^CRAN-SUBMISSION$
 ^README.Rmd$
 ^\.Renviron\.stg$
+^\.Renviron$
+^\.vscode$
+^\.Rprofile$

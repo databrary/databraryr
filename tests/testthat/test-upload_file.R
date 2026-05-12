@@ -77,7 +77,8 @@ test_that("upload_file infers filename and content_type", {
 # Internal helpers -------------------------------------------------------------
 
 test_that("read_file_chunk reads a byte range", {
-  tmp <- withr::local_tempfile()
+  tmp <- tempfile()
+  on.exit(unlink(tmp), add = TRUE)
   writeBin(as.raw(0:255), tmp)
 
   expect_equal(databraryr:::read_file_chunk(tmp, 0, 4), as.raw(0:3))
