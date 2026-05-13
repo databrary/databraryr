@@ -1,18 +1,9 @@
 # update_session() -------------------------------------------------------------
 login_test_account()
 
-new_session_id <- function(name = "update_session test") {
-  created <- create_session(vol_id = 1777, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
 test_that("update_session replaces name via PUT", {
-  sid <- new_session_id("update_session original")
+  sid <- make_test_session("update_session original")
   skip_if_null_response(sid, "create_session for update_session name test")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- update_session(
     vol_id = 1777,
@@ -28,9 +19,8 @@ test_that("update_session replaces name via PUT", {
 })
 
 test_that("update_session replaces source_date with a Date object", {
-  sid <- new_session_id("update_session source_date Date")
+  sid <- make_test_session("update_session source_date Date")
   skip_if_null_response(sid, "create_session for update_session source_date Date")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- update_session(
     vol_id = 1777,
@@ -54,9 +44,8 @@ test_that("update_session returns NULL for non-existent session", {
 })
 
 test_that("update_session works with verbose mode", {
-  sid <- new_session_id("update_session vb")
+  sid <- make_test_session("update_session vb")
   skip_if_null_response(sid, "create_session for update_session vb")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- update_session(
     vol_id = 1777,
@@ -69,9 +58,8 @@ test_that("update_session works with verbose mode", {
 })
 
 test_that("update_session works with custom request object", {
-  sid <- new_session_id("update_session custom rq")
+  sid <- make_test_session("update_session custom rq")
   skip_if_null_response(sid, "create_session for update_session custom rq")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   custom_rq <- databraryr::make_default_request()
   result <- update_session(
