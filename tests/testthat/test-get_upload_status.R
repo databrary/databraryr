@@ -1,8 +1,6 @@
 # get_upload_status() ----------------------------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-
 test_that("get_upload_status requires exactly one identifier", {
   expect_error(get_upload_status())
   expect_error(get_upload_status(
@@ -27,19 +25,13 @@ test_that("get_upload_status returns NULL for unknown guid", {
 })
 
 test_that("get_upload_status returns a status string for a real upload", {
-  session <- create_session(
-    vol_id = TEST_VOL, name = "get_upload_status test", vb = FALSE
-  )
-  skip_if_null_response(session, "create_session for get_upload_status")
-  on.exit(
-    delete_session(vol_id = TEST_VOL, session_id = session$id, vb = FALSE),
-    add = TRUE
-  )
+  sid <- make_test_session("get_upload_status test")
+  skip_if_null_response(sid, "create_session for get_upload_status")
 
   init <- initiate_upload(
     filename = "status_probe.mp4",
     destination_type = "session",
-    object_id = session$id,
+    object_id = sid,
     file_size = 1024L,
     content_type = "video/mp4",
     vb = FALSE

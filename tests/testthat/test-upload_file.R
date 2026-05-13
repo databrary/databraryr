@@ -1,8 +1,6 @@
 # upload_file() ----------------------------------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-
 test_that("upload_file rejects missing or empty path", {
   expect_error(upload_file(
     path = "/nope/does/not/exist", destination_type = "session", object_id = 1
@@ -22,14 +20,8 @@ test_that("upload_file rejects empty file", {
 })
 
 test_that("upload_file uploads a small file end-to-end", {
-  session <- create_session(
-    vol_id = TEST_VOL, name = "upload_file test", vb = FALSE
-  )
-  skip_if_null_response(session, "create_session for upload_file")
-  on.exit(
-    delete_session(vol_id = TEST_VOL, session_id = session$id, vb = FALSE),
-    add = TRUE
-  )
+  sid <- make_test_session("upload_file test")
+  skip_if_null_response(sid, "create_session for upload_file")
 
   tmp <- tempfile(fileext = ".bin")
   on.exit(unlink(tmp), add = TRUE)
@@ -38,7 +30,7 @@ test_that("upload_file uploads a small file end-to-end", {
   result <- upload_file(
     path = tmp,
     destination_type = "session",
-    object_id = session$id,
+    object_id = sid,
     content_type = "application/octet-stream",
     vb = FALSE
   )
@@ -50,14 +42,8 @@ test_that("upload_file uploads a small file end-to-end", {
 })
 
 test_that("upload_file infers filename and content_type", {
-  session <- create_session(
-    vol_id = TEST_VOL, name = "upload_file inference test", vb = FALSE
-  )
-  skip_if_null_response(session, "create_session for upload_file inference")
-  on.exit(
-    delete_session(vol_id = TEST_VOL, session_id = session$id, vb = FALSE),
-    add = TRUE
-  )
+  sid <- make_test_session("upload_file inference test")
+  skip_if_null_response(sid, "create_session for upload_file inference")
 
   tmp <- tempfile(fileext = ".mp4")
   on.exit(unlink(tmp), add = TRUE)
@@ -66,7 +52,7 @@ test_that("upload_file infers filename and content_type", {
   result <- upload_file(
     path = tmp,
     destination_type = "session",
-    object_id = session$id,
+    object_id = sid,
     vb = FALSE
   )
   skip_if_null_response(result, "upload_file inference")

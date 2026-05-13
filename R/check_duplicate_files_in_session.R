@@ -17,7 +17,9 @@ NULL
 #'
 #' @return A \code{tibble} with columns \code{filename} (character) and
 #'   \code{exists} (logical), one row per input filename and in the same
-#'   order. Returns \code{NULL} if the request fails.
+#'   order. Returns \code{NULL} if the request fails. The server answers
+#'   successfully even when \code{session_id} does not exist: every file is
+#'   reported as \code{exists = FALSE} (no rows match that session).
 #'
 #' @inheritParams options_params
 #'

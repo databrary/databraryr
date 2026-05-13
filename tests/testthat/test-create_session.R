@@ -5,16 +5,23 @@ test_that("create_session creates a session with name only", {
   result <- create_session(vol_id = 1777, name = "Test session", vb = FALSE)
   skip_if_null_response(result, "create_session(vol_id = 1777, name = 'Test session')")
 
-  if (!is.null(result$id)) {
-    delete_session(vol_id = 1777, session_id = result$id, vb = FALSE)
-  }
+  on.exit(delete_session(vol_id = 1777, session_id = result$id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$id))
   expect_true(is.numeric(result$id) || is.integer(result$id))
   expect_true(result$id > 0)
-  expect_equal(as.integer(result$volume), 1777L)
   expect_equal(result$name, "Test session")
+  # POST create returns SessionWriteSerializer data (no nested `volume`); confirm volume via GET.
+  fetched <- get_session_by_id(session_id = result$id, vol_id = 1777, vb = FALSE)
+  skip_if_null_response(fetched, "get_session_by_id after create_session")
+  v <- fetched$volume
+  vol_id_actual <- if (is.list(v) && !is.null(v$id)) {
+    as.integer(v$id)
+  } else {
+    as.integer(v)
+  }
+  expect_equal(vol_id_actual, 1777L)
 })
 
 test_that("create_session accepts a Date source_date", {
@@ -26,9 +33,7 @@ test_that("create_session accepts a Date source_date", {
   )
   skip_if_null_response(result, "create_session with Date source_date")
 
-  if (!is.null(result$id)) {
-    delete_session(vol_id = 1777, session_id = result$id, vb = FALSE)
-  }
+  on.exit(delete_session(vol_id = 1777, session_id = result$id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$id))
@@ -43,9 +48,7 @@ test_that("create_session accepts an ISO string source_date", {
   )
   skip_if_null_response(result, "create_session with ISO source_date")
 
-  if (!is.null(result$id)) {
-    delete_session(vol_id = 1777, session_id = result$id, vb = FALSE)
-  }
+  on.exit(delete_session(vol_id = 1777, session_id = result$id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
 })
@@ -58,9 +61,7 @@ test_that("create_session works with verbose mode", {
   )
   skip_if_null_response(result, "create_session with vb = TRUE")
 
-  if (!is.null(result$id)) {
-    delete_session(vol_id = 1777, session_id = result$id, vb = FALSE)
-  }
+  on.exit(delete_session(vol_id = 1777, session_id = result$id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
 })
@@ -75,9 +76,7 @@ test_that("create_session works with custom request object", {
   )
   skip_if_null_response(result, "create_session with custom_rq")
 
-  if (!is.null(result$id)) {
-    delete_session(vol_id = 1777, session_id = result$id, vb = FALSE)
-  }
+  on.exit(delete_session(vol_id = 1777, session_id = result$id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
 })
