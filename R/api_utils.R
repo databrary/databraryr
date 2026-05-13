@@ -432,7 +432,7 @@ record_as_client_list <- function(record) {
       days = record$age$days,
       total_days = record$age$total_days,
       formatted_value = record$age$formatted_value,
-      is_partial = record$age$is_partial,
+      is_estimated = record$age$is_estimated,
       is_blurred = record$age$is_blurred
     )
   }

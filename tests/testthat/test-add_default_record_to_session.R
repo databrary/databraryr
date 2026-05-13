@@ -1,45 +1,15 @@
 # add_default_record_to_session() ----------------------------------------------
 login_test_account()
 
-# Sandbox volume 1777, category 6 ("task") is used elsewhere for record tests.
-TEST_VOL <- 1777
-TEST_CATEGORY <- 6
-
-new_session_id <- function(name = "add_default_record test") {
-  created <- create_session(vol_id = TEST_VOL, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
-new_record_id <- function(name = "add_default_record test record") {
-  created <- create_volume_record(
-    vol_id = TEST_VOL,
-    category_id = TEST_CATEGORY,
-    name = name,
-    vb = FALSE
-  )
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$record_id
-}
-
 test_that("add_default_record_to_session attaches a record", {
-  sid <- new_session_id("add_default_record happy path")
+  sid <- make_test_session("add_default_record happy path")
   skip_if_null_response(sid, "create_session for add_default_record happy path")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
-  rid <- new_record_id("add_default_record happy path record")
+  rid <- make_test_record("add_default_record happy path record")
   skip_if_null_response(rid, "create_volume_record for add_default_record happy path")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   result <- add_default_record_to_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     record_id = rid,
     vb = FALSE
@@ -48,7 +18,7 @@ test_that("add_default_record_to_session attaches a record", {
 
   # Verify it shows up among the session's default_records
   session <- get_session_by_id(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     vb = FALSE
   )
@@ -61,13 +31,12 @@ test_that("add_default_record_to_session attaches a record", {
 })
 
 test_that("add_default_record_to_session returns FALSE for non-existent record", {
-  sid <- new_session_id("add_default_record non-existent record")
+  sid <- make_test_session("add_default_record non-existent record")
   skip_if_null_response(sid, "create_session for non-existent record test")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   expect_false(
     add_default_record_to_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = sid,
       record_id = 999999999,
       vb = FALSE
@@ -76,16 +45,12 @@ test_that("add_default_record_to_session returns FALSE for non-existent record",
 })
 
 test_that("add_default_record_to_session returns FALSE for non-existent session", {
-  rid <- new_record_id("add_default_record non-existent session record")
+  rid <- make_test_record("add_default_record non-existent session record")
   skip_if_null_response(rid, "create_volume_record for non-existent session test")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   expect_false(
     add_default_record_to_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = 999999999,
       record_id = rid,
       vb = FALSE
@@ -94,20 +59,15 @@ test_that("add_default_record_to_session returns FALSE for non-existent session"
 })
 
 test_that("add_default_record_to_session works with verbose mode", {
-  sid <- new_session_id("add_default_record vb")
+  sid <- make_test_session("add_default_record vb")
   skip_if_null_response(sid, "create_session for add_default_record vb")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
-  rid <- new_record_id("add_default_record vb record")
+  rid <- make_test_record("add_default_record vb record")
   skip_if_null_response(rid, "create_volume_record for add_default_record vb")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   expect_true(
     add_default_record_to_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = sid,
       record_id = rid,
       vb = TRUE
@@ -116,21 +76,16 @@ test_that("add_default_record_to_session works with verbose mode", {
 })
 
 test_that("add_default_record_to_session works with custom request object", {
-  sid <- new_session_id("add_default_record custom rq")
+  sid <- make_test_session("add_default_record custom rq")
   skip_if_null_response(sid, "create_session for add_default_record custom rq")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
-  rid <- new_record_id("add_default_record custom rq record")
+  rid <- make_test_record("add_default_record custom rq record")
   skip_if_null_response(rid, "create_volume_record for add_default_record custom rq")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   custom_rq <- databraryr::make_default_request()
   expect_true(
     add_default_record_to_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = sid,
       record_id = rid,
       rq = custom_rq,

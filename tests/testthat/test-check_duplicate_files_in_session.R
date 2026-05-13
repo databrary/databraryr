@@ -1,24 +1,13 @@
 # check_duplicate_files_in_session() -------------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-
-new_session_id <- function(name = "check_duplicate_files test") {
-  created <- create_session(vol_id = TEST_VOL, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
 test_that("check_duplicate_files_in_session returns a tibble for an empty session", {
-  sid <- new_session_id("check_duplicate_files happy path")
+  sid <- make_test_session("check_duplicate_files happy path")
   skip_if_null_response(sid, "create_session for check_duplicate_files happy path")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   filenames <- c("nonexistent_a.mp4", "nonexistent_b.mp4")
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     filenames = filenames,
     vb = FALSE
@@ -34,13 +23,12 @@ test_that("check_duplicate_files_in_session returns a tibble for an empty sessio
 })
 
 test_that("check_duplicate_files_in_session preserves input order", {
-  sid <- new_session_id("check_duplicate_files order")
+  sid <- make_test_session("check_duplicate_files order")
   skip_if_null_response(sid, "create_session for order test")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   filenames <- c("z.mp4", "a.mp4", "m.mp4")
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     filenames = filenames,
     vb = FALSE
@@ -51,12 +39,11 @@ test_that("check_duplicate_files_in_session preserves input order", {
 })
 
 test_that("check_duplicate_files_in_session works with a single filename", {
-  sid <- new_session_id("check_duplicate_files single")
+  sid <- make_test_session("check_duplicate_files single")
   skip_if_null_response(sid, "create_session for single filename test")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     filenames = "only.mp4",
     vb = FALSE
@@ -68,23 +55,26 @@ test_that("check_duplicate_files_in_session works with a single filename", {
   expect_false(result$exists)
 })
 
-test_that("check_duplicate_files_in_session returns NULL for non-existent session", {
+test_that("check_duplicate_files_in_session treats missing session like empty (all not found)", {
+  # Backend does not require the session to exist; it queries files by session_id only.
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = 999999999,
     filenames = c("a.mp4"),
     vb = FALSE
   )
-  expect_null(result)
+  skip_if_null_response(result, "check_duplicate_files_in_session(non-existent session)")
+  expect_s3_class(result, "tbl_df")
+  expect_equal(result$filename, "a.mp4")
+  expect_false(result$exists)
 })
 
 test_that("check_duplicate_files_in_session works with verbose mode", {
-  sid <- new_session_id("check_duplicate_files vb")
+  sid <- make_test_session("check_duplicate_files vb")
   skip_if_null_response(sid, "create_session for check_duplicate_files vb")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     filenames = c("vb.mp4"),
     vb = TRUE
@@ -94,13 +84,12 @@ test_that("check_duplicate_files_in_session works with verbose mode", {
 })
 
 test_that("check_duplicate_files_in_session works with custom request object", {
-  sid <- new_session_id("check_duplicate_files custom rq")
+  sid <- make_test_session("check_duplicate_files custom rq")
   skip_if_null_response(sid, "create_session for check_duplicate_files custom rq")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   custom_rq <- databraryr::make_default_request()
   result <- check_duplicate_files_in_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     filenames = c("custom.mp4"),
     rq = custom_rq,

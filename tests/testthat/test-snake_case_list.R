@@ -67,7 +67,7 @@ test_that("snake_case_list handles deeply nested record with age (QA repro)", {
       days = 1948,
       totalDays = 1948,
       formattedValue = "5 years, 4 months",
-      isPartial = FALSE,
+      isEstimated = FALSE,
       isBlurred = FALSE
     )
   )
@@ -76,7 +76,7 @@ test_that("snake_case_list handles deeply nested record with age (QA repro)", {
   expect_equal(result$category_id, 1)
   expect_equal(names(result$age), c(
     "years", "months", "days", "total_days",
-    "formatted_value", "is_partial", "is_blurred"
+    "formatted_value", "is_estimated", "is_blurred"
   ))
   expect_equal(result$age$total_days, 1948)
   expect_equal(names(result$birthday), c("metric_id", "value"))

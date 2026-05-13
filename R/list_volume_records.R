@@ -17,7 +17,7 @@ empty_volume_records_tibble <- function() {
     age_days = integer(0),
     age_total_days = integer(0),
     age_formatted = character(0),
-    age_is_partial = logical(0),
+    age_is_estimated = logical(0),
     age_is_blurred = logical(0),
     record_default_sessions = vector("list", 0),
     record_source_kind = character(0)
@@ -128,7 +128,7 @@ list_volume_records <- function(vol_id = 1,
     age_days <- NA_integer_
     age_total_days <- NA_integer_
     age_formatted <- NA_character_
-    age_is_partial <- NA
+    age_is_estimated <- NA
     age_is_blurred <- NA
 
     if (!is.null(record$age)) {
@@ -157,8 +157,8 @@ list_volume_records <- function(vol_id = 1,
       } else {
         NA_character_
       }
-      age_is_partial <- if (!is.null(record$age$is_partial)) {
-        record$age$is_partial
+      age_is_estimated <- if (!is.null(record$age$is_estimated)) {
+        record$age$is_estimated
       } else {
         NA
       }
@@ -199,7 +199,7 @@ list_volume_records <- function(vol_id = 1,
       age_days = age_days,
       age_total_days = age_total_days,
       age_formatted = age_formatted,
-      age_is_partial = age_is_partial,
+      age_is_estimated = age_is_estimated,
       age_is_blurred = age_is_blurred,
       record_default_sessions = list(ds_cell),
       record_source_kind = if (is.null(record$record_source_kind)) {

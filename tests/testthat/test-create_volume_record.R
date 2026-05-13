@@ -11,10 +11,7 @@ test_that("create_volume_record creates a record with valid parameters", {
   )
   skip_if_null_response(result, "create_volume_record(vol_id = 1777, category_id = 6, name = 'Test condition')")
 
-  # Clean up
-  if (!is.null(result$record_id)) {
-    delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE)
-  }
+  on.exit(delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_named(result, c(
@@ -37,10 +34,7 @@ test_that("create_volume_record creates a record with measures", {
   )
   skip_if_null_response(result, "create_volume_record with name")
 
-  # Clean up
-  if (!is.null(result$record_id)) {
-    delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE)
-  }
+  on.exit(delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$measures))
@@ -58,10 +52,7 @@ test_that("create_volume_record creates a record with name and additional measur
   )
   skip_if_null_response(result, "create_volume_record with name and measures")
 
-  # Clean up
-  if (!is.null(result$record_id)) {
-    delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE)
-  }
+  on.exit(delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$measures))
@@ -94,10 +85,7 @@ test_that("create_volume_record works with verbose mode", {
   )
   skip_if_null_response(result, "create_volume_record with vb = TRUE")
 
-  # Clean up
-  if (!is.null(result$record_id)) {
-    delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE)
-  }
+  on.exit(delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$record_id))
@@ -180,10 +168,7 @@ test_that("create_volume_record works with custom request object", {
   )
   skip_if_null_response(result, "create_volume_record with custom_rq")
 
-  # Clean up
-  if (!is.null(result$record_id)) {
-    delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE)
-  }
+  on.exit(delete_volume_record(vol_id = 1777, record_id = result$record_id, vb = FALSE), add = TRUE)
 
   expect_type(result, "list")
   expect_true(!is.null(result$record_id))

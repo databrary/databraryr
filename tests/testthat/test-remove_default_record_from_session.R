@@ -1,66 +1,41 @@
 # remove_default_record_from_session() -----------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-TEST_CATEGORY <- 6
-
-new_session_id <- function(name = "remove_default_record test") {
-  created <- create_session(vol_id = TEST_VOL, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
-new_record_id <- function(name = "remove_default_record test record") {
-  created <- create_volume_record(
-    vol_id = TEST_VOL,
-    category_id = TEST_CATEGORY,
-    name = name,
-    vb = FALSE
-  )
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$record_id
-}
-
-# Setup helper: create session + record + attach the record as a default.
+# Create a session + record with the record attached as a default.
+# Deferred cleanup is registered on the caller's environment; must be invoked
+# from test_that().
 setup_attached <- function(name) {
-  sid <- new_session_id(paste0(name, " session"))
-  if (is.null(sid)) return(NULL)
-  rid <- new_record_id(paste0(name, " record"))
-  if (is.null(rid)) {
-    delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE)
+  envir <- parent.frame()
+  sid <- make_test_session(paste0(name, " session"), envir = envir)
+  if (is.null(sid)) {
     return(NULL)
   }
+
+  rid <- make_test_record(paste0(name, " record"), envir = envir)
+  if (is.null(rid)) {
+    return(NULL)
+  }
+
   attached <- add_default_record_to_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = sid,
     record_id = rid,
     vb = FALSE
   )
+
   if (!isTRUE(attached)) {
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE)
-    delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE)
     return(NULL)
   }
+
   list(session_id = sid, record_id = rid)
 }
 
 test_that("remove_default_record_from_session detaches a record", {
   setup <- setup_attached("remove_default_record happy path")
   skip_if_null_response(setup, "setup for remove_default_record happy path")
-  on.exit(
-    {
-      delete_volume_record(vol_id = TEST_VOL, record_id = setup$record_id, vb = FALSE)
-      delete_session(vol_id = TEST_VOL, session_id = setup$session_id, vb = FALSE)
-    },
-    add = TRUE
-  )
 
   result <- remove_default_record_from_session(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = setup$session_id,
     record_id = setup$record_id,
     vb = FALSE
@@ -69,7 +44,7 @@ test_that("remove_default_record_from_session detaches a record", {
 
   # Verify the record is no longer among default_records
   session <- get_session_by_id(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     session_id = setup$session_id,
     vb = FALSE
   )
@@ -82,20 +57,15 @@ test_that("remove_default_record_from_session detaches a record", {
 })
 
 test_that("remove_default_record_from_session returns FALSE for unattached record", {
-  sid <- new_session_id("remove_default_record unattached")
+  sid <- make_test_session("remove_default_record unattached")
   skip_if_null_response(sid, "create_session for unattached test")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
-  rid <- new_record_id("remove_default_record unattached record")
+  rid <- make_test_record("remove_default_record unattached record")
   skip_if_null_response(rid, "create_volume_record for unattached test")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   expect_false(
     remove_default_record_from_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = sid,
       record_id = rid,
       vb = FALSE
@@ -104,13 +74,12 @@ test_that("remove_default_record_from_session returns FALSE for unattached recor
 })
 
 test_that("remove_default_record_from_session returns FALSE for non-existent record", {
-  sid <- new_session_id("remove_default_record non-existent record")
+  sid <- make_test_session("remove_default_record non-existent record")
   skip_if_null_response(sid, "create_session for non-existent record test")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
 
   expect_false(
     remove_default_record_from_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = sid,
       record_id = 999999999,
       vb = FALSE
@@ -119,16 +88,12 @@ test_that("remove_default_record_from_session returns FALSE for non-existent rec
 })
 
 test_that("remove_default_record_from_session returns FALSE for non-existent session", {
-  rid <- new_record_id("remove_default_record non-existent session record")
+  rid <- make_test_record("remove_default_record non-existent session record")
   skip_if_null_response(rid, "create_volume_record for non-existent session test")
-  on.exit(
-    delete_volume_record(vol_id = TEST_VOL, record_id = rid, vb = FALSE),
-    add = TRUE
-  )
 
   expect_false(
     remove_default_record_from_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = 999999999,
       record_id = rid,
       vb = FALSE
@@ -139,17 +104,10 @@ test_that("remove_default_record_from_session returns FALSE for non-existent ses
 test_that("remove_default_record_from_session works with verbose mode", {
   setup <- setup_attached("remove_default_record vb")
   skip_if_null_response(setup, "setup for remove_default_record vb")
-  on.exit(
-    {
-      delete_volume_record(vol_id = TEST_VOL, record_id = setup$record_id, vb = FALSE)
-      delete_session(vol_id = TEST_VOL, session_id = setup$session_id, vb = FALSE)
-    },
-    add = TRUE
-  )
 
   expect_true(
     remove_default_record_from_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = setup$session_id,
       record_id = setup$record_id,
       vb = TRUE
@@ -160,18 +118,11 @@ test_that("remove_default_record_from_session works with verbose mode", {
 test_that("remove_default_record_from_session works with custom request object", {
   setup <- setup_attached("remove_default_record custom rq")
   skip_if_null_response(setup, "setup for remove_default_record custom rq")
-  on.exit(
-    {
-      delete_volume_record(vol_id = TEST_VOL, record_id = setup$record_id, vb = FALSE)
-      delete_session(vol_id = TEST_VOL, session_id = setup$session_id, vb = FALSE)
-    },
-    add = TRUE
-  )
 
   custom_rq <- databraryr::make_default_request()
   expect_true(
     remove_default_record_from_session(
-      vol_id = TEST_VOL,
+      vol_id = TEST_VOL_ID,
       session_id = setup$session_id,
       record_id = setup$record_id,
       rq = custom_rq,
