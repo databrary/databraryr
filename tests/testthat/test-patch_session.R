@@ -1,19 +1,9 @@
 # patch_session() --------------------------------------------------------------
 login_test_account()
 
-# Roundtrip helper: create a fresh session for each test, return its id.
-new_session_id <- function(name = "patch_session test") {
-  created <- create_session(vol_id = 1777, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
 test_that("patch_session updates name", {
-  sid <- new_session_id("patch_session original")
+  sid <- make_test_session("patch_session original")
   skip_if_null_response(sid, "create_session for patch_session name test")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- patch_session(
     vol_id = 1777,
@@ -29,9 +19,8 @@ test_that("patch_session updates name", {
 })
 
 test_that("patch_session updates source_date with a Date object", {
-  sid <- new_session_id("patch_session source_date Date")
+  sid <- make_test_session("patch_session source_date Date")
   skip_if_null_response(sid, "create_session for patch_session source_date Date")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- patch_session(
     vol_id = 1777,
@@ -58,9 +47,8 @@ test_that("patch_session returns NULL for non-existent session", {
 })
 
 test_that("patch_session works with verbose mode", {
-  sid <- new_session_id("patch_session vb")
+  sid <- make_test_session("patch_session vb")
   skip_if_null_response(sid, "create_session for patch_session vb")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   result <- patch_session(
     vol_id = 1777,
@@ -73,9 +61,8 @@ test_that("patch_session works with verbose mode", {
 })
 
 test_that("patch_session works with custom request object", {
-  sid <- new_session_id("patch_session custom rq")
+  sid <- make_test_session("patch_session custom rq")
   skip_if_null_response(sid, "create_session for patch_session custom rq")
-  on.exit(delete_session(vol_id = 1777, session_id = sid, vb = FALSE), add = TRUE)
 
   custom_rq <- databraryr::make_default_request()
   result <- patch_session(

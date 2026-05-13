@@ -123,7 +123,7 @@ test_that("list_volume_records includes age fields", {
 
   # Check that age fields exist
   age_fields <- c("age_years", "age_months", "age_days", "age_total_days",
-                  "age_formatted", "age_is_partial", "age_is_blurred")
+                  "age_formatted", "age_is_estimated", "age_is_blurred")
   expect_true(all(age_fields %in% names(result)))
 })
 

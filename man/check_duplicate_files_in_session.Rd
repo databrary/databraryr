@@ -27,7 +27,9 @@ at least 1; each element must be a non-empty string.}
 \value{
 A \code{tibble} with columns \code{filename} (character) and
 \code{exists} (logical), one row per input filename and in the same
-order. Returns \code{NULL} if the request fails.
+order. Returns \code{NULL} if the request fails. The server answers
+successfully even when \code{session_id} does not exist: every file is
+reported as \code{exists = FALSE} (no rows match that session).
 }
 \description{
 Ask the server which of the supplied filenames already

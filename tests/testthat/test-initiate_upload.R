@@ -1,14 +1,6 @@
 # initiate_upload() ------------------------------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-
-new_session_id <- function(name = "initiate_upload test") {
-  created <- create_session(vol_id = TEST_VOL, name = name, vb = FALSE)
-  skip_if_null_response(created, "create_session for initiate_upload test")
-  created$id
-}
-
 test_that("initiate_upload validates required args", {
   expect_error(initiate_upload(
     filename = "", destination_type = "session", object_id = 1
@@ -77,8 +69,8 @@ test_that("initiate_upload rejects invalid vb / rq", {
 })
 
 test_that("initiate_upload returns signed url and status_url for a session", {
-  sid <- new_session_id("initiate_upload happy path")
-  on.exit(delete_session(vol_id = TEST_VOL, session_id = sid, vb = FALSE), add = TRUE)
+  sid <- make_test_session("initiate_upload happy path")
+  skip_if_null_response(sid, "create_session for initiate_upload happy path")
 
   result <- initiate_upload(
     filename = "test_clip.mp4",
