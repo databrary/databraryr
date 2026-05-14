@@ -68,14 +68,19 @@ test_that("check_duplicate_files_in_folder works with a single filename", {
   expect_false(result$exists)
 })
 
-test_that("check_duplicate_files_in_folder returns NULL for non-existent folder", {
+test_that("check_duplicate_files_in_folder treats missing folder like empty (all not found)", {
+  # Backend accepts the request and queries by folder_id only; staging returns
+  # a tibble with exists = FALSE when no files match (same idea as sessions).
   result <- check_duplicate_files_in_folder(
     vol_id = TEST_VOL,
     folder_id = 999999999,
     filenames = c("a.mp4"),
     vb = FALSE
   )
-  expect_null(result)
+  skip_if_null_response(result, "check_duplicate_files_in_folder(non-existent folder)")
+  expect_s3_class(result, "tbl_df")
+  expect_equal(result$filename, "a.mp4")
+  expect_false(result$exists)
 })
 
 test_that("check_duplicate_files_in_folder works with verbose mode", {

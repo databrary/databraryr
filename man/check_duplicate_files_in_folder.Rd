@@ -27,7 +27,9 @@ at least 1; each element must be a non-empty string.}
 \value{
 A \code{tibble} with columns \code{filename} (character) and
 \code{exists} (logical), one row per input filename and in the same
-order. Returns \code{NULL} if the request fails.
+order. Returns \code{NULL} if the request fails. Against current staging API,
+a missing \code{folder_id} still yields a successful response with
+\code{exists = FALSE} for each filename (nothing matches that folder).
 }
 \description{
 Ask the server which of the supplied filenames already
