@@ -11,7 +11,9 @@ NULL
 #' `list_folder_assets()` output.
 #'
 #' @param folder_df Data frame describing assets. Must include `vol_id`,
-#'   `folder_id`, `asset_id`, and `asset_name` columns.
+#'   `folder_id`, `asset_id`, and `asset_name` columns. Defaults to the result
+#'   of `list_folder_assets(vol_id = 1)`. Explicit `NULL` triggers the same
+#'   call using the current `vb` and `rq`.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
 #' @param add_folder_subdir Logical. When `TRUE`, creates a subdirectory per
@@ -71,7 +73,7 @@ download_folder_assets_fr_df <-
                               ("httr2_request" %in% class(rq)))
 
     if (is.null(folder_df)) {
-      folder_df <- list_folder_assets(vol_id = 1)
+      folder_df <- list_folder_assets(vol_id = 1, vb = vb, rq = rq)
     }
 
     assertthat::assert_that(is.data.frame(folder_df))

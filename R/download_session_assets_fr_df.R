@@ -11,8 +11,9 @@ NULL
 #' `list_session_assets()` or `list_volume_session_assets()` output.
 #'
 #' @param session_df Data frame describing assets. Must include `vol_id`,
-#'   `session_id`, `asset_id`, and `asset_name` columns. Default is the result
-#'   `download_session_assets_fr_df(session_id = assets, vol_id = 1)`.
+#'   `session_id`, `asset_id`, and `asset_name` columns. Defaults to the result
+#'   of `list_session_assets(session_id = 9224, vol_id = 1)`. Explicit `NULL`
+#'   triggers the same call using the current `vb` and `rq`.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
 #' @param add_session_subdir Logical. When `TRUE`, creates a subdirectory per
@@ -73,7 +74,9 @@ download_session_assets_fr_df <-
 
     if (is.null(session_df)) {
       session_df <- list_session_assets(session_id = 9224,
-                                        vol_id = 1)
+                                        vol_id = 1,
+                                        vb = vb,
+                                        rq = rq)
     }
 
     assertthat::assert_that(is.data.frame(session_df))
