@@ -15,7 +15,7 @@ test_that("get_funder_by_id retrieves valid funder", {
 
 test_that("get_funder_by_id returns NULL for non-existent funder", {
   # Use a very large ID that likely doesn't exist
-  result <- get_funder_by_id(funder_id = 999999, vb = FALSE)
+  result <- get_funder_by_id(funder_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
@@ -44,7 +44,6 @@ test_that("get_funder_by_id rejects invalid funder_id", {
 
   # Decimal/non-integer
   expect_error(get_funder_by_id(funder_id = 1.5))
-  expect_error(get_funder_by_id(funder_id = 2.7))
 
   # NULL
   expect_error(get_funder_by_id(funder_id = NULL))

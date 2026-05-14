@@ -82,22 +82,22 @@ test_that("create_session works with custom request object", {
 })
 
 test_that("create_session returns NULL for non-existent volume", {
-  expect_null(create_session(vol_id = 999999999, name = "Test", vb = FALSE))
+  expect_null(create_session(vol_id = TEST_MISSING_ID, name = "Test", vb = FALSE))
 })
 
 test_that("create_session rejects invalid name", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = ""))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "   "))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = 123))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = c("A", "B")))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = NULL))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = NA))
+  expect_error(create_session(vol_id = 1, name = ""))
+  expect_error(create_session(vol_id = 1, name = "   "))
+  expect_error(create_session(vol_id = 1, name = 123))
+  expect_error(create_session(vol_id = 1, name = c("A", "B")))
+  expect_error(create_session(vol_id = 1, name = NULL))
+  expect_error(create_session(vol_id = 1, name = NA))
 })
 
 test_that("create_session rejects providing both source_date and date", {
   expect_error(
     create_session(
-      vol_id = TEST_VOL_ID,
+      vol_id = 1,
       name = "Test",
       source_date = "2024-03-15",
       date = list(year = 2024, month = 3, day = 15)
@@ -106,12 +106,12 @@ test_that("create_session rejects providing both source_date and date", {
 })
 
 test_that("create_session rejects malformed source_date", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", source_date = "not-a-date"))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", source_date = ""))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", source_date = 123))
+  expect_error(create_session(vol_id = 1, name = "Test", source_date = "not-a-date"))
+  expect_error(create_session(vol_id = 1, name = "Test", source_date = ""))
+  expect_error(create_session(vol_id = 1, name = "Test", source_date = 123))
   expect_error(
     create_session(
-      vol_id = TEST_VOL_ID,
+      vol_id = 1,
       name = "Test",
       source_date = as.Date(c("2024-01-01", "2024-02-01"))
     )
@@ -119,28 +119,28 @@ test_that("create_session rejects malformed source_date", {
 })
 
 test_that("create_session rejects malformed date list", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", date = "2024-03-15"))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", date = list(2024, 3, 15)))
+  expect_error(create_session(vol_id = 1, name = "Test", date = "2024-03-15"))
+  expect_error(create_session(vol_id = 1, name = "Test", date = list(2024, 3, 15)))
 })
 
 test_that("create_session rejects invalid release_level", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", release_level = ""))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", release_level = 1))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", release_level = c("A", "B")))
+  expect_error(create_session(vol_id = 1, name = "Test", release_level = ""))
+  expect_error(create_session(vol_id = 1, name = "Test", release_level = 1))
+  expect_error(create_session(vol_id = 1, name = "Test", release_level = c("A", "B")))
 })
 
 test_that("create_session rejects invalid date_precision", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", date_precision = ""))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", date_precision = 1))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", date_precision = c("FULL", "YEAR")))
+  expect_error(create_session(vol_id = 1, name = "Test", date_precision = ""))
+  expect_error(create_session(vol_id = 1, name = "Test", date_precision = 1))
+  expect_error(create_session(vol_id = 1, name = "Test", date_precision = c("FULL", "YEAR")))
 })
 
 test_that("create_session rejects invalid default_records", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", default_records = "1"))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", default_records = c(1, -2)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", default_records = c(1, 0)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", default_records = c(1.5, 2)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", default_records = integer(0)))
+  expect_error(create_session(vol_id = 1, name = "Test", default_records = "1"))
+  expect_error(create_session(vol_id = 1, name = "Test", default_records = c(1, -2)))
+  expect_error(create_session(vol_id = 1, name = "Test", default_records = c(1, 0)))
+  expect_error(create_session(vol_id = 1, name = "Test", default_records = c(1.5, 2)))
+  expect_error(create_session(vol_id = 1, name = "Test", default_records = integer(0)))
 })
 
 test_that("create_session rejects invalid vol_id", {
@@ -154,17 +154,17 @@ test_that("create_session rejects invalid vol_id", {
 })
 
 test_that("create_session rejects invalid vb parameter", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", vb = -1))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", vb = "a"))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", vb = list(a = 1)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", vb = c(TRUE, FALSE)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", vb = NULL))
+  expect_error(create_session(vol_id = 1, name = "Test", vb = -1))
+  expect_error(create_session(vol_id = 1, name = "Test", vb = "a"))
+  expect_error(create_session(vol_id = 1, name = "Test", vb = list(a = 1)))
+  expect_error(create_session(vol_id = 1, name = "Test", vb = c(TRUE, FALSE)))
+  expect_error(create_session(vol_id = 1, name = "Test", vb = NULL))
 })
 
 test_that("create_session rejects invalid rq parameter", {
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", rq = "a"))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", rq = -1))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", rq = c(2, 3)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", rq = list(a = 1)))
-  expect_error(create_session(vol_id = TEST_VOL_ID, name = "Test", rq = TRUE))
+  expect_error(create_session(vol_id = 1, name = "Test", rq = "a"))
+  expect_error(create_session(vol_id = 1, name = "Test", rq = -1))
+  expect_error(create_session(vol_id = 1, name = "Test", rq = c(2, 3)))
+  expect_error(create_session(vol_id = 1, name = "Test", rq = list(a = 1)))
+  expect_error(create_session(vol_id = 1, name = "Test", rq = TRUE))
 })

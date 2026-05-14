@@ -39,7 +39,7 @@ test_that("patch_folder returns NULL when no fields provided", {
 test_that("patch_folder returns NULL for non-existent folder", {
   result <- patch_folder(
     vol_id = TEST_VOL_ID,
-    folder_id = 999999999,
+    folder_id = TEST_MISSING_ID,
     name = "nope",
     vb = FALSE
   )
@@ -77,22 +77,22 @@ test_that("patch_folder works with custom request object", {
 })
 
 test_that("patch_folder rejects invalid name", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = ""))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "   "))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = 123))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = c("A", "B")))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = ""))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "   "))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = 123))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = c("A", "B")))
 })
 
 test_that("patch_folder rejects malformed source_date", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, source_date = "not-a-date"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, source_date = ""))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, source_date = 123))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, source_date = "not-a-date"))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, source_date = ""))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, source_date = 123))
 })
 
 test_that("patch_folder rejects invalid release_level", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, release_level = ""))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, release_level = 1))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, release_level = c("A", "B")))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, release_level = ""))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, release_level = 1))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, release_level = c("A", "B")))
 })
 
 test_that("patch_folder rejects invalid vol_id", {
@@ -105,23 +105,23 @@ test_that("patch_folder rejects invalid vol_id", {
 })
 
 test_that("patch_folder rejects invalid folder_id", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = -1, name = "x"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 0, name = "x"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = "1", name = "x"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = TRUE, name = "x"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = c(1, 2), name = "x"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1.5, name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = -1, name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = 0, name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = "1", name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = TRUE, name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = c(1, 2), name = "x"))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1.5, name = "x"))
 })
 
 test_that("patch_folder rejects invalid vb parameter", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", vb = -1))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", vb = "a"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", vb = c(TRUE, FALSE)))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", vb = NULL))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", vb = -1))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", vb = "a"))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", vb = c(TRUE, FALSE)))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", vb = NULL))
 })
 
 test_that("patch_folder rejects invalid rq parameter", {
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", rq = "a"))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", rq = -1))
-  expect_error(patch_folder(vol_id = TEST_VOL_ID, folder_id = 1, name = "x", rq = TRUE))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", rq = "a"))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", rq = -1))
+  expect_error(patch_folder(vol_id = 1, folder_id = 1, name = "x", rq = TRUE))
 })

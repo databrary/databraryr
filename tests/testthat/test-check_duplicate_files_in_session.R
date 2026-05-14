@@ -59,7 +59,7 @@ test_that("check_duplicate_files_in_session treats missing session like empty (a
   # Backend does not require the session to exist; it queries files by session_id only.
   result <- check_duplicate_files_in_session(
     vol_id = TEST_VOL_ID,
-    session_id = 999999999,
+    session_id = TEST_MISSING_ID,
     filenames = c("a.mp4"),
     vb = FALSE
   )

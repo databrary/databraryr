@@ -99,7 +99,7 @@ test_that("initiate_upload returns NULL for nonexistent destination", {
   expect_null(initiate_upload(
     filename = "test.mp4",
     destination_type = "session",
-    object_id = 999999999,
+    object_id = TEST_MISSING_ID,
     file_size = 1024L,
     vb = FALSE
   ))

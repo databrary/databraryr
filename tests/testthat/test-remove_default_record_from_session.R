@@ -83,7 +83,7 @@ test_that("remove_default_record_from_session returns FALSE for non-existent rec
     remove_default_record_from_session(
       vol_id = TEST_VOL_ID,
       session_id = sid,
-      record_id = 999999999,
+      record_id = TEST_MISSING_ID,
       vb = FALSE
     )
   )
@@ -97,7 +97,7 @@ test_that("remove_default_record_from_session returns FALSE for non-existent ses
   expect_false(
     remove_default_record_from_session(
       vol_id = TEST_VOL_ID,
-      session_id = 999999999,
+      session_id = TEST_MISSING_ID,
       record_id = rid,
       vb = FALSE
     )

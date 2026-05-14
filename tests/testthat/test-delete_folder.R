@@ -20,7 +20,7 @@ test_that("delete_folder deletes an existing folder", {
 })
 
 test_that("delete_folder returns FALSE for non-existent folder", {
-  expect_false(delete_folder(vol_id = TEST_VOL_ID, folder_id = 999999999, vb = FALSE))
+  expect_false(delete_folder(vol_id = TEST_VOL_ID, folder_id = TEST_MISSING_ID, vb = FALSE))
 })
 
 test_that("delete_folder works with verbose mode", {
@@ -72,30 +72,30 @@ test_that("delete_folder rejects invalid vol_id", {
 })
 
 test_that("delete_folder rejects invalid folder_id", {
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = -1))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 0))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = "1"))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = TRUE))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = list(a = 1)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = c(1, 2)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1.5))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = NULL))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = NA))
+  expect_error(delete_folder(vol_id = 1, folder_id = -1))
+  expect_error(delete_folder(vol_id = 1, folder_id = 0))
+  expect_error(delete_folder(vol_id = 1, folder_id = "1"))
+  expect_error(delete_folder(vol_id = 1, folder_id = TRUE))
+  expect_error(delete_folder(vol_id = 1, folder_id = list(a = 1)))
+  expect_error(delete_folder(vol_id = 1, folder_id = c(1, 2)))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1.5))
+  expect_error(delete_folder(vol_id = 1, folder_id = NULL))
+  expect_error(delete_folder(vol_id = 1, folder_id = NA))
 })
 
 test_that("delete_folder rejects invalid vb parameter", {
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = -1))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = 3))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = "a"))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = list(a = 1)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = c(TRUE, FALSE)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, vb = NULL))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = -1))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = 3))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = "a"))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = list(a = 1)))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = c(TRUE, FALSE)))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, vb = NULL))
 })
 
 test_that("delete_folder rejects invalid rq parameter", {
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, rq = "a"))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, rq = -1))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, rq = c(2, 3)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, rq = list(a = 1)))
-  expect_error(delete_folder(vol_id = TEST_VOL_ID, folder_id = 1, rq = TRUE))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, rq = "a"))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, rq = -1))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, rq = c(2, 3)))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, rq = list(a = 1)))
+  expect_error(delete_folder(vol_id = 1, folder_id = 1, rq = TRUE))
 })

@@ -8,7 +8,7 @@ test_that("set_record_measure sets a text measure", {
   measure_result <- set_record_measure(
     vol_id = TEST_VOL_ID,
     record_id = record_id,
-    metric_id = 29,
+    metric_id = TEST_METRIC_ID,
     value = "Test value",
     vb = FALSE
   )
@@ -25,7 +25,7 @@ test_that("set_record_measure updates an existing measure", {
   measure_result <- set_record_measure(
     vol_id = TEST_VOL_ID,
     record_id = record_id,
-    metric_id = 29,
+    metric_id = TEST_METRIC_ID,
     value = "Updated",
     vb = FALSE
   )
@@ -38,8 +38,8 @@ test_that("set_record_measure updates an existing measure", {
 test_that("set_record_measure returns NULL for non-existent record", {
   result <- set_record_measure(
     vol_id = TEST_VOL_ID,
-    record_id = 999999,
-    metric_id = 29,
+    record_id = TEST_MISSING_ID,
+    metric_id = TEST_METRIC_ID,
     value = "Test",
     vb = FALSE
   )
@@ -53,7 +53,7 @@ test_that("set_record_measure works with verbose mode", {
   measure_result <- set_record_measure(
     vol_id = TEST_VOL_ID,
     record_id = record_id,
-    metric_id = 29,
+    metric_id = TEST_METRIC_ID,
     value = "Test",
     vb = TRUE
   )
@@ -64,44 +64,44 @@ test_that("set_record_measure works with verbose mode", {
 })
 
 test_that("set_record_measure rejects invalid vol_id", {
-  expect_error(set_record_measure(vol_id = -1, record_id = 1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = 0, record_id = 1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = "1", record_id = 1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TRUE, record_id = 1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = c(1, 2), record_id = 1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = 1777.5, record_id = 1, metric_id = 29, value = "test"))
+  expect_error(set_record_measure(vol_id = -1, record_id = 1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 0, record_id = 1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = "1", record_id = 1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = TRUE, record_id = 1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = c(1, 2), record_id = 1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1.5, record_id = 1, metric_id = 1, value = "test"))
 })
 
 test_that("set_record_measure rejects invalid record_id", {
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = -1, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 0, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = "1", metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = TRUE, metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = c(1, 2), metric_id = 29, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1.5, metric_id = 29, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = -1, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 0, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = "1", metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = TRUE, metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = c(1, 2), metric_id = 1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1.5, metric_id = 1, value = "test"))
 })
 
 test_that("set_record_measure rejects invalid metric_id", {
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = -1, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 0, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = "1", value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = TRUE, value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = c(1, 2), value = "test"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 1.5, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = -1, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 0, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = "1", value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = TRUE, value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = c(1, 2), value = "test"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1.5, value = "test"))
 })
 
 test_that("set_record_measure rejects invalid vb parameter", {
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", vb = -1))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", vb = 3))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", vb = "a"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", vb = c(TRUE, FALSE)))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", vb = NULL))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", vb = -1))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", vb = 3))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", vb = "a"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", vb = c(TRUE, FALSE)))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", vb = NULL))
 })
 
 test_that("set_record_measure rejects invalid rq parameter", {
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", rq = "a"))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", rq = -1))
-  expect_error(set_record_measure(vol_id = TEST_VOL_ID, record_id = 1, metric_id = 29, value = "test", rq = TRUE))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", rq = "a"))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", rq = -1))
+  expect_error(set_record_measure(vol_id = 1, record_id = 1, metric_id = 1, value = "test", rq = TRUE))
 })
 
 test_that("set_record_measure works with numeric values", {
@@ -111,7 +111,7 @@ test_that("set_record_measure works with numeric values", {
   measure_result <- set_record_measure(
     vol_id = TEST_VOL_ID,
     record_id = record_id,
-    metric_id = 29,
+    metric_id = TEST_METRIC_ID,
     value = 42.5,
     vb = FALSE
   )

@@ -58,7 +58,7 @@ test_that("check_duplicate_files_in_folder works with a single filename", {
 test_that("check_duplicate_files_in_folder treats missing folder like empty (all not found)", {
   result <- check_duplicate_files_in_folder(
     vol_id = TEST_VOL_ID,
-    folder_id = 999999999,
+    folder_id = TEST_MISSING_ID,
     filenames = c("a.mp4"),
     vb = FALSE
   )

@@ -19,7 +19,7 @@ test_that("delete_session deletes an existing session", {
 })
 
 test_that("delete_session returns FALSE for non-existent session", {
-  expect_false(delete_session(vol_id = TEST_VOL_ID, session_id = 999999999, vb = FALSE))
+  expect_false(delete_session(vol_id = TEST_VOL_ID, session_id = TEST_MISSING_ID, vb = FALSE))
 })
 
 test_that("delete_session works with verbose mode", {
@@ -71,30 +71,30 @@ test_that("delete_session rejects invalid vol_id", {
 })
 
 test_that("delete_session rejects invalid session_id", {
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = -1))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 0))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = "1"))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = TRUE))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = list(a = 1)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = c(1, 2)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1.5))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = NULL))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = NA))
+  expect_error(delete_session(vol_id = 1, session_id = -1))
+  expect_error(delete_session(vol_id = 1, session_id = 0))
+  expect_error(delete_session(vol_id = 1, session_id = "1"))
+  expect_error(delete_session(vol_id = 1, session_id = TRUE))
+  expect_error(delete_session(vol_id = 1, session_id = list(a = 1)))
+  expect_error(delete_session(vol_id = 1, session_id = c(1, 2)))
+  expect_error(delete_session(vol_id = 1, session_id = 1.5))
+  expect_error(delete_session(vol_id = 1, session_id = NULL))
+  expect_error(delete_session(vol_id = 1, session_id = NA))
 })
 
 test_that("delete_session rejects invalid vb parameter", {
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = -1))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = 3))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = "a"))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = list(a = 1)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = c(TRUE, FALSE)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, vb = NULL))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = -1))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = 3))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = "a"))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = list(a = 1)))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = c(TRUE, FALSE)))
+  expect_error(delete_session(vol_id = 1, session_id = 1, vb = NULL))
 })
 
 test_that("delete_session rejects invalid rq parameter", {
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, rq = "a"))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, rq = -1))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, rq = c(2, 3)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, rq = list(a = 1)))
-  expect_error(delete_session(vol_id = TEST_VOL_ID, session_id = 1, rq = TRUE))
+  expect_error(delete_session(vol_id = 1, session_id = 1, rq = "a"))
+  expect_error(delete_session(vol_id = 1, session_id = 1, rq = -1))
+  expect_error(delete_session(vol_id = 1, session_id = 1, rq = c(2, 3)))
+  expect_error(delete_session(vol_id = 1, session_id = 1, rq = list(a = 1)))
+  expect_error(delete_session(vol_id = 1, session_id = 1, rq = TRUE))
 })

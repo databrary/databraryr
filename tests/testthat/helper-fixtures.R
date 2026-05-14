@@ -1,6 +1,9 @@
-# Shared sandbox IDs for live API integration tests (staging volume 1777).
+# Shared sandbox IDs for live API integration tests
 TEST_VOL_ID <- 1777L
 TEST_CATEGORY_ID <- 6L
+TEST_MISSING_ID <- 999999999L
+TEST_METRIC_ID <- 29L
+TEST_METRIC_ID_EXTRA <- 30L
 
 # create_session, then schedule delete_session on `envir` via withr::defer.
 # Default `envir = parent.frame()`: call from test_that() so cleanup runs when

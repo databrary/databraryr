@@ -30,7 +30,7 @@ test_that("get_institution_avatar saves to file when dest_path is provided", {
 })
 
 test_that("get_institution_avatar returns NULL for non-existent institution", {
-  result <- get_institution_avatar(institution_id = 999999, vb = FALSE)
+  result <- get_institution_avatar(institution_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
@@ -68,7 +68,6 @@ test_that("get_institution_avatar rejects invalid institution_id", {
 
   # Decimal/non-integer
   expect_error(get_institution_avatar(institution_id = 1.5))
-  expect_error(get_institution_avatar(institution_id = 2.7))
 
   # NULL
   expect_error(get_institution_avatar(institution_id = NULL))

@@ -108,25 +108,25 @@ test_that("create_folder works with custom request object", {
 })
 
 test_that("create_folder returns NULL for non-existent volume", {
-  expect_null(create_folder(vol_id = 999999999, name = "Test", vb = FALSE))
+  expect_null(create_folder(vol_id = TEST_MISSING_ID, name = "Test", vb = FALSE))
 })
 
 test_that("create_folder rejects invalid name", {
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = ""))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "   "))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = 123))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = c("A", "B")))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = NULL))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = NA))
+  expect_error(create_folder(vol_id = 1, name = ""))
+  expect_error(create_folder(vol_id = 1, name = "   "))
+  expect_error(create_folder(vol_id = 1, name = 123))
+  expect_error(create_folder(vol_id = 1, name = c("A", "B")))
+  expect_error(create_folder(vol_id = 1, name = NULL))
+  expect_error(create_folder(vol_id = 1, name = NA))
 })
 
 test_that("create_folder rejects malformed source_date", {
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", source_date = "not-a-date"))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", source_date = ""))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", source_date = 123))
+  expect_error(create_folder(vol_id = 1, name = "Test", source_date = "not-a-date"))
+  expect_error(create_folder(vol_id = 1, name = "Test", source_date = ""))
+  expect_error(create_folder(vol_id = 1, name = "Test", source_date = 123))
   expect_error(
     create_folder(
-      vol_id = TEST_VOL_ID,
+      vol_id = 1,
       name = "Test",
       source_date = as.Date(c("2024-01-01", "2024-02-01"))
     )
@@ -134,9 +134,9 @@ test_that("create_folder rejects malformed source_date", {
 })
 
 test_that("create_folder rejects invalid release_level", {
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", release_level = ""))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", release_level = 1))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", release_level = c("A", "B")))
+  expect_error(create_folder(vol_id = 1, name = "Test", release_level = ""))
+  expect_error(create_folder(vol_id = 1, name = "Test", release_level = 1))
+  expect_error(create_folder(vol_id = 1, name = "Test", release_level = c("A", "B")))
 })
 
 test_that("create_folder rejects invalid vol_id", {
@@ -150,17 +150,17 @@ test_that("create_folder rejects invalid vol_id", {
 })
 
 test_that("create_folder rejects invalid vb parameter", {
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", vb = -1))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", vb = "a"))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", vb = list(a = 1)))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", vb = c(TRUE, FALSE)))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", vb = NULL))
+  expect_error(create_folder(vol_id = 1, name = "Test", vb = -1))
+  expect_error(create_folder(vol_id = 1, name = "Test", vb = "a"))
+  expect_error(create_folder(vol_id = 1, name = "Test", vb = list(a = 1)))
+  expect_error(create_folder(vol_id = 1, name = "Test", vb = c(TRUE, FALSE)))
+  expect_error(create_folder(vol_id = 1, name = "Test", vb = NULL))
 })
 
 test_that("create_folder rejects invalid rq parameter", {
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", rq = "a"))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", rq = -1))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", rq = c(2, 3)))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", rq = list(a = 1)))
-  expect_error(create_folder(vol_id = TEST_VOL_ID, name = "Test", rq = TRUE))
+  expect_error(create_folder(vol_id = 1, name = "Test", rq = "a"))
+  expect_error(create_folder(vol_id = 1, name = "Test", rq = -1))
+  expect_error(create_folder(vol_id = 1, name = "Test", rq = c(2, 3)))
+  expect_error(create_folder(vol_id = 1, name = "Test", rq = list(a = 1)))
+  expect_error(create_folder(vol_id = 1, name = "Test", rq = TRUE))
 })

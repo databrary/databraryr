@@ -26,7 +26,7 @@ test_that("update_volume_record updates an existing record", {
 test_that("update_volume_record returns NULL for non-existent record", {
   result <- update_volume_record(
     vol_id = TEST_VOL_ID,
-    record_id = 999999,
+    record_id = TEST_MISSING_ID,
     measures = list("29" = "Test"),
     vb = FALSE
   )
@@ -55,34 +55,34 @@ test_that("update_volume_record rejects invalid vol_id", {
   expect_error(update_volume_record(vol_id = "1", record_id = 1))
   expect_error(update_volume_record(vol_id = TRUE, record_id = 1))
   expect_error(update_volume_record(vol_id = c(1, 2), record_id = 1))
-  expect_error(update_volume_record(vol_id = 1777.5, record_id = 1))
+  expect_error(update_volume_record(vol_id = 1.5, record_id = 1))
 })
 
 test_that("update_volume_record rejects invalid record_id", {
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = -1))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 0))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = "1"))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = TRUE))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = c(1, 2)))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1.5))
+  expect_error(update_volume_record(vol_id = 1, record_id = -1))
+  expect_error(update_volume_record(vol_id = 1, record_id = 0))
+  expect_error(update_volume_record(vol_id = 1, record_id = "1"))
+  expect_error(update_volume_record(vol_id = 1, record_id = TRUE))
+  expect_error(update_volume_record(vol_id = 1, record_id = c(1, 2)))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1.5))
 })
 
 test_that("update_volume_record rejects invalid measures", {
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = "text"))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = 123))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = TRUE))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, measures = "text"))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, measures = 123))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, measures = TRUE))
 })
 
 test_that("update_volume_record rejects invalid vb parameter", {
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = -1))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = 3))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = "a"))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = c(TRUE, FALSE)))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = NULL))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, vb = -1))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, vb = 3))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, vb = "a"))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, vb = c(TRUE, FALSE)))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, vb = NULL))
 })
 
 test_that("update_volume_record rejects invalid rq parameter", {
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = "a"))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = -1))
-  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = TRUE))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, rq = "a"))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, rq = -1))
+  expect_error(update_volume_record(vol_id = 1, record_id = 1, rq = TRUE))
 })

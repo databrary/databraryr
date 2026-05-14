@@ -29,12 +29,12 @@ test_that("get_volume_collaborator_by_id retrieves valid collaborator", {
 
 test_that("get_volume_collaborator_by_id returns NULL for non-existent collaborator", {
   # Use a very large ID that likely doesn't exist
-  result <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = 999999, vb = FALSE)
+  result <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
 test_that("get_volume_collaborator_by_id returns NULL for non-existent volume", {
-  result <- get_volume_collaborator_by_id(vol_id = 999999, collaborator_id = 1, vb = FALSE)
+  result <- get_volume_collaborator_by_id(vol_id = TEST_MISSING_ID, collaborator_id = 1, vb = FALSE)
   expect_null(result)
 })
 
@@ -69,7 +69,6 @@ test_that("get_volume_collaborator_by_id rejects invalid vol_id", {
 
   # Decimal/non-integer
   expect_error(get_volume_collaborator_by_id(vol_id = 1.5, collaborator_id = 1))
-  expect_error(get_volume_collaborator_by_id(vol_id = 2.7, collaborator_id = 1))
 
   # NULL
   expect_error(get_volume_collaborator_by_id(vol_id = NULL, collaborator_id = 1))
@@ -95,7 +94,6 @@ test_that("get_volume_collaborator_by_id rejects invalid collaborator_id", {
 
   # Decimal/non-integer
   expect_error(get_volume_collaborator_by_id(vol_id = 1, collaborator_id = 1.5))
-  expect_error(get_volume_collaborator_by_id(vol_id = 1, collaborator_id = 2.7))
 
   # NULL
   expect_error(get_volume_collaborator_by_id(vol_id = 1, collaborator_id = NULL))

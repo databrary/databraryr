@@ -50,7 +50,7 @@ test_that("get_user_avatar creates parent directories if needed", {
 })
 
 test_that("get_user_avatar returns NULL for non-existent user", {
-  result <- get_user_avatar(user_id = 999999, vb = FALSE)
+  result <- get_user_avatar(user_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
