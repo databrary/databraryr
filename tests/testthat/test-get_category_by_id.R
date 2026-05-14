@@ -15,7 +15,7 @@ test_that("get_category_by_id retrieves valid category", {
 
 test_that("get_category_by_id returns NULL for non-existent category", {
   # Use a very large ID that likely doesn't exist
-  result <- get_category_by_id(category_id = 999999, vb = FALSE)
+  result <- get_category_by_id(category_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
@@ -44,7 +44,6 @@ test_that("get_category_by_id rejects invalid category_id", {
 
   # Decimal/non-integer
   expect_error(get_category_by_id(category_id = 1.5))
-  expect_error(get_category_by_id(category_id = 2.7))
 
   # NULL
   expect_error(get_category_by_id(category_id = NULL))

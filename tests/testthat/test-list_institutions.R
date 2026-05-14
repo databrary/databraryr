@@ -1,8 +1,10 @@
 # list_institutions() ---------------------------------------------------------
 login_test_account()
 
+institutions_all <- list_institutions(vb = FALSE)
+
 test_that("list_institutions returns all institutions without search filter", {
-  result <- list_institutions(vb = FALSE)
+  result <- institutions_all
   skip_if_null_response(result, "list_institutions()")
 
   expect_s3_class(result, "tbl_df")
@@ -88,7 +90,7 @@ test_that("list_institutions rejects invalid rq parameter", {
 })
 
 test_that("list_institutions result structure is consistent", {
-  result <- list_institutions(vb = FALSE)
+  result <- institutions_all
   skip_if_null_response(result, "list_institutions()")
 
   # Check that all expected fields exist
@@ -102,7 +104,7 @@ test_that("list_institutions result structure is consistent", {
 })
 
 test_that("list_institutions handles NA values correctly", {
-  result <- list_institutions(vb = FALSE)
+  result <- institutions_all
   skip_if_null_response(result, "list_institutions()")
 
   # institution_url can be NA for institutions without a URL
@@ -122,8 +124,7 @@ test_that("list_institutions works with custom request object", {
 })
 
 test_that("list_institutions returns different results with and without search", {
-  # Get all institutions
-  all_institutions <- list_institutions(vb = FALSE)
+  all_institutions <- institutions_all
   skip_if_null_response(all_institutions, "list_institutions()")
 
   # Get filtered institutions
@@ -136,7 +137,7 @@ test_that("list_institutions returns different results with and without search",
 })
 
 test_that("list_institutions returns unique institution IDs", {
-  result <- list_institutions(vb = FALSE)
+  result <- institutions_all
   skip_if_null_response(result, "list_institutions()")
 
   # Check that all institution IDs are unique
@@ -156,7 +157,7 @@ test_that("list_institutions search is case insensitive", {
 })
 
 test_that("list_institutions can retrieve institutions with avatars", {
-  result <- list_institutions(vb = FALSE)
+  result <- institutions_all
   skip_if_null_response(result, "list_institutions()")
 
   # Filter institutions that have avatars

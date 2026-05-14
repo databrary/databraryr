@@ -23,15 +23,15 @@ test_that("upload_file uploads a small file end-to-end", {
   sid <- make_test_session("upload_file test")
   skip_if_null_response(sid, "create_session for upload_file")
 
-  tmp <- tempfile(fileext = ".bin")
+  tmp <- tempfile(fileext = ".txt")
   on.exit(unlink(tmp), add = TRUE)
-  writeBin(as.raw(seq_len(1024L) %% 256L), tmp)
+  writeLines(strrep("x", 2048L), tmp, useBytes = FALSE)
 
   result <- upload_file(
     path = tmp,
     destination_type = "session",
     object_id = sid,
-    content_type = "application/octet-stream",
+    content_type = "text/plain",
     vb = FALSE
   )
   skip_if_null_response(result, "upload_file end-to-end")

@@ -17,11 +17,11 @@ test_that("full session and record lifecycle roundtrip", {
   rid <- make_test_record("session_record lifecycle record")
   skip_if_null_response(rid, "create_volume_record for lifecycle")
 
-  # Optional metric 30 on category 6 in sandbox volume 1777 (see create_volume_record tests).
+  # Optional metric TEST_METRIC_ID_EXTRA on TEST_CATEGORY_ID / TEST_VOL_ID (see create_volume_record tests).
   measure_result <- set_record_measure(
     vol_id = TEST_VOL_ID,
     record_id = rid,
-    metric_id = 30L,
+    metric_id = TEST_METRIC_ID_EXTRA,
     value = "Lifecycle measure value",
     vb = FALSE
   )

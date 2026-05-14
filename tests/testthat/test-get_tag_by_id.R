@@ -15,7 +15,7 @@ test_that("get_tag_by_id retrieves valid tag", {
 
 test_that("get_tag_by_id returns NULL for non-existent tag", {
   # Use a very large ID that likely doesn't exist
-  result <- get_tag_by_id(tag_id = 999999, vb = FALSE)
+  result <- get_tag_by_id(tag_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
@@ -44,7 +44,6 @@ test_that("get_tag_by_id rejects invalid tag_id", {
 
   # Decimal/non-integer
   expect_error(get_tag_by_id(tag_id = 1.5))
-  expect_error(get_tag_by_id(tag_id = 2.7))
 
   # NULL
   expect_error(get_tag_by_id(tag_id = NULL))

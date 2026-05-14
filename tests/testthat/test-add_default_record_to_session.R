@@ -38,7 +38,7 @@ test_that("add_default_record_to_session returns FALSE for non-existent record",
     add_default_record_to_session(
       vol_id = TEST_VOL_ID,
       session_id = sid,
-      record_id = 999999999,
+      record_id = TEST_MISSING_ID,
       vb = FALSE
     )
   )
@@ -51,7 +51,7 @@ test_that("add_default_record_to_session returns FALSE for non-existent session"
   expect_false(
     add_default_record_to_session(
       vol_id = TEST_VOL_ID,
-      session_id = 999999999,
+      session_id = TEST_MISSING_ID,
       record_id = rid,
       vb = FALSE
     )

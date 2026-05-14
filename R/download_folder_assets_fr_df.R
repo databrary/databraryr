@@ -11,7 +11,9 @@ NULL
 #' `list_folder_assets()` output.
 #'
 #' @param folder_df Data frame describing assets. Must include `vol_id`,
-#'   `folder_id`, `asset_id`, and `asset_name` columns.
+#'   `folder_id`, `asset_id`, and `asset_name` columns. Defaults to the result
+#'   of `list_folder_assets(vol_id = 1)`. Explicit `NULL` triggers the same
+#'   call using the current `vb` and `rq`.
 #' @param target_dir Character string. Base directory for downloads. Defaults to
 #'   `tempdir()`.
 #' @param add_folder_subdir Logical. When `TRUE`, creates a subdirectory per
@@ -48,32 +50,8 @@ download_folder_assets_fr_df <-
            timeout_secs = REQUEST_TIMEOUT_VERY_LONG,
            vb = options::opt("vb"),
            rq = NULL) {
-    assertthat::assert_that(is.data.frame(folder_df))
-    required_cols <- c("vol_id", "folder_id", "asset_id", "asset_name")
-    missing_cols <- setdiff(required_cols, names(folder_df))
-    if (length(missing_cols) > 0) {
-      stop(
-        "folder_df is missing required columns: ",
-        paste(missing_cols, collapse = ", "),
-        call. = FALSE
-      )
-    }
-
     assertthat::assert_that(length(target_dir) == 1)
     assertthat::assert_that(is.character(target_dir))
-    if (dir.exists(target_dir)) {
-      if (!overwrite) {
-        if (vb) {
-          message("`overwrite` is FALSE. Cannot continue.")
-        }
-        return(NULL)
-      }
-    } else {
-      dir.create(target_dir,
-                 recursive = TRUE,
-                 showWarnings = FALSE)
-    }
-    assertthat::is.writeable(target_dir)
 
     assertthat::assert_that(length(add_folder_subdir) == 1)
     assertthat::assert_that(is.logical(add_folder_subdir))
@@ -93,6 +71,35 @@ download_folder_assets_fr_df <-
 
     assertthat::assert_that(is.null(rq) ||
                               ("httr2_request" %in% class(rq)))
+
+    if (is.null(folder_df)) {
+      folder_df <- list_folder_assets(vol_id = 1, vb = vb, rq = rq)
+    }
+
+    assertthat::assert_that(is.data.frame(folder_df))
+    required_cols <- c("vol_id", "folder_id", "asset_id", "asset_name")
+    missing_cols <- setdiff(required_cols, names(folder_df))
+    if (length(missing_cols) > 0) {
+      stop(
+        "folder_df is missing required columns: ",
+        paste(missing_cols, collapse = ", "),
+        call. = FALSE
+      )
+    }
+
+    if (dir.exists(target_dir)) {
+      if (!overwrite) {
+        if (vb) {
+          message("`overwrite` is FALSE. Cannot continue.")
+        }
+        return(NULL)
+      }
+    } else {
+      dir.create(target_dir,
+                 recursive = TRUE,
+                 showWarnings = FALSE)
+    }
+    assertthat::is.writeable(target_dir)
 
     if (vb) {
       message("Downloading n=", nrow(folder_df), " files to ", target_dir)

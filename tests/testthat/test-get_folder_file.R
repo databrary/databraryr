@@ -1,12 +1,30 @@
 # get_folder_file -------------------------------------------------------
 test_that("get_folder_file returns file metadata", {
   login_test_account()
-  files <- list_folder_assets(vol_id = 1, folder_id = 1)
-  skip_if_null_response(files, "list_folder_assets(vol_id = 1, folder_id = 1)")
 
-  target_file <- files$asset_id[1]
-  result <- get_folder_file(vol_id = 1, folder_id = 1, file_id = target_file)
-  skip_if_null_response(result, sprintf("get_folder_file(vol_id = 1, folder_id = 1, file_id = %s)", target_file))
+  fid <- make_test_folder(sprintf("get_folder_file probe %d", sample(100000L:999999L, 1L)))
+  skip_if_null_response(fid, "create_folder for get_folder_file")
+
+  asset_name <- sprintf("get_folder_file_%d.txt", sample(100000L:999999L, 1L))
+  target_file <- upload_test_folder_asset(
+    folder_id = fid,
+    file_basename = asset_name
+  )
+  skip_if_null_response(target_file, "upload folder asset for get_folder_file")
+
+  result <- get_folder_file(
+    vol_id = TEST_VOL_ID,
+    folder_id = fid,
+    file_id = target_file,
+    vb = FALSE
+  )
+  skip_if_null_response(
+    result,
+    sprintf(
+      "get_folder_file(vol_id = TEST_VOL_ID, folder_id = %s, file_id = %s)",
+      fid, target_file
+    )
+  )
 
   expect_type(result, "list")
   expect_equal(result$id, target_file)

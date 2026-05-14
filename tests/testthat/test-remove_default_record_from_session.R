@@ -1,17 +1,17 @@
 # remove_default_record_from_session() -----------------------------------------
 login_test_account()
 
-# Create a session + record with the record attached as a default.
-# Deferred cleanup is registered on the caller's environment; must be invoked
-# from test_that().
+# create_volume_record name metric must be unique per volume; use a random
+# suffix so repeated runs / leaked rows do not return HTTP 400 and NULL.
 setup_attached <- function(name) {
   envir <- parent.frame()
-  sid <- make_test_session(paste0(name, " session"), envir = envir)
+  sfx <- sample(100000L:999999L, 1L)
+  sid <- make_test_session(sprintf("%s session %d", name, sfx), envir = envir)
   if (is.null(sid)) {
     return(NULL)
   }
 
-  rid <- make_test_record(paste0(name, " record"), envir = envir)
+  rid <- make_test_record(sprintf("%s record %d", name, sfx), envir = envir)
   if (is.null(rid)) {
     return(NULL)
   }
@@ -57,10 +57,11 @@ test_that("remove_default_record_from_session detaches a record", {
 })
 
 test_that("remove_default_record_from_session returns FALSE for unattached record", {
-  sid <- make_test_session("remove_default_record unattached")
+  sfx <- sample(100000L:999999L, 1L)
+  sid <- make_test_session(sprintf("remove_default_record unattached %d", sfx))
   skip_if_null_response(sid, "create_session for unattached test")
 
-  rid <- make_test_record("remove_default_record unattached record")
+  rid <- make_test_record(sprintf("remove_default_record unattached record %d", sfx))
   skip_if_null_response(rid, "create_volume_record for unattached test")
 
   expect_false(
@@ -74,27 +75,29 @@ test_that("remove_default_record_from_session returns FALSE for unattached recor
 })
 
 test_that("remove_default_record_from_session returns FALSE for non-existent record", {
-  sid <- make_test_session("remove_default_record non-existent record")
+  sfx <- sample(100000L:999999L, 1L)
+  sid <- make_test_session(sprintf("remove_default_record non-existent record %d", sfx))
   skip_if_null_response(sid, "create_session for non-existent record test")
 
   expect_false(
     remove_default_record_from_session(
       vol_id = TEST_VOL_ID,
       session_id = sid,
-      record_id = 999999999,
+      record_id = TEST_MISSING_ID,
       vb = FALSE
     )
   )
 })
 
 test_that("remove_default_record_from_session returns FALSE for non-existent session", {
-  rid <- make_test_record("remove_default_record non-existent session record")
+  sfx <- sample(100000L:999999L, 1L)
+  rid <- make_test_record(sprintf("remove_default_record non-existent session record %d", sfx))
   skip_if_null_response(rid, "create_volume_record for non-existent session test")
 
   expect_false(
     remove_default_record_from_session(
       vol_id = TEST_VOL_ID,
-      session_id = 999999999,
+      session_id = TEST_MISSING_ID,
       record_id = rid,
       vb = FALSE
     )

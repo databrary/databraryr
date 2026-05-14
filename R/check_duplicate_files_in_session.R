@@ -6,7 +6,7 @@ NULL
 #' Check Whether Filenames Already Exist in a Session
 #'
 #' @description Ask the server which of the supplied filenames already
-#' exist as files in the given session. Useful before bulk uploads to detect
+#' exist as files in the given session. Useful before uploading multiple files to detect
 #' name collisions in advance.
 #'
 #' @param vol_id Target volume number. Must be a positive integer.
