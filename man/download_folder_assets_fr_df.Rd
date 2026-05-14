@@ -5,7 +5,7 @@
 \title{Download Multiple Assets From a Folder Data Frame.}
 \usage{
 download_folder_assets_fr_df(
-  folder_df = NULL,
+  folder_df = list_folder_assets(vol_id = 1),
   target_dir = tempdir(),
   add_folder_subdir = TRUE,
   overwrite = TRUE,
@@ -17,9 +17,7 @@ download_folder_assets_fr_df(
 }
 \arguments{
 \item{folder_df}{Data frame describing assets. Must include \code{vol_id},
-\code{folder_id}, \code{asset_id}, and \code{asset_name} columns. Defaults to \code{NULL}, in
-which case \code{list_folder_assets(vol_id = 1)} is used after other arguments
-are validated (so invalid parameters fail without a network call).}
+\code{folder_id}, \code{asset_id}, and \code{asset_name} columns.}
 
 \item{target_dir}{Character string. Base directory for downloads. Defaults to
 \code{tempdir()}.}

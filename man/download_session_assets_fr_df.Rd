@@ -5,7 +5,7 @@
 \title{Download Multiple Assets From a Session Data Frame.}
 \usage{
 download_session_assets_fr_df(
-  session_df = NULL,
+  session_df = list_session_assets(session_id = 9224, vol_id = 1),
   target_dir = tempdir(),
   add_session_subdir = TRUE,
   overwrite = TRUE,
@@ -17,10 +17,8 @@ download_session_assets_fr_df(
 }
 \arguments{
 \item{session_df}{Data frame describing assets. Must include \code{vol_id},
-\code{session_id}, \code{asset_id}, and \code{asset_name} columns. Defaults to \code{NULL},
-in which case \code{list_session_assets(session_id = 9224, vol_id = 1)} is
-used after other arguments are validated (so invalid parameters such as
-\code{target_dir = 3} fail without a network call).}
+\code{session_id}, \code{asset_id}, and \code{asset_name} columns. Default is the result
+\code{download_session_assets_fr_df(session_id = assets, vol_id = 1)}.}
 
 \item{target_dir}{Character string. Base directory for downloads. Defaults to
 \code{tempdir()}.}
