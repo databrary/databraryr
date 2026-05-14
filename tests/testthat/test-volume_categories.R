@@ -96,13 +96,20 @@ test_that("get_volume_enabled_categories returns a list", {
 })
 
 test_that("enable and disable category round-trip works", {
-  vol_id <- 1777
+  vol_id <- TEST_VOL_ID
 
   initial <- get_volume_enabled_categories(vol_id = vol_id, vb = FALSE)
   skip_if_null_response(initial, "get_volume_enabled_categories for round-trip")
 
   initial_ids <- vapply(initial, function(c) as.integer(c$id), integer(1))
-  test_cat <- 6L
+  test_cat <- TEST_CATEGORY_ID
+
+  withr::defer(
+    set_volume_enabled_categories(
+      vol_id = vol_id, category_ids = initial_ids, vb = FALSE
+    ),
+    envir = parent.frame()
+  )
 
   if (test_cat %in% initial_ids) {
     disable_volume_category(vol_id = vol_id, category_id = test_cat, vb = FALSE)
@@ -125,8 +132,4 @@ test_that("enable and disable category round-trip works", {
   after_disable <- get_volume_enabled_categories(vol_id = vol_id, vb = FALSE)
   disabled_ids <- vapply(after_disable, function(c) as.integer(c$id), integer(1))
   expect_false(test_cat %in% disabled_ids)
-
-  set_volume_enabled_categories(
-    vol_id = vol_id, category_ids = initial_ids, vb = FALSE
-  )
 })

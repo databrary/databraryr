@@ -1,6 +1,7 @@
 # get_db_stats ---------------------------------------------------------
+login_test_account()
+
 test_that("get_db_stats returns statistics snapshot", {
-  login_test_account()
   stats <- get_db_stats()
   skip_if_null_response(stats, "get_db_stats()")
   expect_s3_class(stats, "tbl_df")
@@ -8,7 +9,6 @@ test_that("get_db_stats returns statistics snapshot", {
 })
 
 test_that("get_db_stats returns data.frames for supported types", {
-  login_test_account()
   types <- c("people", "institutions", "places", "datasets", "data", "volumes", "numbers")
   for (type in types) {
     result <- get_db_stats(type)

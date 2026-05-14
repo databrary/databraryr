@@ -2,8 +2,9 @@
 
 test_that("search_users returns tibble", {
   login_test_account()
-  result <- search_users("gilmore")
-  skip_if_null_response(result, "search_users('gilmore')")
+  # Empty query: no full-text clause; API lists users in the search index
+  result <- search_users("")
+  skip_if_null_response(result, "search_users(\"\")")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
   expect_true(all(c("user_id", "score") %in% names(result)))

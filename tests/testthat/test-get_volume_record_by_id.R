@@ -1,9 +1,10 @@
 # get_volume_record_by_id() --------------------------------------------------
 login_test_account()
 
+records_vol_1777 <- list_volume_records(vol_id = 1777, vb = FALSE)
+
 test_that("get_volume_record_by_id retrieves valid record", {
-  # First get a list of records to find a valid record_id
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
@@ -37,7 +38,7 @@ test_that("get_volume_record_by_id returns NULL for non-existent volume", {
 })
 
 test_that("get_volume_record_by_id works with verbose mode", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
@@ -120,7 +121,7 @@ test_that("get_volume_record_by_id rejects invalid rq parameter", {
 })
 
 test_that("get_volume_record_by_id result structure is consistent", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
@@ -152,25 +153,28 @@ test_that("get_volume_record_by_id result structure is consistent", {
 })
 
 test_that("get_volume_record_by_id handles age structure correctly", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
-  if (nrow(records) > 0) {
-    test_record_id <- records$record_id[1]
-    result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
-    skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
+  if (nrow(records) == 0) {
+    testthat::skip("No records on volume; cannot validate age structure")
+  }
 
-    # If age exists, check its structure
-    if (!is.null(result$age)) {
-      expect_type(result$age, "list")
-      expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_estimated", "is_blurred")
-      expect_true(all(expected_fields %in% names(result$age)))
-    }
+  test_record_id <- records$record_id[1]
+  result <- get_volume_record_by_id(vol_id = 1777, record_id = test_record_id)
+  skip_if_null_response(result, sprintf("get_volume_record_by_id(vol_id = 1777, record_id = %d)", test_record_id))
+
+  if (is.null(result$age)) {
+    expect_null(result$age)
+  } else {
+    expect_type(result$age, "list")
+    expected_fields <- c("years", "months", "days", "total_days", "formatted_value", "is_estimated", "is_blurred")
+    expect_true(all(expected_fields %in% names(result$age)))
   }
 })
 
 test_that("get_volume_record_by_id handles measures correctly", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
@@ -184,7 +188,7 @@ test_that("get_volume_record_by_id handles measures correctly", {
 })
 
 test_that("get_volume_record_by_id works with custom request object", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {
@@ -199,7 +203,7 @@ test_that("get_volume_record_by_id works with custom request object", {
 })
 
 test_that("get_volume_record_by_id can retrieve multiple different records", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   unique_ids <- unique(records$record_id)
@@ -222,7 +226,7 @@ test_that("get_volume_record_by_id can retrieve multiple different records", {
 })
 
 test_that("get_volume_record_by_id returns complete structure with all fields", {
-  records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  records <- records_vol_1777
   skip_if_null_response(records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(records) > 0) {

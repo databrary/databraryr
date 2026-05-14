@@ -220,26 +220,25 @@ test_that("get_volume_collaborator_by_id can retrieve multiple different collabo
   collaborators <- list_volume_collaborators(vol_id = 1, vb = FALSE)
   skip_if_null_response(collaborators, "list_volume_collaborators(vol_id = 1)")
 
-  if (nrow(collaborators) >= 2) {
-    # Filter out NA values and ensure we have valid IDs
-    valid_ids <- collaborators$collaborator_id[!is.na(collaborators$collaborator_id) & collaborators$collaborator_id > 0]
-
-    if (length(valid_ids) >= 2) {
-      collaborator_id_1 <- valid_ids[1]
-      collaborator_id_2 <- valid_ids[2]
-
-      result1 <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = collaborator_id_1, vb = FALSE)
-      result2 <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = collaborator_id_2, vb = FALSE)
-
-      skip_if_null_response(result1, sprintf("get_volume_collaborator_by_id(vol_id = 1, collaborator_id = %d)", collaborator_id_1))
-      skip_if_null_response(result2, sprintf("get_volume_collaborator_by_id(vol_id = 1, collaborator_id = %d)", collaborator_id_2))
-
-      # If both exist, they should be different
-      expect_false(identical(result1$collaborator_id, result2$collaborator_id))
-      expect_equal(result1$collaborator_id, collaborator_id_1)
-      expect_equal(result2$collaborator_id, collaborator_id_2)
-    }
+  valid_ids <- collaborators$collaborator_id[
+    !is.na(collaborators$collaborator_id) & collaborators$collaborator_id > 0
+  ]
+  if (length(valid_ids) < 2) {
+    testthat::skip("Need at least 2 collaborators with collaborator_id > 0")
   }
+
+  collaborator_id_1 <- valid_ids[1]
+  collaborator_id_2 <- valid_ids[2]
+
+  result1 <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = collaborator_id_1, vb = FALSE)
+  result2 <- get_volume_collaborator_by_id(vol_id = 1, collaborator_id = collaborator_id_2, vb = FALSE)
+
+  skip_if_null_response(result1, sprintf("get_volume_collaborator_by_id(vol_id = 1, collaborator_id = %d)", collaborator_id_1))
+  skip_if_null_response(result2, sprintf("get_volume_collaborator_by_id(vol_id = 1, collaborator_id = %d)", collaborator_id_2))
+
+  expect_false(identical(result1$collaborator_id, result2$collaborator_id))
+  expect_equal(result1$collaborator_id, collaborator_id_1)
+  expect_equal(result2$collaborator_id, collaborator_id_2)
 })
 
 test_that("get_volume_collaborator_by_id returns complete structure with all fields", {

@@ -2,27 +2,15 @@
 login_test_account()
 
 test_that("update_volume_record updates an existing record", {
-  # First create a record by name
-  create_result <- create_volume_record(
-    vol_id = 1777,
-    category_id = 6,
-    name = "Initial value",
-    vb = FALSE
-  )
-  skip_if_null_response(create_result, "create_volume_record for update test")
+  record_id <- make_test_record("Initial value")
+  skip_if_null_response(record_id, "create_volume_record for update test")
 
-  record_id <- create_result$record_id
-
-  # Update the record
   update_result <- update_volume_record(
-    vol_id = 1777,
+    vol_id = TEST_VOL_ID,
     record_id = record_id,
     measures = list("29" = "Updated value"),
     vb = FALSE
   )
-
-  # Clean up
-  delete_volume_record(vol_id = 1777, record_id = record_id, vb = FALSE)
 
   skip_if_null_response(update_result, "update_volume_record")
 
@@ -37,7 +25,7 @@ test_that("update_volume_record updates an existing record", {
 
 test_that("update_volume_record returns NULL for non-existent record", {
   result <- update_volume_record(
-    vol_id = 1777,
+    vol_id = TEST_VOL_ID,
     record_id = 999999,
     measures = list("29" = "Test"),
     vb = FALSE
@@ -46,27 +34,15 @@ test_that("update_volume_record returns NULL for non-existent record", {
 })
 
 test_that("update_volume_record works with verbose mode", {
-  # First create a record
-  create_result <- create_volume_record(
-    vol_id = 1777,
-    category_id = 6,
-    name = "Update verbose test",
-    vb = FALSE
-  )
-  skip_if_null_response(create_result, "create_volume_record for update verbose test")
+  record_id <- make_test_record("Update verbose test")
+  skip_if_null_response(record_id, "create_volume_record for update verbose test")
 
-  record_id <- create_result$record_id
-
-  # Update with verbose
   update_result <- update_volume_record(
-    vol_id = 1777,
+    vol_id = TEST_VOL_ID,
     record_id = record_id,
     measures = list("29" = "Test"),
     vb = TRUE
   )
-
-  # Clean up
-  delete_volume_record(vol_id = 1777, record_id = record_id, vb = FALSE)
 
   skip_if_null_response(update_result, "update_volume_record with vb = TRUE")
 
@@ -83,30 +59,30 @@ test_that("update_volume_record rejects invalid vol_id", {
 })
 
 test_that("update_volume_record rejects invalid record_id", {
-  expect_error(update_volume_record(vol_id = 1777, record_id = -1))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 0))
-  expect_error(update_volume_record(vol_id = 1777, record_id = "1"))
-  expect_error(update_volume_record(vol_id = 1777, record_id = TRUE))
-  expect_error(update_volume_record(vol_id = 1777, record_id = c(1, 2)))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1.5))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = -1))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 0))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = "1"))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = TRUE))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = c(1, 2)))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1.5))
 })
 
 test_that("update_volume_record rejects invalid measures", {
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, measures = "text"))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, measures = 123))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, measures = TRUE))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = "text"))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = 123))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, measures = TRUE))
 })
 
 test_that("update_volume_record rejects invalid vb parameter", {
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, vb = -1))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, vb = 3))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, vb = "a"))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, vb = c(TRUE, FALSE)))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, vb = NULL))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = -1))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = 3))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = "a"))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = c(TRUE, FALSE)))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, vb = NULL))
 })
 
 test_that("update_volume_record rejects invalid rq parameter", {
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, rq = "a"))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, rq = -1))
-  expect_error(update_volume_record(vol_id = 1777, record_id = 1, rq = TRUE))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = "a"))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = -1))
+  expect_error(update_volume_record(vol_id = TEST_VOL_ID, record_id = 1, rq = TRUE))
 })

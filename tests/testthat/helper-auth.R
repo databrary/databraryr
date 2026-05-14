@@ -23,6 +23,15 @@ login_test_account <- function() {
     Sys.setenv(DATABRARY_BASE_URL = "https://api.stg-databrary.its.nyu.edu")
   }
 
+  # Reuse token for the rest of the R process (testthat default: one process per run).
+  bundle_existing <- databraryr:::get_token_bundle()
+  if (
+    !is.null(bundle_existing) &&
+      !databraryr:::is_missing_string(bundle_existing$access_token)
+  ) {
+    return(invisible(TRUE))
+  }
+
   vals <- list(
     email = Sys.getenv("DATABRARY_LOGIN"),
     password = Sys.getenv("DATABRARY_PASSWORD"),

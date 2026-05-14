@@ -102,23 +102,15 @@ list_volume_records <- function(vol_id = 1,
 
   if (length(records) == 0) {
     if (vb) {
-      message("No records found with category_id = ",
-              category_id,
-              " for volume ",
-              vol_id)
+      cat_part <- if (is.null(category_id)) {
+        "(all categories)"
+      } else {
+        paste0("category_id = ", category_id)
+      }
+      message("No records found with ", cat_part, " for volume ", vol_id)
     }
     return(empty_volume_records_tibble())
   }
-
-  if (vb)
-    message(
-      "Found n = ",
-      length(records),
-      " records with category_id = ",
-      category_id,
-      " in volume ",
-      vol_id
-    )
 
   # Process records into tibble
   purrr::map_dfr(records, function(record) {

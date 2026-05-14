@@ -1,6 +1,7 @@
 # list_volume_sessions --------------------------------------------------------
+login_test_account()
+
 test_that("list_volume_sessions returns tibble given valid vol_id", {
-  login_test_account()
   result <- list_volume_sessions()
   skip_if_null_response(result, "list_volume_sessions()")
   expect_s3_class(result, "tbl_df")
@@ -8,7 +9,6 @@ test_that("list_volume_sessions returns tibble given valid vol_id", {
 })
 
 test_that("list_volume_sessions returns tibble for another volume", {
-  login_test_account()
   result <- list_volume_sessions(vol_id = 2)
   skip_if_null_response(result, "list_volume_sessions(vol_id = 2)")
   expect_s3_class(result, "tbl_df")
@@ -16,7 +16,6 @@ test_that("list_volume_sessions returns tibble for another volume", {
 })
 
 test_that("list_volume_sessions returns NULL for unknown volume", {
-  login_test_account()
   expect_null(list_volume_sessions(vol_id = 9999))
 })
 

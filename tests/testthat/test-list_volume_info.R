@@ -10,7 +10,6 @@ test_that("list_volume_info returns tibble for default volume", {
   expect_true(is.list(result$vol_owner_institution))
 })
 
-login_test_account()
 test_that("list_volume_info returns tibble for another volume", {
   result <- list_volume_info(vol_id = 2)
   skip_if_null_response(result, "list_volume_info(vol_id = 2)")

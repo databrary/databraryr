@@ -1,24 +1,13 @@
 # check_duplicate_files_in_folder() --------------------------------------------
 login_test_account()
 
-TEST_VOL <- 1777
-
-new_folder_id <- function(name = "check_duplicate_files_in_folder test") {
-  created <- create_folder(vol_id = TEST_VOL, name = name, vb = FALSE)
-  if (is.null(created)) {
-    return(NULL)
-  }
-  created$id
-}
-
 test_that("check_duplicate_files_in_folder returns a tibble for an empty folder", {
-  fid <- new_folder_id("check_duplicate_files_in_folder happy path")
+  fid <- make_test_folder("check_duplicate_files_in_folder happy path")
   skip_if_null_response(fid, "create_folder for check_duplicate_files happy path")
-  on.exit(delete_folder(vol_id = TEST_VOL, folder_id = fid, vb = FALSE), add = TRUE)
 
   filenames <- c("nonexistent_a.mp4", "nonexistent_b.mp4")
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = fid,
     filenames = filenames,
     vb = FALSE
@@ -34,13 +23,12 @@ test_that("check_duplicate_files_in_folder returns a tibble for an empty folder"
 })
 
 test_that("check_duplicate_files_in_folder preserves input order", {
-  fid <- new_folder_id("check_duplicate_files_in_folder order")
+  fid <- make_test_folder("check_duplicate_files_in_folder order")
   skip_if_null_response(fid, "create_folder for order test")
-  on.exit(delete_folder(vol_id = TEST_VOL, folder_id = fid, vb = FALSE), add = TRUE)
 
   filenames <- c("z.mp4", "a.mp4", "m.mp4")
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = fid,
     filenames = filenames,
     vb = FALSE
@@ -51,12 +39,11 @@ test_that("check_duplicate_files_in_folder preserves input order", {
 })
 
 test_that("check_duplicate_files_in_folder works with a single filename", {
-  fid <- new_folder_id("check_duplicate_files_in_folder single")
+  fid <- make_test_folder("check_duplicate_files_in_folder single")
   skip_if_null_response(fid, "create_folder for single filename test")
-  on.exit(delete_folder(vol_id = TEST_VOL, folder_id = fid, vb = FALSE), add = TRUE)
 
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = fid,
     filenames = "only.mp4",
     vb = FALSE
@@ -69,10 +56,8 @@ test_that("check_duplicate_files_in_folder works with a single filename", {
 })
 
 test_that("check_duplicate_files_in_folder treats missing folder like empty (all not found)", {
-  # Backend accepts the request and queries by folder_id only; staging returns
-  # a tibble with exists = FALSE when no files match (same idea as sessions).
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = 999999999,
     filenames = c("a.mp4"),
     vb = FALSE
@@ -84,12 +69,11 @@ test_that("check_duplicate_files_in_folder treats missing folder like empty (all
 })
 
 test_that("check_duplicate_files_in_folder works with verbose mode", {
-  fid <- new_folder_id("check_duplicate_files_in_folder vb")
+  fid <- make_test_folder("check_duplicate_files_in_folder vb")
   skip_if_null_response(fid, "create_folder for check_duplicate_files vb")
-  on.exit(delete_folder(vol_id = TEST_VOL, folder_id = fid, vb = FALSE), add = TRUE)
 
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = fid,
     filenames = c("vb.mp4"),
     vb = TRUE
@@ -99,13 +83,12 @@ test_that("check_duplicate_files_in_folder works with verbose mode", {
 })
 
 test_that("check_duplicate_files_in_folder works with custom request object", {
-  fid <- new_folder_id("check_duplicate_files_in_folder custom rq")
+  fid <- make_test_folder("check_duplicate_files_in_folder custom rq")
   skip_if_null_response(fid, "create_folder for check_duplicate_files custom rq")
-  on.exit(delete_folder(vol_id = TEST_VOL, folder_id = fid, vb = FALSE), add = TRUE)
 
   custom_rq <- databraryr::make_default_request()
   result <- check_duplicate_files_in_folder(
-    vol_id = TEST_VOL,
+    vol_id = TEST_VOL_ID,
     folder_id = fid,
     filenames = c("custom.mp4"),
     rq = custom_rq,

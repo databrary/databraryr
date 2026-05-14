@@ -1,8 +1,10 @@
 # list_volume_records ---------------------------------------------------------
 login_test_account()
 
+records_1777 <- list_volume_records(vol_id = 1777, vb = FALSE)
+
 test_that("list_volume_records returns tibble given valid vol_id", {
-  result <- list_volume_records(vol_id = 1777)
+  result <- records_1777
   skip_if_null_response(result, "list_volume_records(vol_id = 1777)")
 
   expect_s3_class(result, "tbl_df")
@@ -14,7 +16,7 @@ test_that("list_volume_records returns tibble given valid vol_id", {
 })
 
 test_that("list_volume_records returns valid record structure", {
-  result <- list_volume_records(vol_id = 1777, vb = FALSE)
+  result <- records_1777
   skip_if_null_response(result, "list_volume_records(vol_id = 1777)")
 
   # Check column types
@@ -38,8 +40,7 @@ test_that("list_volume_records returns NULL for non-existent volume", {
 })
 
 test_that("list_volume_records works with category_id filter", {
-  # First get all records to find a valid category_id
-  all_records <- list_volume_records(vol_id = 1777, vb = FALSE)
+  all_records <- records_1777
   skip_if_null_response(all_records, "list_volume_records(vol_id = 1777)")
 
   if (nrow(all_records) > 0) {
@@ -118,7 +119,7 @@ test_that("list_volume_records rejects invalid rq parameter", {
 })
 
 test_that("list_volume_records includes age fields", {
-  result <- list_volume_records(vol_id = 1777)
+  result <- records_1777
   skip_if_null_response(result, "list_volume_records(vol_id = 1777)")
 
   # Check that age fields exist
@@ -128,7 +129,7 @@ test_that("list_volume_records includes age fields", {
 })
 
 test_that("list_volume_records includes measures as list column", {
-  result <- list_volume_records(vol_id = 1777)
+  result <- records_1777
   skip_if_null_response(result, "list_volume_records(vol_id = 1777)")
 
   # Check that measures column is a list
@@ -146,7 +147,7 @@ test_that("list_volume_records works with custom request object", {
 })
 
 test_that("list_volume_records returns for different volumes", {
-  result1 <- list_volume_records(vol_id = 1777, vb = FALSE)
+  result1 <- records_1777
   skip_if_null_response(result1, "list_volume_records(vol_id = 1777)")
 
   result2 <- list_volume_records(vol_id = 2, vb = FALSE)
