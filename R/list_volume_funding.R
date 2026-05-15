@@ -44,7 +44,7 @@ list_volume_funding <- function(vol_id = 1,
   if (vb)
     message("Summarizing funding for n=", length(vol_id), " volumes.")
 
-  purrr::map(vol_id, function(id) {
+  out <- purrr::map(vol_id, function(id) {
     fundings <- perform_api_get(
       path = sprintf(API_VOLUME_FUNDINGS, id),
       rq = rq,
@@ -70,4 +70,9 @@ list_volume_funding <- function(vol_id = 1,
     rows
   }) %>%
     purrr::list_rbind()
+
+  if (is.null(out) || nrow(out) == 0L) {
+    return(NULL)
+  }
+  tibble::as_tibble(out)
 }

@@ -93,7 +93,18 @@ get_release_levels <- function(vb = options::opt("vb")) {
 get_supported_file_types <- function(vb = options::opt("vb")) {
   validate_flag(vb, "vb")
   constants <- assign_constants(vb = vb)
-  constants$format_df |>
+  if (is.null(constants)) {
+    return(NULL)
+  }
+  df <- constants$format_df
+  if (is.null(df) || !is.data.frame(df)) {
+    return(NULL)
+  }
+  req_names <- c("name", "id", "category")
+  if (length(setdiff(req_names, names(df))) > 0L) {
+    return(NULL)
+  }
+  df |>
     dplyr::rename(
       asset_type = name,
       asset_type_id = id,
