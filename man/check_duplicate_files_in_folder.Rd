@@ -33,7 +33,7 @@ a missing \code{folder_id} still yields a successful response with
 }
 \description{
 Ask the server which of the supplied filenames already
-exist as files in the given folder. Useful before uploading multiple files to detect
+exist as files in the given folder. Useful before bulk uploads to detect
 name collisions in advance.
 }
 \examples{
