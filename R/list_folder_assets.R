@@ -85,14 +85,14 @@ list_folder_assets <- function(folder_id = 9807,
       asset_format_id = format$id,
       asset_format_name = format$name,
       format_extension = format$extension,
-      asset_duration = file$duration,
+      asset_duration = null_to_na_double(file[["duration"]]),
       asset_created_at = file$created_at,
       asset_updated_at = file$updated_at,
       asset_uploader_id = uploader$id,
       asset_uploader_first_name = uploader$first_name,
       asset_uploader_last_name = uploader$last_name,
       asset_sha1 = file$sha1,
-      asset_thumbnail_url = file$thumbnail_url
+      asset_thumbnail_url = null_to_na_character(file[["thumbnail_url"]])
     )
   })
 

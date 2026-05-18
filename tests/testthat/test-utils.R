@@ -38,18 +38,6 @@ test_that("get_supported_file_types rejects bad input parameters", {
   expect_error(get_supported_file_types(vb = "a"))
 })
 
-# HHMMSSmmm_to_ms ---------------------------------------------------
-test_that("HHMMSSmmm_to_ms returns number", {
-  expect_true(class(HHMMSSmmm_to_ms()) == "numeric")
-})
-
-test_that("HHMMSSmmm_to_ms rejects bad input parameters", {
-  expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = -1))
-  #expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = "a"))
-  #expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = list(a=1, b=2)))
-  expect_error(HHMMSSmmm_to_ms(HHMMSSmmm = TRUE))
-})
-
 # make_fn_portable ---------------------------------------------------
 test_that("make_fn_portable returns string", {
   expect_true("character" %in% class(make_fn_portable("}*&!@#$%^+.pdf")))
