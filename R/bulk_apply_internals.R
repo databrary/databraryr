@@ -108,43 +108,14 @@ bulk_apply <- function(inputs, fn,
   state
 }
 
-# Internal: mark inputs whose basenames already exist in the session as
-# "skipped" with reason "duplicate". Returns the updated state tibble.
+# Internal: mark inputs whose basenames already exist in the target session or
+# folder as "skipped" with reason "duplicate". `checker` is
+# check_duplicate_files_in_session or check_duplicate_files_in_folder; `...` is
+# forwarded (vol_id, session_id or folder_id, vb, rq).
 #' @noRd
-preflight_session_duplicates <- function(state, vol_id, session_id, vb, rq) {
+preflight_duplicates <- function(state, checker, ...) {
   filenames <- basename(state$input)
-  dupes <- check_duplicate_files_in_session(
-    vol_id = vol_id,
-    session_id = session_id,
-    filenames = filenames,
-    vb = vb,
-    rq = rq
-  )
-  if (is.null(dupes)) {
-    return(state)
-  }
-
-  exists_lookup <- stats::setNames(dupes$exists, dupes$filename)
-  is_dupe <- !is.na(exists_lookup[filenames]) &
-    unname(exists_lookup[filenames])
-  is_dupe[is.na(is_dupe)] <- FALSE
-
-  state$status[is_dupe] <- "skipped"
-  state$reason[is_dupe] <- "duplicate"
-  state
-}
-
-# Internal: duplicate filenames in folder preflight (mirrors session).
-#' @noRd
-preflight_folder_duplicates <- function(state, vol_id, folder_id, vb, rq) {
-  filenames <- basename(state$input)
-  dupes <- check_duplicate_files_in_folder(
-    vol_id = vol_id,
-    folder_id = folder_id,
-    filenames = filenames,
-    vb = vb,
-    rq = rq
-  )
+  dupes <- checker(filenames = filenames, ...)
   if (is.null(dupes)) {
     return(state)
   }

@@ -94,11 +94,25 @@ bulk_upload_files <- function(
   preflight_fn <- if (preflight) {
     if (has_session) {
       function(state) {
-        preflight_session_duplicates(state, vol_id, session_id, vb, rq)
+        preflight_duplicates(
+          state,
+          check_duplicate_files_in_session,
+          vol_id = vol_id,
+          session_id = session_id,
+          vb = vb,
+          rq = rq
+        )
       }
     } else {
       function(state) {
-        preflight_folder_duplicates(state, vol_id, folder_id, vb, rq)
+        preflight_duplicates(
+          state,
+          check_duplicate_files_in_folder,
+          vol_id = vol_id,
+          folder_id = folder_id,
+          vb = vb,
+          rq = rq
+        )
       }
     }
   } else {

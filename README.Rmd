@@ -134,6 +134,22 @@ partial <- tryCatch(
 partial <- resume_bulk(partial, bulk_upload_files, vol_id = 1, session_id = 42)
 ```
 
+Looping fix-and-resume (safe: each `e$partial` always reflects the full job, not only the last retried subset):
+
+```{r, eval = FALSE}
+partial <- tryCatch(
+  bulk_upload_files(vol_id = 1, session_id = 42, file_paths = my_paths),
+  databraryr_bulk_error = function(e) e$partial
+)
+while (any(partial$status %in% c("pending", "failed"))) {
+  # fix whatever caused the failure, then:
+  partial <- tryCatch(
+    resume_bulk(partial, bulk_upload_files, vol_id = 1, session_id = 42),
+    databraryr_bulk_error = function(e) e$partial
+  )
+}
+```
+
 Pass every argument the bulk function needs via `...` except the **vector argument that defines rows** (`file_paths`, `session_ids`, `folder_ids`, `file_ids`, `session_names`, `folder_names`, `record_ids`, or `record_names`). That vector is filled automatically from `partial$input` for incomplete rows; pass **`input_arg = "..."`** if auto-detection is wrong.
 
 **Rename helpers** (`bulk_rename_sessions`, `bulk_rename_folders`, `bulk_rename_files`) also take **`new_names`** parallel to the ids being renamed. `resume_bulk()` only forwards the id/file vector—you must pass **`new_names`** (subset to match the incomplete rows, in the same order) yourself.

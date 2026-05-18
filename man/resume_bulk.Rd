@@ -35,6 +35,13 @@ because \code{on_error = "collect"} left \code{"failed"} / \code{"pending"}
 rows), \code{resume_bulk()} re-runs the supplied bulk function on those rows
 and merges the result, preserving original input order.
 }
+\details{
+If \code{fn} itself fast-fails (\code{on_error = "stop"}), the
+re-thrown \code{databraryr_bulk_error}'s \code{$partial} is the \strong{full
+accumulated tibble} (outcomes from all prior runs merged with the latest
+attempt), so you can safely pass it back to \code{resume_bulk()} in a loop
+without losing rows that already succeeded.
+}
 \examples{
 \donttest{
 \dontrun{

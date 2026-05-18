@@ -23,6 +23,12 @@
 #' @return A tibble of the same shape as \code{partial}, with rows from the
 #'   resumed run substituted in for previously incomplete rows.
 #'
+#' @details If \code{fn} itself fast-fails (\code{on_error = "stop"}), the
+#'   re-thrown \code{databraryr_bulk_error}'s \code{$partial} is the \strong{full
+#'   accumulated tibble} (outcomes from all prior runs merged with the latest
+#'   attempt), so you can safely pass it back to \code{resume_bulk()} in a loop
+#'   without losing rows that already succeeded.
+#'
 #' @seealso \code{\link{bulk_upload_files}}, \code{\link{bulk_delete_sessions}},
 #'   \code{\link{bulk_delete_folders}}, \code{\link{bulk_delete_files}},
 #'   \code{\link{bulk_create_sessions}}, \code{\link{bulk_create_folders}},
@@ -68,11 +74,31 @@ resume_bulk <- function(partial, fn, ..., input_arg = NULL) {
   args <- list(...)
   args[[input_arg]] <- remaining
 
-  new_rows <- do.call(fn, args)
-
-  # Splice new rows back into the original order.
   out <- partial
   redo_idx <- which(to_redo)
+
+  inner_result <- tryCatch(
+    list(ok = TRUE, val = do.call(fn, args)),
+    databraryr_bulk_error = function(e) list(ok = FALSE, err = e)
+  )
+
+  if (!isTRUE(inner_result$ok)) {
+    inner <- inner_result$err$partial
+    for (k in seq_along(redo_idx)) {
+      i <- redo_idx[k]
+      out$status[i] <- inner$status[k]
+      out$result[i] <- inner$result[k]
+      out$error[i] <- inner$error[k]
+      out$reason[i] <- inner$reason[k]
+    }
+    stop(databraryr_bulk_error(
+      message      = inner_result$err$message,
+      partial      = out,
+      failed_input = inner_result$err$failed_input
+    ))
+  }
+
+  new_rows <- inner_result$val
   for (k in seq_along(redo_idx)) {
     i <- redo_idx[k]
     out$status[i] <- new_rows$status[k]
