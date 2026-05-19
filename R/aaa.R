@@ -37,3 +37,20 @@ NULL
 }
 
 utils::globalVariables(".data")
+
+# Internal: nullable API scalars — tibble/map_dfr drop raw NULL columns.
+null_to_na_double <- function(x) {
+  if (is.null(x) || length(x) == 0L) {
+    return(NA_real_)
+  }
+  v <- suppressWarnings(as.numeric(x))
+  if (length(v) == 0L || all(is.na(v))) NA_real_ else v[[1L]]
+}
+
+null_to_na_character <- function(x) {
+  if (is.null(x) || length(x) == 0L) {
+    return(NA_character_)
+  }
+  tc <- suppressWarnings(as.character(x))
+  if (length(tc) == 0L) NA_character_ else tc[[1L]]
+}

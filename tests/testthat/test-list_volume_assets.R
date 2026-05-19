@@ -14,6 +14,14 @@ test_that("list_volume_assets returns tibble for accessible volume", {
   expect_gt(nrow(result), 0)
 })
 
+test_that("list_volume_assets always includes duration and thumbnail columns", {
+  result <- list_volume_assets(vol_id = 1)
+  skip_if_null_response(result, "list_volume_assets(vol_id = 1)")
+  expect_true(all(c("asset_duration", "asset_thumbnail_url") %in% names(result)))
+  expect_type(result$asset_duration, "double")
+  expect_type(result$asset_thumbnail_url, "character")
+})
+
 test_that("list_volume_assets rejects bad input parameters", {
   expect_error(list_volume_assets(vol_id = -1))
   expect_error(list_volume_assets(vol_id = 0))

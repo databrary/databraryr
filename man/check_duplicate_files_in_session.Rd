@@ -33,7 +33,7 @@ reported as \code{exists = FALSE} (no rows match that session).
 }
 \description{
 Ask the server which of the supplied filenames already
-exist as files in the given session. Useful before uploading multiple files to detect
+exist as files in the given session. Useful before bulk uploads to detect
 name collisions in advance.
 }
 \examples{

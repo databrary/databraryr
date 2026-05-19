@@ -14,7 +14,9 @@ list_volume_assets(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
-A data frame with information about all assets in a volume.
+A tibble with one row per asset. Columns \code{asset_duration} and
+\code{asset_thumbnail_url} are always present (as \code{NA} when the API omits them).
+Other fields come from the volume sessions/files payload.
 }
 \description{
 List Assets in Databrary Volume.
