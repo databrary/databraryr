@@ -1,18 +1,23 @@
 # list_volume_records ---------------------------------------------------------
 login_test_account()
 
+records_test_vol <- list_volume_records(vol_id = TEST_VOL_ID, vb = FALSE)
+
 test_that("list_volume_records returns tibble given valid vol_id", {
-  result <- list_volume_records(vol_id = 1)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1)")
+  result <- records_test_vol
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
-  expect_true(all(c("record_id", "record_volume", "record_category_id") %in% names(result)))
+  expect_true(all(c(
+    "record_id", "record_volume", "record_volume_name", "record_category_id",
+    "record_measures", "record_default_sessions", "record_source_kind"
+  ) %in% names(result)))
 })
 
 test_that("list_volume_records returns valid record structure", {
-  result <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1)")
+  result <- records_test_vol
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   # Check column types
   expect_true(is.numeric(result$record_id) || is.integer(result$record_id))
@@ -23,27 +28,31 @@ test_that("list_volume_records returns valid record structure", {
   # Check that record_ids are positive
   expect_true(all(result$record_id > 0))
 
-  # Check that record_volume matches requested volume
-  expect_true(all(result$record_volume == 1))
+  # record_volume_name / linked provenance / default sessions (core RecordSerializer)
+  expect_true(is.character(result$record_volume_name))
+  expect_true(is.list(result$record_default_sessions))
+  expect_true(is.character(result$record_source_kind))
 })
 
 test_that("list_volume_records returns NULL for non-existent volume", {
-  result <- list_volume_records(vol_id = 999999, vb = FALSE)
+  result <- list_volume_records(vol_id = TEST_MISSING_ID, vb = FALSE)
   expect_null(result)
 })
 
 test_that("list_volume_records works with category_id filter", {
-  # First get all records to find a valid category_id
-  all_records <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(all_records, "list_volume_records(vol_id = 1)")
+  all_records <- records_test_vol
+  skip_if_null_response(all_records, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   if (nrow(all_records) > 0) {
     # Get unique category_id from results
     test_category <- all_records$record_category_id[1]
 
     # Filter by that category
-    filtered_records <- list_volume_records(vol_id = 1, category_id = test_category, vb = FALSE)
-    skip_if_null_response(filtered_records, sprintf("list_volume_records(vol_id = 1, category_id = %d)", test_category))
+    filtered_records <- list_volume_records(vol_id = TEST_VOL_ID, category_id = test_category, vb = FALSE)
+    skip_if_null_response(
+      filtered_records,
+      sprintf("list_volume_records(vol_id = %d, category_id = %d)", TEST_VOL_ID, test_category)
+    )
 
     # All records should have the specified category_id
     expect_true(all(filtered_records$record_category_id == test_category))
@@ -51,8 +60,8 @@ test_that("list_volume_records works with category_id filter", {
 })
 
 test_that("list_volume_records works with verbose mode", {
-  result <- list_volume_records(vol_id = 1, vb = TRUE)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1, vb = TRUE)")
+  result <- list_volume_records(vol_id = TEST_VOL_ID, vb = TRUE)
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d, vb = TRUE)", TEST_VOL_ID))
 
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
@@ -113,8 +122,8 @@ test_that("list_volume_records rejects invalid rq parameter", {
 })
 
 test_that("list_volume_records includes age fields", {
-  result <- list_volume_records(vol_id = 1)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1)")
+  result <- records_test_vol
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   # Check that age fields exist
   age_fields <- c("age_years", "age_months", "age_days", "age_total_days",
@@ -123,8 +132,8 @@ test_that("list_volume_records includes age fields", {
 })
 
 test_that("list_volume_records includes measures as list column", {
-  result <- list_volume_records(vol_id = 1)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1)")
+  result <- records_test_vol
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   # Check that measures column is a list
   expect_true("record_measures" %in% names(result))
@@ -133,16 +142,16 @@ test_that("list_volume_records includes measures as list column", {
 
 test_that("list_volume_records works with custom request object", {
   custom_rq <- databraryr::make_default_request()
-  result <- list_volume_records(vol_id = 1, rq = custom_rq)
-  skip_if_null_response(result, "list_volume_records(vol_id = 1, rq = custom_rq)")
+  result <- list_volume_records(vol_id = TEST_VOL_ID, rq = custom_rq)
+  skip_if_null_response(result, sprintf("list_volume_records(vol_id = %d, rq = custom_rq)", TEST_VOL_ID))
 
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
 })
 
 test_that("list_volume_records returns for different volumes", {
-  result1 <- list_volume_records(vol_id = 1, vb = FALSE)
-  skip_if_null_response(result1, "list_volume_records(vol_id = 1)")
+  result1 <- records_test_vol
+  skip_if_null_response(result1, sprintf("list_volume_records(vol_id = %d)", TEST_VOL_ID))
 
   result2 <- list_volume_records(vol_id = 2, vb = FALSE)
   skip_if_null_response(result2, "list_volume_records(vol_id = 2)")
@@ -151,7 +160,9 @@ test_that("list_volume_records returns for different volumes", {
   expect_s3_class(result1, "tbl_df")
   expect_s3_class(result2, "tbl_df")
 
-  # Records should have different volume IDs
-  expect_true(all(result1$record_volume == 1))
-  expect_true(all(result2$record_volume == 2))
+  # Owning-volume ids may differ from requested vol_id when volumes expose linked records
+  expect_true(all(is.finite(result1$record_volume)))
+  expect_true(all(is.finite(result2$record_volume)))
+  expect_gt(length(unique(result1$record_id)), 0)
+  expect_gt(length(unique(result2$record_id)), 0)
 })

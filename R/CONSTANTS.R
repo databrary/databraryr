@@ -1,7 +1,8 @@
 #' Load Package-wide Constants into Local Environment
 #'
 #'
-DATABRARY_BASE_URL <- Sys.getenv("DATABRARY_BASE_URL", "https://api.databrary.org")
+# Default; overridden at load time by .onLoad from DATABRARY_BASE_URL env var
+DATABRARY_BASE_URL <- "https://api.databrary.org"
 
 API_ACTIVITY_SUMMARY <- "/statistics/summary/"
 API_GROUPED_FORMATS <- "/grouped-formats/"
@@ -12,10 +13,12 @@ API_USER_SPONSORSHIPS <- "/users/%s/sponsorships/"
 API_USER_AFFILIATES <- "/users/%s/affiliates/"
 API_USER_AVATAR <- "/users/%s/avatar/"
 API_USERS_HISTORY <- "/users/%s/history/"
+API_USER_STATISTICS <- "/users/%s/statistics/"
 API_INSTITUTIONS_LIST <- "/institutions/"
 API_INSTITUTIONS <- "/institutions/%s/"
 API_INSTITUTION_AFFILIATES <- "/institutions/%s/affiliates/"
 API_INSTITUTION_AVATAR <- "/institutions/%s/avatar/"
+API_INSTITUTION_STATISTICS <- "/institutions/%s/statistics/"
 API_VOLUMES <- "/volumes/"
 API_VOLUME_DETAIL <- "/volumes/%s/"
 API_VOLUME_TAGS <- "/volumes/%s/tags/"
@@ -28,13 +31,20 @@ API_VOLUME_SESSIONS <- "/volumes/%s/sessions/"
 API_VOLUME_FOLDERS <- "/volumes/%s/folders/"
 API_VOLUME_RECORDS <- "/volumes/%s/records/"
 API_VOLUME_RECORD_DETAIL <- "/volumes/%s/records/%s/"
+API_RECORD_MEASURES <- "/volumes/%s/records/%s/measures/%s/"
 API_SESSION_DETAIL <- "/volumes/%s/sessions/%s/"
+API_SESSION_ADD_DEFAULT_RECORD <- "/volumes/%s/sessions/%s/add-default-record/"
+API_SESSION_REMOVE_DEFAULT_RECORD <- "/volumes/%s/sessions/%s/remove-default-record/"
+API_SESSION_CHECK_DUPLICATE_FILES <- "/volumes/%s/sessions/%s/check-duplicate-files/"
 API_SESSION_FILES <- "/volumes/%s/sessions/%s/files/"
 API_SESSION_FILE_DETAIL <- "/volumes/%s/sessions/%s/files/%s/"
+API_SESSION_FILE_ASSIGN <- "/volumes/%s/sessions/%s/files/%s/assign-record/"
+API_SESSION_FILE_UNASSIGN <- "/volumes/%s/sessions/%s/files/%s/unassign-record/"
 API_FILES_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/files/%s/download-link/"
 API_SESSION_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/download-link/"
 API_SESSION_CSV_DOWNLOAD_LINK <- "/volumes/%s/sessions/%s/csv-download-link/"
 API_FOLDER_DETAIL <- "/volumes/%s/folders/%s/"
+API_FOLDER_CHECK_DUPLICATE_FILES <- "/volumes/%s/folders/%s/check-duplicate-files/"
 API_FOLDER_FILES <- "/volumes/%s/folders/%s/files/"
 API_FOLDER_FILES_DETAIL <- "/volumes/%s/folders/%s/files/%s/"
 API_FOLDER_DOWNLOAD_LINK <- "/volumes/%s/folders/%s/download-link/"
@@ -49,10 +59,15 @@ API_FUNDER_DETAIL <- "/funders/%s/"
 API_TAG_DETAIL <- "/tags/%s/"
 API_CATEGORIES <- "/categories/"
 API_CATEGORY_DETAIL <- "/categories/%s/"
+API_VOLUME_CATEGORIES <- "/volumes/%s/categories/"
+API_UPLOADS_INITIATE <- "/uploads/initiate/"
+API_UPLOADS_STATUS <- "/uploads/%s/status/"
+API_UPLOADS_COMPLETE_MULTIPART <- "/uploads/complete-multipart/"
+API_UPLOADS_ABORT_MULTIPART <- "/uploads/abort-multipart/"
 
 RETRY_LIMIT <- 3
-RETRY_WAIT_TIME <- 1  # seconds
-RETRY_BACKOFF <- 2  # exponential backoff
+RETRY_WAIT_TIME <- 1 # seconds
+RETRY_BACKOFF <- 2 # exponential backoff
 REQUEST_TIMEOUT <- 5 # seconds
 REQUEST_TIMEOUT_VERY_LONG <- 600
 
@@ -61,6 +76,9 @@ OAUTH_TOKEN_URL <- sprintf("%s/o/token/", DATABRARY_BASE_URL)
 OAUTH_TEST_URL <- sprintf("%s/oauth2/test/", DATABRARY_BASE_URL)
 LOGIN <- sprintf("%s/login/", DATABRARY_BASE_URL)
 
-USER_AGENT <- paste0("databraryr/", as.character(utils::packageVersion("databraryr")))
+USER_AGENT <- paste0(
+  "databraryr/",
+  as.character(utils::packageVersion("databraryr"))
+)
 
 KEYRING_SERVICE <- "org.databrary.databraryr"

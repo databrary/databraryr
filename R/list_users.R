@@ -45,10 +45,10 @@ list_users <- function(search = NULL,
     assertthat::assert_that(assertthat::is.string(search))
   }
 
-  validate_flag(include_suspended, "include_suspended")
-  validate_flag(exclude_self, "exclude_self")
-  validate_flag(is_authorized_investigator, "is_authorized_investigator")
-  validate_flag(has_api_access, "has_api_access")
+  validate_flag(include_suspended, "include_suspended", optional = TRUE)
+  validate_flag(exclude_self, "exclude_self", optional = TRUE)
+  validate_flag(is_authorized_investigator, "is_authorized_investigator", optional = TRUE)
+  validate_flag(has_api_access, "has_api_access", optional = TRUE)
 
   assertthat::assert_that(length(vb) == 1)
   assertthat::assert_that(is.logical(vb))

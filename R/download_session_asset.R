@@ -67,7 +67,7 @@ download_session_asset <- function(vol_id = 1,
   assertthat::assert_that(is.character(target_dir))
   assertthat::assert_that(dir.exists(target_dir))
 
-  assertthat::is.number(timeout_secs)
+  assertthat::assert_that(assertthat::is.number(timeout_secs))
   assertthat::assert_that(length(timeout_secs) == 1)
   assertthat::assert_that(timeout_secs > 0)
 

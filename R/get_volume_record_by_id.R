@@ -15,9 +15,12 @@ NULL
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to `NULL`.
 #'
-#' @return A list with the record's metadata including id, volume, category_id,
-#'   measures, birthday, and age information, or `NULL` if the record is not
-#'   found or inaccessible.
+#' @return A list aligned with the API record payload: `record_id`, `record_volume`,
+#'   `record_volume_name`, `record_category_id`, `measures`, `birthday`, `age`,
+#'   `default_sessions` (session ids/names where this record is a default),
+#'   `record_source_kind` (linked-content provenance, e.g. `native`,
+#'   `source_linked_file`). `record_volume` may differ from `vol_id` for linked
+#'   records. Returns `NULL` if the record is not found or inaccessible.
 #'
 #' @inheritParams options_params
 #'
@@ -77,27 +80,5 @@ get_volume_record_by_id <- function(
     return(NULL)
   }
 
-  # Process age if present
-  age <- NULL
-  if (!is.null(record$age)) {
-    age <- list(
-      years = record$age$years,
-      months = record$age$months,
-      days = record$age$days,
-      total_days = record$age$total_days,
-      formatted_value = record$age$formatted_value,
-      is_estimated = record$age$is_estimated,
-      is_blurred = record$age$is_blurred
-    )
-  }
-
-  # Return structured list
-  list(
-    record_id = record$id,
-    record_volume = record$volume,
-    record_category_id = record$category_id,
-    measures = record$measures,
-    birthday = record$birthday,
-    age = age
-  )
+  record_as_client_list(record)
 }

@@ -1,5 +1,6 @@
+login_test_account()
+
 test_that("assign_constants returns constants", {
-  login_test_account()
   result <- assign_constants()
   skip_if_null_response(result, "assign_constants()")
   expect_true(is.list(result))
@@ -19,7 +20,6 @@ test_that("assign_constants rejects bad input parameters", {
 })
 
 test_that("assign_constants returns permission metadata", {
-  login_test_account()
   result <- assign_constants()
   skip_if_null_response(result, "assign_constants() metadata")
   expect_true("permission" %in% names(result))

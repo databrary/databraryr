@@ -9,7 +9,9 @@ NULL
 #' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Default is NULL.
 #'
-#' @returns A data frame with information about all assets in a volume.
+#' @returns A tibble with one row per asset. Columns `asset_duration` and
+#'   `asset_thumbnail_url` are always present (as `NA` when the API omits them).
+#'   Other fields come from the volume sessions/files payload.
 #'
 #' @inheritParams options_params
 #'
@@ -64,14 +66,14 @@ list_volume_assets <- function(vol_id = 1,
         asset_mime_type = format$mimetype,
         asset_format_id = format$id,
         asset_format_name = format$name,
-        asset_duration = file$duration,
+        asset_duration = null_to_na_double(file[["duration"]]),
         asset_created_at = file$created_at,
         asset_updated_at = file$updated_at,
         asset_uploader_id = uploader$id,
         asset_uploader_first_name = uploader$first_name,
         asset_uploader_last_name = uploader$last_name,
         asset_sha1 = file$sha1,
-        asset_thumbnail_url = file$thumbnail_url,
+        asset_thumbnail_url = null_to_na_character(file[["thumbnail_url"]]),
         session_id = session$id,
         session_name = session$name,
         session_date = session$source_date,

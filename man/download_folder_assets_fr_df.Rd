@@ -17,7 +17,9 @@ download_folder_assets_fr_df(
 }
 \arguments{
 \item{folder_df}{Data frame describing assets. Must include \code{vol_id},
-\code{folder_id}, \code{asset_id}, and \code{asset_name} columns.}
+\code{folder_id}, \code{asset_id}, and \code{asset_name} columns. Defaults to the result
+of \code{list_folder_assets(vol_id = 1)}. Explicit \code{NULL} triggers the same
+call using the current \code{vb} and \code{rq}.}
 
 \item{target_dir}{Character string. Base directory for downloads. Defaults to
 \code{tempdir()}.}

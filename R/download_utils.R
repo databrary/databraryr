@@ -68,7 +68,7 @@ download_signed_file <- function(download_url,
                                  vb = FALSE) {
   assertthat::assert_that(assertthat::is.string(download_url))
   assertthat::assert_that(assertthat::is.string(dest_path))
-  assertthat::is.number(timeout_secs)
+  assertthat::assert_that(assertthat::is.number(timeout_secs))
   assertthat::assert_that(timeout_secs > 0)
 
   parent_dir <- dirname(dest_path)

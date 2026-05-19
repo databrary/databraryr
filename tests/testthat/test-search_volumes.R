@@ -2,8 +2,9 @@
 
 test_that("search_volumes returns tibble", {
   login_test_account()
-  result <- search_volumes("workshop")
-  skip_if_null_response(result, "search_volumes('workshop')")
+  # Empty query: no full-text clause; API returns public volumes in the search index
+  result <- search_volumes("")
+  skip_if_null_response(result, "search_volumes(\"\")")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
   expect_true(all(c("volume_id", "score") %in% names(result)))

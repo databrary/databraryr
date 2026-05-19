@@ -46,13 +46,18 @@ whoami <- function(refresh = TRUE,
       if (vb) {
         message("whoami request failed: ", conditionMessage(err))
         message("whoami -> request url: ", OAUTH_TEST_URL)
-        message(
-          "whoami -> authorization header: ",
-          if (!is.null(req$headers$Authorization))
-            req$headers$Authorization
-          else
-            "<missing>"
-        )
+        bundle <- get_token_bundle()
+        token <- if (is.null(bundle) || is.null(bundle$access_token)) {
+          ""
+        } else {
+          bundle$access_token
+        }
+        auth_desc <- if (nzchar(token)) {
+          paste0("Bearer ", substr(token, 1L, 8L), "...")
+        } else {
+          "<missing>"
+        }
+        message("whoami -> authorization header: ", auth_desc)
       }
       NULL
     }
