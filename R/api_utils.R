@@ -117,6 +117,17 @@ perform_api_get <- function(path,
   body
 }
 
+#' Extract one integer bucket from a file_counts object.
+#' @noRd
+file_count_value <- function(counts, key) {
+  value <- if (is.null(counts)) NULL else counts[[key]]
+  if (is.null(value) || length(value) == 0L) {
+    0L
+  } else {
+    as.integer(value)
+  }
+}
+
 #' @noRd
 collect_paginated_get <- function(path,
                                   params = list(),

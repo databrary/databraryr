@@ -52,12 +52,16 @@ list_volume_folders <- function(vol_id = 1,
       volume_value <- vol_id
     }
 
+    fc <- folder[["file_counts"]]
+
     tibble::tibble(
       folder_id = folder$id,
       folder_name = folder$name,
       folder_release = folder$release_level,
-      folder_file_count = folder$file_count,
-      folder_accessible_file_count = folder$accessible_file_count,
+      folder_native_accessible = file_count_value(fc, "native_accessible"),
+      folder_native_inaccessible = file_count_value(fc, "native_inaccessible"),
+      folder_linked_accessible = file_count_value(fc, "linked_accessible"),
+      folder_linked_inaccessible = file_count_value(fc, "linked_inaccessible"),
       folder_has_full_access = folder$has_full_access,
       folder_contains_different_release_levels = folder$contains_different_release_levels,
       folder_created_at = folder$created_at,

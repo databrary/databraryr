@@ -60,13 +60,17 @@ list_volume_sessions <-
                     vol_id)
 
     df <- purrr::map_dfr(sessions, function(session) {
+      fc <- session[["file_counts"]]
+
       tibble::tibble(
         session_id = session$id,
         session_name = session$name,
         session_release = session$release_level,
         session_source_date = session$source_date,
-        session_file_count = session$file_count,
-        session_accessible_file_count = session$accessible_file_count,
+        session_native_accessible = file_count_value(fc, "native_accessible"),
+        session_native_inaccessible = file_count_value(fc, "native_inaccessible"),
+        session_linked_accessible = file_count_value(fc, "linked_accessible"),
+        session_linked_inaccessible = file_count_value(fc, "linked_inaccessible"),
         session_has_full_access = session$has_full_access
       )
     })
