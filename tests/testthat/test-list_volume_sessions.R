@@ -6,6 +6,11 @@ test_that("list_volume_sessions returns tibble given valid vol_id", {
   skip_if_null_response(result, "list_volume_sessions()")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
+  expect_equal(nrow(result), dplyr::n_distinct(result$session_id))
+  expect_type(result$session_native_accessible, "integer")
+  expect_type(result$session_native_inaccessible, "integer")
+  expect_type(result$session_linked_accessible, "integer")
+  expect_type(result$session_linked_inaccessible, "integer")
 })
 
 test_that("list_volume_sessions returns tibble for another volume", {
@@ -13,6 +18,11 @@ test_that("list_volume_sessions returns tibble for another volume", {
   skip_if_null_response(result, "list_volume_sessions(vol_id = 2)")
   expect_s3_class(result, "tbl_df")
   expect_gt(nrow(result), 0)
+  expect_equal(nrow(result), dplyr::n_distinct(result$session_id))
+  expect_type(result$session_native_accessible, "integer")
+  expect_type(result$session_native_inaccessible, "integer")
+  expect_type(result$session_linked_accessible, "integer")
+  expect_type(result$session_linked_inaccessible, "integer")
 })
 
 test_that("list_volume_sessions returns NULL for unknown volume", {
