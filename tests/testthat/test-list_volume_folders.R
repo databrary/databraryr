@@ -4,6 +4,11 @@ test_that("list_volume_folders returns tibble for accessible volume", {
   result <- list_volume_folders(vol_id = 2)
   skip_if_null_response(result, "list_volume_folders(vol_id = 2)")
   expect_s3_class(result, "tbl_df")
+  expect_equal(nrow(result), dplyr::n_distinct(result$folder_id))
+  expect_type(result$folder_native_accessible, "integer")
+  expect_type(result$folder_native_inaccessible, "integer")
+  expect_type(result$folder_linked_accessible, "integer")
+  expect_type(result$folder_linked_inaccessible, "integer")
 })
 
 test_that("list_volume_folders rejects bad input parameters", {
