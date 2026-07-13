@@ -7,14 +7,16 @@
 list_volume_assets(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{vol_id}{Target volume number. Default is 1.}
+\item{vol_id}{Target volume number. Must be a positive integer. Default is 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. Default is NULL.}
 }
 \value{
-A data frame with information about all assets in a volume.
+A tibble with one row per asset. Columns \code{asset_duration} and
+\code{asset_thumbnail_url} are always present (as \code{NA} when the API omits them).
+Other fields come from the volume sessions/files payload.
 }
 \description{
 List Assets in Databrary Volume.

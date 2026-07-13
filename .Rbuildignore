@@ -9,7 +9,12 @@
 ^_notes$
 ^tmp$
 ^_wip
+^\.lintr$
 ^\.github$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^README.Rmd$
+^\.Renviron\.stg$
+^\.Renviron$
+^\.vscode$
+^\.Rprofile$

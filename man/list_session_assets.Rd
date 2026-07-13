@@ -4,13 +4,22 @@
 \alias{list_session_assets}
 \title{List Assets in a Databrary Session.}
 \usage{
-list_session_assets(session_id = 9807, vb = options::opt("vb"), rq = NULL)
+list_session_assets(
+  session_id = 9807,
+  vol_id = NULL,
+  vb = options::opt("vb"),
+  rq = NULL
+)
 }
 \arguments{
 \item{session_id}{An integer. A Databrary session number. Default is 9807,
 the "materials" folder from Databrary volume 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vol_id}{Optional integer. The volume containing the session. Recent
+versions of the Databrary API require this value to be supplied because
+session identifiers are scoped to volumes.}
+
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. If NULL, a default request is generated
 from databraryr::make_default_request().}
