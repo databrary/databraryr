@@ -1,9 +1,10 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+# Runs after R-CMD-check succeeds on main/master, or on release, or manually
 on:
-  push:
-    branches: [main, master]
-  pull_request:
+  workflow_run:
+    workflows: [R-CMD-check]
+    types: [completed]
     branches: [main, master]
   release:
     types: [published]
@@ -14,15 +15,20 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: ubuntu-latest
+    # Only run when R-CMD-check succeeded (for workflow_run), or for release/manual
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     # Only restrict concurrency for non-PR jobs
     concurrency:
-      group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
+      group: pkgdown-${{ github.event_name != 'workflow_run' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          # When triggered by workflow_run, checkout the commit that was checked
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.ref }}
 
       - uses: r-lib/actions/setup-pandoc@v2
 

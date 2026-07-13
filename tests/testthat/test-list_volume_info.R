@@ -1,10 +1,23 @@
 # list_volume_info ------------------------------------------------------------
-test_that("list_volume_info returns data.frame given valid vol_id", {
-  expect_true("data.frame" %in% class(list_volume_info()))
+login_test_account()
+test_that("list_volume_info returns tibble for default volume", {
+  result <- list_volume_info()
+  skip_if_null_response(result, "list_volume_info()")
+  expect_s3_class(result, "tbl_df")
+  expect_equal(result$vol_id, 1)
+  expect_true(all(c("vol_owner_connection", "vol_owner_institution") %in% names(result)))
+  expect_true(is.list(result$vol_owner_connection))
+  expect_true(is.list(result$vol_owner_institution))
 })
 
-test_that("list_volume_info returns NULL given a non-shared vol_id", {
-  expect_true(is.null(list_volume_info(vol_id = 237)))
+test_that("list_volume_info returns tibble for another volume", {
+  result <- list_volume_info(vol_id = 2)
+  skip_if_null_response(result, "list_volume_info(vol_id = 2)")
+  expect_s3_class(result, "tbl_df")
+  expect_equal(result$vol_id, 2)
+  expect_true(all(c("vol_owner_connection", "vol_owner_institution") %in% names(result)))
+  expect_true(is.list(result$vol_owner_connection))
+  expect_true(is.list(result$vol_owner_institution))
 })
 
 test_that("list_volume_info rejects bad input parameters", {

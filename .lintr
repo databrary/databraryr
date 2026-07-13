@@ -1,0 +1,2 @@
+linters: linters_with_defaults(line_length_linter = line_length_linter(120))
+exclusions: list("_wip", "tests/testthat", "vignettes", "R/CONSTANTS.R" = list(object_name_linter = Inf, object_length_linter = Inf), "R/aaa.R" = list(object_name_linter = Inf), "R/auth_utils.R" = list(object_name_linter = Inf), "R/utils.R" = list(object_name_linter = Inf))

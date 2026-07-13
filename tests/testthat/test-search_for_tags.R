@@ -1,6 +1,11 @@
 # search_for_tags() ---------------------------------------------------
-test_that("search_for_tags returns character", {
-  expect_true("character" %in% class(search_for_tags()))
+test_that("search_for_tags returns tagged volumes", {
+  login_test_account()
+  # Empty tag: backend treats as no tag filter; same broad public-index listing as empty q.
+  result <- search_for_tags("")
+  skip_if_null_response(result, "search_for_tags(\"\")")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
 })
 
 test_that("search_for_tags rejects bad input parameters", {

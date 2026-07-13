@@ -1,9 +1,11 @@
 # search_for_funder() ---------------------------------------------------
-test_that("search_for_funder returns NULL or list", {
-  expect_true((
-    is.null(search_for_funder()) ||
-      "list" %in% class(search_for_funder())
-  ))
+login_test_account()
+test_that("search_for_funder finds matching funder", {
+  result <- search_for_funder("National Science Foundation")
+  skip_if_null_response(result, "search_for_funder(\"National Science Foundation\")")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
+  expect_true(any(grepl("National Science Foundation", result$funder_name, fixed = TRUE)))
 })
 
 test_that("search_for_funder rejects bad input parameters", {

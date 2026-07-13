@@ -1,7 +1,10 @@
 # list_volume_funding ---------------------------------------------------------
 test_that("list_volume_funding returns data.frame or is NULL", {
-  expect_true((is.null(list_volume_funding()) ||
-                 ("data.frame" %in% class(list_volume_funding()))))
+  login_test_account()
+  result <- list_volume_funding(vol_id = 1)
+  skip_if_null_response(result, "list_volume_funding(vol_id = 1)")
+  expect_s3_class(result, "tbl_df")
+  expect_gt(nrow(result), 0)
 })
 
 test_that("list_volume_funding rejects bad input parameters", {
