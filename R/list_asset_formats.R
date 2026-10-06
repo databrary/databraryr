@@ -32,8 +32,8 @@ list_asset_formats <- function(vb = options::opt("vb")) {
   transcodable <- NULL
 
   if (!is.null(db_constants$format)) {
-    purrr::map(db_constants$format, as.data.frame) %>%
-      purrr::list_rbind() %>%
+    purrr::map(db_constants$format, as.data.frame) |>
+      purrr::list_rbind() |>
       dplyr::rename(format_id = id,
                     format_mimetype = mimetype,
                     format_extension = extension,
@@ -42,6 +42,6 @@ list_asset_formats <- function(vb = options::opt("vb")) {
   } else {
     if (vb)
       message("No format information retrieved.")
-    return(NULL)
+    NULL
   }
 }

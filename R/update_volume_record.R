@@ -22,12 +22,6 @@ NULL
 #'   fields (for date metrics). When supplied, must include all required metrics
 #'   for the record's category (use \code{\link{get_volume_enabled_categories}}
 #'   or \code{\link{get_volume_record_by_id}} to discover ids and current values).
-#' @param participant Optional list for participant records containing
-#'   \code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
-#'   \code{age} (with \code{years}, \code{months}, \code{days} fields). Sending
-#'   only \code{participant} without a complete \code{measures} map may still
-#'   fail validation for categories with required metrics; include required
-#'   measures or use \code{\link{set_record_measure}} for targeted edits.
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #'
 #' @seealso \code{\link{set_record_measure}}, \code{\link{get_volume_record_by_id}}
@@ -54,7 +48,6 @@ update_volume_record <- function(
   vol_id = 1,
   record_id,
   measures = NULL,
-  participant = NULL,
   vb = options::opt("vb"),
   rq = NULL
 ) {
@@ -65,10 +58,6 @@ update_volume_record <- function(
     assertthat::assert_that(is.list(measures))
   }
 
-  if (!is.null(participant)) {
-    assertthat::assert_that(is.list(participant))
-  }
-
   assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
 
@@ -76,10 +65,6 @@ update_volume_record <- function(
 
   if (!is.null(measures)) {
     body$measures <- measures
-  }
-
-  if (!is.null(participant)) {
-    body$participant <- participant
   }
 
   if (length(body) == 0) {

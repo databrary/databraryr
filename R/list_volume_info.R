@@ -39,7 +39,7 @@ list_volume_info <-
 
     volume <- databraryr::get_volume_by_id(vol_id = vol_id, vb = vb, rq = rq)
     if (is.null(volume)) {
-      return(NULL)
+      NULL
     } else {
       if (vb) message("Summarising volume detail...")
 
@@ -50,6 +50,7 @@ list_volume_info <-
       session_count_shared <- volume$session_count_shared[[1]]
 
       file_counts <- volume$file_counts[[1]]
+      file_sizes <- volume$file_sizes[[1]]
 
       fundings <- perform_api_get(
         path = sprintf(API_VOLUME_FUNDINGS, vol_id),
@@ -88,6 +89,7 @@ list_volume_info <-
         vol_n_sessions = session_count,
         vol_n_sessions_shared = session_count_shared,
         vol_file_counts = list(file_counts),
+        vol_file_sizes = list(file_sizes),
         vol_n_assets = n_vol_assets,
         vol_tot_size_mb = tot_vol_size_mb,
         vol_tot_dur_hrs = tot_vol_dur_hrs,

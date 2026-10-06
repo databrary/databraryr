@@ -49,7 +49,6 @@ make_test_record <- function(
     category_id = TEST_CATEGORY_ID,
     vol_id = TEST_VOL_ID,
     measures = list(),
-    participant = NULL,
     vb = FALSE,
     rq = NULL,
     envir = parent.frame()) {
@@ -58,7 +57,6 @@ make_test_record <- function(
     category_id = category_id,
     name = name,
     measures = measures,
-    participant = participant,
     vb = vb,
     rq = rq
   )

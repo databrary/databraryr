@@ -96,7 +96,7 @@ list_folder_assets <- function(folder_id = 9807,
     )
   })
 
-  file_rows %>%
+  file_rows |>
     dplyr::mutate(
       folder_id = folder_id,
       vol_id = vol_id,

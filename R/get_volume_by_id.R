@@ -70,6 +70,7 @@ get_volume_by_id <- function(vol_id = 1,
     participant_count = purrr::pluck(volume, "participant_count", .default = NA_integer_),
     participant_gender_counts = list(purrr::pluck(volume, "participant_gender_counts", .default = NULL)),
     file_counts = list(volume$file_counts),
+    file_sizes = list(purrr::pluck(volume, "file_sizes", .default = NULL)),
     thumbnail = list(purrr::pluck(volume, "thumbnail", .default = NULL))
   )
 }

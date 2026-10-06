@@ -48,11 +48,11 @@ list_user_volumes <- function(user_id = 6,
       vol_access_level = entry$access_level,
       vol_sharing_level = entry$sharing_level
     )
-  }, .progress = TRUE) %>%
-    purrr::list_rbind() %>%
+  }, .progress = TRUE) |>
+    purrr::list_rbind() |>
     dplyr::mutate(user_id = user_df$id,
                   user_prename = user_df$prename,
                   user_sortname = user_df$sortname,
-                  user_affiliation = user_df$affiliation) %>%
+                  user_affiliation = user_df$affiliation) |>
     dplyr::arrange(vol_id)
 }

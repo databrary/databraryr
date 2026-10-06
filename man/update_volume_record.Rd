@@ -8,7 +8,6 @@ update_volume_record(
   vol_id = 1,
   record_id,
   measures = NULL,
-  participant = NULL,
   vb = options::opt("vb"),
   rq = NULL
 )
@@ -24,13 +23,6 @@ or lists with \code{year} and optional \code{month}, \code{day}
 fields (for date metrics). When supplied, must include all required metrics
 for the record's category (use \code{\link{get_volume_enabled_categories}}
 or \code{\link{get_volume_record_by_id}} to discover ids and current values).}
-
-\item{participant}{Optional list for participant records containing
-\code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
-\code{age} (with \code{years}, \code{months}, \code{days} fields). Sending
-only \code{participant} without a complete \code{measures} map may still
-fail validation for categories with required metrics; include required
-measures or use \code{\link{set_record_measure}} for targeted edits.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 

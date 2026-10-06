@@ -134,10 +134,27 @@ test_that("create_volume_record rejects invalid measures", {
   expect_error(create_volume_record(vol_id = 1, category_id = 1, name = "Test", measures = TRUE))
 })
 
-test_that("create_volume_record rejects invalid participant", {
-  expect_error(create_volume_record(vol_id = 1, category_id = 1, name = "Test", participant = "text"))
-  expect_error(create_volume_record(vol_id = 1, category_id = 1, name = "Test", participant = 123))
-  expect_error(create_volume_record(vol_id = 1, category_id = 1, name = "Test", participant = TRUE))
+test_that("create_volume_record creates participant with birthdate measure", {
+  uniq <- sprintf(
+    "create_cr_bday_%s_%s",
+    as.integer(Sys.time()),
+    paste(sample(letters, 6, replace = TRUE), collapse = "")
+  )
+
+  result <- create_volume_record(
+    vol_id = TEST_VOL_ID,
+    category_id = 1L,
+    name = uniq,
+    measures = list("4" = list(year = 2020, month = 3, day = 15)),
+    vb = FALSE
+  )
+  skip_if_null_response(result, "create_volume_record with birthdate measure")
+
+  on.exit(delete_volume_record(vol_id = TEST_VOL_ID, record_id = result$record_id, vb = FALSE), add = TRUE)
+
+  expect_type(result, "list")
+  expect_true(!is.null(result$measures))
+  expect_true("4" %in% names(result$measures))
 })
 
 test_that("create_volume_record rejects invalid vb parameter", {

@@ -79,9 +79,9 @@ list_volume_assets <- function(vol_id = 1,
         session_date = session$source_date,
         session_release = session$release_level
       )
-    }, .progress = TRUE) %>%
+    }, .progress = TRUE) |>
       purrr::list_rbind()
-  }) %>%
+  }) |>
     purrr::list_rbind()
 
   if (is.null(files) || nrow(files) == 0) {

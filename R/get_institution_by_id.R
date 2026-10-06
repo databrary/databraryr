@@ -45,6 +45,6 @@ get_institution_by_id <- function(institution_id = 12,
     latitude = institution$latitude,
     longitude = institution$longitude,
     manual_coordinates = institution$manual_coordinates
-  ) %>%
+  ) |>
     as.list()
 }

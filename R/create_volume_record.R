@@ -109,10 +109,6 @@ get_name_metric_id <- function(vol_id,
 #'   to values. Values can be strings (for text metrics), numbers (for numeric
 #'   metrics), or lists with \code{year}, \code{month}, \code{day},
 #'   optional \code{month} and \code{day} fields (for date metrics).
-#' @param participant Optional list for participant records containing
-#'   \code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
-#'   \code{age} (with \code{years}, \code{months}, \code{days} fields). Cannot
-#'   provide both \code{birthday} and \code{age}.
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #'
 #' @return Same shape as \code{\link{get_volume_record_by_id}}, or \code{NULL}
@@ -138,14 +134,12 @@ get_name_metric_id <- function(vol_id,
 #'   measures = list("30" = "Extra value")
 #' )
 #'
-#' # Create a participant record with name and birthday
+#' # Create a participant record with name and birthdate measure
 #' create_volume_record(
 #'   vol_id = 1,
 #'   category_id = 1,
 #'   name = "P001",
-#'   participant = list(
-#'     birthday = list(year = 2020, month = 3, day = 15)
-#'   )
+#'   measures = list("4" = list(year = 2020, month = 3, day = 15))
 #' )
 #' }
 #' }
@@ -155,7 +149,6 @@ create_volume_record <- function(
   category_id,
   name,
   measures = list(),
-  participant = NULL,
   vb = options::opt("vb"),
   rq = NULL
 ) {
@@ -167,10 +160,6 @@ create_volume_record <- function(
   assertthat::assert_that(nzchar(trimws(name)), msg = "name must not be empty")
 
   assertthat::assert_that(is.list(measures))
-
-  if (!is.null(participant)) {
-    assertthat::assert_that(is.list(participant))
-  }
 
   assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
@@ -198,10 +187,6 @@ create_volume_record <- function(
 
   # Build request body
   body <- list(category_id = category_id, measures = measures_with_name)
-
-  if (!is.null(participant)) {
-    body$participant <- participant
-  }
 
   # Perform API call
   record <- perform_api_post(

@@ -82,7 +82,7 @@ list_volume_sessions <-
         vb = vb
       )
 
-      df <- df %>%
+      df <- df |>
         dplyr::mutate(
           vol_id = volume$id,
           vol_name = volume$title,

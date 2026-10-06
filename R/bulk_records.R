@@ -6,15 +6,17 @@ NULL
 #' Bulk Create Records in a Databrary Volume
 #'
 #' @description Create many records sequentially via
-#' \code{\link{create_volume_record}} with empty \code{measures} aside from the
-#' resolved name metric. \code{record_names} must be unique (for
-#' \code{\link{resume_bulk}}). \code{category_id} may be length 1 or match
-#' \code{record_names}. Per-row \code{measures} / \code{participant} are not
-#' supported; call \code{\link{create_volume_record}} for those cases.
+#' \code{\link{create_volume_record}}. The resolved name metric is set from
+#' each \code{record_names} entry automatically. \code{record_names} must be
+#' unique (for \code{\link{resume_bulk}}). \code{category_id} and \code{measures}
+#' may each be length 1 (recycled to every row) or match \code{length(record_names)}.
 #'
 #' @param vol_id Target volume number. Must be a positive integer.
 #' @param record_names Non-empty character vector of record display names (trimmed).
 #' @param category_id Numeric category id(s); length 1 or \code{length(record_names)}.
+#' @param measures Optional named list of additional metric values (recycled when
+#'   length 1), or a list-of-lists with one element per \code{record_names} entry.
+#'   See \code{\link{create_volume_record}} for value types.
 #' @param rq An \code{httr2} request object. Defaults to \code{NULL}.
 #' @param on_error \code{"stop"} or \code{"collect"}; see \code{\link{bulk_upload_files}}.
 #' @param max_retries Non-negative integer; extra attempts per input after the first failure.
@@ -22,6 +24,10 @@ NULL
 #'
 #' @return A \code{tibble} as documented in \code{\link{bulk_upload_files}};
 #'   \code{input} is each trimmed record name.
+#'
+#' @details With \code{\link{resume_bulk}}, pass \code{measures} aligned to the
+#'   subset of \code{record_names} being retried (same order as incomplete rows),
+#'   analogous to \code{new_names} in \code{\link{bulk_rename_sessions}}.
 #'
 #' @seealso \code{\link{create_volume_record}}, \code{\link{resume_bulk}}
 #'
@@ -34,6 +40,13 @@ NULL
 #'   record_names = c("P101", "P102"),
 #'   category_id = 6
 #' )
+#'
+#' bulk_create_records(
+#'   vol_id = 1,
+#'   record_names = c("P101", "P102"),
+#'   category_id = 6,
+#'   measures = list("30" = "Control")
+#' )
 #' }
 #' }
 #' @export
@@ -41,6 +54,7 @@ bulk_create_records <- function(
   vol_id = 1,
   record_names,
   category_id,
+  measures = NULL,
   vb = options::opt("vb"),
   rq = NULL,
   on_error = c("stop", "collect"),
@@ -60,6 +74,11 @@ bulk_create_records <- function(
   }
   assert_recyclable(category_id, n, "category_id")
 
+  if (!is.null(measures)) {
+    assertthat::assert_that(is.list(measures))
+  }
+  assert_recyclable(measures, n, "measures")
+
   assert_positive_integer(vol_id, "vol_id")
   assertthat::assert_that(is.logical(vb), length(vb) == 1)
   assertthat::assert_that(is.null(rq) || inherits(rq, "httr2_request"))
@@ -68,12 +87,15 @@ bulk_create_records <- function(
     inputs = trimmed,
     fn = function(nm) {
       i <- match(nm, trimmed)
+      row_measures <- recycle_bulk_list_arg(measures, i)
+      if (is.null(row_measures)) {
+        row_measures <- list()
+      }
       create_volume_record(
         vol_id = vol_id,
         category_id = recycle_i(category_id, i),
         name = nm,
-        measures = list(),
-        participant = NULL,
+        measures = row_measures,
         vb = vb,
         rq = rq
       )

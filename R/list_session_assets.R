@@ -99,7 +99,7 @@ list_session_assets <- function(session_id = 9807,
     )
   })
 
-  asset_rows %>%
+  asset_rows |>
     dplyr::mutate(
       session_id = session_id,
       vol_id = vol_id,
