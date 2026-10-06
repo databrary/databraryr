@@ -1,17 +1,44 @@
-#' Set default httr request parameters.
+#' Set base request defaults for Databrary API.
 #'
-#' `make_default_request` sets default parameters for httr requests.
-#' @returns An `httr2` request object.
-#' 
+#' Creates an `httr2` request with the package's default options, including
+#' base URL, user agent, Accept header, and timeout tuned for the Django API.
+#'
+#' @inheritParams options_params
+#' @param with_token Should the request include an OAuth2 `Authorization` header?
+#'   Defaults to `TRUE` since all API calls now require authentication.
+#' @param refresh When `with_token = TRUE`, determines whether to refresh the
+#'   cached token if it is near expiry. Defaults to `TRUE`.
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
+#'
+#' @returns An `httr2_request` object configured for the Databrary API.
+#'
 #' @examples
-#' make_default_request()
+#' make_default_request(with_token = FALSE)
 #' @export
-make_default_request <- function() {
-  path <- tempfile()
-  rq <- httr2::request(DATABRARY_API) %>%
-    httr2::req_user_agent(USER_AGENT) %>%
-    httr2::req_retry(max_tries = RETRY_LIMIT) %>%
-    httr2::req_timeout(REQUEST_TIMEOUT) %>%
-    httr2::req_cookie_preserve(path)
-  rq
+make_default_request <- function(with_token = TRUE,
+                                 refresh = TRUE,
+                                 vb = options::opt("vb")) {
+
+  validate_flag(with_token, "with_token")
+  validate_flag(refresh, "refresh")
+  validate_flag(vb, "vb")
+
+  req <- httr2::request(DATABRARY_BASE_URL) |>
+    httr2::req_user_agent(USER_AGENT) |>
+    httr2::req_retry(max_tries = RETRY_LIMIT) |>
+    httr2::req_headers("Accept" = "application/json") |>
+    httr2::req_timeout(REQUEST_TIMEOUT)
+
+  if (!isTRUE(with_token)) {
+    return(req)
+  }
+
+  token <- if (isTRUE(refresh)) {
+    bundle <- ensure_valid_token(refresh = TRUE, vb = vb)
+    bundle$access_token
+  } else {
+    require_access_token()
+  }
+
+  httr2::req_headers(req, Authorization = paste("Bearer", token))
 }

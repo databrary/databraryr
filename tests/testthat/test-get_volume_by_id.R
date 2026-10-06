@@ -1,7 +1,10 @@
 # get_volume_by_id ---------------------------------------------------------
 test_that("get_volume_by_id returns a list or is NULL.", {
-  expect_true((is.null(get_volume_by_id()) ||
-                 ("list" %in% class(get_volume_by_id()))))
+  login_test_account()
+  result <- get_volume_by_id(vol_id = 2)
+  skip_if_null_response(result, "get_volume_by_id(vol_id = 2)")
+  expect_s3_class(result, "tbl_df")
+  expect_equal(result$id, 2)
 })
 
 test_that("get_volume_by_id rejects bad input parameters", {

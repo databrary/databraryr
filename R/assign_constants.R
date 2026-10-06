@@ -1,43 +1,60 @@
 #' @eval options::as_params()
 #' @name options_params
-#' 
+#'
 NULL
 
 #' Download Databrary Constants From API.
-#' 
+#'
+#' @param vb Show verbose feedback. Defaults to `options::opt("vb")`.
 #' @param rq An `httr2` request object. Defaults to NULL.
 #'
 #' @returns A data frame with the constants.
-#' 
+#'
 #' @inheritParams options_params
-#' 
+#'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' assign_constants()
 #' }
 #' @export
 assign_constants <- function(vb = options::opt("vb"), rq = NULL) {
-  # Check parameter
-  assertthat::assert_that(is.logical(vb))
-  
-  if (is.null(rq))
-    rq <- databraryr::make_default_request()
-  arq <- rq %>%
-    httr2::req_url(GET_CONSTANTS)
-  
-  if (vb) message("Retrieving constants.")
-  resp <- tryCatch(
-    httr2::req_perform(arq),
-    httr2_error = function(cnd) {
-      if (vb) message("Error loading Databrary constants.")
-      NULL
-    }
-  )
-  
-  if (is.null(resp)) {
-    message("Cannot access requested resource on Databrary. Exiting.")
-    resp
-  } else {
-    httr2::resp_body_json(resp)
+  validate_flag(vb, "vb")
+  if (vb) {
+    message("Retrieving grouped formats and static enums.")
   }
+
+  grouped <- perform_api_get(
+    path = API_GROUPED_FORMATS,
+    rq = rq,
+    vb = vb,
+    normalize = TRUE
+  )
+
+  if (is.null(grouped)) {
+    message("Unable to load grouped format metadata from Databrary.")
+    return(NULL)
+  }
+
+  lists <- grouped$root
+  if (is.null(lists)) {
+    lists <- grouped
+  }
+
+  format_entries <- purrr::imap(lists, function(items, category) {
+    purrr::map(items, function(item) {
+      item$category <- category
+      item
+    })
+  }) |>
+    purrr::list_c()
+
+  formats_df <- purrr::map(format_entries, tibble::as_tibble) |>
+    purrr::list_rbind()
+
+  list(
+    format = format_entries,
+    format_df = formats_df,
+    permission = get_permission_levels_enums(),
+    release = get_release_levels_enums()
+  )
 }

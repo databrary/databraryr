@@ -1,7 +1,10 @@
 # get_session_by_id ---------------------------------------------------------
 test_that("get_session_by_id returns a list or is NULL.", {
-  expect_true((is.null(get_session_by_id()) ||
-                 ("list" %in% class(get_session_by_id()))))
+  login_test_account()
+  result <- get_session_by_id(session_id = 9, vol_id = 2)
+  skip_if_null_response(result, "get_session_by_id(session_id = 9, vol_id = 2)")
+  expect_true(is.list(result))
+  expect_equal(result$id, 9)
 })
 
 test_that("get_session_by_id rejects bad input parameters", {

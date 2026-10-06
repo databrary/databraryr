@@ -17,7 +17,7 @@ list_volume_funding(
 \item{add_id}{A logical value. Include the volume ID in the output.
 Default is TRUE.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object.}
 }

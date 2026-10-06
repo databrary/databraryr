@@ -7,9 +7,9 @@
 get_volume_by_id(vol_id = 1, vb = options::opt("vb"), rq = NULL)
 }
 \arguments{
-\item{vol_id}{Volume ID.}
+\item{vol_id}{Volume ID. Must be a positive integer. Default is 1.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. If NULL (the default), a new request
 is generated using \code{make_default_request()}. To access restricted data,
@@ -22,7 +22,7 @@ A tibble with summary information about a volume.
 Get Summary Data About A Databrary Volume
 }
 \examples{
-\donttest{
+\dontrun{
 get_volume_by_id() # Default is Volume 1
 }
 

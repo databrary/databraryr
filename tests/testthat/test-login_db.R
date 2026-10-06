@@ -1,31 +1,23 @@
 test_that("login_db rejects bad input parameters", {
-  # expect_error(login_db(email = -1))
-  # expect_error(login_db(email = c("a", "b")))
-  # expect_error(login_db(email = list("a", "b")))
-  # expect_error(login_db(email = TRUE))
-  # 
-  # expect_error(login_db(password = -1))
-  # expect_error(login_db(password = 3))
-  # expect_error(login_db(password = list("a", "b")))
-  # expect_error(login_db(password = TRUE))
-  # 
-  # expect_error(login_db(store = -1))
-  # expect_error(login_db(store = 'a'))
-  # expect_error(login_db(store = list("a", "b")))
-  # 
-  # expect_error(login_db(overwrite = -1))
-  # expect_error(login_db(overwrite = 'a'))
-  # expect_error(login_db(overwrite = list("a", "b")))
-  
   expect_error(login_db(vb = -1))
   expect_error(login_db(vb = 3))
   expect_error(login_db(vb = "a"))
-  
-  # expect_error(login_db(SERVICE = -1))
-  # expect_error(login_db(SERVICE = TRUE))
-  # expect_error(login_db(SERVICE = list("a", "b")))
-  # 
-  # expect_error(login_db(rq = 3))
-  # expect_error(login_db(rq = "a"))
-  # expect_error(login_db(rq = TRUE))
 })
+
+test_that("login_db stores token bundle on success", {
+  orig <- get("oauth_password_grant", envir = asNamespace("databraryr"))
+  assignInNamespace("oauth_password_grant", function(username, password, client_id, client_secret, vb = FALSE) list(access_token = "abc", refresh_token = "def", expires_in = 3600), ns = "databraryr")
+  on.exit(assignInNamespace("oauth_password_grant", orig, ns = "databraryr"), add = TRUE)
+  clear_token_bundle()
+  expect_true(login_db(email = "user@example.com",
+                       password = "pw",
+                       client_id = "cid",
+                       client_secret = "sec",
+                       store = FALSE,
+                       vb = FALSE))
+  bundle <- get_token_bundle()
+  expect_equal(bundle$access_token, "abc")
+  expect_equal(bundle$refresh_token, "def")
+  clear_token_bundle()
+})
+

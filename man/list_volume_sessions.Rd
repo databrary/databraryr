@@ -12,12 +12,12 @@ list_volume_sessions(
 )
 }
 \arguments{
-\item{vol_id}{Target volume number.}
+\item{vol_id}{Target volume number. Must be a positive integer. Default is 1.}
 
 \item{include_vol_data}{A Boolean value. Include volume-level metadata
 or not. Default is FALSE.}
 
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
 \item{rq}{An \code{httr2} request object. If NULL (the default)
 a request will be generated, but this will only permit public information

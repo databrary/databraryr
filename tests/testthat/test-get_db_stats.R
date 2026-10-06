@@ -1,29 +1,26 @@
 # get_db_stats ---------------------------------------------------------
-test_that("get_db_stats returns a data.frame by default", {
-  expect_true('data.frame' %in% class(get_db_stats()))
+login_test_account()
+
+test_that("get_db_stats returns statistics snapshot", {
+  stats <- get_db_stats()
+  skip_if_null_response(stats, "get_db_stats()")
+  expect_s3_class(stats, "tbl_df")
+  expect_true("date" %in% names(stats))
 })
 
-test_that("get_db_stats returns a data.frame with 'good' values for
-          type parameter",
-          {
-            expect_true(is.data.frame(get_db_stats("people")) |
-                          is.null(get_db_stats("people")))
-            expect_true(is.data.frame(get_db_stats("institutions")) |
-                          is.null(get_db_stats("institutions")))
-            expect_true(is.data.frame(get_db_stats("places")) |
-                          is.null(get_db_stats("places")))
-            expect_true(is.data.frame(get_db_stats("datasets")) |
-                          is.null(get_db_stats("datasets")))
-            expect_true(is.data.frame(get_db_stats("data")) |
-                          is.null(get_db_stats("data")))
-            expect_true(is.data.frame(get_db_stats("volumes")) |
-                          is.null(get_db_stats("volumes")))
-            expect_true(is.data.frame(get_db_stats("stats")) |
-                          is.null(get_db_stats("stats")))
-            expect_true(is.data.frame(get_db_stats("numbers")) |
-                          is.null(get_db_stats("numbers")))
-            
-          })
+test_that("get_db_stats returns data.frames for supported types", {
+  types <- c("people", "institutions", "places", "datasets", "data", "volumes", "numbers")
+  for (type in types) {
+    result <- get_db_stats(type)
+    skip_if_null_response(result, sprintf("get_db_stats('%s')", type))
+    expect_s3_class(result, "tbl_df")
+  }
+
+  stats_tbl <- get_db_stats("stats")
+  skip_if_null_response(stats_tbl, "get_db_stats('stats')")
+  expect_s3_class(stats_tbl, "tbl_df")
+  expect_true("date" %in% names(stats_tbl))
+})
 
 test_that("get_db_stats rejects bad input parameters", {
   expect_error(get_db_stats(type = "a"))

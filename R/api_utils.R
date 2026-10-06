@@ -1,0 +1,494 @@
+# Internal helpers for interacting with the Databrary Django API.
+
+#' Validate that a value is a single positive integer (e.g. vol_id, record_id).
+#' @noRd
+assert_positive_integer <- function(x, name = deparse(substitute(x))) {
+  assertthat::assert_that(
+    length(x) == 1,
+    msg = paste(name, "must have length 1")
+  )
+  assertthat::assert_that(
+    is.numeric(x),
+    msg = paste(name, "must be numeric")
+  )
+  assertthat::assert_that(x >= 1, msg = paste(name, "must be >= 1"))
+  assertthat::assert_that(
+    x == floor(x),
+    msg = paste(name, "must be an integer")
+  )
+  invisible(TRUE)
+}
+
+#' @noRd
+resp_has_body <- function(response) {
+  raw <- tryCatch(
+    httr2::resp_body_raw(response),
+    error = function(e) raw(0)
+  )
+  length(raw) > 0
+}
+
+#' @noRd
+ensure_leading_slash <- function(path) {
+  assertthat::assert_that(assertthat::is.string(path))
+  if (startsWith(path, "/")) {
+    path
+  } else {
+    paste0("/", path)
+  }
+}
+
+#' @noRd
+build_query_params <- function(params) {
+  if (length(params) == 0) {
+    return(NULL)
+  }
+
+  keep <- !vapply(params, is.null, logical(1))
+  params <- params[keep]
+  lapply(params, function(value) {
+    if (is.logical(value)) {
+      # API expects lowercase true/false
+      tolower(as.character(value))
+    } else {
+      value
+    }
+  })
+}
+
+#' @noRd
+perform_api_get <- function(path,
+                            params = list(),
+                            rq = NULL,
+                            vb = FALSE,
+                            parser = NULL,
+                            normalize = TRUE,
+                            response_type = c("json", "raw", "text")) {
+  response_type <- match.arg(response_type)
+
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+
+  query <- build_query_params(params)
+  if (!is.null(query) && length(query) > 0) {
+    request <- do.call(httr2::req_url_query, c(list(request), query))
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("Request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(NULL)
+  }
+
+  body <- switch(
+    response_type,
+    json = {
+      payload <- httr2::resp_body_json(response)
+      if (isTRUE(normalize)) {
+        payload <- snake_case_list(payload)
+      }
+      payload
+    },
+    raw = httr2::resp_body_raw(response),
+    text = httr2::resp_body_string(response)
+  )
+
+  if (!is.null(parser) && is.function(parser)) {
+    body <- parser(body)
+  }
+  body
+}
+
+#' Extract one integer bucket from a file_counts object.
+#' @noRd
+file_count_value <- function(counts, key) {
+  value <- if (is.null(counts)) NULL else counts[[key]]
+  if (is.null(value) || length(value) == 0L) {
+    0L
+  } else {
+    as.integer(value)
+  }
+}
+
+#' @noRd
+collect_paginated_get <- function(path,
+                                  params = list(),
+                                  rq = NULL,
+                                  vb = FALSE,
+                                  normalize = TRUE) {
+  next_url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  first_iter <- TRUE
+  query <- build_query_params(params)
+
+  aggregated <- list()
+
+  while (!is.null(next_url)) {
+    request <- rq
+    if (is.null(request)) {
+      request <- databraryr::make_default_request(refresh = first_iter)
+    }
+
+    request <- httr2::req_url(request, next_url)
+    if (first_iter && !is.null(query) && length(query) > 0) {
+      request <- do.call(httr2::req_url_query, c(list(request), query))
+    }
+
+    resp <- tryCatch(
+      httr2::req_perform(request),
+      httr2_error = function(cnd) {
+        if (vb) {
+          message("Request failed for ", next_url, ": ", conditionMessage(cnd))
+        }
+        NULL
+      }
+    )
+
+    if (is.null(resp)) {
+      return(NULL)
+    }
+
+    body <- httr2::resp_body_json(resp)
+    if (isTRUE(normalize)) {
+      body <- snake_case_list(body)
+    }
+
+    page_results <- body$results
+    if (is.null(page_results)) {
+      if (is.list(body) && length(body) > 0 && (is.null(names(body)) || all(names(body) == ""))) {
+        page_results <- body
+      } else {
+        page_results <- list()
+      }
+    }
+
+    aggregated <- c(aggregated, page_results)
+
+    next_url <- body[["next"]]
+    if (!is.null(next_url) && !startsWith(next_url, "http")) {
+      next_url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(next_url))
+    }
+    # API may return absolute next links with a different host/port than the
+    # configured base (e.g. http://localhost/... while DATABRARY_BASE_URL is
+    # http://localhost:8000). Re-anchor path+query to our base URL.
+    if (!is.null(next_url) && grepl("^https?://", next_url)) {
+      path_query <- sub("^https?://[^/]+", "", next_url)
+      if (!startsWith(path_query, "/")) {
+        path_query <- paste0("/", path_query)
+      }
+      next_url <- paste0(sub("/$", "", DATABRARY_BASE_URL), path_query)
+    }
+
+    first_iter <- FALSE
+  }
+
+  aggregated
+}
+
+#' @noRd
+camel_to_snake <- function(x) {
+  x <- gsub("(.)([A-Z][a-z]+)", "\\1_\\2", x)
+  tolower(gsub("([a-z0-9])([A-Z])", "\\1_\\2", x))
+}
+
+#' Iterative (non-recursive) conversion of all named-list keys to snake_case.
+#'
+#' Uses a BFS queue with nested numeric index paths (`obj[[c(i, j, ...)]]`)
+#' to avoid hitting R's C-stack / expression-depth limits on deeply nested or
+#' wide API responses.
+#' @noRd
+snake_case_list <- function(obj) {
+  if (!is.list(obj) && !(is.vector(obj) && !is.null(names(obj)))) {
+    return(obj)
+  }
+
+  # Rename keys at the top level
+  if (!is.null(names(obj))) {
+    names(obj) <- vapply(names(obj), camel_to_snake, character(1))
+  }
+
+  # Seed the BFS queue with indices of children that need processing
+  queue <- list()
+  if (is.list(obj)) {
+    for (i in seq_along(obj)) {
+      el <- obj[[i]]
+      if (is.list(el) || (is.vector(el) && !is.null(names(el)))) {
+        queue <- c(queue, list(i))
+      }
+    }
+  }
+
+  while (length(queue) > 0) {
+    path <- queue[[1L]]
+    queue <- queue[-1L]
+
+    node <- obj[[path]]
+
+    if (!is.null(names(node))) {
+      names(node) <- vapply(names(node), camel_to_snake, character(1))
+      obj[[path]] <- node
+    }
+
+    if (is.list(node)) {
+      for (i in seq_along(node)) {
+        child <- node[[i]]
+        if (is.list(child) ||
+              (is.vector(child) && !is.null(names(child)))) {
+          queue <- c(queue, list(c(path, i)))
+        }
+      }
+    }
+  }
+
+  obj
+}
+
+#' @noRd
+perform_api_post <- function(path,
+                             body = list(),
+                             rq = NULL,
+                             vb = FALSE,
+                             normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "POST")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("POST request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_patch <- function(path,
+                              body = list(),
+                              rq = NULL,
+                              vb = FALSE,
+                              normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "PATCH")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("PATCH request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+# TODO: verify behavior against the live API. Mirrors `perform_api_patch`,
+# but no existing wrapper currently issues PUT, so this helper is unexercised.
+perform_api_put <- function(path,
+                            body = list(),
+                            rq = NULL,
+                            vb = FALSE,
+                            normalize = TRUE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "PUT")
+
+  if (!is.null(body) && length(body) > 0) {
+    request <- httr2::req_body_json(request, body)
+  }
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("PUT request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(NULL)
+  }
+
+  status <- httr2::resp_status(response)
+  if (status == 204L || !resp_has_body(response)) {
+    return(TRUE)
+  }
+
+  payload <- httr2::resp_body_json(response)
+  if (isTRUE(normalize)) {
+    payload <- snake_case_list(payload)
+  }
+  payload
+}
+
+#' @noRd
+perform_api_delete <- function(path,
+                               rq = NULL,
+                               vb = FALSE) {
+  request <- rq
+  if (is.null(request)) {
+    request <- databraryr::make_default_request()
+  }
+
+  url <- paste0(DATABRARY_BASE_URL, ensure_leading_slash(path))
+  request <- httr2::req_url(request, url)
+  request <- httr2::req_method(request, "DELETE")
+
+  response <- tryCatch(
+    httr2::req_perform(request),
+    httr2_error = function(cnd) {
+      if (vb) {
+        message("DELETE request failed for ", url, ": ", conditionMessage(cnd))
+      }
+      NULL
+    }
+  )
+
+  if (is.null(response)) {
+    return(FALSE)
+  }
+
+  TRUE
+}
+
+#' Normalize an API record payload (already snake_case) into the package list shape.
+#'
+#' Mirrors read-only fields from core \verb{RecordSerializer}: \verb{id}, \verb{volume},
+#' \verb{volume_name}, \verb{category_id}, \verb{measures}, \verb{birthday}, \verb{age},
+#' \verb{default_sessions}, \verb{record_source_kind}.
+#'
+#' @noRd
+record_as_client_list <- function(record) {
+  age <- NULL
+  if (!is.null(record$age)) {
+    age <- list(
+      years = record$age$years,
+      months = record$age$months,
+      days = record$age$days,
+      total_days = record$age$total_days,
+      formatted_value = record$age$formatted_value,
+      is_estimated = record$age$is_estimated,
+      is_blurred = record$age$is_blurred
+    )
+  }
+
+  ds <- record$default_sessions
+  if (is.null(ds)) {
+    ds <- list()
+  }
+
+  list(
+    record_id = record$id,
+    record_volume = record$volume,
+    record_volume_name = if (is.null(record$volume_name)) {
+      NA_character_
+    } else {
+      as.character(record$volume_name)
+    },
+    record_category_id = record$category_id,
+    measures = record$measures,
+    birthday = record$birthday,
+    age = age,
+    default_sessions = ds,
+    record_source_kind = if (is.null(record$record_source_kind)) {
+      NA_character_
+    } else {
+      as.character(record$record_source_kind)
+    }
+  )
+}
+
+#' @noRd
+#' @param optional If `TRUE`, `NULL` is allowed (parameter omitted from an API
+#'   call). If `FALSE`, `value` must be a single logical (e.g. `vb`).
+validate_flag <- function(value, name, optional = FALSE) {
+  if (isTRUE(optional) && is.null(value)) {
+    return(invisible(NULL))
+  }
+  assertthat::assert_that(
+    !is.null(value),
+    msg = paste0(name, " must not be NULL.")
+  )
+  assertthat::assert_that(length(value) == 1)
+  assertthat::assert_that(
+    is.logical(value),
+    msg = paste0(name, " must be logical.")
+  )
+  invisible(NULL)
+}

@@ -2,40 +2,41 @@
 % Please edit documentation in R/download_session_zip.R
 \name{download_session_zip}
 \alias{download_session_zip}
-\title{Download Zip Archive From Databrary Session.}
+\title{Request a Signed ZIP Download for a Session.}
 \usage{
 download_session_zip(
   vol_id = 31,
   session_id = 9803,
-  out_dir = tempdir(),
-  file_name = "test.zip",
   vb = options::opt("vb"),
   rq = NULL
 )
 }
 \arguments{
-\item{vol_id}{Volume number.}
+\item{vol_id}{Volume identifier that owns the session. Must be a positive
+integer. Default is 31.}
 
-\item{session_id}{Slot/session number.}
+\item{session_id}{Session identifier within the volume. Must be a positive
+integer. Default is 9803.}
 
-\item{out_dir}{Directory to save output file.}
+\item{vb}{Show verbose feedback. Defaults to \code{options::opt("vb")}.}
 
-\item{file_name}{Name for downloaded file, default is 'test.zip'.}
-
-\item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
-
-\item{rq}{An \code{httr2} request object. Default is NULL.}
+\item{rq}{An \code{httr2} request object. Default is \code{NULL}, in which case a
+default authenticated request is generated.}
 }
 \value{
-Full filename of the downloaded file.
+A list describing the processing task (\code{status}, \code{message},
+\code{task_id}) or \code{NULL} when the request fails.
 }
 \description{
-Download Zip Archive From Databrary Session.
+The Django API prepares session-level ZIP archives asynchronously. Calling
+\code{download_session_zip()} triggers the job and returns a processing task
+summary. Once the archive is ready, Databrary emails a signed download link
+to the authenticated user.
 }
 \examples{
 \donttest{
 \dontrun{
-download_session_zip() # Downloads Zip Archive from volume 31, session 9803
+download_session_zip(vol_id = 31, session_id = 9803)
 }
 }
 
