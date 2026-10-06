@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Interact with the Databrary.org API • databraryr</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interact with the Databrary.org API">
 <meta name="description" content="Databrary.org is a restricted access repository for research data, especially video and audio. This package provides commands to interact with the data stored on Databrary.org.">
 <meta property="og:description" content="Databrary.org is a restricted access repository for research data, especially video and audio. This package provides commands to interact with the data stored on Databrary.org.">
@@ -29,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="index.html">databraryr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.6.6.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,42 +88,188 @@
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Databrary (<a href="https://databrary.org" class="external-link">databrary.org</a>) is a restricted-access research data library specialized for storing and sharing video with capabilities of storing <a href="https://nyu.databrary.org/asset/formats/" class="external-link">other types</a> of associated data. Access to restricted data requires registration and formal approval by an institution. The registration process involves the creation of an (email-account-based) user account and secure password. Once institutional authorization has been granted, a user may gain access to shared video, audio, and other data. See <a href="https://databrary.org/about.html" class="external-link uri">https://databrary.org/about.html</a> for more information about gaining access to restricted data.</p>
-<p>However, many commands in the <code>databraryr</code> package return meaningful results <em>without</em> or <em>prior to</em> formal authorization. These commands access public data or metadata.</p>
+<p>All API calls require OAuth2 authentication. Before running the examples below, ensure you have set the following environment variables or stored values with <code>login_db(store = TRUE)</code>:</p>
+<ul>
+<li><code>DATABRARY_CLIENT_ID</code></li>
+<li><code>DATABRARY_CLIENT_SECRET</code></li>
+<li>
+<code>DATABRARY_LOGIN</code> (your Databrary account email)</li>
+<li>
+<code>DATABRARY_PASSWORD</code> (optional; prompted securely via <strong>getPass</strong> if missing and not in the keyring)</li>
+<li>
+<code>DATABRARY_BASE_URL</code> (optional; defaults to <code>https://api.databrary.org</code>; use this for staging or a custom API host)</li>
+</ul>
+<p>You can put these in your user or project <code>.Renviron</code> (for example <code>file.edit("~/.Renviron")</code> in R, or <code>usethis::edit_r_environ()</code> if you use the <strong>usethis</strong> package).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://databrary.github.io/databraryr/">databraryr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Welcome to the databraryr package.</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/login_db.html">login_db</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/whoami.html">whoami</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/get_db_stats.html">get_db_stats</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; # A tibble: 1 × 9</span></span>
-<span><span class="co">#&gt;   date                investigators affiliates institutions datasets_total</span></span>
-<span><span class="co">#&gt;   &lt;dttm&gt;                      &lt;int&gt;      &lt;int&gt;        &lt;int&gt;          &lt;int&gt;</span></span>
-<span><span class="co">#&gt; 1 2024-03-29 14:38:54          1740        680          784           1670</span></span>
-<span><span class="co">#&gt; # ℹ 4 more variables: datasets_shared &lt;int&gt;, n_files &lt;int&gt;, hours &lt;dbl&gt;,</span></span>
-<span><span class="co">#&gt; #   TB &lt;dbl&gt;</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   asset_id asset_format_id asset_duration                 asset_name</span></span>
-<span><span class="co">#&gt; 1     9826            -800         335883               Introduction</span></span>
-<span><span class="co">#&gt; 2     9830            -800        4277835         Databrary 1.0 plan</span></span>
-<span><span class="co">#&gt; 3     9832            -800        3107147                    Datavyu</span></span>
-<span><span class="co">#&gt; 4    22412               6             NA                     Slides</span></span>
-<span><span class="co">#&gt; 5     9828            -800        4425483             Databrary demo</span></span>
-<span><span class="co">#&gt; 6     9834            -800        4964011 Overview and Policy Update</span></span>
-<span><span class="co">#&gt;   asset_permission asset_size session_id session_date session_release</span></span>
-<span><span class="co">#&gt; 1                1   88610655       6256   2013-10-28               3</span></span>
-<span><span class="co">#&gt; 2                1  899912341       6256   2013-10-28               3</span></span>
-<span><span class="co">#&gt; 3                1  764340542       6256   2013-10-28               3</span></span>
-<span><span class="co">#&gt; 4                1    4573426       6256   2013-10-28               3</span></span>
-<span><span class="co">#&gt; 5                1  917124852       6256   2013-10-28               3</span></span>
-<span><span class="co">#&gt; 6                1 1301079971       6257   2014-04-07               3</span></span>
-<span><span class="co">#&gt;   format_mimetype format_extension       format_name</span></span>
-<span><span class="co">#&gt; 1       video/mp4              mp4      MPEG-4 video</span></span>
-<span><span class="co">#&gt; 2       video/mp4              mp4      MPEG-4 video</span></span>
-<span><span class="co">#&gt; 3       video/mp4              mp4      MPEG-4 video</span></span>
-<span><span class="co">#&gt; 4 application/pdf              pdf Portable document</span></span>
-<span><span class="co">#&gt; 5       video/mp4              mp4      MPEG-4 video</span></span>
-<span><span class="co">#&gt; 6       video/mp4              mp4      MPEG-4 video</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/list_volume_assets.html">list_volume_assets</a></span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Illustrative output (depends on your account, API host, and when you run the code):</p>
+<pre class="text"><code><span><span class="co">#&gt; Welcome to the databraryr package.</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 1 × 11</span></span>
+<span><span class="co">#&gt;   date                institutions affiliates investigators hours_of_recordings</span></span>
+<span><span class="co">#&gt;   &lt;dttm&gt;                     &lt;int&gt;      &lt;int&gt;         &lt;int&gt;               &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 2026-05-18 12:05:57          120      3400          2100               95000</span></span>
+<span><span class="co">#&gt; # ℹ 6 more variables: authorized_users &lt;int&gt;, total_volumes &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   public_volumes &lt;int&gt;, total_files &lt;int&gt;, total_duration_hours &lt;dbl&gt;,</span></span>
+<span><span class="co">#&gt; #   total_storage_tb &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; # (from get_db_stats(); default type aggregates summary counters)</span></span>
+<span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 19</span></span>
+<span><span class="co">#&gt;   asset_id asset_name                asset_permission asset_size asset_mime_type</span></span>
+<span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;                     &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; 1     9826 Introduction              public             88610655 video/mp4</span></span>
+<span><span class="co">#&gt; 2     9828 Databrary demo            public            917124852 video/mp4</span></span>
+<span><span class="co">#&gt; 3     9830 Databrary 1               public            899912341 video/mp4</span></span>
+<span><span class="co">#&gt; 4     9832 Datavyu                   public            764340542 video/mp4</span></span>
+<span><span class="co">#&gt; 5    22412 Slides                    public              4573426 application/pdf</span></span>
+<span><span class="co">#&gt; 6     9834 Overview and Policy Upda… public           1301079971 video/mp4</span></span>
+<span><span class="co">#&gt; # ℹ 14 more variables: asset_format_id &lt;int&gt;, asset_format_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   asset_duration &lt;dbl&gt;, asset_created_at &lt;chr&gt;, asset_updated_at &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   asset_sha1 &lt;chr&gt;, asset_thumbnail_url &lt;chr&gt;, session_id &lt;int&gt;,</span></span>
+<span><span class="co">#&gt; #   session_name &lt;chr&gt;, session_date &lt;chr&gt;, session_release &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   asset_uploader_id &lt;int&gt;, asset_uploader_first_name &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   asset_uploader_last_name &lt;chr&gt;</span></span>
+<span><span class="co">#&gt; # (`asset_duration` / `asset_thumbnail_url` are NA when the API omits them.)</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="bulk-operations">Bulk operations<a class="anchor" aria-label="anchor" href="#bulk-operations"></a>
+</h2>
+<p>Functions whose names start with <code>bulk_*</code> run many API requests in order (sessions, folders, session files, volume records). Each returns a <strong>tibble</strong> with one row per item you asked to process:</p>
+<table class="table">
+<colgroup>
+<col width="47%">
+<col width="52%">
+</colgroup>
+<thead><tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>input</code></td>
+<td>That row’s key (e.g. local path, session id, folder name)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>
+<code>"success"</code>, <code>"failed"</code>, <code>"skipped"</code> (e.g. duplicate basename on upload preflight), or <code>"pending"</code>
+</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>List column with the API payload when <code>status</code> is <code>"success"</code>
+</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Error message when <code>status</code> is <code>"failed"</code>
+</td>
+</tr>
+<tr>
+<td><code>reason</code></td>
+<td>Extra detail when relevant (e.g. <code>"duplicate"</code> for skipped uploads)</td>
+</tr>
+</tbody>
+</table>
+<div class="section level3">
+<h3 id="on_error-retries-and-conditions">
+<code>on_error</code>, retries, and conditions<a class="anchor" aria-label="anchor" href="#on_error-retries-and-conditions"></a>
+</h3>
+<ul>
+<li>
+<strong><code>on_error = "stop"</code></strong> (default): first failed row stops execution with an error of class <strong><code>databraryr_bulk_error</code></strong>. In <strong><code>tryCatch(..., databraryr_bulk_error = function(e) e$partial)</code></strong>, use <strong><code>e$partial</code></strong> for the tibble of all rows so far (<code>"failed"</code> / <code>"pending"</code> for rows after the stop).</li>
+<li>
+<strong><code>on_error = "collect"</code></strong>: every row is attempted; failures stay <code>"failed"</code> and the function returns the full tibble instead of throwing.</li>
+<li>
+<strong><code>max_retries</code></strong> / <strong><code>retry_delay</code></strong>: optional per-row retries before counting a row as failed.</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="resuming-with-resume_bulk">Resuming with <code>resume_bulk()</code>
+<a class="anchor" aria-label="anchor" href="#resuming-with-resume_bulk"></a>
+</h3>
+<p>Use <strong><code><a href="reference/resume_bulk.html">resume_bulk()</a></code></strong> to run the <strong>same</strong> bulk function again on only <strong>incomplete</strong> rows (<code>"pending"</code> or <code>"failed"</code>), and merge those outcomes back into the original tibble (order preserved).</p>
+<p>Typical pattern after <strong><code>on_error = "stop"</code></strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">partial</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="reference/bulk_upload_files.html">bulk_upload_files</a></span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, session_id <span class="op">=</span> <span class="fl">42</span>, file_paths <span class="op">=</span> <span class="va">my_paths</span><span class="op">)</span>,</span>
+<span>  databraryr_bulk_error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="va">e</span><span class="op">$</span><span class="va">partial</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Fix data or environment, then:</span></span>
+<span><span class="va">partial</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/resume_bulk.html">resume_bulk</a></span><span class="op">(</span><span class="va">partial</span>, <span class="va">bulk_upload_files</span>, vol_id <span class="op">=</span> <span class="fl">1</span>, session_id <span class="op">=</span> <span class="fl">42</span><span class="op">)</span></span></code></pre></div>
+<p>Looping fix-and-resume (safe: each <code>e$partial</code> always reflects the full job, not only the last retried subset):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">partial</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="reference/bulk_upload_files.html">bulk_upload_files</a></span><span class="op">(</span>vol_id <span class="op">=</span> <span class="fl">1</span>, session_id <span class="op">=</span> <span class="fl">42</span>, file_paths <span class="op">=</span> <span class="va">my_paths</span><span class="op">)</span>,</span>
+<span>  databraryr_bulk_error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="va">e</span><span class="op">$</span><span class="va">partial</span></span>
+<span><span class="op">)</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">partial</span><span class="op">$</span><span class="va">status</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pending"</span>, <span class="st">"failed"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># fix whatever caused the failure, then:</span></span>
+<span>  <span class="va">partial</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="reference/resume_bulk.html">resume_bulk</a></span><span class="op">(</span><span class="va">partial</span>, <span class="va">bulk_upload_files</span>, vol_id <span class="op">=</span> <span class="fl">1</span>, session_id <span class="op">=</span> <span class="fl">42</span><span class="op">)</span>,</span>
+<span>    databraryr_bulk_error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="va">e</span><span class="op">$</span><span class="va">partial</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<p>Pass every argument the bulk function needs via <code>...</code> except the <strong>vector argument that defines rows</strong> (<code>file_paths</code>, <code>session_ids</code>, <code>folder_ids</code>, <code>file_ids</code>, <code>session_names</code>, <code>folder_names</code>, <code>record_ids</code>, or <code>record_names</code>). That vector is filled automatically from <code>partial$input</code> for incomplete rows; pass <strong><code>input_arg = "..."</code></strong> if auto-detection is wrong.</p>
+<p><strong>Rename helpers</strong> (<code>bulk_rename_sessions</code>, <code>bulk_rename_folders</code>, <code>bulk_rename_files</code>) also take <strong><code>new_names</code></strong> parallel to the ids being renamed. <code><a href="reference/resume_bulk.html">resume_bulk()</a></code> only forwards the id/file vector—you must pass <strong><code>new_names</code></strong> (subset to match the incomplete rows, in the same order) yourself.</p>
+<p><strong>Creates-from-names</strong> helpers (<code>bulk_create_sessions</code>, <code>bulk_create_folders</code>, <code>bulk_create_records</code>) require <strong>unique</strong> names so each row’s <code>input</code> stays identifiable when resuming.</p>
+<p>See <code><a href="reference/resume_bulk.html">?resume_bulk</a></code> and the individual <code>bulk_*</code> help pages for details.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="testing">Testing<a class="anchor" aria-label="anchor" href="#testing"></a>
+</h2>
+<p>The test suite includes integration tests that run against the Databrary API. These tests require the following environment variables to be set:</p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr>
+<th>Variable</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>DATABRARY_LOGIN</code></td>
+<td>Email address for the account</td>
+</tr>
+<tr>
+<td><code>DATABRARY_PASSWORD</code></td>
+<td>Password for the account</td>
+</tr>
+<tr>
+<td><code>DATABRARY_CLIENT_ID</code></td>
+<td>OAuth client ID</td>
+</tr>
+<tr>
+<td><code>DATABRARY_CLIENT_SECRET</code></td>
+<td>OAuth client secret</td>
+</tr>
+<tr>
+<td><code>DATABRARY_BASE_URL</code></td>
+<td>
+<em>(optional)</em> API base URL; defaults to <code>https://api.databrary.org</code>. Integration tests use NYU staging (<code>https://api.stg-databrary.its.nyu.edu</code>) when this variable is <strong>unset</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>Tests that require authentication are automatically skipped when these variables are not available.</p>
+<p>The recommended way to provide them is a project-level <code>.Renviron</code> file in the package root:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="va">DATABRARY_LOGIN</span><span class="op">=</span>you@example.com</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="va">DATABRARY_PASSWORD</span><span class="op">=</span>your-password</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="va">DATABRARY_CLIENT_ID</span><span class="op">=</span>your-client-id</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="va">DATABRARY_CLIENT_SECRET</span><span class="op">=</span>your-client-secret</span></code></pre></div>
+<p>R loads this file automatically on startup, so <code>devtools::test()</code> and <code>devtools::check()</code> will pick up the credentials without any extra steps.</p>
 </div>
 <div class="section level2">
 <h2 id="lifecycle">Lifecycle<a class="anchor" aria-label="anchor" href="#lifecycle"></a>
@@ -161,10 +306,12 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Rick O. Gilmore <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
-<li>Jeffrey Spies <br><small class="roles"> Author </small>  </li>
-<li>National Science Foundation OAC-2032713 <br><small class="roles"> Funder </small>  </li>
-<li>National Institutes of Health R01HD094830 <br><small class="roles"> Funder </small>  </li>
+<li>Rick O. Gilmore <br><small class="roles"> Author, maintainer, copyright holder </small>   </li>
+<li>Jeffrey Spies <br><small class="roles"> Author </small>   </li>
+<li>Pawel pawel.armatys@montrosesoftware.com Armatys <br><small class="roles"> Author </small>   </li>
+<li>National Science Foundation OAC-2032713 <br><small class="roles"> Funder </small>   </li>
+<li>National Institutes of Health R01HD094830 <br><small class="roles"> Funder </small>   </li>
+<li>National Science Foundation BCS 2444730, 2444731 <br><small class="roles"> Funder </small>   </li>
 </ul>
 </div>
 
@@ -182,11 +329,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Rick O. Gilmore, Jeffrey Spies, National Science Foundation OAC-2032713, National Institutes of Health R01HD094830.</p>
+  <p>Developed by Rick O. Gilmore, Jeffrey Spies, Pawel <a href="mailto:pawel.armatys@montrosesoftware.com" class="email">pawel.armatys@montrosesoftware.com</a> Armatys, National Science Foundation OAC-2032713, National Institutes of Health R01HD094830, National Science Foundation BCS 2444730, 2444731.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -1,0 +1,58 @@
+# Remove a Default Record from a Session
+
+Detach a record from a session's default records. The record must
+currently be a default record on the session, otherwise the server
+returns `404`.
+
+## Usage
+
+``` r
+remove_default_record_from_session(
+  vol_id = 1,
+  session_id,
+  record_id,
+  vb = options::opt("vb"),
+  rq = NULL
+)
+```
+
+## Arguments
+
+- vol_id:
+
+  Target volume number. Must be a positive integer.
+
+- session_id:
+
+  Numeric session identifier. Must be a positive integer.
+
+- record_id:
+
+  Numeric record identifier. Must be a positive integer.
+
+- vb:
+
+  Show verbose messages. (Defaults to `FALSE`, overwritable using option
+  'databraryr.vb' or environment variable 'R_DATABRARYR_VB')
+
+- rq:
+
+  An `httr2` request object. Defaults to `NULL`.
+
+## Value
+
+`TRUE` if the record was successfully removed, `FALSE` otherwise.
+
+## See also
+
+[`add_default_record_to_session`](https://databrary.github.io/databraryr/reference/add_default_record_to_session.md)
+
+## Examples
+
+``` r
+# \donttest{
+if (FALSE) { # \dontrun{
+remove_default_record_from_session(vol_id = 1, session_id = 42, record_id = 101)
+} # }
+# }
+```

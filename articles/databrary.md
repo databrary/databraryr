@@ -1,0 +1,125 @@
+# About Databrary
+
+Databrary is a powerful tool for storing and sharing video data and
+documentation with other researchers. With the `databraryr` package, it
+becomes even more powerful. Rather than interact with Databrary through
+a web browser, users can write their own code to download participant
+data or even specific files.
+
+I wrote `databraryr` so that I could better understand how the site
+works under the hood, and so that I could streamline my own analysis and
+data sharing workflows.
+
+Let’s get started.
+
+## Registering
+
+Access to most of the material on Databrary requires prior registration
+and [authorization](https://databrary.org/about/agreement.html) from an
+institution. The authorization process requires formal agreement by an
+institution. But you’ll create an account ID (email) and secure password
+when you register. Then, when you log in with your new credentials,
+you’ll select an existing institution (if yours is on the list), a new
+institution (if yours isn’t), or an existing authorized investigator (if
+you are a student, postdoc, or collaborator) to request authorization
+from.
+
+## Installation
+
+### Official CRAN release
+
+- Install the package from CRAN via install.packages(“databraryr”).
+
+### Development release
+
+- Install the devtools package from CRAN: `install.packages("devtools")`
+  if you have not already done so.
+- Load `devtools` into your local environment:
+  [`library(devtools)`](https://devtools.r-lib.org/).
+- Install the databraryr package via
+  `install_github("databrary/databraryr")`. Required dependencies will
+  be installed at this time.
+
+### v0.6.5
+
+- The latest version of the code is v0.6.5. The v0.6.x code uses the
+  `httr2` package under the hood, and it runs much faster than v0.5.x.
+
+## First steps
+
+All Databrary API access requires authentication. See the [authorized
+users](https://databrary.github.io/databraryr/articles/authorized-users.Rmd)
+vignette to learn how to log in. Once you’ve installed the package
+following one of the above routes, it’s a good idea to check that your
+installation worked by loading it into your local workspace.
+
+``` r
+
+library(databraryr)
+```
+
+After logging in with
+[`login_db()`](https://databrary.github.io/databraryr/reference/login_db.md),
+you can try this command to pull data about one of Databrary’s founders:
+
+``` r
+
+# Retrieve metadata about one of Databrary's founders.
+user_6 <- databraryr::get_user_by_id(user_id = 6)
+
+tibble::as_tibble(user_6)
+```
+
+Note that this command returns a tibble with columns that include the
+first name (`prename`), last name (`sortname`), affiliation, and ORCID
+ID if available.
+
+Databrary assigns a unique integer for each registered user on the
+system. We can create a simple helper function to collect information
+about a larger group of people.
+
+``` r
+
+# Helper function
+get_user_as_df <- function(user_id) {
+  this_user <- databraryr::get_user_by_id(user_id = user_id)
+  if (!is.null(this_user)) {
+    tibble::as_tibble(this_user)
+  } else {
+    NULL
+  }
+}
+
+# Users 5, 6, and 7 are Databrary's founders
+purrr::map(5:7, get_user_as_df, .progress = TRUE) |>
+  purrr::list_rbind()
+```
+
+You should see information about Databrary’s three founders.
+
+You can also try seeing what’s new on Databrary. The
+[`get_db_stats()`](https://databrary.github.io/databraryr/reference/get_db_stats.md)
+command gives you information about the newly authorized people,
+institutions, and newly uploaded datasets. Try this:
+
+``` r
+
+databraryr::get_db_stats("stats")
+databraryr::get_db_stats("people")
+databraryr::get_db_stats("institutions")
+databraryr::get_db_stats("datasets")
+```
+
+Depending on when you run this command and how often, there may or may
+not be new items.
+
+## Next steps
+
+To see more about how to access data on Databrary using `databraryr`
+visit the [accessing
+data](https://databrary.github.io/databraryr/articles/accessing-data.Rmd)
+vignette.
+
+To see how to log in and log out once you have authorization, see the
+vignette for [authorized
+users](https://databrary.github.io/databraryr/articles/authorized-users.Rmd).

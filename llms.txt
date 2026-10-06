@@ -1,0 +1,469 @@
+# databraryr
+
+## Overview
+
+databraryr is a wrapper for the [Databrary](https://databrary.org) data
+library’s application programming interface (API). The package can be
+used to create reproducible data wrangling, analysis, and visualization
+pipelines from data stored and shared on Databrary.
+
+## Installation
+
+``` r
+
+# The easiest way to install databraryr is from CRAN
+install.packages("databraryr")
+
+# The development release can be installed from GitHub
+install.packages("pak")
+pak::pak("databrary/databraryr")
+```
+
+## Usage
+
+Databrary ([databrary.org](https://databrary.org)) is a
+restricted-access research data library specialized for storing and
+sharing video with capabilities of storing [other
+types](https://nyu.databrary.org/asset/formats/) of associated data.
+Access to restricted data requires registration and formal approval by
+an institution. The registration process involves the creation of an
+(email-account-based) user account and secure password. Once
+institutional authorization has been granted, a user may gain access to
+shared video, audio, and other data. See
+<https://databrary.org/about.html> for more information about gaining
+access to restricted data.
+
+All API calls require OAuth2 authentication. Before running the examples
+below, ensure you have set the following environment variables or stored
+values with `login_db(store = TRUE)`:
+
+- `DATABRARY_CLIENT_ID`
+- `DATABRARY_CLIENT_SECRET`
+- `DATABRARY_LOGIN` (your Databrary account email)
+- `DATABRARY_PASSWORD` (optional; prompted securely via **getPass** if
+  missing and not in the keyring)
+- `DATABRARY_BASE_URL` (optional; defaults to
+  `https://api.databrary.org`; use this for staging or a custom API
+  host)
+
+You can put these in your user or project `.Renviron` (for example
+`file.edit("~/.Renviron")` in R, or `usethis::edit_r_environ()` if you
+use the **usethis** package).
+
+``` r
+
+library(databraryr)
+
+login_db()
+
+whoami()
+
+get_db_stats()
+
+list_volume_assets(vol_id = 1) |>
+  head()
+```
+
+Illustrative output (depends on your account, API host, and when you run
+the code):
+
+``` text
+#> Welcome to the databraryr package.
+
+#> # A tibble: 1 × 11
+#>   date                institutions affiliates investigators hours_of_recordings
+#>   <dttm>                     <int>      <int>         <int>               <int>
+#> 1 2026-05-18 12:05:57          120      3400          2100               95000
+#> # ℹ 6 more variables: authorized_users <int>, total_volumes <int>,
+#> #   public_volumes <int>, total_files <int>, total_duration_hours <dbl>,
+#> #   total_storage_tb <dbl>
+#> # (from get_db_stats(); default type aggregates summary counters)
+
+#> # A tibble: 6 × 19
+#>   asset_id asset_name                asset_permission asset_size asset_mime_type
+#>      <int> <chr>                     <chr>                 <dbl> <chr>
+#> 1     9826 Introduction              public             88610655 video/mp4
+#> 2     9828 Databrary demo            public            917124852 video/mp4
+#> 3     9830 Databrary 1               public            899912341 video/mp4
+#> 4     9832 Datavyu                   public            764340542 video/mp4
+#> 5    22412 Slides                    public              4573426 application/pdf
+#> 6     9834 Overview and Policy Upda… public           1301079971 video/mp4
+#> # ℹ 14 more variables: asset_format_id <int>, asset_format_name <chr>,
+#> #   asset_duration <dbl>, asset_created_at <chr>, asset_updated_at <chr>,
+#> #   asset_sha1 <chr>, asset_thumbnail_url <chr>, session_id <int>,
+#> #   session_name <chr>, session_date <chr>, session_release <chr>,
+#> #   asset_uploader_id <int>, asset_uploader_first_name <chr>,
+#> #   asset_uploader_last_name <chr>
+#> # (`asset_duration` / `asset_thumbnail_url` are NA when the API omits them.)
+```
+
+## Bulk operations
+
+Functions whose names start with `bulk_*` run many API requests in order
+(sessions, folders, session files, volume records). Each returns a
+**tibble** with one row per item you asked to process:
+
+| Column | Meaning |
+|----|----|
+| `input` | That row’s key (e.g. local path, session id, folder name) |
+| `status` | `"success"`, `"failed"`, `"skipped"` (e.g. duplicate basename on upload preflight), or `"pending"` |
+| `result` | List column with the API payload when `status` is `"success"` |
+| `error` | Error message when `status` is `"failed"` |
+| `reason` | Extra detail when relevant (e.g. `"duplicate"` for skipped uploads) |
+
+### `on_error`, retries, and conditions
+
+- **`on_error = "stop"`** (default): first failed row stops execution
+  with an error of class **`databraryr_bulk_error`**. In
+  **`tryCatch(..., databraryr_bulk_error = function(e) e$partial)`**,
+  use **`e$partial`** for the tibble of all rows so far (`"failed"` /
+  `"pending"` for rows after the stop).
+- **`on_error = "collect"`**: every row is attempted; failures stay
+  `"failed"` and the function returns the full tibble instead of
+  throwing.
+- **`max_retries`** / **`retry_delay`**: optional per-row retries before
+  counting a row as failed.
+
+### Resuming with `resume_bulk()`
+
+Use
+**[`resume_bulk()`](https://databrary.github.io/databraryr/reference/resume_bulk.md)**
+to run the **same** bulk function again on only **incomplete** rows
+(`"pending"` or `"failed"`), and merge those outcomes back into the
+original tibble (order preserved).
+
+Typical pattern after **`on_error = "stop"`**:
+
+``` r
+
+partial <- tryCatch(
+  bulk_upload_files(vol_id = 1, session_id = 42, file_paths = my_paths),
+  databraryr_bulk_error = function(e) e$partial
+)
+
+# Fix data or environment, then:
+partial <- resume_bulk(partial, bulk_upload_files, vol_id = 1, session_id = 42)
+```
+
+Looping fix-and-resume (safe: each `e$partial` always reflects the full
+job, not only the last retried subset):
+
+``` r
+
+partial <- tryCatch(
+  bulk_upload_files(vol_id = 1, session_id = 42, file_paths = my_paths),
+  databraryr_bulk_error = function(e) e$partial
+)
+while (any(partial$status %in% c("pending", "failed"))) {
+  # fix whatever caused the failure, then:
+  partial <- tryCatch(
+    resume_bulk(partial, bulk_upload_files, vol_id = 1, session_id = 42),
+    databraryr_bulk_error = function(e) e$partial
+  )
+}
+```
+
+Pass every argument the bulk function needs via `...` except the
+**vector argument that defines rows** (`file_paths`, `session_ids`,
+`folder_ids`, `file_ids`, `session_names`, `folder_names`, `record_ids`,
+or `record_names`). That vector is filled automatically from
+`partial$input` for incomplete rows; pass **`input_arg = "..."`** if
+auto-detection is wrong.
+
+**Rename helpers** (`bulk_rename_sessions`, `bulk_rename_folders`,
+`bulk_rename_files`) also take **`new_names`** parallel to the ids being
+renamed.
+[`resume_bulk()`](https://databrary.github.io/databraryr/reference/resume_bulk.md)
+only forwards the id/file vector—you must pass **`new_names`** (subset
+to match the incomplete rows, in the same order) yourself.
+
+**Creates-from-names** helpers (`bulk_create_sessions`,
+`bulk_create_folders`, `bulk_create_records`) require **unique** names
+so each row’s `input` stays identifiable when resuming.
+
+See
+[`?resume_bulk`](https://databrary.github.io/databraryr/reference/resume_bulk.md)
+and the individual `bulk_*` help pages for details.
+
+## Testing
+
+The test suite includes integration tests that run against the Databrary
+API. These tests require the following environment variables to be set:
+
+| Variable | Description |
+|----|----|
+| `DATABRARY_LOGIN` | Email address for the account |
+| `DATABRARY_PASSWORD` | Password for the account |
+| `DATABRARY_CLIENT_ID` | OAuth client ID |
+| `DATABRARY_CLIENT_SECRET` | OAuth client secret |
+| `DATABRARY_BASE_URL` | *(optional)* API base URL; defaults to `https://api.databrary.org`. Integration tests use NYU staging (`https://api.stg-databrary.its.nyu.edu`) when this variable is **unset**. |
+
+Tests that require authentication are automatically skipped when these
+variables are not available.
+
+The recommended way to provide them is a project-level `.Renviron` file
+in the package root:
+
+``` bash
+DATABRARY_LOGIN=you@example.com
+DATABRARY_PASSWORD=your-password
+DATABRARY_CLIENT_ID=your-client-id
+DATABRARY_CLIENT_SECRET=your-client-secret
+```
+
+R loads this file automatically on startup, so `devtools::test()` and
+`devtools::check()` will pick up the credentials without any extra
+steps.
+
+## Lifecycle
+
+Rick Gilmore has been using experimental versions of databraryr for many
+years, but the package was only released to CRAN in the fall of 2023.
+Some new features are on the roadmap, but the package is largely stable.
+
+# Package index
+
+## All functions
+
+- [`DATABRARY_BASE_URL`](https://databrary.github.io/databraryr/reference/DATABRARY_BASE_URL.md)
+  : Load Package-wide Constants into Local Environment
+- [`add_default_record_to_session()`](https://databrary.github.io/databraryr/reference/add_default_record_to_session.md)
+  : Add a Default Record to a Session
+- [`assign_constants()`](https://databrary.github.io/databraryr/reference/assign_constants.md)
+  : Download Databrary Constants From API.
+- [`assign_record_to_file()`](https://databrary.github.io/databraryr/reference/assign_record_to_file.md)
+  : Assign Record to Session File
+- [`bulk_assign_records()`](https://databrary.github.io/databraryr/reference/bulk_assign_records.md)
+  : Bulk Assign Default Records to a Session
+- [`bulk_create_folders()`](https://databrary.github.io/databraryr/reference/bulk_create_folders.md)
+  : Bulk Create Folders in a Databrary Volume
+- [`bulk_create_records()`](https://databrary.github.io/databraryr/reference/bulk_create_records.md)
+  : Bulk Create Records in a Databrary Volume
+- [`bulk_create_sessions()`](https://databrary.github.io/databraryr/reference/bulk_create_sessions.md)
+  : Bulk Create Sessions in a Databrary Volume
+- [`bulk_delete_files()`](https://databrary.github.io/databraryr/reference/bulk_delete_files.md)
+  : Bulk Delete Files from a Databrary Session
+- [`bulk_delete_folders()`](https://databrary.github.io/databraryr/reference/bulk_delete_folders.md)
+  : Bulk Delete Folders from a Databrary Volume
+- [`bulk_delete_records()`](https://databrary.github.io/databraryr/reference/bulk_delete_records.md)
+  : Bulk Delete Records from a Databrary Volume
+- [`bulk_delete_sessions()`](https://databrary.github.io/databraryr/reference/bulk_delete_sessions.md)
+  : Bulk Delete Sessions from a Databrary Volume
+- [`bulk_rename_files()`](https://databrary.github.io/databraryr/reference/bulk_rename_files.md)
+  : Bulk Rename Files in a Databrary Session
+- [`bulk_rename_folders()`](https://databrary.github.io/databraryr/reference/bulk_rename_folders.md)
+  : Bulk Rename Folders in a Databrary Volume
+- [`bulk_rename_sessions()`](https://databrary.github.io/databraryr/reference/bulk_rename_sessions.md)
+  : Bulk Rename Sessions in a Databrary Volume
+- [`bulk_unassign_records()`](https://databrary.github.io/databraryr/reference/bulk_unassign_records.md)
+  : Bulk Unassign Default Records from a Session
+- [`bulk_upload_files()`](https://databrary.github.io/databraryr/reference/bulk_upload_files.md)
+  : Bulk Upload Files to a Databrary Session or Folder
+- [`check_duplicate_files_in_folder()`](https://databrary.github.io/databraryr/reference/check_duplicate_files_in_folder.md)
+  : Check Whether Filenames Already Exist in a Folder
+- [`check_duplicate_files_in_session()`](https://databrary.github.io/databraryr/reference/check_duplicate_files_in_session.md)
+  : Check Whether Filenames Already Exist in a Session
+- [`check_ssl_certs()`](https://databrary.github.io/databraryr/reference/check_ssl_certs.md)
+  : Check SSL Certificates For nyu.databary.org.
+- [`complete_upload()`](https://databrary.github.io/databraryr/reference/complete_upload.md)
+  : Complete a Multipart Upload
+- [`create_folder()`](https://databrary.github.io/databraryr/reference/create_folder.md)
+  : Create Folder in Databrary Volume
+- [`create_session()`](https://databrary.github.io/databraryr/reference/create_session.md)
+  : Create Session in Databrary Volume
+- [`create_volume_record()`](https://databrary.github.io/databraryr/reference/create_volume_record.md)
+  : Create Record in Databrary Volume
+- [`delete_folder()`](https://databrary.github.io/databraryr/reference/delete_folder.md)
+  : Delete Folder from Databrary Volume
+- [`delete_record_measure()`](https://databrary.github.io/databraryr/reference/delete_record_measure.md)
+  : Delete Measure from a Record
+- [`delete_session()`](https://databrary.github.io/databraryr/reference/delete_session.md)
+  : Delete Session from Databrary Volume
+- [`delete_session_file()`](https://databrary.github.io/databraryr/reference/delete_session_file.md)
+  : Delete a Session File from a Databrary Volume
+- [`delete_volume_record()`](https://databrary.github.io/databraryr/reference/delete_volume_record.md)
+  : Delete Record from Databrary Volume
+- [`disable_volume_category()`](https://databrary.github.io/databraryr/reference/disable_volume_category.md)
+  : Disable a Category for a Volume
+- [`download_folder_asset()`](https://databrary.github.io/databraryr/reference/download_folder_asset.md)
+  : Download a Folder Asset via Signed Link.
+- [`download_folder_asset_from_df()`](https://databrary.github.io/databraryr/reference/download_folder_asset_from_df.md)
+  : Download a Single Folder Asset From a Data Frame Row.
+- [`download_folder_assets_fr_df()`](https://databrary.github.io/databraryr/reference/download_folder_assets_fr_df.md)
+  : Download Multiple Assets From a Folder Data Frame.
+- [`download_folder_zip()`](https://databrary.github.io/databraryr/reference/download_folder_zip.md)
+  : Request a Signed ZIP Download for a Folder.
+- [`download_session_asset()`](https://databrary.github.io/databraryr/reference/download_session_asset.md)
+  : Download an Asset via Signed Link.
+- [`download_session_asset_from_df()`](https://databrary.github.io/databraryr/reference/download_session_asset_from_df.md)
+  : Download a Single Asset From a Session Data Frame Row.
+- [`download_session_assets_fr_df()`](https://databrary.github.io/databraryr/reference/download_session_assets_fr_df.md)
+  : Download Multiple Assets From a Session Data Frame.
+- [`download_session_csv()`](https://databrary.github.io/databraryr/reference/download_session_csv.md)
+  : Request a Session or Volume CSV Export.
+- [`download_session_zip()`](https://databrary.github.io/databraryr/reference/download_session_zip.md)
+  : Request a Signed ZIP Download for a Session.
+- [`download_video()`](https://databrary.github.io/databraryr/reference/download_video.md)
+  : Download a Video Asset via Signed URL.
+- [`download_volume_zip()`](https://databrary.github.io/databraryr/reference/download_volume_zip.md)
+  : Request a Signed ZIP Download for a Volume.
+- [`enable_volume_category()`](https://databrary.github.io/databraryr/reference/enable_volume_category.md)
+  : Enable a Category for a Volume
+- [`get_category_by_id()`](https://databrary.github.io/databraryr/reference/get_category_by_id.md)
+  : Get Category Information By ID
+- [`get_db_stats()`](https://databrary.github.io/databraryr/reference/get_db_stats.md)
+  : Get Stats About Databrary
+- [`get_folder_by_id()`](https://databrary.github.io/databraryr/reference/get_folder_by_id.md)
+  : Get Folder Metadata From a Databrary Volume
+- [`get_folder_file()`](https://databrary.github.io/databraryr/reference/get_folder_file.md)
+  : Get Session File Data From A Databrary Volume
+- [`get_funder_by_id()`](https://databrary.github.io/databraryr/reference/get_funder_by_id.md)
+  : Get Funder Information By ID
+- [`get_institution_avatar()`](https://databrary.github.io/databraryr/reference/get_institution_avatar.md)
+  : Download Institution Avatar Image
+- [`get_institution_by_id()`](https://databrary.github.io/databraryr/reference/get_institution_by_id.md)
+  : Get institution metadata
+- [`get_institution_statistics()`](https://databrary.github.io/databraryr/reference/get_institution_statistics.md)
+  : Get statistics for an institution
+- [`get_permission_levels()`](https://databrary.github.io/databraryr/reference/get_permission_levels.md)
+  : Extract Databrary Permission Levels.
+- [`get_release_levels()`](https://databrary.github.io/databraryr/reference/get_release_levels.md)
+  : Show Databrary Release Levels
+- [`get_session_by_id()`](https://databrary.github.io/databraryr/reference/get_session_by_id.md)
+  : Get Session (Slot) Data From A Databrary Volume
+- [`get_session_by_name()`](https://databrary.github.io/databraryr/reference/get_session_by_name.md)
+  : Get Session Data From A Databrary Volume By Session Name.
+- [`get_session_file()`](https://databrary.github.io/databraryr/reference/get_session_file.md)
+  : Get Session File Data From A Databrary Volume
+- [`get_supported_file_types()`](https://databrary.github.io/databraryr/reference/get_supported_file_types.md)
+  : Extracts File Types Supported by Databrary.
+- [`get_tag_by_id()`](https://databrary.github.io/databraryr/reference/get_tag_by_id.md)
+  : Get Tag Information By ID
+- [`get_upload_status()`](https://databrary.github.io/databraryr/reference/get_upload_status.md)
+  : Get the Current Status of an Upload
+- [`get_user_avatar()`](https://databrary.github.io/databraryr/reference/get_user_avatar.md)
+  : Get User Avatar
+- [`get_user_by_id()`](https://databrary.github.io/databraryr/reference/get_user_by_id.md)
+  : Get public profile information for a Databrary user
+- [`get_user_statistics()`](https://databrary.github.io/databraryr/reference/get_user_statistics.md)
+  : Get statistics for a user
+- [`get_volume_by_id()`](https://databrary.github.io/databraryr/reference/get_volume_by_id.md)
+  : Get Summary Data About A Databrary Volume
+- [`get_volume_collaborator_by_id()`](https://databrary.github.io/databraryr/reference/get_volume_collaborator_by_id.md)
+  : Get Volume Collaborator By ID
+- [`get_volume_enabled_categories()`](https://databrary.github.io/databraryr/reference/get_volume_enabled_categories.md)
+  : Get Enabled Categories for a Volume
+- [`get_volume_record_by_id()`](https://databrary.github.io/databraryr/reference/get_volume_record_by_id.md)
+  : Get Volume Record By ID
+- [`initiate_upload()`](https://databrary.github.io/databraryr/reference/initiate_upload.md)
+  : Initiate a File Upload
+- [`list_asset_formats()`](https://databrary.github.io/databraryr/reference/list_asset_formats.md)
+  : List Stored Assets (Files) By Type.
+- [`list_authorized_investigators()`](https://databrary.github.io/databraryr/reference/list_authorized_investigators.md)
+  : List authorized investigators for an institution
+- [`list_categories()`](https://databrary.github.io/databraryr/reference/list_categories.md)
+  : List Databrary Categories
+- [`list_folder_assets()`](https://databrary.github.io/databraryr/reference/list_folder_assets.md)
+  : List Assets Within a Databrary Folder.
+- [`list_institution_affiliates()`](https://databrary.github.io/databraryr/reference/list_institution_affiliates.md)
+  : List affiliates for an institution
+- [`list_institutions()`](https://databrary.github.io/databraryr/reference/list_institutions.md)
+  : List Institutions
+- [`list_session_assets()`](https://databrary.github.io/databraryr/reference/list_session_assets.md)
+  **\[experimental\]** : List Assets in a Databrary Session.
+- [`list_user_affiliates()`](https://databrary.github.io/databraryr/reference/list_user_affiliates.md)
+  : List affiliates for a user
+- [`list_user_history()`](https://databrary.github.io/databraryr/reference/list_user_history.md)
+  : List Account Activity For A Databrary User.
+- [`list_user_sponsors()`](https://databrary.github.io/databraryr/reference/list_user_sponsors.md)
+  : List sponsorships for a user
+- [`list_user_volumes()`](https://databrary.github.io/databraryr/reference/list_user_volumes.md)
+  : List Volumes Associated With A User
+- [`list_users()`](https://databrary.github.io/databraryr/reference/list_users.md)
+  : List Databrary Users.
+- [`list_volume_activity()`](https://databrary.github.io/databraryr/reference/list_volume_activity.md)
+  : List Activity In A Databrary Volume
+- [`list_volume_assets()`](https://databrary.github.io/databraryr/reference/list_volume_assets.md)
+  : List Assets in Databrary Volume.
+- [`list_volume_collaborators()`](https://databrary.github.io/databraryr/reference/list_volume_collaborators.md)
+  : List Collaborators On A Databrary Volume.
+- [`list_volume_folders()`](https://databrary.github.io/databraryr/reference/list_volume_folders.md)
+  : List Folders in a Databrary Volume.
+- [`list_volume_funding()`](https://databrary.github.io/databraryr/reference/list_volume_funding.md)
+  : Lists Funders Associated With a Databrary Volume.
+- [`list_volume_info()`](https://databrary.github.io/databraryr/reference/list_volume_info.md)
+  : List Basic Volume Info.
+- [`list_volume_links()`](https://databrary.github.io/databraryr/reference/list_volume_links.md)
+  : Retrieves URL Links From A Databrary Volume.
+- [`list_volume_records()`](https://databrary.github.io/databraryr/reference/list_volume_records.md)
+  : List Records in Databrary Volume
+- [`list_volume_session_assets()`](https://databrary.github.io/databraryr/reference/list_volume_session_assets.md)
+  **\[experimental\]** : List Assets in a Session from a Databrary
+  volume.
+- [`list_volume_sessions()`](https://databrary.github.io/databraryr/reference/list_volume_sessions.md)
+  : List Sessions in Databrary Volume.
+- [`list_volume_tags()`](https://databrary.github.io/databraryr/reference/list_volume_tags.md)
+  : Lists Keywords And Tags For A Volume.
+- [`list_volumes()`](https://databrary.github.io/databraryr/reference/list_volumes.md)
+  : List Volumes Accessible Through The Databrary API.
+- [`login_db()`](https://databrary.github.io/databraryr/reference/login_db.md)
+  : Log In To Databrary.org.
+- [`logout_db()`](https://databrary.github.io/databraryr/reference/logout_db.md)
+  : Log Out of Databrary.org.
+- [`make_default_request()`](https://databrary.github.io/databraryr/reference/make_default_request.md)
+  : Set base request defaults for Databrary API.
+- [`make_fn_portable()`](https://databrary.github.io/databraryr/reference/make_fn_portable.md)
+  : Make Portable File Names
+- [`make_login_client()`](https://databrary.github.io/databraryr/reference/make_login_client.md)
+  : Log In To Databrary.org.
+- [`options`](https://databrary.github.io/databraryr/reference/options.md)
+  : databraryr Options
+- [`patch_folder()`](https://databrary.github.io/databraryr/reference/patch_folder.md)
+  : Partially Update a Folder in Databrary Volume
+- [`patch_session()`](https://databrary.github.io/databraryr/reference/patch_session.md)
+  : Partially Update a Session in Databrary Volume
+- [`patch_session_file()`](https://databrary.github.io/databraryr/reference/patch_session_file.md)
+  : Partially Update a Session File's Metadata
+- [`remove_default_record_from_session()`](https://databrary.github.io/databraryr/reference/remove_default_record_from_session.md)
+  : Remove a Default Record from a Session
+- [`resume_bulk()`](https://databrary.github.io/databraryr/reference/resume_bulk.md)
+  : Resume a Bulk Operation After a Failure
+- [`search_for_funder()`](https://databrary.github.io/databraryr/reference/search_for_funder.md)
+  : Report Information About A Funder.
+- [`search_for_tags()`](https://databrary.github.io/databraryr/reference/search_for_tags.md)
+  : Search For Tags on Volumes or Sessions.
+- [`search_institutions()`](https://databrary.github.io/databraryr/reference/search_institutions.md)
+  : Search For Institutions In Databrary.
+- [`search_users()`](https://databrary.github.io/databraryr/reference/search_users.md)
+  : Search For Users In Databrary.
+- [`search_volumes()`](https://databrary.github.io/databraryr/reference/search_volumes.md)
+  : Search For Volumes In Databrary.
+- [`set_record_measure()`](https://databrary.github.io/databraryr/reference/set_record_measure.md)
+  : Set Measure for a Record
+- [`set_volume_enabled_categories()`](https://databrary.github.io/databraryr/reference/set_volume_enabled_categories.md)
+  : Set Enabled Categories for a Volume
+- [`unassign_record_from_file()`](https://databrary.github.io/databraryr/reference/unassign_record_from_file.md)
+  : Unassign Record from Session File
+- [`update_folder()`](https://databrary.github.io/databraryr/reference/update_folder.md)
+  : Replace a Folder in Databrary Volume (PUT)
+- [`update_session()`](https://databrary.github.io/databraryr/reference/update_session.md)
+  : Replace a Session in Databrary Volume (PUT)
+- [`update_session_file()`](https://databrary.github.io/databraryr/reference/update_session_file.md)
+  : Replace a Session File's Metadata (PUT)
+- [`update_volume_record()`](https://databrary.github.io/databraryr/reference/update_volume_record.md)
+  : Update Record in Databrary Volume
+- [`upload_file()`](https://databrary.github.io/databraryr/reference/upload_file.md)
+  : Upload a Local File to Databrary
+- [`whoami()`](https://databrary.github.io/databraryr/reference/whoami.md)
+  : Retrieve metadata about the authenticated Databrary user.
+
+# Articles
+
+### All vignettes
+
+- [Accessing
+  Data](https://databrary.github.io/databraryr/articles/accessing-data.md):
+- [Authorized
+  Users](https://databrary.github.io/databraryr/articles/authorized-users.md):
+- [About
+  Databrary](https://databrary.github.io/databraryr/articles/databrary.md):

@@ -1,0 +1,276 @@
+# Accessing Data
+
+Databrary is a data library, one specialized for storing and sharing
+video with a restricted audience of institutionally approved
+researchers. In this vignette, we’ll see how to use `databraryr` to
+access data.
+
+We’ll start simply. Let’s download a test video from [volume 1 on
+Databrary](https://databrary.org/volume/1).
+
+The
+[`download_video()`](https://databrary.github.io/databraryr/reference/download_video.md)
+function handles this for us. Running it with the default parameters
+downloads a simple test video with numbers than increment. The file is
+stored in a temporary directory created by the file system using the
+function [`tempdir()`](https://rdrr.io/r/base/tempfile.html). The
+[`download_video()`](https://databrary.github.io/databraryr/reference/download_video.md)
+function returns a character string with the full file name.
+
+``` r
+
+databraryr::download_video()
+```
+
+The function returns a path to the video on your file system. The file
+name chosen, since we didn’t specify one, is the session number `9807`,
+an underscore, the file/asset number `1`, another underscore, and a time
+stamp.
+
+**Note**: You can navigate to the location where we’re downloading files
+by opening the following URL in your browser:
+<https://databrary.org/volume/1/slot/9807>
+
+Depending on your operating system, the following commands may open the
+file so that you can play it with your default video player.
+
+``` r
+
+nums_vid <- download_video()
+system(paste0("open ", nums_vid))
+```
+
+Or, you can navigate to the temporary directory to open and play the
+video manually. Use [`tempdir()`](https://rdrr.io/r/base/tempfile.html)
+to find the directory where `test.mp4` is stored.
+
+Now, let’s see what other files are shared in volume 1, not just those
+in session (slot) 9807. This takes a moment to run because there are
+*many* files in this volume.
+
+**NOTE**: With Databrary 2.0, all Databrary API access requires
+authentication. Log in with
+[`login_db()`](https://databrary.github.io/databraryr/reference/login_db.md)
+first (see [authorized
+users](https://databrary.github.io/databraryr/articles/authorized-users.Rmd)).
+
+``` r
+
+databraryr::list_volume_assets()
+```
+
+We have not provided an `httr2` request parameter, so the function
+generates a default one. We can see this happening if we set
+`vb = TRUE`.
+
+``` r
+
+databraryr::list_volume_assets(vb = TRUE)
+```
+
+If we log-in using the commands described in [authorized
+users](https://databrary.github.io/databraryr/articles/authorized-users.Rmd),
+and provide the function with a valid (non-NULL) `httr2` request
+parameter, the following function call would show files and data that
+are restricted to authorized users:
+
+``` r
+
+databraryr::list_volume_assets(vol_id = `<SOME_OTHER_VOLUME_ID>`, rq = rq)
+```
+
+Obviously, you would need to supply a `vol_id` for some other non-public
+dataset for this to return useful information.
+
+The
+[`list_volume_assets()`](https://databrary.github.io/databraryr/reference/list_volume_assets.md)
+command returns a data frame we can manipulate using standard R
+commands. Here are the variables in the data frame.
+
+``` r
+
+vol1_assets <- databraryr::list_volume_assets()
+names(vol1_assets)
+```
+
+Or, if you use the R (\> version 4.3) ‘pipe’ syntax:
+
+``` r
+
+databraryr::list_volume_assets() |>
+  names()
+```
+
+The `magrittr` package pipe (‘%\>%’) also works (as of databraryr
+v0.6.2).
+
+The `asset_format_id` variable tells us information about the type of
+the data file.
+
+``` r
+
+unique(vol1_assets$asset_format_id)
+```
+
+But this isn’t especially informative since the `asset_format` is a
+code, and we don’t really know what `-800` or `6` or the other numbers
+refer to. To decode it, we create a data frame of all the file formats
+Databrary currently recognizes.
+
+``` r
+
+db_constants <- databraryr::assign_constants()
+
+formats_df <- purrr::map(db_constants$format, as.data.frame) |>
+  purrr::list_rbind()
+
+formats_df
+```
+
+From this, we see that format `-800` is an MP4-formatted video. There
+are lots of those in Volume 1. We see that`6` is a PDF document.
+
+As of 0.6.0,
+[`list_volume_assets()`](https://databrary.github.io/databraryr/reference/list_volume_assets.md)
+adds this information to the data frame.
+
+We can summarize the number of files using the
+[`stats::xtabs()`](https://rdrr.io/r/stats/xtabs.html) function:
+
+``` r
+
+stats::xtabs(~ format_name, data = vol1_assets)
+```
+
+So, there are lots of videos and PDFs to examine in volume 1. Here is a
+table of the ten longest videos.
+
+``` r
+
+vol1_assets |>
+  dplyr::filter(format_name == "MPEG-4 video") |>
+  dplyr::select(asset_name, asset_duration) |>
+  dplyr::mutate(hrs = asset_duration/(60*60*1000)) |>
+  dplyr::select(asset_name, hrs) |>
+  dplyr::arrange(desc(hrs)) |>
+  head(n = 10) |>
+  knitr::kable(format = 'html')
+```
+
+## Accessing metadata
+
+Imagine you are interested in knowing more about this volume, the people
+who created it, or the agencies that funded it.
+
+The
+[`list_volume_collaborators()`](https://databrary.github.io/databraryr/reference/list_volume_collaborators.md)
+function returns a data frame with information about the people who have
+been granted access to collaborate on this dataset. The function has a
+parameter `vol_id` which is an integer, unique across Databrary, that
+refers to the specific dataset. The
+[`list_volume_collaborators()`](https://databrary.github.io/databraryr/reference/list_volume_collaborators.md)
+function uses volume 1 as the default.
+
+``` r
+
+databraryr::list_volume_collaborators()
+```
+
+The command (and many like it) can be “vectorized” using the `purrr`
+package. This let’s us generate a tibble with the owners of the first
+fifteen volumes.
+
+``` r
+
+purrr::map(1:15, databraryr::list_volume_collaborators) |> 
+  purrr::list_rbind()
+```
+
+As of 0.6.0, the
+[`get_volume_by_id()`](https://databrary.github.io/databraryr/reference/get_volume_by_id.md)
+function returns a tibble summarising all data about a volume that is
+accessible to a particular user. The default is volume 1.
+
+``` r
+
+vol1_list <- databraryr::get_volume_by_id()
+vol1_list
+```
+
+Let’s create our own tibble/data frame with a subset of these variables.
+
+``` r
+
+vol1_df <- vol1_list |>
+  dplyr::select(id, title, sharing_level, access_level)
+vol1_df
+```
+
+The `access_level` variable indicates whether a volume is visible to
+you, and if so with what privileges.
+
+So, if you are not logged-in to Databrary, only data that are visible to
+the public will be returned. Assuming you are *not* logged-in, the above
+commands will show volumes with `access_level` equal to 1. The
+`access_level` field derives from a set of constants the system uses.
+
+``` r
+
+db_constants <- databraryr::assign_constants()
+db_constants$permission
+```
+
+The `permission` array is indexed beginning with 0. The first value
+typically means volumes visible to the public. Volumes that you have not
+shared and are not visible to the public will have `access_level` equal
+to 5. We can’t demonstrate this in the vignette because we don’t have
+privileges on the same unshared volume, but you can try it on a volume
+you’ve created but not yet shared.
+
+Other functions with the form `list_volume_*()` provide information
+about Databrary volumes. For example, the
+[`list_volume_funding()`](https://databrary.github.io/databraryr/reference/list_volume_funding.md)
+command returns information about any funders listed for the project.
+Again, the default volume is 1.
+
+``` r
+
+databraryr::list_volume_funding()
+```
+
+The
+[`list_volume_links()`](https://databrary.github.io/databraryr/reference/list_volume_links.md)
+command returns information about any external (web) links that have
+been added to a volume, such as to related publications or a GitHub
+repo.
+
+``` r
+
+databraryr::list_volume_links()
+```
+
+There’s much more to learn about accessing Databrary information using
+`databraryr`, but this should get you started. Explore
+[`list_volumes()`](https://databrary.github.io/databraryr/reference/list_volumes.md)
+to enumerate accessible datasets or
+[`search_volumes()`](https://databrary.github.io/databraryr/reference/search_volumes.md)
+to find projects matching a keyword.
+
+## Downloading multiple files
+
+As of 0.6.3, it’s possible to download multiple files. The following set
+of commands downloads all of the ‘csv’ files in volume 1 using the
+output from
+[`list_volume_session_assets()`](https://databrary.github.io/databraryr/reference/list_volume_session_assets.md)
+(when you have a volume ID and a session ID) or
+[`list_session_assets()`](https://databrary.github.io/databraryr/reference/list_session_assets.md)
+when you have only the session ID. The code below creates a new
+directory based on the session/slot ID (9807). The function returns the
+file path to the downloaded files.
+
+``` r
+
+vol1_assets |> 
+  dplyr::filter(format_extension == "csv") |>
+  databraryr::download_session_assets_fr_df()
+```
