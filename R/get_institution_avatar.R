@@ -78,9 +78,9 @@ get_institution_avatar <- function(institution_id = 1,
   }
 
   # Build the request with the avatar URL
-  req <- req %>%
-    httr2::req_url(full_url) %>%
-    httr2::req_method("GET") %>%
+  req <- req |>
+    httr2::req_url(full_url) |>
+    httr2::req_method("GET") |>
     httr2::req_error(
       is_error = function(resp) {
         FALSE

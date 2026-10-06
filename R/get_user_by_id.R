@@ -47,6 +47,6 @@ get_user_by_id <- function(user_id = 6,
     affiliation_id = institution_id,
     is_authorized_investigator = user$is_authorized_investigator,
     has_avatar = user$has_avatar
-  ) %>%
+  ) |>
     as.list()
 }

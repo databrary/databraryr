@@ -9,7 +9,6 @@ create_volume_record(
   category_id,
   name,
   measures = list(),
-  participant = NULL,
   vb = options::opt("vb"),
   rq = NULL
 )
@@ -27,11 +26,6 @@ Required; resolves to the category's name metric from volume configuration.}
 to values. Values can be strings (for text metrics), numbers (for numeric
 metrics), or lists with \code{year}, \code{month}, \code{day},
 optional \code{month} and \code{day} fields (for date metrics).}
-
-\item{participant}{Optional list for participant records containing
-\code{birthday} (with \code{year}, \code{month}, \code{day} fields) or
-\code{age} (with \code{years}, \code{months}, \code{days} fields). Cannot
-provide both \code{birthday} and \code{age}.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
@@ -66,14 +60,12 @@ create_volume_record(
   measures = list("30" = "Extra value")
 )
 
-# Create a participant record with name and birthday
+# Create a participant record with name and birthdate measure
 create_volume_record(
   vol_id = 1,
   category_id = 1,
   name = "P001",
-  participant = list(
-    birthday = list(year = 2020, month = 3, day = 15)
-  )
+  measures = list("4" = list(year = 2020, month = 3, day = 15))
 )
 }
 }

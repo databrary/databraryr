@@ -102,7 +102,7 @@ list_volume_session_assets <-
         session_name = session$name,
         session_release = session$release_level
       )
-    }) %>%
+    }) |>
       purrr::list_rbind()
 
     asset_rows

@@ -68,7 +68,7 @@ list_volume_funding <- function(vol_id = 1,
       rows <- dplyr::mutate(rows, vol_id = id)
     }
     rows
-  }) %>%
+  }) |>
     purrr::list_rbind()
 
   if (is.null(out) || nrow(out) == 0L) {

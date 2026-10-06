@@ -8,6 +8,7 @@ bulk_create_records(
   vol_id = 1,
   record_names,
   category_id,
+  measures = NULL,
   vb = options::opt("vb"),
   rq = NULL,
   on_error = c("stop", "collect"),
@@ -21,6 +22,10 @@ bulk_create_records(
 \item{record_names}{Non-empty character vector of record display names (trimmed).}
 
 \item{category_id}{Numeric category id(s); length 1 or \code{length(record_names)}.}
+
+\item{measures}{Optional named list of additional metric values (recycled when
+length 1), or a list-of-lists with one element per \code{record_names} entry.
+See \code{\link{create_volume_record}} for value types.}
 
 \item{vb}{Show verbose messages. (Defaults to \code{FALSE}, overwritable using option 'databraryr.vb' or environment variable 'R_DATABRARYR_VB')}
 
@@ -38,11 +43,15 @@ A \code{tibble} as documented in \code{\link{bulk_upload_files}};
 }
 \description{
 Create many records sequentially via
-\code{\link{create_volume_record}} with empty \code{measures} aside from the
-resolved name metric. \code{record_names} must be unique (for
-\code{\link{resume_bulk}}). \code{category_id} may be length 1 or match
-\code{record_names}. Per-row \code{measures} / \code{participant} are not
-supported; call \code{\link{create_volume_record}} for those cases.
+\code{\link{create_volume_record}}. The resolved name metric is set from
+each \code{record_names} entry automatically. \code{record_names} must be
+unique (for \code{\link{resume_bulk}}). \code{category_id} and \code{measures}
+may each be length 1 (recycled to every row) or match \code{length(record_names)}.
+}
+\details{
+With \code{\link{resume_bulk}}, pass \code{measures} aligned to the
+subset of \code{record_names} being retried (same order as incomplete rows),
+analogous to \code{new_names} in \code{\link{bulk_rename_sessions}}.
 }
 \examples{
 \donttest{
@@ -51,6 +60,13 @@ bulk_create_records(
   vol_id = 1,
   record_names = c("P101", "P102"),
   category_id = 6
+)
+
+bulk_create_records(
+  vol_id = 1,
+  record_names = c("P101", "P102"),
+  category_id = 6,
+  measures = list("30" = "Control")
 )
 }
 }

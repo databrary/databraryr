@@ -156,6 +156,20 @@ recycle_i <- function(x, i) {
   }
 }
 
+# Internal: recycle list-valued bulk arguments (e.g. measures).
+# Unlike recycle_i(), length-1 lists are returned whole so a single
+# named measures map applies to every row.
+#' @noRd
+recycle_bulk_list_arg <- function(x, i) {
+  if (is.null(x)) {
+    return(NULL)
+  }
+  if (length(x) == 1L) {
+    return(x)
+  }
+  x[[i]]
+}
+
 #' @noRd
 assert_bulk_names <- function(names_vec, label = "names") {
   assertthat::assert_that(
